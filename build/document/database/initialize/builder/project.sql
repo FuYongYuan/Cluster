@@ -1,0 +1,50 @@
+use builder;
+
+create table builder.project
+(
+    id                       bigint unsigned auto_increment comment '主键ID'
+        primary key,
+    project_group_id         bigint unsigned  null comment '项目群ID',
+    project_name             varchar(200)     null comment '项目名称',
+    artifact_id              varchar(100)     null comment '工件ID',
+    package_name             varchar(100)     null comment '项目包目录',
+    project_version          varchar(100)     null comment '项目版本',
+    project_description      varchar(4000)    null comment '项目的描述',
+    project_url              varchar(100)     null comment '项目访问路径',
+    project_port             varchar(5)       null comment '项目访问端口',
+    is_service_interface     tinyint unsigned null comment '是否Service创建接口(0.否 1.是)',
+    is_redis                 tinyint unsigned null comment '是否使用Redis缓存(0.否 1.是)',
+    is_minio                 tinyint unsigned null comment '是否使用MinIO文件服务器(0.否 1.是)',
+    is_mail                  tinyint unsigned null comment '是否使用Mail能力(0.否 1.是)',
+    is_excel                 tinyint unsigned null comment '是否使用Excel能力(0.否 1.是)',
+    data_base_framework      tinyint unsigned null comment '数据层框架类型(0.不使用数据源 1.JPA 2.Mybatis)',
+    mybatis_version          varchar(100)     null comment '数据库框架MyBatis版本',
+    is_delete_not_pk         tinyint unsigned null comment '是否去除无主键的表(0.否 1.是)',
+    is_delete_bo             tinyint unsigned null comment '是否去除BO层(0.否 1.是)',
+    is_basis_method          tinyint unsigned null comment '是否生成基础方法(0.否 1.是)',
+    is_order_key             tinyint unsigned null comment '是否吧主键生成时放第一位(0.否 1.是)',
+    data_base_format         tinyint unsigned null comment '数据库格式设定(0.没有格式转换 1.X_X_Xxxx => XXXXxxx)',
+    is_single_data_base      tinyint unsigned null comment '是否单一数据源(0.否 1.是)',
+    read_data_base_jar       varchar(100)     null comment '数据连接读JAR',
+    write_data_base_jar      varchar(100)     null comment '数据连接写JAR',
+    read_data_base_name      varchar(100)     null comment '数据连接读库名',
+    write_data_base_name     varchar(100)     null comment '数据连接写库名',
+    read_data_base_url       varchar(200)     null comment '数据连接读地址',
+    write_data_base_url      varchar(200)     null comment '数据连接写地址',
+    read_data_base_account   varchar(50)      null comment '数据连接读账号',
+    write_data_base_account  varchar(50)      null comment '数据连接写账号',
+    read_data_base_password  varchar(50)      null comment '数据连接读密码',
+    write_data_base_password varchar(50)      null comment '数据连接写密码',
+    druid_url                varchar(200)     null comment 'Druid访问路径',
+    druid_account            varchar(50)      null comment 'Druid登录账号',
+    druid_password           varchar(50)      null comment 'Druid登录密码',
+    create_time              datetime         null comment '创建时间',
+    creator_id               bigint unsigned  null comment '创建人ID',
+    creator_name             varchar(50)      null comment '创建人名称',
+    update_time              datetime         null comment '修改时间',
+    updater_id               bigint unsigned  null comment '修改人ID',
+    updater_name             varchar(50)      null comment '修改人名称',
+    state                    tinyint unsigned null comment '状态(0.正常 99.删除)'
+)
+    comment '项目';
+

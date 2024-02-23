@@ -1,0 +1,20 @@
+#linux 启动语句 nohup java -jar authorization.jar >log/authorization.log &
+#linux 查看日志 tail -f log/authorization.log
+
+server:
+  # 项目端口号
+  port: 8002
+  servlet:
+    # 项目名称
+    context-path: /
+spring:
+  application:
+    # 项目名称
+    name: authorization
+  profiles:
+    # 额外的application配置
+    include:
+logging:
+  file:
+    # 日志记录.默认10MB自动打包gz压缩包.从0号开始.
+    name: log/authorization.log

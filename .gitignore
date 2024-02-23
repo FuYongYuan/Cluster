@@ -1,0 +1,8 @@
+# 基础排除
+.idea
+*.iml
+*.pdb
+.jpb
+
+# 排除数据结构版本
+/Document/DataStructure/.*
