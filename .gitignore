@@ -6,3 +6,6 @@
 
 # 排除数据结构版本
 /Document/DataStructure/.*
+
+# 排除编译内容
+/build/*/*/*/target/
