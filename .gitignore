@@ -9,3 +9,6 @@
 
 # 排除编译内容
 /build/*/*/*/target/
+
+# 日志
+/log/*.log
