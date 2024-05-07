@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestControllerAdvice
 public class RestControllerExceptionHandleAdvice {
+
     /**
      * 错误处理
      *
@@ -25,12 +26,18 @@ public class RestControllerExceptionHandleAdvice {
     public ResultMessage<String> handler(Exception e) {
         log.error(ConstantService.logMessage(e));
 
-        return switch (e) {
-            case BusinessException businessException -> new ResultMessage<>(500, "服务器忙,请稍后再试");
-            case NullPointerException nullPointerException -> new ResultMessage<>(500, "发生空指针异常");
-            case NoSuchMethodException noSuchMethodException -> new ResultMessage<>(500, "未能找到该执行的方法");
-            case IllegalArgumentException illegalArgumentException -> new ResultMessage<>(500, "请求参数类型不匹配");
-            default -> new ResultMessage<>(500, "服务器代码发生异常,请联系管理员");
-        };
+        switch (e) {
+            case BusinessException exception ->
+                    log.error("服务器忙,请稍后再试\n{}", ConstantService.logMessage(exception));
+            case NullPointerException exception ->
+                    log.error("发生空指针异常\n{}", ConstantService.logMessage(exception));
+            case NoSuchMethodException exception ->
+                    log.error("未能找到该执行的方法\n{}", ConstantService.logMessage(exception));
+            case IllegalArgumentException exception ->
+                    log.error("请求参数类型不匹配\n{}", ConstantService.logMessage(exception));
+            default -> log.error("服务器代码发生异常,请联系管理员");
+        }
+
+        return new ResultMessage<>(500, "服务器忙,请稍后再试");
     }
 }

@@ -1,0 +1,15 @@
+# 通过以下命令应用该YAML文件 kubectl apply -f authorization-test-deploy-service.yaml
+# 需要通过指定命名空间来查询 kubectl get services -n cluster-test-build
+apiVersion: v1
+kind: Service
+metadata:
+  name: authorization-service
+  namespace: cluster-test-build
+spec:
+  selector:
+    app: authorization
+  ports:
+    - protocol: TCP
+      port: 27001
+      targetPort: 27001
+  type: LoadBalancer

@@ -5,10 +5,11 @@
 .jpb
 
 # 排除数据结构版本
-/Document/DataStructure/.*
+/build/document/database/structure/.back_*
 
 # 排除编译内容
+/build/*/*/*/log/
 /build/*/*/*/target/
 
 # 日志
-/log/*.log
+/log/

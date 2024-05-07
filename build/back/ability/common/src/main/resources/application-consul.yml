@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    # Consul 的配置
+    consul:
+      # Consul 的地址，如果在本地运行
+      host: localhost
+      # Consul 的端口
+      port: 8500
+      # 配置中心
+      config:
+        # 启用配置中心
+        enabled: true
+        # 配置文件格式
+        format: yaml
+        # 默认配置文件名称
+        default-context: config

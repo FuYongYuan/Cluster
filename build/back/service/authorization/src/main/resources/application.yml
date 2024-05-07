@@ -2,8 +2,8 @@
 #linux 查看日志 tail -f log/authorization.log
 
 server:
-  # 项目端口号
-  port: 8002
+  # 项目端口号 0～65535
+  port: 27001
   servlet:
     # 项目名称
     context-path: /

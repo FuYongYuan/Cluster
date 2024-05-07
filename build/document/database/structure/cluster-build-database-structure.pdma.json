@@ -2,9 +2,9 @@
   "name": "cluster-build-database-structure",
   "describe": "FYY项目集群-构建-数据库-结构设计",
   "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAIAAAAn5KxJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGkmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4xLWMwMDAgNzkuZWRhMmIzZmFjLCAyMDIxLzExLzE3LTE3OjIzOjE5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjMuMSAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjItMDYtMDdUMTY6NTc6MDQrMDg6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIyLTA4LTA4VDA5OjQ2OjMyKzA4OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIyLTA4LTA4VDA5OjQ2OjMyKzA4OjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2N2YxNzkxYi0zZWM3LTRhZmQtYTEwYS0xODdjNTJmYWJiMDMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ZWEyNDA1MGMtOTFjZC00NTkwLThjMzYtODcwNTJiNTY0OTVhIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6ZWEyNDA1MGMtOTFjZC00NTkwLThjMzYtODcwNTJiNTY0OTVhIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDplYTI0MDUwYy05MWNkLTQ1OTAtOGMzNi04NzA1MmI1NjQ5NWEiIHN0RXZ0OndoZW49IjIwMjItMDYtMDdUMTY6NTc6MDQrMDg6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4xIChNYWNpbnRvc2gpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDphYmMxZGM3Zi0xZTY5LTQ1NzgtYjQ0ZC1jZjBhMTA4NTg4MWQiIHN0RXZ0OndoZW49IjIwMjItMDgtMDhUMDk6NDU6NTErMDg6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4xIChNYWNpbnRvc2gpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo2N2YxNzkxYi0zZWM3LTRhZmQtYTEwYS0xODdjNTJmYWJiMDMiIHN0RXZ0OndoZW49IjIwMjItMDgtMDhUMDk6NDY6MzIrMDg6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4xIChNYWNpbnRvc2gpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ppwu4nMAAAlfSURBVGiB7VlbbJzFFT5nZv7rXuxs4tR27GwIwoZGanwJD4EWgZCgEi9UAlwiKp5R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",
-  "version": "4.9.1",
+  "version": "4.9.2",
   "createdTime": "2024-2-18 16:37:28",
-  "updatedTime": "2024-2-18 16:46:42",
+  "updatedTime": "2024-4-22 13:57:05",
   "dbConns": [],
   "profile": {
     "default": {
@@ -227,7 +227,7 @@
       {
         "type": "appCode",
         "applyFor": "797A1496-D649-4261-89B4-544132EC3F36",
-        " JpaBean": "{{  var today=new Date();\n    var fullYear=today.getFullYear();\n    var month=today.getMonth() + 1;\n    var days=today.getDate();\n    \n    var pkVarName = \"undefinedId\";\n    var pkDataType = \"String\";\n    it.entity.fields.forEach(function(field){\n        if(field.primaryKey){\n            pkVarName = it.func.camel(field.defKey,false);\n            pkDataType = field[\"type\"];\n            return;\n        }\n    });\n    \n    var pkgName = it.entity.env.base.nameSpace;\n    var beanClass = it.entity.env.base.codeRoot;\n    var beanVarName = beanClass.charAt(0).toLowerCase()+beanClass.slice(1);\n    var serviceClass = beanClass+'Service';\n    var serviceVarName= beanVarName+'Service';\n    \n}}package {{=pkgName}}.entity;\n$blankline\nimport io.swagger.annotations.ApiModel;\nimport io.swagger.annotations.ApiModelProperty;\nimport javax.persistence.*;\nimport java.io.Serializable;\nimport java.util.Date;\n$blankline\n\n /**\n * {{=it.entity.defName}};{{=it.entity.comment}}\n * @author : http://www.chiner.pro\n * @date : {{=fullYear}}-{{=month}}-{{=days}}\n */\n@ApiModel(value = \"{{=it.entity.defName}}\",description = \"{{=it.entity.comment}}\")\n@Table(name=\"{{=it.entity.defKey}}\")\npublic class {{=beanClass}} implements Serializable,Cloneable{\n{{~it.entity.fields:field:index}}\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    {{? field.primaryKey }}\n    @Id\n    @GeneratedValue\n    {{?}}\n    @ApiModelProperty(name = \"{{=field.defName}}\",notes = \"{{=field.comment}}\")\n    private {{=field.type}} {{=it.func.camel(field.defKey,false)}} ;\n{{~}}\n$blankline\n\n{{~it.entity.fields:field:index}}\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    public {{=field.type}} get{{=it.func.camel(field.defKey,true)}}(){\n        return this.{{=it.func.camel(field.defKey,false)}};\n    }\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    public void set{{=it.func.camel(field.defKey,true)}}({{=field.type}} {{= it.func.camel(field.defKey,false) }}){\n        this.{{=it.func.camel(field.defKey,false)}}={{=it.func.camel(field.defKey,false)}};\n    }\n{{~}}\n}"
+        " JpaBean": "{{  var today=new Date();\n    var fullYear=today.getFullYear();\n    var month=today.getMonth() + 1;\n    var days=today.getDate();\n    \n    var pkVarName = \"undefinedId\";\n    var pkDataType = \"String\";\n    it.entity.fields.forEach(function(field){\n        if(field.primaryKey){\n            pkVarName = it.func.camel(field.defKey,false);\n            pkDataType = field[\"type\"];\n            return;\n        }\n    });\n    \n    var pkgName = it.entity.env.base.nameSpace;\n    var beanClass = it.entity.env.base.codeRoot;\n    var beanVarName = beanClass.charAt(0).toLowerCase()+beanClass.slice(1);\n    var serviceClass = beanClass+'Service';\n    var serviceVarName= beanVarName+'Service';\n    \n}}package {{=pkgName}}.entity;\n$blankline\nimport io.swagger.annotations.ApiModel;\nimport io.swagger.annotations.ApiModelProperty;\nimport javax.persistence.*;\nimport java.io.Serializable;\nimport java.util.Date;\n$blankline\n\n /**\n * {{=it.entity.defName}};{{=it.entity.comment}}\n * @author : http://www.chiner.pro\n * @date : {{=fullYear}}-{{=month}}-{{=days}}\n */\n@ApiModel(value = \"{{=it.entity.defName}}\",description = \"{{=it.entity.comment}}\")\n@Table(name=\"{{=it.entity.defKey}}\")\npublic class {{=beanClass}} implements Serializable,Cloneable{\n{{~it.entity.fields:field:index}}\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    {{? field.primaryKey }}\n    @Id\n    @GeneratedValue\n    {{?}}\n    @ApiModelProperty(name = \"{{=field.defName}}\",notes = \"{{=field.comment}}\")\n    private {{=field.type}} {{=it.func.camel(field.defKey,false)}};\n{{~}}\n$blankline\n\n{{~it.entity.fields:field:index}}\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    public {{=field.type}} get{{=it.func.camel(field.defKey,true)}}(){\n        return this.{{=it.func.camel(field.defKey,false)}};\n    }\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    public void set{{=it.func.camel(field.defKey,true)}}({{=field.type}} {{= it.func.camel(field.defKey,false) }}){\n        this.{{=it.func.camel(field.defKey,false)}}={{=it.func.camel(field.defKey,false)}};\n    }\n{{~}}\n}"
       },
       {
         "type": "appCode",
@@ -7913,5 +7913,267 @@
   "diagrams": [],
   "standardFields": [],
   "dbConn": [],
-  "logicEntities": []
+  "logicEntities": [],
+  "namingRules": [
+    {
+      "id": "63F1DC0E-6A76-4B75-B3DA-4B00657B4E1B",
+      "defName": "属性代码不能超过32",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "L",
+      "applyFieldType": "field",
+      "programCode": "return (data.field.defName||\"\").length <= 32",
+      "enable": true
+    },
+    {
+      "id": "668CBEE6-E0B7-4ACE-B72E-63942963B191",
+      "defName": "长度不能超过32位",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "entity",
+      "programCode": "return (data.entity.defName||\"\").length <= 32",
+      "enable": true
+    },
+    {
+      "id": "11BD987F-82E7-418E-A752-FDD84F1582A2",
+      "defName": "长度不能超过32位",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "return (data.field.defName||\"\").length <= 32",
+      "enable": true
+    },
+    {
+      "id": "29D0A8D9-ABE2-451F-8A39-52FAB02E62B9",
+      "defName": "索引名-长度不超过32个字符",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "index",
+      "programCode": "return (data.index.defName||\"\").length <= 32",
+      "enable": true
+    },
+    {
+      "id": "B425A96F-6A31-4DBD-8743-A00DE28FB50F",
+      "defName": "不能使用保留字",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "index",
+      "programCode": "let sysWords = \"action,add,aggregate,all,alter,after,and,as,asc,avg,avg_row_length,auto_increment,between,bigint,bit,binary,blob,bool,both,by,cascade,case,char,character,change,check,checksum,column,columns,comment,constraint,create,cross,current_date,current_time,current_timestamp,data,database,databases,date,datetime,day,day_hour,day_minute,day_second,dayofmonth,dayofweek,dayofyear,dec,decimal,default,delayed,delay_key_write,delete,desc,describe,distinct,distinctrow,double,drop,end,else,escape,escaped,enclosed,enum,explain,exists,fields,file,first,float,float4,float8,flush,foreign,from,for,full,function,global,grant,grants,group,having,heap,high_priority,hour,hour_minute,hour_second,hosts,identified,ignore,in,index,infile,inner,insert,insert_id,int,integer,interval,int1,int2,int3,int4,int8,into,if,is,isam,join,key,keys,kill,last_insert_id,leading,left,length,like,lines,limit,load,local,lock,logs,long,longblob,longtext,low_priority,max,max_rows,match,mediumblob,mediumtext,mediumint,middleint,min_rows,minute,minute_second,modify,month,monthname,myisam,natural,numeric,no,not,null,on,optimize,option,optionally,or,order,outer,outfile,pack_keys,partial,password,precision,primary,procedure,process,processlist,privileges,read,real,references,reload,regexp,rename,replace,restrict,returns,revoke,rlike,row,rows,second,select,set,show,shutdown,smallint,soname,sql_big_tables,sql_big_selects,sql_low_priority_updates,sql_log_off,sql_log_update,sql_select_limit,sql_small_result,sql_big_result,sql_warnings,straight_join,starting,status,string,table,tables,temporary,terminated,text,then,time,timestamp,tinyblob,tinytext,tinyint,trailing,to,type,use,using,unique,unlock,unsigned,update,usage,values,varchar,variables,varying,varbinary,with,write,when,where,year,year_month,zerofill\".split(\",\");\nreturn sysWords.indexOf(data.index.defKey.toLowerCase())<0;",
+      "enable": true
+    },
+    {
+      "id": "EF9E44D0-691A-4352-A079-CFF300107531",
+      "defName": "索引名-全小写",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "index",
+      "programCode": "return !/[A-Z]+/.test(data.index.defKey);",
+      "enable": true
+    },
+    {
+      "id": "972EB2FB-4428-429D-8B0A-F082A8C7A94D",
+      "defName": "名称不能为空",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "L",
+      "applyFieldType": "entity",
+      "programCode": "return data.logicEntity.defName",
+      "enable": true
+    },
+    {
+      "id": "EEAEB9C5-BB6C-4E92-949B-D27928690D85",
+      "defName": "名称长度不超过32",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "L",
+      "applyFieldType": "entity",
+      "programCode": "return (data.logicEntity.defName||\"\").length <=32",
+      "enable": true
+    },
+    {
+      "id": "24E3F7E5-730D-4378-B72D-195D6B940352",
+      "defName": "不能使用保留字",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "entity",
+      "programCode": "let sysWords = \"action,add,aggregate,all,alter,after,and,as,asc,avg,avg_row_length,auto_increment,between,bigint,bit,binary,blob,bool,both,by,cascade,case,char,character,change,check,checksum,column,columns,comment,constraint,create,cross,current_date,current_time,current_timestamp,data,database,databases,date,datetime,day,day_hour,day_minute,day_second,dayofmonth,dayofweek,dayofyear,dec,decimal,default,delayed,delay_key_write,delete,desc,describe,distinct,distinctrow,double,drop,end,else,escape,escaped,enclosed,enum,explain,exists,fields,file,first,float,float4,float8,flush,foreign,from,for,full,function,global,grant,grants,group,having,heap,high_priority,hour,hour_minute,hour_second,hosts,identified,ignore,in,index,infile,inner,insert,insert_id,int,integer,interval,int1,int2,int3,int4,int8,into,if,is,isam,join,key,keys,kill,last_insert_id,leading,left,length,like,lines,limit,load,local,lock,logs,long,longblob,longtext,low_priority,max,max_rows,match,mediumblob,mediumtext,mediumint,middleint,min_rows,minute,minute_second,modify,month,monthname,myisam,natural,numeric,no,not,null,on,optimize,option,optionally,or,order,outer,outfile,pack_keys,partial,password,precision,primary,procedure,process,processlist,privileges,read,real,references,reload,regexp,rename,replace,restrict,returns,revoke,rlike,row,rows,second,select,set,show,shutdown,smallint,soname,sql_big_tables,sql_big_selects,sql_low_priority_updates,sql_log_off,sql_log_update,sql_select_limit,sql_small_result,sql_big_result,sql_warnings,straight_join,starting,status,string,table,tables,temporary,terminated,text,then,time,timestamp,tinyblob,tinytext,tinyint,trailing,to,type,use,using,unique,unlock,unsigned,update,usage,values,varchar,variables,varying,varbinary,with,write,when,where,year,year_month,zerofill\".split(\",\");\nreturn sysWords.indexOf(data.entity.defKey.toLowerCase())<0;",
+      "enable": true
+    },
+    {
+      "id": "039BF435-DC77-4DA4-81C7-7F8076BF22BB",
+      "defName": "表名-全小写",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "entity",
+      "programCode": "return !/[A-Z]+/.test(data.entity.defKey);",
+      "enable": true
+    },
+    {
+      "id": "CBEB0E30-19C6-427D-A8BF-61FF10E27A0B",
+      "defName": "表名-不允许空格",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "entity",
+      "programCode": "return !/\\s+/.test(data.entity.defKey);",
+      "enable": true
+    },
+    {
+      "id": "1168C7C2-8E8E-4FB7-B639-B3DE839C395A",
+      "defName": "表名-英文及下划线",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "entity",
+      "programCode": "return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(data.entity.defKey);",
+      "enable": true
+    },
+    {
+      "id": "D373637C-D3A6-4621-B656-6841A5444A76",
+      "defName": "表必须有comment注释",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "entity",
+      "programCode": "return (data.entity.defName||\"\").length > 0 || (data.entity.comment||\"\").length > 0",
+      "enable": true
+    },
+    {
+      "id": "2BAB122B-8811-40BB-89F3-CDC24B5862D3",
+      "defName": "主键命名为 id，类型为 int 或 bigint，且为自增",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "entity",
+      "programCode": "let fields = data.entity.fields;\nfor(let i=0;i<fields.length;i++){\n    let field = fields[i];\n    if(field.primaryKey){\n        return field.autoIncrement && (field.dbType.toUpperCase()==\"INT\"||field.dbType==\"BIGINT\");\n    }\n}\nreturn false;",
+      "enable": true
+    },
+    {
+      "id": "0B2F0BD2-3B84-4AB1-BA29-9DE9620AF608",
+      "defName": "必须有数据的创建时间以及创建人字段",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "entity",
+      "programCode": "let count = 0;\nlet fields = data.entity.fields;\nfor(let i=0;i<fields.length;i++){\n    let field = fields[i];\n    if(\"created_time,updated_time\".indexOf(field.defKey.toLowerCase())>=0){\n        count ++;\n    }\n}\nreturn count==2;",
+      "enable": true
+    },
+    {
+      "id": "BEC54F19-52D5-4882-BCE1-4439785F8001",
+      "defName": "不能使用保留字",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "let sysWords = \"action,add,aggregate,all,alter,after,and,as,asc,avg,avg_row_length,auto_increment,between,bigint,bit,binary,blob,bool,both,by,cascade,case,char,character,change,check,checksum,column,columns,comment,constraint,create,cross,current_date,current_time,current_timestamp,data,database,databases,date,datetime,day,day_hour,day_minute,day_second,dayofmonth,dayofweek,dayofyear,dec,decimal,default,delayed,delay_key_write,delete,desc,describe,distinct,distinctrow,double,drop,end,else,escape,escaped,enclosed,enum,explain,exists,fields,file,first,float,float4,float8,flush,foreign,from,for,full,function,global,grant,grants,group,having,heap,high_priority,hour,hour_minute,hour_second,hosts,identified,ignore,in,index,infile,inner,insert,insert_id,int,integer,interval,int1,int2,int3,int4,int8,into,if,is,isam,join,key,keys,kill,last_insert_id,leading,left,length,like,lines,limit,load,local,lock,logs,long,longblob,longtext,low_priority,max,max_rows,match,mediumblob,mediumtext,mediumint,middleint,min_rows,minute,minute_second,modify,month,monthname,myisam,natural,numeric,no,not,null,on,optimize,option,optionally,or,order,outer,outfile,pack_keys,partial,password,precision,primary,procedure,process,processlist,privileges,read,real,references,reload,regexp,rename,replace,restrict,returns,revoke,rlike,row,rows,second,select,set,show,shutdown,smallint,soname,sql_big_tables,sql_big_selects,sql_low_priority_updates,sql_log_off,sql_log_update,sql_select_limit,sql_small_result,sql_big_result,sql_warnings,straight_join,starting,status,string,table,tables,temporary,terminated,text,then,time,timestamp,tinyblob,tinytext,tinyint,trailing,to,type,use,using,unique,unlock,unsigned,update,usage,values,varchar,variables,varying,varbinary,with,write,when,where,year,year_month,zerofill\".split(\",\");\nreturn sysWords.indexOf(data.field.defKey.toLowerCase())<0;",
+      "enable": true
+    },
+    {
+      "id": "082E186D-7B02-4F1C-9ECE-378AB98C4845",
+      "defName": "字段-全小写",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "return !/[A-Z]+/.test(data.field.defKey);",
+      "enable": true
+    },
+    {
+      "id": "F3CE5C67-23B6-4E7B-BA91-D5F0BCBC9E6A",
+      "defName": "字段-不允许空格",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "return !/\\s+/.test(data.field.defKey);",
+      "enable": true
+    },
+    {
+      "id": "21AFEAC8-96D7-467F-8320-A33887FC0C5D",
+      "defName": "字段-英文及下划线",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(data.field.defKey);",
+      "enable": true
+    },
+    {
+      "id": "2BBDE47B-6926-4E1A-AE57-D4F6E5399EE6",
+      "defName": "字段-必需有comment注释",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "return (data.field.defName||\"\").length > 0 || (data.field.comment||\"\").length > 0",
+      "enable": true
+    },
+    {
+      "id": "5E181E43-0D72-498F-8178-4C1CDBC89A16",
+      "defName": "字段-不能与表名相同",
+      "intro": "",
+      "controlIntensity": "F",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "return data.field.defKey != data.entity.defKey;",
+      "enable": true
+    },
+    {
+      "id": "DE8F8598-5D53-4727-A837-7816C2AF99D9",
+      "defName": "外键-字段必须具有表名及其主键",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "let relas = data.entity.correlations;\nfor(let i=0;i<relas.length;i++){\n    let rela = relas[i];\n    if(data.field.defKey==rela.myField&&rela.myRows==\"n\"){\n        if(rela.myField==(rela.refEntity+\"_\"+rela.refField)){\n            return true;\n        }else{\n            return false;\n        }\n    }\n}\nreturn true;",
+      "enable": true
+    },
+    {
+      "id": "D330BCC3-DBAB-4677-8C5A-A301003A5878",
+      "defName": "时间字段类型尽量选取 timestamp",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "if(data.field.defName.lastIndexOf(\"日期\")>=0 || data.field.defName.lastIndexOf(\"时间\")>=0 ){\n    if(data.field.dbType.toLowerCase().indexOf(\"date\")>=0){\n        return true;\n    }else{\n        return false;\n    }\n};\nreturn true;",
+      "enable": true
+    },
+    {
+      "id": "2E7FDA44-989A-4C5B-A0C5-12B1E40E57B1",
+      "defName": "索引名-英文及下划线",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "index",
+      "programCode": "return /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(data.index.defKey);",
+      "enable": true
+    },
+    {
+      "id": "023450B3-AAE2-4DC1-AE63-2196DD82823D",
+      "defName": "索引名-主键的名称以pk_开头，唯一键以uk_开头，普通索引以 ix_开头",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "index",
+      "programCode": "if(data.index.unique){\n    return data.index.defKey.indexOf(\"uk_\")==0;\n}else{\n    return data.index.defKey.indexOf(\"ix_\")==0;\n}",
+      "enable": true
+    },
+    {
+      "id": "1C563E17-262B-4EB6-87F0-203CAC667CF0",
+      "defName": "不允许存在blob、text等大字段",
+      "intro": "",
+      "controlIntensity": "S",
+      "applyObjectType": "P",
+      "applyFieldType": "field",
+      "programCode": "if(\"blob,text\".indexOf(data.field.dbType.toLowerCase())>=0){\n    return false;\n}\nreturn true;",
+      "enable": true
+    }
+  ]
 }
