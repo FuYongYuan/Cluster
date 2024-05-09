@@ -5,6 +5,7 @@ import cn.fyy.common.bean.dto.ResultMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,12 @@ import java.net.UnknownHostException;
 @RestController
 @RequestMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TestRestController {
+
+
+//    @Value("${test.version}")
+//    private String test;
+
+
     /**
      * 测试
      *
@@ -28,6 +35,7 @@ public class TestRestController {
     )
     @GetMapping(value = "/1")
     public ResultMessage<String> testGet() {
+//        log.info(test);
         try {
             log.info(InetAddress.getLocalHost().getHostAddress() + " IP被访问");
         } catch (UnknownHostException e) {

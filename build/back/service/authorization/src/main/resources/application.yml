@@ -7,14 +7,49 @@ server:
   servlet:
     # 项目名称
     context-path: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 确保健康检查端点被公开
+        include: 'health,info'
+      # 端点的基路径
+      base-path: '/actuator'
+  endpoint:
+    health:
+      # 确保健康检查返回详细信息
+      show-details: 'always'
+
 spring:
   application:
     # 项目名称
     name: authorization
   profiles:
-    # 额外的application配置
-    include:
-logging:
-  file:
-    # 日志记录.默认10MB自动打包gz压缩包.从0号开始.
-    name: log/authorization.log
+    # 设置环境
+    active: test
+  cloud:
+    # Consul 的配置
+    consul:
+      # Consul 的地址，如果在本地运行
+      host: localhost
+      # Consul 的端口
+      port: 8500
+      discovery:
+        # 当前微服务名称
+        service-name: ${spring.application.name}
+
+#      # 配置中心
+#      config:
+#        # 启用配置中心
+#        enabled: true
+#        # 配置文件格式
+#        format: yaml
+#        # 配置文件路径
+#        prefixes: ${spring.application.name}
+#        # 默认配置文件名称
+#        default-context: application
+#        # 指定环境的分隔符
+#        profile-separator: '-'
+#        # 配置文件名称
+#        data-key: data
