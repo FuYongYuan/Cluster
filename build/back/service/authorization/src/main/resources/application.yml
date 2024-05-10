@@ -59,4 +59,4 @@ spring:
         # 默认配置文件的文件夹名称，如果配置了 spring.profiles.active 环境则会自动根据 profile-separator 加上对应的值
         default-context: application
         # 默认读取配置文件名称
-        data-key: base
+        data-key: content
