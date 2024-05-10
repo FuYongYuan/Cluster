@@ -1,6 +1,7 @@
 #linux 启动语句 nohup java -jar authorization.jar >log/authorization.log &
 #linux 查看日志 tail -f log/authorization.log
 
+# 项目基础访问配置
 server:
   # 项目端口号 0～65535
   port: 27001
@@ -8,19 +9,23 @@ server:
     # 项目名称
     context-path: /
 
+# 健康检查相关配置
 management:
   endpoints:
     web:
       exposure:
         # 确保健康检查端点被公开
-        include: 'health,info'
+        include: 'health,info,env'
       # 端点的基路径
       base-path: '/actuator'
   endpoint:
     health:
       # 确保健康检查返回详细信息
-      show-details: 'always'
+      show-details: always
+    env:
+      show-values: always
 
+# spring框架配置
 spring:
   application:
     # 项目名称
@@ -28,6 +33,8 @@ spring:
   profiles:
     # 设置环境
     active: test
+  config:
+    import: 'consul:'
   cloud:
     # Consul 的配置
     consul:
@@ -38,18 +45,16 @@ spring:
       discovery:
         # 当前微服务名称
         service-name: ${spring.application.name}
-
-#      # 配置中心
-#      config:
-#        # 启用配置中心
-#        enabled: true
-#        # 配置文件格式
-#        format: yaml
-#        # 配置文件路径
-#        prefixes: ${spring.application.name}
-#        # 默认配置文件名称
-#        default-context: application
-#        # 指定环境的分隔符
-#        profile-separator: '-'
-#        # 配置文件名称
-#        data-key: data
+      # 配置中心
+      config:
+        # 启用配置中心
+        enabled: true
+        # 配置文件格式
+        format: yaml
+        # 公共前缀
+        prefixes:
+          - ${spring.application.name}
+        # 指定环境的分隔符
+        profile-separator: '-'
+        # 默认配置文件名称
+        default-context: application

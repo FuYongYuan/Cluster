@@ -51,12 +51,6 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- 解决spring.config.import问题 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-
         <!-- 缓存 -->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>

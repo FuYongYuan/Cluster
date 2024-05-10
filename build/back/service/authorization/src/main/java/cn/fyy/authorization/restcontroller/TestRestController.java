@@ -21,8 +21,8 @@ import java.net.UnknownHostException;
 public class TestRestController {
 
 
-//    @Value("${test.version}")
-//    private String test;
+    @Value("${test.version}")
+    private String test;
 
 
     /**
@@ -35,7 +35,7 @@ public class TestRestController {
     )
     @GetMapping(value = "/1")
     public ResultMessage<String> testGet() {
-//        log.info(test);
+        log.info(test);
         try {
             log.info(InetAddress.getLocalHost().getHostAddress() + " IP被访问");
         } catch (UnknownHostException e) {
