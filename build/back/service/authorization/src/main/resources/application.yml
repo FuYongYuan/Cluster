@@ -45,7 +45,7 @@ spring:
       discovery:
         # 当前微服务名称
         service-name: ${spring.application.name}
-      # 配置中心
+      # 配置中心 如下配置文件放在Key / Values（根目录）/${spring.application.name}/【下面的default-context】-${spring.profiles.active}
       config:
         # 启用配置中心
         enabled: true
