@@ -16,10 +16,6 @@
     <description>权限模块</description>
 
     <properties>
-        <!-- 处理模块 -->
-        <dispose.version>0.0.1</dispose.version>
-        <!-- 加密模块 -->
-        <encrypt.version>0.0.1</encrypt.version>
         <!-- 公共模块 -->
         <common.version>0.0.1</common.version>
     </properties>

@@ -1,5 +1,0 @@
-# 通过以下命令应用该YAML文件 kubectl apply -f test-deploy-namespace.yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: cluster-test-build

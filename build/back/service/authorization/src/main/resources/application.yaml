@@ -1,0 +1,77 @@
+#linux 启动语句 nohup java -jar authorization.jar >log/authorization.log &
+#linux 查看日志 tail -f log/authorization.log
+
+# 服务配置
+server:
+  # 项目端口号 0～65535
+  port: 27001
+  servlet:
+    # 项目名称
+    context-path: /
+# 健康检查相关配置
+management:
+  # 暴露内容配置
+  endpoints:
+    # web端点配置
+    web:
+      # 暴露内容配置
+      exposure:
+        # 确保健康检查端点被公开
+        include: 'health'
+  # 返回内容配置
+  endpoint:
+    # 健康检查
+    health:
+      # 确保健康检查返回详细信息
+      show-details: always
+# spring配置
+spring:
+  application:
+    # 项目名称
+    name: authorization
+  profiles:
+    # 设置环境
+    active: test
+  config:
+    # 配置文件路径
+    import:
+      - nacos:${spring.cloud.nacos.config.prefix}-base-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  cloud:
+    nacos:
+      # 注册中心
+      discovery:
+        # ip地址:端口
+        server-addr: 127.0.0.1:8848
+        # 用户名
+        username: fyy
+        # 密码
+        password: fyyain77
+        # 命名空间 不能跨调用 ID
+        namespace: 7
+        # 集群 区域 机房 可以跨调用
+        cluster-name: cluster
+        # 分组 类型
+        group: service
+      # 配置中心
+      config:
+        # ip地址:端口
+        server-addr: 127.0.0.1:8848
+        # 用户名
+        username: fyy
+        # 密码
+        password: fyyain77
+        # 命名空间 不能跨调用 ID
+        namespace: 7
+        # 集群 区域 机房 可以跨调用
+        cluster-name: cluster
+        # 分组 类型
+        group: service
+        # 配置文件格式
+        file-extension: yaml
+        # 配置文件前缀
+        prefix: ${spring.application.name}
+# 日志
+logging:
+  file:
+    # 日志记录.默认10MB自动打包gz压缩包.从0号开始.
+    name: log/authorization.log

@@ -11,27 +11,26 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>common</artifactId>
+    <artifactId>gateway</artifactId>
     <version>0.0.1</version>
-    <name>common</name>
-    <description>公共模块</description>
+    <name>gateway</name>
+    <description>网关模块</description>
 
     <properties>
-        <!-- 实体类版本 -->
-        <java-bean.version>0.0.1</java-bean.version>
+
     </properties>
 
     <dependencies>
-        <!-- Spring boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <!-- 使用注释获取配置文件 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
+        <!-- gateway网关 不可以引入spring-boot-starter-web会有冲突 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
 
         <!-- nacos注册中心 -->
@@ -58,11 +57,5 @@
             <artifactId>caffeine</artifactId>
         </dependency>
 
-        <!-- 实体 -->
-        <dependency>
-            <groupId>cn.fyy.build</groupId>
-            <artifactId>common-bean</artifactId>
-            <version>${java-bean.version}</version>
-        </dependency>
     </dependencies>
 </project>

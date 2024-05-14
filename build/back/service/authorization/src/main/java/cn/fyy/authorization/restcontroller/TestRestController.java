@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * 测试RestController
+ *
+ * @author fyy
+ */
 @Slf4j
 @Tag(name = "TestRestController", description = "测试 RestController")
 @RestController
 @RequestMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
+// 动态加载配置文件
+@RefreshScope
 public class TestRestController {
 
 

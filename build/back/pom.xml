@@ -19,6 +19,7 @@
 
         <!-- 能力模块 -->
         <module>ability/common</module>
+        <module>ability/gateway</module>
 
         <!-- 业务模块 -->
         <module>service/authorization</module>
@@ -37,6 +38,9 @@
 
         <!-- Spring Cloud -->
         <spring-cloud.version>2023.0.1</spring-cloud.version>
+
+        <!-- Spring Cloud Alibaba -->
+        <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
 
         <!-- OpenAPI -->
         <springdoc-openapi.version>2.5.0</springdoc-openapi.version>
@@ -58,6 +62,15 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Spring Cloud Alibaba -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

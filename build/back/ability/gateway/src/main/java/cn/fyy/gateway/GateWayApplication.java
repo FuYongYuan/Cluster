@@ -1,4 +1,4 @@
-package cn.fyy.authorization;
+package cn.fyy.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,20 +11,15 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
  * @author fuyy
  */
 //初始化目录
-@SpringBootApplication(
-        scanBasePackages = {
-                "cn.fyy.authorization",
-                "cn.fyy.common",
-        }
-)
-// 启用 nacos 注册中心、配置中心
+@SpringBootApplication(scanBasePackages = {
+        "cn.fyy.gateway",
+})
+// 启用 gateway 网关
 @EnableDiscoveryClient
 // 动态加载配置文件
 @RefreshScope
-public class AuthorizationApplication {
-
+public class GateWayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(AuthorizationApplication.class, args);
+        SpringApplication.run(GateWayApplication.class, args);
     }
-
 }
