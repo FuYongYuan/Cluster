@@ -20,6 +20,8 @@
         <!-- 能力模块 -->
         <module>ability/common</module>
         <module>ability/gateway</module>
+        <module>ability/jwt</module>
+        <module>ability/redis</module>
 
         <!-- 业务模块 -->
         <module>service/authorization</module>
@@ -51,7 +53,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <!-- SpringBoot版本 -->
-        <version>3.2.4</version>
+        <version>3.2.6</version>
         <relativePath/>
     </parent>
 

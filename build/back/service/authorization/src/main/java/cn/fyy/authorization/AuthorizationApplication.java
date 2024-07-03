@@ -13,8 +13,12 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 //初始化目录
 @SpringBootApplication(
         scanBasePackages = {
+                // 本模块
                 "cn.fyy.authorization",
+                // 公共模块
                 "cn.fyy.common",
+                // jwt模块
+                "cn.fyy.jwt",
         }
 )
 // 启用 nacos 注册中心、配置中心

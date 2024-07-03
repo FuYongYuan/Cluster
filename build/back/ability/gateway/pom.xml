@@ -17,10 +17,19 @@
     <description>网关模块</description>
 
     <properties>
-
+        <!-- redis版本 -->
+        <redis.version>0.0.1</redis.version>
+        <!-- jwt版本 -->
+        <jwt.version>0.0.1</jwt.version>
     </properties>
 
     <dependencies>
+        <!-- WebFlux -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
         <!-- 使用注释获取配置文件 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -57,5 +66,32 @@
             <artifactId>caffeine</artifactId>
         </dependency>
 
+        <!-- oauth2 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+
+        <!-- jwt -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>jwt</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+
+        <!-- redis -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>redis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
+
+        <!-- Mac M1芯片特别引入 -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+            <classifier>osx-aarch_64</classifier>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 </project>

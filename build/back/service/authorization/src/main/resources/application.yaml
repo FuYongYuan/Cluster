@@ -35,7 +35,12 @@ spring:
   config:
     # 配置文件路径
     import:
-      - nacos:${spring.cloud.nacos.config.prefix}-base-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+      # 基础配置
+      - nacos:${spring.application.name}-base-${spring.profiles.active}.yaml
+      # redis配置
+      - nacos:redis-link-${spring.profiles.active}.yaml?group=system
+      # jwt认证配置
+      - nacos:jwt-${spring.profiles.active}.yaml?group=system
   cloud:
     nacos:
       # 注册中心
@@ -66,10 +71,6 @@ spring:
         cluster-name: cluster
         # 分组 类型
         group: service
-        # 配置文件格式
-        file-extension: yaml
-        # 配置文件前缀
-        prefix: ${spring.application.name}
 # 日志
 logging:
   file:
