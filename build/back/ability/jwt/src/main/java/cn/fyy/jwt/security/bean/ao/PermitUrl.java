@@ -1,4 +1,4 @@
-package cn.fyy.gateway.config.security.bean.ao;
+package cn.fyy.jwt.security.bean.ao;
 
 import org.springframework.stereotype.Component;
 

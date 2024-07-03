@@ -8,22 +8,6 @@ server:
   servlet:
     # 项目名称
     context-path: /
-# 健康检查相关配置
-management:
-  # 暴露内容配置
-  endpoints:
-    # web端点配置
-    web:
-      # 暴露内容配置
-      exposure:
-        # 确保健康检查端点被公开
-        include: 'health'
-  # 返回内容配置
-  endpoint:
-    # 健康检查
-    health:
-      # 确保健康检查返回详细信息
-      show-details: always
 # spring配置
 spring:
   application:
@@ -71,8 +55,3 @@ spring:
         cluster-name: cluster
         # 分组 类型
         group: system
-# 日志
-logging:
-  file:
-    # 日志记录.默认10MB自动打包gz压缩包.从0号开始.
-    name: log/gateway.log

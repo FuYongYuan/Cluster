@@ -1,6 +1,6 @@
 package cn.fyy.gateway.config.security;
 
-import cn.fyy.gateway.config.security.bean.ao.PermitUrl;
+import cn.fyy.jwt.security.bean.ao.PermitUrl;
 import cn.fyy.gateway.config.security.converter.JwtAuthConverter;
 import cn.fyy.gateway.config.security.filter.JwtAuthenticationWebFilter;
 import cn.fyy.gateway.config.security.handler.SecurityAccessDeniedHandler;
