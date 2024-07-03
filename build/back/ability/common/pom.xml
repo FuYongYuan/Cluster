@@ -73,12 +73,5 @@
             <version>${jwt.version}</version>
         </dependency>
 
-        <!-- 实体 -->
-        <dependency>
-            <groupId>cn.fyy.build</groupId>
-            <artifactId>common-bean</artifactId>
-            <version>${java-bean.version}</version>
-        </dependency>
-
     </dependencies>
 </project>
