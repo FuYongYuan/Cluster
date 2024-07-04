@@ -4,7 +4,7 @@
 # 服务配置
 server:
   # 项目端口号 0～65535
-  port: 27001
+  port: 27002
   servlet:
     # 项目名称
     context-path: /
@@ -21,10 +21,12 @@ spring:
     import:
       # 基础配置
       - nacos:${spring.application.name}-base-${spring.profiles.active}.yaml
+      # 数据库配置
+      - nacos:${spring.application.name}-data-${spring.profiles.active}.yaml
       # jwt认证配置
       - nacos:jwt-${spring.profiles.active}.yaml?group=system
       # redis配置
-      - nacos:redis-link-${spring.profiles.active}.yaml?group=system
+      - nacos:redis-${spring.profiles.active}.yaml?group=system
   cloud:
     nacos:
       # 注册中心

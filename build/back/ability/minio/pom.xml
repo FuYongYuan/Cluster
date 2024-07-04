@@ -20,7 +20,7 @@
         <minio.version>8.5.11</minio.version>
         <!-- 处理模块 -->
         <dispose.version>0.0.1</dispose.version>
-        <!-- 实体类版本 -->
+        <!-- 实体 -->
         <java-bean.version>0.0.1</java-bean.version>
     </properties>
 

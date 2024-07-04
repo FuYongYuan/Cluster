@@ -36,6 +36,12 @@
 
         <!-- 业务模块 -->
         <module>service/authorization</module>
+        <module>service/builder</module>
+        <module>service/capability</module>
+        <module>service/data</module>
+        <module>service/dictionary</module>
+        <module>service/member</module>
+        <module>service/message</module>
 
     </modules>
 

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>back</artifactId>
+        <groupId>cn.fyy.build</groupId>
+        <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>data</artifactId>
+    <version>0.0.1</version>
+    <name>data</name>
+    <description>数据模块</description>
+
+    <properties>
+        <!-- 加密模块 -->
+        <encrypt.version>0.0.1</encrypt.version>
+        <!-- 公共模块 -->
+        <common.version>0.0.1</common.version>
+        <!-- minio模块 -->
+        <minio.version>0.0.1</minio.version>
+    </properties>
+
+    <dependencies>
+        <!-- 测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 公共模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>common</artifactId>
+            <version>${common.version}</version>
+        </dependency>
+
+        <!-- minio文件管理平台 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>minio</artifactId>
+            <version>${minio.version}</version>
+        </dependency>
+
+        <!-- 加密模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>encrypt</artifactId>
+            <version>${encrypt.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

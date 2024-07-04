@@ -1,0 +1,11 @@
+docker run --name nacos-v2.3.2-slim --env MODE=standalone --env NACOS_AUTH_ENABLE=true --env NACOS_AUTH_IDENTITY_KEY=fyy --env NACOS_AUTH_IDENTITY_VALUE=fyyain77 --env NACOS_AUTH_TOKEN=U2VjcmV0S2V5Znl5Znl5YWluNzdJZnNzZnl5YWluc3M= --env MYSQL_SERVICE_HOST=172.17.0.4 --env MYSQL_SERVICE_PORT=3306 --env MYSQL_SERVICE_DB_NAME=nacos --env MYSQL_SERVICE_USER=root --env MYSQL_SERVICE_PASSWORD=fyyain77 --env SPRING_DATASOURCE_PLATFORM=mysql -p 8848:8848 -p 9848:9848 -p 9849:9849 -d nacos/nacos-server:v2.3.2-slim
+
+
+U2VjcmV0S2V5Znl5Znl5YWluNzdJZnNzZnl5YWluc3M= 原值：SecretKeyfyyfyyain77Ifssfyyainss
+
+登陆默认还是使用，账号：nacos，密码：nacos。修改mysql库里的值，账号：fyy，密码：fyyain77
+
+
+Mysql初始化数据库。然后执行sql创建表，如果需要当前版本sql，去除mysql链接信息，启动后，在nacos中的config文件下找
+
+mysql的ip来源于docker inspect mysql的Networks的bridge的IPAddress中。

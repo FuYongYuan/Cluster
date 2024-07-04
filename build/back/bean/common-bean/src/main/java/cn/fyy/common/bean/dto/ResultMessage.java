@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResultMessage<T extends java.io.Serializable> implements Serializable {
+public class ResultMessage<T> implements Serializable {
     /**
      * 状态码
      */

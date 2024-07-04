@@ -16,8 +16,16 @@
     <description>权限模块</description>
 
     <properties>
+        <!-- 处理模块 -->
+        <dispose.version>0.0.1</dispose.version>
+        <!-- 加密模块 -->
+        <encrypt.version>0.0.1</encrypt.version>
         <!-- 公共模块 -->
         <common.version>0.0.1</common.version>
+        <!-- 数据模块 -->
+        <database.version>0.0.1</database.version>
+        <!-- 实体 -->
+        <java-bean.version>0.0.1</java-bean.version>
     </properties>
 
     <dependencies>
@@ -34,5 +42,54 @@
             <artifactId>common</artifactId>
             <version>${common.version}</version>
         </dependency>
+
+        <!-- 数据模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>database</artifactId>
+            <version>${database.version}</version>
+        </dependency>
+
+        <!-- 处理模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>dispose</artifactId>
+            <version>${dispose.version}</version>
+        </dependency>
+
+        <!-- 加密模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>encrypt</artifactId>
+            <version>${encrypt.version}</version>
+        </dependency>
+
+        <!-- 实体 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>authorization-bean</artifactId>
+            <version>${java-bean.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>member-bean</artifactId>
+            <version>${java-bean.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>capability-bean</artifactId>
+            <version>${java-bean.version}</version>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -17,7 +17,7 @@
     <description>jwt模块</description>
 
     <properties>
-        <!-- 实体类版本 -->
+        <!-- 实体 -->
         <java-bean.version>0.0.1</java-bean.version>
     </properties>
 

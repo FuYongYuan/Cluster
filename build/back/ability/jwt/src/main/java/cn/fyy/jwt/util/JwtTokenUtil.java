@@ -3,6 +3,7 @@ package cn.fyy.jwt.util;
 import cn.fyy.common.bean.ao.ConstantParameter;
 import cn.fyy.jwt.config.jwt.JwtProperties;
 import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
+import cn.fyy.jwt.config.security.bean.bo.SecurityRedis;
 import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.time.Instant;
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * JWT工具类

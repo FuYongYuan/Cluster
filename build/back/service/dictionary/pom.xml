@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>back</artifactId>
+        <groupId>cn.fyy.build</groupId>
+        <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>dictionary</artifactId>
+    <version>0.0.1</version>
+    <name>dictionary</name>
+    <description>数据字典模块</description>
+
+    <properties>
+        <!-- 处理模块 -->
+        <dispose.version>0.0.1</dispose.version>
+        <!-- 公共模块 -->
+        <common.version>0.0.1</common.version>
+        <!-- 数据模块 -->
+        <database.version>0.0.1</database.version>
+        <!-- 实体 -->
+        <java-bean.version>0.0.1</java-bean.version>
+    </properties>
+
+    <dependencies>
+        <!-- 测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 公共模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>common</artifactId>
+            <version>${common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>database</artifactId>
+            <version>${database.version}</version>
+        </dependency>
+
+        <!-- 实体 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>dictionary-bean</artifactId>
+            <version>${java-bean.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>member-bean</artifactId>
+            <version>${java-bean.version}</version>
+        </dependency>
+
+        <!-- 处理模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>dispose</artifactId>
+            <version>${dispose.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -17,8 +17,10 @@
     <description>公共模块</description>
 
     <properties>
-        <!-- jwt版本 -->
+        <!-- jwt模块 -->
         <jwt.version>0.0.1</jwt.version>
+        <!-- reids模块 -->
+        <redis.version>0.0.1</redis.version>
     </properties>
 
     <dependencies>
@@ -64,12 +66,18 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-        <!-- jwt -->
+        <!-- jwt模块 -->
         <dependency>
             <groupId>cn.fyy.build</groupId>
             <artifactId>jwt</artifactId>
             <version>${jwt.version}</version>
         </dependency>
 
+        <!-- redis模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>redis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
     </dependencies>
 </project>
