@@ -17,7 +17,13 @@
         <module>base/excel</module>
 
         <!-- 数据模型 -->
+        <module>bean/authorization-bean</module>
+        <module>bean/builder-bean</module>
+        <module>bean/capability-bean</module>
         <module>bean/common-bean</module>
+        <module>bean/dictionary-bean</module>
+        <module>bean/member-bean</module>
+        <module>bean/message-bean</module>
 
         <!-- 能力模块 -->
         <module>ability/common</module>
