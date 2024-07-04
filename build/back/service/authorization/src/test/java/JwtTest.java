@@ -1,6 +1,6 @@
 import cn.fyy.authorization.AuthorizationApplication;
-import cn.fyy.jwt.security.bean.bo.SecurityUser;
-import cn.fyy.jwt.security.util.JwtTokenUtil;
+import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
+import cn.fyy.jwt.util.JwtTokenUtil;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

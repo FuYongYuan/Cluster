@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>back</artifactId>
+        <groupId>cn.fyy.build</groupId>
+        <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>encrypt</artifactId>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
+    <description>加密模块</description>
+
+    <properties>
+        <!-- 处理模块 -->
+        <dispose.version>0.0.1</dispose.version>
+    </properties>
+
+    <dependencies>
+        <!-- 处理模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>dispose</artifactId>
+            <version>${dispose.version}</version>
+        </dependency>
+    </dependencies>
+</project>

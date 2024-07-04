@@ -12,15 +12,20 @@
 
     <modules>
         <!-- 基础模块 -->
-
+        <module>base/dispose</module>
+        <module>base/encrypt</module>
+        <module>base/excel</module>
 
         <!-- 数据模型 -->
         <module>bean/common-bean</module>
 
         <!-- 能力模块 -->
         <module>ability/common</module>
+        <module>ability/database</module>
         <module>ability/gateway</module>
         <module>ability/jwt</module>
+        <module>ability/mail</module>
+        <module>ability/minio</module>
         <module>ability/redis</module>
 
         <!-- 业务模块 -->

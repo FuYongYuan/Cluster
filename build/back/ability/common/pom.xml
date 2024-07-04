@@ -19,8 +19,6 @@
     <properties>
         <!-- jwt版本 -->
         <jwt.version>0.0.1</jwt.version>
-        <!-- 实体类版本 -->
-        <java-bean.version>0.0.1</java-bean.version>
     </properties>
 
     <dependencies>

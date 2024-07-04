@@ -1,0 +1,523 @@
+package excel.operation.set;
+
+import enumerate.DateType;
+import excel.exception.ExcelOperateException;
+import lombok.Getter;
+import org.apache.poi.ss.usermodel.*;
+
+import java.lang.reflect.Type;
+
+/**
+ * 额外列数据
+ *
+ * @author fyy
+ */
+@Getter
+public class ExtraCellData {
+    /**
+     * 列号
+     */
+    private Integer cellNumber;
+
+    /**
+     * 夸列数量 包含自身 默认1
+     */
+    private Integer colspan;
+
+    /**
+     * 跨列数量 包含自身 默认1
+     */
+    private Integer rowspan;
+
+    /**
+     * 列值
+     */
+    private Object cellValue;
+
+    /**
+     * 列类型
+     */
+    private Type cellType;
+
+    /**
+     * 保留位数
+     */
+    private int decimalAfterDigit;
+
+    /**
+     * 日期格式
+     */
+    private DateType dateType;
+
+    /**
+     * 填充颜色类型
+     */
+    private FillPatternType fillPattern;
+
+    /**
+     * 填充颜色
+     */
+    private short fillForegroundColor;
+
+    /**
+     * 水平位置
+     */
+    private HorizontalAlignment horizontalAlignment;
+
+    /**
+     * 上下位置
+     */
+    private VerticalAlignment verticalAlignment;
+
+    /**
+     * 是否加粗
+     */
+    private Boolean isBold;
+
+    /**
+     * 公式
+     */
+    private boolean isFormula;
+
+    /**
+     * 是否是钱类型
+     */
+    private boolean isMoney;
+
+    /**
+     * 是否是中国大写钱类型
+     */
+    private boolean isChinaMoney;
+
+    /**
+     * 列宽
+     */
+    private int columnWidth;
+
+    /**
+     * 是否自动调整列宽
+     */
+    private boolean isAutoSize;
+
+    /**
+     * 是否隐藏列
+     */
+    private boolean isHidden;
+
+    /**
+     * 自动换行
+     */
+    private boolean isWrapText;
+
+    /**
+     * 边框
+     */
+    private BorderStyle border;
+
+    /**
+     * 边框颜色
+     */
+    private IndexedColors borderColor;
+
+    /**
+     * 上边框
+     */
+    private BorderStyle borderTop;
+
+    /**
+     * 上边框颜色
+     */
+    private IndexedColors borderTopColor;
+
+    /**
+     * 下边框
+     */
+    private BorderStyle borderBottom;
+
+    /**
+     * 下边框颜色
+     */
+    private IndexedColors borderBottomColor;
+
+    /**
+     * 左边框
+     */
+    private BorderStyle borderLeft;
+
+    /**
+     * 左边框颜色
+     */
+    private IndexedColors borderLeftColor;
+
+    /**
+     * 右边框
+     */
+    private BorderStyle borderRight;
+
+    /**
+     * 右边框颜色
+     */
+    private IndexedColors borderRightColor;
+
+    /**
+     * 字体大小
+     */
+    private short fontSize;
+
+    /**
+     * 内部构造
+     */
+    private ExtraCellData() {
+    }
+
+    /**
+     * 创建基础属性-不含值和类型
+     */
+    public static ExtraCellData create() {
+        return new ExtraCellData()
+                .setColspan(1)
+                .setRowspan(1)
+                .setDecimalAfterDigit(3)
+                .setDateType(DateType.Year_Month_Day_Hour_Minute_Second)
+                .setFillPattern(FillPatternType.NO_FILL)
+                .setFillForegroundColor((short) -1)
+                .setHorizontalAlignment(HorizontalAlignment.LEFT)
+                .setVerticalAlignment(VerticalAlignment.CENTER)
+                .setIsBold(false)
+                .setIsMoney(false)
+                .setIsChinaMoney(false)
+                .setColumnWidth(-1)
+                .setIsAutoSize(false)
+                .setBorder(BorderStyle.NONE)
+                .setBorderColor(IndexedColors.BLACK)
+                .setBorderTop(BorderStyle.NONE)
+                .setBorderTopColor(IndexedColors.BLACK)
+                .setBorderBottom(BorderStyle.NONE)
+                .setBorderBottomColor(IndexedColors.BLACK)
+                .setBorderLeft(BorderStyle.NONE)
+                .setBorderLeftColor(IndexedColors.BLACK)
+                .setBorderRight(BorderStyle.NONE)
+                .setBorderRightColor(IndexedColors.BLACK)
+                ;
+    }
+
+    /**
+     * 初始化
+     */
+    public ExtraCellData build() {
+        if (cellNumber == null) {
+            throw new ExcelOperateException("诊断：缺少额外列数据列号！", new NullPointerException());
+        }
+        return this;
+    }
+
+    /**
+     * 列号
+     */
+    public ExtraCellData setCellNumber(Integer cellNumber) {
+        this.cellNumber = cellNumber - 1;
+        return this;
+    }
+
+    /**
+     * 夸列数量
+     */
+    public ExtraCellData setColspan(Integer colspan) {
+        this.colspan = colspan;
+        return this;
+    }
+
+    /**
+     * 跨列数量
+     */
+    public ExtraCellData setRowspan(Integer rowspan) {
+        this.rowspan = rowspan;
+        return this;
+    }
+
+    /**
+     * 列值
+     */
+    public ExtraCellData setCellValue(Object cellValue) {
+        this.cellValue = cellValue;
+        return this;
+    }
+
+    /**
+     * 列类型
+     */
+    public ExtraCellData setCellType(Type cellType) {
+        this.cellType = cellType;
+        return this;
+    }
+
+    /**
+     * 保留位数
+     */
+    public ExtraCellData setDecimalAfterDigit(int decimalAfterDigit) {
+        this.decimalAfterDigit = decimalAfterDigit;
+        return this;
+    }
+
+    /**
+     * 日期格式
+     */
+    public ExtraCellData setDateType(DateType dateType) {
+        this.dateType = dateType;
+        return this;
+    }
+
+    /**
+     * 填充颜色类型
+     */
+    public ExtraCellData setFillPattern(FillPatternType fillPattern) {
+        this.fillPattern = fillPattern;
+        return this;
+    }
+
+    /**
+     * 填充颜色
+     */
+    public ExtraCellData setFillForegroundColor(IndexedColors fillForegroundColor) {
+        this.fillForegroundColor = fillForegroundColor.getIndex();
+        return this;
+    }
+
+    /**
+     * 填充颜色
+     */
+    public ExtraCellData setFillForegroundColor(short fillForegroundColor) {
+        this.fillForegroundColor = fillForegroundColor;
+        return this;
+    }
+
+    /**
+     * 填充颜色
+     */
+    public ExtraCellData setFillColor(IndexedColors fillForegroundColor) {
+        this.fillPattern = FillPatternType.SOLID_FOREGROUND;
+        this.fillForegroundColor = fillForegroundColor.getIndex();
+        return this;
+    }
+
+    /**
+     * 填充颜色
+     */
+    public ExtraCellData setFillColor(short fillForegroundColor) {
+        this.fillPattern = FillPatternType.SOLID_FOREGROUND;
+        this.fillForegroundColor = fillForegroundColor;
+        return this;
+    }
+
+    /**
+     * 水平位置
+     */
+    public ExtraCellData setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
+        this.horizontalAlignment = horizontalAlignment;
+        return this;
+    }
+
+    /**
+     * 上下位置
+     */
+    public ExtraCellData setVerticalAlignment(VerticalAlignment verticalAlignment) {
+        this.verticalAlignment = verticalAlignment;
+        return this;
+    }
+
+    /**
+     * 是否加粗
+     */
+    public ExtraCellData setIsBold(Boolean bold) {
+        isBold = bold;
+        return this;
+    }
+
+    /**
+     * 是否公式
+     */
+    public ExtraCellData setIsFormula(boolean isFormula) {
+        this.isFormula = isFormula;
+        return this;
+    }
+
+    /**
+     * 是否是钱类型
+     */
+    public ExtraCellData setIsMoney(boolean isMoney) {
+        this.isMoney = isMoney;
+        return this;
+    }
+
+    /**
+     * 是否是中国大写钱类型
+     */
+    public ExtraCellData setIsChinaMoney(boolean isChinaMoney) {
+        this.isChinaMoney = isChinaMoney;
+        return this;
+    }
+
+    /**
+     * 列宽
+     */
+    public ExtraCellData setColumnWidth(int columnWidth) {
+        this.columnWidth = columnWidth;
+        return this;
+    }
+
+    /**
+     * 是否自动调整列宽
+     */
+    public ExtraCellData setIsAutoSize(boolean isAutoSize) {
+        this.isAutoSize = isAutoSize;
+        return this;
+    }
+
+    /**
+     * 是否隐藏列
+     */
+    public ExtraCellData setIsHidden(boolean isHidden) {
+        this.isHidden = isHidden;
+        return this;
+    }
+
+    /**
+     * 自动换行
+     */
+    public ExtraCellData setIsWrapText(boolean isWrapText) {
+        this.isWrapText = isWrapText;
+        return this;
+    }
+
+    /**
+     * 边框
+     */
+    public ExtraCellData setBorder(BorderStyle border) {
+        this.border = border;
+        return this;
+    }
+
+    /**
+     * 边框颜色
+     */
+    public ExtraCellData setBorderColor(IndexedColors borderColor) {
+        this.borderColor = borderColor;
+        return this;
+    }
+
+    /**
+     * 上边框
+     */
+    public ExtraCellData setBorderTop(BorderStyle borderTop) {
+        this.borderTop = borderTop;
+        return this;
+    }
+
+    /**
+     * 上边框颜色
+     */
+    public ExtraCellData setBorderTopColor(IndexedColors borderTopColor) {
+        this.borderTopColor = borderTopColor;
+        return this;
+    }
+
+    /**
+     * 下边框
+     */
+    public ExtraCellData setBorderBottom(BorderStyle borderBottom) {
+        this.borderBottom = borderBottom;
+        return this;
+    }
+
+    /**
+     * 下边框颜色
+     */
+    public ExtraCellData setBorderBottomColor(IndexedColors borderBottomColor) {
+        this.borderBottomColor = borderBottomColor;
+        return this;
+    }
+
+    /**
+     * 左边框
+     */
+    public ExtraCellData setBorderLeft(BorderStyle borderLeft) {
+        this.borderLeft = borderLeft;
+        return this;
+    }
+
+    /**
+     * 左边框颜色
+     */
+    public ExtraCellData setBorderLeftColor(IndexedColors borderLeftColor) {
+        this.borderLeftColor = borderLeftColor;
+        return this;
+    }
+
+    /**
+     * 右边框
+     */
+    public ExtraCellData setBorderRight(BorderStyle borderRight) {
+        this.borderRight = borderRight;
+        return this;
+    }
+
+    /**
+     * 右边框颜色
+     */
+    public ExtraCellData setBorderRightColor(IndexedColors borderRightColor) {
+        this.borderRightColor = borderRightColor;
+        return this;
+    }
+
+    /**
+     * 字体大小
+     */
+    public ExtraCellData setFontSize(short fontSize) {
+        this.fontSize = fontSize;
+        return this;
+    }
+
+    //------------------------------------------------------------------------------------------------------------------规范get命名
+
+    /**
+     * 是否自动调整列宽
+     */
+    public boolean getIsAutoSize() {
+        return isAutoSize;
+    }
+
+    /**
+     * 是否隐藏列
+     */
+    public boolean getIsHidden() {
+        return isHidden;
+    }
+
+    /**
+     * 自动换行
+     */
+    public boolean getIsWrapText() {
+        return isWrapText;
+    }
+
+    /**
+     * 是否是钱类型
+     */
+    public boolean getIsMoney() {
+        return this.isMoney;
+    }
+
+    /**
+     * 是否是中国大写钱类型
+     */
+    public boolean getIsChinaMoney() {
+        return this.isChinaMoney;
+    }
+
+    /**
+     * 是否公式
+     */
+    public boolean getIsFormula() {
+        return isFormula;
+    }
+}

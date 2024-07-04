@@ -1,6 +1,6 @@
 package cn.fyy.common.config.feign;
 
-import cn.fyy.jwt.security.bean.SecurityJwtProperties;
+import cn.fyy.jwt.config.jwt.JwtProperties;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import jakarta.annotation.Resource;
@@ -21,7 +21,7 @@ public class FeignConfig implements RequestInterceptor {
      * JWT参数
      */
     @Resource
-    private SecurityJwtProperties securityProperties;
+    private JwtProperties securityProperties;
 
     /**
      * 设置携带的Header

@@ -1,11 +1,11 @@
 package cn.fyy.gateway.config.security;
 
-import cn.fyy.jwt.security.bean.ao.PermitUrl;
 import cn.fyy.gateway.config.security.converter.JwtAuthConverter;
 import cn.fyy.gateway.config.security.filter.JwtAuthenticationWebFilter;
 import cn.fyy.gateway.config.security.handler.SecurityAccessDeniedHandler;
 import cn.fyy.gateway.config.security.handler.SecurityAuthenticationEntryPoint;
 import cn.fyy.gateway.config.security.matcher.JwtServerWebExchangeMatcher;
+import cn.fyy.jwt.bean.ao.PermitUrl;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

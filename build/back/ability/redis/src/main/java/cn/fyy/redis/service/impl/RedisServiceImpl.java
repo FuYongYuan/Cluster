@@ -24,6 +24,7 @@ public class RedisServiceImpl implements RedisService {
      */
     @Resource
     private RedisTemplateSelectUtil redisTemplateSelectUtil;
+
     /**
      * json操作类
      */

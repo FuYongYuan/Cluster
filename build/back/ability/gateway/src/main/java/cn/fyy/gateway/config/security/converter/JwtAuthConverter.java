@@ -1,6 +1,6 @@
 package cn.fyy.gateway.config.security.converter;
 
-import cn.fyy.jwt.security.util.JwtTokenUtil;
+import cn.fyy.jwt.util.JwtTokenUtil;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
