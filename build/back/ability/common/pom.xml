@@ -60,6 +60,12 @@
             <artifactId>caffeine</artifactId>
         </dependency>
 
+        <!-- 负载均衡器-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
         <!-- feign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
