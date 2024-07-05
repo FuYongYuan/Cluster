@@ -2,7 +2,7 @@ module.exports = {
     devServer: {
         proxy: {
             "/member": {
-                target: "http://localhost:8001/", // 后台接口域名
+                target: "http://localhost:27001/", // 后台接口域名
                 secure: false, // false为http访问，true为https访问
                 changeOrigin: true, // 跨域访问设置，true代表跨域
                 ws: false, //如果要代理 websockets，配置这个参数
@@ -12,7 +12,7 @@ module.exports = {
                 },
             },
             "/authorization": {
-                target: "http://localhost:8002/", // 后台接口域名
+                target: "http://localhost:27002/", // 后台接口域名
                 secure: false, // false为http访问，true为https访问
                 changeOrigin: true, // 跨域访问设置，true代表跨域
                 ws: false, //如果要代理 websockets，配置这个参数
@@ -22,7 +22,7 @@ module.exports = {
                 },
             },
             "/capability": {
-                target: "http://localhost:8003/", // 后台接口域名
+                target: "http://localhost:27003/", // 后台接口域名
                 secure: false, // false为http访问，true为https访问
                 changeOrigin: true, // 跨域访问设置，true代表跨域
                 ws: false, //如果要代理 websockets，配置这个参数
@@ -32,7 +32,7 @@ module.exports = {
                 },
             },
             "/dictionary": {
-                target: "http://localhost:8004/", // 后台接口域名
+                target: "http://localhost:27004/", // 后台接口域名
                 secure: false, // false为http访问，true为https访问
                 changeOrigin: true, // 跨域访问设置，true代表跨域
                 ws: false, //如果要代理 websockets，配置这个参数
@@ -42,7 +42,7 @@ module.exports = {
                 },
             },
             "/data": {
-                target: "http://localhost:8005/", // 后台接口域名
+                target: "http://localhost:27005/", // 后台接口域名
                 secure: false, // false为http访问，true为https访问
                 changeOrigin: true, // 跨域访问设置，true代表跨域
                 ws: false, //如果要代理 websockets，配置这个参数
@@ -52,7 +52,7 @@ module.exports = {
                 },
             },
             "/message": {
-                target: "http://localhost:8006/", // 后台接口域名
+                target: "http://localhost:27006/", // 后台接口域名
                 secure: false, // false为http访问，true为https访问
                 changeOrigin: true, // 跨域访问设置，true代表跨域
                 ws: false, //如果要代理 websockets，配置这个参数
@@ -62,7 +62,7 @@ module.exports = {
                 },
             },
             "/builder": {
-                target: "http://localhost:8007/", // 后台接口域名
+                target: "http://localhost:27007/", // 后台接口域名
                 secure: false, // false为http访问，true为https访问
                 changeOrigin: true, // 跨域访问设置，true代表跨域
                 ws: false, //如果要代理 websockets，配置这个参数
