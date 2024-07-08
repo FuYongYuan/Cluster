@@ -44,7 +44,7 @@ public class PermitUrl {
      */
     private final String[] messageUrl = {
             // 图形验证码
-            "/image/get/captcha",
+            "/message/image/get/captcha",
             // 邮件验证码
             "/mail/send/captcha/**",
     };
