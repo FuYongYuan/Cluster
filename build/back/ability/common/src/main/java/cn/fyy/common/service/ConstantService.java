@@ -1,19 +1,15 @@
 package cn.fyy.common.service;
 
-import cn.fyy.jwt.config.jwt.JwtProperties;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Order;
 import jakarta.persistence.criteria.Root;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.util.StringUtils;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
-import java.util.Objects;
 
 /**
  * 静态方法类
@@ -81,15 +77,6 @@ public class ConstantService {
             logMessage(e);
         }
         return null;
-    }
-
-    /**
-     * 快速获取Request中的Token
-     */
-    public static String getRequestToken(JwtProperties jwtProperties) {
-        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
-        return request.getHeader(jwtProperties.getTokenHeader())
-                .substring(jwtProperties.getTokenHead().length());
     }
 
     //------------------------------------------------------------------------------------------------------------------查询语句排序拼装

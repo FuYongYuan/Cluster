@@ -1,21 +1,19 @@
-package cn.fyy.jwt.util;
+package cn.fyy.jwt.service;
 
 import cn.fyy.common.bean.ao.ConstantParameter;
 import cn.fyy.jwt.config.jwt.JwtProperties;
 import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
-import cn.fyy.jwt.config.security.bean.bo.SecurityRedis;
 import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.jwt.*;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.time.Instant;
 import java.util.*;
-import java.util.function.Consumer;
 
 /**
  * JWT工具类
@@ -23,25 +21,25 @@ import java.util.function.Consumer;
  * @author fuyy
  */
 @Slf4j
-@Component
-public class JwtTokenUtil {
+@Service
+public class JwtTokenService {
     /**
      * JWT参数
      */
     @Resource
-    private JwtProperties jwtProperties;
+    protected JwtProperties jwtProperties;
 
     /**
      * JWT解码器
      */
     @Resource
-    private JwtDecoder jwtDecoder;
+    protected JwtDecoder jwtDecoder;
 
     /**
      * JWT编码器
      */
     @Resource
-    private JwtEncoder jwtEncoder;
+    protected JwtEncoder jwtEncoder;
 
     /**
      * 生成 access_token

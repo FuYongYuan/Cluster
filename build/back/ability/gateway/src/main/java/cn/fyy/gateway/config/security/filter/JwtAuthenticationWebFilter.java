@@ -21,7 +21,10 @@ public class JwtAuthenticationWebFilter extends AuthenticationWebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+        log.info("{}被执行，访问地址：{}", this.getClass().getName(), exchange.getRequest().getPath());
+
         // 可以在这里添加自定义逻辑
+
         return super.filter(exchange, chain);
     }
 }

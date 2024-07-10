@@ -26,7 +26,12 @@ public class RequestControllerAdvice {
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResultMessage<String> methodNotSupported(NoHandlerFoundException e) {
-        log.error(e.getMessage());
+        log.error("【找不到访问路径】类:{}   方法:{}   行:{}   错误:{}",
+                e.getStackTrace()[0].getClassName(),
+                e.getStackTrace()[0].getMethodName(),
+                e.getStackTrace()[0].getLineNumber(),
+                e.getMessage()
+        );
         return new ResultMessage<>(
                 HttpStatus.NOT_FOUND.value(),
                 HttpStatusExplain.getChinese(HttpStatus.NOT_FOUND)

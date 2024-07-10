@@ -20,7 +20,7 @@ public class GlobalLoginFilter implements GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.warn(this.getClass().getName());
+        log.info("{}被执行，访问地址：{}", this.getClass().getName(), exchange.getRequest().getPath());
 
         return chain.filter(exchange);
     }

@@ -1,4 +1,4 @@
-package cn.fyy.gateway.config.security.service;
+package cn.fyy.common.config.security.service;
 
 
 import cn.fyy.jwt.config.security.bean.bo.SecurityRedis;
@@ -8,11 +8,10 @@ import cn.fyy.redis.service.RedisService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 
 /**
  * 用户验证逻辑层
@@ -21,7 +20,7 @@ import reactor.core.publisher.Mono;
  */
 @Slf4j
 @Service
-public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     /**
      * Redis 业务类
@@ -32,29 +31,30 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
     /**
      * 验证用户是否登录
      *
-     * @param userId 用户ID
+     * @param userId 用户名称
      * @return 登录用户信息
      * @throws UsernameNotFoundException 错误
      */
-
     @Override
-    public Mono<UserDetails> findByUsername(String userId) {
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         try {
-            log.info("ReactiveUserDetailsService.findByUsername(String userId) 入参:{}", userId);
+            log.info("UserDetailsService.loadUserByUsername(String userId) 入参:{}", userId);
 
             SecurityRedis securityRedis = redisServiceImpl.get(RedisSelect.FIFTEEN, userId, SecurityRedis.class);
             if (securityRedis != null) {
-                return Mono.just(new SecurityUser(
+                return new SecurityUser(
                         securityRedis.getManagerId(),
                         securityRedis.getManagerName(),
                         securityRedis.getUsername(),
                         securityRedis.getPassword(),
                         AuthorityUtils.createAuthorityList(securityRedis.getAuthorities())
-                ));
+                );
+            } else {
+                throw new UsernameNotFoundException("【未能读取到用户已登陆信息】");
             }
         } catch (Exception e) {
             log.error(e.getMessage());
+            throw new UsernameNotFoundException("【读取用户已登陆信息时发生错误】");
         }
-        return null;
     }
 }

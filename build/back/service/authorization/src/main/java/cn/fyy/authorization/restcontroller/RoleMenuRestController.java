@@ -4,14 +4,13 @@ import cn.fyy.authorization.bean.dto.RoleMenuDTO;
 import cn.fyy.authorization.service.RoleMenuService;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.service.ConstantService;
-import cn.fyy.jwt.config.jwt.JwtProperties;
+import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
-import cn.fyy.jwt.util.JwtTokenUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,13 +36,7 @@ public class RoleMenuRestController {
      * JWT 工具类
      */
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
-
-    /**
-     * JWT 配置
-     */
-    @Resource
-    private JwtProperties jwtProperties;
+    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
@@ -62,9 +55,10 @@ public class RoleMenuRestController {
     )
     @PostMapping(value = "/save")
     public ResultMessage<String> save(
+            HttpServletRequest request,
             @RequestBody RoleMenuDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         return roleMenuServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 
@@ -85,10 +79,11 @@ public class RoleMenuRestController {
     )
     @PostMapping(value = "/save/list/{roleId}/{menuIds}")
     public ResultMessage<String> saveList(
+            HttpServletRequest request,
             @PathVariable("roleId") BigInteger roleId,
             @PathVariable("menuIds") String menuIds
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         return roleMenuServiceImpl.saveList(roleId, menuIds, managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 

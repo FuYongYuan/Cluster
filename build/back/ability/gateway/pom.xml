@@ -60,6 +60,12 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!-- 客户端负载均衡loadbalancer -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
         <!-- 缓存 -->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>

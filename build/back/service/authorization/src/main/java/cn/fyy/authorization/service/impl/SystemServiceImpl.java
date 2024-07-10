@@ -15,12 +15,12 @@ import cn.fyy.common.bean.ao.ConstantParameter;
 import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
+import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.common.service.ConstantService;
 import cn.fyy.database.config.data.annotation.WriteDataSource;
 import cn.fyy.jwt.config.jwt.JwtProperties;
 import cn.fyy.jwt.config.security.bean.bo.SecurityRedis;
 import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
-import cn.fyy.jwt.util.JwtTokenUtil;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
 import cn.fyy.redis.bean.ao.RedisSelect;
 import cn.fyy.redis.service.RedisService;
@@ -36,7 +36,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -86,7 +85,7 @@ public class SystemServiceImpl implements SystemService {
      * JWT 工具类
      */
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtTokenWebService jwtTokenWebService;
 
     /**
      * JWT参数
@@ -362,7 +361,7 @@ public class SystemServiceImpl implements SystemService {
                         );
 
                         // 创建token
-                        String token = jwtTokenUtil.generateToken(jwtProperties.getIssuer(), securityRedis.getUsername(), securityUser, jwtProperties.getAccessTokenExpireTime().toMillis());
+                        String token = jwtTokenWebService.generateToken(jwtProperties.getIssuer(), securityRedis.getUsername(), securityUser, jwtProperties.getAccessTokenExpireTime().toMillis());
                         securityRedis.setToken(token);
 
                         // 失效时间，必须在入redis之前计算好，进入redis后才不会因为代码执行顺序的问题导致秒级过期问题

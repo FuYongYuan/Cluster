@@ -1,6 +1,6 @@
 package cn.fyy.gateway.config.security.converter;
 
-import cn.fyy.jwt.util.JwtTokenUtil;
+import cn.fyy.jwt.service.JwtTokenService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,9 +21,11 @@ import java.util.List;
 @Slf4j
 @Component
 public class JwtAuthConverter implements ServerAuthenticationConverter {
-
+    /**
+     * JWT 工具类
+     */
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtTokenService jwtTokenService;
 
     /**
      * 认证
@@ -47,8 +49,8 @@ public class JwtAuthConverter implements ServerAuthenticationConverter {
      */
     private Mono<Authentication> createAuthentication(String token) {
         try {
-            String username = jwtTokenUtil.getUserNameFromToken(token);
-            List<String> authorities = jwtTokenUtil.getAuthoritiesFromToken(token);
+            String username = jwtTokenService.getUserNameFromToken(token);
+            List<String> authorities = jwtTokenService.getAuthoritiesFromToken(token);
             log.debug("用户名:{}, 权限:{}", username, authorities);
             return Mono.just(new UsernamePasswordAuthenticationToken(username, null, AuthorityUtils.createAuthorityList(authorities.toArray(new String[0]))));
         } catch (Exception e) {

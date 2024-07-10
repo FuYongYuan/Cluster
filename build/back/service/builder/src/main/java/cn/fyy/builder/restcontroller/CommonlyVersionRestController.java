@@ -4,14 +4,13 @@ import cn.fyy.builder.bean.dto.CommonlyVersionDTO;
 import cn.fyy.builder.service.CommonlyVersionService;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.service.ConstantService;
-import cn.fyy.jwt.config.jwt.JwtProperties;
+import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
-import cn.fyy.jwt.util.JwtTokenUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,13 +35,8 @@ public class CommonlyVersionRestController {
      * JWT 工具类
      */
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtTokenWebService jwtTokenWebService;
 
-    /**
-     * JWT 配置
-     */
-    @Resource
-    private JwtProperties jwtProperties;
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
 
@@ -61,9 +55,10 @@ public class CommonlyVersionRestController {
     )
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
+            HttpServletRequest request,
             @PathVariable("ids") String ids
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = commonlyVersionServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
         if (i > 0) {
             return new ResultMessage<>(i);
@@ -107,9 +102,10 @@ public class CommonlyVersionRestController {
     )
     @PostMapping(value = "/save")
     public ResultMessage<String> save(
+            HttpServletRequest request,
             @RequestBody CommonlyVersionDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         return commonlyVersionServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 
@@ -124,7 +120,8 @@ public class CommonlyVersionRestController {
     )
     @GetMapping(value = "/get/login")
     public ResultMessage<CommonlyVersionDTO> getBySecurityMessage(
+            HttpServletRequest request
     ) throws BusinessException {
-        return new ResultMessage<>(CommonlyVersionDTO.toDTO(commonlyVersionServiceImpl.getByManagerId(jwtTokenUtil.getManagerIdFromToken(ConstantService.getRequestToken(jwtProperties)))));
+        return new ResultMessage<>(CommonlyVersionDTO.toDTO(commonlyVersionServiceImpl.getByManagerId(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)))));
     }
 }

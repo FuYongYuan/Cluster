@@ -2,14 +2,13 @@ package cn.fyy.data.restcontroller;
 
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.service.ConstantService;
+import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.data.service.UploadService;
-import cn.fyy.jwt.config.jwt.JwtProperties;
-import cn.fyy.jwt.util.JwtTokenUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -36,13 +35,7 @@ public class FileRestController {
      * JWT 工具类
      */
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
-
-    /**
-     * JWT 配置
-     */
-    @Resource
-    private JwtProperties jwtProperties;
+    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
@@ -62,10 +55,11 @@ public class FileRestController {
     )
     @PostMapping(value = "/upload/{businessType}")
     public ResultMessage<Map<String, String>> fileUpload(
+            HttpServletRequest request,
             @PathVariable("businessType") String businessType,
             @RequestPart("uploadFile") MultipartFile[] uploadFile
     ) throws BusinessException {
-        Map<String, String> fileUrlMap = uploadServiceImpl.fileUpload(jwtTokenUtil.getManagerIdFromToken(ConstantService.getRequestToken(jwtProperties)), businessType, uploadFile);
+        Map<String, String> fileUrlMap = uploadServiceImpl.fileUpload(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)), businessType, uploadFile);
         if (!fileUrlMap.isEmpty()) {
             return new ResultMessage<>(fileUrlMap);
         } else {
@@ -89,10 +83,11 @@ public class FileRestController {
     )
     @PostMapping(value = "/upload/get/url/{businessType}")
     public ResultMessage<String> fileUploadReturnUrl(
+            HttpServletRequest request,
             @PathVariable("businessType") String businessType,
             @RequestPart("uploadFile") MultipartFile uploadFile
     ) throws BusinessException {
-        String fileUrl = uploadServiceImpl.fileUploadReturnUrl(jwtTokenUtil.getManagerIdFromToken(ConstantService.getRequestToken(jwtProperties)), businessType, uploadFile);
+        String fileUrl = uploadServiceImpl.fileUploadReturnUrl(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)), businessType, uploadFile);
         if (StringUtils.hasText(fileUrl)) {
             return new ResultMessage<>(fileUrl);
         } else {

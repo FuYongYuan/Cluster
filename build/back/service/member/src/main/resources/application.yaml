@@ -40,7 +40,7 @@ spring:
         # 命名空间 不能跨调用 ID
         namespace: 7
         # 集群 区域 机房 可以跨调用
-        cluster-name: cluster
+        cluster-name: build
         # 分组 类型
         group: service
       # 配置中心
@@ -54,6 +54,6 @@ spring:
         # 命名空间 不能跨调用 ID
         namespace: 7
         # 集群 区域 机房 可以跨调用
-        cluster-name: cluster
+        cluster-name: build
         # 分组 类型
         group: service

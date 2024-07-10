@@ -5,14 +5,13 @@ import cn.fyy.builder.bean.dto.ProjectGroupDTO;
 import cn.fyy.builder.service.ProjectGroupService;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.service.ConstantService;
-import cn.fyy.jwt.config.jwt.JwtProperties;
+import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
-import cn.fyy.jwt.util.JwtTokenUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
@@ -40,13 +39,8 @@ public class ProjectGroupRestController {
      * JWT 工具类
      */
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtTokenWebService jwtTokenWebService;
 
-    /**
-     * JWT 配置
-     */
-    @Resource
-    private JwtProperties jwtProperties;
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
     /**
@@ -64,9 +58,10 @@ public class ProjectGroupRestController {
     )
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
+            HttpServletRequest request,
             @PathVariable("ids") String ids
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = projectGroupServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
         if (i > 0) {
             return new ResultMessage<>(i);
@@ -110,9 +105,10 @@ public class ProjectGroupRestController {
     )
     @PostMapping(value = "/save")
     public ResultMessage<String> save(
+            HttpServletRequest request,
             @RequestBody ProjectGroupDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         dto.setManagerId(managerMessage.getManagerId());
         return projectGroupServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
@@ -135,6 +131,7 @@ public class ProjectGroupRestController {
     )
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
     public ResultMessage<PageImpl<ProjectGroupDTO>> queryByManagerIdAndProjectGroupNameAndState(
+            HttpServletRequest request,
             @PathVariable(value = "currentPage") int currentPage,
             @PathVariable(value = "eachPageSize") int eachPageSize,
             @RequestParam(value = "projectGroupName", required = false) String projectGroupName,
@@ -143,7 +140,7 @@ public class ProjectGroupRestController {
         Page<ProjectGroupBO> boPage = projectGroupServiceImpl.queryByManagerIdAndProjectGroupNameAndState(
                 currentPage,
                 eachPageSize,
-                jwtTokenUtil.getManagerIdFromToken(ConstantService.getRequestToken(jwtProperties)),
+                jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)),
                 projectGroupName,
                 state
         );
@@ -161,8 +158,9 @@ public class ProjectGroupRestController {
     )
     @GetMapping(value = "/get/login")
     public ResultMessage<List<ProjectGroupDTO>> getByManagerId(
+            HttpServletRequest request
     ) throws BusinessException {
-        return new ResultMessage<>(ProjectGroupDTO.toDTO(projectGroupServiceImpl.queryByManagerId(jwtTokenUtil.getManagerIdFromToken(ConstantService.getRequestToken(jwtProperties)))));
+        return new ResultMessage<>(ProjectGroupDTO.toDTO(projectGroupServiceImpl.queryByManagerId(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)))));
     }
 
 //    /**

@@ -5,9 +5,8 @@ import cn.fyy.authorization.service.SystemService;
 import cn.fyy.capability.bean.dto.MenuDTO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
+import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.common.service.ConstantService;
-import cn.fyy.jwt.config.jwt.JwtProperties;
-import cn.fyy.jwt.util.JwtTokenUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,13 +36,7 @@ public class SystemRestController {
      * JWT 工具类
      */
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
-
-    /**
-     * JWT 配置
-     */
-    @Resource
-    private JwtProperties jwtProperties;
+    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
@@ -149,10 +142,11 @@ public class SystemRestController {
     )
     @PostMapping(value = "/logout")
     public ResultMessage<Boolean> logout(
+            HttpServletRequest request
     ) throws BusinessException {
         try {
             return systemServiceImpl.logout(
-                    jwtTokenUtil.getManagerIdFromToken(ConstantService.getRequestToken(jwtProperties))
+                    jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request))
             );
         } catch (Exception e) {
             throw new BusinessException("管理员未登录");
@@ -170,9 +164,10 @@ public class SystemRestController {
     )
     @GetMapping(value = "/query/manager/have/menu")
     public ResultMessage<List<MenuDTO>> queryManagerHaveMenuByJwtToken(
+            HttpServletRequest request
     ) throws BusinessException {
         return systemServiceImpl.queryManagerHaveMenuByManagerId(
-                jwtTokenUtil.getManagerIdFromToken(ConstantService.getRequestToken(jwtProperties))
+                jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request))
         );
     }
 }

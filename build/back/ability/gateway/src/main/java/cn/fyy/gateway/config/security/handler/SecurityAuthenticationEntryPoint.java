@@ -1,5 +1,6 @@
 package cn.fyy.gateway.config.security.handler;
 
+import cn.fyy.common.bean.ao.HttpStatusExplain;
 import cn.fyy.common.bean.dto.ResultMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,7 +41,7 @@ public class SecurityAuthenticationEntryPoint implements ServerAuthenticationEnt
         return Mono.defer(() -> Mono.just(exchange.getResponse()).flatMap(response -> {
             ObjectMapper mapper = new ObjectMapper();
             // 没有访问权限
-            ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.UNAUTHORIZED.value(), "用户未登录或登录信息已过期，请检查登录信息！");
+            ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.UNAUTHORIZED.value(), HttpStatusExplain.getSecurityStatus(HttpStatus.UNAUTHORIZED));
 
             response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 

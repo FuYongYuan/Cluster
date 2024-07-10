@@ -1,6 +1,6 @@
 import cn.fyy.authorization.AuthorizationApplication;
 import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
-import cn.fyy.jwt.util.JwtTokenUtil;
+import cn.fyy.jwt.service.JwtTokenService;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 @SpringBootTest(classes = AuthorizationApplication.class)
 public class JwtTest {
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtTokenService jwtTokenService;
 
     @Test
     public void testGenerateToken() {
@@ -29,7 +29,7 @@ public class JwtTest {
         );
         System.out.println(securityUser);
         System.out.println(
-                jwtTokenUtil.getAccessToken(
+                jwtTokenService.getAccessToken(
                         "1",
                         securityUser
                 )

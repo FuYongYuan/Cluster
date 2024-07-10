@@ -2,13 +2,11 @@ package cn.fyy.dictionary.restcontroller;
 
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.service.ConstantService;
+import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.dictionary.bean.bo.ParameterBO;
 import cn.fyy.dictionary.bean.dto.ParameterDTO;
 import cn.fyy.dictionary.service.ParameterService;
-import cn.fyy.jwt.config.jwt.JwtProperties;
 import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
-import cn.fyy.jwt.util.JwtTokenUtil;
 import dispose.DateDispose;
 import enumerate.DateType;
 import excel.operation.ExcelExport;
@@ -16,6 +14,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.data.domain.Page;
@@ -48,13 +47,8 @@ public class ParameterRestController {
      * JWT 工具类
      */
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtTokenWebService jwtTokenWebService;
 
-    /**
-     * JWT 配置
-     */
-    @Resource
-    private JwtProperties jwtProperties;
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
     /**
@@ -112,9 +106,10 @@ public class ParameterRestController {
     )
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
+            HttpServletRequest request,
             @PathVariable("ids") String ids
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = parameterServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
         if (i > 0) {
             return new ResultMessage<>(i);
@@ -178,9 +173,10 @@ public class ParameterRestController {
     )
     @PostMapping(value = "/save")
     public ResultMessage<String> save(
+            HttpServletRequest request,
             @RequestBody ParameterDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         return parameterServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 

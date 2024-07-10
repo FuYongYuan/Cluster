@@ -34,6 +34,14 @@ public class PermitUrl {
     /**
      * 不鉴权URL
      */
+    private final String[] healthUrl = {
+            // 项目图标
+            "/actuator/health",
+    };
+
+    /**
+     * 不鉴权URL
+     */
     private final String[] druidUrl = {
             // 忽略数据库监控
             "/druid/**",
@@ -44,7 +52,9 @@ public class PermitUrl {
      */
     private final String[] messageUrl = {
             // 图形验证码
+            "/image/get/captcha",
             "/message/image/get/captcha",
+
             // 邮件验证码
             "/mail/send/captcha/**",
     };
@@ -87,6 +97,7 @@ public class PermitUrl {
         //不鉴权地址
         Collections.addAll(permitUrl, apiUrl);
         Collections.addAll(permitUrl, projectUrl);
+        Collections.addAll(permitUrl, healthUrl);
         Collections.addAll(permitUrl, druidUrl);
         Collections.addAll(permitUrl, messageUrl);
         Collections.addAll(permitUrl, authorizationUrl);

@@ -5,14 +5,13 @@ import cn.fyy.authorization.bean.dto.RoleDTO;
 import cn.fyy.authorization.service.RoleService;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.service.ConstantService;
-import cn.fyy.jwt.config.jwt.JwtProperties;
+import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
-import cn.fyy.jwt.util.JwtTokenUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
@@ -40,13 +39,7 @@ public class RoleRestController {
      * JWT 工具类
      */
     @Resource
-    private JwtTokenUtil jwtTokenUtil;
-
-    /**
-     * JWT 配置
-     */
-    @Resource
-    private JwtProperties jwtProperties;
+    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
@@ -100,9 +93,10 @@ public class RoleRestController {
     )
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
+            HttpServletRequest request,
             @PathVariable("ids") String ids
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = roleServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
         if (i > 0) {
             return new ResultMessage<>(i);
@@ -146,9 +140,10 @@ public class RoleRestController {
     )
     @PostMapping(value = "/save")
     public ResultMessage<String> save(
+            HttpServletRequest request,
             @RequestBody RoleDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenUtil.getManagerMessageFromToken(ConstantService.getRequestToken(jwtProperties));
+        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         return roleServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 
