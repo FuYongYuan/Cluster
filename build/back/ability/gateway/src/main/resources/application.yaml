@@ -22,9 +22,9 @@ spring:
       # 基础配置
       - nacos:${spring.application.name}-base-${spring.profiles.active}.yaml
       # jwt认证配置
-      - nacos:jwt-${spring.profiles.active}.yaml
+      - nacos:jwt-${spring.profiles.active}.yaml?group=system
       # redis配置
-      - nacos:redis-${spring.profiles.active}.yaml
+      - nacos:redis-${spring.profiles.active}.yaml?group=system
   cloud:
     nacos:
       # 注册中心
@@ -39,8 +39,8 @@ spring:
         namespace: 7
         # 集群 区域 机房 可以跨调用
         cluster-name: build
-        # 分组 类型
-        group: system
+        # 分组 类型 gateway的分组必须与所要链接的服务的分组一致否则无法访问
+        group: service
       # 配置中心
       config:
         # ip地址:端口
@@ -53,5 +53,5 @@ spring:
         namespace: 7
         # 集群 区域 机房 可以跨调用
         cluster-name: build
-        # 分组 类型
-        group: system
+        # 分组 类型 gateway的分组必须与所要链接的服务的分组一致否则无法访问
+        group: service
