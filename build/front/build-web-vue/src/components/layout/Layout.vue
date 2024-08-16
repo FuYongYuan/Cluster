@@ -17,7 +17,7 @@ import MenuLayout from "@/components/layout/menu/MenuLayout.vue";
 import HeaderLayout from "@/components/layout/header/HeaderLayout.vue";
 import FooterLayout from "@/components/layout/footer/FooterLayout.vue";
 import ContentLayout from "@/components/layout/content/ContentLayout.vue"
-import zhCN from "ant-design-vue/es/locale/zh_CN";
+import zhCN from "ant-design-vue/lib/locale-provider/zh_CN";
 
 export default defineComponent({
     name: "Layout",
