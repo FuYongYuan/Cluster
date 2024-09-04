@@ -56,10 +56,10 @@
         <maven.compiler.target>21</maven.compiler.target>
 
         <!-- Spring Cloud -->
-        <spring-cloud.version>2023.0.2</spring-cloud.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
 
         <!-- Spring Cloud Alibaba -->
-        <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2023.0.1.2</spring-cloud-alibaba.version>
 
         <!-- OpenAPI -->
         <springdoc-openapi.version>2.6.0</springdoc-openapi.version>
@@ -70,7 +70,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <!-- SpringBoot版本 -->
-        <version>3.2.7</version>
+        <version>3.3.3</version>
         <relativePath/>
     </parent>
 
