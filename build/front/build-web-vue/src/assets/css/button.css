@@ -1,0 +1,321 @@
+/* 扩展ant design按钮组件颜色 白底颜色字 */
+.ant-btn-dust {
+    color: #f5222d;
+    background: #fff;
+    border-color: #f5222d;
+
+    &:hover,
+    &:focus {
+        color: #ff4d4f;
+        background: #fff;
+        border-color: #ff4d4f;
+    }
+
+    &:active,
+    &.active {
+        color: #cf1322;
+        background: #fff;
+        border-color: #cf1322;
+    }
+}
+
+.ant-btn-volcano {
+    color: #fa541c;
+    background: #fff;
+    border-color: #fa541c;
+
+    &:hover,
+    &:focus {
+        color: #ff7a45;
+        background: #fff;
+        border-color: #ff7a45;
+    }
+
+    &:active,
+    &.active {
+        color: #d4380d;
+        background: #fff;
+        border-color: #d4380d;
+    }
+}
+
+.ant-btn-sunset {
+    color: #faad14;
+    background: #fff;
+    border-color: #faad14;
+
+    &:hover,
+    &:focus {
+        color: #ffc53d;
+        background: #fff;
+        border-color: #ffc53d;
+    }
+
+    &:active,
+    &.active {
+        color: #d48806;
+        background: #fff;
+        border-color: #d48806;
+    }
+}
+
+.ant-btn-cyan {
+    color: #13c2c2;
+    background: #fff;
+    border-color: #13c2c2;
+
+    &:hover,
+    &:focus {
+        color: #36cfc9;
+        background: #fff;
+        border-color: #36cfc9;
+    }
+
+    &:active,
+    &.active {
+        color: #08979c;
+        background: #fff;
+        border-color: #08979c;
+    }
+}
+
+.ant-btn-green {
+    color: #52c41a;
+    background: #fff;
+    border-color: #52c41a;
+
+    &:hover,
+    &:focus {
+        color: #73d13d;
+        background: #fff;
+        border-color: #73d13d;
+    }
+
+    &:active,
+    &.active {
+        color: #389e0d;
+        background: #fff;
+        border-color: #389e0d;
+    }
+}
+
+.ant-btn-daybreak {
+    color: #1890ff;
+    background: #fff;
+    border-color: #1890ff;
+
+    &:hover,
+    &:focus {
+        color: #096dd9;
+        background: #fff;
+        border-color: #096dd9;
+    }
+
+    &:active,
+    &.active {
+        color: #40a9ff;
+        background: #fff;
+        border-color: #40a9ff;
+    }
+}
+
+.ant-btn-geekblue {
+    color: #2f54eb;
+    background: #fff;
+    border-color: #2f54eb;
+
+    &:hover,
+    &:focus {
+        color: #1d39c4;
+        background: #fff;
+        border-color: #1d39c4;
+    }
+
+    &:active,
+    &.active {
+        color: #597ef7;
+        background: #fff;
+        border-color: #597ef7;
+    }
+}
+
+.ant-btn-purple {
+    color: #722ed1;
+    background: #fff;
+    border-color: #722ed1;
+
+    &:hover,
+    &:focus {
+        color: #9254de;
+        background: #fff;
+        border-color: #9254de;
+    }
+
+    &:active,
+    &.active {
+        color: #531dab;
+        background: #fff;
+        border-color: #531dab;
+    }
+}
+
+/* 扩展按钮组件颜色 颜色底白字 */
+.ant-btn-color-dust {
+    color: #fff;
+    background: #f5222d;
+    border-color: #f5222d;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background: #ff4d4f;
+        border-color: #ff4d4f;
+    }
+
+    &:active,
+    &.active {
+        color: #fff;
+        background: #cf1322;
+        border-color: #cf1322;
+    }
+}
+
+.ant-btn-color-volcano {
+    color: #fff;
+    background: #fa541c;
+    border-color: #fa541c;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background: #ff7a45;
+        border-color: #ff7a45;
+    }
+
+    &:active,
+    &.active {
+        color: #fff;
+        background: #d4380d;
+        border-color: #d4380d;
+    }
+}
+
+.ant-btn-color-sunset {
+    color: #fff;
+    background: #faad14;
+    border-color: #faad14;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background: #ffc53d;
+        border-color: #ffc53d;
+    }
+
+    &:active,
+    &.active {
+        color: #fff;
+        background: #d48806;
+        border-color: #d48806;
+    }
+}
+
+.ant-btn-color-cyan {
+    color: #fff;
+    background: #13c2c2;
+    border-color: #13c2c2;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background: #36cfc9;
+        border-color: #36cfc9;
+    }
+
+    &:active,
+    &.active {
+        color: #fff;
+        background: #08979c;
+        border-color: #08979c;
+    }
+}
+
+.ant-btn-color-green {
+    color: #fff;
+    background: #52c41a;
+    border-color: #52c41a;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background: #73d13d;
+        border-color: #73d13d;
+    }
+
+    &:active,
+    &.active {
+        color: #fff;
+        background: #389e0d;
+        border-color: #389e0d;
+    }
+}
+
+.ant-btn-color-daybreak {
+    color: #fff;
+    background: #1890ff;
+    border-color: #1890ff;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background: #096dd9;
+        border-color: #096dd9;
+    }
+
+    &:active,
+    &.active {
+        color: #fff;
+        background: #40a9ff;
+        border-color: #40a9ff;
+    }
+}
+
+.ant-btn-color-geekblue {
+    color: #fff;
+    background: #2f54eb;
+    border-color: #2f54eb;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background: #1d39c4;
+        border-color: #1d39c4;
+    }
+
+    &:active,
+    &.active {
+        color: #fff;
+        background: #597ef7;
+        border-color: #597ef7;
+    }
+}
+
+.ant-btn-color-purple {
+    color: #fff;
+    background: #722ed1;
+    border-color: #722ed1;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background: #9254de;
+        border-color: #9254de;
+    }
+
+    &:active,
+    &.active {
+        color: #fff;
+        background: #531dab;
+        border-color: #531dab;
+    }
+}
