@@ -15,4 +15,12 @@ export default defineConfig({
             ],
         }),
     ],
+    // 简化引用-仅在【模块解析（打包和开发运行）】【影响运行时】
+    resolve: {
+        alias: {
+            // 同步 tsconfig.json 的路径别名
+            '@src': '/src',
+            '@public':'/public',
+        },
+    },
 })

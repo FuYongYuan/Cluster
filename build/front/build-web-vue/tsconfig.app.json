@@ -23,7 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    /* 简化引用 */
+    /* 简化引用-仅在【TypeScript 类型检查、代码补全】【不影响运行时】 */
     "paths": {
       "baseUrl": ["."],
       "@src/*": ["src/*"],
