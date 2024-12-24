@@ -119,7 +119,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "~@src/assets/css/button.css";
+@import "@src/assets/css/button.css";
 
 .icon-cloud-upload {
   font-size: 40px

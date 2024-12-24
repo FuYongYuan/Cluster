@@ -27,7 +27,7 @@ import {
 	Transfer,
 	Upload,
 } from "ant-design-vue";
-import 'ant-design-vue/dist/reset.css';
+import "ant-design-vue/dist/reset.css";
 
 /**
  * 按需引入组件

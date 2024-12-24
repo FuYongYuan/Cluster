@@ -550,7 +550,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "~@src/assets/css/button.css";
-@import "~@src/assets/css/manage.css";
+@import "@src/assets/css/button.css";
+@import "@src/assets/css/manage.css";
 
 </style>

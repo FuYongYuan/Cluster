@@ -50,5 +50,10 @@ npx @biomejs/biome check --write ./src
 
 # 在 CI 环境中检查所有文件是否符合格式，Lint 等
 npx @biomejs/biome ci ./src
-
-
+------------------------------------------------------------------------------------------------------------------------清理缓存
+# 删除node模块
+rm -rf node_modules
+# 清理缓存
+npm cache clean --force
+# 重新安装
+npm install

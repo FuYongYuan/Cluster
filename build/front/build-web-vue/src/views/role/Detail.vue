@@ -258,7 +258,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "~@src/assets/css/button.css";
+@import "@src/assets/css/button.css";
 
 </style>
 
