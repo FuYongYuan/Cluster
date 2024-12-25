@@ -1,10 +1,11 @@
 import Request from "@src/utils/axios/request";
 import {
-	DictionaryBaseURL,
+	DictionaryApiBaseURL,
 	SuccessRequestCode,
 } from "@src/apis/commons/constant";
 import { showErrorNotification } from "@src/antd/notification";
-import type { PageImpl, ParameterDTO } from "DTO";
+import type { PageImpl } from "@src/apis/commons/dto";
+import type { ParameterDTO } from "@src/apis/dictionary/dto";
 
 /**
  * 根据参数编码、参数名称、状态查询参数列表
@@ -34,7 +35,7 @@ export const queryParameter = (
 		state,
 	};
 	// 地址
-	const url = `${DictionaryBaseURL}/parameter/query/${currentPage}/${eachPageSize}`;
+	const url = `${DictionaryApiBaseURL}/parameter/query/${currentPage}/${eachPageSize}`;
 	// 请求
 	return request.get(url, params).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -55,7 +56,7 @@ export const deleteParameter = (ids: string): Promise<number | undefined> => {
 	// 初始化
 	const request = new Request<number>();
 	// 地址
-	const url = `${DictionaryBaseURL}/parameter/delete/${ids}`;
+	const url = `${DictionaryApiBaseURL}/parameter/delete/${ids}`;
 	// 请求
 	return request.delete(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -77,7 +78,7 @@ export const getParameter = (id: number): Promise<ParameterDTO | undefined> => {
 	// 初始化
 	const request = new Request<ParameterDTO>();
 	// 地址
-	const url = `${DictionaryBaseURL}/parameter/get/${id}`;
+	const url = `${DictionaryApiBaseURL}/parameter/get/${id}`;
 	// 请求
 	return request.get(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -101,7 +102,7 @@ export const saveParameter = (
 	// 初始化
 	const request = new Request<string>();
 	// 地址
-	const url = `${DictionaryBaseURL}/parameter/save`;
+	const url = `${DictionaryApiBaseURL}/parameter/save`;
 	// 请求
 	return request.post(url, dto).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -138,7 +139,7 @@ export const exportParameter = (
 		state,
 	};
 	// 地址
-	const url = `${DictionaryBaseURL}/parameter/export`;
+	const url = `${DictionaryApiBaseURL}/parameter/export`;
 	// 请求
 	return request.export(url, params);
 };

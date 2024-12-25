@@ -128,17 +128,17 @@ import {
 	toRefs,
 	unref,
 } from "vue";
-import IconFont from "@src/assets/iconfont/icon";
 import {
 	FormInstance,
 	message,
 	Table,
 	TablePaginationConfig,
 } from "ant-design-vue";
-import { deleteRole, queryRole } from "@src/apis/authorization/service";
+import IconFont from "@src/assets/iconfont/icon";
 import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
+import { deleteRole, queryRole } from "@src/apis/authorization/service";
+import type { RoleDTO } from "@src/apis/authorization/dto";
 import RoleDetail from "@src/views/role/Detail.vue";
-import { RoleDTO } from "DTO";
 
 export default defineComponent({
 	// 页面名称

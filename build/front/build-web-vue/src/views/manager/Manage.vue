@@ -173,22 +173,22 @@ import {
 	toRefs,
 	unref,
 } from "vue";
-import IconFont from "@src/assets/iconfont/icon";
 import {
 	FormInstance,
 	message,
 	Table,
 	TablePaginationConfig,
 } from "ant-design-vue";
+import IconFont from "@src/assets/iconfont/icon";
 import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
-import ManagerDetail from "@src/views/manager/Detail.vue";
-import { ManagerDTO } from "DTO";
 import {
 	deleteManager,
 	freezeManager,
 	queryManager,
 	recoverFreezeManager,
 } from "@src/apis/member/service";
+import type { ManagerDTO } from "@src/apis/member/dto";
+import ManagerDetail from "@src/views/manager/Detail.vue";
 
 export default defineComponent({
 	// 页面名称

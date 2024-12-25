@@ -5,7 +5,7 @@
             <a-col :xs="20" :sm="16" :md="12" :lg="8" :xl="6">
                 <div class="login-container-form">
                     <header>
-                        <img src="@public/images/logo.png" alt="logo"/>
+                        <img src="/images/logo.png" alt="logo"/>
                         <h1>哎呋歪歪平台</h1>
                     </header>
                     <a-form :model="form" :rules="rules" @finish="loginFinish">
@@ -78,12 +78,10 @@
 </template>
 
 <script lang="ts">
-import type { RuleObject } from "ant-design-vue/es/form";
 import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
 import { message } from "ant-design-vue";
-import { getImageCaptcha } from "@src/apis/message/service";
-import { login, queryHaveMenu } from "@src/apis/authorization/service";
-import { Md5 } from "ts-md5/dist/esm/md5";
+import type { RuleObject } from "ant-design-vue/es/form";
+import IconFont from "@src/assets/iconfont/icon";
 import {
 	FailImage,
 	LocalStorageAccount,
@@ -93,9 +91,11 @@ import {
 	LocalStorageJwtToken,
 	LocalStorageManagerName,
 } from "@src/apis/commons/constant";
+import { getImageCaptcha } from "@src/apis/message/service";
+import { login, queryHaveMenu } from "@src/apis/authorization/service";
+import type { ImageCaptchaDTO } from "@src/apis/message/dto";
+import { Md5 } from "ts-md5/dist/esm/md5";
 import { useRoute, useRouter } from "vue-router";
-import IconFont from "@src/assets/iconfont/icon";
-import { ImageCaptchaDTO } from "DTO";
 
 export default defineComponent({
 	// 页面名称
@@ -260,7 +260,7 @@ export default defineComponent({
 <style scoped>
 .login-container {
   height: 100vh;
-  background: url("~@public/images/login/login_bg.png");
+  background: url("/images/login/login_bg.png");
   background-size: cover;
 
   &-form {
@@ -270,7 +270,7 @@ export default defineComponent({
     margin-top: calc((100vh - 400px) / 2);
     margin-right: 20px;
     margin-left: 20px;
-    background: #fff url("~@public/images/login/login_form.png");
+    background: #fff url("/images/login/login_form.png");
     background-size: 100% 100%;
     border-radius: 10px;
     box-shadow: 0 2px 8px 0 rgba(7, 17, 27, 0.06);

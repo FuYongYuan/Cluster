@@ -65,12 +65,14 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import IconFont from "@src/assets/iconfont/icon";
-import { getRole, saveRole } from "@src/apis/authorization/service";
 import { FormInstance, message } from "ant-design-vue";
 import { RuleObject } from "ant-design-vue/es/form";
-import { MenuDTO, RoleDTO, TransferData } from "DTO";
+import IconFont from "@src/assets/iconfont/icon";
+import { getRole, saveRole } from "@src/apis/authorization/service";
 import { queryMenuAll } from "@src/apis/capability/service";
+import type { TransferData } from "@src/apis/commons/dto";
+import type { RoleDTO } from "@src/apis/authorization/dto";
+import type { MenuDTO } from "@src/apis/capability/dto";
 
 export default defineComponent({
 	// 页面名称

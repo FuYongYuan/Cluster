@@ -115,15 +115,15 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
+import { FormInstance, message } from "ant-design-vue";
+import { RuleObject } from "ant-design-vue/es/form";
 import IconFont from "@src/assets/iconfont/icon";
 import {
 	getMenu,
 	queryMenuAllParent,
 	saveMenu,
 } from "@src/apis/capability/service";
-import { FormInstance, message } from "ant-design-vue";
-import { MenuDTO } from "DTO";
-import { RuleObject } from "ant-design-vue/es/form";
+import type { MenuDTO } from "@src/apis/capability/dto";
 
 export default defineComponent({
 	// 页面名称

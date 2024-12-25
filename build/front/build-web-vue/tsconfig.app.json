@@ -27,7 +27,6 @@
     "paths": {
       "baseUrl": ["."],
       "@src/*": ["src/*"],
-      "@public/*": ["public/*"]
     },
     // 指定要使用的类型声明
     "types": [

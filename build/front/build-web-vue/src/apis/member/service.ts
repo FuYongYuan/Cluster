@@ -1,7 +1,11 @@
 import Request from "@src/utils/axios/request";
-import { MemberBaseURL, SuccessRequestCode } from "@src/apis/commons/constant";
+import {
+	MemberApiBaseURL,
+	SuccessRequestCode,
+} from "@src/apis/commons/constant";
 import { showErrorNotification } from "@src/antd/notification";
-import type { ManagerDTO, PageImpl } from "DTO";
+import type { PageImpl } from "@src/apis/commons/dto";
+import type { ManagerDTO } from "@src/apis/member/dto";
 
 /**
  * 根据JwtToken查询
@@ -11,7 +15,7 @@ export const getManagerByJwtToken = (): Promise<ManagerDTO | undefined> => {
 	// 初始化
 	const request = new Request<ManagerDTO>();
 	// 地址
-	const url = `${MemberBaseURL}/manager/get/jwt/token`;
+	const url = `${MemberApiBaseURL}/manager/get/jwt/token`;
 	// 请求
 	return request.get(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -33,7 +37,7 @@ export const getManager = (id: number): Promise<ManagerDTO | undefined> => {
 	// 初始化
 	const request = new Request<ManagerDTO>();
 	// 地址
-	const url = `${MemberBaseURL}/manager/get/${id}`;
+	const url = `${MemberApiBaseURL}/manager/get/${id}`;
 	// 请求
 	return request.get(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -55,7 +59,7 @@ export const saveManager = (dto: ManagerDTO): Promise<string | undefined> => {
 	// 初始化
 	const request = new Request<string>();
 	// 地址
-	const url = `${MemberBaseURL}/manager/save`;
+	const url = `${MemberApiBaseURL}/manager/save`;
 	// 请求
 	return request.post(url, dto).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -102,7 +106,7 @@ export const queryManager = (
 		state,
 	};
 	// 地址
-	const url = `${MemberBaseURL}/manager/query/${currentPage}/${eachPageSize}`;
+	const url = `${MemberApiBaseURL}/manager/query/${currentPage}/${eachPageSize}`;
 	// 请求
 	return request.get(url, params).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -123,7 +127,7 @@ export const deleteManager = (ids: string): Promise<number | undefined> => {
 	// 初始化
 	const request = new Request<number>();
 	// 地址
-	const url = `${MemberBaseURL}/manager/delete/${ids}`;
+	const url = `${MemberApiBaseURL}/manager/delete/${ids}`;
 	// 请求
 	return request.delete(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -166,7 +170,7 @@ export const updateManagerState = (
 	// 初始化
 	const request = new Request<number>();
 	// 地址
-	const url = `${MemberBaseURL}/manager/update/state/${ids}/${state}`;
+	const url = `${MemberApiBaseURL}/manager/update/state/${ids}/${state}`;
 	// 请求
 	return request.put(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {

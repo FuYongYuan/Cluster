@@ -63,32 +63,36 @@ export const JwtTokenBearerName = "Bearer";
 export const LocalStorageAccountMenuList = "MenuList";
 
 //----------------------------------------------------------------------------------------------------------------------模块请求头
+/**
+ * 统一前缀
+ */
+export const ApiBaseURL = "/api";
 
 /**
  * 管理员模块基础地址
  */
-export const MemberBaseURL = "/member";
+export const MemberApiBaseURL = ApiBaseURL + "/member";
 /**
  * 权限模块基础地址
  */
-export const AuthorizationBaseURL = "/authorization";
+export const AuthorizationApiBaseURL = ApiBaseURL + "/authorization";
 /**
  * 功能模块基础地址
  */
-export const CapabilityBaseURL = "/capability";
+export const CapabilityApiBaseURL = ApiBaseURL + "/capability";
 /**
  * 数据字典模块基础地址
  */
-export const DictionaryBaseURL = "/dictionary";
+export const DictionaryApiBaseURL = ApiBaseURL + "/dictionary";
 /**
  * 数据模块基础地址
  */
-export const DataBaseURL = "/data";
+export const DataApiBaseURL = ApiBaseURL + "/data";
 /**
  * 消息模块基础地址
  */
-export const MessageBaseURL = "/message";
+export const MessageApiBaseURL = ApiBaseURL + "/message";
 /**
  * 项目构建模块基础地址
  */
-export const BuilderBaseURL = "/builder";
+export const BuilderApiBaseURL = ApiBaseURL + "/builder";

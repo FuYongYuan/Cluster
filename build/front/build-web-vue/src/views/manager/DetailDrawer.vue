@@ -137,18 +137,18 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from "vue";
-import IconFont from "@src/assets/iconfont/icon";
-import { getManagerByJwtToken, saveManager } from "@src/apis/member/service";
 import { FormInstance, message, UploadChangeParam } from "ant-design-vue";
-import { ManagerDTO } from "DTO";
+import IconFont from "@src/assets/iconfont/icon";
+import { BusinessTypeUserHeadImage } from "@src/apis/commons/constant";
 import { uploadFormData } from "@src/apis/data/service";
+import { getManagerByJwtToken, saveManager } from "@src/apis/member/service";
+import type { ManagerDTO } from "@src/apis/member/dto";
 import {
 	imageFormatValidate,
 	mailFormatValidate,
 	phoneFormatValidate,
 } from "@src/utils/validate/regex";
 import { RuleObject } from "ant-design-vue/es/form";
-import { BusinessTypeUserHeadImage } from "@src/apis/commons/constant";
 
 export default defineComponent({
 	// 页面名称

@@ -11,7 +11,7 @@ import {
 	JwtTokenRequestHeaderName,
 	LocalStorageJwtToken,
 } from "@src/apis/commons/constant";
-import { ResultMessage } from "DTO";
+import type { ResultMessage } from "@src/apis/commons/dto";
 
 // 设置请求参数
 const timeOut = 1000 * 1000 * 60;

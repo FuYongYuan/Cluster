@@ -1,4 +1,4 @@
-import type { PageSortDTO } from "DTO";
+import type { PageSortDTO } from "@src/apis/commons/dto";
 
 /**
  * 获取分页排序数组

@@ -1,6 +1,6 @@
 import Request from "@src/utils/axios/request";
 import {
-	AuthorizationBaseURL,
+	AuthorizationApiBaseURL,
 	LocalStorageAccount,
 	LocalStorageAccountMenuList,
 	LocalStorageHeadImgUrl,
@@ -10,7 +10,9 @@ import {
 	SuccessRequestCode,
 } from "@src/apis/commons/constant";
 import { showErrorNotification } from "@src/antd/notification";
-import type { JwtDTO, MenuDTO, PageImpl, RoleDTO } from "DTO";
+import type { PageImpl } from "@src/apis/commons/dto";
+import type { JwtDTO, RoleDTO } from "@src/apis/authorization/dto";
+import type { MenuDTO } from "@src/apis/capability/dto";
 
 //----------------------------------------------------------------------------------------------------------------------账号管理
 /**
@@ -29,7 +31,7 @@ export const login = (
 	const request = new Request<JwtDTO>();
 	return request
 		.post(
-			AuthorizationBaseURL +
+			AuthorizationApiBaseURL +
 				"/system/login/" +
 				account +
 				"/" +
@@ -57,7 +59,7 @@ export const login = (
 export const logout = () => {
 	const request = new Request<string>();
 	return request
-		.post(AuthorizationBaseURL + "/system/logout")
+		.post(AuthorizationApiBaseURL + "/system/logout")
 		.then((response) => {
 			if (response.data.data) {
 				localStorage.removeItem(LocalStorageAccount);
@@ -95,7 +97,7 @@ export const register = (
 	const request = new Request<JwtDTO>();
 	return request
 		.post(
-			AuthorizationBaseURL +
+			AuthorizationApiBaseURL +
 				"/system/register/" +
 				mail +
 				"/" +
@@ -135,7 +137,7 @@ export const recover = (
 	const request = new Request<JwtDTO>();
 	return request
 		.put(
-			AuthorizationBaseURL +
+			AuthorizationApiBaseURL +
 				"/system/recover/" +
 				mail +
 				"/" +
@@ -163,7 +165,7 @@ export const recover = (
 export const queryHaveMenu = (): Promise<MenuDTO[] | undefined> => {
 	const request = new Request<MenuDTO[]>();
 	return request
-		.get(AuthorizationBaseURL + "/system/query/manager/have/menu")
+		.get(AuthorizationApiBaseURL + "/system/query/manager/have/menu")
 		.then((response) => {
 			if (response.data.code === SuccessRequestCode) {
 				return response.data.data;
@@ -182,7 +184,7 @@ export const queryHaveMenu = (): Promise<MenuDTO[] | undefined> => {
 export const queryRoleAll = (): Promise<RoleDTO[] | undefined> => {
 	const request = new Request<RoleDTO[]>();
 	return request
-		.get(AuthorizationBaseURL + "/role/query/all")
+		.get(AuthorizationApiBaseURL + "/role/query/all")
 		.then((response) => {
 			if (response.data.code === SuccessRequestCode) {
 				return response.data.data;
@@ -222,7 +224,7 @@ export const queryRole = (
 	};
 	// 地址
 	const url =
-		AuthorizationBaseURL + "/role/query/" + currentPage + "/" + eachPageSize;
+		AuthorizationApiBaseURL + "/role/query/" + currentPage + "/" + eachPageSize;
 	// 请求
 	return request.get(url, params).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -244,7 +246,7 @@ export const deleteRole = (ids: string): Promise<number | undefined> => {
 	// 初始化
 	const request = new Request<number>();
 	// 地址
-	const url = AuthorizationBaseURL + "/role/delete/" + ids;
+	const url = AuthorizationApiBaseURL + "/role/delete/" + ids;
 	// 请求
 	return request.delete(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -267,7 +269,7 @@ export const getRole = (id: number): Promise<RoleDTO | undefined> => {
 	// 初始化
 	const request = new Request<RoleDTO>();
 	// 地址
-	const url = AuthorizationBaseURL + "/role/get/" + id;
+	const url = AuthorizationApiBaseURL + "/role/get/" + id;
 	// 请求
 	return request.get(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -290,7 +292,7 @@ export const saveRole = (dto: RoleDTO): Promise<string | undefined> => {
 	// 初始化
 	const request = new Request<string>();
 	// 地址
-	const url = AuthorizationBaseURL + "/role/save";
+	const url = AuthorizationApiBaseURL + "/role/save";
 	// 请求
 	return request.post(url, dto).then((response) => {
 		if (response.data.code === SuccessRequestCode) {

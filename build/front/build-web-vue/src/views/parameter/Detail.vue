@@ -74,11 +74,11 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, toRefs } from "vue";
-import IconFont from "@src/assets/iconfont/icon";
-import { getParameter, saveParameter } from "@src/apis/dictionary/service";
 import { FormInstance, message } from "ant-design-vue";
 import { RuleObject } from "ant-design-vue/es/form";
-import { ParameterDTO } from "DTO";
+import IconFont from "@src/assets/iconfont/icon";
+import { getParameter, saveParameter } from "@src/apis/dictionary/service";
+import type { ParameterDTO } from "@src/apis/dictionary/dto";
 
 export default defineComponent({
 	// 页面名称

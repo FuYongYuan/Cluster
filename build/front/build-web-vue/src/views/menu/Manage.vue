@@ -151,17 +151,17 @@ import {
 	toRefs,
 	unref,
 } from "vue";
-import IconFont from "@src/assets/iconfont/icon";
 import {
 	FormInstance,
 	message,
 	Table,
 	TablePaginationConfig,
 } from "ant-design-vue";
-import { deleteMenu, queryMenu } from "@src/apis/capability/service";
+import IconFont from "@src/assets/iconfont/icon";
 import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
+import { deleteMenu, queryMenu } from "@src/apis/capability/service";
+import type { MenuDTO } from "@src/apis/capability/dto";
 import MenuDetail from "@src/views/menu/Detail.vue";
-import { MenuDTO } from "DTO";
 
 export default defineComponent({
 	// 页面名称

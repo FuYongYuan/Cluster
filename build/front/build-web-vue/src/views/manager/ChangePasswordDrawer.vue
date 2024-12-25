@@ -100,13 +100,13 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import IconFont from "@src/assets/iconfont/icon";
-import { getManagerByJwtToken } from "@src/apis/member/service";
 import { FormInstance, message } from "ant-design-vue";
-import { ImageCaptchaDTO, MailCaptchaDTO } from "DTO";
 import { RuleObject } from "ant-design-vue/es/form";
+import IconFont from "@src/assets/iconfont/icon";
 import { FailImage } from "@src/apis/commons/constant";
+import { getManagerByJwtToken } from "@src/apis/member/service";
 import { getImageCaptcha, getMailCaptcha } from "@src/apis/message/service";
+import type { ImageCaptchaDTO, MailCaptchaDTO } from "@src/apis/message/dto";
 import { mailFormatValidate } from "@src/utils/validate/regex";
 import { Md5 } from "ts-md5";
 import { recover } from "@src/apis/authorization/service";

@@ -1,7 +1,7 @@
 import Request from "@src/utils/axios/request";
-import { DataBaseURL, SuccessRequestCode } from "@src/apis/commons/constant";
+import { DataApiBaseURL, SuccessRequestCode } from "@src/apis/commons/constant";
 import { showErrorNotification } from "@src/antd/notification";
-import type { ResultMessage } from "DTO";
+import type { ResultMessage } from "@src/apis/commons/dto";
 
 /**
  * 文件上传
@@ -18,7 +18,7 @@ export const uploadFormData = (
 	// 初始化
 	const request = new Request<ResultMessage<string>>();
 	// 地址
-	const url = `${DataBaseURL}/file/upload/get/url/${businessType}`;
+	const url = `${DataApiBaseURL}/file/upload/get/url/${businessType}`;
 	// 请求
 	return request
 		.upload(url, formData, (progressEvent) => {

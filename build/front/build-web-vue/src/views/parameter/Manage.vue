@@ -140,21 +140,21 @@ import {
 	toRefs,
 	unref,
 } from "vue";
-import IconFont from "@src/assets/iconfont/icon";
 import {
 	FormInstance,
 	message,
 	Table,
 	TablePaginationConfig,
 } from "ant-design-vue";
+import IconFont from "@src/assets/iconfont/icon";
+import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
 import {
 	deleteParameter,
 	exportParameter,
 	queryParameter,
 } from "@src/apis/dictionary/service";
-import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
+import type { ParameterDTO } from "@src/apis/dictionary/dto";
 import ParameterDetail from "@src/views/parameter/Detail.vue";
-import { ParameterDTO } from "DTO";
 
 export default defineComponent({
 	// 页面名称
