@@ -251,7 +251,11 @@ export default defineComponent({
   border-radius: 5px;
 }
 
-:deep(.ant-tabs-top > .ant-tabs-nav,.ant-tabs-bottom > .ant-tabs-nav,.ant-tabs-top > div > .ant-tabs-nav,.ant-tabs-bottom > div > .ant-tabs-nav) {
+/* 使用 :deep() 来作用于子组件中的类 */
+:deep(.ant-tabs-top > .ant-tabs-nav,
+      .ant-tabs-bottom > .ant-tabs-nav,
+      .ant-tabs-top > div > .ant-tabs-nav,
+      .ant-tabs-bottom > div > .ant-tabs-nav) {
   margin: 0 0 5px 0;
 }
 </style>

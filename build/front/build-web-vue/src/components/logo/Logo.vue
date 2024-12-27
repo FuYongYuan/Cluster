@@ -26,15 +26,15 @@ export default {
   line-height: 64px;
   white-space: nowrap;
   border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+}
 
-  img {
-    height: 32px;
-    margin-right: 24px;
-  }
+.logo img {
+  height: 32px;
+  margin-right: 24px;
+}
 
-  .title {
-    margin-bottom: 0;
-    color: white;
-  }
+.logo .title {
+  margin-bottom: 0;
+  color: white;
 }
 </style>

@@ -1,321 +1,289 @@
-/* 扩展ant design按钮组件颜色 白底颜色字 */
+/* 扩展 Ant Design 按钮组件颜色 - 白底颜色字 */
 .ant-btn-dust {
 	color: #f5222d;
 	background: #fff;
 	border-color: #f5222d;
-
-	&:hover,
-	&:focus {
-		color: #ff4d4f;
-		background: #fff;
-		border-color: #ff4d4f;
-	}
-
-	&:active,
-	&.active {
-		color: #cf1322;
-		background: #fff;
-		border-color: #cf1322;
-	}
+}
+.ant-btn-dust:hover,
+.ant-btn-dust:focus {
+	color: #ff4d4f;
+	background: #fff;
+	border-color: #ff4d4f;
+}
+.ant-btn-dust:active,
+.ant-btn-dust.active {
+	color: #cf1322;
+	background: #fff;
+	border-color: #cf1322;
 }
 
 .ant-btn-volcano {
 	color: #fa541c;
 	background: #fff;
 	border-color: #fa541c;
-
-	&:hover,
-	&:focus {
-		color: #ff7a45;
-		background: #fff;
-		border-color: #ff7a45;
-	}
-
-	&:active,
-	&.active {
-		color: #d4380d;
-		background: #fff;
-		border-color: #d4380d;
-	}
+}
+.ant-btn-volcano:hover,
+.ant-btn-volcano:focus {
+	color: #ff7a45;
+	background: #fff;
+	border-color: #ff7a45;
+}
+.ant-btn-volcano:active,
+.ant-btn-volcano.active {
+	color: #d4380d;
+	background: #fff;
+	border-color: #d4380d;
 }
 
 .ant-btn-sunset {
 	color: #faad14;
 	background: #fff;
 	border-color: #faad14;
-
-	&:hover,
-	&:focus {
-		color: #ffc53d;
-		background: #fff;
-		border-color: #ffc53d;
-	}
-
-	&:active,
-	&.active {
-		color: #d48806;
-		background: #fff;
-		border-color: #d48806;
-	}
+}
+.ant-btn-sunset:hover,
+.ant-btn-sunset:focus {
+	color: #ffc53d;
+	background: #fff;
+	border-color: #ffc53d;
+}
+.ant-btn-sunset:active,
+.ant-btn-sunset.active {
+	color: #d48806;
+	background: #fff;
+	border-color: #d48806;
 }
 
 .ant-btn-cyan {
 	color: #13c2c2;
 	background: #fff;
 	border-color: #13c2c2;
-
-	&:hover,
-	&:focus {
-		color: #36cfc9;
-		background: #fff;
-		border-color: #36cfc9;
-	}
-
-	&:active,
-	&.active {
-		color: #08979c;
-		background: #fff;
-		border-color: #08979c;
-	}
+}
+.ant-btn-cyan:hover,
+.ant-btn-cyan:focus {
+	color: #36cfc9;
+	background: #fff;
+	border-color: #36cfc9;
+}
+.ant-btn-cyan:active,
+.ant-btn-cyan.active {
+	color: #08979c;
+	background: #fff;
+	border-color: #08979c;
 }
 
 .ant-btn-green {
 	color: #52c41a;
 	background: #fff;
 	border-color: #52c41a;
-
-	&:hover,
-	&:focus {
-		color: #73d13d;
-		background: #fff;
-		border-color: #73d13d;
-	}
-
-	&:active,
-	&.active {
-		color: #389e0d;
-		background: #fff;
-		border-color: #389e0d;
-	}
+}
+.ant-btn-green:hover,
+.ant-btn-green:focus {
+	color: #73d13d;
+	background: #fff;
+	border-color: #73d13d;
+}
+.ant-btn-green:active,
+.ant-btn-green.active {
+	color: #389e0d;
+	background: #fff;
+	border-color: #389e0d;
 }
 
 .ant-btn-daybreak {
 	color: #1890ff;
 	background: #fff;
 	border-color: #1890ff;
-
-	&:hover,
-	&:focus {
-		color: #096dd9;
-		background: #fff;
-		border-color: #096dd9;
-	}
-
-	&:active,
-	&.active {
-		color: #40a9ff;
-		background: #fff;
-		border-color: #40a9ff;
-	}
+}
+.ant-btn-daybreak:hover,
+.ant-btn-daybreak:focus {
+	color: #096dd9;
+	background: #fff;
+	border-color: #096dd9;
+}
+.ant-btn-daybreak:active,
+.ant-btn-daybreak.active {
+	color: #40a9ff;
+	background: #fff;
+	border-color: #40a9ff;
 }
 
 .ant-btn-geekblue {
 	color: #2f54eb;
 	background: #fff;
 	border-color: #2f54eb;
-
-	&:hover,
-	&:focus {
-		color: #1d39c4;
-		background: #fff;
-		border-color: #1d39c4;
-	}
-
-	&:active,
-	&.active {
-		color: #597ef7;
-		background: #fff;
-		border-color: #597ef7;
-	}
+}
+.ant-btn-geekblue:hover,
+.ant-btn-geekblue:focus {
+	color: #1d39c4;
+	background: #fff;
+	border-color: #1d39c4;
+}
+.ant-btn-geekblue:active,
+.ant-btn-geekblue.active {
+	color: #597ef7;
+	background: #fff;
+	border-color: #597ef7;
 }
 
 .ant-btn-purple {
 	color: #722ed1;
 	background: #fff;
 	border-color: #722ed1;
-
-	&:hover,
-	&:focus {
-		color: #9254de;
-		background: #fff;
-		border-color: #9254de;
-	}
-
-	&:active,
-	&.active {
-		color: #531dab;
-		background: #fff;
-		border-color: #531dab;
-	}
+}
+.ant-btn-purple:hover,
+.ant-btn-purple:focus {
+	color: #9254de;
+	background: #fff;
+	border-color: #9254de;
+}
+.ant-btn-purple:active,
+.ant-btn-purple.active {
+	color: #531dab;
+	background: #fff;
+	border-color: #531dab;
 }
 
-/* 扩展按钮组件颜色 颜色底白字 */
+/* 扩展按钮组件颜色 - 颜色底白字 */
 .ant-btn-color-dust {
 	color: #fff;
 	background: #f5222d;
 	border-color: #f5222d;
-
-	&:hover,
-	&:focus {
-		color: #fff;
-		background: #ff4d4f;
-		border-color: #ff4d4f;
-	}
-
-	&:active,
-	&.active {
-		color: #fff;
-		background: #cf1322;
-		border-color: #cf1322;
-	}
+}
+.ant-btn-color-dust:hover,
+.ant-btn-color-dust:focus {
+	color: #fff;
+	background: #ff4d4f;
+	border-color: #ff4d4f;
+}
+.ant-btn-color-dust:active,
+.ant-btn-color-dust.active {
+	color: #fff;
+	background: #cf1322;
+	border-color: #cf1322;
 }
 
 .ant-btn-color-volcano {
 	color: #fff;
 	background: #fa541c;
 	border-color: #fa541c;
-
-	&:hover,
-	&:focus {
-		color: #fff;
-		background: #ff7a45;
-		border-color: #ff7a45;
-	}
-
-	&:active,
-	&.active {
-		color: #fff;
-		background: #d4380d;
-		border-color: #d4380d;
-	}
+}
+.ant-btn-color-volcano:hover,
+.ant-btn-color-volcano:focus {
+	color: #fff;
+	background: #ff7a45;
+	border-color: #ff7a45;
+}
+.ant-btn-color-volcano:active,
+.ant-btn-color-volcano.active {
+	color: #fff;
+	background: #d4380d;
+	border-color: #d4380d;
 }
 
 .ant-btn-color-sunset {
 	color: #fff;
 	background: #faad14;
 	border-color: #faad14;
-
-	&:hover,
-	&:focus {
-		color: #fff;
-		background: #ffc53d;
-		border-color: #ffc53d;
-	}
-
-	&:active,
-	&.active {
-		color: #fff;
-		background: #d48806;
-		border-color: #d48806;
-	}
+}
+.ant-btn-color-sunset:hover,
+.ant-btn-color-sunset:focus {
+	color: #fff;
+	background: #ffc53d;
+	border-color: #ffc53d;
+}
+.ant-btn-color-sunset:active,
+.ant-btn-color-sunset.active {
+	color: #fff;
+	background: #d48806;
+	border-color: #d48806;
 }
 
 .ant-btn-color-cyan {
 	color: #fff;
 	background: #13c2c2;
 	border-color: #13c2c2;
-
-	&:hover,
-	&:focus {
-		color: #fff;
-		background: #36cfc9;
-		border-color: #36cfc9;
-	}
-
-	&:active,
-	&.active {
-		color: #fff;
-		background: #08979c;
-		border-color: #08979c;
-	}
+}
+.ant-btn-color-cyan:hover,
+.ant-btn-color-cyan:focus {
+	color: #fff;
+	background: #36cfc9;
+	border-color: #36cfc9;
+}
+.ant-btn-color-cyan:active,
+.ant-btn-color-cyan.active {
+	color: #fff;
+	background: #08979c;
+	border-color: #08979c;
 }
 
 .ant-btn-color-green {
 	color: #fff;
 	background: #52c41a;
 	border-color: #52c41a;
-
-	&:hover,
-	&:focus {
-		color: #fff;
-		background: #73d13d;
-		border-color: #73d13d;
-	}
-
-	&:active,
-	&.active {
-		color: #fff;
-		background: #389e0d;
-		border-color: #389e0d;
-	}
+}
+.ant-btn-color-green:hover,
+.ant-btn-color-green:focus {
+	color: #fff;
+	background: #73d13d;
+	border-color: #73d13d;
+}
+.ant-btn-color-green:active,
+.ant-btn-color-green.active {
+	color: #fff;
+	background: #389e0d;
+	border-color: #389e0d;
 }
 
 .ant-btn-color-daybreak {
 	color: #fff;
 	background: #1890ff;
 	border-color: #1890ff;
-
-	&:hover,
-	&:focus {
-		color: #fff;
-		background: #096dd9;
-		border-color: #096dd9;
-	}
-
-	&:active,
-	&.active {
-		color: #fff;
-		background: #40a9ff;
-		border-color: #40a9ff;
-	}
+}
+.ant-btn-color-daybreak:hover,
+.ant-btn-color-daybreak:focus {
+	color: #fff;
+	background: #096dd9;
+	border-color: #096dd9;
+}
+.ant-btn-color-daybreak:active,
+.ant-btn-color-daybreak.active {
+	color: #fff;
+	background: #40a9ff;
+	border-color: #40a9ff;
 }
 
 .ant-btn-color-geekblue {
 	color: #fff;
 	background: #2f54eb;
 	border-color: #2f54eb;
-
-	&:hover,
-	&:focus {
-		color: #fff;
-		background: #1d39c4;
-		border-color: #1d39c4;
-	}
-
-	&:active,
-	&.active {
-		color: #fff;
-		background: #597ef7;
-		border-color: #597ef7;
-	}
+}
+.ant-btn-color-geekblue:hover,
+.ant-btn-color-geekblue:focus {
+	color: #fff;
+	background: #1d39c4;
+	border-color: #1d39c4;
+}
+.ant-btn-color-geekblue:active,
+.ant-btn-color-geekblue.active {
+	color: #fff;
+	background: #597ef7;
+	border-color: #597ef7;
 }
 
 .ant-btn-color-purple {
 	color: #fff;
 	background: #722ed1;
 	border-color: #722ed1;
-
-	&:hover,
-	&:focus {
-		color: #fff;
-		background: #9254de;
-		border-color: #9254de;
-	}
-
-	&:active,
-	&.active {
-		color: #fff;
-		background: #531dab;
-		border-color: #531dab;
-	}
+}
+.ant-btn-color-purple:hover,
+.ant-btn-color-purple:focus {
+	color: #fff;
+	background: #9254de;
+	border-color: #9254de;
+}
+.ant-btn-color-purple:active,
+.ant-btn-color-purple.active {
+	color: #fff;
+	background: #531dab;
+	border-color: #531dab;
 }

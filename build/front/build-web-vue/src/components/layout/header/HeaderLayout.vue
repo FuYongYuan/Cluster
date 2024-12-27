@@ -122,14 +122,14 @@ export default defineComponent({
 .app-header {
   background: #fff;
   border-bottom: solid 1px #001529;
+}
 
-  .ant-row {
-    justify-content: space-between;
-  }
+.app-header .ant-row {
+  justify-content: space-between;
+}
 
-  .ant-dropdown-link {
-    display: block;
-    cursor: pointer;
-  }
+.app-header .ant-dropdown-link {
+  display: block;
+  cursor: pointer;
 }
 </style>

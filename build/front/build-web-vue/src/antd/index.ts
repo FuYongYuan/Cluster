@@ -28,7 +28,7 @@ import {
 	Upload,
 } from "ant-design-vue";
 // 引入样式
-import 'ant-design-vue/dist/reset.css';
+import "ant-design-vue/dist/reset.css";
 
 /**
  * 按需引入组件

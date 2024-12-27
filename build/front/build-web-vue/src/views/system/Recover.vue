@@ -340,68 +340,68 @@ export default defineComponent({
   height: 100vh;
   background: url("/images/login/login_bg.png");
   background-size: cover;
+}
 
-  &-form {
-    width: calc(100% - 40px);
-    height: 400px;
-    padding: 1vh;
-    margin-top: calc((100vh - 400px) / 2);
-    margin-right: 20px;
-    margin-left: 20px;
-    background: #fff url("/images/login/login_form.png");
-    background-size: 100% 100%;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px 0 rgba(7, 17, 27, 0.06);
+.login-container-form {
+  width: calc(100% - 40px);
+  height: 400px;
+  padding: 1vh;
+  margin-top: calc((100vh - 400px) / 2);
+  margin-right: 20px;
+  margin-left: 20px;
+  background: #fff url("/images/login/login_form.png");
+  background-size: 100% 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgba(7, 17, 27, 0.06);
+}
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.login-container-form header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-      img {
-        display: inline-block;
-        width: 25px;
-        margin-right: 5px;
-      }
+.login-container-form header img {
+  display: inline-block;
+  width: 25px;
+  margin-right: 5px;
+}
 
-      h1 {
-        margin-bottom: 0;
-        font-size: 24px;
-        color: #222;
-        text-align: center;
-      }
-    }
+.login-container-form header h1 {
+  margin-bottom: 0;
+  font-size: 24px;
+  color: #222;
+  text-align: center;
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      margin-top: 10px;
+.login-container-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
 
-      img {
-        width: 80px;
-        height: 20px;
-      }
-    }
-  }
+.login-container-form form img {
+  width: 80px;
+  height: 20px;
+}
 
-  .ant-form-item {
-    width: 200px;
-    text-align: center;
-  }
+.ant-form-item {
+  width: 200px;
+  text-align: center;
+}
 
-  .button-side {
-    margin-right: 20px
-  }
+.button-side {
+  margin-right: 20px;
+}
 
-  .button-link {
-    padding: 4px 0;
-  }
+.button-link {
+  padding: 4px 0;
+}
 
-  .button-link-captcha {
-    height: 20px;
-    padding: 0;
-  }
+.button-link-captcha {
+  height: 20px;
+  padding: 0;
 }
 </style>
