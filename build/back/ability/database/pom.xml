@@ -43,6 +43,13 @@
             <version>${druid.version}</version>
         </dependency>
 
+        <!-- 连接池Web监控页面需要 -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- 实体 -->
         <dependency>
             <groupId>cn.fyy.build</groupId>
