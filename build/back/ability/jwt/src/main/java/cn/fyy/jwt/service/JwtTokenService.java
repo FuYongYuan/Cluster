@@ -180,6 +180,27 @@ public class JwtTokenService {
      *
      * @return io.jsonwebtoken.Claims
      */
+    public String getManagerPasswordFromToken(String token) {
+        if (StringUtils.hasText(token)) {
+            Map<String, Object> claims;
+            try {
+                Jwt jwt = jwtDecoder.decode(token);
+                claims = jwt.getClaims();
+                if (claims != null && !claims.isEmpty()) {
+                    return String.valueOf(claims.get(ConstantParameter.JWT_PASSWORD));
+                }
+            } catch (Exception e) {
+                log.error("获取用户ID", e);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 从令牌中获取数据声明
+     *
+     * @return io.jsonwebtoken.Claims
+     */
     public ManagerMessage getManagerMessageFromToken(String token) {
         if (StringUtils.hasText(token)) {
             Map<String, Object> claims;

@@ -41,6 +41,11 @@ public class ConstantParameter {
     public static final String JWT_MANAGER_NAME = "managerName";
 
     /**
+     * JWT中管理员密码取值名称
+     */
+    public static final String JWT_PASSWORD = "password";
+
+    /**
      * 登录请求错误尝试次数上限
      */
     public static final int ATTEMPT_LOGIN_FREQUENCY = 3;

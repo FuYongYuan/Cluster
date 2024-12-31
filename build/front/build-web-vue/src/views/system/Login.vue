@@ -129,8 +129,12 @@ export default defineComponent({
 		});
 
 		//------------------------------------------------------------------------------------------------------------------方法
-		// 加载完成触发事件刷新图片验证码
+		// 页面加载时触发
 		onMounted(async () => {
+			// 清理 localStorage 和 sessionStorage
+			localStorage.clear();
+			sessionStorage.clear();
+			// 加载完成触发事件刷新图片验证码
 			await imageCaptchaClick();
 		});
 

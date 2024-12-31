@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -31,6 +32,12 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
     private RedisService redisServiceImpl;
 
     /**
+     * 密码加密器
+     */
+    @Resource
+    private PasswordEncoder passwordEncoder;
+
+    /**
      * 验证用户是否登录
      *
      * @param managerId 用户ID-来自于JwtAuthConverter中createAuthentication方法
@@ -41,7 +48,7 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
     @Override
     public Mono<UserDetails> findByUsername(String managerId) {
         try {
-            log.info("ReactiveUserDetailsService.findByUsername(String managerId) 入参:{}", managerId);
+            log.info("ReactiveUserDetailsService.findByUsername(String managerId) 入参:{}，结果:{}", managerId, ConstantParameter.MANAGER_JWT_INFO_KEY + managerId);
 
             SecurityRedis securityRedis = redisServiceImpl.get(RedisSelect.FIFTEEN, ConstantParameter.MANAGER_JWT_INFO_KEY + managerId, SecurityRedis.class);
             if (securityRedis != null) {
@@ -49,7 +56,7 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
                         securityRedis.getManagerId(),
                         securityRedis.getManagerName(),
                         securityRedis.getUsername(),
-                        securityRedis.getPassword(),
+                        passwordEncoder.encode(securityRedis.getPassword()),
                         AuthorityUtils.createAuthorityList(securityRedis.getAuthorities())
                 ));
             }

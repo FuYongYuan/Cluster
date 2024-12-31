@@ -19,7 +19,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -50,6 +49,12 @@ public class WebSecurityConfig {
      */
     @Resource
     private SecurityAuthenticationEntryPoint securityAuthenticationEntryPoint;
+
+    /**
+     * 密码加密器
+     */
+    @Resource
+    private PasswordEncoder passwordEncoder;
 
     /**
      * 用户的校验逻辑
@@ -121,17 +126,8 @@ public class WebSecurityConfig {
         // 注入UserDetailsService
         authenticationProvider.setUserDetailsService(userDetailsServiceImpl);
         // 注入密码加密机制
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        authenticationProvider.setPasswordEncoder(passwordEncoder);
         return authenticationProvider;
-    }
-
-    /**
-     * SpringSecurity定义的用于对密码进行编码及比对的接口，
-     * 目前使用的是BCryptPasswordEncoder；
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     /**

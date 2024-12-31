@@ -16,7 +16,6 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
@@ -59,6 +58,12 @@ public class WebFluxSecurityConfig {
      */
     @Resource
     private JwtAuthConverter jwtAuthConverter;
+
+    /**
+     * 密码加密器
+     */
+    @Resource
+    private PasswordEncoder passwordEncoder;
 
     /**
      * 用于配置需要拦截的url路径、jwt过滤器及出异常后的处理器；
@@ -107,17 +112,8 @@ public class WebFluxSecurityConfig {
         UserDetailsRepositoryReactiveAuthenticationManager reactiveAuthenticationManager
                 = new UserDetailsRepositoryReactiveAuthenticationManager(reactiveUserDetailsServiceImpl);
         // 注入密码加密机制
-        reactiveAuthenticationManager.setPasswordEncoder(passwordEncoder());
+        reactiveAuthenticationManager.setPasswordEncoder(passwordEncoder);
         return reactiveAuthenticationManager;
-    }
-
-    /**
-     * SpringSecurity定义的用于对密码进行编码及比对的接口，
-     * 目前使用的是BCryptPasswordEncoder；
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     /**
