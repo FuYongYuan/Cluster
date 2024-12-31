@@ -3,7 +3,6 @@ package cn.fyy.common.config.security.handler;
 import cn.fyy.common.bean.ao.HttpStatusExplain;
 import cn.fyy.common.bean.dto.ResultMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +30,7 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
      * @throws IOException 错误
      */
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
         log.error("【用户认证的时候出现错误时抛出的异常】类:{}   方法:{}   行:{}   错误:{}",
                 exception.getStackTrace()[0].getClassName(),
                 exception.getStackTrace()[0].getMethodName(),
@@ -45,6 +44,5 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
         ObjectMapper mapper = new ObjectMapper();
         response.getWriter().println(mapper.writeValueAsString(resultMessage));
         response.getWriter().flush();
-        throw exception;
     }
 }

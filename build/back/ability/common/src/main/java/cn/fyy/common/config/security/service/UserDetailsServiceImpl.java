@@ -31,16 +31,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     /**
      * 验证用户是否登录
      *
-     * @param userId 用户名称
+     * @param redisId Redis中格式的用户ID
      * @return 登录用户信息
      * @throws UsernameNotFoundException 错误
      */
     @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String redisId) throws UsernameNotFoundException {
         try {
-            log.info("UserDetailsService.loadUserByUsername(String userId) 入参:{}", userId);
+            log.info("UserDetailsService.loadUserByUsername(String redisId) 入参:{}", redisId);
 
-            SecurityRedis securityRedis = redisServiceImpl.get(RedisSelect.FIFTEEN, userId, SecurityRedis.class);
+            SecurityRedis securityRedis = redisServiceImpl.get(RedisSelect.FIFTEEN, redisId, SecurityRedis.class);
             if (securityRedis != null) {
                 return new SecurityUser(
                         securityRedis.getManagerId(),

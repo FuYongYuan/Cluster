@@ -49,11 +49,18 @@ public class JwtAuthConverter implements ServerAuthenticationConverter {
      */
     private Mono<Authentication> createAuthentication(String token) {
         try {
-            String username = jwtTokenService.getUserNameFromToken(token);
+            // 解析 JWT 获取 managerId 和权限
+            String managerId = String.valueOf(jwtTokenService.getManagerIdFromToken(token));
             List<String> authorities = jwtTokenService.getAuthoritiesFromToken(token);
-            log.debug("用户名:{}, 权限:{}", username, authorities);
-            return Mono.just(new UsernamePasswordAuthenticationToken(username, null, AuthorityUtils.createAuthorityList(authorities.toArray(new String[0]))));
+            log.debug("用户名ID:{}, 权限:{}", managerId, authorities);
+            // 使用 managerId 作为 Principal
+            return Mono.just(new UsernamePasswordAuthenticationToken(
+                    managerId,
+                    null,
+                    AuthorityUtils.createAuthorityList(authorities.toArray(new String[0]))
+            ));
         } catch (Exception e) {
+            log.error("解析 JWT 失败: {}", e.getMessage(), e);
             return Mono.empty();
         }
     }

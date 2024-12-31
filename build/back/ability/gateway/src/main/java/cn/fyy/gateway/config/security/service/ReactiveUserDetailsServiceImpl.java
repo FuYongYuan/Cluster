@@ -1,6 +1,7 @@
 package cn.fyy.gateway.config.security.service;
 
 
+import cn.fyy.common.bean.ao.ConstantParameter;
 import cn.fyy.jwt.config.security.bean.bo.SecurityRedis;
 import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
 import cn.fyy.redis.bean.ao.RedisSelect;
@@ -32,17 +33,17 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
     /**
      * 验证用户是否登录
      *
-     * @param userId 用户ID
+     * @param managerId 用户ID-来自于JwtAuthConverter中createAuthentication方法
      * @return 登录用户信息
      * @throws UsernameNotFoundException 错误
      */
 
     @Override
-    public Mono<UserDetails> findByUsername(String userId) {
+    public Mono<UserDetails> findByUsername(String managerId) {
         try {
-            log.info("ReactiveUserDetailsService.findByUsername(String userId) 入参:{}", userId);
+            log.info("ReactiveUserDetailsService.findByUsername(String managerId) 入参:{}", managerId);
 
-            SecurityRedis securityRedis = redisServiceImpl.get(RedisSelect.FIFTEEN, userId, SecurityRedis.class);
+            SecurityRedis securityRedis = redisServiceImpl.get(RedisSelect.FIFTEEN, ConstantParameter.MANAGER_JWT_INFO_KEY + managerId, SecurityRedis.class);
             if (securityRedis != null) {
                 return Mono.just(new SecurityUser(
                         securityRedis.getManagerId(),
@@ -55,6 +56,6 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
         } catch (Exception e) {
             log.error(e.getMessage());
         }
-        return null;
+        return Mono.error(new UsernameNotFoundException("管理员ID不存在: " + managerId));
     }
 }
