@@ -361,7 +361,12 @@ public class SystemServiceImpl implements SystemService {
                         );
 
                         // 创建token
-                        String token = jwtTokenWebService.generateToken(jwtProperties.getIssuer(), securityRedis.getUsername(), securityUser, jwtProperties.getAccessTokenExpireTime().toMillis());
+                        String token = jwtTokenWebService.generateToken(
+                                jwtProperties.getIssuer(),
+                                securityRedis.getUsername(),
+                                securityUser,
+                                jwtProperties.getAccessTokenExpireTime().toMillis()
+                        );
                         securityRedis.setToken(token);
 
                         // 失效时间，必须在入redis之前计算好，进入redis后才不会因为代码执行顺序的问题导致秒级过期问题

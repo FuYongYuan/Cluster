@@ -29,7 +29,7 @@
     # ts
     "typescript": "^5.7.2",
     # vite构建
-    "vite": "^6.0.6",
+    "vite": "^6.0.7",
     # vite按需引用
     "vite-plugin-style-import": "^2.0.0",
     # vue ts支持插件

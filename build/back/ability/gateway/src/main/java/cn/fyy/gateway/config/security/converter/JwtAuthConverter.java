@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.authentication.ServerAuthenticationConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -27,12 +26,6 @@ public class JwtAuthConverter implements ServerAuthenticationConverter {
      */
     @Resource
     private JwtTokenService jwtTokenService;
-
-    /**
-     * 密码加密器
-     */
-    @Resource
-    private PasswordEncoder passwordEncoder;
 
     /**
      * 认证
@@ -60,14 +53,11 @@ public class JwtAuthConverter implements ServerAuthenticationConverter {
             String managerId = String.valueOf(jwtTokenService.getManagerIdFromToken(token));
             String password = String.valueOf(jwtTokenService.getManagerPasswordFromToken(token));
             List<String> authorities = jwtTokenService.getAuthoritiesFromToken(token);
-            // 使用 BCrypt 对密码进行加密
-            String encryptedPassword = passwordEncoder.encode(password);
-            log.debug("用户名ID:{} ,用户密码:{} ,用户密码加密后:{}, 权限:{}", managerId, password, encryptedPassword, authorities);
             // 使用 managerId 作为 Principal
             return Mono.just(new UsernamePasswordAuthenticationToken(
                     managerId,
-                    encryptedPassword,
-                    AuthorityUtils.createAuthorityList(authorities.toArray(new String[0]))
+                    password,
+                    AuthorityUtils.createAuthorityList(authorities)
             ));
         } catch (Exception e) {
             log.error("解析 JWT 失败: {}", e.getMessage(), e);

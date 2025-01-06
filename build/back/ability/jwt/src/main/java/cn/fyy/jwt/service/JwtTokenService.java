@@ -44,7 +44,7 @@ public class JwtTokenService {
     /**
      * 生成 access_token
      *
-     * @param subject      代表这个JWT的主体，即它的所有人 一般是用户id
+     * @param subject      代表这个JWT的主体，即它的所有人 一般是用户账号
      * @param securityUser 存储在JWT里面的信息 一般放些用户的权限/角色信息
      * @return java.lang.String
      */
@@ -56,7 +56,7 @@ public class JwtTokenService {
      * 签发token
      *
      * @param issuer        签发系统
-     * @param subject       代表这个JWT的主体，即它的所有人 一般是用户id
+     * @param subject       代表这个JWT的主体，即它的所有人 一般是用户账号
      * @param securityUser  存储在JWT里面的信息 一般放些用户的权限/角色信息
      * @param expireAppTime 有效时间(毫秒)
      * @return java.lang.String
@@ -68,8 +68,10 @@ public class JwtTokenService {
                 : now.plusSeconds(ConstantParameter.JWT_EXPIRATION_REFRESH);
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("username", securityUser.getUsername());
-        claims.put("authorities", securityUser.getAuthorities());
+        // 在org.springframework.security.core.userdetails.User中的需要手动添加，因为并不是每一个字段都需要
+        claims.put(ConstantParameter.JWT_USERNAME, securityUser.getUsername());
+        claims.put(ConstantParameter.JWT_PASSWORD, securityUser.getPassword());
+        claims.put(ConstantParameter.JWT_AUTHORITIES, securityUser.getAuthorities());
         // 根据需要从SecurityUser添加其他字段
         Class<?> clazz = securityUser.getClass();
         for (Field field : clazz.getDeclaredFields()) {

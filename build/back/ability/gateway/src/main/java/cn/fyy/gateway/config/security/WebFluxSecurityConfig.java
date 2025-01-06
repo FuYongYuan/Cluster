@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
+import org.springframework.security.web.server.context.NoOpServerSecurityContextRepository;
 import org.springframework.security.web.server.context.WebSessionServerSecurityContextRepository;
 
 import java.util.List;
@@ -73,6 +74,12 @@ public class WebFluxSecurityConfig {
         http
                 // 由于使用的是JWT，我们这里不需要csrf
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                // 禁用默认登录表单
+                .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
+                // 禁用http请求默认登录
+                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
+                // 无状态存储
+                .securityContextRepository(NoOpServerSecurityContextRepository.getInstance())
                 // 授权设置
                 .authorizeExchange(exchange -> exchange
                         // 允许对于网站静态资源的无授权访问
@@ -121,12 +128,10 @@ public class WebFluxSecurityConfig {
      */
     public AuthenticationWebFilter jwtAuthenticationWebFilter() {
         JwtAuthenticationWebFilter jwtAuthenticationWebFilter = new JwtAuthenticationWebFilter(authenticationManager());
-        // 白名单
-        List<String> whitelistPaths = List.of(permitUrl.getGateWay());
         // 拦截器设置
         jwtAuthenticationWebFilter.setServerAuthenticationConverter(jwtAuthConverter);
         jwtAuthenticationWebFilter.setRequiresAuthenticationMatcher(
-                new JwtServerWebExchangeMatcher(whitelistPaths)
+                new JwtServerWebExchangeMatcher(List.of(permitUrl.getGateWay()))
         );
         jwtAuthenticationWebFilter.setSecurityContextRepository(
                 new WebSessionServerSecurityContextRepository()
