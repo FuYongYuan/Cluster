@@ -27,7 +27,7 @@
     # vite构建 vue插件
     "@vitejs/plugin-vue": "^5.2.1",
     # ts
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     # vite构建
     "vite": "^6.0.7",
     # vite按需引用

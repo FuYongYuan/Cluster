@@ -9,7 +9,6 @@ import type {
 	RouteLocationNormalized,
 	RouteLocationNormalizedLoaded,
 } from "vue-router";
-import consola from "consola";
 
 router.beforeEach(
 	async (
@@ -27,7 +26,6 @@ router.beforeEach(
 			"/error/500",
 		];
 		if (excludedPaths.includes(to.path)) {
-			consola.log("1");
 			return next();
 		}
 
@@ -39,23 +37,12 @@ router.beforeEach(
 
 		// 如果没有 Token 或者 Token 过期，跳转到登录页
 		if (!jwtToken || !invalidDateTime || invalidDateTime < currentDate) {
-			consola.log("2");
 			return next("/login");
 		}
-
-		consola.log("----------");
-		consola.log(jwtToken);
-		consola.log(invalidDate);
-		consola.log(invalidDateTime);
-		consola.log(currentDate);
-		consola.log(from.path);
-		consola.log(to.path);
-		consola.log("----------");
 
 		if (from.path !== to.path) {
 			// 如果是访问 /home 直接跳过
 			if (to.path === "/home") {
-				consola.log("3");
 				return next();
 			}
 
@@ -65,17 +52,13 @@ router.beforeEach(
 
 			if (menuList) {
 				if (menuScan(menuList, to.path)) {
-					consola.log("4");
 					return next();
 				}
-				consola.log("5");
 				return next("/error/403");
 			}
-			consola.log("6");
 			return next("/home");
 		} else {
 			// 如果 from.path 和 to.path 相同，直接调用 next
-			consola.log("7");
 			return next();
 		}
 	},
