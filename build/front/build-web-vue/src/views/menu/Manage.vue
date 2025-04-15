@@ -213,7 +213,7 @@ export default defineComponent({
 				{
 					title: "跳转",
 					dataIndex: "isTurn",
-					width: "4%",
+					width: "5%",
 					sorter: {
 						multiple: 5,
 					},
@@ -221,7 +221,7 @@ export default defineComponent({
 				{
 					title: "首页",
 					dataIndex: "isHome",
-					width: "4%",
+					width: "5%",
 					sorter: {
 						multiple: 6,
 					},
@@ -254,7 +254,7 @@ export default defineComponent({
 				{
 					title: "修改时间",
 					dataIndex: "updateTime",
-					width: "13%",
+					width: "11%",
 					sorter: {
 						multiple: 10,
 					},

@@ -55,3 +55,19 @@ spring:
         cluster-name: build
         # 分组 类型 gateway的分组必须与所要链接的服务的分组一致否则无法访问
         group: service
+
+    # 高可用流控防护组件
+    sentinel:
+      transport:
+        # Sentinel 控制台地址
+        dashboard: localhost:8948
+        # 应用与Sentinel控制台交互的端口，应用本地会起一个该端口占用的HttpServer
+        port: 8948
+      # 是否提前触发 Sentinel 初始化
+      eager: true
+      filter:
+        # 启用公共过滤器实例
+        enabled: false
+      log:
+        # 日志记录目录
+        dir: log/${spring.application.name}-${spring.profiles.active}-sentinel-log
