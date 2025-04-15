@@ -56,7 +56,7 @@
         <maven.compiler.target>21</maven.compiler.target>
 
         <!-- Spring Cloud -->
-        <spring-cloud.version>2023.0.4</spring-cloud.version>
+        <spring-cloud.version>2023.0.5</spring-cloud.version>
 
         <!-- Spring Cloud Alibaba -->
         <spring-cloud-alibaba.version>2023.0.3.2</spring-cloud-alibaba.version>

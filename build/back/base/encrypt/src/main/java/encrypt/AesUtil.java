@@ -100,7 +100,7 @@ public class AesUtil {
      * @return 二进制
      */
     public static byte[] parseHexStrToByte(String hexStr) {
-        if (hexStr.length() < 1) {
+        if (hexStr.isEmpty()) {
             return null;
         }
         byte[] result = new byte[hexStr.length() / 2];

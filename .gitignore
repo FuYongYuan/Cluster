@@ -1,5 +1,5 @@
 # 基础排除
-.idea/*
+.idea/
 *.iml
 *.pdb
 .jpb
