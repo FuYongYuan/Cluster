@@ -1,7 +1,7 @@
 package cn.fyy.common.config.security.filter;
 
 import cn.fyy.common.bean.ao.ConstantParameter;
-import cn.fyy.common.bean.ao.HttpStatusExplain;
+import cn.fyy.common.bean.ao.SecurityHttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
@@ -77,12 +77,12 @@ public class JwtAuthenticationWebFilter extends OncePerRequestFilter {
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 } catch (UsernameNotFoundException ex) {
-                    ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.UNAUTHORIZED.value(), HttpStatusExplain.getSecurityStatus(HttpStatus.UNAUTHORIZED));
+                    ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.UNAUTHORIZED.value(), SecurityHttpStatusChinese.getChineseDescriptionByHttpStatus(HttpStatus.UNAUTHORIZED));
                     this.returnErrorMessage(response, resultMessage);
                     return;
                 }
             } else {
-                ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.UNAUTHORIZED.value(), HttpStatusExplain.getSecurityStatus(HttpStatus.UNAUTHORIZED));
+                ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.UNAUTHORIZED.value(), SecurityHttpStatusChinese.getChineseDescriptionByHttpStatus(HttpStatus.UNAUTHORIZED));
                 this.returnErrorMessage(response, resultMessage);
                 return;
             }

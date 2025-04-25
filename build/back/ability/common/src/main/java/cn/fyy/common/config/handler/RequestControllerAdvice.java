@@ -1,6 +1,6 @@
 package cn.fyy.common.config.handler;
 
-import cn.fyy.common.bean.ao.HttpStatusExplain;
+import cn.fyy.common.bean.ao.HttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,7 @@ public class RequestControllerAdvice {
         );
         return new ResultMessage<>(
                 HttpStatus.NOT_FOUND.value(),
-                HttpStatusExplain.getChinese(HttpStatus.NOT_FOUND)
+                HttpStatusChinese.getChineseDescriptionByHttpStatus(HttpStatus.NOT_FOUND)
         );
     }
 }

@@ -57,7 +57,7 @@ public interface RoleRepository extends JpaRepository<RoleDO, BigInteger>, JpaSp
      */
     @Query(nativeQuery = true,
             value = "SELECT * FROM role " +
-                    "WHERE state =  " + DataState.NORMAL
+                    "WHERE state = 0"
     )
     List<RoleDO> queryAll();
 

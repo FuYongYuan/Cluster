@@ -23,7 +23,7 @@ spring:
       - nacos:${spring.application.name}-base-${spring.profiles.active}.yaml
       # jwt认证配置
       - nacos:jwt-${spring.profiles.active}.yaml?group=system
-      # redis配置
+      # redis 配置
       - nacos:redis-${spring.profiles.active}.yaml?group=system
   cloud:
     nacos:

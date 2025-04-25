@@ -98,9 +98,9 @@ public class ManagerServiceImpl implements ManagerService {
                         throw new RuntimeException("新增或者修改角色管理员关系错误");
                     }
                 }
-                return new ResultMessage<>(OperateResult.SUCCESS);
+                return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             } else {
-                return new ResultMessage<>(1, OperateResult.FAIL);
+                return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
             throw new BusinessException("新增或者修改管理员错误", e);
@@ -129,7 +129,7 @@ public class ManagerServiceImpl implements ManagerService {
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(date);
-                bo.setState(DataState.NORMAL);
+                bo.setState(DataState.NORMAL.getCode());
                 dbo = ManagerBO.toDO(bo);
             } else {
                 ManagerDO old = managerRepository.getReferenceById(bo.getId());
@@ -190,7 +190,7 @@ public class ManagerServiceImpl implements ManagerService {
                 // 条件拼装
                 if (state == null) {
                     CriteriaBuilder.In<Integer> in = criteriaBuilder.in(root.get("state"));
-                    in.value(DataState.NORMAL);
+                    in.value(DataState.NORMAL.getCode());
                     in.value(1);
                     predicate = criteriaBuilder.and(in);
                 } else {
@@ -240,7 +240,7 @@ public class ManagerServiceImpl implements ManagerService {
         try {
             if (StringUtils.hasText(ids)) {
                 return managerRepository.updateStateByIds(
-                        DataState.DELETE,
+                        DataState.DELETE.getCode(),
                         currentManagerId,
                         currentManagerName,
                         new Date(),

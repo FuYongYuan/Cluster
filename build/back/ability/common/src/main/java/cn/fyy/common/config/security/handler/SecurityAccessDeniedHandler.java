@@ -1,6 +1,6 @@
 package cn.fyy.common.config.security.handler;
 
-import cn.fyy.common.bean.ao.HttpStatusExplain;
+import cn.fyy.common.bean.ao.SecurityHttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
@@ -45,7 +45,7 @@ public class SecurityAccessDeniedHandler implements AccessDeniedHandler {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         // 没有访问权限
-        ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.FORBIDDEN.value(), HttpStatusExplain.getSecurityStatus(HttpStatus.FORBIDDEN));
+        ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.FORBIDDEN.value(), SecurityHttpStatusChinese.getChineseDescriptionByHttpStatus(HttpStatus.FORBIDDEN));
         ObjectMapper mapper = new ObjectMapper();
         response.getWriter().println(mapper.writeValueAsString(resultMessage));
         response.getWriter().flush();

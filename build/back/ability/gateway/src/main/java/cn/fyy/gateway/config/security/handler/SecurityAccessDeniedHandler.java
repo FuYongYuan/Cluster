@@ -1,6 +1,6 @@
 package cn.fyy.gateway.config.security.handler;
 
-import cn.fyy.common.bean.ao.HttpStatusExplain;
+import cn.fyy.common.bean.ao.SecurityHttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,7 +43,7 @@ public class SecurityAccessDeniedHandler implements ServerAccessDeniedHandler {
         return Mono.defer(() -> Mono.just(exchange.getResponse())).flatMap(response -> {
             ObjectMapper mapper = new ObjectMapper();
             // 没有访问权限
-            ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.FORBIDDEN.value(), HttpStatusExplain.getSecurityStatus(HttpStatus.FORBIDDEN));
+            ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.FORBIDDEN.value(), SecurityHttpStatusChinese.getChineseDescriptionByHttpStatus(HttpStatus.FORBIDDEN));
 
             response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 

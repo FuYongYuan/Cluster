@@ -83,9 +83,9 @@ public class RoleServiceImpl implements RoleService {
                         throw new RuntimeException("新增或者修改角色菜单关系错误");
                     }
                 }
-                return new ResultMessage<>(OperateResult.SUCCESS);
+                return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             } else {
-                return new ResultMessage<>(1, OperateResult.FAIL);
+                return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
             throw new BusinessException("新增或者修改角色错误", e);
@@ -113,7 +113,7 @@ public class RoleServiceImpl implements RoleService {
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(date);
-                bo.setState(DataState.NORMAL);
+                bo.setState(DataState.NORMAL.getCode());
                 dbo = RoleBO.toDO(bo);
             } else {
                 RoleDO old = roleRepository.getReferenceById(bo.getId());
@@ -156,7 +156,7 @@ public class RoleServiceImpl implements RoleService {
             Specification<RoleDO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
-                predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL)));
+                predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
                 if (StringUtils.hasText(roleName)) {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("roleName"), "%" + roleName + "%"));
                 }
@@ -191,7 +191,7 @@ public class RoleServiceImpl implements RoleService {
     public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
         try {
             if (StringUtils.hasText(ids)) {
-                return roleRepository.updateStateByIds(DataState.DELETE, currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+                return roleRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
             } else {
                 return 0;
             }
@@ -256,7 +256,7 @@ public class RoleServiceImpl implements RoleService {
     ) throws BusinessException {
         try {
             return RoleBO.toBO(
-                    roleRepository.queryManagerHaveRoleByManagerIdAndState(managerId, DataState.NORMAL)
+                    roleRepository.queryManagerHaveRoleByManagerIdAndState(managerId, DataState.NORMAL.getCode())
             );
         } catch (Exception e) {
             throw new BusinessException("根据管理员主键ID查询能够使用的角色列表错误", e);

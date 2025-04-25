@@ -51,9 +51,9 @@ public class RoleManagerServiceImpl implements RoleManagerService {
         try {
             RoleManagerBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
-                return new ResultMessage<>(OperateResult.SUCCESS);
+                return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             } else {
-                return new ResultMessage<>(1, OperateResult.FAIL);
+                return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
             throw new BusinessException("新增或者修改用户角色关系错误", e);
@@ -81,7 +81,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(date);
-                bo.setState(DataState.NORMAL);
+                bo.setState(DataState.NORMAL.getCode());
                 dbo = RoleManagerBO.toDO(bo);
             } else {
                 RoleManagerDO old = roleManagerRepository.getReferenceById(bo.getId());
@@ -130,16 +130,16 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                             .updaterId(currentManagerId)
                             .updaterName(currentManagerName)
                             .updateTime(date)
-                            .state(DataState.NORMAL)
+                            .state(DataState.NORMAL.getCode())
                             .build();
                     list.add(bo);
                 }
                 List<RoleManagerBO> tUserRoleBOList = RoleManagerBO.toBO(roleManagerRepository.saveAll(list));
                 if (!tUserRoleBOList.isEmpty()) {
-                    return new ResultMessage<>(OperateResult.SUCCESS);
+                    return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
                 }
             } else {
-                return new ResultMessage<>(1, OperateResult.FAIL);
+                return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
             throw new BusinessException("新增或者修改用户角色关系错误", e);

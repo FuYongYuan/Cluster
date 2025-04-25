@@ -33,6 +33,7 @@
         <module>ability/mail</module>
         <module>ability/minio</module>
         <module>ability/redis</module>
+        <module>ability/rocketmq</module>
 
         <!-- 业务模块 -->
         <module>service/authorization</module>

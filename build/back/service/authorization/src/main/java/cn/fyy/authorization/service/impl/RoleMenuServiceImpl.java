@@ -51,9 +51,9 @@ public class RoleMenuServiceImpl implements RoleMenuService {
         try {
             RoleMenuBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
-                return new ResultMessage<>(OperateResult.SUCCESS);
+                return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             } else {
-                return new ResultMessage<>(1, OperateResult.FAIL);
+                return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
             throw new BusinessException("新增或者修改角色菜单关系错误", e);
@@ -81,7 +81,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(date);
-                bo.setState(DataState.NORMAL);
+                bo.setState(DataState.NORMAL.getCode());
                 dbo = RoleMenuBO.toDO(bo);
             } else {
                 RoleMenuDO old = roleMenuRepository.getReferenceById(bo.getId());
@@ -130,16 +130,16 @@ public class RoleMenuServiceImpl implements RoleMenuService {
                             .updaterId(currentManagerId)
                             .updaterName(currentManagerName)
                             .updateTime(date)
-                            .state(DataState.NORMAL)
+                            .state(DataState.NORMAL.getCode())
                             .build();
                     list.add(bo);
                 }
                 List<RoleMenuBO> tRoleMenuBOList = RoleMenuBO.toBO(roleMenuRepository.saveAll(list));
                 if (!tRoleMenuBOList.isEmpty()) {
-                    return new ResultMessage<>(OperateResult.SUCCESS);
+                    return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
                 }
             } else {
-                return new ResultMessage<>(1, OperateResult.FAIL);
+                return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
             throw new BusinessException("新增或者修改角色菜单关系错误", e);
@@ -173,7 +173,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     @Override
     public List<BigInteger> queryMenuIdsByRoleIds(List<BigInteger> roleIds) throws BusinessException {
         try {
-            List<RoleMenuBO> roleMenuBOList = RoleMenuBO.toBO(roleMenuRepository.queryByRoleIdsAndState(roleIds, DataState.NORMAL));
+            List<RoleMenuBO> roleMenuBOList = RoleMenuBO.toBO(roleMenuRepository.queryByRoleIdsAndState(roleIds, DataState.NORMAL.getCode()));
             if (roleMenuBOList.isEmpty()) {
                 return null;
             } else {

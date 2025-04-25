@@ -325,7 +325,7 @@ public class SystemServiceImpl implements SystemService {
             if (dto.getAttemptLoginNumber() != null && dto.getAttemptLoginNumber() > ConstantParameter.ATTEMPT_LOGIN_FREQUENCY) {
                 return new ResultMessage<>(5, "尝试登录次数过多管理员已被冻结！请联系管理员！");
             } else {
-                if (dto.getState() == DataState.NORMAL) {
+                if (dto.getState() == DataState.NORMAL.getCode()) {
                     dto.setLastAttemptLoginTime(date);
                     dto.setLastAttemptLoginRequestIp(visitorIpAddress);
                     dto.setAttemptLoginNumber(0);
@@ -391,9 +391,9 @@ public class SystemServiceImpl implements SystemService {
                     } else {
                         return new ResultMessage<>(9, "登录信息更新失败！" + saveResult.getMessage());
                     }
-                } else if (dto.getState() == DataState.FREEZE) {
+                } else if (dto.getState() == DataState.FREEZE.getCode()) {
                     return new ResultMessage<>(8, "登录管理员已被冻结！");
-                } else if (dto.getState() == DataState.DELETE) {
+                } else if (dto.getState() == DataState.DELETE.getCode()) {
                     return new ResultMessage<>(7, "登录管理员已被注销！");
                 } else {
                     return new ResultMessage<>(6, "登录管理员状态丢失！");

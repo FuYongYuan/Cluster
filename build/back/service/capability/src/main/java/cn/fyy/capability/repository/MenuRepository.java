@@ -73,7 +73,7 @@ public interface MenuRepository extends JpaRepository<MenuDO, BigInteger>, JpaSp
      */
     @Query(nativeQuery = true,
             value = "SELECT * FROM menu " +
-                    "WHERE state =  " + DataState.NORMAL
+                    "WHERE state = 0"
     )
     List<MenuDO> queryAll();
 
@@ -85,7 +85,7 @@ public interface MenuRepository extends JpaRepository<MenuDO, BigInteger>, JpaSp
     @Query(nativeQuery = true,
             value = "SELECT * FROM menu " +
                     "WHERE parent_id IS NULL " +
-                    "AND state =  " + DataState.NORMAL
+                    "AND state = 0"
     )
     List<MenuDO> queryAllParent();
 }

@@ -64,7 +64,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
     @Override
     public ResultMessage<String> save(ProjectGroupBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            int use = projectGroupRepository.countByManagerIdAndState(bo.getManagerId(), DataState.NORMAL) + 1;
+            int use = projectGroupRepository.countByManagerIdAndState(bo.getManagerId(), DataState.NORMAL.getCode()) + 1;
 
             ParameterDTO parameterDTO = parameterFeignClient.getByParameterCode(ConstantParameter.CREATE_PROJECT_GROUP_MAX_NUMBER).getData();
             int maxNumber = Integer.parseInt(parameterDTO.getParameterValue());
@@ -75,9 +75,9 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
 
             ProjectGroupBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
-                return new ResultMessage<>(OperateResult.SUCCESS);
+                return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             } else {
-                return new ResultMessage<>(1, OperateResult.FAIL);
+                return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
             throw new BusinessException("新增或者修改项目群错误", e);
@@ -105,7 +105,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(date);
-                bo.setState(DataState.NORMAL);
+                bo.setState(DataState.NORMAL.getCode());
                 dbo = ProjectGroupBO.toDO(bo);
             } else {
                 ProjectGroupDO old = projectGroupRepository.getReferenceById(bo.getId());
@@ -153,7 +153,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
     @Transactional(rollbackFor = BusinessException.class)
     public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return projectGroupRepository.updateStateByIds(DataState.DELETE, currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return projectGroupRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }
@@ -180,7 +180,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
             Specification<ProjectGroupDO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
-                predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL)));
+                predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
 
                 predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("managerId"), managerId));
 
@@ -230,7 +230,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
 //            // 获取生成设置
 //            ProjectGroupBO projectGroupBO = ProjectGroupBO.toBO(projectGroupRepository.getByIdAndManagerId(id, managerId));
 //            if (projectGroupBO != null) {
-//                List<ProjectBO> projectBOList = projectServiceImpl.queryByProjectGroupIdAndState(projectGroupBO.getId(), DataState.NORMAL);
+//                List<ProjectBO> projectBOList = projectServiceImpl.queryByProjectGroupIdAndState(projectGroupBO.getId(), DataState.NORMAL.getCode());
 //                // 初始化地址
 //                path = ConstantParameter.projectGroupLocalPath
 //                        + File.separatorChar + ConstantParameter.DOWNLOAD_PATH_NAME

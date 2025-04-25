@@ -49,9 +49,9 @@ public class NoticeServiceImpl implements NoticeService {
         try {
             NoticeBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
-                return new ResultMessage<>(OperateResult.SUCCESS);
+                return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             } else {
-                return new ResultMessage<>(1, OperateResult.FAIL);
+                return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
             throw new BusinessException("新增或者修改公告错误", e);
@@ -79,7 +79,7 @@ public class NoticeServiceImpl implements NoticeService {
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(date);
-                bo.setState(DataState.NORMAL);
+                bo.setState(DataState.NORMAL.getCode());
                 dbo = NoticeBO.toDO(bo);
             } else {
                 NoticeDO old = noticeRepository.getReferenceById(bo.getId());
@@ -129,7 +129,7 @@ public class NoticeServiceImpl implements NoticeService {
     @Transactional(rollbackFor = BusinessException.class)
     public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return noticeRepository.updateStateByIds(DataState.DELETE, currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return noticeRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }

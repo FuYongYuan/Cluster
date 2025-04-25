@@ -1,26 +1,30 @@
 package cn.fyy.common.bean.ao;
 
 
+import lombok.Getter;
+
 /**
  * 操作结果枚举
  *
  * @author fuyy
  */
-public class OperateResult {
+@Getter
+public enum OperateResult {
+    SUCCESS("操作成功！"),
+    FAIL("操作失败！");
+
     /**
-     * 初始化
+     * 操作结果信息
      */
-    private OperateResult() {
-        throw new IllegalStateException("初始化OperateResult.class错误");
+    private final String message;
+
+    /**
+     * 构造方法
+     *
+     * @param message 操作结果信息
+     */
+    OperateResult(String message) {
+        this.message = message;
     }
 
-    /**
-     * 操作成功
-     */
-    public static final String SUCCESS = "操作成功！";
-
-    /**
-     * 操作失败
-     */
-    public static final String FAIL = "操作失败！";
 }

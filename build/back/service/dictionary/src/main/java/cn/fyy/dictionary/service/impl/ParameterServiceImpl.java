@@ -72,9 +72,9 @@ public class ParameterServiceImpl implements ParameterService {
         try {
             ParameterBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
-                return new ResultMessage<>(OperateResult.SUCCESS);
+                return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             } else {
-                return new ResultMessage<>(1, OperateResult.FAIL);
+                return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
             throw new BusinessException("新增或者修改参数错误", e);
@@ -102,7 +102,7 @@ public class ParameterServiceImpl implements ParameterService {
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(date);
-                bo.setState(DataState.NORMAL);
+                bo.setState(DataState.NORMAL.getCode());
                 dbo = ParameterBO.toDO(bo);
             } else {
                 ParameterDO old = parameterRepository.getReferenceById(bo.getId());
@@ -148,7 +148,7 @@ public class ParameterServiceImpl implements ParameterService {
     @Override
     public ParameterBO getByParameterCode(String parameterCode) throws BusinessException {
         try {
-            return ParameterBO.toBO(parameterRepository.getByParameterCodeAndState(parameterCode, DataState.NORMAL));
+            return ParameterBO.toBO(parameterRepository.getByParameterCodeAndState(parameterCode, DataState.NORMAL.getCode()));
         } catch (Exception e) {
             throw new BusinessException("根据参数编号查询错误", e);
         }
@@ -167,7 +167,7 @@ public class ParameterServiceImpl implements ParameterService {
     @Transactional(rollbackFor = BusinessException.class)
     public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return parameterRepository.updateStateByIds(DataState.DELETE, currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return parameterRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }
@@ -199,7 +199,7 @@ public class ParameterServiceImpl implements ParameterService {
             Specification<ParameterDO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
-                predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL)));
+                predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
                 if (StringUtils.hasText(parameterCode)) {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("parameterCode"), "%" + parameterCode + "%"));
                 }
@@ -245,7 +245,7 @@ public class ParameterServiceImpl implements ParameterService {
             Specification<ParameterDO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
-                predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL)));
+                predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
                 if (StringUtils.hasText(parameterCode)) {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("parameterCode"), "%" + parameterCode + "%"));
                 }
