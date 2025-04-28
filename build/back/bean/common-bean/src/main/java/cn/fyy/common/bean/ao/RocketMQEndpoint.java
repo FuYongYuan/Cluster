@@ -17,11 +17,11 @@ public enum RocketMQEndpoint {
     /**
      * 默认的 生产者
      */
-    PRODUCER_SHARE_OUT("share-out"),
+    SHARE_OUT_0("share-out-0"),
     /**
      * 默认的 消费者
      */
-    CONSUMER_SHARE_IN("share-in");
+    SHARE_IN_0("share-in-0");
 
     /**
      * 端点
