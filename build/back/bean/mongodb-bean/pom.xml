@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>back</artifactId>
+        <groupId>cn.fyy.build</groupId>
+        <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>mongodb-bean</artifactId>
+    <version>0.0.1</version>
+    <name>mongodb-bean</name>
+    <description>MongoDB模块-数据模型</description>
+
+    <properties>
+        <!-- 实体 -->
+        <java-bean.version>0.0.1</java-bean.version>
+    </properties>
+
+    <dependencies>
+        <!-- 引入 Spring Boot data MongoDB 相关依赖，将 MongoDB 作为非关系型数据库，并实现对其的自动配置 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+        <!-- 实体 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>common-bean</artifactId>
+            <version>${java-bean.version}</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>back</artifactId>
+        <groupId>cn.fyy.build</groupId>
+        <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>rocketmq-bean</artifactId>
+    <version>0.0.1</version>
+    <name>rocketmq-bean</name>
+    <description>RocketMQ模块-数据模型</description>
+
+    <properties>
+        <!-- 实体 -->
+        <java-bean.version>0.0.1</java-bean.version>
+    </properties>
+
+    <dependencies>
+        <!-- 实体 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>common-bean</artifactId>
+            <version>${java-bean.version}</version>
+        </dependency>
+    </dependencies>
+</project>

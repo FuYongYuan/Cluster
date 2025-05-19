@@ -1,6 +1,7 @@
 package cn.fyy.rocketmq.service.impl;
 
-import cn.fyy.common.bean.ao.RocketMQEndpoint;
+import cn.fyy.common.bean.bo.BusinessException;
+import cn.fyy.rocketmq.bean.ao.RocketMQEndpoint;
 import cn.fyy.rocketmq.service.MessageProducerService;
 import jakarta.annotation.Resource;
 import org.apache.rocketmq.common.message.MessageConst;
@@ -34,7 +35,7 @@ public class MessageProducerServiceImpl implements MessageProducerService {
      * @param messageContent 消息内容
      */
     @Override
-    public boolean sendMessage(RocketMQEndpoint topic, String tag, String messageContent) {
+    public boolean sendMessage(RocketMQEndpoint topic, String tag, String messageContent) throws BusinessException {
         Map<String, Object> headers = new HashMap<>();
         headers.put(MessageConst.PROPERTY_TAGS, tag);
         Message<String> msg = new GenericMessage<>(messageContent, headers);

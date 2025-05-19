@@ -24,6 +24,8 @@
         <module>bean/dictionary-bean</module>
         <module>bean/member-bean</module>
         <module>bean/message-bean</module>
+        <module>bean/mongodb-bean</module>
+        <module>bean/rocketmq-bean</module>
 
         <!-- 能力模块 -->
         <module>ability/common</module>
@@ -32,6 +34,7 @@
         <module>ability/jwt</module>
         <module>ability/mail</module>
         <module>ability/minio</module>
+        <module>ability/mongodb</module>
         <module>ability/redis</module>
         <module>ability/rocketmq</module>
 

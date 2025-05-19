@@ -10,10 +10,10 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>rocketmq</artifactId>
+    <artifactId>mongodb</artifactId>
     <version>0.0.1</version>
-    <name>rocketmq</name>
-    <description>MQ能力模块</description>
+    <name>mongodb</name>
+    <description>MongoDB能力模块</description>
 
     <properties>
         <!-- 实体 -->
@@ -21,16 +21,16 @@
     </properties>
 
     <dependencies>
-        <!-- 引入 Spring Cloud Alibaba Stream RocketMQ 相关依赖，将 RocketMQ 作为消息队列，并实现对其的自动配置 -->
+        <!-- 引入 Spring Boot data MongoDB 相关依赖，将 MongoDB 作为非关系型数据库，并实现对其的自动配置 -->
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
         <!-- 实体 -->
         <dependency>
             <groupId>cn.fyy.build</groupId>
-            <artifactId>rocketmq-bean</artifactId>
+            <artifactId>mongodb-bean</artifactId>
             <version>${java-bean.version}</version>
         </dependency>
     </dependencies>

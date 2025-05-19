@@ -1,4 +1,4 @@
-package cn.fyy.common.bean.ao;
+package cn.fyy.rocketmq.bean.ao;
 
 
 import lombok.Getter;

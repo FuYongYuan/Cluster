@@ -1,6 +1,7 @@
 package cn.fyy.rocketmq.service;
 
-import cn.fyy.common.bean.ao.RocketMQEndpoint;
+import cn.fyy.common.bean.bo.BusinessException;
+import cn.fyy.rocketmq.bean.ao.RocketMQEndpoint;
 
 /**
  * 消息生产者
@@ -16,5 +17,5 @@ public interface MessageProducerService {
      * @param tag            标签
      * @param messageContent 消息内容
      */
-    boolean sendMessage(RocketMQEndpoint topic, String tag, String messageContent);
+    boolean sendMessage(RocketMQEndpoint topic, String tag, String messageContent) throws BusinessException;
 }
