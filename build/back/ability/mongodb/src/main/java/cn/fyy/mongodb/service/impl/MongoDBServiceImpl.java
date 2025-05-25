@@ -8,6 +8,7 @@ import cn.fyy.mongodb.service.MongoDBService;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -25,6 +26,7 @@ import java.util.Set;
  * @param <T> 实体对象类型
  * @author fyy
  */
+@Slf4j
 @Service
 public class MongoDBServiceImpl<T extends AbstractMongoDO> implements MongoDBService<T> {
     /**
