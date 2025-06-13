@@ -22,6 +22,7 @@
         <module>bean/capability-bean</module>
         <module>bean/common-bean</module>
         <module>bean/dictionary-bean</module>
+        <module>bean/elasticsearch-bean</module>
         <module>bean/member-bean</module>
         <module>bean/message-bean</module>
         <module>bean/mongodb-bean</module>
@@ -30,6 +31,7 @@
         <!-- 能力模块 -->
         <module>ability/common</module>
         <module>ability/database</module>
+        <module>ability/elasticsearch</module>
         <module>ability/gateway</module>
         <module>ability/jwt</module>
         <module>ability/mail</module>
