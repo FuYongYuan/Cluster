@@ -3,6 +3,7 @@ package excel.util;
 
 import dispose.DateDispose;
 import dispose.JudgeDispose;
+import dispose.LocalDateTimeDispose;
 import enumerate.DateType;
 import enumerate.UsedType;
 import excel.annotation.ExcelField;
@@ -17,6 +18,7 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -132,6 +134,8 @@ public class ExcelDispose {
             String value;
             if (objectValue == null) {
                 value = null;
+            } else if (objectValue instanceof LocalDateTime && !field.getType().getName().equals(UsedType.Type_String.getValue())) {
+                value = LocalDateTimeDispose.format((LocalDateTime) objectValue, dateType);
             } else if (objectValue instanceof Date && !field.getType().getName().equals(UsedType.Type_String.getValue())) {
                 value = DateDispose.formattingDate((Date) objectValue, dateType);
             } else if (JudgeDispose.isDouble(objectValue.toString())) {

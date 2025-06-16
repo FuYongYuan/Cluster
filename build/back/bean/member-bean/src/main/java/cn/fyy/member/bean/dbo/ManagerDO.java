@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -89,7 +89,7 @@ public class ManagerDO implements Serializable {
      * 最后尝试登陆时间
      */
     @Column(name = "last_attempt_login_time")
-    private Date lastAttemptLoginTime;
+    private LocalDateTime lastAttemptLoginTime;
 
     /**
      * 尝试登陆次数
@@ -119,7 +119,7 @@ public class ManagerDO implements Serializable {
      * 创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 创建人ID
@@ -137,7 +137,7 @@ public class ManagerDO implements Serializable {
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 修改人ID

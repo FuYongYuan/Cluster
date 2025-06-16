@@ -123,7 +123,7 @@
         <div>
             <parameter-detail
                     ref="parameterDetail"
-                    v-model:visible="parameterDetailVisible"
+                    v-model:open="parameterDetailVisible"
                     @query="query"
             />
         </div>

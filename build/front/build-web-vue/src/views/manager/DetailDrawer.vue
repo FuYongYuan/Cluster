@@ -2,7 +2,7 @@
     <a-drawer
             placement="right"
             :closable="false"
-            :visible="visible"
+            :open="open"
             @close="handleCancel"
     >
         <template #title>
@@ -161,13 +161,13 @@ export default defineComponent({
 	// 父组件传递值
 	props: {
 		// 是否显示
-		visible: {
+		open: {
 			type: Boolean,
 			default: false,
 		},
 	},
 	// 发出更新
-	emits: ["update:visible"],
+	emits: ["update:open"],
 	// 执行
 	setup(props, context) {
 		//------------------------------------------------------------------------------------------------------------------参数
@@ -194,7 +194,7 @@ export default defineComponent({
 		// 关闭方法
 		const handleCancel = () => {
 			// 关闭显示
-			context.emit("update:visible", false);
+			context.emit("update:open", false);
 			// 清理表单
 			detailData.form = {
 				id: -1,

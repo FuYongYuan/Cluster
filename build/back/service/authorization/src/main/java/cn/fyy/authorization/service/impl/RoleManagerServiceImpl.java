@@ -16,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -72,15 +72,15 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     @Override
     public RoleManagerBO save(RoleManagerBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
-            Date date = new Date();
+            LocalDateTime localDateTime = LocalDateTime.now();
             RoleManagerDO dbo;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(date);
+                bo.setCreateTime(localDateTime);
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(date);
+                bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
                 dbo = RoleManagerBO.toDO(bo);
             } else {
@@ -89,7 +89,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                 CopyClass.copyClassGetSet(bo, old, RoleManagerDO.class, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(date);
+                old.setUpdateTime(localDateTime);
                 dbo = old;
             }
 
@@ -113,7 +113,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     @Transactional(rollbackFor = BusinessException.class)
     public ResultMessage<String> saveList(BigInteger managerId, String menuIds, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            Date date = new Date();
+            LocalDateTime localDateTime = LocalDateTime.now();
             if (StringUtils.hasText(menuIds)) {
                 // 删除原先的用户角色关系
                 roleManagerRepository.deleteByManagerId(managerId);
@@ -126,10 +126,10 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                             .roleId(id)
                             .creatorId(currentManagerId)
                             .creatorName(currentManagerName)
-                            .createTime(date)
+                            .createTime(localDateTime)
                             .updaterId(currentManagerId)
                             .updaterName(currentManagerName)
-                            .updateTime(date)
+                            .updateTime(localDateTime)
                             .state(DataState.NORMAL.getCode())
                             .build();
                     list.add(bo);

@@ -1,5 +1,6 @@
 package cn.fyy.common.bean.bo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.io.Serializable;
  *
  * @author fuyy
  */
+@Slf4j
 public class BusinessException extends Exception implements Serializable {
 
     /**
@@ -23,6 +25,7 @@ public class BusinessException extends Exception implements Serializable {
      */
     public BusinessException(String message) {
         super(StringUtils.hasText(message) ? message : DEFAULT_ERROR_MSG);
+        log.error("错误内容{}", message);
     }
 
     /**
@@ -32,6 +35,7 @@ public class BusinessException extends Exception implements Serializable {
      */
     public BusinessException(Exception exception) {
         super(DEFAULT_ERROR_MSG, exception);
+        log.error("错误内容", exception);
     }
 
     /**
@@ -42,6 +46,7 @@ public class BusinessException extends Exception implements Serializable {
      */
     public BusinessException(String message, Exception exception) {
         super(StringUtils.hasText(message) ? message : DEFAULT_ERROR_MSG, exception);
+        log.error("错误内容", exception);
     }
 
     /**

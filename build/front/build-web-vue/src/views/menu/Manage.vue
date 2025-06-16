@@ -134,7 +134,7 @@
         <div>
             <menu-detail
                     ref="menuDetail"
-                    v-model:visible="menuDetailVisible"
+                    v-model:open="menuDetailVisible"
                     @query="query"
             />
         </div>

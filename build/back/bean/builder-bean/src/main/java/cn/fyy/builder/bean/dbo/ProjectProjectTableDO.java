@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -46,7 +46,7 @@ public class ProjectProjectTableDO implements Serializable {
      * 创建时间
      */
     @Column(name = "create_time")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 创建人ID
@@ -64,7 +64,7 @@ public class ProjectProjectTableDO implements Serializable {
      * 修改时间
      */
     @Column(name = "update_time")
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 修改人ID

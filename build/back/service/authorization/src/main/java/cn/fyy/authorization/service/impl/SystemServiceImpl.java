@@ -24,7 +24,7 @@ import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
 import cn.fyy.redis.bean.ao.RedisSelect;
 import cn.fyy.redis.service.RedisService;
-import dispose.DateDispose;
+import dispose.LocalDateTimeDispose;
 import encrypt.AesUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,7 +36,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -125,7 +125,7 @@ public class SystemServiceImpl implements SystemService {
     @Transactional(rollbackFor = BusinessException.class)
     public ResultMessage<JwtDTO> login(String account, String loginPassword, String imageCaptcha, String imageCaptchaCacheName, HttpServletRequest request) throws BusinessException {
         try {
-            Date date = new Date();
+            LocalDateTime lastLoginDate = LocalDateTime.now();
             String visitorIpAddress = ConstantService.getVisitorIp(request);
             String captchaCheck = redisServiceImpl.get(RedisSelect.FOURTEEN, imageCaptchaCacheName, String.class);
             if (StringUtils.hasText(captchaCheck)) {
@@ -138,7 +138,7 @@ public class SystemServiceImpl implements SystemService {
                         // 删除验证码
                         redisServiceImpl.delete(RedisSelect.FOURTEEN, imageCaptchaCacheName);
                         // 登录成功处理
-                        return this.loginSuccessDispose(date, visitorIpAddress, dto);
+                        return this.loginSuccessDispose(lastLoginDate, visitorIpAddress, dto);
                     }
                 } else {
                     return new ResultMessage<>(2, "图形验证码错误！");
@@ -167,7 +167,7 @@ public class SystemServiceImpl implements SystemService {
     @Transactional(rollbackFor = BusinessException.class)
     public ResultMessage<Boolean> register(String mail, String account, String loginPassword, String mailCaptcha, String mailCaptchaCacheName, String visitorIpAddress) throws BusinessException {
         try {
-            Date date = new Date();
+            LocalDateTime lastLoginDate = LocalDateTime.now();
             String captchaCheck = redisServiceImpl.get(RedisSelect.FOURTEEN, mailCaptchaCacheName, String.class);
             if (StringUtils.hasText(captchaCheck)) {
                 if (mailCaptcha.equalsIgnoreCase(captchaCheck)) {
@@ -185,7 +185,7 @@ public class SystemServiceImpl implements SystemService {
                                     .account(account)
                                     .loginPassword(loginPassword)
                                     .lastAttemptLoginRequestIp(visitorIpAddress)
-                                    .lastAttemptLoginTime(date)
+                                    .lastAttemptLoginTime(lastLoginDate)
                                     .attemptLoginNumber(0)
                                     .requestIp(visitorIpAddress)
                                     .currentRequestIp(visitorIpAddress)
@@ -314,19 +314,19 @@ public class SystemServiceImpl implements SystemService {
     /**
      * 登录成功处理
      *
-     * @param date             当前时间
+     * @param localDateTime    当前时间
      * @param visitorIpAddress IP地址
      * @param dto              管理员对象
      * @return 登录成功
      * @throws BusinessException 登录成功处理错误
      */
-    private ResultMessage<JwtDTO> loginSuccessDispose(Date date, String visitorIpAddress, ManagerInternalDTO dto) throws BusinessException {
+    private ResultMessage<JwtDTO> loginSuccessDispose(LocalDateTime localDateTime, String visitorIpAddress, ManagerInternalDTO dto) throws BusinessException {
         try {
             if (dto.getAttemptLoginNumber() != null && dto.getAttemptLoginNumber() > ConstantParameter.ATTEMPT_LOGIN_FREQUENCY) {
                 return new ResultMessage<>(5, "尝试登录次数过多管理员已被冻结！请联系管理员！");
             } else {
                 if (dto.getState() == DataState.NORMAL.getCode()) {
-                    dto.setLastAttemptLoginTime(date);
+                    dto.setLastAttemptLoginTime(localDateTime);
                     dto.setLastAttemptLoginRequestIp(visitorIpAddress);
                     dto.setAttemptLoginNumber(0);
                     dto.setCurrentRequestIp(visitorIpAddress);
@@ -370,7 +370,7 @@ public class SystemServiceImpl implements SystemService {
                         securityRedis.setToken(token);
 
                         // 失效时间，必须在入redis之前计算好，进入redis后才不会因为代码执行顺序的问题导致秒级过期问题
-                        Date invalidDate = DateDispose.secondsCalculateDate(date, Math.toIntExact(securityRedis.getSeconds()));
+                        LocalDateTime invalidDate = LocalDateTimeDispose.secondsCalculate(localDateTime, Math.toIntExact(securityRedis.getSeconds()));
 
                         redisServiceImpl.set(
                                 RedisSelect.FIFTEEN,

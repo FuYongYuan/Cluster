@@ -1,5 +1,6 @@
 package cn.fyy.authorization.bean.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 登录信息
@@ -47,6 +48,7 @@ public class JwtDTO implements Serializable {
     /**
      * 失效时间
      */
-    @Schema(name = "invalidDate", description = "失效时间", type = "Date")
-    private Date invalidDate;
+    @Schema(name = "invalidDate", description = "失效时间", type = "LocalDateTime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime invalidDate;
 }

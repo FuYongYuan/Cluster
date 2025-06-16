@@ -35,7 +35,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -120,15 +120,15 @@ public class ManagerServiceImpl implements ManagerService {
     @Transactional(rollbackFor = BusinessException.class)
     public ManagerBO save(ManagerBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
-            Date date = new Date();
+            LocalDateTime localDateTime = LocalDateTime.now();
             ManagerDO dbo;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(date);
+                bo.setCreateTime(localDateTime);
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(date);
+                bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
                 dbo = ManagerBO.toDO(bo);
             } else {
@@ -137,7 +137,7 @@ public class ManagerServiceImpl implements ManagerService {
                 CopyClass.copyClassGetSet(bo, old, ManagerDO.class, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(date);
+                old.setUpdateTime(localDateTime);
                 dbo = old;
             }
 
@@ -243,7 +243,7 @@ public class ManagerServiceImpl implements ManagerService {
                         DataState.DELETE.getCode(),
                         currentManagerId,
                         currentManagerName,
-                        new Date(),
+                        LocalDateTime.now(),
                         Stream.of(ids.split(",")
                         ).map(BigInteger::new).toList());
             } else {
@@ -305,7 +305,7 @@ public class ManagerServiceImpl implements ManagerService {
     @Transactional(rollbackFor = BusinessException.class)
     public int updateStateByIds(String ids, Integer state, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return managerRepository.updateStateByIds(state, currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return managerRepository.updateStateByIds(state, currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
         } catch (Exception e) {
             throw new BusinessException("根据id保存状态错误", e);
         }
@@ -400,7 +400,7 @@ public class ManagerServiceImpl implements ManagerService {
     @Transactional
     public ManagerBO getByAccountAndLoginPassword(String account, String loginPassword) throws BusinessException {
         try {
-            Date date = new Date();
+            LocalDateTime localDateTime = LocalDateTime.now();
             HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
             String visitorIpAddress = ConstantService.getVisitorIp(request);
 
@@ -408,7 +408,7 @@ public class ManagerServiceImpl implements ManagerService {
             if (bo == null) {
                 bo = ManagerBO.toBO(managerRepository.getByAccountIgnoreCase(account));
                 if (bo != null) {
-                    bo.setLastAttemptLoginTime(date);
+                    bo.setLastAttemptLoginTime(localDateTime);
                     bo.setLastAttemptLoginRequestIp(visitorIpAddress);
                     bo.setAttemptLoginNumber(bo.getAttemptLoginNumber() == null ? 1 : bo.getAttemptLoginNumber() + 1);
 

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 /**
@@ -69,15 +69,15 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
     @Override
     public CommonlyVersionBO save(CommonlyVersionBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
-            Date date = new Date();
+            LocalDateTime localDateTime = LocalDateTime.now();
             CommonlyVersionDO dbo;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(date);
+                bo.setCreateTime(localDateTime);
                 bo.setUpdaterId(currentManagerId);
                 bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(date);
+                bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
                 dbo = CommonlyVersionBO.toDO(bo);
             } else {
@@ -86,7 +86,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
                 CopyClass.copyClassGetSet(bo, old, CommonlyVersionDO.class, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(date);
+                old.setUpdateTime(localDateTime);
                 dbo = old;
             }
 
@@ -126,7 +126,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
     @Transactional(rollbackFor = BusinessException.class)
     public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return commonlyVersionRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, new Date(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return commonlyVersionRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }

@@ -3,6 +3,7 @@ package excel.operation;
 
 import dispose.DateDispose;
 import dispose.JudgeDispose;
+import dispose.LocalDateTimeDispose;
 import dispose.MoneyToChinese;
 import enumerate.UsedType;
 import excel.annotation.ExcelField;
@@ -27,6 +28,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -478,6 +480,8 @@ public class ExcelExport {
                         cell.setCellValue(cellValue);
                     }
                 }
+            } else if (field.getType().getName().equals(UsedType.Type_LocalDateTime.getValue())) {
+                cell.setCellValue(LocalDateTimeDispose.parse(cellValue, excelField.dateType()));
             } else if (field.getType().getName().equals(UsedType.Type_Util_Date.getValue()) || field.getType().getName().equals(UsedType.Type_Sql_Date.getValue()) || field.getType().getName().equals(UsedType.Type_Timestamp.getValue())) {
                 cell.setCellValue(DateDispose.formattingDate(cellValue, excelField.dateType()));
             } else {
@@ -542,7 +546,8 @@ public class ExcelExport {
             }
         }
         // 时间
-        exist = field.getType().getName().equals(UsedType.Type_Util_Date.getValue())
+        exist = field.getType().getName().equals(UsedType.Type_LocalDateTime.getValue())
+                || field.getType().getName().equals(UsedType.Type_Util_Date.getValue())
                 || field.getType().getName().equals(UsedType.Type_Sql_Date.getValue())
                 || field.getType().getName().equals(UsedType.Type_Timestamp.getValue());
         if (exist) {
@@ -718,6 +723,8 @@ public class ExcelExport {
                             cell.setCellValue(ecd.getCellValue().toString());
                         }
                     }
+                } else if (ecd.getCellType() == LocalDateTime.class) {
+                    cell.setCellValue((LocalDateTime) ecd.getCellValue());
                 } else if (ecd.getCellType() == Date.class || ecd.getCellType() == java.sql.Date.class || ecd.getCellType() == Timestamp.class) {
                     cell.setCellValue((Date) ecd.getCellValue());
                 } else {
@@ -797,7 +804,8 @@ public class ExcelExport {
         }
 
         // 时间
-        exist = ecd.getCellType() == Date.class
+        exist = ecd.getCellType() == LocalDateTime.class
+                || ecd.getCellType() == Date.class
                 || ecd.getCellType() == java.sql.Date.class
                 || ecd.getCellType() == Timestamp.class;
         if (exist) {

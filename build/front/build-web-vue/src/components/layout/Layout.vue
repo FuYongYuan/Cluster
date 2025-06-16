@@ -17,7 +17,11 @@ import MenuLayout from "@src/components/layout/menu/MenuLayout.vue";
 import HeaderLayout from "@src/components/layout/header/HeaderLayout.vue";
 import FooterLayout from "@src/components/layout/footer/FooterLayout.vue";
 import ContentLayout from "@src/components/layout/content/ContentLayout.vue";
-import zhCN from "ant-design-vue/lib/locale-provider/index";
+import zhCN from "ant-design-vue/es/locale/zh_CN";
+import dayjs from "dayjs";
+import "dayjs/locale/zh-cn";
+
+dayjs.locale("zh-cn");
 
 export default defineComponent({
 	name: "Layout",

@@ -111,7 +111,7 @@
         <div>
             <role-detail
                     ref="roleDetail"
-                    v-model:visible="roleDetailVisible"
+                    v-model:open="roleDetailVisible"
                     @query="query"
             />
         </div>

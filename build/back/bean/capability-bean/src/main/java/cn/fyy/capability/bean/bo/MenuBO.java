@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,7 +76,7 @@ public class MenuBO implements Serializable {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 创建人ID
@@ -91,7 +91,7 @@ public class MenuBO implements Serializable {
     /**
      * 修改时间
      */
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 修改人ID
@@ -123,8 +123,8 @@ public class MenuBO implements Serializable {
     /**
      * 构造
      */
-    public MenuBO(BigInteger id, String menuName, String menuUrl, String menuIcon, String pageName, Integer isTurn, Integer isHome, Integer menuOrder, String remark, Date createTime, BigInteger creatorId, String creatorName, Date updateTime, BigInteger updaterId, String updaterName, Integer state
-            , BigInteger parentId, String parentMenuName, String parentMenuUrl, String parentMenuIcon, String parentPageName, BigInteger parentParentId, Integer parentIsTurn, Integer parentIsHome, Integer parentMenuOrder, String parentRemark, Date parentCreateTime, BigInteger parentCreatorId, String parentCreatorName, Date parentUpdateTime, BigInteger parentUpdaterId, String parentUpdaterName, Integer parentState) {
+    public MenuBO(BigInteger id, String menuName, String menuUrl, String menuIcon, String pageName, Integer isTurn, Integer isHome, Integer menuOrder, String remark, LocalDateTime createTime, BigInteger creatorId, String creatorName, LocalDateTime updateTime, BigInteger updaterId, String updaterName, Integer state
+            , BigInteger parentId, String parentMenuName, String parentMenuUrl, String parentMenuIcon, String parentPageName, BigInteger parentParentId, Integer parentIsTurn, Integer parentIsHome, Integer parentMenuOrder, String parentRemark, LocalDateTime parentCreateTime, BigInteger parentCreatorId, String parentCreatorName, LocalDateTime parentUpdateTime, BigInteger parentUpdaterId, String parentUpdaterName, Integer parentState) {
         this.id = id;
         this.menuName = menuName;
         this.menuUrl = menuUrl;

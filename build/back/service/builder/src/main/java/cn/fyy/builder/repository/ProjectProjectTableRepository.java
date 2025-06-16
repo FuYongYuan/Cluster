@@ -1,6 +1,6 @@
 package cn.fyy.builder.repository;
 
-import cn.fyy.builder.bean.dbo.CommonlyVersionDO;
+import cn.fyy.builder.bean.dbo.ProjectProjectTableDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,21 +12,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 常用版本 Repository
+ * 项目项目表关系
  *
- * @author fuyy
+ * @author : FYY
  */
 @Repository
-public interface CommonlyVersionRepository extends JpaRepository<CommonlyVersionDO, BigInteger>, JpaSpecificationExecutor<CommonlyVersionDO> {
-
-    /**
-     * 根据用户主键查询对应的数据
-     *
-     * @param managerId 管理员主键ID
-     * @return 常用版本
-     */
-    CommonlyVersionDO getByManagerId(BigInteger managerId);
-
+public interface ProjectProjectTableRepository extends JpaRepository<ProjectProjectTableDO, BigInteger>, JpaSpecificationExecutor<ProjectProjectTableDO> {
     /**
      * 根据ids保存状态
      *
@@ -38,8 +29,7 @@ public interface CommonlyVersionRepository extends JpaRepository<CommonlyVersion
      * @return 受影响行数
      */
     @Modifying
-    @Query(value = "UPDATE CommonlyVersionDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
+    @Query(value = "UPDATE ProjectProjectTableDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
     int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
-
 
 }

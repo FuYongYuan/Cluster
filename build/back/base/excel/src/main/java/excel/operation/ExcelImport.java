@@ -3,6 +3,7 @@ package excel.operation;
 
 import dispose.DateDispose;
 import dispose.JudgeDispose;
+import dispose.LocalDateTimeDispose;
 import enumerate.DateType;
 import enumerate.UsedType;
 import excel.annotation.ExcelField;
@@ -21,6 +22,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -379,6 +381,14 @@ public class ExcelImport {
             } else {
                 method.invoke(obj, value.toString());
             }
+        } else if (field.getType().getName().equals(UsedType.Type_LocalDateTime.getValue())) {
+            method = obj.getClass().getMethod("set" + fieldNameFirstUpperCase, LocalDateTime.class);
+            if (JudgeDispose.isNumber(value.toString())) {
+                int d = (int) Double.parseDouble(value.toString()) - 2;
+                value = LocalDateTimeDispose.dayCalculate("1900-1-1", d, DateType.Year_Month_Day);
+            }
+            value = LocalDateTimeDispose.parse(value.toString(), field.getAnnotation(ExcelField.class).dateType());
+            method.invoke(obj, (LocalDateTime) value);
         } else if (field.getType().getName().equals(UsedType.Type_Util_Date.getValue()) || field.getType().getName().equals(UsedType.Type_Sql_Date.getValue())) {
             method = obj.getClass().getMethod("set" + fieldNameFirstUpperCase, Date.class);
             if (JudgeDispose.isNumber(value.toString())) {
@@ -420,7 +430,14 @@ public class ExcelImport {
 
     private static void setFieldValue(Field field, Object obj, Object value) throws Exception {
         //判断哪个类型.读取set方法拿到结果
-        if (field.getType().getName().equals(UsedType.Type_Util_Date.getValue()) || field.getType().getName().equals(UsedType.Type_Sql_Date.getValue())) {
+        if (field.getType().getName().equals(UsedType.Type_LocalDateTime.getValue())) {
+            if (JudgeDispose.isNumber(value.toString())) {
+                int d = (int) Double.parseDouble(value.toString()) - 2;
+                value = LocalDateTimeDispose.dayCalculate("1900-1-1", d, DateType.Year_Month_Day);
+            }
+            value = LocalDateTimeDispose.parse(value.toString(), field.getAnnotation(ExcelField.class).dateType());
+            field.set(obj, value);
+        } else if (field.getType().getName().equals(UsedType.Type_Util_Date.getValue()) || field.getType().getName().equals(UsedType.Type_Sql_Date.getValue())) {
             if (JudgeDispose.isNumber(value.toString())) {
                 int d = (int) Double.parseDouble(value.toString()) - 2;
                 value = DateDispose.dayCalculateString("1900-1-1", d, DateType.Year_Month_Day);

@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -32,6 +33,9 @@ public class ExcelEntity {
 
     @ExcelField(columnName = "日期", order = 5, dateType = DateType.Year_Month_Day, columnWidth = 20, rowspan = true, rowspanAlignOrder = 1)
     public Date DT;
+
+    @ExcelField(columnName = "新日期", order = 8, dateType = DateType.Year_Month_Day_Hour_Minute_Second, columnWidth = 20, rowspan = true, rowspanAlignOrder = 1)
+    public LocalDateTime LDT;
 
     @ExcelField(columnName = "小数点", order = 4, decimalAfterDigit = 5, columnWidth = 30)
     public Double dT;

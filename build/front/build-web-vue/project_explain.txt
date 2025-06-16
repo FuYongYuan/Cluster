@@ -12,6 +12,8 @@
     "axios"
     # 日志打印 vite按需引用需要
     "consola"
+    # 国际化
+    "dayjs"
     # vue状态管理
     "pinia"
     # md5加密

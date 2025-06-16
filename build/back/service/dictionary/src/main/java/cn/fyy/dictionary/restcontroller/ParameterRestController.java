@@ -7,7 +7,7 @@ import cn.fyy.dictionary.bean.bo.ParameterBO;
 import cn.fyy.dictionary.bean.dto.ParameterDTO;
 import cn.fyy.dictionary.service.ParameterService;
 import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
-import dispose.DateDispose;
+import dispose.LocalDateTimeDispose;
 import enumerate.DateType;
 import excel.operation.ExcelExport;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,7 +26,7 @@ import java.io.OutputStream;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 参数 RestController
@@ -207,7 +207,7 @@ public class ParameterRestController {
             // 开始导出
             String fileName = "参数列表";
             XSSFWorkbook wb = (XSSFWorkbook) excelExport.getWorkbook();
-            fileName = fileName + "_" + DateDispose.formattingDate(new Date(), DateType.YearMonthDayHourMinuteSecondMS);
+            fileName = fileName + "_" + LocalDateTimeDispose.format(LocalDateTime.now(), DateType.YearMonthDayHourMinuteSecondMS);
             response.setContentType("application/vnd.ms-excel");
             response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(fileName, StandardCharsets.UTF_8) + ".xlsx");
             OutputStream outputStream = response.getOutputStream();

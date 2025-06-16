@@ -1,6 +1,7 @@
 package cn.fyy.message.bean.dto;
 
 import cn.fyy.message.bean.bo.NoticeBO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +10,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,8 +59,9 @@ public class NoticeDTO implements Serializable {
     /**
      * 创建时间
      */
-    @Schema(name = "createTime", description = "创建时间", type = "Date")
-    private Date createTime;
+    @Schema(name = "createTime", description = "创建时间", type = "LocalDateTime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
 
     /**
      * 创建人ID
@@ -76,8 +78,9 @@ public class NoticeDTO implements Serializable {
     /**
      * 修改时间
      */
-    @Schema(name = "updateTime", description = "修改时间", type = "Date")
-    private Date updateTime;
+    @Schema(name = "updateTime", description = "修改时间", type = "LocalDateTime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
 
     /**
      * 修改人ID

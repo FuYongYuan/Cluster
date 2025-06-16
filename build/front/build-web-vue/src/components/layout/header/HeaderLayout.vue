@@ -25,13 +25,13 @@
         <div>
             <manager-detail-drawer
                     ref="managerDetailDrawer"
-                    v-model:visible="managerDetailDrawerVisible"
+                    v-model:open="managerDetailDrawerVisible"
             />
         </div>
         <div>
             <manager-change-password-drawer
                     ref="managerChangePasswordDrawer"
-                    v-model:visible="managerChangePasswordDrawerVisible"
+                    v-model:open="managerChangePasswordDrawerVisible"
             />
         </div>
     </a-layout-header>

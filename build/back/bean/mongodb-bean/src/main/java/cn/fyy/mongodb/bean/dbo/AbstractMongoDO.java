@@ -10,7 +10,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * MongoDB 实体基类（抽象类）
@@ -33,13 +33,13 @@ public abstract class AbstractMongoDO implements Serializable {
      * 创建时间，自动填充
      */
     @CreatedDate
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 最后修改时间，自动填充
      */
     @LastModifiedDate
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 版本号，自动填充

@@ -127,19 +127,35 @@ class Request<T = any> {
 	export = (url: string, params?: any): Promise<void> => {
 		const config: AxiosRequestConfig = {
 			method: "POST",
+			params: params,
 			data: params,
 			url: url,
 			responseType: "blob", // 设置为 Blob 类型以便处理文件下载
 		};
 		return service(url, config).then((response) => {
-			const url = window.URL.createObjectURL(new Blob([response.data]));
+			// 检查 content-disposition 是否存在
+			const disposition = response.headers["content-disposition"];
+			let filename = "无名.xlsx";
+
+			if (disposition && disposition.indexOf("filename=") !== -1) {
+				// 提取文件名
+				filename = decodeURI(
+					disposition
+						.split(";")
+						.find((part: string) => part.trim().startsWith("filename="))!
+						.split("=")[1]
+						.trim(),
+				);
+			}
+
+			const urlBlob = window.URL.createObjectURL(new Blob([response.data]));
 			const link = document.createElement("a");
-			link.href = url;
-			link.download =
-				decodeURI(
-					response.headers["content-disposition"].split(";")[1].split("=")[1],
-				) || "无名.xlsx";
+			link.href = urlBlob;
+			link.download = filename;
 			link.click();
+
+			// 释放对象 URL
+			window.URL.revokeObjectURL(urlBlob);
 		});
 	};
 

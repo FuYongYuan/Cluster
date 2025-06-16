@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -40,7 +40,7 @@ public interface ProjectGroupRepository extends JpaRepository<ProjectGroupDO, Bi
      */
     @Modifying
     @Query(value = "UPDATE ProjectGroupDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, Date updateTime, List<BigInteger> ids);
+    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
 
     /**
      * 根据当前登录人id查询对应的项目群列表

@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,7 +57,7 @@ public class ParameterExcel implements Serializable {
      * 创建时间
      */
     @ExcelField(columnName = "创建时间", order = 6)
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 创建人名称
@@ -69,7 +69,7 @@ public class ParameterExcel implements Serializable {
      * 修改时间
      */
     @ExcelField(columnName = "修改时间", order = 8)
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     /**
      * 修改人名称

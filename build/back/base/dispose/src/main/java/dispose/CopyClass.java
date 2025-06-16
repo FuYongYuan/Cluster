@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -59,6 +60,10 @@ public class CopyClass {
                 if (field.getType().getName().equals(UsedType.Type_String.getValue())) {
                     if (value != null) {
                         field.set(object2, value.toString());
+                    }
+                } else if (field.getType().getName().equals(UsedType.Type_LocalDateTime.getValue())) {
+                    if (value instanceof LocalDateTime) {
+                        field.set(object2, value);
                     }
                 } else if (field.getType().getName().equals(UsedType.Type_Util_Date.getValue()) || field.getType().getName().equals(UsedType.Type_Sql_Date.getValue())) {
                     if (value instanceof Date) {
@@ -117,6 +122,8 @@ public class CopyClass {
             if ((value != null && !"".equals(value))) {
                 if (field.getType().getName().equals(UsedType.Type_String.getValue())) {
                     field.set(obj, value.toString());
+                } else if (field.getType().getName().equals(UsedType.Type_LocalDateTime.getValue())) {
+                    field.set(obj, value);
                 } else if (field.getType().getName().equals(UsedType.Type_Util_Date.getValue()) || field.getType().getName().equals(UsedType.Type_Sql_Date.getValue())) {
                     field.set(obj, value);
                 } else if (field.getType().getName().equals(UsedType.Type_Integer.getValue()) || field.getType().getName().equals(UsedType.Type_int.getValue())) {
@@ -202,6 +209,8 @@ public class CopyClass {
         Method method;
         if (field.getType().getName().equals(UsedType.Type_String.getValue())) {
             method = clazz.getMethod("set" + fieldNameFirstUpperCase, String.class);
+        } else if (field.getType().getName().equals(UsedType.Type_LocalDateTime.getValue())) {
+            method = clazz.getMethod("set" + fieldNameFirstUpperCase, LocalDateTime.class);
         } else if (field.getType().getName().equals(UsedType.Type_Util_Date.getValue()) || field.getType().getName().equals(UsedType.Type_Sql_Date.getValue())) {
             method = clazz.getMethod("set" + fieldNameFirstUpperCase, Date.class);
         } else if (field.getType().getName().equals(UsedType.Type_Integer.getValue()) || field.getType().getName().equals(UsedType.Type_int.getValue())) {

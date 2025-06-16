@@ -1,7 +1,6 @@
 package cn.fyy.authorization.repository;
 
 import cn.fyy.authorization.bean.dbo.RoleDO;
-import cn.fyy.common.bean.ao.DataState;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -9,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public interface RoleRepository extends JpaRepository<RoleDO, BigInteger>, JpaSp
      */
     @Modifying
     @Query(value = "UPDATE RoleDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, Date updateTime, List<BigInteger> ids);
+    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
 
     /**
      * 根据管理员主键ID查询能够使用的角色列表

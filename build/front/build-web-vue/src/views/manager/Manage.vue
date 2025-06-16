@@ -156,7 +156,7 @@
         <div>
             <manager-detail
                     ref="managerDetail"
-                    v-model:visible="managerDetailVisible"
+                    v-model:open="managerDetailVisible"
                     @query="query"
             />
         </div>

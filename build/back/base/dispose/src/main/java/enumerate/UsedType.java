@@ -31,6 +31,11 @@ public enum UsedType {
     Type_Util_Date("java.util.Date"),
 
     /**
+     * java.time.LocalDateTime
+     */
+    Type_LocalDateTime("java.time.LocalDateTime"),
+
+    /**
      * double
      */
     Type_double("double"),

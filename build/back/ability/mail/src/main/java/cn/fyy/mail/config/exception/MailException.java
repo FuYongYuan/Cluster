@@ -1,8 +1,6 @@
 package cn.fyy.mail.config.exception;
 
-import dispose.DateDispose;
-
-import java.util.Date;
+import dispose.LocalDateTimeDispose;
 
 /**
  * 操作错误
@@ -14,6 +12,6 @@ public class MailException extends RuntimeException {
      * 操作错误
      */
     public MailException(String s, Exception e) {
-        super("[" + DateDispose.formattingDateToString(new Date()) + "] -> " + s, e);
+        super("[" + LocalDateTimeDispose.getYearMonthDayHourMinuteSecond() + "] -> " + s, e);
     }
 }
