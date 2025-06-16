@@ -37,6 +37,11 @@ router.beforeEach(
 
 		// 如果没有 Token 或者 Token 过期，跳转到登录页
 		if (!jwtToken || !invalidDateTime || invalidDateTime < currentDate) {
+			// 清除 Token
+			localStorage.removeItem(LocalStorageJwtToken);
+			localStorage.removeItem(LocalStorageInvalidDate);
+			localStorage.removeItem(LocalStorageAccountMenuList);
+			// 跳转到登录页
 			return next("/login");
 		}
 
