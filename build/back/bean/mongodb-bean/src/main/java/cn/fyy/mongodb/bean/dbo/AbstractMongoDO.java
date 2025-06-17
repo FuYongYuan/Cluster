@@ -1,8 +1,6 @@
 package cn.fyy.mongodb.bean.dbo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -18,10 +16,13 @@ import java.time.LocalDateTime;
  *
  * @author fyy
  */
-@Document
 @Getter
 @Setter
 @ToString
+@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@Document
 public abstract class AbstractMongoDO implements Serializable {
     /**
      * 主键ID，自动映射到 MongoDB 的 _id 字段

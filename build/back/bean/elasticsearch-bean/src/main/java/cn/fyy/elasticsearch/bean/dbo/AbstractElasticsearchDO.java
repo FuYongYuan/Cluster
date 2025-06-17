@@ -1,13 +1,12 @@
 package cn.fyy.elasticsearch.bean.dbo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -15,21 +14,31 @@ import java.time.LocalDateTime;
  *
  * @author fyy
  */
-@Data
+@Getter
+@Setter
+@ToString
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-//  索引名称
-@Document(indexName = "base-index")
-public abstract class AbstractElasticsearchDO {
+// 索引名称
+@Document(indexName = "share")
+public abstract class AbstractElasticsearchDO implements Serializable {
 
+    /**
+     * 主键
+     */
     @Id
     private String id;
 
+    /**
+     * 创建时间
+     */
     @Field(type = FieldType.Date)
-    private LocalDateTime createdDate;
+    private LocalDateTime createTime;
 
-    public AbstractElasticsearchDO(String id) {
-        this.id = id;
-        this.createdDate = LocalDateTime.now();
-    }
+    /**
+     * 最后修改时间
+     */
+    @Field(type = FieldType.Date)
+    private LocalDateTime updateTime;
 }

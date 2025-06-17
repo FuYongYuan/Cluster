@@ -21,7 +21,7 @@ public class MessageConsumer {
 //     */
 //    @Bean
 //    public Consumer<Message<String>> share() {
-//        System.out.println("share 接受到消息");
+//        System.out.println("share 接收到消息");
 //        return msg -> {
 //            try {
 //                System.out.println(Thread.currentThread().getName() + "读取信息: " + msg);
