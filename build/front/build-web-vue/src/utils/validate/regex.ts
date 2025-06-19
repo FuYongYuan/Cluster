@@ -66,3 +66,12 @@ export const jsonFormatValidate = (file: any) => {
 		return "请选择文件！";
 	}
 };
+
+/**
+ * 验证是否是数字
+ *
+ * @param value 值
+ */
+export const isNumber = (value: any) => {
+	return typeof value === "number";
+};

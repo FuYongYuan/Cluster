@@ -11,7 +11,7 @@ export type JwtDTO = {
 	// jwtToken
 	jwtToken: string;
 	// 失效时间
-	invalidDate: date;
+	invalidDate: Date;
 };
 
 /**

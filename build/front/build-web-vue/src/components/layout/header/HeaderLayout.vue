@@ -1,40 +1,40 @@
 <template>
-    <a-layout-header class="header app-header">
-        <a-row>
-            <a-col></a-col>
-            <a-col>
-                <div>
-                    <a-dropdown>
+  <a-layout-header class="header app-header">
+    <a-row>
+      <a-col></a-col>
+      <a-col>
+        <div>
+          <a-dropdown>
             <span class="ant-dropdown-link">
               <a-avatar :src="headImgUrl"/>
               {{ managerName }}
               <icon-font type="icon-down"/>
             </span>
-                        <!--  收纳部分template  -->
-                        <template #overlay>
-                            <a-menu>
-                                <a-menu-item @click="handleShowPersonalInfo">个人信息</a-menu-item>
-                                <a-menu-item @click="handleShowChangePassword">修改密码</a-menu-item>
-                                <a-menu-item @click="logoutClick">退出登录</a-menu-item>
-                            </a-menu>
-                        </template>
-                    </a-dropdown>
-                </div>
-            </a-col>
-        </a-row>
-        <div>
-            <manager-detail-drawer
-                    ref="managerDetailDrawer"
-                    v-model:open="managerDetailDrawerVisible"
-            />
+            <!--  收纳部分template  -->
+            <template v-slot:overlay>
+              <a-menu>
+                <a-menu-item @click="handleShowPersonalInfo">个人信息</a-menu-item>
+                <a-menu-item @click="handleShowChangePassword">修改密码</a-menu-item>
+                <a-menu-item @click="logoutClick">退出登录</a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
         </div>
-        <div>
-            <manager-change-password-drawer
-                    ref="managerChangePasswordDrawer"
-                    v-model:open="managerChangePasswordDrawerVisible"
-            />
-        </div>
-    </a-layout-header>
+      </a-col>
+    </a-row>
+    <div>
+      <manager-detail-drawer
+          ref="managerDetailDrawer"
+          v-model:open="managerDetailDrawerVisible"
+      />
+    </div>
+    <div>
+      <manager-change-password-drawer
+          ref="managerChangePasswordDrawer"
+          v-model:open="managerChangePasswordDrawerVisible"
+      />
+    </div>
+  </a-layout-header>
 </template>
 
 <script lang="ts">

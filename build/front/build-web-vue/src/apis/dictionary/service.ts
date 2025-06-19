@@ -17,7 +17,7 @@ import type { ParameterDTO } from "@src/apis/dictionary/dto";
  * @param parameterName 参数名称
  * @param state 状态
  */
-export const queryParameter = (
+export const queryParameter = async (
 	currentPage: number,
 	eachPageSize: number,
 	pageSort?: string,
@@ -52,7 +52,9 @@ export const queryParameter = (
  * 删除
  * @param ids ID集合
  */
-export const deleteParameter = (ids: string): Promise<number | undefined> => {
+export const deleteParameter = async (
+	ids: string,
+): Promise<number | undefined> => {
 	// 初始化
 	const request = new Request<number>();
 	// 地址
@@ -74,7 +76,9 @@ export const deleteParameter = (ids: string): Promise<number | undefined> => {
  *
  * @param id ID
  */
-export const getParameter = (id: number): Promise<ParameterDTO | undefined> => {
+export const getParameter = async (
+	id: number,
+): Promise<ParameterDTO | undefined> => {
 	// 初始化
 	const request = new Request<ParameterDTO>();
 	// 地址
@@ -96,7 +100,7 @@ export const getParameter = (id: number): Promise<ParameterDTO | undefined> => {
  *
  * @param dto DTO
  */
-export const saveParameter = (
+export const saveParameter = async (
 	dto: ParameterDTO,
 ): Promise<string | undefined> => {
 	// 初始化

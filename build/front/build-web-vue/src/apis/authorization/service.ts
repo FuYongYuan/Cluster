@@ -22,7 +22,7 @@ import type { MenuDTO } from "@src/apis/capability/dto";
  * @param imageCaptcha 图形验证码
  * @param imageCaptchaCacheName 图形验证码缓存名称
  */
-export const login = (
+export const login = async (
 	account: string,
 	loginPassword: string,
 	imageCaptcha: string,
@@ -56,7 +56,7 @@ export const login = (
 /**
  * 登出
  */
-export const logout = () => {
+export const logout = async (): Promise<boolean> => {
 	const request = new Request<string>();
 	return request
 		.post(AuthorizationApiBaseURL + "/system/logout")
@@ -87,7 +87,7 @@ export const logout = () => {
  * @param mailCaptcha 邮件验证码
  * @param mailCaptchaCacheName 邮件验证码缓存名称
  */
-export const register = (
+export const register = async (
 	mail: string,
 	account: string,
 	loginPassword: string,
@@ -128,7 +128,7 @@ export const register = (
  * @param mailCaptcha 邮件验证码
  * @param mailCaptchaCacheName 邮件验证码缓存名称
  */
-export const recover = (
+export const recover = async (
 	mail: string,
 	loginPassword: string,
 	mailCaptcha: string,
@@ -162,7 +162,7 @@ export const recover = (
 /**
  * 查询拥有的菜单权限
  */
-export const queryHaveMenu = (): Promise<MenuDTO[] | undefined> => {
+export const queryHaveMenu = async (): Promise<MenuDTO[] | undefined> => {
 	const request = new Request<MenuDTO[]>();
 	return request
 		.get(AuthorizationApiBaseURL + "/system/query/manager/have/menu")
@@ -181,7 +181,7 @@ export const queryHaveMenu = (): Promise<MenuDTO[] | undefined> => {
 /**
  * 查询所有角色
  */
-export const queryRoleAll = (): Promise<RoleDTO[] | undefined> => {
+export const queryRoleAll = async (): Promise<RoleDTO[] | undefined> => {
 	const request = new Request<RoleDTO[]>();
 	return request
 		.get(AuthorizationApiBaseURL + "/role/query/all")
@@ -207,7 +207,7 @@ export const queryRoleAll = (): Promise<RoleDTO[] | undefined> => {
  * @param roleName 角色名称
  * @param state 状态
  */
-export const queryRole = (
+export const queryRole = async (
 	currentPage: number,
 	eachPageSize: number,
 	pageSort?: string,
@@ -242,7 +242,7 @@ export const queryRole = (
  * 删除
  * @param ids ID集合
  */
-export const deleteRole = (ids: string): Promise<number | undefined> => {
+export const deleteRole = async (ids: string): Promise<number | undefined> => {
 	// 初始化
 	const request = new Request<number>();
 	// 地址
@@ -265,7 +265,7 @@ export const deleteRole = (ids: string): Promise<number | undefined> => {
  *
  * @param id ID
  */
-export const getRole = (id: number): Promise<RoleDTO | undefined> => {
+export const getRole = async (id: number): Promise<RoleDTO | undefined> => {
 	// 初始化
 	const request = new Request<RoleDTO>();
 	// 地址
@@ -288,7 +288,7 @@ export const getRole = (id: number): Promise<RoleDTO | undefined> => {
  *
  * @param dto DTO
  */
-export const saveRole = (dto: RoleDTO): Promise<string | undefined> => {
+export const saveRole = async (dto: RoleDTO): Promise<string | undefined> => {
 	// 初始化
 	const request = new Request<string>();
 	// 地址

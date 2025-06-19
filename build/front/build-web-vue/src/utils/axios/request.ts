@@ -124,7 +124,7 @@ class Request<T = any> {
 	};
 
 	// 导出
-	export = (url: string, params?: any): Promise<void> => {
+	export = async (url: string, params?: any): Promise<void> => {
 		const config: AxiosRequestConfig = {
 			method: "POST",
 			params: params,

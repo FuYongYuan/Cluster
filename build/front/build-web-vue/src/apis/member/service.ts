@@ -11,7 +11,9 @@ import type { ManagerDTO } from "@src/apis/member/dto";
  * 根据JwtToken查询
  *
  */
-export const getManagerByJwtToken = (): Promise<ManagerDTO | undefined> => {
+export const getManagerByJwtToken = async (): Promise<
+	ManagerDTO | undefined
+> => {
 	// 初始化
 	const request = new Request<ManagerDTO>();
 	// 地址
@@ -33,7 +35,9 @@ export const getManagerByJwtToken = (): Promise<ManagerDTO | undefined> => {
  *
  * @param id ID
  */
-export const getManager = (id: number): Promise<ManagerDTO | undefined> => {
+export const getManager = async (
+	id: number,
+): Promise<ManagerDTO | undefined> => {
 	// 初始化
 	const request = new Request<ManagerDTO>();
 	// 地址
@@ -55,7 +59,9 @@ export const getManager = (id: number): Promise<ManagerDTO | undefined> => {
  *
  * @param dto DTO
  */
-export const saveManager = (dto: ManagerDTO): Promise<string | undefined> => {
+export const saveManager = async (
+	dto: ManagerDTO,
+): Promise<string | undefined> => {
 	// 初始化
 	const request = new Request<string>();
 	// 地址
@@ -84,7 +90,7 @@ export const saveManager = (dto: ManagerDTO): Promise<string | undefined> => {
  * @param managerName 管理员名称
  * @param state 状态
  */
-export const queryManager = (
+export const queryManager = async (
 	currentPage: number,
 	eachPageSize: number,
 	pageSort?: string,
@@ -123,7 +129,9 @@ export const queryManager = (
  * 删除
  * @param ids ID集合
  */
-export const deleteManager = (ids: string): Promise<number | undefined> => {
+export const deleteManager = async (
+	ids: string,
+): Promise<number | undefined> => {
 	// 初始化
 	const request = new Request<number>();
 	// 地址
@@ -163,7 +171,7 @@ export const recoverFreezeManager = (
  * @param ids ID集合
  * @param state 状态
  */
-export const updateManagerState = (
+export const updateManagerState = async (
 	ids: string,
 	state: number,
 ): Promise<number | undefined> => {

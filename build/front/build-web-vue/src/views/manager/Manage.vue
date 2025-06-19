@@ -1,109 +1,109 @@
 <template>
-    <div>
-        <a-form
-                ref="searchForm"
-                class="search-form"
-                :model="searchFormData"
-        >
-            <a-row>
-                <a-col :span="12" class="div-left">
-                    <a-form-item>
-                        <a-space>
-                            <a-button class="ant-btn-cyan" :loading="loadingState" @click="loading">
-                                <icon-font type="icon-reload" v-if="!loadingState"/>
-                                刷新
-                            </a-button>
-                            <a-button class="ant-btn-cyan" :loading="loadingState" @click="query">
-                                <icon-font type="icon-search" v-if="!loadingState"/>
-                                查询
-                            </a-button>
-                            <a-button class="ant-btn-sunset" :loading="loadingState"
-                                      @click="()=>searchForm?.resetFields()">
-                                <icon-font type="icon-clear" v-if="!loadingState"/>
-                                清除
-                            </a-button>
-                        </a-space>
-                    </a-form-item>
-                </a-col>
-                <a-col :span="12" class="div-right">
-                    <a-form-item>
-                        <a-space>
-                            <a-popconfirm
-                                    title="您确定要删除选中数据嘛？"
-                                    ok-text="确定"
-                                    cancel-text="取消"
-                                    @confirm="deleteAll"
-                            >
-                                <template #icon>
-                                    <icon-font type="icon-question-circle"/>
-                                </template>
-                                <a-button class="ant-btn-dust" :loading="loadingState">
-                                    <icon-font type="icon-delete" v-if="!loadingState"/>
-                                    删除
-                                </a-button>
-                            </a-popconfirm>
-                        </a-space>
-                    </a-form-item>
-                </a-col>
-            </a-row>
-            <a-row :gutter="16">
-                <a-col :span="5">
-                    <a-form-item label="账号" name="account">
-                        <a-input v-model:value="searchFormData.account" placeholder="账号" allowClear/>
-                    </a-form-item>
-                </a-col>
-                <a-col :span="5">
-                    <a-form-item label="手机号码" name="mobile">
-                        <a-input v-model:value="searchFormData.mobile" placeholder="手机号码" allowClear/>
-                    </a-form-item>
-                </a-col>
-                <a-col :span="5">
-                    <a-form-item label="邮箱" name="mail">
-                        <a-input v-model:value="searchFormData.mail" placeholder="邮箱" allowClear/>
-                    </a-form-item>
-                </a-col>
-                <a-col :span="5">
-                    <a-form-item label="管理员名称" name="managerName">
-                        <a-input v-model:value="searchFormData.managerName" placeholder="管理员名称" allowClear/>
-                    </a-form-item>
-                </a-col>
-                <a-col :span="4">
-                    <a-form-item label="状态" name="state">
-                        <a-select v-model:value="searchFormData.state">
-                            <a-select-option :value=0>正常</a-select-option>
-                            <a-select-option :value=1>冻结</a-select-option>
-                            <a-select-option :value=99>删除</a-select-option>
-                        </a-select>
-                    </a-form-item>
-                </a-col>
-            </a-row>
-        </a-form>
-        <div class="search-result">
-            <a-table
-                    :columns="columns"
-                    :row-key="record => record.id"
-                    :row-selection="rowSelection"
-                    :pagination="pagination"
-                    :loading="loadingState"
-                    :data-source="searchResult.dataSource"
-                    @change="handleTableChange"
-                    @resizeColumn="handleResizeColumn"
-                    size="small"
-                    bordered
-            >
-                <template #bodyCell="{ column,record }">
-                    <template v-if="column.dataIndex === 'sex'">
+  <div>
+    <a-form
+        ref="searchForm"
+        class="search-form"
+        :model="searchFormData"
+    >
+      <a-row>
+        <a-col :span="12" class="div-left">
+          <a-form-item>
+            <a-space>
+              <a-button class="ant-btn-cyan" :loading="loadingState" @click="loading">
+                <icon-font type="icon-reload" v-if="!loadingState"/>
+                刷新
+              </a-button>
+              <a-button class="ant-btn-cyan" :loading="loadingState" @click="query">
+                <icon-font type="icon-search" v-if="!loadingState"/>
+                查询
+              </a-button>
+              <a-button class="ant-btn-sunset" :loading="loadingState"
+                        @click="()=>searchForm?.resetFields()">
+                <icon-font type="icon-clear" v-if="!loadingState"/>
+                清除
+              </a-button>
+            </a-space>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12" class="div-right">
+          <a-form-item>
+            <a-space>
+              <a-popconfirm
+                  title="您确定要删除选中数据嘛？"
+                  ok-text="确定"
+                  cancel-text="取消"
+                  @confirm="deleteAll"
+              >
+                <template #icon>
+                  <icon-font type="icon-question-circle"/>
+                </template>
+                <a-button class="ant-btn-dust" :loading="loadingState">
+                  <icon-font type="icon-delete" v-if="!loadingState"/>
+                  删除
+                </a-button>
+              </a-popconfirm>
+            </a-space>
+          </a-form-item>
+        </a-col>
+      </a-row>
+      <a-row :gutter="16">
+        <a-col :span="5">
+          <a-form-item label="账号" name="account">
+            <a-input v-model:value="searchFormData.account" placeholder="账号" allowClear/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="5">
+          <a-form-item label="手机号码" name="mobile">
+            <a-input v-model:value="searchFormData.mobile" placeholder="手机号码" allowClear/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="5">
+          <a-form-item label="邮箱" name="mail">
+            <a-input v-model:value="searchFormData.mail" placeholder="邮箱" allowClear/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="5">
+          <a-form-item label="管理员名称" name="managerName">
+            <a-input v-model:value="searchFormData.managerName" placeholder="管理员名称" allowClear/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="4">
+          <a-form-item label="状态" name="state">
+            <a-select v-model:value="searchFormData.state">
+              <a-select-option :value=0>正常</a-select-option>
+              <a-select-option :value=1>冻结</a-select-option>
+              <a-select-option :value=99>删除</a-select-option>
+            </a-select>
+          </a-form-item>
+        </a-col>
+      </a-row>
+    </a-form>
+    <div class="search-result">
+      <a-table
+          :columns="columns"
+          :row-key="(record:ManagerDTO) => record.id"
+          :row-selection="rowSelection"
+          :pagination="pagination"
+          :loading="loadingState"
+          :data-source="searchResult.dataSource"
+          @change="handleTableChange"
+          @resizeColumn="handleResizeColumn"
+          size="small"
+          bordered
+      >
+        <template #bodyCell="{ column,record }">
+          <template v-if="column.dataIndex === 'sex'">
             <span v-if="record[column.dataIndex] === 0" style="color: #f39c12">
               保密
             </span>
-                        <span v-if="record[column.dataIndex] === 1" style="color: #2980b9">
+            <span v-if="record[column.dataIndex] === 1" style="color: #2980b9">
               男
             </span>
-                        <span v-if="record[column.dataIndex] === 2" style="color: #e74c3c">
+            <span v-if="record[column.dataIndex] === 2" style="color: #e74c3c">
               女
             </span>
-                    </template>
-                    <template v-if="column.dataIndex === 'action'">
+          </template>
+          <template v-if="column.dataIndex === 'action'">
               <span>
                 <a-divider type="vertical"/>
                   <a-button class="ant-btn-daybreak" @click="handleShowDetail(record.id)">
@@ -111,11 +111,11 @@
                   </a-button>
                 <a-divider v-if="!searchFormData.showRecover" type="vertical"/>
                   <a-popconfirm
-                          v-if="!searchFormData.showRecover"
-                          title="您确定要冻结选中数据嘛？"
-                          ok-text="确定"
-                          cancel-text="取消"
-                          @confirm="freezeById(record.id)"
+                      v-if="!searchFormData.showRecover"
+                      title="您确定要冻结选中数据嘛？"
+                      ok-text="确定"
+                      cancel-text="取消"
+                      @confirm="freezeById(record.id)"
                   >
                     <template #icon>
                       <icon-font type="icon-minus-circle"/>
@@ -124,11 +124,11 @@
                   </a-popconfirm>
                 <a-divider v-if="searchFormData.showRecover" type="vertical"/>
                   <a-popconfirm
-                          v-if="searchFormData.showRecover"
-                          title="您确定要恢复选中数据嘛？"
-                          ok-text="确定"
-                          cancel-text="取消"
-                          @confirm="recoverFreezeById(record.id)"
+                      v-if="searchFormData.showRecover"
+                      title="您确定要恢复选中数据嘛？"
+                      ok-text="确定"
+                      cancel-text="取消"
+                      @confirm="recoverFreezeById(record.id)"
                   >
                     <template #icon>
                       <icon-font type="icon-rollback"/>
@@ -137,10 +137,10 @@
                   </a-popconfirm>
                 <a-divider type="vertical"/>
                   <a-popconfirm
-                          title="您确定要删除选中数据嘛？"
-                          ok-text="确定"
-                          cancel-text="取消"
-                          @confirm="deleteById(record.id)"
+                      title="您确定要删除选中数据嘛？"
+                      ok-text="确定"
+                      cancel-text="取消"
+                      @confirm="deleteById(record.id)"
                   >
                     <template #icon>
                       <icon-font type="icon-question-circle"/>
@@ -149,18 +149,18 @@
                   </a-popconfirm>
                 <a-divider type="vertical"/>
               </span>
-                    </template>
-                </template>
-            </a-table>
-        </div>
-        <div>
-            <manager-detail
-                    ref="managerDetail"
-                    v-model:open="managerDetailVisible"
-                    @query="query"
-            />
-        </div>
+          </template>
+        </template>
+      </a-table>
     </div>
+    <div>
+      <manager-detail
+          ref="managerDetail"
+          v-model:open="managerDetailVisible"
+          @query="query"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -329,7 +329,7 @@ export default defineComponent({
 						key: "odd",
 						text: "奇数行",
 						onSelect: (changeRowKeys: []) => {
-							manageData.selectedRowKeys = changeRowKeys.filter((id, index) => {
+							manageData.selectedRowKeys = changeRowKeys.filter((_, index) => {
 								return index % 2 === 0;
 							});
 						},
@@ -339,7 +339,7 @@ export default defineComponent({
 						key: "even",
 						text: "偶数行",
 						onSelect: (changeRowKeys: []) => {
-							manageData.selectedRowKeys = changeRowKeys.filter((id, index) => {
+							manageData.selectedRowKeys = changeRowKeys.filter((_, index) => {
 								return index % 2 !== 0;
 							});
 						},
@@ -431,7 +431,7 @@ export default defineComponent({
 		// 分页、排序、筛选变化时触发
 		const handleTableChange = async (
 			paginationInfo: { pageSize: number; current: number },
-			filters: any,
+			_: any,
 			sorter: any,
 		) => {
 			manageData.pageSorts = getSerializableSort(getPageSort(sorter));

@@ -10,7 +10,7 @@ import type { ResultMessage } from "@src/apis/commons/dto";
  * @param formData 文件数据
  * @param options 上传进度处理
  */
-export const uploadFormData = (
+export const uploadFormData = async (
 	businessType: string,
 	formData: FormData,
 	options: any,

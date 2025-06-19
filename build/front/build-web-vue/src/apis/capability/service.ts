@@ -10,7 +10,7 @@ import type { MenuDTO } from "@src/apis/capability/dto";
 /**
  * 查询所有菜单
  */
-export const queryMenuAll = (): Promise<MenuDTO[] | undefined> => {
+export const queryMenuAll = async (): Promise<MenuDTO[] | undefined> => {
 	const request = new Request<MenuDTO[]>();
 	return request
 		.get(`${CapabilityApiBaseURL}/menu/query/all`)
@@ -28,7 +28,7 @@ export const queryMenuAll = (): Promise<MenuDTO[] | undefined> => {
 /**
  * 查询所有父级菜单
  */
-export const queryMenuAllParent = (): Promise<MenuDTO[] | undefined> => {
+export const queryMenuAllParent = async (): Promise<MenuDTO[] | undefined> => {
 	const request = new Request<MenuDTO[]>();
 	return request
 		.get(`${CapabilityApiBaseURL}/menu/query/all/parent`)
@@ -52,7 +52,7 @@ export const queryMenuAllParent = (): Promise<MenuDTO[] | undefined> => {
  * @param menuName 菜单名称
  * @param state 状态
  */
-export const queryMenu = (
+export const queryMenu = async (
 	currentPage: number,
 	eachPageSize: number,
 	pageSort?: string,
@@ -85,7 +85,7 @@ export const queryMenu = (
  * 删除
  * @param ids ID集合
  */
-export const deleteMenu = (ids: string): Promise<number | undefined> => {
+export const deleteMenu = async (ids: string): Promise<number | undefined> => {
 	// 初始化
 	const request = new Request<number>();
 	// 地址
@@ -107,7 +107,7 @@ export const deleteMenu = (ids: string): Promise<number | undefined> => {
  *
  * @param id ID
  */
-export const getMenu = (id: number): Promise<MenuDTO | undefined> => {
+export const getMenu = async (id: number): Promise<MenuDTO | undefined> => {
 	// 初始化
 	const request = new Request<MenuDTO>();
 	// 地址
@@ -129,7 +129,7 @@ export const getMenu = (id: number): Promise<MenuDTO | undefined> => {
  *
  * @param dto DTO
  */
-export const saveMenu = (dto: MenuDTO): Promise<string | undefined> => {
+export const saveMenu = async (dto: MenuDTO): Promise<string | undefined> => {
 	// 初始化
 	const request = new Request<string>();
 	// 地址

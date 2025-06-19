@@ -10,7 +10,9 @@ import type { ImageCaptchaDTO, MailCaptchaDTO } from "@src/apis/message/dto";
 /**
  * 获取图形验证码
  */
-export const getImageCaptcha = (): Promise<ImageCaptchaDTO | undefined> => {
+export const getImageCaptcha = async (): Promise<
+	ImageCaptchaDTO | undefined
+> => {
 	const request = new Request<ImageCaptchaDTO>();
 	return request
 		.get(`${MessageApiBaseURL}/image/get/captcha`)
@@ -35,7 +37,7 @@ export const getImageCaptcha = (): Promise<ImageCaptchaDTO | undefined> => {
  * @param imageCaptcha 图形验证码
  * @param imageCaptchaCacheName 图形验证码缓存名称
  */
-export const getMailCaptcha = (
+export const getMailCaptcha = async (
 	mail: string,
 	imageCaptcha: string,
 	imageCaptchaCacheName: string,

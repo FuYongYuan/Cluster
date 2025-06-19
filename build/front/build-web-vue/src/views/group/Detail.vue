@@ -1,25 +1,25 @@
 <template>
-    <div>
-        <a-upload-dragger
-                v-model:fileList="fileList"
-                name="uploadFile"
-                accept=".json"
-                :multiple="true"
-                :show-upload-list="false"
-                :customRequest="uploadData"
-                :before-upload="beforeUpload"
-                @change="handleChange"
-                @drop="handleDrop"
-        >
-            <p>
-                <icon-font type="icon-cloud-upload" class="icon-cloud-upload"/>
-            </p>
-            <p>
-                文件上传
-            </p>
-            <a-progress v-if="fileProgressShow" :percent="fileProgress" :steps="6" :show-info="false"/>
-        </a-upload-dragger>
-    </div>
+  <div>
+    <a-upload-dragger
+        v-model:fileList="fileList"
+        name="uploadFile"
+        accept=".json"
+        :multiple="true"
+        :show-upload-list="false"
+        :customRequest="uploadData"
+        :before-upload="beforeUpload"
+        @change="handleChange"
+        @drop="handleDrop"
+    >
+      <p>
+        <icon-font type="icon-cloud-upload" class="icon-cloud-upload"/>
+      </p>
+      <p>
+        文件上传
+      </p>
+      <a-progress v-if="fileProgressShow" :percent="fileProgress" :steps="6" :show-info="false"/>
+    </a-upload-dragger>
+  </div>
 </template>
 
 <script lang="ts">

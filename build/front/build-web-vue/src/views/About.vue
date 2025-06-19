@@ -1,5 +1,5 @@
 <template>
-    <a-button @click="add">ADD</a-button>
+  <a-button @click="">ADD</a-button>
 </template>
 
 <script lang="ts">

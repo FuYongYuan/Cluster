@@ -1,8 +1,8 @@
 <template>
-    <div class="logo">
-        <img src="/images/logo.png" alt="">
-        <h3 v-show="!collapsed" class="title">AiFuWaiWai</h3>
-    </div>
+  <div class="logo">
+    <img src="/images/logo.png" alt="">
+    <h3 v-show="!collapsed" class="title">AiFuWaiWai</h3>
+  </div>
 </template>
 
 <script lang="ts">

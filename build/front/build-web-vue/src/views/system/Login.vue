@@ -1,80 +1,80 @@
 <template>
-    <div class="login-container">
-        <a-row>
-            <a-col :xs="2" :md="4" :sm="6" :lg="8" :xl="16"></a-col>
-            <a-col :xs="20" :sm="16" :md="12" :lg="8" :xl="6">
-                <div class="login-container-form">
-                    <header>
-                        <img src="/images/logo.png" alt="logo"/>
-                        <h1>哎呋歪歪平台</h1>
-                    </header>
-                    <a-form :model="form" :rules="rules" @finish="loginFinish">
-                        <a-form-item has-feedback name="account">
-                            <a-input
-                                    v-model:value="form.account"
-                                    placeholder="用户名"
-                            >
-                                <template v-slot:prefix>
-                                    <icon-font type="icon-user"/>
-                                </template>
-                            </a-input>
-                        </a-form-item>
-                        <a-form-item has-feedback name="password">
-                            <a-input-password
-                                    v-model:value="form.password"
-                                    placeholder="密码"
-                            >
-                                <template v-slot:prefix>
-                                    <icon-font type="icon-lock"/>
-                                </template>
-                            </a-input-password>
-                        </a-form-item>
-                        <a-form-item has-feedback name="imageCaptcha">
-                            <a-input
-                                    v-model:value="form.imageCaptcha"
-                                    placeholder="验证码"
-                            >
-                                <template v-slot:prefix>
-                                    <icon-font type="icon-image"/>
-                                </template>
-                                <template v-slot:suffix>
-                                    <img
-                                            :src="imageCaptchaDTO.imageData"
-                                            alt="验证码"
-                                            @click="imageCaptchaClick"
-                                    />
-                                </template>
-                            </a-input>
-                        </a-form-item>
-                        <a-form-item style="margin-bottom: 0">
-                            <a-button
-                                    type="primary"
-                                    shape="round"
-                                    html-type="submit"
-                                    class="button-side"
-                                    :loading="loginLoading"
-                            >
-                                <template #icon>
-                                    <icon-font type="icon-login"/>
-                                </template>
-                                登录
-                            </a-button>
-                            <a-button shape="round" html-type="button" class="button-side" href="/register">
-                                <template #icon>
-                                    <icon-font type="icon-adduser"/>
-                                </template>
-                                注册
-                            </a-button>
-                        </a-form-item>
-                        <a-form-item> 忘记密码 ->
-                            <a-button type="link" href="/recover" class="button-link">立即找回</a-button>
-                        </a-form-item>
-                    </a-form>
-                </div>
-            </a-col>
-            <a-col :xs="2" :md="4" :sm="6" :lg="8" :xl="2"></a-col>
-        </a-row>
-    </div>
+  <div class="login-container">
+    <a-row>
+      <a-col :xs="2" :md="4" :sm="6" :lg="8" :xl="16"></a-col>
+      <a-col :xs="20" :sm="16" :md="12" :lg="8" :xl="6">
+        <div class="login-container-form">
+          <header>
+            <img src="/images/logo.png" alt="logo"/>
+            <h1>哎呋歪歪平台</h1>
+          </header>
+          <a-form :model="form" :rules="rules" @finish="loginFinish">
+            <a-form-item has-feedback name="account">
+              <a-input
+                  v-model:value="form.account"
+                  placeholder="用户名"
+              >
+                <template v-slot:prefix>
+                  <icon-font type="icon-user"/>
+                </template>
+              </a-input>
+            </a-form-item>
+            <a-form-item has-feedback name="password">
+              <a-input-password
+                  v-model:value="form.password"
+                  placeholder="密码"
+              >
+                <template v-slot:prefix>
+                  <icon-font type="icon-lock"/>
+                </template>
+              </a-input-password>
+            </a-form-item>
+            <a-form-item has-feedback name="imageCaptcha">
+              <a-input
+                  v-model:value="form.imageCaptcha"
+                  placeholder="验证码"
+              >
+                <template v-slot:prefix>
+                  <icon-font type="icon-image"/>
+                </template>
+                <template v-slot:suffix>
+                  <img
+                      :src="imageCaptchaDTO.imageData"
+                      alt="验证码"
+                      @click="imageCaptchaClick"
+                  />
+                </template>
+              </a-input>
+            </a-form-item>
+            <a-form-item style="margin-bottom: 0">
+              <a-button
+                  type="primary"
+                  shape="round"
+                  html-type="submit"
+                  class="button-side"
+                  :loading="loginLoading"
+              >
+                <template #icon>
+                  <icon-font type="icon-login"/>
+                </template>
+                登录
+              </a-button>
+              <a-button shape="round" html-type="button" class="button-side" href="/register">
+                <template #icon>
+                  <icon-font type="icon-adduser"/>
+                </template>
+                注册
+              </a-button>
+            </a-form-item>
+            <a-form-item> 忘记密码 ->
+              <a-button type="link" href="/recover" class="button-link">立即找回</a-button>
+            </a-form-item>
+          </a-form>
+        </div>
+      </a-col>
+      <a-col :xs="2" :md="4" :sm="6" :lg="8" :xl="2"></a-col>
+    </a-row>
+  </div>
 </template>
 
 <script lang="ts">
@@ -182,7 +182,10 @@ export default defineComponent({
 					localStorage.setItem(LocalStorageManagerName, result.account);
 				}
 				localStorage.setItem(LocalStorageJwtToken, result.jwtToken);
-				localStorage.setItem(LocalStorageInvalidDate, result.invalidDate);
+				localStorage.setItem(
+					LocalStorageInvalidDate,
+					result.invalidDate.toString(),
+				);
 
 				const menuList = await queryHaveMenu();
 				localStorage.setItem(
@@ -209,7 +212,7 @@ export default defineComponent({
 			account: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入账号！");
 						} else {
@@ -222,7 +225,7 @@ export default defineComponent({
 			password: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入密码！");
 						} else {
@@ -235,7 +238,7 @@ export default defineComponent({
 			imageCaptcha: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入验证码！");
 						} else {

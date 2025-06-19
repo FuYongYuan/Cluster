@@ -1,75 +1,75 @@
 <template>
-    <a-modal
-            :open="open"
-            :confirm-loading="loadingState"
-            @cancel="handleCancel"
-    >
-        <template #title>
-            <icon-font type="icon-detail"/>
-            参数详情
-        </template>
-        <template #footer>
-            <a-button class="ant-btn-daybreak" :loading="loadingState" @click="handleOk">
-                <icon-font type="icon-save" v-if="!loadingState"/>
-                保存
-            </a-button>
-            <a-button :loading="loadingState" @click="handleCancel">
-                <icon-font type="icon-close" v-if="!loadingState"/>
-                关闭
-            </a-button>
-        </template>
+  <a-modal
+      :open="open"
+      :confirm-loading="loadingState"
+      @cancel="handleCancel"
+  >
+    <template #title>
+      <icon-font type="icon-detail"/>
+      参数详情
+    </template>
+    <template #footer>
+      <a-button class="ant-btn-daybreak" :loading="loadingState" @click="handleOk">
+        <icon-font type="icon-save" v-if="!loadingState"/>
+        保存
+      </a-button>
+      <a-button :loading="loadingState" @click="handleCancel">
+        <icon-font type="icon-close" v-if="!loadingState"/>
+        关闭
+      </a-button>
+    </template>
 
-        <a-spin tip="加载中......" :spinning="loadingState">
-            <a-form
-                    ref="detail"
-                    :model="form"
-                    :rules="rules"
-                    :label-col="{ span: 4 }"
-                    :wrapper-col="{ span: 20 }"
-            >
-                <a-form-item has-feedback label="参数编码" name="parameterCode">
-                    <a-input
-                            v-model:value="form.parameterCode"
-                            placeholder="参数编码"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-code"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
-                <a-form-item has-feedback label="参数名称" name="parameterName">
-                    <a-input
-                            v-model:value="form.parameterName"
-                            placeholder="参数名称"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-Field-String"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
-                <a-form-item label="参数值" name="parameterValue">
-                    <a-textarea
-                            v-model:value="form.parameterValue"
-                            placeholder="参数值"
-                            :maxlength="10000"
-                            allowClear
-                            showCount
-                    />
-                </a-form-item>
-                <a-form-item label="参数说明" name="parameterExplain">
-                    <a-textarea
-                            v-model:value="form.parameterExplain"
-                            placeholder="参数说明"
-                            :maxlength="1000"
-                            allowClear
-                            showCount
-                    />
-                </a-form-item>
-            </a-form>
-        </a-spin>
-    </a-modal>
+    <a-spin tip="加载中......" :spinning="loadingState">
+      <a-form
+          ref="detail"
+          :model="form"
+          :rules="rules"
+          :label-col="{ span: 4 }"
+          :wrapper-col="{ span: 20 }"
+      >
+        <a-form-item has-feedback label="参数编码" name="parameterCode">
+          <a-input
+              v-model:value="form.parameterCode"
+              placeholder="参数编码"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-code"/>
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item has-feedback label="参数名称" name="parameterName">
+          <a-input
+              v-model:value="form.parameterName"
+              placeholder="参数名称"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-Field-String"/>
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item label="参数值" name="parameterValue">
+          <a-textarea
+              v-model:value="form.parameterValue"
+              placeholder="参数值"
+              :maxlength="10000"
+              allowClear
+              showCount
+          />
+        </a-form-item>
+        <a-form-item label="参数说明" name="parameterExplain">
+          <a-textarea
+              v-model:value="form.parameterExplain"
+              placeholder="参数说明"
+              :maxlength="1000"
+              allowClear
+              showCount
+          />
+        </a-form-item>
+      </a-form>
+    </a-spin>
+  </a-modal>
 </template>
 
 <script lang="ts">
@@ -99,7 +99,7 @@ export default defineComponent({
 	// 发出更新
 	emits: ["update:open", "query"],
 	// 执行
-	setup(props, context) {
+	setup(_, context) {
 		//------------------------------------------------------------------------------------------------------------------参数
 		// 详情DOM
 		const detail = ref<FormInstance>();
@@ -176,7 +176,7 @@ export default defineComponent({
 			parameterCode: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入参数编码！");
 						} else {
@@ -189,7 +189,7 @@ export default defineComponent({
 			parameterName: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入参数名称！");
 						} else {

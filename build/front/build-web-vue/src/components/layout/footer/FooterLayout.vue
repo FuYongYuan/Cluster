@@ -1,5 +1,5 @@
 <template>
-    <a-layout-footer class="app-footer"> FYY</a-layout-footer>
+  <a-layout-footer class="app-footer"> FYY</a-layout-footer>
 </template>
 
 <script lang="ts">

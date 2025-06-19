@@ -1,102 +1,102 @@
 <template>
-    <div class="login-container">
-        <a-row>
-            <a-col :xs="2" :md="4" :sm="6" :lg="8" :xl="16"></a-col>
-            <a-col :xs="20" :sm="16" :md="12" :lg="8" :xl="6">
-                <div class="login-container-form">
-                    <header>
-                        <img src="/images/logo.png" alt="logo"/>
-                        <h1>找回密码</h1>
-                    </header>
-                    <a-form :model="form" :rules="rules" @finish="recoverFinish">
-                        <a-form-item has-feedback name="mail">
-                            <a-input
-                                    v-model:value="form.mail"
-                                    placeholder="电子邮箱"
-                            >
-                                <template v-slot:prefix>
-                                    <icon-font type="icon-mail"/>
-                                </template>
-                            </a-input>
-                        </a-form-item>
-                        <a-form-item has-feedback name="password">
-                            <a-input-password
-                                    v-model:value="form.password"
-                                    placeholder="新密码"
-                            >
-                                <template v-slot:prefix>
-                                    <icon-font type="icon-lock"/>
-                                </template>
-                            </a-input-password>
-                        </a-form-item>
-                        <a-form-item has-feedback name="confirmPassword">
-                            <a-input-password
-                                    v-model:value="form.confirmPassword"
-                                    placeholder="确认密码"
-                            >
-                                <template v-slot:prefix>
-                                    <icon-font type="icon-key"/>
-                                </template>
-                            </a-input-password>
-                        </a-form-item>
-                        <a-form-item has-feedback name="imageCaptcha">
-                            <a-input
-                                    v-model:value="form.imageCaptcha"
-                                    placeholder="验证码"
-                            >
-                                <template v-slot:prefix>
-                                    <icon-font type="icon-image"/>
-                                </template>
-                                <template v-slot:suffix>
-                                    <img
-                                            :src="imageCaptchaDTO.imageData"
-                                            alt="验证码"
-                                            @click="imageCaptchaClick"
-                                    />
-                                </template>
-                            </a-input>
-                        </a-form-item>
-                        <a-form-item has-feedback name="mailCaptcha">
-                            <a-input
-                                    v-model:value="form.mailCaptcha"
-                                    placeholder="验证码"
-                            >
-                                <template v-slot:prefix>
-                                    <icon-font type="icon-codelibrary"/>
-                                </template>
-                                <template v-slot:suffix>
-                                    <a-button type="text" class="button-link-captcha" :loading="mailLoading"
-                                              @click="mailCaptchaClick">{{ mailCaptchaText }}
-                                    </a-button>
-                                </template>
-                            </a-input>
-                        </a-form-item>
-                        <a-form-item>
-                            <a-button
-                                    type="primary"
-                                    shape="round"
-                                    html-type="submit"
-                                    class="button-side"
-                                    :loading="recoverLoading"
-                            >
-                                <template #icon>
-                                    <icon-font type="icon-edit"/>
-                                </template>
-                                修改
-                            </a-button>
-                            <a-button shape="round" html-type="button" href="/login">
-                                <template #icon>
-                                    <icon-font type="icon-rollback"/>
-                                </template>
-                                返回
-                            </a-button>
-                        </a-form-item>
-                    </a-form>
-                </div>
-            </a-col>
-            <a-col :xs="2" :md="4" :sm="6" :lg="8" :xl="2"></a-col>
-        </a-row>
-    </div>
+  <div class="login-container">
+    <a-row>
+      <a-col :xs="2" :md="4" :sm="6" :lg="8" :xl="16"></a-col>
+      <a-col :xs="20" :sm="16" :md="12" :lg="8" :xl="6">
+        <div class="login-container-form">
+          <header>
+            <img src="/images/logo.png" alt="logo"/>
+            <h1>找回密码</h1>
+          </header>
+          <a-form :model="form" :rules="rules" @finish="recoverFinish">
+            <a-form-item has-feedback name="mail">
+              <a-input
+                  v-model:value="form.mail"
+                  placeholder="电子邮箱"
+              >
+                <template v-slot:prefix>
+                  <icon-font type="icon-mail"/>
+                </template>
+              </a-input>
+            </a-form-item>
+            <a-form-item has-feedback name="password">
+              <a-input-password
+                  v-model:value="form.password"
+                  placeholder="新密码"
+              >
+                <template v-slot:prefix>
+                  <icon-font type="icon-lock"/>
+                </template>
+              </a-input-password>
+            </a-form-item>
+            <a-form-item has-feedback name="confirmPassword">
+              <a-input-password
+                  v-model:value="form.confirmPassword"
+                  placeholder="确认密码"
+              >
+                <template v-slot:prefix>
+                  <icon-font type="icon-key"/>
+                </template>
+              </a-input-password>
+            </a-form-item>
+            <a-form-item has-feedback name="imageCaptcha">
+              <a-input
+                  v-model:value="form.imageCaptcha"
+                  placeholder="验证码"
+              >
+                <template v-slot:prefix>
+                  <icon-font type="icon-image"/>
+                </template>
+                <template v-slot:suffix>
+                  <img
+                      :src="imageCaptchaDTO.imageData"
+                      alt="验证码"
+                      @click="imageCaptchaClick"
+                  />
+                </template>
+              </a-input>
+            </a-form-item>
+            <a-form-item has-feedback name="mailCaptcha">
+              <a-input
+                  v-model:value="form.mailCaptcha"
+                  placeholder="验证码"
+              >
+                <template v-slot:prefix>
+                  <icon-font type="icon-codelibrary"/>
+                </template>
+                <template v-slot:suffix>
+                  <a-button type="text" class="button-link-captcha" :loading="mailLoading"
+                            @click="mailCaptchaClick">{{ mailCaptchaText }}
+                  </a-button>
+                </template>
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-button
+                  type="primary"
+                  shape="round"
+                  html-type="submit"
+                  class="button-side"
+                  :loading="recoverLoading"
+              >
+                <template #icon>
+                  <icon-font type="icon-edit"/>
+                </template>
+                修改
+              </a-button>
+              <a-button shape="round" html-type="button" href="/login">
+                <template #icon>
+                  <icon-font type="icon-rollback"/>
+                </template>
+                返回
+              </a-button>
+            </a-form-item>
+          </a-form>
+        </div>
+      </a-col>
+      <a-col :xs="2" :md="4" :sm="6" :lg="8" :xl="2"></a-col>
+    </a-row>
+  </div>
 </template>
 
 <script lang="ts">
@@ -243,7 +243,7 @@ export default defineComponent({
 			mail: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入电子邮箱！");
 						} else {
@@ -261,7 +261,7 @@ export default defineComponent({
 			password: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入密码！");
 						} else {
@@ -274,7 +274,7 @@ export default defineComponent({
 			confirmPassword: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入确认密码！");
 						} else {
@@ -285,7 +285,7 @@ export default defineComponent({
 				},
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value !== undefined && recoverData.form.password !== value) {
 							return Promise.reject("确认密码与密码不一致！");
 						} else {
@@ -298,7 +298,7 @@ export default defineComponent({
 			imageCaptcha: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入验证码！");
 						} else {
@@ -311,7 +311,7 @@ export default defineComponent({
 			mailCaptcha: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入验证码！");
 						} else {

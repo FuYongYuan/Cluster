@@ -1,5 +1,5 @@
 <template>
-    <div>group manage</div>
+  <div>group manage</div>
 </template>
 
 <script lang="ts">

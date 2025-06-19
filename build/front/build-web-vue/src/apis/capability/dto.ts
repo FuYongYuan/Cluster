@@ -23,11 +23,11 @@ export type MenuDTO = {
 	// 备注
 	remark?: string;
 	// 创建时间
-	createTime?: date;
+	createTime?: Date;
 	// 创建人名称
 	creatorName?: string;
 	// 修改时间
-	updateTime?: date;
+	updateTime?: Date;
 	// 修改人名称
 	updaterName?: string;
 	// 状态(0.正常 99.删除)

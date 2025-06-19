@@ -1,138 +1,138 @@
 <template>
-    <a-drawer
-            placement="right"
-            :closable="false"
-            :open="open"
-            @close="handleCancel"
-    >
-        <template #title>
-            <icon-font type="icon-detail"/>
-            个人信息详情
-        </template>
-        <template #footer>
-            <a-space>
-                <a-button class="ant-btn-daybreak" :loading="loadingState" @click="handleOk">
-                    <icon-font type="icon-save" v-if="!loadingState"/>
-                    保存
-                </a-button>
-                <a-button :loading="loadingState" @click="handleCancel">
-                    <icon-font type="icon-close" v-if="!loadingState"/>
-                    关闭
-                </a-button>
-            </a-space>
-        </template>
+  <a-drawer
+      placement="right"
+      :closable="false"
+      :open="open"
+      @close="handleCancel"
+  >
+    <template v-slot:title>
+      <icon-font type="icon-detail"/>
+      个人信息详情
+    </template>
+    <template v-slot:footer>
+      <a-space>
+        <a-button class="ant-btn-daybreak" :loading="loadingState" @click="handleOk">
+          <icon-font type="icon-save" v-if="!loadingState"/>
+          保存
+        </a-button>
+        <a-button :loading="loadingState" @click="handleCancel">
+          <icon-font type="icon-close" v-if="!loadingState"/>
+          关闭
+        </a-button>
+      </a-space>
+    </template>
 
-        <a-spin tip="加载中......" :spinning="loadingState">
-            <div>
-                <a-row>
-                    <a-col :span="10"></a-col>
-                    <a-col :span="8">
-                        <a-upload
-                                v-model:fileList="fileList"
-                                name="uploadFile"
-                                list-type="picture-card"
-                                accept=".jpeg,.gif,.png,.jpg"
-                                :show-upload-list="false"
-                                :customRequest="uploadData"
-                                :before-upload="beforeUpload"
-                                @change="handleChange"
-                        >
-                            <div>
-                                <a-avatar v-if="form.headImgUrl"
-                                          :size="{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }"
-                                          :src="form.headImgUrl" shape="square">
-                                </a-avatar>
-                                <div v-else>
-                                    <icon-font type="icon-reload" v-if="loadingState"/>
-                                    <icon-font type="icon-image" v-else/>
-                                    <div class="ant-upload-text">上传头像</div>
-                                </div>
-                                <a-progress v-if="headImgProgressShow" :percent="headImgProgress" :steps="6"
-                                            :show-info="false"/>
-                            </div>
-                        </a-upload>
-                    </a-col>
-                    <a-col :span="6"></a-col>
-                </a-row>
-            </div>
-            <a-form
-                    ref="detail"
-                    :model="form"
-                    :rules="rules"
-                    :label-col="{ span: 7 }"
-                    :wrapper-col="{ span: 17 }"
+    <a-spin tip="加载中......" :spinning="loadingState">
+      <div>
+        <a-row>
+          <a-col :span="10"></a-col>
+          <a-col :span="8">
+            <a-upload
+                v-model:fileList="fileList"
+                name="uploadFile"
+                list-type="picture-card"
+                accept=".jpeg,.gif,.png,.jpg"
+                :show-upload-list="false"
+                :customRequest="uploadData"
+                :before-upload="beforeUpload"
+                @change="handleChange"
             >
-                <a-form-item has-feedback label="账号" name="account">
-                    <a-input
-                            v-model:value="form.account"
-                            placeholder="账号"
-                            disabled
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-cloud"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
+              <div>
+                <a-avatar v-if="form.headImgUrl"
+                          :size="{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }"
+                          :src="form.headImgUrl" shape="square">
+                </a-avatar>
+                <div v-else>
+                  <icon-font type="icon-reload" v-if="loadingState"/>
+                  <icon-font type="icon-image" v-else/>
+                  <div class="ant-upload-text">上传头像</div>
+                </div>
+                <a-progress v-if="headImgProgressShow" :percent="headImgProgress" :steps="6"
+                            :show-info="false"/>
+              </div>
+            </a-upload>
+          </a-col>
+          <a-col :span="6"></a-col>
+        </a-row>
+      </div>
+      <a-form
+          ref="detail"
+          :model="form"
+          :rules="rules"
+          :label-col="{ span: 7 }"
+          :wrapper-col="{ span: 17 }"
+      >
+        <a-form-item has-feedback label="账号" name="account">
+          <a-input
+              v-model:value="form.account"
+              placeholder="账号"
+              disabled
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-cloud"/>
+            </template>
+          </a-input>
+        </a-form-item>
 
-                <a-form-item has-feedback label="管理员名称" name="managerName">
-                    <a-input
-                            v-model:value="form.managerName"
-                            placeholder="管理员名称"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-user"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
+        <a-form-item has-feedback label="管理员名称" name="managerName">
+          <a-input
+              v-model:value="form.managerName"
+              placeholder="管理员名称"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-user"/>
+            </template>
+          </a-input>
+        </a-form-item>
 
-                <a-form-item has-feedback label="年龄" name="age">
-                    <a-input
-                            v-model:value="form.age"
-                            placeholder="年龄"
-                            type="number"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-Field-Binary"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
+        <a-form-item has-feedback label="年龄" name="age">
+          <a-input
+              v-model:value="form.age"
+              placeholder="年龄"
+              type="number"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-Field-Binary"/>
+            </template>
+          </a-input>
+        </a-form-item>
 
-                <a-form-item has-feedback label="性别" name="sex">
-                    <a-radio-group v-model:value="form.sex" button-style="solid">
-                        <a-radio-button :value=0>保密</a-radio-button>
-                        <a-radio-button :value=1>男</a-radio-button>
-                        <a-radio-button :value=2>女</a-radio-button>
-                    </a-radio-group>
-                </a-form-item>
+        <a-form-item has-feedback label="性别" name="sex">
+          <a-radio-group v-model:value="form.sex" button-style="solid">
+            <a-radio-button :value=0>保密</a-radio-button>
+            <a-radio-button :value=1>男</a-radio-button>
+            <a-radio-button :value=2>女</a-radio-button>
+          </a-radio-group>
+        </a-form-item>
 
-                <a-form-item has-feedback label="手机号码" name="mobile">
-                    <a-input
-                            v-model:value="form.mobile"
-                            placeholder="手机号码"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-mobile"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
+        <a-form-item has-feedback label="手机号码" name="mobile">
+          <a-input
+              v-model:value="form.mobile"
+              placeholder="手机号码"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-mobile"/>
+            </template>
+          </a-input>
+        </a-form-item>
 
-                <a-form-item has-feedback label="邮箱" name="mail">
-                    <a-input
-                            v-model:value="form.mail"
-                            placeholder="邮箱"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-mail"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
-            </a-form>
-        </a-spin>
-    </a-drawer>
+        <a-form-item has-feedback label="邮箱" name="mail">
+          <a-input
+              v-model:value="form.mail"
+              placeholder="邮箱"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-mail"/>
+            </template>
+          </a-input>
+        </a-form-item>
+      </a-form>
+    </a-spin>
+  </a-drawer>
 </template>
 
 <script lang="ts">
@@ -169,7 +169,7 @@ export default defineComponent({
 	// 发出更新
 	emits: ["update:open"],
 	// 执行
-	setup(props, context) {
+	setup(_, context) {
 		//------------------------------------------------------------------------------------------------------------------参数
 		// 详情DOM
 		const detail = ref<FormInstance>();
@@ -321,7 +321,7 @@ export default defineComponent({
 			account: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入账号！");
 						} else {
@@ -334,7 +334,7 @@ export default defineComponent({
 			managerName: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入管理员名称！");
 						} else {
@@ -347,7 +347,7 @@ export default defineComponent({
 			mail: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入电子邮箱！");
 						} else {
@@ -364,7 +364,7 @@ export default defineComponent({
 			],
 			mobile: [
 				{
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入手机号码！");
 						} else {

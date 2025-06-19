@@ -1,41 +1,45 @@
 <template>
-    <a-layout-sider
-            style="min-height: 100vh"
-            v-model:collapsed="collapsed"
-            collapsible
+  <a-layout-sider
+      style="min-height: 100vh"
+      v-model:collapsed="collapsed"
+      collapsible
+  >
+    <Logo/>
+    <a-menu
+        theme="dark"
+        v-model:selectedKeys="selectedKeys"
+        mode="inline"
     >
-        <Logo/>
-        <a-menu
-                theme="dark"
-                v-model:selectedKeys="selectedKeys"
-                mode="inline"
-        >
-            <!-- 动态菜单 -->
-            <template v-for="menu in menuList">
-                <!-- 存在子菜单 -->
-                <a-sub-menu v-if="menu.sub && menu.sub.length > 1" :key="menu.id">
-                    <template v-slot:title>
+      <!-- 动态菜单 -->
+      <template v-for="menu in menuList">
+        <!-- 存在子菜单 -->
+        <template v-if="menu.sub && menu.sub.length > 1">
+          <a-sub-menu :key="menu.id">
+            <template v-slot:title>
             <span>
               <icon-font :type="menu.menuIcon"/>
               <span>{{ menu.menuName }}</span>
             </span>
-                    </template>
-                    <!-- 子菜单 -->
-                    <a-menu-item v-for="sub in menu.sub" :key="sub.id"
-                                 @click="clickMenuItem(sub.id,sub.pageName,sub.menuUrl,sub.isTurn)">
-                        <icon-font :type="sub.menuIcon"/>
-                        <span>{{ sub.menuName }}</span>
-                    </a-menu-item>
-                </a-sub-menu>
-                <!-- 单独菜单 -->
-                <a-menu-item v-else :key="menu.id"
-                             @click="clickMenuItem(menu.id,menu.pageName,menu.menuUrl,menu.isTurn)">
-                    <icon-font :type="menu.menuIcon"/>
-                    <span>{{ menu.menuName }}</span>
-                </a-menu-item>
             </template>
-        </a-menu>
-    </a-layout-sider>
+            <!-- 子菜单 -->
+            <a-menu-item v-for="sub in menu.sub" :key="sub.id"
+                         @click="clickMenuItem(sub.pageName,sub.menuUrl,sub.isTurn)">
+              <icon-font :type="sub.menuIcon"/>
+              <span>{{ sub.menuName }}</span>
+            </a-menu-item>
+          </a-sub-menu>
+        </template>
+        <!-- 单独菜单 -->
+        <template v-else>
+          <a-menu-item :key="menu.id"
+                       @click="clickMenuItem(menu.pageName,menu.menuUrl,menu.isTurn)">
+            <icon-font :type="menu.menuIcon"/>
+            <span>{{ menu.menuName }}</span>
+          </a-menu-item>
+        </template>
+      </template>
+    </a-menu>
+  </a-layout-sider>
 </template>
 
 <script lang="ts">
@@ -44,6 +48,7 @@ import Logo from "@src/components/logo/Logo.vue";
 import IconFont from "@src/assets/iconfont/icon";
 import { LocalStorageAccountMenuList } from "@src/apis/commons/constant";
 import { useRoute, useRouter } from "vue-router";
+import { isNumber } from "@src/utils/validate/regex.ts";
 
 export default defineComponent({
 	// 页面名称
@@ -84,7 +89,6 @@ export default defineComponent({
 		//------------------------------------------------------------------------------------------------------------------方法
 		// 子菜单-实际跳转菜单-点击事件
 		const clickMenuItem = (
-			id: number,
 			pageName: string,
 			menuUrl: string,
 			isTurn: boolean,
@@ -102,7 +106,12 @@ export default defineComponent({
 		watch(
 			() => route.meta.menuId,
 			(menuId) => {
-				selectedKeys.value = [menuId];
+				if (isNumber(menuId)) {
+					selectedKeys.value = [menuId];
+				} else {
+					// 或者保持原值不变 selectedKeys.value
+					selectedKeys.value = [];
+				}
 			},
 		);
 

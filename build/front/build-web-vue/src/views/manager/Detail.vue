@@ -1,116 +1,116 @@
 <template>
-    <a-modal
-            :open="open"
-            :confirm-loading="loadingState"
-            @cancel="handleCancel"
-    >
-        <template #title>
-            <icon-font type="icon-detail"/>
-            管理员详情
-        </template>
-        <template #footer>
-            <a-button class="ant-btn-daybreak" :loading="loadingState" @click="handleOk">
-                <icon-font type="icon-save" v-if="!loadingState"/>
-                保存
-            </a-button>
-            <a-button :loading="loadingState" @click="handleCancel">
-                <icon-font type="icon-close" v-if="!loadingState"/>
-                关闭
-            </a-button>
-        </template>
+  <a-modal
+      :open="open"
+      :confirm-loading="loadingState"
+      @cancel="handleCancel"
+  >
+    <template #title>
+      <icon-font type="icon-detail"/>
+      管理员详情
+    </template>
+    <template #footer>
+      <a-button class="ant-btn-daybreak" :loading="loadingState" @click="handleOk">
+        <icon-font type="icon-save" v-if="!loadingState"/>
+        保存
+      </a-button>
+      <a-button :loading="loadingState" @click="handleCancel">
+        <icon-font type="icon-close" v-if="!loadingState"/>
+        关闭
+      </a-button>
+    </template>
 
-        <a-spin tip="加载中......" :spinning="loadingState">
-            <a-form
-                    ref="detail"
-                    :model="form"
-                    :rules="rules"
-                    :label-col="{ span: 4 }"
-                    :wrapper-col="{ span: 20 }"
-            >
-                <a-form-item has-feedback label="账号" name="account">
-                    <a-input
-                            v-model:value="form.account"
-                            placeholder="账号"
-                            disabled
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-cloud"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
+    <a-spin tip="加载中......" :spinning="loadingState">
+      <a-form
+          ref="detail"
+          :model="form"
+          :rules="rules"
+          :label-col="{ span: 4 }"
+          :wrapper-col="{ span: 20 }"
+      >
+        <a-form-item has-feedback label="账号" name="account">
+          <a-input
+              v-model:value="form.account"
+              placeholder="账号"
+              disabled
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-cloud"/>
+            </template>
+          </a-input>
+        </a-form-item>
 
-                <a-form-item has-feedback label="管理员名称" name="managerName">
-                    <a-input
-                            v-model:value="form.managerName"
-                            placeholder="管理员名称"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-user"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
+        <a-form-item has-feedback label="管理员名称" name="managerName">
+          <a-input
+              v-model:value="form.managerName"
+              placeholder="管理员名称"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-user"/>
+            </template>
+          </a-input>
+        </a-form-item>
 
-                <a-form-item has-feedback label="年龄" name="age">
-                    <a-input
-                            v-model:value="form.age"
-                            placeholder="年龄"
-                            type="number"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-Field-Binary"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
+        <a-form-item has-feedback label="年龄" name="age">
+          <a-input
+              v-model:value="form.age"
+              placeholder="年龄"
+              type="number"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-Field-Binary"/>
+            </template>
+          </a-input>
+        </a-form-item>
 
-                <a-form-item has-feedback label="性别" name="sex">
-                    <a-radio-group v-model:value="form.sex" button-style="solid">
-                        <a-radio-button :value=0>保密</a-radio-button>
-                        <a-radio-button :value=1>男</a-radio-button>
-                        <a-radio-button :value=2>女</a-radio-button>
-                    </a-radio-group>
-                </a-form-item>
+        <a-form-item has-feedback label="性别" name="sex">
+          <a-radio-group v-model:value="form.sex" button-style="solid">
+            <a-radio-button :value=0>保密</a-radio-button>
+            <a-radio-button :value=1>男</a-radio-button>
+            <a-radio-button :value=2>女</a-radio-button>
+          </a-radio-group>
+        </a-form-item>
 
-                <a-form-item has-feedback label="手机号码" name="mobile">
-                    <a-input
-                            v-model:value="form.mobile"
-                            placeholder="手机号码"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-mobile"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
+        <a-form-item has-feedback label="手机号码" name="mobile">
+          <a-input
+              v-model:value="form.mobile"
+              placeholder="手机号码"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-mobile"/>
+            </template>
+          </a-input>
+        </a-form-item>
 
-                <a-form-item has-feedback label="邮箱" name="mail">
-                    <a-input
-                            v-model:value="form.mail"
-                            placeholder="邮箱"
-                            allowClear
-                    >
-                        <template v-slot:prefix>
-                            <icon-font type="icon-mail"/>
-                        </template>
-                    </a-input>
-                </a-form-item>
+        <a-form-item has-feedback label="邮箱" name="mail">
+          <a-input
+              v-model:value="form.mail"
+              placeholder="邮箱"
+              allowClear
+          >
+            <template v-slot:prefix>
+              <icon-font type="icon-mail"/>
+            </template>
+          </a-input>
+        </a-form-item>
 
-                <a-form-item has-feedback label="角色" name="roleIds">
-                    <a-transfer
-                            v-model:selected-keys="transferSelected"
-                            v-model:target-keys="transferHave"
-                            :data-source="transferData"
-                            show-search
-                            :filter-option="transferFilterOption"
-                            :render="item => item.title"
-                            @change="transferHandleChange"
-                    />
-                </a-form-item>
+        <a-form-item has-feedback label="角色" name="roleIds">
+          <a-transfer
+              v-model:selected-keys="transferSelected"
+              v-model:target-keys="transferHave"
+              :data-source="transferData"
+              show-search
+              :filter-option="transferFilterOption"
+              :render="(item:TransferData) => item.title"
+              @change="transferHandleChange"
+          />
+        </a-form-item>
 
-            </a-form>
-        </a-spin>
-    </a-modal>
+      </a-form>
+    </a-spin>
+  </a-modal>
 </template>
 
 <script lang="ts">
@@ -147,7 +147,7 @@ export default defineComponent({
 	// 发出更新
 	emits: ["update:open", "query"],
 	// 执行
-	setup(props, context) {
+	setup(_, context) {
 		//------------------------------------------------------------------------------------------------------------------初试事件
 		// 初始化加载执行
 		onMounted(() => {
@@ -276,7 +276,7 @@ export default defineComponent({
 			account: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入账号！");
 						} else {
@@ -289,7 +289,7 @@ export default defineComponent({
 			managerName: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入管理员名称！");
 						} else {
@@ -302,7 +302,7 @@ export default defineComponent({
 			mail: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入电子邮箱！");
 						} else {
@@ -319,7 +319,7 @@ export default defineComponent({
 			],
 			mobile: [
 				{
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请输入手机号码！");
 						} else {
@@ -337,7 +337,7 @@ export default defineComponent({
 			roleIds: [
 				{
 					required: true,
-					validator: async (rule: RuleObject, value: string | undefined) => {
+					validator: async (_: RuleObject, value: string | undefined) => {
 						if (value === undefined || value === "") {
 							return Promise.reject("请选择角色！");
 						} else {

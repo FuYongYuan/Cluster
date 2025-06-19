@@ -1,14 +1,14 @@
 <template>
-    <a-config-provider :locale="locale">
-        <a-layout>
-            <MenuLayout/>
-            <a-layout>
-                <HeaderLayout/>
-                <ContentLayout/>
-                <FooterLayout/>
-            </a-layout>
-        </a-layout>
-    </a-config-provider>
+  <a-config-provider :locale="locale">
+    <a-layout>
+      <MenuLayout/>
+      <a-layout>
+        <HeaderLayout/>
+        <ContentLayout/>
+        <FooterLayout/>
+      </a-layout>
+    </a-layout>
+  </a-config-provider>
 </template>
 
 <script lang="ts">
