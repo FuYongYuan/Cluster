@@ -189,6 +189,7 @@ import {
 } from "@src/apis/member/service";
 import type { ManagerDTO } from "@src/apis/member/dto";
 import ManagerDetail from "@src/views/manager/Detail.vue";
+import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
 
 export default defineComponent({
 	// 页面名称
@@ -200,93 +201,93 @@ export default defineComponent({
 		// 参数详情页
 		ManagerDetail,
 	},
-	// 数据
-	data() {
-		return {
-			// 表格列
-			columns: [
-				{
-					title: "账号",
-					dataIndex: "account",
-					resizable: true,
-					width: "10%",
-					sorter: {
-						multiple: 1,
-					},
-				},
-				{
-					title: "名称",
-					dataIndex: "managerName",
-					width: "10%",
-					sorter: {
-						multiple: 2,
-					},
-				},
-				{
-					title: "邮箱",
-					dataIndex: "mail",
-					resizable: true,
-					width: "15%",
-					ellipsis: true,
-					sorter: {
-						multiple: 3,
-					},
-				},
-				{
-					title: "手机号码",
-					dataIndex: "mobile",
-					ellipsis: true,
-					width: "10%",
-					sorter: {
-						multiple: 4,
-					},
-				},
-				{
-					title: "年龄",
-					dataIndex: "age",
-					ellipsis: true,
-					width: "5%",
-					sorter: {
-						multiple: 5,
-					},
-				},
-				{
-					title: "性别",
-					dataIndex: "sex",
-					ellipsis: true,
-					width: "5%",
-					sorter: {
-						multiple: 6,
-					},
-				},
-				{
-					title: "修改人",
-					dataIndex: "updaterName",
-					width: "7%",
-					sorter: {
-						multiple: 7,
-					},
-				},
-				{
-					title: "修改时间",
-					dataIndex: "updateTime",
-					width: "13%",
-					sorter: {
-						multiple: 8,
-					},
-					defaultSortOrder: "descend",
-				},
-				{
-					dataIndex: "action",
-					title: "操作",
-					fixed: "right",
-				},
-			],
-		};
-	},
 	// 执行
 	setup() {
 		//------------------------------------------------------------------------------------------------------------------参数
+		// 表格列-计算前
+		const initialColumns = [
+			{
+				title: "账号",
+				dataIndex: "account",
+				resizable: true,
+				width: "10%",
+				sorter: {
+					multiple: 1,
+				},
+			},
+			{
+				title: "名称",
+				dataIndex: "managerName",
+				width: "10%",
+				sorter: {
+					multiple: 2,
+				},
+			},
+			{
+				title: "邮箱",
+				dataIndex: "mail",
+				resizable: true,
+				width: "15%",
+				ellipsis: true,
+				sorter: {
+					multiple: 3,
+				},
+			},
+			{
+				title: "手机号码",
+				dataIndex: "mobile",
+				ellipsis: true,
+				width: "10%",
+				sorter: {
+					multiple: 4,
+				},
+			},
+			{
+				title: "年龄",
+				dataIndex: "age",
+				ellipsis: true,
+				width: "5%",
+				sorter: {
+					multiple: 5,
+				},
+			},
+			{
+				title: "性别",
+				dataIndex: "sex",
+				ellipsis: true,
+				width: "5%",
+				sorter: {
+					multiple: 6,
+				},
+			},
+			{
+				title: "修改人",
+				dataIndex: "updaterName",
+				width: "7%",
+				sorter: {
+					multiple: 7,
+				},
+			},
+			{
+				title: "修改时间",
+				dataIndex: "updateTime",
+				width: "13%",
+				sorter: {
+					multiple: 8,
+				},
+				defaultSortOrder: "descend",
+			},
+			{
+				dataIndex: "action",
+				title: "操作",
+				fixed: "right",
+			},
+		];
+
+		// 表格列-计算后
+		const { computedColumns: columns } =
+			useResponsiveTableColumnWidth(initialColumns);
+
 		// 分页配置
 		const pagination = reactive<TablePaginationConfig>({
 			// 总数
@@ -530,6 +531,7 @@ export default defineComponent({
 		return {
 			// 基础方法
 			...toRefs(manageData),
+			columns,
 			pagination,
 			rowSelection,
 			handleResizeColumn,

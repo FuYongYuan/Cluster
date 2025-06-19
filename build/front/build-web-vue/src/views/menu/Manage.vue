@@ -167,6 +167,7 @@ import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
 import { deleteMenu, queryMenu } from "@src/apis/capability/service";
 import type { MenuDTO } from "@src/apis/capability/dto";
 import MenuDetail from "@src/views/menu/Detail.vue";
+import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
 
 export default defineComponent({
 	// 页面名称
@@ -178,103 +179,103 @@ export default defineComponent({
 		// 详情页
 		MenuDetail,
 	},
-	// 数据
-	data() {
-		return {
-			// 表格列
-			columns: [
-				{
-					title: "菜单名称",
-					dataIndex: "menuName",
-					width: "10%",
-					sorter: {
-						multiple: 1,
-					},
-				},
-				{
-					title: "菜单地址",
-					dataIndex: "menuUrl",
-					width: "10%",
-					sorter: {
-						multiple: 2,
-					},
-				},
-				{
-					title: "菜单图标",
-					dataIndex: "menuIcon",
-					width: "8%",
-					sorter: {
-						multiple: 3,
-					},
-				},
-				{
-					title: "页面名称",
-					dataIndex: "pageName",
-					width: "10%",
-					sorter: {
-						multiple: 4,
-					},
-				},
-				{
-					title: "跳转",
-					dataIndex: "isTurn",
-					width: "5%",
-					sorter: {
-						multiple: 5,
-					},
-				},
-				{
-					title: "首页",
-					dataIndex: "isHome",
-					width: "5%",
-					sorter: {
-						multiple: 6,
-					},
-				},
-				{
-					title: "排序",
-					dataIndex: "menuOrder",
-					width: "5%",
-					sorter: {
-						multiple: 7,
-					},
-					defaultSortOrder: "ascend",
-				},
-				{
-					title: "父级菜单",
-					dataIndex: "parentId",
-					width: "10%",
-					sorter: {
-						multiple: 8,
-					},
-				},
-				{
-					title: "修改人",
-					dataIndex: "updaterName",
-					width: "7%",
-					sorter: {
-						multiple: 9,
-					},
-				},
-				{
-					title: "修改时间",
-					dataIndex: "updateTime",
-					width: "11%",
-					sorter: {
-						multiple: 10,
-					},
-				},
-				{
-					dataIndex: "action",
-					title: "操作",
-					fixed: "right",
-				},
-			],
-		};
-	},
 	// 执行
 	setup() {
 		//------------------------------------------------------------------------------------------------------------------参数
+		// 表格列-计算前
+		const initialColumns = [
+			{
+				title: "菜单名称",
+				dataIndex: "menuName",
+				width: "10%",
+				sorter: {
+					multiple: 1,
+				},
+			},
+			{
+				title: "菜单地址",
+				dataIndex: "menuUrl",
+				width: "10%",
+				sorter: {
+					multiple: 2,
+				},
+			},
+			{
+				title: "菜单图标",
+				dataIndex: "menuIcon",
+				width: "8%",
+				sorter: {
+					multiple: 3,
+				},
+			},
+			{
+				title: "页面名称",
+				dataIndex: "pageName",
+				width: "10%",
+				sorter: {
+					multiple: 4,
+				},
+			},
+			{
+				title: "跳转",
+				dataIndex: "isTurn",
+				width: "5%",
+				sorter: {
+					multiple: 5,
+				},
+			},
+			{
+				title: "首页",
+				dataIndex: "isHome",
+				width: "5%",
+				sorter: {
+					multiple: 6,
+				},
+			},
+			{
+				title: "排序",
+				dataIndex: "menuOrder",
+				width: "5%",
+				sorter: {
+					multiple: 7,
+				},
+				defaultSortOrder: "ascend",
+			},
+			{
+				title: "父级菜单",
+				dataIndex: "parentId",
+				width: "10%",
+				sorter: {
+					multiple: 8,
+				},
+			},
+			{
+				title: "修改人",
+				dataIndex: "updaterName",
+				width: "7%",
+				sorter: {
+					multiple: 9,
+				},
+			},
+			{
+				title: "修改时间",
+				dataIndex: "updateTime",
+				width: "11%",
+				sorter: {
+					multiple: 10,
+				},
+			},
+			{
+				dataIndex: "action",
+				title: "操作",
+				fixed: "right",
+			},
+		];
+
+		// 表格列-计算后
+		const { computedColumns: columns } =
+			useResponsiveTableColumnWidth(initialColumns);
+
 		// 分页配置
 		const pagination = reactive<TablePaginationConfig>({
 			// 总数
@@ -466,6 +467,7 @@ export default defineComponent({
 		return {
 			// 基础方法
 			...toRefs(manageData),
+			columns,
 			pagination,
 			rowSelection,
 			handleResizeColumn,

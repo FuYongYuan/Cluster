@@ -155,6 +155,7 @@ import {
 } from "@src/apis/dictionary/service";
 import type { ParameterDTO } from "@src/apis/dictionary/dto";
 import ParameterDetail from "@src/views/parameter/Detail.vue";
+import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
 
 export default defineComponent({
 	// 页面名称
@@ -166,75 +167,75 @@ export default defineComponent({
 		// 参数详情页
 		ParameterDetail,
 	},
-	// 数据
-	data() {
-		return {
-			// 表格列
-			columns: [
-				{
-					title: "参数编码",
-					dataIndex: "parameterCode",
-					resizable: true,
-					width: "15%",
-					sorter: {
-						multiple: 1,
-					},
-				},
-				{
-					title: "参数名称",
-					dataIndex: "parameterName",
-					width: "10%",
-					sorter: {
-						multiple: 2,
-					},
-				},
-				{
-					title: "参数值",
-					dataIndex: "parameterValue",
-					resizable: true,
-					width: "15%",
-					ellipsis: true,
-					sorter: {
-						multiple: 3,
-					},
-				},
-				{
-					title: "参数备注",
-					dataIndex: "parameterExplain",
-					ellipsis: true,
-					width: "15%",
-					sorter: {
-						multiple: 4,
-					},
-				},
-				{
-					title: "修改人",
-					dataIndex: "updaterName",
-					width: "7%",
-					sorter: {
-						multiple: 5,
-					},
-				},
-				{
-					title: "修改时间",
-					dataIndex: "updateTime",
-					width: "13%",
-					sorter: {
-						multiple: 6,
-					},
-					defaultSortOrder: "descend",
-				},
-				{
-					dataIndex: "action",
-					title: "操作",
-					fixed: "right",
-				},
-			],
-		};
-	},
 	// 执行
 	setup() {
 		//------------------------------------------------------------------------------------------------------------------参数
+		// 表格列-计算前
+		const initialColumns = [
+			{
+				title: "参数编码",
+				dataIndex: "parameterCode",
+				resizable: true,
+				width: "15%",
+				sorter: {
+					multiple: 1,
+				},
+			},
+			{
+				title: "参数名称",
+				dataIndex: "parameterName",
+				width: "10%",
+				sorter: {
+					multiple: 2,
+				},
+			},
+			{
+				title: "参数值",
+				dataIndex: "parameterValue",
+				resizable: true,
+				width: "15%",
+				ellipsis: true,
+				sorter: {
+					multiple: 3,
+				},
+			},
+			{
+				title: "参数备注",
+				dataIndex: "parameterExplain",
+				ellipsis: true,
+				width: "15%",
+				sorter: {
+					multiple: 4,
+				},
+			},
+			{
+				title: "修改人",
+				dataIndex: "updaterName",
+				width: "7%",
+				sorter: {
+					multiple: 5,
+				},
+			},
+			{
+				title: "修改时间",
+				dataIndex: "updateTime",
+				width: "13%",
+				sorter: {
+					multiple: 6,
+				},
+				defaultSortOrder: "descend",
+			},
+			{
+				dataIndex: "action",
+				title: "操作",
+				fixed: "right",
+			},
+		];
+
+		// 表格列-计算后
+		const { computedColumns: columns } =
+			useResponsiveTableColumnWidth(initialColumns);
+
 		// 分页配置
 		const pagination = reactive<TablePaginationConfig>({
 			// 总数
@@ -446,6 +447,7 @@ export default defineComponent({
 		return {
 			// 基础方法
 			...toRefs(manageData),
+			columns,
 			pagination,
 			rowSelection,
 			handleResizeColumn,

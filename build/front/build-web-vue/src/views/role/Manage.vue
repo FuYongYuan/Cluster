@@ -139,6 +139,7 @@ import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
 import { deleteRole, queryRole } from "@src/apis/authorization/service";
 import type { RoleDTO } from "@src/apis/authorization/dto";
 import RoleDetail from "@src/views/role/Detail.vue";
+import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
 
 export default defineComponent({
 	// 页面名称
@@ -150,56 +151,56 @@ export default defineComponent({
 		// 详情页
 		RoleDetail,
 	},
-	// 数据
-	data() {
-		return {
-			// 表格列
-			columns: [
-				{
-					title: "角色名称",
-					dataIndex: "roleName",
-					width: "20%",
-					sorter: {
-						multiple: 1,
-					},
-				},
-				{
-					title: "备注",
-					dataIndex: "remark",
-					ellipsis: true,
-					width: "40%",
-					sorter: {
-						multiple: 2,
-					},
-				},
-				{
-					title: "修改人",
-					dataIndex: "updaterName",
-					width: "7%",
-					sorter: {
-						multiple: 3,
-					},
-				},
-				{
-					title: "修改时间",
-					dataIndex: "updateTime",
-					width: "13%",
-					sorter: {
-						multiple: 4,
-					},
-					defaultSortOrder: "descend",
-				},
-				{
-					dataIndex: "action",
-					title: "操作",
-					fixed: "right",
-				},
-			],
-		};
-	},
 	// 执行
 	setup() {
 		//------------------------------------------------------------------------------------------------------------------参数
+		// 表格列-计算前
+		const initialColumns = [
+			{
+				title: "角色名称",
+				dataIndex: "roleName",
+				width: "20%",
+				sorter: {
+					multiple: 1,
+				},
+			},
+			{
+				title: "备注",
+				dataIndex: "remark",
+				ellipsis: true,
+				width: "40%",
+				sorter: {
+					multiple: 2,
+				},
+			},
+			{
+				title: "修改人",
+				dataIndex: "updaterName",
+				width: "7%",
+				sorter: {
+					multiple: 3,
+				},
+			},
+			{
+				title: "修改时间",
+				dataIndex: "updateTime",
+				width: "13%",
+				sorter: {
+					multiple: 4,
+				},
+				defaultSortOrder: "descend",
+			},
+			{
+				dataIndex: "action",
+				title: "操作",
+				fixed: "right",
+			},
+		];
+
+		// 表格列-计算后
+		const { computedColumns: columns } =
+			useResponsiveTableColumnWidth(initialColumns);
+
 		// 分页配置
 		const pagination = reactive<TablePaginationConfig>({
 			// 总数
@@ -391,6 +392,7 @@ export default defineComponent({
 		return {
 			// 基础方法
 			...toRefs(manageData),
+			columns,
 			pagination,
 			rowSelection,
 			handleResizeColumn,
