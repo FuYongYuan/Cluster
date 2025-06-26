@@ -7,8 +7,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
-
 /**
  * 管理员 RestController
  *
@@ -62,7 +60,7 @@ public interface ManagerFeignClient {
      */
     @GetMapping(value = "/get/{id}")
     ResultMessage<ManagerDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException;
 
 
@@ -87,7 +85,7 @@ public interface ManagerFeignClient {
      * @throws BusinessException 业务错误
      */
     @PostMapping(value = "/save/return/dto/{authentication}")
-    ResultMessage<BigInteger> saveReturnDTO(
+    ResultMessage<Long> saveReturnDTO(
             @RequestBody ManagerDTO dto,
             @PathVariable(value = "authentication") String authentication
     ) throws BusinessException;

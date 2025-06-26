@@ -4,7 +4,6 @@ import cn.fyy.authorization.bean.bo.RoleMenuBO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -22,7 +21,7 @@ public interface RoleMenuService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(RoleMenuBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(RoleMenuBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -34,7 +33,7 @@ public interface RoleMenuService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    RoleMenuBO save(RoleMenuBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    RoleMenuBO save(RoleMenuBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 保存集合
@@ -46,7 +45,7 @@ public interface RoleMenuService {
      * @return 是否成功
      * @throws BusinessException 错误
      */
-    ResultMessage<String> saveList(BigInteger roleId, String menuIds, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> saveList(Long roleId, String menuIds, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 根据角色查询现有菜单关系列表
@@ -55,7 +54,7 @@ public interface RoleMenuService {
      * @return 现有菜单关系列表
      * @throws BusinessException 错误
      */
-    List<RoleMenuBO> queryByRoleIdOrderByUpdateTimeAsc(BigInteger roleId) throws BusinessException;
+    List<RoleMenuBO> queryByRoleIdOrderByUpdateTimeAsc(Long roleId) throws BusinessException;
 
     /**
      * 根据现有管理员拥有的角色查询所拥有的菜单ID
@@ -64,6 +63,6 @@ public interface RoleMenuService {
      * @return 现有菜单关系列表
      * @throws BusinessException 错误
      */
-    List<BigInteger> queryMenuIdsByRoleIds(List<BigInteger> roleIds) throws BusinessException;
+    List<Long> queryMenuIdsByRoleIds(List<Long> roleIds) throws BusinessException;
 
 }

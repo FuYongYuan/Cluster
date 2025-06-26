@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +24,12 @@ public class DataBaseFileBO implements Serializable {
     /**
      * 主键ID
      */
-    private BigInteger id;
+    private Long id;
 
     /**
      * 项目群ID
      */
-    private BigInteger projectGroupId;
+    private Long projectGroupId;
 
     /**
      * 文件地址
@@ -45,7 +44,7 @@ public class DataBaseFileBO implements Serializable {
     /**
      * 创建人ID
      */
-    private BigInteger creatorId;
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -60,7 +59,7 @@ public class DataBaseFileBO implements Serializable {
     /**
      * 修改人ID
      */
-    private BigInteger updaterId;
+    private Long updaterId;
 
     /**
      * 修改人名称

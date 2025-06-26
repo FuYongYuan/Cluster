@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class ParameterExcel implements Serializable {
      * 主键ID
      */
     @ExcelField(columnName = "主键ID", order = 1)
-    private BigInteger id;
+    private Long id;
 
     /**
      * 参数代码

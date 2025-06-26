@@ -5,7 +5,6 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import org.springframework.data.domain.Page;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public interface ProjectService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(ProjectBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(ProjectBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -35,7 +34,7 @@ public interface ProjectService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ProjectBO save(ProjectBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    ProjectBO save(ProjectBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 根据主键查询
@@ -44,7 +43,7 @@ public interface ProjectService {
      * @return 项目
      * @throws BusinessException 错误
      */
-    ProjectBO getById(BigInteger id) throws BusinessException;
+    ProjectBO getById(Long id) throws BusinessException;
 
     /**
      * 根据主键删除 主键可以是多个用,分割
@@ -55,7 +54,7 @@ public interface ProjectService {
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
      */
-    int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 根据名称查询项目列表
@@ -71,7 +70,7 @@ public interface ProjectService {
     Page<ProjectBO> queryByProjectGroupIdAndProjectNameAndState(
             int currentPage,
             int eachPageSize,
-            BigInteger projectGroupId,
+            Long projectGroupId,
             String projectName,
             Integer state
     ) throws BusinessException;
@@ -86,7 +85,7 @@ public interface ProjectService {
      * @throws BusinessException 错误
      */
     List<ProjectBO> queryByProjectGroupIdAndState(
-            BigInteger projectGroupId,
+            Long projectGroupId,
             Integer state
     ) throws BusinessException;
 }

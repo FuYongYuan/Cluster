@@ -7,7 +7,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -59,7 +58,7 @@ public interface MenuFeignClient {
      */
     @GetMapping(value = "/get/{id}")
     ResultMessage<MenuDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException;
 
     /**
@@ -93,7 +92,7 @@ public interface MenuFeignClient {
      */
     @GetMapping(value = "/query/hierarchy/menu/list/{menuIdList}")
     ResultMessage<List<MenuDTO>> queryHierarchyMenuByMenuIdList(
-            @PathVariable(value = "menuIdList") List<BigInteger> menuIdList
+            @PathVariable(value = "menuIdList") List<Long> menuIdList
     ) throws BusinessException;
 
     /**
@@ -105,6 +104,6 @@ public interface MenuFeignClient {
      */
     @GetMapping(value = "/query/menu/list/{menuIdList}")
     ResultMessage<List<MenuDTO>> queryMenuByMenuIdList(
-            @PathVariable(value = "menuIdList") List<BigInteger> menuIdList
+            @PathVariable(value = "menuIdList") List<Long> menuIdList
     ) throws BusinessException;
 }

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -29,19 +28,19 @@ public class RoleMenuDO implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
     /**
      * 角色ID
      */
     @Column(name = "role_id")
-    private BigInteger roleId;
+    private Long roleId;
 
     /**
      * 菜单ID
      */
     @Column(name = "menu_id")
-    private BigInteger menuId;
+    private Long menuId;
 
     /**
      * 创建时间
@@ -53,7 +52,7 @@ public class RoleMenuDO implements Serializable {
      * 创建人ID
      */
     @Column(name = "creator_id")
-    private BigInteger creatorId;
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -71,7 +70,7 @@ public class RoleMenuDO implements Serializable {
      * 修改人ID
      */
     @Column(name = "updater_id")
-    private BigInteger updaterId;
+    private Long updaterId;
 
     /**
      * 修改人名称

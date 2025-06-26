@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +24,12 @@ public class ProjectColumnBO implements Serializable {
     /**
      * 主键ID
      */
-    private BigInteger id;
+    private Long id;
 
     /**
      * 项目表ID
      */
-    private BigInteger projectTableId;
+    private Long projectTableId;
 
     /**
      * 所属的库
@@ -100,7 +99,7 @@ public class ProjectColumnBO implements Serializable {
     /**
      * 创建人ID
      */
-    private BigInteger creatorId;
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -115,7 +114,7 @@ public class ProjectColumnBO implements Serializable {
     /**
      * 修改人ID
      */
-    private BigInteger updaterId;
+    private Long updaterId;
 
     /**
      * 修改人名称

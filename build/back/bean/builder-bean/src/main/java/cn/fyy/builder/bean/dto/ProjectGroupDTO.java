@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +27,14 @@ public class ProjectGroupDTO implements Serializable {
     /**
      * 主键ID
      */
-    @Schema(name = "id", description = "主键ID", type = "BigInteger", nullable = false)
-    private BigInteger id;
+    @Schema(name = "id", description = "主键ID", type = "Long", nullable = false)
+    private Long id;
 
     /**
      * 管理员ID
      */
-    @Schema(name = "managerId", description = "管理员ID", type = "BigInteger")
-    private BigInteger managerId;
+    @Schema(name = "managerId", description = "管理员ID", type = "Long")
+    private Long managerId;
 
     /**
      * 项目群名称
@@ -125,8 +124,8 @@ public class ProjectGroupDTO implements Serializable {
     /**
      * 创建人ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "BigInteger")
-    private BigInteger creatorId;
+    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -144,8 +143,8 @@ public class ProjectGroupDTO implements Serializable {
     /**
      * 修改人ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "BigInteger")
-    private BigInteger updaterId;
+    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    private Long updaterId;
 
     /**
      * 修改人名称

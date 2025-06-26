@@ -23,7 +23,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.OutputStream;
-import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
@@ -133,7 +132,7 @@ public class ParameterRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<ParameterDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException {
         return new ResultMessage<>(ParameterDTO.toDTO(parameterServiceImpl.getById(id)));
     }

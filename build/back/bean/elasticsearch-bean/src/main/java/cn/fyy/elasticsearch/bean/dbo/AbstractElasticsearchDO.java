@@ -1,6 +1,8 @@
 package cn.fyy.elasticsearch.bean.dbo;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -17,9 +19,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-@Builder(toBuilder = true)
-@NoArgsConstructor
-@AllArgsConstructor
 // 索引名称
 @Document(indexName = "share")
 public abstract class AbstractElasticsearchDO implements Serializable {

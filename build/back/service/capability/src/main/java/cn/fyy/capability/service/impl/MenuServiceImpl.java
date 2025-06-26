@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -54,7 +53,7 @@ public class MenuServiceImpl implements MenuService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(MenuBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(MenuBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             MenuBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
@@ -77,7 +76,7 @@ public class MenuServiceImpl implements MenuService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public MenuBO save(MenuBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public MenuBO save(MenuBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             MenuDO dbo;
@@ -162,9 +161,9 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return menuRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return menuRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }
@@ -177,7 +176,7 @@ public class MenuServiceImpl implements MenuService {
      * @return 菜单
      */
     @Override
-    public MenuBO getById(BigInteger id) throws BusinessException {
+    public MenuBO getById(Long id) throws BusinessException {
         try {
             return MenuBO.toBO(menuRepository.getReferenceById(id));
         } catch (Exception e) {
@@ -227,7 +226,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public List<MenuBO> queryHierarchyMenuByMenuIdList(
-            List<BigInteger> menuIds
+            List<Long> menuIds
     ) throws BusinessException {
         try {
             List<MenuBO> boList = MenuBO.toBO(
@@ -249,7 +248,7 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     public List<MenuBO> queryMenuByMenuIdList(
-            List<BigInteger> menuIds
+            List<Long> menuIds
     ) throws BusinessException {
         try {
             return MenuBO.toBO(
@@ -268,7 +267,7 @@ public class MenuServiceImpl implements MenuService {
      * @param menuIds 菜单ID集合
      * @param boList  菜单集合
      */
-    private void queryStructureByManagerId(List<BigInteger> menuIds, List<MenuBO> boList) {
+    private void queryStructureByManagerId(List<Long> menuIds, List<MenuBO> boList) {
         for (MenuBO bo : boList) {
             bo.setSub(MenuBO.toBO(
                     menuRepository.queryHierarchyMenuByMenuIdListAndParentIdAndState(menuIds, bo.getId(), DataState.NORMAL.getCode())

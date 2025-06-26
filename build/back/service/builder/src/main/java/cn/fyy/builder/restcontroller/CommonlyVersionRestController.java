@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 
 /**
  * 常用版本 RestController
@@ -82,7 +81,7 @@ public class CommonlyVersionRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<CommonlyVersionDTO> get(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException {
         return new ResultMessage<>(CommonlyVersionDTO.toDTO(commonlyVersionServiceImpl.getById(id)));
     }

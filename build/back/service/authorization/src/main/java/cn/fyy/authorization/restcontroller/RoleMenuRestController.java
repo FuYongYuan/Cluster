@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -80,7 +79,7 @@ public class RoleMenuRestController {
     @PostMapping(value = "/save/list/{roleId}/{menuIds}")
     public ResultMessage<String> saveList(
             HttpServletRequest request,
-            @PathVariable("roleId") BigInteger roleId,
+            @PathVariable("roleId") Long roleId,
             @PathVariable("menuIds") String menuIds
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
@@ -102,7 +101,7 @@ public class RoleMenuRestController {
     )
     @GetMapping(value = "/query/list/{roleId}")
     public ResultMessage<List<RoleMenuDTO>> queryByRoleIdOrderByUpdateTimeAsc(
-            @PathVariable("roleId") BigInteger roleId
+            @PathVariable("roleId") Long roleId
     ) throws BusinessException {
         return new ResultMessage<>(RoleMenuDTO.toDTO(roleMenuServiceImpl.queryByRoleIdOrderByUpdateTimeAsc(roleId)));
     }

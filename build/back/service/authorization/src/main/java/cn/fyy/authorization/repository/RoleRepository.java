@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface RoleRepository extends JpaRepository<RoleDO, BigInteger>, JpaSpecificationExecutor<RoleDO> {
+public interface RoleRepository extends JpaRepository<RoleDO, Long>, JpaSpecificationExecutor<RoleDO> {
 
     /**
      * 根据ids保存状态
@@ -31,7 +30,7 @@ public interface RoleRepository extends JpaRepository<RoleDO, BigInteger>, JpaSp
      */
     @Modifying
     @Query(value = "UPDATE RoleDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
+    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
      * 根据管理员主键ID查询能够使用的角色列表
@@ -47,7 +46,7 @@ public interface RoleRepository extends JpaRepository<RoleDO, BigInteger>, JpaSp
                     "AND r.state = ?2 " +
                     "ORDER BY r.update_time"
     )
-    List<RoleDO> queryManagerHaveRoleByManagerIdAndState(BigInteger managerId, int state);
+    List<RoleDO> queryManagerHaveRoleByManagerIdAndState(Long managerId, int state);
 
     /**
      * 查询所有可用角色

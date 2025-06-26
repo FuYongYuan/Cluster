@@ -29,13 +29,13 @@ import encrypt.AesUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.seata.spring.annotation.GlobalTransactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -122,6 +122,9 @@ public class SystemServiceImpl implements SystemService {
      */
     @Override
     @WriteDataSource
+    // 因为feign调用，使用全局事务
+    @GlobalTransactional
+    // 添加本地事务
     @Transactional(rollbackFor = BusinessException.class)
     public ResultMessage<JwtDTO> login(String account, String loginPassword, String imageCaptcha, String imageCaptchaCacheName, HttpServletRequest request) throws BusinessException {
         try {
@@ -164,6 +167,9 @@ public class SystemServiceImpl implements SystemService {
      */
     @Override
     @WriteDataSource
+    // 因为feign调用，使用全局事务
+    @GlobalTransactional
+    // 添加本地事务
     @Transactional(rollbackFor = BusinessException.class)
     public ResultMessage<Boolean> register(String mail, String account, String loginPassword, String mailCaptcha, String mailCaptchaCacheName, String visitorIpAddress) throws BusinessException {
         try {
@@ -194,7 +200,7 @@ public class SystemServiceImpl implements SystemService {
                             String encryptString = dto.getAccount() + dto.getLoginPassword();
                             String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
 
-                            BigInteger id = managerFeignClient.saveReturnDTO(dto, encrypt).getData();
+                            Long id = managerFeignClient.saveReturnDTO(dto, encrypt).getData();
                             // 保存角色
                             RoleManagerBO roleManagerBO = RoleManagerBO.builder()
                                     .managerId(id)
@@ -227,6 +233,9 @@ public class SystemServiceImpl implements SystemService {
      */
     @Override
     @WriteDataSource
+    // 因为feign调用，使用全局事务
+    @GlobalTransactional
+    // 添加本地事务
     @Transactional(rollbackFor = BusinessException.class)
     public ResultMessage<Integer> recover(String mail, String loginPassword, String mailCaptcha, String mailCaptchaCacheName) throws BusinessException {
         try {
@@ -260,7 +269,7 @@ public class SystemServiceImpl implements SystemService {
      * @throws BusinessException 错误
      */
     @Override
-    public ResultMessage<Boolean> logout(BigInteger managerId) throws BusinessException {
+    public ResultMessage<Boolean> logout(Long managerId) throws BusinessException {
         try {
             redisServiceImpl.delete(RedisSelect.FIFTEEN, ConstantParameter.MANAGER_JWT_INFO_KEY + managerId);
             return new ResultMessage<>(true);
@@ -277,10 +286,10 @@ public class SystemServiceImpl implements SystemService {
      * @throws BusinessException 错误
      */
     @Override
-    public ResultMessage<List<MenuDTO>> queryManagerHaveMenuByManagerId(BigInteger managerId) throws BusinessException {
+    public ResultMessage<List<MenuDTO>> queryManagerHaveMenuByManagerId(Long managerId) throws BusinessException {
         try {
-            List<BigInteger> roleList = roleServiceImpl.queryManagerHaveRoleByManagerId(managerId).stream().map(RoleBO::getId).toList();
-            List<BigInteger> menuList = roleMenuServiceImpl.queryMenuIdsByRoleIds(roleList);
+            List<Long> roleList = roleServiceImpl.queryManagerHaveRoleByManagerId(managerId).stream().map(RoleBO::getId).toList();
+            List<Long> menuList = roleMenuServiceImpl.queryMenuIdsByRoleIds(roleList);
             return menuFeignClient.queryHierarchyMenuByMenuIdList(menuList);
         } catch (Exception e) {
             throw new BusinessException("根据管理员ID查询拥有的菜单权限", e);
@@ -334,7 +343,7 @@ public class SystemServiceImpl implements SystemService {
                     String encryptString = dto.getAccount() + dto.getLoginPassword();
                     String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
 
-                    ResultMessage<BigInteger> saveResult = managerFeignClient.saveReturnDTO(dto, encrypt);
+                    ResultMessage<Long> saveResult = managerFeignClient.saveReturnDTO(dto, encrypt);
                     Integer saveState = saveResult.getCode();
                     if (saveState == HttpStatus.OK.value()) {
                         String[] roleBOList = roleServiceImpl.queryManagerHaveRoleByManagerId(dto.getId())

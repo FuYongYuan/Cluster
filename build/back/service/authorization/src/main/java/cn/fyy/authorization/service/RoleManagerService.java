@@ -4,8 +4,6 @@ import cn.fyy.authorization.bean.bo.RoleManagerBO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 
-import java.math.BigInteger;
-
 /**
  * 用户角色 Service
  *
@@ -21,7 +19,7 @@ public interface RoleManagerService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(RoleManagerBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(RoleManagerBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -33,7 +31,7 @@ public interface RoleManagerService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    RoleManagerBO save(RoleManagerBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    RoleManagerBO save(RoleManagerBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 保存集合
@@ -45,6 +43,6 @@ public interface RoleManagerService {
      * @return 是否成功
      * @throws BusinessException 错误
      */
-    ResultMessage<String> saveList(BigInteger managerId, String roleIds, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> saveList(Long managerId, String roleIds, Long currentManagerId, String currentManagerName) throws BusinessException;
 
 }

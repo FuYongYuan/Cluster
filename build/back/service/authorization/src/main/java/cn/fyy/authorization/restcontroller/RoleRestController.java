@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -120,7 +119,7 @@ public class RoleRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<RoleDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException {
         return new ResultMessage<>(RoleDTO.toDTO(roleServiceImpl.getById(id)));
     }
@@ -177,7 +176,7 @@ public class RoleRestController {
     )
     @GetMapping(value = "/query/manager/have/role/{managerId}")
     public ResultMessage<List<RoleDTO>> queryManagerHaveRoleByManagerId(
-            @PathVariable("managerId") BigInteger managerId
+            @PathVariable("managerId") Long managerId
     ) throws BusinessException {
         return new ResultMessage<>(RoleDTO.toDTO(roleServiceImpl.queryManagerHaveRoleByManagerId(managerId)));
     }

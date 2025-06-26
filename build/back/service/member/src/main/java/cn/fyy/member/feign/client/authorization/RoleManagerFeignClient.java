@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.math.BigInteger;
 
 /**
  * 角色管理员关系 RestController
@@ -39,7 +38,7 @@ public interface RoleManagerFeignClient {
      */
     @PostMapping(value = "/save/list/{roleId}/{menuIds}")
     ResultMessage<String> saveList(
-            @PathVariable("roleId") BigInteger roleId,
+            @PathVariable("roleId") Long roleId,
             @PathVariable("menuIds") String menuIds
     ) throws BusinessException;
 

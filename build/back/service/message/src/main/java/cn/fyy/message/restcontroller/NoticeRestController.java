@@ -14,8 +14,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
-
 /**
  * 公告 RestController
  *
@@ -81,7 +79,7 @@ public class NoticeRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<NoticeDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException {
         return new ResultMessage<>(NoticeDTO.toDTO(noticeServiceImpl.getById(id)));
     }

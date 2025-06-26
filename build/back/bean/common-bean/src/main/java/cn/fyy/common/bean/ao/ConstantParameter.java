@@ -1,7 +1,5 @@
 package cn.fyy.common.bean.ao;
 
-import java.math.BigInteger;
-
 /**
  * 静态参数类
  *
@@ -68,12 +66,12 @@ public class ConstantParameter {
     /**
      * 系统超级管理员ID
      */
-    public static final BigInteger SYSTEM_ADMIN_MANAGER_ID = new BigInteger("1");
+    public static final Long SYSTEM_ADMIN_MANAGER_ID = 1L;
 
     /**
      * 系统普通管理员权限ID
      */
-    public static final BigInteger SYSTEM_MANAGER_ROLE_ID = new BigInteger("2");
+    public static final Long SYSTEM_MANAGER_ROLE_ID = 2L;
 
     /**
      * 系统管理员名称

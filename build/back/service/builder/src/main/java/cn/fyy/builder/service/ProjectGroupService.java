@@ -5,7 +5,6 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import org.springframework.data.domain.Page;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public interface ProjectGroupService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(ProjectGroupBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(ProjectGroupBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -35,7 +34,7 @@ public interface ProjectGroupService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ProjectGroupBO save(ProjectGroupBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    ProjectGroupBO save(ProjectGroupBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 根据主键查询
@@ -44,7 +43,7 @@ public interface ProjectGroupService {
      * @return 项目群
      * @throws BusinessException 错误
      */
-    ProjectGroupBO getById(BigInteger id) throws BusinessException;
+    ProjectGroupBO getById(Long id) throws BusinessException;
 
     /**
      * 根据主键删除 主键可以是多个用,分割
@@ -55,7 +54,7 @@ public interface ProjectGroupService {
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
      */
-    int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException;
 
 
     /**
@@ -72,7 +71,7 @@ public interface ProjectGroupService {
     Page<ProjectGroupBO> queryByManagerIdAndProjectGroupNameAndState(
             int currentPage,
             int eachPageSize,
-            BigInteger managerId,
+            Long managerId,
             String projectGroupName,
             Integer state
     ) throws BusinessException;
@@ -84,7 +83,7 @@ public interface ProjectGroupService {
      * @return 项目群
      * @throws BusinessException 错误
      */
-    List<ProjectGroupBO> queryByManagerId(BigInteger managerId) throws BusinessException;
+    List<ProjectGroupBO> queryByManagerId(Long managerId) throws BusinessException;
 //
 //    /**
 //     * 根据主键ID生成项目群压缩包
@@ -95,5 +94,5 @@ public interface ProjectGroupService {
 //     * @param response response
 //     * @throws BusinessException 错误
 //     */
-//    void generateById(HttpServletRequest request, HttpServletResponse response, BigInteger id, BigInteger managerId) throws BusinessException;
+//    void generateById(HttpServletRequest request, HttpServletResponse response, Long id, Long managerId) throws BusinessException;
 }

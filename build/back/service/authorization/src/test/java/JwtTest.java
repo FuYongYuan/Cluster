@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 
 @ExtendWith(SpringExtension.class)
@@ -21,7 +20,7 @@ public class JwtTest {
     public void testGenerateToken() {
         var authorities = Arrays.asList("ROLE_USER", "ROLE_ADMIN");
         SecurityUser securityUser = new SecurityUser(
-                new BigInteger("1"),
+                1L,
                 "FYY",
                 "fyy",
                 "fyyain77",

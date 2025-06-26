@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +46,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(RoleManagerBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(RoleManagerBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             RoleManagerBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
@@ -70,7 +69,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public RoleManagerBO save(RoleManagerBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public RoleManagerBO save(RoleManagerBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             RoleManagerDO dbo;
@@ -111,16 +110,16 @@ public class RoleManagerServiceImpl implements RoleManagerService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public ResultMessage<String> saveList(BigInteger managerId, String menuIds, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> saveList(Long managerId, String menuIds, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             if (StringUtils.hasText(menuIds)) {
                 // 删除原先的用户角色关系
                 roleManagerRepository.deleteByManagerId(managerId);
                 // 新增用户角色关系
-                List<BigInteger> menuId = Stream.of(menuIds.split(",")).map(BigInteger::new).toList();
+                List<Long> menuId = Stream.of(menuIds.split(",")).map(Long::valueOf).toList();
                 List<RoleManagerDO> list = new ArrayList<>();
-                for (BigInteger id : menuId) {
+                for (Long id : menuId) {
                     RoleManagerDO bo = RoleManagerDO.builder()
                             .managerId(managerId)
                             .roleId(id)

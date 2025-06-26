@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,17 +25,17 @@ public class RoleManagerBO implements Serializable {
     /**
      * 主键ID
      */
-    private BigInteger id;
+    private Long id;
 
     /**
      * 管理员ID
      */
-    private BigInteger managerId;
+    private Long managerId;
 
     /**
      * 角色ID
      */
-    private BigInteger roleId;
+    private Long roleId;
 
     /**
      * 创建时间
@@ -46,7 +45,7 @@ public class RoleManagerBO implements Serializable {
     /**
      * 创建人ID
      */
-    private BigInteger creatorId;
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -61,7 +60,7 @@ public class RoleManagerBO implements Serializable {
     /**
      * 修改人ID
      */
-    private BigInteger updaterId;
+    private Long updaterId;
 
     /**
      * 修改人名称

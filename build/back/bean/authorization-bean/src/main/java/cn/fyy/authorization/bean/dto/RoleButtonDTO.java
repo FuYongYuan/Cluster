@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,20 +28,20 @@ public class RoleButtonDTO implements Serializable {
     /**
      * 主键ID
      */
-    @Schema(name = "id", description = "主键ID", type = "BigInteger")
-    private BigInteger id;
+    @Schema(name = "id", description = "主键ID", type = "Long")
+    private Long id;
 
     /**
      * 角色ID
      */
-    @Schema(name = "roleId", description = "角色ID", type = "BigInteger")
-    private BigInteger roleId;
+    @Schema(name = "roleId", description = "角色ID", type = "Long")
+    private Long roleId;
 
     /**
      * 按钮ID
      */
-    @Schema(name = "buttonId", description = "按钮ID", type = "BigInteger")
-    private BigInteger buttonId;
+    @Schema(name = "buttonId", description = "按钮ID", type = "Long")
+    private Long buttonId;
 
     /**
      * 创建时间
@@ -54,8 +53,8 @@ public class RoleButtonDTO implements Serializable {
     /**
      * 创建人ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "BigInteger")
-    private BigInteger creatorId;
+    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -73,8 +72,8 @@ public class RoleButtonDTO implements Serializable {
     /**
      * 修改人ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "BigInteger")
-    private BigInteger updaterId;
+    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    private Long updaterId;
 
     /**
      * 修改人名称

@@ -7,8 +7,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
-
 /**
  * 参数 FeignClient调用
  *
@@ -57,7 +55,7 @@ public interface ParameterFeignClient {
      */
     @GetMapping(value = "/get/{id}")
     ResultMessage<ParameterDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException;
 
     /**

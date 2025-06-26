@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
-import java.math.BigInteger;
 import java.time.Instant;
 import java.util.*;
 
@@ -140,14 +139,14 @@ public class JwtTokenService {
      *
      * @return io.jsonwebtoken.Claims
      */
-    public BigInteger getManagerIdFromToken(String token) {
+    public Long getManagerIdFromToken(String token) {
         if (StringUtils.hasText(token)) {
             Map<String, Object> claims;
             try {
                 Jwt jwt = jwtDecoder.decode(token);
                 claims = jwt.getClaims();
                 if (claims != null && !claims.isEmpty()) {
-                    return new BigInteger(String.valueOf(claims.get(ConstantParameter.JWT_MANAGER_ID)));
+                    return Long.valueOf(String.valueOf(claims.get(ConstantParameter.JWT_MANAGER_ID)));
                 }
             } catch (Exception e) {
                 log.error("获取用户ID", e);
@@ -211,7 +210,7 @@ public class JwtTokenService {
                 claims = jwt.getClaims();
                 if (claims != null && !claims.isEmpty()) {
                     return ManagerMessage.builder()
-                            .managerId(new BigInteger(String.valueOf(claims.get(ConstantParameter.JWT_MANAGER_ID))))
+                            .managerId(Long.valueOf(String.valueOf(claims.get(ConstantParameter.JWT_MANAGER_ID))))
                             .managerName(String.valueOf(claims.get(ConstantParameter.JWT_MANAGER_NAME)))
                             .build();
                 }

@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface MenuRepository extends JpaRepository<MenuDO, BigInteger>, JpaSpecificationExecutor<MenuDO> {
+public interface MenuRepository extends JpaRepository<MenuDO, Long>, JpaSpecificationExecutor<MenuDO> {
 
     /**
      * 根据ids保存状态
@@ -31,7 +30,7 @@ public interface MenuRepository extends JpaRepository<MenuDO, BigInteger>, JpaSp
      */
     @Modifying
     @Query(value = "UPDATE MenuDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
+    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
      * 根据菜单ID集合查询菜单
@@ -48,7 +47,7 @@ public interface MenuRepository extends JpaRepository<MenuDO, BigInteger>, JpaSp
                     "AND state = ?3 " +
                     "ORDER BY menu_order"
     )
-    List<MenuDO> queryHierarchyMenuByMenuIdListAndParentIdAndState(List<BigInteger> menuIdList, BigInteger parentId, int state);
+    List<MenuDO> queryHierarchyMenuByMenuIdListAndParentIdAndState(List<Long> menuIdList, Long parentId, int state);
 
     /**
      * 根据菜单ID集合查询菜单
@@ -63,7 +62,7 @@ public interface MenuRepository extends JpaRepository<MenuDO, BigInteger>, JpaSp
                     "AND state = ?2 " +
                     "ORDER BY menu_order"
     )
-    List<MenuDO> queryHierarchyMenuByMenuIdListAndState(List<BigInteger> menuIdList, int state);
+    List<MenuDO> queryHierarchyMenuByMenuIdListAndState(List<Long> menuIdList, int state);
 
     /**
      * 查询所有可用菜单

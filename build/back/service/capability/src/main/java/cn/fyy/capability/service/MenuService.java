@@ -5,7 +5,6 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import org.springframework.data.domain.Page;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public interface MenuService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(MenuBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(MenuBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -35,7 +34,7 @@ public interface MenuService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    MenuBO save(MenuBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    MenuBO save(MenuBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 根据名称查询菜单列表
@@ -65,7 +64,7 @@ public interface MenuService {
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
      */
-    int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 根据主键查询
@@ -74,7 +73,7 @@ public interface MenuService {
      * @return 菜单
      * @throws BusinessException 错误
      */
-    MenuBO getById(BigInteger id) throws BusinessException;
+    MenuBO getById(Long id) throws BusinessException;
 
     /**
      * 查询菜单列表
@@ -102,7 +101,7 @@ public interface MenuService {
      * @throws BusinessException 业务错误
      */
     List<MenuBO> queryHierarchyMenuByMenuIdList(
-            List<BigInteger> menuIdList
+            List<Long> menuIdList
     ) throws BusinessException;
 
     /**
@@ -113,6 +112,6 @@ public interface MenuService {
      * @throws BusinessException 业务错误
      */
     List<MenuBO> queryMenuByMenuIdList(
-            List<BigInteger> menuIds
+            List<Long> menuIds
     ) throws BusinessException;
 }

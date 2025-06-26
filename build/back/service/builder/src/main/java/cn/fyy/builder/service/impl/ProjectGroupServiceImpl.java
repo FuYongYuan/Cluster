@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -62,7 +61,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(ProjectGroupBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(ProjectGroupBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             int use = projectGroupRepository.countByManagerIdAndState(bo.getManagerId(), DataState.NORMAL.getCode()) + 1;
 
@@ -94,7 +93,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ProjectGroupBO save(ProjectGroupBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public ProjectGroupBO save(ProjectGroupBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             ProjectGroupDO dbo;
@@ -132,7 +131,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
      * @return 项目群
      */
     @Override
-    public ProjectGroupBO getById(BigInteger id) throws BusinessException {
+    public ProjectGroupBO getById(Long id) throws BusinessException {
         try {
             return ProjectGroupBO.toBO(projectGroupRepository.getReferenceById(id));
         } catch (Exception e) {
@@ -151,9 +150,9 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return projectGroupRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return projectGroupRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }
@@ -171,7 +170,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
     public Page<ProjectGroupBO> queryByManagerIdAndProjectGroupNameAndState(
             int currentPage,
             int eachPageSize,
-            BigInteger managerId,
+            Long managerId,
             String projectGroupName,
             Integer state
     ) throws BusinessException {
@@ -210,7 +209,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
      * @param managerId 当前登陆人主键ID
      */
     @Override
-    public List<ProjectGroupBO> queryByManagerId(BigInteger managerId) throws BusinessException {
+    public List<ProjectGroupBO> queryByManagerId(Long managerId) throws BusinessException {
         try {
             return ProjectGroupBO.toBO(projectGroupRepository.queryByManagerIdOrderByCreateTime(managerId));
         } catch (Exception e) {
@@ -224,7 +223,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
 //     * @param id 主键ID
 //     */
 //    @Override
-//    public void generateById(HttpServletRequest request, HttpServletResponse response, BigInteger id, BigInteger managerId) throws BusinessException {
+//    public void generateById(HttpServletRequest request, HttpServletResponse response, Long id, Long managerId) throws BusinessException {
 //        String path = null;
 //        try {
 //            // 获取生成设置

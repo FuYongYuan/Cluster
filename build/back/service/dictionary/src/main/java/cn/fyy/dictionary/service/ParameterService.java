@@ -6,7 +6,6 @@ import cn.fyy.dictionary.bean.bo.ParameterBO;
 import excel.operation.ExcelExport;
 import org.springframework.data.domain.Page;
 
-import java.math.BigInteger;
 
 /**
  * 参数 Service
@@ -23,7 +22,7 @@ public interface ParameterService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(ParameterBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(ParameterBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 根据主键删除 主键可以是多个用,分割
@@ -34,7 +33,7 @@ public interface ParameterService {
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
      */
-    int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -46,7 +45,7 @@ public interface ParameterService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ParameterBO save(ParameterBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    ParameterBO save(ParameterBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 根据主键查询
@@ -55,7 +54,7 @@ public interface ParameterService {
      * @return 参数
      * @throws BusinessException 错误
      */
-    ParameterBO getById(BigInteger id) throws BusinessException;
+    ParameterBO getById(Long id) throws BusinessException;
 
     /**
      * 根据参数编号查询

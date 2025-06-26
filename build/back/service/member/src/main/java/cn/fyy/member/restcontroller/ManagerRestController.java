@@ -18,8 +18,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
-
 /**
  * 管理员 RestController
  *
@@ -132,7 +130,7 @@ public class ManagerRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<ManagerDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException {
         return new ResultMessage<>(ManagerDTO.toDTO(managerServiceImpl.getById(id)));
     }
@@ -194,7 +192,7 @@ public class ManagerRestController {
             }
     )
     @PostMapping(value = "/save/return/dto/{authentication}")
-    public ResultMessage<BigInteger> saveReturnDTO(
+    public ResultMessage<Long> saveReturnDTO(
             @RequestBody ManagerInternalDTO dto,
             @PathVariable(value = "authentication") String authentication
     ) throws BusinessException {

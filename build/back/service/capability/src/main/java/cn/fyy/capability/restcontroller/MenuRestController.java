@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -120,7 +119,7 @@ public class MenuRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<MenuDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException {
         return new ResultMessage<>(MenuDTO.toDTO(menuServiceImpl.getById(id)));
     }
@@ -192,7 +191,7 @@ public class MenuRestController {
     )
     @GetMapping(value = "/query/hierarchy/menu/list/{menuIdList}")
     public ResultMessage<List<MenuDTO>> queryHierarchyMenuByMenuIdList(
-            @PathVariable(value = "menuIdList") List<BigInteger> menuIdList
+            @PathVariable(value = "menuIdList") List<Long> menuIdList
     ) throws BusinessException {
         return new ResultMessage<>(MenuDTO.toDTO(menuServiceImpl.queryHierarchyMenuByMenuIdList(menuIdList)));
     }
@@ -212,7 +211,7 @@ public class MenuRestController {
     )
     @GetMapping(value = "/query/menu/list/{menuIdList}")
     public ResultMessage<List<MenuDTO>> queryMenuByMenuIdList(
-            @PathVariable(value = "menuIdList") List<BigInteger> menuIdList
+            @PathVariable(value = "menuIdList") List<Long> menuIdList
     ) throws BusinessException {
         return new ResultMessage<>(MenuDTO.toDTO(menuServiceImpl.queryMenuByMenuIdList(menuIdList)));
     }

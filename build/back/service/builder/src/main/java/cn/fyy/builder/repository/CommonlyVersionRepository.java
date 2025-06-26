@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface CommonlyVersionRepository extends JpaRepository<CommonlyVersionDO, BigInteger>, JpaSpecificationExecutor<CommonlyVersionDO> {
+public interface CommonlyVersionRepository extends JpaRepository<CommonlyVersionDO, Long>, JpaSpecificationExecutor<CommonlyVersionDO> {
 
     /**
      * 根据用户主键查询对应的数据
@@ -25,7 +24,7 @@ public interface CommonlyVersionRepository extends JpaRepository<CommonlyVersion
      * @param managerId 管理员主键ID
      * @return 常用版本
      */
-    CommonlyVersionDO getByManagerId(BigInteger managerId);
+    CommonlyVersionDO getByManagerId(Long managerId);
 
     /**
      * 根据ids保存状态
@@ -39,7 +38,7 @@ public interface CommonlyVersionRepository extends JpaRepository<CommonlyVersion
      */
     @Modifying
     @Query(value = "UPDATE CommonlyVersionDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
+    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
 
 }

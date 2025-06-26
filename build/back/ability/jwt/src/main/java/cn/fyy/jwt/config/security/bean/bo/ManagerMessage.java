@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
-
 /**
  * 管理员信息 - 项目中使用
  *
@@ -20,7 +18,7 @@ public class ManagerMessage {
     /**
      * 管理员ID
      */
-    private BigInteger managerId;
+    private Long managerId;
 
     /**
      * 管理员名称

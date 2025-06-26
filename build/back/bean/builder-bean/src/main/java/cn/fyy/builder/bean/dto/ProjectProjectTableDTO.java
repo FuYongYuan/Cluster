@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,20 +27,20 @@ public class ProjectProjectTableDTO implements Serializable {
     /**
      * 主键ID
      */
-    @Schema(name = "id", description = "主键ID", type = "BigInteger", nullable = false)
-    private BigInteger id;
+    @Schema(name = "id", description = "主键ID", type = "Long", nullable = false)
+    private Long id;
 
     /**
      * 项目ID
      */
-    @Schema(name = "projectId", description = "项目ID", type = "BigInteger")
-    private BigInteger projectId;
+    @Schema(name = "projectId", description = "项目ID", type = "Long")
+    private Long projectId;
 
     /**
      * 项目表ID
      */
-    @Schema(name = "projectTableId", description = "项目表ID", type = "BigInteger")
-    private BigInteger projectTableId;
+    @Schema(name = "projectTableId", description = "项目表ID", type = "Long")
+    private Long projectTableId;
 
     /**
      * 创建时间
@@ -53,8 +52,8 @@ public class ProjectProjectTableDTO implements Serializable {
     /**
      * 创建人ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "BigInteger")
-    private BigInteger creatorId;
+    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -72,8 +71,8 @@ public class ProjectProjectTableDTO implements Serializable {
     /**
      * 修改人ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "BigInteger")
-    private BigInteger updaterId;
+    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    private Long updaterId;
 
     /**
      * 修改人名称

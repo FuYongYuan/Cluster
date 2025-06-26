@@ -6,7 +6,6 @@ import cn.fyy.member.bean.bo.ManagerBO;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
 import org.springframework.data.domain.Page;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -25,7 +24,7 @@ public interface ManagerService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(ManagerBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(ManagerBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -37,7 +36,7 @@ public interface ManagerService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ManagerBO save(ManagerBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    ManagerBO save(ManagerBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 查询尝试次数大于0的管理员
@@ -81,7 +80,7 @@ public interface ManagerService {
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
      */
-    int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 根据主键查询
@@ -90,7 +89,7 @@ public interface ManagerService {
      * @return 管理员
      * @throws BusinessException 错误
      */
-    ManagerBO getById(BigInteger id) throws BusinessException;
+    ManagerBO getById(Long id) throws BusinessException;
 
     /**
      * 根据主键查询
@@ -99,7 +98,7 @@ public interface ManagerService {
      * @return 管理员
      * @throws BusinessException 错误
      */
-    ManagerBO getByJwtToken(BigInteger id) throws BusinessException;
+    ManagerBO getByJwtToken(Long id) throws BusinessException;
 
     /**
      * 根据id保存状态
@@ -111,7 +110,7 @@ public interface ManagerService {
      * @return 受影响行数
      * @throws BusinessException 错误
      */
-    int updateStateByIds(String ids, Integer state, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    int updateStateByIds(String ids, Integer state, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 根据账号查询
@@ -169,5 +168,5 @@ public interface ManagerService {
      * @return 管理员DTO
      * @throws BusinessException 错误
      */
-    ResultMessage<BigInteger> saveReturnDTO(ManagerInternalDTO dto, String authentication) throws BusinessException;
+    ResultMessage<Long> saveReturnDTO(ManagerInternalDTO dto, String authentication) throws BusinessException;
 }

@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface ParameterRepository extends JpaRepository<ParameterDO, BigInteger>, JpaSpecificationExecutor<ParameterDO> {
+public interface ParameterRepository extends JpaRepository<ParameterDO, Long>, JpaSpecificationExecutor<ParameterDO> {
 
     /**
      * 根据参数编号查询
@@ -42,5 +41,5 @@ public interface ParameterRepository extends JpaRepository<ParameterDO, BigInteg
      */
     @Modifying
     @Query(value = "UPDATE ParameterDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
+    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 }

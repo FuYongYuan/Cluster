@@ -50,6 +50,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- seata 分布式事务 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
+
         <!-- 实体 -->
         <dependency>
             <groupId>cn.fyy.build</groupId>

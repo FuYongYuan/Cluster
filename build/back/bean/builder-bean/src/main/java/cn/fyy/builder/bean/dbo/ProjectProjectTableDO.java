@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -26,21 +25,21 @@ public class ProjectProjectTableDO implements Serializable {
      * 主键ID
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private BigInteger id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * 项目ID
      */
     @Column(name = "project_id")
-    private BigInteger projectId;
+    private Long projectId;
 
     /**
      * 项目表ID
      */
     @Column(name = "project_table_id")
-    private BigInteger projectTableId;
+    private Long projectTableId;
 
     /**
      * 创建时间
@@ -52,7 +51,7 @@ public class ProjectProjectTableDO implements Serializable {
      * 创建人ID
      */
     @Column(name = "creator_id")
-    private BigInteger creatorId;
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -70,7 +69,7 @@ public class ProjectProjectTableDO implements Serializable {
      * 修改人ID
      */
     @Column(name = "updater_id")
-    private BigInteger updaterId;
+    private Long updaterId;
 
     /**
      * 修改人名称

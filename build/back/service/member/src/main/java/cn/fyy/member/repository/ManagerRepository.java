@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface ManagerRepository extends JpaRepository<ManagerDO, BigInteger>, JpaSpecificationExecutor<ManagerDO> {
+public interface ManagerRepository extends JpaRepository<ManagerDO, Long>, JpaSpecificationExecutor<ManagerDO> {
 
     /**
      * 根据账号查询对应的管理员
@@ -65,7 +64,7 @@ public interface ManagerRepository extends JpaRepository<ManagerDO, BigInteger>,
      */
     @Modifying
     @Query(value = "UPDATE ManagerDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
+    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
      * 根据邮箱保存密码

@@ -3,7 +3,6 @@ package cn.fyy.data.service;
 import cn.fyy.common.bean.bo.BusinessException;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.math.BigInteger;
 import java.util.Map;
 
 /**
@@ -22,7 +21,7 @@ public interface UploadService {
      * @throws BusinessException 错误
      */
     Map<String, String> fileUpload(
-            BigInteger managerId,
+            Long managerId,
             String businessType,
             MultipartFile[] uploadFile
     ) throws BusinessException;
@@ -37,7 +36,7 @@ public interface UploadService {
      * @throws BusinessException 错误
      */
     String fileUploadReturnUrl(
-            BigInteger managerId,
+            Long managerId,
             String businessType,
             MultipartFile uploadFile
     ) throws BusinessException;

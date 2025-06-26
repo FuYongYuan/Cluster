@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -53,7 +52,7 @@ public class ProjectServiceImpl implements ProjectService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(ProjectBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(ProjectBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             ProjectBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
@@ -76,7 +75,7 @@ public class ProjectServiceImpl implements ProjectService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ProjectBO save(ProjectBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public ProjectBO save(ProjectBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             ProjectDO dbo;
@@ -114,7 +113,7 @@ public class ProjectServiceImpl implements ProjectService {
      * @return 项目群
      */
     @Override
-    public ProjectBO getById(BigInteger id) throws BusinessException {
+    public ProjectBO getById(Long id) throws BusinessException {
         try {
             return ProjectBO.toBO(projectRepository.getReferenceById(id));
         } catch (Exception e) {
@@ -133,9 +132,9 @@ public class ProjectServiceImpl implements ProjectService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return projectRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return projectRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }
@@ -150,7 +149,7 @@ public class ProjectServiceImpl implements ProjectService {
      * @return T_Project 项目对象
      */
     @Override
-    public Page<ProjectBO> queryByProjectGroupIdAndProjectNameAndState(int currentPage, int eachPageSize, BigInteger projectGroupId, String projectName, Integer state) throws BusinessException {
+    public Page<ProjectBO> queryByProjectGroupIdAndProjectNameAndState(int currentPage, int eachPageSize, Long projectGroupId, String projectName, Integer state) throws BusinessException {
         try {
             // 查询拼装
             Specification<ProjectDO> specification = (root, query, criteriaBuilder) -> {
@@ -188,7 +187,7 @@ public class ProjectServiceImpl implements ProjectService {
      * @return T_Project 项目对象
      */
     @Override
-    public List<ProjectBO> queryByProjectGroupIdAndState(BigInteger projectGroupId, Integer state) throws BusinessException {
+    public List<ProjectBO> queryByProjectGroupIdAndState(Long projectGroupId, Integer state) throws BusinessException {
         try {
             return ProjectBO.toBO(projectRepository.queryByProjectGroupIdAndState(projectGroupId, state));
         } catch (Exception e) {

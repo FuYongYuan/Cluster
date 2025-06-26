@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.math.BigInteger;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -42,7 +41,7 @@ public class UploadServiceImpl implements UploadService {
      * @throws BusinessException 错误
      */
     @Override
-    public Map<String, String> fileUpload(BigInteger managerId, String businessType, MultipartFile[] uploadFile) throws BusinessException {
+    public Map<String, String> fileUpload(Long managerId, String businessType, MultipartFile[] uploadFile) throws BusinessException {
         Map<String, String> result = new LinkedHashMap<>();
         try {
             if (uploadFile != null) {
@@ -80,7 +79,7 @@ public class UploadServiceImpl implements UploadService {
      */
     @Override
     public String fileUploadReturnUrl(
-            BigInteger managerId,
+            Long managerId,
             String businessType,
             MultipartFile uploadFile
     ) throws BusinessException {

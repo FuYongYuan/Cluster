@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
-
 /**
  * Security Token 实体 - 存储Redis用
  *
@@ -20,7 +18,7 @@ public class SecurityRedis {
     /**
      * 所属 管理员Id 即 Redis 中key
      */
-    private BigInteger managerId;
+    private Long managerId;
 
     /**
      * 所属 管理员名称

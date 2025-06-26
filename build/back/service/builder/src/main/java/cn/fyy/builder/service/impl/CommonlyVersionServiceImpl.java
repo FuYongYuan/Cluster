@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
@@ -44,7 +43,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(CommonlyVersionBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(CommonlyVersionBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             CommonlyVersionBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
@@ -67,7 +66,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public CommonlyVersionBO save(CommonlyVersionBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public CommonlyVersionBO save(CommonlyVersionBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             CommonlyVersionDO dbo;
@@ -105,7 +104,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
      * @return 常用版本
      */
     @Override
-    public CommonlyVersionBO getById(BigInteger id) throws BusinessException {
+    public CommonlyVersionBO getById(Long id) throws BusinessException {
         try {
             return CommonlyVersionBO.toBO(commonlyVersionRepository.getReferenceById(id));
         } catch (Exception e) {
@@ -124,9 +123,9 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return commonlyVersionRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return commonlyVersionRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }
@@ -139,7 +138,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
      * @return 常用版本
      */
     @Override
-    public CommonlyVersionBO getByManagerId(BigInteger managerId) throws BusinessException {
+    public CommonlyVersionBO getByManagerId(Long managerId) throws BusinessException {
         try {
             return CommonlyVersionBO.toBO(commonlyVersionRepository.getByManagerId(managerId));
         } catch (Exception e) {

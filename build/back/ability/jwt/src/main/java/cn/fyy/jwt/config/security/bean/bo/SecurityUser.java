@@ -5,7 +5,6 @@ import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import java.math.BigInteger;
 import java.util.Collection;
 
 /**
@@ -19,7 +18,7 @@ public class SecurityUser extends User {
     /**
      * 管理员ID
      */
-    private BigInteger managerId;
+    private Long managerId;
 
     /**
      * 管理员名称
@@ -35,7 +34,7 @@ public class SecurityUser extends User {
      * @param password    用户密码
      * @param authorities 权限ID集合
      */
-    public SecurityUser(BigInteger managerId, String managerName, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public SecurityUser(Long managerId, String managerName, String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
         this.managerId = managerId;
         this.managerName = managerName;
@@ -44,7 +43,7 @@ public class SecurityUser extends User {
     /**
      * 管理员ID
      */
-    public SecurityUser setManagerId(BigInteger managerId) {
+    public SecurityUser setManagerId(Long managerId) {
         this.managerId = managerId;
         return this;
     }

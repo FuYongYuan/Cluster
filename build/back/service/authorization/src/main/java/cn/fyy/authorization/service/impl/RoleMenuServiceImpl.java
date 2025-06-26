@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +46,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(RoleMenuBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(RoleMenuBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             RoleMenuBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
@@ -70,7 +69,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public RoleMenuBO save(RoleMenuBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public RoleMenuBO save(RoleMenuBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             RoleMenuDO dbo;
@@ -111,16 +110,16 @@ public class RoleMenuServiceImpl implements RoleMenuService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public ResultMessage<String> saveList(BigInteger roleId, String menuIds, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> saveList(Long roleId, String menuIds, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             if (StringUtils.hasText(menuIds)) {
                 // 删除原先的角色菜单关系
                 roleMenuRepository.deleteByRoleId(roleId);
                 // 新增角色菜单关系
-                List<BigInteger> menuId = Stream.of(menuIds.split(",")).map(BigInteger::new).toList();
+                List<Long> menuId = Stream.of(menuIds.split(",")).map(Long::valueOf).toList();
                 List<RoleMenuDO> list = new ArrayList<>();
-                for (BigInteger id : menuId) {
+                for (Long id : menuId) {
                     RoleMenuDO bo = RoleMenuDO.builder()
                             .roleId(roleId)
                             .menuId(id)
@@ -155,7 +154,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
      * @return 现有菜单关系列表
      */
     @Override
-    public List<RoleMenuBO> queryByRoleIdOrderByUpdateTimeAsc(BigInteger roleId) throws BusinessException {
+    public List<RoleMenuBO> queryByRoleIdOrderByUpdateTimeAsc(Long roleId) throws BusinessException {
         try {
             return RoleMenuBO.toBO(roleMenuRepository.queryByRoleIdOrderByUpdateTimeAsc(roleId));
         } catch (Exception e) {
@@ -171,13 +170,13 @@ public class RoleMenuServiceImpl implements RoleMenuService {
      * @return 现有菜单关系列表
      */
     @Override
-    public List<BigInteger> queryMenuIdsByRoleIds(List<BigInteger> roleIds) throws BusinessException {
+    public List<Long> queryMenuIdsByRoleIds(List<Long> roleIds) throws BusinessException {
         try {
             List<RoleMenuBO> roleMenuBOList = RoleMenuBO.toBO(roleMenuRepository.queryByRoleIdsAndState(roleIds, DataState.NORMAL.getCode()));
             if (roleMenuBOList.isEmpty()) {
                 return null;
             } else {
-                List<BigInteger> menuList = new ArrayList<>();
+                List<Long> menuList = new ArrayList<>();
 
                 roleMenuBOList.forEach(bo -> menuList.add(bo.getMenuId()));
 

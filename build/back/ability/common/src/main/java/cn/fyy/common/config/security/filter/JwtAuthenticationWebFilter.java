@@ -23,7 +23,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.math.BigInteger;
 
 /**
  * JWT认证过滤器
@@ -69,7 +68,7 @@ public class JwtAuthenticationWebFilter extends OncePerRequestFilter {
             // 仅处理需要认证的请求
             String jwt = jwtTokenWebService.getTokenFromRequest(request);
             if (StringUtils.hasText(jwt) && jwtTokenWebService.validateToken(jwt)) {
-                BigInteger managerId = jwtTokenWebService.getManagerIdFromToken(jwt);
+                Long managerId = jwtTokenWebService.getManagerIdFromToken(jwt);
                 try {
                     SecurityUser userDetails = (SecurityUser) userDetailsServiceImpl.loadUserByUsername(ConstantParameter.MANAGER_JWT_INFO_KEY + managerId);
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(

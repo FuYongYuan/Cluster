@@ -27,7 +27,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +67,7 @@ public class ParameterServiceImpl implements ParameterService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(ParameterBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(ParameterBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             ParameterBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
@@ -91,7 +90,7 @@ public class ParameterServiceImpl implements ParameterService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ParameterBO save(ParameterBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public ParameterBO save(ParameterBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             ParameterDO dbo;
@@ -131,7 +130,7 @@ public class ParameterServiceImpl implements ParameterService {
      * @return 参数
      */
     @Override
-    public ParameterBO getById(BigInteger id) throws BusinessException {
+    public ParameterBO getById(Long id) throws BusinessException {
         try {
             return ParameterBO.toBO(parameterRepository.getReferenceById(id));
         } catch (Exception e) {
@@ -165,9 +164,9 @@ public class ParameterServiceImpl implements ParameterService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return parameterRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return parameterRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -29,7 +28,7 @@ public class NoticeDO implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
     /**
      * 公告标题
@@ -68,7 +67,7 @@ public class NoticeDO implements Serializable {
      * 创建人ID
      */
     @Column(name = "creator_id")
-    private BigInteger creatorId;
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -86,7 +85,7 @@ public class NoticeDO implements Serializable {
      * 修改人ID
      */
     @Column(name = "updater_id")
-    private BigInteger updaterId;
+    private Long updaterId;
 
     /**
      * 修改人名称

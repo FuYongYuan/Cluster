@@ -17,8 +17,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
-
 /**
  * 项目 RestController
  *
@@ -84,7 +82,7 @@ public class ProjectRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<ProjectDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException {
         return new ResultMessage<>(ProjectDTO.toDTO(projectServiceImpl.getById(id)));
     }
@@ -133,7 +131,7 @@ public class ProjectRestController {
     public ResultMessage<PageImpl<ProjectDTO>> queryByManagerIdAndProjectGroupNameAndState(
             @PathVariable(value = "currentPage") int currentPage,
             @PathVariable(value = "eachPageSize") int eachPageSize,
-            @PathVariable(value = "projectGroupID") BigInteger projectGroupId,
+            @PathVariable(value = "projectGroupID") Long projectGroupId,
             @RequestParam(value = "projectName", required = false) String projectName,
             @RequestParam(value = "state", required = false) Integer state
     ) throws BusinessException {

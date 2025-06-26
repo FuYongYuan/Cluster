@@ -6,7 +6,6 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -61,7 +60,7 @@ public interface SystemService {
      * @return 登出结果
      * @throws BusinessException 错误
      */
-    ResultMessage<Boolean> logout(BigInteger managerId) throws BusinessException;
+    ResultMessage<Boolean> logout(Long managerId) throws BusinessException;
 
     /**
      * 根据管理员ID查询拥有的菜单权限
@@ -70,5 +69,5 @@ public interface SystemService {
      * @return 管理员拥有的菜单
      * @throws BusinessException 错误
      */
-    ResultMessage<List<MenuDTO>> queryManagerHaveMenuByManagerId(BigInteger managerId) throws BusinessException;
+    ResultMessage<List<MenuDTO>> queryManagerHaveMenuByManagerId(Long managerId) throws BusinessException;
 }

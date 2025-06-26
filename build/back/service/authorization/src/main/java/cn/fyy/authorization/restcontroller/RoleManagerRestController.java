@@ -14,8 +14,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
-
 /**
  * 角色管理员关系 RestController
  *
@@ -80,7 +78,7 @@ public class RoleManagerRestController {
     @PostMapping(value = "/save/list/{managerId}/{roleIds}")
     public ResultMessage<String> saveList(
             HttpServletRequest request,
-            @PathVariable("managerId") BigInteger managerId,
+            @PathVariable("managerId") Long managerId,
             @PathVariable("roleIds") String roleIds
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));

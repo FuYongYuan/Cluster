@@ -5,7 +5,6 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import org.springframework.data.domain.Page;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public interface RoleService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(RoleBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(RoleBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -35,7 +34,7 @@ public interface RoleService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    RoleBO save(RoleBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    RoleBO save(RoleBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 根据名称查询角色列表
@@ -65,7 +64,7 @@ public interface RoleService {
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
      */
-    int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 根据主键查询
@@ -74,7 +73,7 @@ public interface RoleService {
      * @return 角色
      * @throws BusinessException 错误
      */
-    RoleBO getById(BigInteger id) throws BusinessException;
+    RoleBO getById(Long id) throws BusinessException;
 
     /**
      * 查询角色列表
@@ -93,6 +92,6 @@ public interface RoleService {
      * @throws BusinessException 错误
      */
     List<RoleBO> queryManagerHaveRoleByManagerId(
-            BigInteger managerId
+            Long managerId
     ) throws BusinessException;
 }

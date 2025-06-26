@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface NoticeRepository extends JpaRepository<NoticeDO, BigInteger>, JpaSpecificationExecutor<NoticeDO> {
+public interface NoticeRepository extends JpaRepository<NoticeDO, Long>, JpaSpecificationExecutor<NoticeDO> {
 
     /**
      * 根据ids保存状态
@@ -31,6 +30,6 @@ public interface NoticeRepository extends JpaRepository<NoticeDO, BigInteger>, J
      */
     @Modifying
     @Query(value = "UPDATE NoticeDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
+    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
 }

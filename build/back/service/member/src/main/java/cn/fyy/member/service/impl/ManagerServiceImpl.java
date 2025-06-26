@@ -22,6 +22,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.seata.spring.annotation.GlobalTransactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -34,7 +35,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -87,8 +87,11 @@ public class ManagerServiceImpl implements ManagerService {
      * @return !=null 成功，==null 失败
      */
     @Override
+    // 因为feign调用，使用全局事务
+    @GlobalTransactional
+    // 添加本地事务
     @Transactional(rollbackFor = BusinessException.class)
-    public ResultMessage<String> save(ManagerBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(ManagerBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             ManagerBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
@@ -118,7 +121,7 @@ public class ManagerServiceImpl implements ManagerService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public ManagerBO save(ManagerBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public ManagerBO save(ManagerBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             ManagerDO dbo;
@@ -236,7 +239,7 @@ public class ManagerServiceImpl implements ManagerService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             if (StringUtils.hasText(ids)) {
                 return managerRepository.updateStateByIds(
@@ -245,7 +248,7 @@ public class ManagerServiceImpl implements ManagerService {
                         currentManagerName,
                         LocalDateTime.now(),
                         Stream.of(ids.split(",")
-                        ).map(BigInteger::new).toList());
+                        ).map(Long::valueOf).toList());
             } else {
                 return 0;
             }
@@ -261,7 +264,7 @@ public class ManagerServiceImpl implements ManagerService {
      * @return 管理员
      */
     @Override
-    public ManagerBO getById(BigInteger id) throws BusinessException {
+    public ManagerBO getById(Long id) throws BusinessException {
         try {
             ManagerBO bo = ManagerBO.toBO(managerRepository.getReferenceById(id));
             if (bo != null) {
@@ -284,7 +287,7 @@ public class ManagerServiceImpl implements ManagerService {
      * @return 管理员
      */
     @Override
-    public ManagerBO getByJwtToken(BigInteger id) throws BusinessException {
+    public ManagerBO getByJwtToken(Long id) throws BusinessException {
         try {
             return ManagerBO.toBO(managerRepository.getReferenceById(id));
         } catch (Exception e) {
@@ -303,9 +306,9 @@ public class ManagerServiceImpl implements ManagerService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateStateByIds(String ids, Integer state, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateStateByIds(String ids, Integer state, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return managerRepository.updateStateByIds(state, currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return managerRepository.updateStateByIds(state, currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
         } catch (Exception e) {
             throw new BusinessException("根据id保存状态错误", e);
         }
@@ -443,7 +446,7 @@ public class ManagerServiceImpl implements ManagerService {
      */
     @Override
     @Transactional
-    public ResultMessage<BigInteger> saveReturnDTO(ManagerInternalDTO dto, String authentication) throws BusinessException {
+    public ResultMessage<Long> saveReturnDTO(ManagerInternalDTO dto, String authentication) throws BusinessException {
         try {
             String encryptString = dto.getAccount() + dto.getLoginPassword();
             String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());

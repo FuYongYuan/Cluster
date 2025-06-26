@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
  * @author : FYY
  */
 @Repository
-public interface ProjectColumnRepository extends JpaRepository<ProjectColumnDO, BigInteger>, JpaSpecificationExecutor<ProjectColumnDO> {
+public interface ProjectColumnRepository extends JpaRepository<ProjectColumnDO, Long>, JpaSpecificationExecutor<ProjectColumnDO> {
     /**
      * 根据ids保存状态
      *
@@ -30,6 +29,6 @@ public interface ProjectColumnRepository extends JpaRepository<ProjectColumnDO, 
      */
     @Modifying
     @Query(value = "UPDATE ProjectColumnDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, BigInteger currentManagerId, String currentManagerName, LocalDateTime updateTime, List<BigInteger> ids);
+    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
 }

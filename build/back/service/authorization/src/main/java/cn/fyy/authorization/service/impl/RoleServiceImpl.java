@@ -26,7 +26,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +72,7 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public ResultMessage<String> save(RoleBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(RoleBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             RoleBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
@@ -102,7 +101,7 @@ public class RoleServiceImpl implements RoleService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public RoleBO save(RoleBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public RoleBO save(RoleBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             RoleDO dbo;
@@ -188,10 +187,10 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             if (StringUtils.hasText(ids)) {
-                return roleRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+                return roleRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
             } else {
                 return 0;
             }
@@ -207,13 +206,13 @@ public class RoleServiceImpl implements RoleService {
      * @return 角色
      */
     @Override
-    public RoleBO getById(BigInteger id) throws BusinessException {
+    public RoleBO getById(Long id) throws BusinessException {
         try {
             RoleBO bo = RoleBO.toBO(roleRepository.getReferenceById(id));
             if (bo != null) {
-                List<BigInteger> roleIdList = new ArrayList<>();
+                List<Long> roleIdList = new ArrayList<>();
                 roleIdList.add(bo.getId());
-                List<BigInteger> menuList = roleMenuServiceImpl.queryMenuIdsByRoleIds(roleIdList);
+                List<Long> menuList = roleMenuServiceImpl.queryMenuIdsByRoleIds(roleIdList);
                 ResultMessage<List<MenuDTO>> resultMessage = menuFeignClient.queryMenuByMenuIdList(menuList);
                 if (resultMessage.getCode() == HttpStatus.OK.value()) {
                     List<String> menuIdList = resultMessage.getData().stream().map(r -> r.getId().toString()).toList();
@@ -252,7 +251,7 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public List<RoleBO> queryManagerHaveRoleByManagerId(
-            BigInteger managerId
+            Long managerId
     ) throws BusinessException {
         try {
             return RoleBO.toBO(

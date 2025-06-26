@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
@@ -45,7 +44,7 @@ public class NoticeServiceImpl implements NoticeService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(NoticeBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(NoticeBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             NoticeBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
@@ -68,7 +67,7 @@ public class NoticeServiceImpl implements NoticeService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    public NoticeBO save(NoticeBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public NoticeBO save(NoticeBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             NoticeDO dbo;
@@ -108,7 +107,7 @@ public class NoticeServiceImpl implements NoticeService {
      * @return 公告
      */
     @Override
-    public NoticeBO getById(BigInteger id) throws BusinessException {
+    public NoticeBO getById(Long id) throws BusinessException {
         try {
             return NoticeBO.toBO(noticeRepository.getReferenceById(id));
         } catch (Exception e) {
@@ -127,9 +126,9 @@ public class NoticeServiceImpl implements NoticeService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            return noticeRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(BigInteger::new).toList());
+            return noticeRepository.updateStateByIds(DataState.DELETE.getCode(), currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
         } catch (Exception e) {
             throw new BusinessException("根据主键删除 主键可以是多个用,分割错误", e);
         }

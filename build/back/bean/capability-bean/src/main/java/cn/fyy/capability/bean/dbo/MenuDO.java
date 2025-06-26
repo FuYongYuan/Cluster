@@ -1,13 +1,9 @@
 package cn.fyy.capability.bean.dbo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -31,7 +27,8 @@ public class MenuDO implements Serializable {
      */
     @Id
     @Column(name = "id", nullable = false)
-    private BigInteger id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * 名称
@@ -61,7 +58,7 @@ public class MenuDO implements Serializable {
      * 父级ID
      */
     @Column(name = "parent_id", length = 32)
-    private BigInteger parentId;
+    private Long parentId;
 
     /**
      * 是否跳转  (0.否 1.是)
@@ -97,7 +94,7 @@ public class MenuDO implements Serializable {
      * 创建人ID
      */
     @Column(name = "creator_id")
-    private BigInteger creatorId;
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -115,7 +112,7 @@ public class MenuDO implements Serializable {
      * 修改人ID
      */
     @Column(name = "updater_id")
-    private BigInteger updaterId;
+    private Long updaterId;
 
     /**
      * 修改人名称

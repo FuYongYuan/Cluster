@@ -4,8 +4,6 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.message.bean.bo.NoticeBO;
 
-import java.math.BigInteger;
-
 /**
  * 公告 Service
  *
@@ -21,7 +19,7 @@ public interface NoticeService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(NoticeBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(NoticeBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -33,7 +31,7 @@ public interface NoticeService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    NoticeBO save(NoticeBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    NoticeBO save(NoticeBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 根据主键查询
@@ -42,7 +40,7 @@ public interface NoticeService {
      * @return 公告
      * @throws BusinessException 错误
      */
-    NoticeBO getById(BigInteger id) throws BusinessException;
+    NoticeBO getById(Long id) throws BusinessException;
 
     /**
      * 根据主键删除 主键可以是多个用,分割
@@ -53,5 +51,5 @@ public interface NoticeService {
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
      */
-    int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException;
 }

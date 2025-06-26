@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -29,7 +28,7 @@ public class ButtonDO implements Serializable {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
     /**
      * 名称
@@ -53,7 +52,7 @@ public class ButtonDO implements Serializable {
      * 菜单ID
      */
     @Column(name = "menu_id")
-    private BigInteger menuId;
+    private Long menuId;
 
     /**
      * 排序(按数字从小到大)
@@ -77,7 +76,7 @@ public class ButtonDO implements Serializable {
      * 创建人ID
      */
     @Column(name = "creator_id")
-    private BigInteger creatorId;
+    private Long creatorId;
 
     /**
      * 创建人名称
@@ -95,7 +94,7 @@ public class ButtonDO implements Serializable {
      * 修改人ID
      */
     @Column(name = "updater_id")
-    private BigInteger updaterId;
+    private Long updaterId;
 
     /**
      * 修改人名称

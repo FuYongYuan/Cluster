@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -16,14 +15,14 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface RoleMenuRepository extends JpaRepository<RoleMenuDO, BigInteger>, JpaSpecificationExecutor<RoleMenuDO> {
+public interface RoleMenuRepository extends JpaRepository<RoleMenuDO, Long>, JpaSpecificationExecutor<RoleMenuDO> {
 
     /**
      * 根据角色主键ID删除
      *
      * @param roleId 角色主键ID
      */
-    void deleteByRoleId(BigInteger roleId);
+    void deleteByRoleId(Long roleId);
 
     /**
      * 根据角色查询现有菜单关系列表
@@ -31,7 +30,7 @@ public interface RoleMenuRepository extends JpaRepository<RoleMenuDO, BigInteger
      * @param roleId 角色主键ID
      * @return 现有菜单关系列表
      */
-    List<RoleMenuDO> queryByRoleIdOrderByUpdateTimeAsc(BigInteger roleId);
+    List<RoleMenuDO> queryByRoleIdOrderByUpdateTimeAsc(Long roleId);
 
     /**
      * 根据角色ID集合查询现有菜单关系列表
@@ -45,5 +44,5 @@ public interface RoleMenuRepository extends JpaRepository<RoleMenuDO, BigInteger
                     "WHERE role_id IN ?1 " +
                     "AND state = ?2 "
     )
-    List<RoleMenuDO> queryByRoleIdsAndState(List<BigInteger> roleIds, int state);
+    List<RoleMenuDO> queryByRoleIdsAndState(List<Long> roleIds, int state);
 }

@@ -4,8 +4,6 @@ import cn.fyy.builder.bean.bo.CommonlyVersionBO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 
-import java.math.BigInteger;
-
 /**
  * 常用版本 Service
  *
@@ -21,7 +19,7 @@ public interface CommonlyVersionService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    ResultMessage<String> save(CommonlyVersionBO bo, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    ResultMessage<String> save(CommonlyVersionBO bo, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 新增或者修改
@@ -33,7 +31,7 @@ public interface CommonlyVersionService {
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
      */
-    CommonlyVersionBO save(CommonlyVersionBO bo, BigInteger currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+    CommonlyVersionBO save(CommonlyVersionBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
 
     /**
      * 根据主键查询
@@ -42,7 +40,7 @@ public interface CommonlyVersionService {
      * @return 常用版本
      * @throws BusinessException 错误
      */
-    CommonlyVersionBO getById(BigInteger id) throws BusinessException;
+    CommonlyVersionBO getById(Long id) throws BusinessException;
 
     /**
      * 根据主键删除 主键可以是多个用,分割
@@ -53,7 +51,7 @@ public interface CommonlyVersionService {
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
      */
-    int updateDelete(String ids, BigInteger currentManagerId, String currentManagerName) throws BusinessException;
+    int updateDelete(String ids, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 根据用户主键查询
@@ -62,5 +60,5 @@ public interface CommonlyVersionService {
      * @return 常用版本
      * @throws BusinessException 错误
      */
-    CommonlyVersionBO getByManagerId(BigInteger managerId) throws BusinessException;
+    CommonlyVersionBO getByManagerId(Long managerId) throws BusinessException;
 }

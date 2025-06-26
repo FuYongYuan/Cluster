@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -85,7 +84,7 @@ public class ProjectGroupRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<ProjectGroupDTO> getById(
-            @PathVariable("id") BigInteger id
+            @PathVariable("id") Long id
     ) throws BusinessException {
         return new ResultMessage<>(ProjectGroupDTO.toDTO(projectGroupServiceImpl.getById(id)));
     }
@@ -172,7 +171,7 @@ public class ProjectGroupRestController {
 //    public void generateById(
 //            HttpServletRequest request,
 //            HttpServletResponse response,
-//            @ApiParam(value = "主键ID", required = true) @PathVariable("id") BigInteger id
+//            @ApiParam(value = "主键ID", required = true) @PathVariable("id") Long id
 //    ) throws Exception {
 //        SecurityUser securityUser = SecurityMessage.getPrincipal();
 //        // 生成下载压缩文件
