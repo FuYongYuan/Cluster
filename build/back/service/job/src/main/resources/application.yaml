@@ -1,0 +1,59 @@
+#linux 启动语句 nohup java -jar job.jar >log/job.log &
+#linux 查看日志 tail -f log/job.log
+
+# 服务配置
+server:
+  # 项目端口号 0～65535
+  port: 27100
+  servlet:
+    # 项目名称
+    context-path: /
+# spring配置
+spring:
+  application:
+    # 项目名称
+    name: job
+  profiles:
+    # 设置环境
+    active: test
+  config:
+    # 配置文件路径
+    import:
+      # 基础配置
+      - nacos:${spring.application.name}-base-${spring.profiles.active}.yaml
+      # xxl链接配置
+      - nacos:${spring.application.name}-xxl-${spring.profiles.active}.yaml
+      # jwt认证配置
+      - nacos:jwt-${spring.profiles.active}.yaml?group=system
+      # redis 配置
+      - nacos:redis-${spring.profiles.active}.yaml?group=system
+  cloud:
+    nacos:
+      # 注册中心
+      discovery:
+        # ip地址:端口
+        server-addr: 127.0.0.1:8848
+        # 用户名
+        username: fyy
+        # 密码
+        password: fyyain77
+        # 命名空间 不能跨调用 ID
+        namespace: 7
+        # 集群 区域 机房 可以跨调用
+        cluster-name: build
+        # 分组 类型
+        group: service
+      # 配置中心
+      config:
+        # ip地址:端口
+        server-addr: 127.0.0.1:8848
+        # 用户名
+        username: fyy
+        # 密码
+        password: fyyain77
+        # 命名空间 不能跨调用 ID
+        namespace: 7
+        # 集群 区域 机房 可以跨调用
+        cluster-name: build
+        # 分组 类型
+        group: service

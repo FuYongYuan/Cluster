@@ -3,4 +3,4 @@
 #### 文件夹说明
 
 > 一、 build 构建项目
-> SchedulerX、Alibaba Cloud ACM、Arthas
+> Alibaba Cloud ACM、Arthas
