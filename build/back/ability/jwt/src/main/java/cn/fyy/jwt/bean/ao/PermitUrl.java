@@ -125,7 +125,7 @@ public class PermitUrl {
      * @param url 可新增自定义的url
      * @return 自定义不鉴权的url集合
      */
-    public String[] getGateWay(String... url) {
+    public String[] getGateway(String... url) {
         Set<String> permitUrl = new HashSet<>();
         if (url.length > 0) {
             Collections.addAll(permitUrl, url);

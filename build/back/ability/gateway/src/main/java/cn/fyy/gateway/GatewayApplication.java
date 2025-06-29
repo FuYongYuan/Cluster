@@ -25,8 +25,8 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @EnableDiscoveryClient
 // 动态加载配置文件
 @RefreshScope
-public class GateWayApplication {
+public class GatewayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(GateWayApplication.class, args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 }

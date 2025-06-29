@@ -83,7 +83,7 @@ public class WebFluxSecurityConfig {
                 // 授权设置
                 .authorizeExchange(exchange -> exchange
                         // 允许对于网站静态资源的无授权访问
-                        .pathMatchers(permitUrl.getGateWay()).permitAll()
+                        .pathMatchers(permitUrl.getGateway()).permitAll()
                         // 跨域请求会先进行一次options请求
                         .pathMatchers(HttpMethod.OPTIONS).permitAll()
                         // 除上面外的所有请求全部需要鉴权认证
@@ -131,7 +131,7 @@ public class WebFluxSecurityConfig {
         // 拦截器设置
         jwtAuthenticationWebFilter.setServerAuthenticationConverter(jwtAuthConverter);
         jwtAuthenticationWebFilter.setRequiresAuthenticationMatcher(
-                new JwtServerWebExchangeMatcher(List.of(permitUrl.getGateWay()))
+                new JwtServerWebExchangeMatcher(List.of(permitUrl.getGateway()))
         );
         jwtAuthenticationWebFilter.setSecurityContextRepository(
                 new WebSessionServerSecurityContextRepository()
