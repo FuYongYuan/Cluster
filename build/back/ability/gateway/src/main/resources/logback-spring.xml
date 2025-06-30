@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 seconds">
+
+    <!-- 彩色日志格式 -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [tid:%X{tid}] [%thread] %highlight(%-5level) %logger{36} - %highlight(%msg) %n"/>
+    <!-- 引入 Spring 环境中的变量 -->
+    <springProperty name="APP_NAME" source="spring.application.name"/>
+    <springProperty name="PROFILE" source="spring.profiles.active"/>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 当前写入日志的主文件 -->
+        <file>log/${APP_NAME}-${PROFILE}.log</file>
+
+        <!-- 滚动策略：基于时间和大小，并压缩 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 文件名模式：按天分割 + 序号 + GZ 压缩 -->
+            <fileNamePattern>log/${APP_NAME}-${PROFILE}.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+
+            <!-- 触发策略：每个日志文件最大10MB -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+
+            <!-- 保留历史日志天数：30天 -->
+            <maxHistory>30</maxHistory>
+
+            <!-- 可选：限制总日志大小（例如最多保留2GB） -->
+            <!-- <totalSizeCap>2GB</totalSizeCap> -->
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
