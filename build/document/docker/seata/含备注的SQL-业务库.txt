@@ -1,0 +1,18 @@
+-- 下面的表需要创建在业务库中而不是seata库中
+
+drop table undo_log;
+
+CREATE TABLE IF NOT EXISTS `undo_log`
+(
+    `id`            BIGINT       NOT NULL AUTO_INCREMENT COMMENT '主键' PRIMARY KEY,
+    `branch_id`     BIGINT       NOT NULL COMMENT '分支事务id',
+    `xid`           VARCHAR(128) NOT NULL COMMENT '全局事务id',
+    `context`       VARCHAR(128) NOT NULL COMMENT 'undo_log上下文，例如序列化',
+    `rollback_info` LONGBLOB     NOT NULL COMMENT '回滚信息',
+    `log_status`    INT(11)      NOT NULL COMMENT '状态 0:正常的状态,1:防御状态',
+    `log_created`   DATETIME(6)  NOT NULL COMMENT '创建时间',
+    `log_modified`  DATETIME(6)  NOT NULL COMMENT '修改时间',
+    UNIQUE KEY `ux_undo_log` (`xid`, `branch_id`)
+    ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COMMENT ='AT事务模式撤销表';
+
+ALTER TABLE `undo_log` ADD INDEX `ix_log_created` (`log_created`);

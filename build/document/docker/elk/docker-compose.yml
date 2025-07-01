@@ -1,0 +1,85 @@
+# 如果你使用的是 Linux 系统，Elasticsearch 启动失败，请检查系统设置，这个参数必须设置，否则 Elasticsearch 容器无法启动。
+# sudo sysctl -w vm.max_map_count=262144
+
+version: '3.7'
+
+services:
+  elasticsearch:
+    image: elasticsearch:8.10.4
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      # 设置 elastic 用户的初始密码
+      - ELASTIC_PASSWORD=fyyain77
+      # 开启安全功能
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.enrollment.enabled=true
+    # 建议补充系统参数限制（Linux 上必须）
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - elk
+
+  kibana:
+    image: kibana:8.10.4
+    container_name: kibana
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5601:5601"
+    environment:
+      # 设置 Kibana 连接到 Elasticsearch 的 URL 和认证信息
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_SERVICEACCOUNTTOKEN=AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYV9zZXJ2ZXJfdG9rZW46ckRGbjgyb2pRZGFpNDZ6TkhhY0R6Zw
+      - XPACK_SECURITY_ENABLED=true
+      - I18N_LOCALE=zh-CN
+    networks:
+      - elk
+
+  logstash:
+    image: logstash:8.10.4
+    container_name: logstash
+    volumes:
+      - ./logstash/conf:/usr/share/logstash/pipeline
+    ports:
+      - "5044:5044"
+    depends_on:
+      - elasticsearch
+    environment:
+      # 设置 Logstash 输出插件的认证信息
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=fyyain77
+    networks:
+      - elk
+
+  filebeat:
+    image: elastic/filebeat:8.10.4
+    container_name: filebeat
+    user: root
+    command: filebeat -e -c /usr/share/filebeat/config/filebeat.yml
+    volumes:
+      # 映射宿主机日志目录到容器内
+      - /Users/fyy/work/project/Cluster/log:/usr/share/logs
+      # 映射配置文件
+      - ./filebeat:/usr/share/filebeat/config
+      # 映射 registry 存储位置（记录读取进度）
+      - filebeat_data:/usr/share/filebeat/data
+    depends_on:
+      - logstash
+    networks:
+      - elk
+
+volumes:
+  esdata:
+  filebeat_data:
+
+networks:
+  elk:

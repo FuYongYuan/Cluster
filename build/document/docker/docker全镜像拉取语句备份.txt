@@ -1,0 +1,40 @@
+# 根据启动推荐顺序
+
+1、minio 版本 【可最新】 版本只需要配合java可以链接使用即可
+docker pull minio/minio:RELEASE.2025-06-13T11-33-47Z
+
+2、redis 版本 【7.4.4已测试，8未测试】 版本只需要配合java可以链接使用即可
+docker pull redis:7.4.4
+
+3、mysql 版本 【8.4.5已测试，9未测试】 版本只需要配合java可以链接使用即可
+docker pull mysql:8.4.5
+
+4、nacos 版本 【根据springcloudalibaba-2023.0.3.2 现有支持 v2.4.2 所以选择 v2.4.2.1】 版本需要配合springcloudalibaba
+docker pull nacos/nacos-server:v2.4.2.1
+
+5、sentinel-dashboard 版本 【根据springcloudalibaba-2023.0.3.2 现有支持 1.8.8】版本需要配合springcloudalibaba
+因为docker上的不支持mac所以是自己编译1.8.8的jar在sentinel-dashboard执行Dockerfile
+
+6、rocketmq 版本 【根据springcloudalibaba-2023.0.3.2 现有支持 5.3.2】 版本需要配合springcloudalibaba
+docker pull apache/rocketmq:5.3.2
+
+7、mongodb 版本 【根据springcloudalibaba-2023.0.3.2 现有支持 8.0.9】 版本需要配合springcloudalibaba
+docker pull mongo:8.0.9
+
+8、seata 版本 【根据springcloudalibaba-2023.0.3.2 现有支持 2.1.0】 版本需要配合springcloudalibaba
+docker pull apache/seata-server:2.1.0
+
+9、elk 版本【根据springcloudalibaba-2023.0.3.2 现有支持 8.10.4】 版本需要配合springcloudalibaba
+docker pull elasticsearch:8.10.4
+docker pull kibana:8.10.4
+docker pull logstash:8.10.4
+docker pull elastic/filebeat:8.10.4
+
+10、skywalking 【可最新】 版本只需要配合java可以链接使用即可
+docker pull apache/skywalking-oap-server:10.2.0-java21
+docker pull apache/skywalking-ui:10.2.0-java21
+
+另本地需下载最新的 skywalking-agent 当前最新 9.4.0
+
+11、xxl-job 【可最新】 版本只需要配合java可以链接使用即可
+docker pull xxl-job-admin:3.1.2

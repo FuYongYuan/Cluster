@@ -1,6 +1,0 @@
-docker run -d --name minio -e MINIO_ROOT_USER=fyy -e MINIO_ROOT_PASSWORD=fyyain77 -p 10000:9000 -p 10001:9001 minio/minio:RELEASE.2024-04-06T05-26-02Z server /data --console-address ":9001" --address ":9000"
-
-simplify/1/user-head-image/fb875f0744bf4c3aa859970d2e777494.jpeg
-
-Java链接凭证需要在后台创建，
-在identity-users菜单创建

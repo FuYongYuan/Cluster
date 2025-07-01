@@ -1,0 +1,94 @@
+--
+-- Licensed to the Apache Software Foundation (ASF) under one or more
+-- contributor license agreements.  See the NOTICE file distributed with
+-- this work for additional information regarding copyright ownership.
+-- The ASF licenses this file to You under the Apache License, Version 2.0
+-- (the "License"); you may not use this file except in compliance with
+-- the License.  You may obtain a copy of the License at
+--
+--     http://www.apache.org/licenses/LICENSE-2.0
+--
+-- Unless required by applicable law or agreed to in writing, software
+-- distributed under the License is distributed on an "AS IS" BASIS,
+-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-- See the License for the specific language governing permissions and
+-- limitations under the License.
+--
+
+-- -------------------------------- The script used when storeMode is 'db' --------------------------------
+-- the table to store GlobalSession data
+CREATE TABLE IF NOT EXISTS `global_table`
+(
+    `xid`                       VARCHAR(128) NOT NULL COMMENT '全局事务ID',
+    `transaction_id`            BIGINT COMMENT '事务ID',
+    `status`                    TINYINT      NOT NULL COMMENT '状态',
+    `application_id`            VARCHAR(32) COMMENT '应用ID',
+    `transaction_service_group` VARCHAR(32) COMMENT '事务服务组名',
+    `transaction_name`          VARCHAR(128) COMMENT '事务名称',
+    `timeout`                   INT COMMENT '超时时间',
+    `begin_time`                BIGINT COMMENT '事务开始时间',
+    `application_data`          VARCHAR(2000) COMMENT '应用扩展数据',
+    `gmt_create`                DATETIME COMMENT '记录创建时间',
+    `gmt_modified`              DATETIME COMMENT '记录最后修改时间',
+    PRIMARY KEY (`xid`),
+    KEY `idx_status_gmt_modified` (`status`, `gmt_modified`),
+    KEY `idx_transaction_id` (`transaction_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT '全局事务表';
+
+-- the table to store BranchSession data
+CREATE TABLE IF NOT EXISTS `branch_table`
+(
+    `branch_id`         BIGINT       NOT NULL COMMENT '分支事务ID',
+    `xid`               VARCHAR(128) NOT NULL COMMENT '全局事务ID',
+    `transaction_id`    BIGINT COMMENT '事务ID',
+    `resource_group_id` VARCHAR(32) COMMENT '资源组ID',
+    `resource_id`       VARCHAR(256) COMMENT '资源ID',
+    `branch_type`       VARCHAR(8) COMMENT '分支类型',
+    `status`            TINYINT COMMENT '状态',
+    `client_id`         VARCHAR(64) COMMENT '客户端ID',
+    `application_data`  VARCHAR(2000) COMMENT '应用扩展数据',
+    `gmt_create`        DATETIME(6) COMMENT '记录创建时间',
+    `gmt_modified`      DATETIME(6) COMMENT '记录最后修改时间',
+    PRIMARY KEY (`branch_id`),
+    KEY `idx_xid` (`xid`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT '分支事务表';
+
+-- the table to store lock data
+CREATE TABLE IF NOT EXISTS `lock_table`
+(
+    `row_key`        VARCHAR(128) NOT NULL COMMENT '行锁键',
+    `xid`            VARCHAR(128) COMMENT '全局事务ID',
+    `transaction_id` BIGINT COMMENT '事务ID',
+    `branch_id`      BIGINT       NOT NULL COMMENT '分支事务ID',
+    `resource_id`    VARCHAR(256) COMMENT '资源ID',
+    `table_name`     VARCHAR(32) COMMENT '表名',
+    `pk`             VARCHAR(36) COMMENT '主键值',
+    `status`         TINYINT      NOT NULL DEFAULT '0' COMMENT '状态 0:locked ,1:rollbacking',
+    `gmt_create`     DATETIME COMMENT '记录创建时间',
+    `gmt_modified`   DATETIME COMMENT '记录最后修改时间',
+    PRIMARY KEY (`row_key`),
+    KEY `idx_status` (`status`),
+    KEY `idx_branch_id` (`branch_id`),
+    KEY `idx_xid` (`xid`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT '锁记录表';
+
+CREATE TABLE IF NOT EXISTS `distributed_lock`
+(
+    `lock_key`   CHAR(20)    NOT NULL COMMENT '锁键',
+    `lock_value` VARCHAR(20) NOT NULL COMMENT '锁值',
+    `expire`     BIGINT COMMENT '过期时间',
+    primary key (`lock_key`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT '分布式锁表';
+
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire)
+VALUES ('AsyncCommitting', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire)
+VALUES ('RetryCommitting', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire)
+VALUES ('RetryRollbacking', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire)
+VALUES ('TxTimeoutCheck', ' ', 0);

@@ -1,0 +1,16 @@
+# 先用idea打开项目，并且注释掉gpg的签证编译
+
+# 在用maven打包，完进入xxl-job/xxl-job-admin目录
+
+# 将Dockerfile文件放入xxl-job/xxl-job-admin目录
+
+# 执行 docker build -t xxl-job-admin:版本号 .
+
+
+/**
+* 如需自定义 mysql 等配置，可通过 "-e PARAMS" 指定，参数格式 PARAMS="--key=value  --key2=value2" ；
+* 配置项参考文件：/xxl-job/xxl-job-admin/src/main/resources/application.properties
+* 如需自定义 JVM内存参数 等配置，可通过 "-e JAVA_OPTS" 指定，参数格式 JAVA_OPTS="-Xmx512m" ；
+*/
+
+docker run -p 10905:8080 -v ./logs:/data/applogs --name xxl-job-admin-3.1.2  -d xxl-job-admin:3.1.2

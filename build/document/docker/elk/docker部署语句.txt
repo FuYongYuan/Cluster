@@ -1,0 +1,23 @@
+# 启动不需要前置的所有东西
+docker-compose up -d elasticsearch logstash filebeat
+
+
+# 执行获取token
+docker exec -it elasticsearch \       
+  bin/elasticsearch-service-tokens create elastic/kibana kibana_server_token
+
+# 输出内容
+SERVICE_TOKEN elastic/kibana/kibana_server_token = AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYV9zZXJ2ZXJfdG9rZW46ckRGbjgyb2pRZGFpNDZ6TkhhY0R6Zw
+
+# 复制
+AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYV9zZXJ2ZXJfdG9rZW46ckRGbjgyb2pRZGFpNDZ6TkhhY0R6Zw
+
+# 修改 docker-compose 中的kibana的配置
+
+# 启动kibana
+docker-compose up -d kibana
+
+
+
+# 验证登陆密码
+ curl -u elastic http://localhost:9200

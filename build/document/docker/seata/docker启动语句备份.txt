@@ -1,0 +1,45 @@
+# 先拿配置
+docker run -d -p 8091:8091 -p 7091:7091  --name seata-server apache/seata-server:2.1.0
+docker cp seata-serve:/seata-server/resources 自己本地的地址
+
+# 修改application.yaml nacos配置，加入nacos的数据库链接配置
+
+# 启动语句 因为原版不支持将注册中心地址指定成 host.docker.internal 导致访问失败 所以需要改造
+# 1、先用下列语句启动
+docker run -d \
+	--name seata-server-2.1.0 \
+	-p 8091:8091 \
+	-p 7091:7091 \
+	-v ./resources:/seata-server/resources \
+	apache/seata-server:2.1.0
+
+# 2、替换根目录下的 seata-server-entrypoint.sh 文件
+
+# 3、替换 /seata-server/classes/org/apache/seata/server/Server.class 文件
+
+# 4、重启服务
+
+
+
+
+核心原因
+ //127.0.0.1 and 0.0.0.0 are not valid here.
+        if (NetUtil.isValidIp(parameterParser.getHost(), false)) {
+            XID.setIpAddress(parameterParser.getHost());
+        } else {
+            String preferredNetworks = ConfigurationFactory.getInstance().getConfig(REGISTRY_PREFERED_NETWORKS);
+            if (StringUtils.isNotBlank(preferredNetworks)) {
+                XID.setIpAddress(NetUtil.getLocalIp(preferredNetworks.split(REGEX_SPLIT_CHAR)));
+            } else {
+                XID.setIpAddress(NetUtil.getLocalIp());
+            }
+        }
+
+这个判断不支持127.0.0.1，需要修改false为true
+
+并且在启动程序.sh中加入传参
+
+
+resources 配置文件目录
+script 各类语句目录
+

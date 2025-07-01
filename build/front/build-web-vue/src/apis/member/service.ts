@@ -167,7 +167,7 @@ export const recoverFreezeManager = (
 };
 
 /**
- * 修改管理员状态
+ * 更新管理员状态
  * @param ids ID集合
  * @param state 状态
  */

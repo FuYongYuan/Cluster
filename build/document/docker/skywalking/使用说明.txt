@@ -1,0 +1,5 @@
+# 添加虚拟机选项、VM选项
+
+-javaagent:jar包地址/skywalking-agent/skywalking-agent.jar
+-Dskywalking.agent.service_name=项目名称
+-Dskywalking.collector.backend_service=127.0.0.1:11800

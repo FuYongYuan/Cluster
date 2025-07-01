@@ -1,0 +1,28 @@
+docker exec -it mongo /bin/mongosh
+
+use admin
+
+db.auth("admin","fyyain77")
+
+db.createUser({user: "fyy", pwd: "fyyain77", roles: [{role: "root", db: "admin"}]});
+
+use test
+
+db.createUser({user: "fyy", pwd: "fyyain77", roles: [{role: "readWrite", db: "test"}]});
+
+
+
+
+docker run -d --name mongo-8.0.9 \
+	-p 17017:27017 \
+	-v ./mongo/conf/mongod.conf:/etc/mongo/mongod.conf \
+	-v ./mongo/data:/data/db \
+	-e MONGO_INITDB_ROOT_USERNAME=admin \
+	-e MONGO_INITDB_ROOT_PASSWORD=fyyain77 \
+	mongo:8.0.9 --config /etc/mongo/mongod.conf
+
+新建
+/mongo/conf 目录
+/mongo/data 目录
+
+原始配置目录 /etc/mongod.conf.orig ，后缀可以去掉，其中127.0.0.1要改成0.0.0.0才可以让所有的 ip 可访问，注释掉无用的日志和存储位置的设置，让其使用默认即可

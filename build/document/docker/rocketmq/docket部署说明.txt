@@ -1,0 +1,36 @@
+1.从 https://github.com/apache/rocketmq-dashboard 拉取最新的控制台代码，编译并且将jar放在rocketmq根目录下。
+
+2.rocketmq根目录下运行 docker build -t rocketmq-dashboard:2.0.1-SNAPSHOT . ；
+
+3.新建目录
+./rocketmq/broker/conf/broker.conf 文件
+./rocketmq/broker/store 空
+./rocketmq/broker/logs 空
+./rocketmq/namesrv/logs 空
+./rocketmq/proxy/logs 空
+
+4.修改 docker-compose.yaml 中最新信息，rocketmq根目录下运行 docker compose up -d proxy
+
+5.查看容器中日志正确信息
+rocketmq_proxy：
+	rocketmq-proxy startup successfully
+
+rocketmq_broker：
+	The broker[2f1416b08ebe, 127.0.0.1:10911] boot success. serializeType=JSON and name server is rocketmq_namesrv:9876
+
+rocketmq_namesrv：
+	The Name Server boot success. serializeType=JSON, address 0.0.0.0:9876
+
+6.rocketmq根目录下运行 docker compose up -d rocketmq-dashboard
+
+
+
+
+
+rocketmq-dashboard 在 broker.conf 中 ip 是 127.0.0.1 的情况下不可用
+
+
+如果需要修改分组名称可以使用-p来设置否则默认文件夹名称
+docker compose -p rocketmq up -d
+
+既可正常使用

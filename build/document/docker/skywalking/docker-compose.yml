@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  skywalking-oap:
+    image: apache/skywalking-oap-server:10.2.0-java21
+    container_name: skywalking-oap
+    volumes:
+      - ./skywalking/config/application.yml:/skywalking/config/application.yml
+    ports:
+      - "11800:11800"
+      - "12800:12800"
+    networks:
+      - skywalking
+
+  skywalking-ui:
+    image: apache/skywalking-ui:10.2.0-java21
+    container_name: skywalking-ui
+    depends_on:
+      - skywalking-oap
+    environment:
+      - SW_OAP_ADDRESS=http://host.docker.internal:12800
+    ports:
+      - "10907:8080"
+    networks:
+      - skywalking
+
+networks:
+  skywalking:
