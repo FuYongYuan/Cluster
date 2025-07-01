@@ -96,7 +96,7 @@
 ---
 ### build - 项目构建方式
 1. 【组件】前往 ./document/docker 目录，根据【docker全镜像拉取语句备份.txt】挨个启动安装和组件，相关说明文档已放在各种的目录下【docker启动语句备份.txt】中，除skywalking需要做额外操作来保证运行以外其他启动后根据自身需要修改配置即可；
-2. 【前端】前往 ./front/src 目录，执行 npm install 安装依赖后即可启动；
+2. 【前端】前往 ./front/build-web-vue 目录，执行 npm install 安装依赖后即可启动；
 3. 【后端】前往 idea 打开后，maven读取正常，应该在【服务】这个插件下可以看到所有可启动服务，添加好skywalking内容后即可启动；
 >   -javaagent:/Users/fyy/work/tool/skywalking/skywalking-agent/skywalking-agent.jar \
 >   -Dskywalking.agent.service_name=build::gateway \
