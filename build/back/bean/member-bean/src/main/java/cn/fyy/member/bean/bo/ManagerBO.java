@@ -43,7 +43,7 @@ public class ManagerBO implements Serializable {
     private Integer age;
 
     /**
-     * 性别(0.保密 1.男 2女)
+     * 性别;（0.保密、1.男、2女）
      */
     private Integer sex;
 
@@ -113,17 +113,17 @@ public class ManagerBO implements Serializable {
     private String creatorName;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     private LocalDateTime updateTime;
 
     /**
-     * 修改人ID
+     * 更新人ID
      */
     private Long updaterId;
 
     /**
-     * 修改人名称
+     * 更新人名称
      */
     private String updaterName;
 

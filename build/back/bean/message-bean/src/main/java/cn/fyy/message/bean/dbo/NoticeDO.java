@@ -76,25 +76,25 @@ public class NoticeDO implements Serializable {
     private String creatorName;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     @Column(name = "update_time")
     private LocalDateTime updateTime;
 
     /**
-     * 修改人ID
+     * 更新人ID
      */
     @Column(name = "updater_id")
     private Long updaterId;
 
     /**
-     * 修改人名称
+     * 更新人名称
      */
     @Column(name = "updater_name", length = 50)
     private String updaterName;
 
     /**
-     * 状态(0.正常 99.删除)
+     * 状态;（0.正常、99.删除）
      */
     @Column(name = "state")
     private Integer state;

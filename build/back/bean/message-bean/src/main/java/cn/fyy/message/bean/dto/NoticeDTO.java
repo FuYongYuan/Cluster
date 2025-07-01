@@ -75,26 +75,26 @@ public class NoticeDTO implements Serializable {
     private String creatorName;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     @Schema(name = "updateTime", description = "修改时间", type = "LocalDateTime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 
     /**
-     * 修改人ID
+     * 更新人ID
      */
     @Schema(name = "updaterId", description = "修改人ID", type = "Long")
     private Long updaterId;
 
     /**
-     * 修改人名称
+     * 更新人名称
      */
     @Schema(name = "updaterName", description = "修改人名称", type = "String")
     private String updaterName;
 
     /**
-     * 状态(0.正常 99.删除)
+     * 状态;（0.正常、99.删除）
      */
     @Schema(name = "state", description = "状态(0.正常 99.删除)", type = "Integer")
     private Integer state;

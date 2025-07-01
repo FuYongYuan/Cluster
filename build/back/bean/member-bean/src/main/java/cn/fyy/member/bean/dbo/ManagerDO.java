@@ -49,7 +49,7 @@ public class ManagerDO implements Serializable {
     private Integer age;
 
     /**
-     * 性别(0.保密 1.男 2女)
+     * 性别;（0.保密、1.男、2女）
      */
     @Column(name = "sex")
     private Integer sex;
@@ -133,19 +133,19 @@ public class ManagerDO implements Serializable {
     private String creatorName;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     @Column(name = "update_time")
     private LocalDateTime updateTime;
 
     /**
-     * 修改人ID
+     * 更新人ID
      */
     @Column(name = "updater_id")
     private Long updaterId;
 
     /**
-     * 修改人名称
+     * 更新人名称
      */
     @Column(name = "updater_name", length = 50)
     private String updaterName;

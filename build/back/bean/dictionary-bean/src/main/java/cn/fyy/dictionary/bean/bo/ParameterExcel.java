@@ -65,19 +65,19 @@ public class ParameterExcel implements Serializable {
     private String creatorName;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     @ExcelField(columnName = "修改时间", order = 8)
     private LocalDateTime updateTime;
 
     /**
-     * 修改人名称
+     * 更新人名称
      */
     @ExcelField(columnName = "修改人名称", order = 9)
     private String updaterName;
 
     /**
-     * 状态(0.正常 99.删除)
+     * 状态;（0.正常、99.删除）
      */
     @ExcelField(columnName = "状态(0.正常 99.删除)", order = 10, valueLimit = "0=正常;99=删除;")
     private Integer state;

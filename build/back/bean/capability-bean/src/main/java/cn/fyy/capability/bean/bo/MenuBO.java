@@ -53,12 +53,12 @@ public class MenuBO implements Serializable {
     private Long parentId;
 
     /**
-     * 是否跳转  (0.否 1.是)
+     * 是否跳转;（0.否、1.是）
      */
     private Integer isTurn;
 
     /**
-     * 是否首页  (0.否 1.是)
+     * 是否首页;（0.否、1.是）
      */
     private Integer isHome;
 
@@ -88,22 +88,22 @@ public class MenuBO implements Serializable {
     private String creatorName;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     private LocalDateTime updateTime;
 
     /**
-     * 修改人ID
+     * 更新人ID
      */
     private Long updaterId;
 
     /**
-     * 修改人名称
+     * 更新人名称
      */
     private String updaterName;
 
     /**
-     * 状态(0.正常 99.删除)
+     * 状态;（0.正常、99.删除）
      */
     private Integer state;
 

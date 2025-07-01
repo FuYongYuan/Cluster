@@ -50,7 +50,7 @@ public class ManagerInternalDTO implements Serializable {
     private Integer age;
 
     /**
-     * 性别(0.保密 1.男 2女)
+     * 性别;（0.保密、1.男、2女）
      */
     @Schema(name = "sex", description = "性别(0.保密 1.男 2女)", type = "Integer")
     private Integer sex;
@@ -136,20 +136,20 @@ public class ManagerInternalDTO implements Serializable {
     private String creatorName;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     @Schema(name = "updateTime", description = "修改时间", type = "LocalDateTime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 
     /**
-     * 修改人ID
+     * 更新人ID
      */
     @Schema(name = "updaterId", description = "修改人ID", type = "Long")
     private Long updaterId;
 
     /**
-     * 修改人名称
+     * 更新人名称
      */
     @Schema(name = "updaterName", description = "修改人名称", type = "String")
     private String updaterName;
