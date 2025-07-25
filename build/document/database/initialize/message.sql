@@ -1,17 +1,17 @@
 DROP TABLE IF EXISTS notice;
 CREATE TABLE notice(
-                       `id` INT AUTO_INCREMENT COMMENT '主键ID' ,
+                       `id` bigint AUTO_INCREMENT COMMENT '主键ID' ,
                        `notice_title` varchar(200)   COMMENT '公告标题' ,
                        `notice_content` text   COMMENT '公告内容' ,
                        `notice_author` varchar(200)   COMMENT '公告作者' ,
                        `notice_order` int   COMMENT '公告排序' ,
                        `create_time` datetime   COMMENT '创建时间' ,
-                       `creator_id` bigint unsigned   COMMENT '创建人ID' ,
+                       `creator_id` bigint   COMMENT '创建人ID' ,
                        `creator_name` varchar(50)   COMMENT '创建人名称' ,
                        `update_time` datetime   COMMENT '更新时间' ,
-                       `updater_id` bigint unsigned   COMMENT '更新人ID' ,
+                       `updater_id` bigint   COMMENT '更新人ID' ,
                        `updater_name` varchar(50)   COMMENT '更新人名称' ,
-                       `state` tinyint unsigned   COMMENT '状态;（0.正常、99.删除）' ,
+                       `state` tinyint   COMMENT '状态;（0.正常、99.删除）' ,
                        PRIMARY KEY (id)
 )  COMMENT = '公告';
 

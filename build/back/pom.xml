@@ -67,7 +67,7 @@
         <spring-cloud.version>2023.0.5</spring-cloud.version>
 
         <!-- Spring Cloud Alibaba -->
-        <spring-cloud-alibaba.version>2023.0.3.2</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2023.0.3.3</spring-cloud-alibaba.version>
 
         <!-- OpenAPI 不用2.7.0版本是因为需要更高的SpringCloud和SpringBoot版本 -->
         <springdoc-openapi.version>2.6.0</springdoc-openapi.version>

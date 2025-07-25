@@ -4,7 +4,7 @@
   "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAIAAAAn5KxJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGkmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4xLWMwMDAgNzkuZWRhMmIzZmFjLCAyMDIxLzExLzE3LTE3OjIzOjE5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjMuMSAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjItMDYtMDdUMTY6NTc6MDQrMDg6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIyLTA4LTA4VDA5OjQ2OjMyKzA4OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIyLTA4LTA4VDA5OjQ2OjMyKzA4OjAwIiBkYzpmb3JtYXQ9ImltYWdlL3BuZyIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2N2YxNzkxYi0zZWM3LTRhZmQtYTEwYS0xODdjNTJmYWJiMDMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ZWEyNDA1MGMtOTFjZC00NTkwLThjMzYtODcwNTJiNTY0OTVhIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6ZWEyNDA1MGMtOTFjZC00NTkwLThjMzYtODcwNTJiNTY0OTVhIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDplYTI0MDUwYy05MWNkLTQ1OTAtOGMzNi04NzA1MmI1NjQ5NWEiIHN0RXZ0OndoZW49IjIwMjItMDYtMDdUMTY6NTc6MDQrMDg6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4xIChNYWNpbnRvc2gpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDphYmMxZGM3Zi0xZTY5LTQ1NzgtYjQ0ZC1jZjBhMTA4NTg4MWQiIHN0RXZ0OndoZW49IjIwMjItMDgtMDhUMDk6NDU6NTErMDg6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4xIChNYWNpbnRvc2gpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo2N2YxNzkxYi0zZWM3LTRhZmQtYTEwYS0xODdjNTJmYWJiMDMiIHN0RXZ0OndoZW49IjIwMjItMDgtMDhUMDk6NDY6MzIrMDg6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMy4xIChNYWNpbnRvc2gpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ppwu4nMAAAlfSURBVGiB7VlbbJzFFT5nZv7rXuxs4tR27GwIwoZGanwJD4EWgZCgEi9UAlwiKp5R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",
   "version": "4.9.4",
   "createdTime": "2024-2-18 16:37:28",
-  "updatedTime": "2025-7-1 16:40:53",
+  "updatedTime": "2025-7-25 14:50:49",
   "dbConns": [],
   "profile": {
     "default": {
@@ -23,11 +23,11 @@
           "autoIncrement": true,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "ADB3AD14-6603-43E2-8261-114E32442B5B",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "create_time",
@@ -51,7 +51,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -63,7 +63,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "C8BE2C7A-8251-4ADD-BB4F-411C5754DA62",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "creator_name",
@@ -106,7 +106,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -118,7 +118,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "0DC24AA9-4CD0-45D8-95CF-FA546BE343AB",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "updater_name",
@@ -151,9 +151,9 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {},
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "B6267882-C9DC-4613-B26D-DC6A18C7213B",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA"
         }
@@ -874,11 +874,11 @@
           "autoIncrement": true,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "EC322C9E-3928-4117-B104-1252D36ED77B",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -942,7 +942,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -954,7 +954,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "8937E59A-1CA8-4B9A-8D1D-8E838973AB61",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -999,7 +999,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -1011,7 +1011,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "652FA314-D087-4C5F-B65C-99B9C95337E2",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1046,10 +1046,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "18A1CD6C-C31B-4B61-8B2C-38031FBFF3E7",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -1307,11 +1307,11 @@
           "autoIncrement": true,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "DF92F4C0-160C-4F1E-9226-51CBA4961AFE",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1327,10 +1327,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "4F6F6336-DB0E-4185-89CB-B0D468AC1B4E",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1346,10 +1346,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "165445BF-7C34-4410-8AA5-3E405823A7E2",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1375,7 +1375,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -1387,7 +1387,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "C4EA64E1-E625-4467-9E19-1B0A2B31776F",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1432,7 +1432,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -1444,7 +1444,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "98CD541B-2E44-4FEA-98CC-07EA4A211C54",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1479,10 +1479,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "49DA4B53-E0A3-4D3B-9A8C-8E51FA7C33BC",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -1740,11 +1740,11 @@
           "autoIncrement": true,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "EA67A89C-A972-48AE-B1F1-E513C1AA8DA9",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1760,10 +1760,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "854641B8-1B67-404B-9C03-E75E3266276C",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1779,10 +1779,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "C430DA1C-B6F2-450C-AB7E-2C1FC377BE0F",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1808,7 +1808,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -1820,7 +1820,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "4617C6A1-2CE8-48F4-BD1F-8D2E8D67CF08",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1865,7 +1865,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -1877,7 +1877,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "944CBBEB-18FF-4A6F-941C-786BE38333A9",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -1912,10 +1912,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "CF9E87B9-9F1D-420C-A84E-3101274A7F3A",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -2173,11 +2173,11 @@
           "autoIncrement": true,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "54E71578-3DB5-4C1B-B430-C16301AAC351",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -2193,10 +2193,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "33A3917B-1966-4F5A-AFCA-F6E4CC662102",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -2212,10 +2212,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "ED211B1A-2EB1-4E91-AE8D-6C36CD6D1229",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -2241,7 +2241,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -2253,7 +2253,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "ADA063F7-B100-4579-A714-690B1CD56CBF",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -2298,7 +2298,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -2310,7 +2310,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "0261DAF4-72E7-4200-807E-9CD75750469F",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -2345,10 +2345,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "97F39DCB-4844-4E58-A67B-4694A1AAF4D3",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -2372,7 +2372,7 @@
           "defKey": "id",
           "defName": "主键ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -2388,7 +2388,7 @@
           "refDict": "",
           "id": "836F6641-4E96-435B-BC5F-588D7D982E4D",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -2396,7 +2396,7 @@
           "defKey": "manager_id",
           "defName": "管理员ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -2412,7 +2412,7 @@
           "refDict": "",
           "id": "0BA36B7C-D4CF-4285-8E08-275186A3B858",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -2636,7 +2636,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -2652,7 +2652,7 @@
           "refDict": "",
           "id": "317CA262-F228-4908-8FB2-B7BDBF5D1138",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -2703,7 +2703,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -2719,7 +2719,7 @@
           "refDict": "",
           "id": "C3095AE4-EC58-44CD-BA01-AF878BC657D8",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -2746,7 +2746,7 @@
           "defKey": "state",
           "defName": "状态",
           "comment": "（0.正常、99.删除）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -2762,7 +2762,7 @@
           "refDict": "",
           "id": "42502A80-BC8A-446C-8E4A-B0A1993D4932",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -3013,7 +3013,7 @@
           "defKey": "id",
           "defName": "主键ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -3029,7 +3029,7 @@
           "refDict": "",
           "id": "591684DE-C3A1-4097-8193-71E0480D0F3C",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -3037,7 +3037,7 @@
           "defKey": "project_group_id",
           "defName": "项目群ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -3053,7 +3053,7 @@
           "refDict": "",
           "id": "D5622429-F75F-4C27-AB17-CC50010ECFF4",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -3229,7 +3229,7 @@
           "defKey": "is_service_interface",
           "defName": "是否Service创建接口",
           "comment": "（0.否、1.是）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -3245,7 +3245,7 @@
           "refDict": "",
           "id": "DDD23E25-08AA-42E6-8535-D41C3B9FD16C",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -3253,7 +3253,7 @@
           "defKey": "is_delete_bo",
           "defName": "是否去除BO层",
           "comment": "（0.否、1.是）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -3269,7 +3269,7 @@
           "refDict": "",
           "id": "DD6DD8DD-B942-440F-9E28-2BC6CD474ABE",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -3277,7 +3277,7 @@
           "defKey": "is_basis_method",
           "defName": "是否生成基础方法",
           "comment": "（0.否、1.是）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -3293,7 +3293,7 @@
           "refDict": "",
           "id": "F8BC5443-EDC4-4DE2-BC6C-BA2133ECE20D",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -3301,7 +3301,7 @@
           "defKey": "is_redis",
           "defName": "是否使用Redis缓存",
           "comment": "（0.否、1.是）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -3317,7 +3317,7 @@
           "refDict": "",
           "id": "1413655A-3E3B-498D-9665-265D4F173128",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -3332,7 +3332,7 @@
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "refDict": "",
           "extProps": {},
           "notes": {},
@@ -3347,7 +3347,7 @@
           "attr9": "",
           "id": "A59B1765-4E63-4837-8628-12AECD00B93A",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957"
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A"
         },
         {
           "defKey": "is_mail",
@@ -3361,7 +3361,7 @@
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "refDict": "",
           "extProps": {},
           "notes": {},
@@ -3376,7 +3376,7 @@
           "attr9": "",
           "id": "F09E5CE5-9B25-4AFF-A301-78A17E81B910",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957"
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A"
         },
         {
           "defKey": "is_dispose",
@@ -3390,7 +3390,7 @@
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "refDict": "",
           "extProps": {},
           "notes": {},
@@ -3405,7 +3405,7 @@
           "attr9": "",
           "id": "67C54F2A-42F7-405F-A1C1-3197CC4B0262",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957"
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A"
         },
         {
           "defKey": "is_encrypt",
@@ -3419,7 +3419,7 @@
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "refDict": "",
           "extProps": {},
           "notes": {},
@@ -3434,7 +3434,7 @@
           "attr9": "",
           "id": "ADB4DFCD-63D7-4362-9921-1506DCA0C470",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957"
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A"
         },
         {
           "defKey": "is_excel",
@@ -3448,7 +3448,7 @@
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "refDict": "",
           "extProps": {},
           "notes": {},
@@ -3463,7 +3463,7 @@
           "attr9": "",
           "id": "21060CB5-BE10-48DD-B3A7-6DEA85B07B14",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957"
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A"
         },
         {
           "rowNo": 40,
@@ -3542,7 +3542,7 @@
           "defKey": "is_delete_not_pk",
           "defName": "是否去除无主键的表",
           "comment": "（0.否、1.是）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -3558,7 +3558,7 @@
           "refDict": "",
           "id": "641321D3-D170-47F8-83B0-11FBEB2888EB",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -3566,7 +3566,7 @@
           "defKey": "is_order_key",
           "defName": "是否吧主键生成时放第一位",
           "comment": "（0.否、1.是）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -3582,7 +3582,7 @@
           "refDict": "",
           "id": "1E4D9F7F-6282-43D4-A017-A23776FFA546",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -3590,7 +3590,7 @@
           "defKey": "data_base_framework",
           "defName": "数据层框架类型",
           "comment": "（0.不使用数据源、1.JPA、2.Mybatis）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -3606,7 +3606,7 @@
           "refDict": "",
           "id": "99E3676E-BBCD-41A5-93C3-1E333A46AB6C",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -3614,7 +3614,7 @@
           "defKey": "data_base_format",
           "defName": "数据库格式设定",
           "comment": "（0.没有格式转换、1.X_X_Xxxx => XXXXxxx）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -3630,7 +3630,7 @@
           "refDict": "",
           "id": "27CEC21B-58C2-4BB5-B4BE-1EC8B03823DB",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -3662,7 +3662,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -3678,7 +3678,7 @@
           "refDict": "",
           "id": "BBB4A3B2-C199-4A01-BF52-3CA129208745",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -3729,7 +3729,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -3745,7 +3745,7 @@
           "refDict": "",
           "id": "2C6BB551-9684-427F-973A-BB3CC3AAA62D",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -3772,7 +3772,7 @@
           "defKey": "state",
           "defName": "状态",
           "comment": "（0.正常、99.删除）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -3788,7 +3788,7 @@
           "refDict": "",
           "id": "C6B6F26C-F7DF-4D3D-8A71-F7B51A980CEE",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -4039,7 +4039,7 @@
           "defKey": "id",
           "defName": "主键ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -4055,7 +4055,7 @@
           "refDict": "",
           "id": "880EB9A2-3049-4B3B-8A82-A8E5720F8F8E",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -4063,7 +4063,7 @@
           "defKey": "manager_id",
           "defName": "管理员ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -4079,7 +4079,7 @@
           "refDict": "",
           "id": "B69685A2-EF3E-4EA6-9B96-4F184A925628",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -4428,7 +4428,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -4444,7 +4444,7 @@
           "refDict": "",
           "id": "78FA56D4-630D-4F17-A915-EDAB167D249B",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -4495,7 +4495,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -4511,7 +4511,7 @@
           "refDict": "",
           "id": "A9E34D99-0570-4A22-AA2B-70F7C5F678FA",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -4538,7 +4538,7 @@
           "defKey": "state",
           "defName": "状态",
           "comment": "（0.正常、99.删除）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -4554,7 +4554,7 @@
           "refDict": "",
           "id": "1B95D09A-B721-475E-9410-850B2B8B6242",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -5054,10 +5054,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "13B79373-333F-4CE1-AA4F-0D3994C12935",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "project_group_id",
@@ -5071,12 +5071,12 @@
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "extProps": {},
           "id": "DC51BF27-0377-43CD-837F-960EE09B9D41",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "data_base_file_id",
@@ -5092,10 +5092,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "029FDC1B-53A5-4891-9AB7-8A4FA9D75FF9",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "table_schema",
@@ -5187,10 +5187,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "F94A4001-7BDC-41E5-B3A5-86696879D512",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "creator_name",
@@ -5244,10 +5244,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "4B0D3C39-3A98-403E-AA50-26FD36487350",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "updater_name",
@@ -5282,10 +5282,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "DB6A027C-D65D-404C-A842-9A188911BCBB",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957"
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A"
         }
       ],
       "correlations": [],
@@ -5557,10 +5557,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "87C01F0E-810D-4EEF-A241-7035E19E3A1F",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "project_table_id",
@@ -5574,12 +5574,12 @@
           "autoIncrement": false,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "extProps": {},
           "id": "5D86337D-2AD1-43D6-94B8-8E485C378298",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "table_schema",
@@ -5842,10 +5842,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "1081931A-9297-42AE-AFBA-33EB3C346A67",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "creator_name",
@@ -5899,10 +5899,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "2776BC44-5D24-4B4D-B320-82F6870C38A9",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "updater_name",
@@ -5937,10 +5937,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "F69FAF80-F382-43F1-BA34-B33BE05AE8BD",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957"
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A"
         }
       ],
       "correlations": [],
@@ -6213,10 +6213,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "663E1B85-A8C9-4C04-ACB3-3B5548CDF22F",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "project_group_id",
@@ -6232,10 +6232,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "AC9B5ADA-C7D7-4B5F-9214-85BC6B1C9EED",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "file_url",
@@ -6289,10 +6289,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "EDC85190-525A-4639-9CF9-DB1BE9EC7705",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "creator_name",
@@ -6346,10 +6346,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "420DB2B7-A489-4AA8-BD89-51B35446F3D0",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "updater_name",
@@ -6384,10 +6384,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "C9F9086E-6927-4A05-BF48-1D8433D4AB68",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957"
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A"
         }
       ],
       "correlations": [],
@@ -6659,10 +6659,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "5F90AB57-82A9-4366-BE30-BF2B711D44E7",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "project_id",
@@ -6678,10 +6678,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "DE9D1C41-DAC1-4020-8EA9-F2B1841D20F1",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "project_table_id",
@@ -6697,10 +6697,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "87A0DCFC-7AA8-47A0-8DDB-3F65C6A80F6A",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "create_time",
@@ -6735,10 +6735,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "83EA1686-F754-44DB-A0F8-73CD3385A279",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "creator_name",
@@ -6792,10 +6792,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "id": "CF100FA9-C399-4DF2-825F-2A336AF97F29",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF"
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155"
         },
         {
           "defKey": "updater_name",
@@ -6830,10 +6830,10 @@
           "hideInGraph": false,
           "refDict": "",
           "extProps": {},
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "BC10D3AA-D1B8-4F72-B10E-2F0098A2DCB2",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957"
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A"
         }
       ],
       "correlations": [],
@@ -6855,7 +6855,7 @@
           "defKey": "id",
           "defName": "主键ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -6871,7 +6871,7 @@
           "refDict": "",
           "id": "F04DE1BA-98DA-4395-9D01-282A8024C6D9",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -6951,7 +6951,7 @@
           "defKey": "menu_id",
           "defName": "菜单ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -6967,7 +6967,7 @@
           "refDict": "",
           "id": "8C3C9F58-21FF-4C95-AC63-7E3597D47DB0",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -7047,7 +7047,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -7063,7 +7063,7 @@
           "refDict": "",
           "id": "6F661D20-0251-4BB4-84BA-EBE2AD44B381",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -7114,7 +7114,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -7130,7 +7130,7 @@
           "refDict": "",
           "id": "68E120AA-9CAC-4653-B93E-A0D5A2E72091",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -7157,7 +7157,7 @@
           "defKey": "state",
           "defName": "状态",
           "comment": "（0.正常、99.删除）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -7173,7 +7173,7 @@
           "refDict": "",
           "id": "1330456E-EFF1-4815-9C3F-37D1832D2B54",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -7424,7 +7424,7 @@
           "defKey": "id",
           "defName": "主键ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -7440,7 +7440,7 @@
           "refDict": "",
           "id": "9A85AC48-C4DE-473A-95B5-DBE40B973AF2",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -7544,7 +7544,7 @@
           "defKey": "parent_id",
           "defName": "父级ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -7560,7 +7560,7 @@
           "refDict": "",
           "id": "7566703C-8F82-46D6-828C-C16058AA88EE",
           "uiHint": "FB111359-2B73-4443-926C-08A98E446448",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -7568,7 +7568,7 @@
           "defKey": "is_turn",
           "defName": "是否跳转",
           "comment": "（0.否、1.是）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -7584,7 +7584,7 @@
           "refDict": "",
           "id": "E71C65CB-E786-4475-A4A4-BBA475F18BE5",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -7592,7 +7592,7 @@
           "defKey": "is_home",
           "defName": "是否首页",
           "comment": "（0.否、1.是）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -7608,7 +7608,7 @@
           "refDict": "",
           "id": "3FE7C383-E909-46FE-9089-1B8DBBEE015F",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -7688,7 +7688,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -7704,7 +7704,7 @@
           "refDict": "",
           "id": "DE9496C6-15C5-45CD-B70D-C3D261D576B9",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -7755,7 +7755,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -7771,7 +7771,7 @@
           "refDict": "",
           "id": "A6B75200-5F62-4D0A-ABAF-1EE6AA91E008",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -7798,7 +7798,7 @@
           "defKey": "state",
           "defName": "状态",
           "comment": "（0.正常、99.删除）",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "type": "",
           "len": "",
           "scale": "",
@@ -7814,7 +7814,7 @@
           "refDict": "",
           "id": "8A5F84F0-1456-46AE-9A95-F3D2D2AB4AE5",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -8299,11 +8299,11 @@
           "autoIncrement": true,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "0726D2CE-618D-411A-80B2-A99A68E83A3F",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -8405,7 +8405,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -8417,7 +8417,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "6E993773-40F2-441E-A226-BEBE0E85D33D",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -8462,7 +8462,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -8474,7 +8474,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "DEDD007F-F703-4B70-8DB2-3103169E6032",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -8509,10 +8509,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "753AE3F9-62A5-4335-A7E7-2D40477DBACC",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -8770,11 +8770,11 @@
           "autoIncrement": true,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "FB033419-4568-4A09-902E-3676C604CF4F",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -8828,10 +8828,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "B23499D6-51D0-47AC-A7F2-19A5284BF949",
           "uiHint": "9999AF2A-A44E-415C-A2DC-D7C613BD0073",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -8847,10 +8847,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "CBC2FFA0-49CC-41ED-B03B-E9B5B674BF31",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -8980,10 +8980,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "878733AC-B860-49A3-867C-9F487458062D",
           "uiHint": "9999AF2A-A44E-415C-A2DC-D7C613BD0073",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         },
         {
@@ -9066,7 +9066,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -9078,7 +9078,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "F3A11BF9-0998-41F4-8250-D76648CE1517",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -9123,7 +9123,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -9135,7 +9135,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "A74E3B94-A861-4A15-9F4A-175737C9E219",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -9170,10 +9170,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "BDB9237E-58BB-40CE-92CB-0C609B4ECD7E",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -9431,11 +9431,11 @@
           "autoIncrement": true,
           "defaultValue": "",
           "hideInGraph": false,
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "794BDBA8-0634-4C69-A7BC-142335A56D82",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -9537,7 +9537,7 @@
           "defKey": "creator_id",
           "defName": "创建人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -9549,7 +9549,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "6A2E0842-373E-4F05-9E39-B63E7E7614D5",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -9594,7 +9594,7 @@
           "defKey": "updater_id",
           "defName": "更新人ID",
           "comment": "",
-          "domain": "C0056089-A4EF-4BBC-BFFF-64F6100237D3",
+          "domain": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604",
           "type": "",
           "len": "",
           "scale": "",
@@ -9606,7 +9606,7 @@
           "refDict": "",
           "uiHint": "F66B5BF5-82A4-42FB-A9B8-47101B60A33C",
           "id": "92051539-0492-4B85-9636-1594118CB818",
-          "baseType": "122B62B6-B868-4398-86E7-2E4DADD776FF",
+          "baseType": "160B8105-1395-462A-B691-7769F8B79155",
           "extProps": {}
         },
         {
@@ -9641,10 +9641,10 @@
           "defaultValue": "",
           "hideInGraph": false,
           "refDict": "",
-          "domain": "1DBE955D-1911-4346-A52C-81C4BE563897",
+          "domain": "B051570A-DD32-405D-BDF3-3F60EF25BE83",
           "id": "13FFF277-5521-40CD-9483-5918934B589B",
           "uiHint": "5C04987A-260F-4B7C-A5D5-22A181AAE9CA",
-          "baseType": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
+          "baseType": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
           "extProps": {}
         }
       ],
@@ -9672,7 +9672,8 @@
       "refViews": [],
       "refDiagrams": [],
       "refDicts": [],
-      "id": "E19588FA-5092-49B5-B34C-31866679AD9E"
+      "id": "E19588FA-5092-49B5-B34C-31866679AD9E",
+      "refLogicEntities": []
     },
     {
       "defKey": "builder",
@@ -9689,7 +9690,8 @@
       "refViews": [],
       "refDiagrams": [],
       "refDicts": [],
-      "id": "3D30E42E-E8FC-422E-BB9E-3B801B96027E"
+      "id": "3D30E42E-E8FC-422E-BB9E-3B801B96027E",
+      "refLogicEntities": []
     },
     {
       "defKey": "capability",
@@ -9701,7 +9703,8 @@
       "refViews": [],
       "refDiagrams": [],
       "refDicts": [],
-      "id": "C19294A7-3AC6-416F-A190-3201B6039115"
+      "id": "C19294A7-3AC6-416F-A190-3201B6039115",
+      "refLogicEntities": []
     },
     {
       "defKey": "dictionary",
@@ -9712,7 +9715,8 @@
       "refViews": [],
       "refDiagrams": [],
       "refDicts": [],
-      "id": "8A707A27-5DB2-4C25-9C98-C6DCDD99C755"
+      "id": "8A707A27-5DB2-4C25-9C98-C6DCDD99C755",
+      "refLogicEntities": []
     },
     {
       "defKey": "member",
@@ -9723,7 +9727,8 @@
       "refViews": [],
       "refDiagrams": [],
       "refDicts": [],
-      "id": "5BB1AA40-818D-41AC-B6A7-3DFB1DC0925B"
+      "id": "5BB1AA40-818D-41AC-B6A7-3DFB1DC0925B",
+      "refLogicEntities": []
     },
     {
       "defKey": "message",
@@ -9734,7 +9739,8 @@
       "refViews": [],
       "refDiagrams": [],
       "refDicts": [],
-      "id": "C1150239-75DA-4091-85E3-915629E4E10E"
+      "id": "C1150239-75DA-4091-85E3-915629E4E10E",
+      "refLogicEntities": []
     }
   ],
   "dataTypeMapping": {
@@ -9853,7 +9859,7 @@
         "A2EE7B4A-CE62-4290-B00C-B26C1BF18073": "String"
       },
       {
-        "defKey": "intId",
+        "defKey": "bigint",
         "id": "160B8105-1395-462A-B691-7769F8B79155",
         "defName": "自增主键",
         "B49842D1-41D1-4A6F-A7A2-909BCFD51CAE": "Long",
@@ -9879,7 +9885,7 @@
         "A2EE7B4A-CE62-4290-B00C-B26C1BF18073": "Integer"
       },
       {
-        "defKey": "intId+",
+        "defKey": "bigint+",
         "id": "122B62B6-B868-4398-86E7-2E4DADD776FF",
         "defName": "自增主键-正整数",
         "B49842D1-41D1-4A6F-A7A2-909BCFD51CAE": "Long",
@@ -10020,16 +10026,16 @@
       "id": "AB81BC78-3678-4AC2-BF2B-55811AC61C6F"
     },
     {
-      "defKey": "IdOrKeyInt",
+      "defKey": "bigint",
       "defName": "自增主键",
       "applyFor": "160B8105-1395-462A-B691-7769F8B79155",
-      "len": 20,
+      "len": "",
       "scale": "",
       "uiHint": "",
       "id": "33F781F4-EB61-4E28-BB11-D8F8D0DD7604"
     },
     {
-      "defKey": "enumInt",
+      "defKey": "tinyint",
       "defName": "小整型",
       "applyFor": "AE126EED-3E89-4033-9B60-85EA5B62B18A",
       "len": "",
@@ -10038,7 +10044,7 @@
       "id": "B051570A-DD32-405D-BDF3-3F60EF25BE83"
     },
     {
-      "defKey": "IdOrKeyInt+",
+      "defKey": "bigint+",
       "defName": "自增主键-正整数",
       "applyFor": "122B62B6-B868-4398-86E7-2E4DADD776FF",
       "len": "",
@@ -10047,7 +10053,7 @@
       "id": "C0056089-A4EF-4BBC-BFFF-64F6100237D3"
     },
     {
-      "defKey": "enumInt+",
+      "defKey": "tinyint+",
       "defName": "小整型-正整数",
       "applyFor": "D73E9C84-4A2E-4ECD-A214-098A8769C957",
       "len": "",

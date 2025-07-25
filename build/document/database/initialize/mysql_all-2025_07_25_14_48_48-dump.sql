@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.4.5, for Linux (aarch64)
 --
--- Host: 127.0.0.1    Database: authorization
+-- Host: 127.0.0.1    Database: capability
 -- ------------------------------------------------------
 -- Server version	8.4.5
 
@@ -14,483 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Current Database: `authorization`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `authorization` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `authorization`;
-
---
--- Table structure for table `role`
---
-
-DROP TABLE IF EXISTS `role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `role` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `role_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '名称',
-  `remark` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='角色';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `role`
---
-
-LOCK TABLES `role` WRITE;
-/*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` (`id`, `role_name`, `remark`, `create_time`, `creator_id`, `creator_name`, `update_time`, `updater_id`, `updater_name`, `state`) VALUES (1,'超级管理员','超级管理员','2019-12-04 11:09:27',1,'超级管理员','2019-12-09 16:59:37',1,'超级管理员',0),(2,'普通用户','普通用户','2019-12-10 17:28:58',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0);
-/*!40000 ALTER TABLE `role` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `role_button`
---
-
-DROP TABLE IF EXISTS `role_button`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `role_button` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `role_id` bigint unsigned DEFAULT NULL COMMENT '角色ID',
-  `button_id` bigint unsigned DEFAULT NULL COMMENT '按钮ID',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='角色按钮关系';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `role_button`
---
-
-LOCK TABLES `role_button` WRITE;
-/*!40000 ALTER TABLE `role_button` DISABLE KEYS */;
-/*!40000 ALTER TABLE `role_button` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `role_manager`
---
-
-DROP TABLE IF EXISTS `role_manager`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `role_manager` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `role_id` bigint unsigned DEFAULT NULL COMMENT '角色ID',
-  `manager_id` bigint unsigned DEFAULT NULL COMMENT '管理员ID',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='角色管理员关系';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `role_manager`
---
-
-LOCK TABLES `role_manager` WRITE;
-/*!40000 ALTER TABLE `role_manager` DISABLE KEYS */;
-INSERT INTO `role_manager` (`id`, `role_id`, `manager_id`, `create_time`, `creator_id`, `creator_name`, `update_time`, `updater_id`, `updater_name`, `state`) VALUES (1,1,1,'2019-12-16 22:41:25',1,'超级管理员','2019-12-16 22:41:25',1,'超级管理员',0);
-/*!40000 ALTER TABLE `role_manager` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `role_menu`
---
-
-DROP TABLE IF EXISTS `role_menu`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `role_menu` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `role_id` bigint unsigned DEFAULT NULL COMMENT '角色ID',
-  `menu_id` bigint unsigned DEFAULT NULL COMMENT '菜单ID',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='角色菜单关系';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `role_menu`
---
-
-LOCK TABLES `role_menu` WRITE;
-/*!40000 ALTER TABLE `role_menu` DISABLE KEYS */;
-INSERT INTO `role_menu` (`id`, `role_id`, `menu_id`, `create_time`, `creator_id`, `creator_name`, `update_time`, `updater_id`, `updater_name`, `state`) VALUES (1,1,100,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(2,1,101,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(3,1,10101,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(4,1,10102,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(5,1,10103,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(6,1,10104,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(7,1,102,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(8,1,10201,'2019-12-09 16:59:39',1,'超级管理员','2019-12-09 16:59:39',1,'超级管理员',0),(9,1,10202,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(10,2,100,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(11,2,102,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(12,2,10201,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(13,2,10202,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0);
-/*!40000 ALTER TABLE `role_menu` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `undo_log`
---
-
-DROP TABLE IF EXISTS `undo_log`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `undo_log` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `branch_id` bigint NOT NULL COMMENT '分支事务id',
-  `xid` varchar(128) NOT NULL COMMENT '全局事务id',
-  `context` varchar(128) NOT NULL COMMENT 'undo_log上下文，例如序列化',
-  `rollback_info` longblob NOT NULL COMMENT '回滚信息',
-  `log_status` int NOT NULL COMMENT '状态 0:正常的状态,1:防御状态',
-  `log_created` datetime(6) NOT NULL COMMENT '创建时间',
-  `log_modified` datetime(6) NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`),
-  KEY `ix_log_created` (`log_created`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='AT事务模式撤销表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `undo_log`
---
-
-LOCK TABLES `undo_log` WRITE;
-/*!40000 ALTER TABLE `undo_log` DISABLE KEYS */;
-/*!40000 ALTER TABLE `undo_log` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Current Database: `builder`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `builder` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `builder`;
-
---
--- Table structure for table `commonly_version`
---
-
-DROP TABLE IF EXISTS `commonly_version`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `commonly_version` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `manager_id` bigint unsigned DEFAULT NULL COMMENT '管理员ID',
-  `jdk_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'JDK版本',
-  `spring_cloud_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringCloudVersion',
-  `spring_cloud_alibaba_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringCloudAlibabaVersion',
-  `spring_boot_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringBootVersion',
-  `open_api_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'API文档组件',
-  `lombok_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '简化对象lombok',
-  `druid_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据访问监控Druid',
-  `mybatis_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据库框架MyBatis版本',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='常用版本';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `commonly_version`
---
-
-LOCK TABLES `commonly_version` WRITE;
-/*!40000 ALTER TABLE `commonly_version` DISABLE KEYS */;
-/*!40000 ALTER TABLE `commonly_version` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `data_base_file`
---
-
-DROP TABLE IF EXISTS `data_base_file`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `data_base_file` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `project_group_id` bigint unsigned DEFAULT NULL COMMENT '项目群ID',
-  `file_url` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '文件地址',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='数据库设计文件';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `data_base_file`
---
-
-LOCK TABLES `data_base_file` WRITE;
-/*!40000 ALTER TABLE `data_base_file` DISABLE KEYS */;
-/*!40000 ALTER TABLE `data_base_file` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `project`
---
-
-DROP TABLE IF EXISTS `project`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `project` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `project_group_id` bigint unsigned DEFAULT NULL COMMENT '项目群ID',
-  `project_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目名称',
-  `artifact_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '工件ID',
-  `package_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目包目录',
-  `project_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目版本',
-  `project_description` varchar(4000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目的描述',
-  `project_url` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目访问路径',
-  `project_port` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目访问端口',
-  `is_service_interface` tinyint unsigned DEFAULT NULL COMMENT '是否Service创建接口;（0.否、1.是）',
-  `is_delete_bo` tinyint unsigned DEFAULT NULL COMMENT '是否去除BO层;（0.否、1.是）',
-  `is_basis_method` tinyint unsigned DEFAULT NULL COMMENT '是否生成基础方法;（0.否、1.是）',
-  `is_redis` tinyint unsigned DEFAULT NULL COMMENT '是否使用Redis缓存;（0.否、1.是）',
-  `is_minio` tinyint unsigned DEFAULT NULL COMMENT '是否使用MinIO文件服务器;（0.否、1.是）',
-  `is_mail` tinyint unsigned DEFAULT NULL COMMENT '是否使用Mail能力;（0.否、1.是）',
-  `is_dispose` tinyint unsigned DEFAULT NULL COMMENT '是否使用内容处理能力;（0.否、1.是）',
-  `is_encrypt` tinyint unsigned DEFAULT NULL COMMENT '是否使用加密能力;（0.否、1.是）',
-  `is_excel` tinyint unsigned DEFAULT NULL COMMENT '是否使用Excel能力;（0.否、1.是）',
-  `druid_url` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Druid访问路径',
-  `druid_account` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Druid登录账号',
-  `druid_password` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Druid登录密码',
-  `is_delete_not_pk` tinyint unsigned DEFAULT NULL COMMENT '是否去除无主键的表;（0.否、1.是）',
-  `is_order_key` tinyint unsigned DEFAULT NULL COMMENT '是否吧主键生成时放第一位;（0.否、1.是）',
-  `data_base_framework` tinyint unsigned DEFAULT NULL COMMENT '数据层框架类型;（0.不使用数据源、1.JPA、2.Mybatis）',
-  `data_base_format` tinyint unsigned DEFAULT NULL COMMENT '数据库格式设定;（0.没有格式转换、1.X_X_Xxxx => XXXXxxx）',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `project`
---
-
-LOCK TABLES `project` WRITE;
-/*!40000 ALTER TABLE `project` DISABLE KEYS */;
-/*!40000 ALTER TABLE `project` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `project_column`
---
-
-DROP TABLE IF EXISTS `project_column`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `project_column` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `project_table_id` bigint unsigned DEFAULT NULL COMMENT '项目表ID',
-  `table_schema` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '所属的库',
-  `table_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '表名称',
-  `column_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '字段名',
-  `is_nullable` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '是否可以为空',
-  `data_type` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据类型;不包括长度',
-  `character_maximum_length` int DEFAULT NULL COMMENT '数据长度varchar',
-  `numeric_precision` int DEFAULT NULL COMMENT '数字类型的整型部分长度',
-  `numeric_scale` int DEFAULT NULL COMMENT '数字类型的小数部分长度',
-  `column_type` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '字段类型',
-  `column_key` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'PRI为主键，MUL为外键',
-  `extra` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '自增标识',
-  `column_comment` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '字段注释',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目表字段';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `project_column`
---
-
-LOCK TABLES `project_column` WRITE;
-/*!40000 ALTER TABLE `project_column` DISABLE KEYS */;
-/*!40000 ALTER TABLE `project_column` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `project_group`
---
-
-DROP TABLE IF EXISTS `project_group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `project_group` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `manager_id` bigint unsigned DEFAULT NULL COMMENT '管理员ID',
-  `project_group_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目群名称',
-  `group_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '组ID',
-  `artifact_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '工件ID',
-  `version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目群版本号',
-  `jdk_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'JDK版本',
-  `spring_cloud_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringCloudVersion',
-  `spring_cloud_alibaba_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringCloudAlibabaVersion',
-  `spring_boot_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringBootVersion',
-  `open_api_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'API文档组件',
-  `lombok_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '简化对象lombok',
-  `druid_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据访问监控Druid',
-  `mybatis_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据库框架MyBatis版本',
-  `remark` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目群';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `project_group`
---
-
-LOCK TABLES `project_group` WRITE;
-/*!40000 ALTER TABLE `project_group` DISABLE KEYS */;
-/*!40000 ALTER TABLE `project_group` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `project_project_table`
---
-
-DROP TABLE IF EXISTS `project_project_table`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `project_project_table` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `project_id` bigint unsigned DEFAULT NULL COMMENT '项目ID',
-  `project_table_id` bigint unsigned DEFAULT NULL COMMENT '项目表ID',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目项目表关系';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `project_project_table`
---
-
-LOCK TABLES `project_project_table` WRITE;
-/*!40000 ALTER TABLE `project_project_table` DISABLE KEYS */;
-/*!40000 ALTER TABLE `project_project_table` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `project_table`
---
-
-DROP TABLE IF EXISTS `project_table`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `project_table` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `project_group_id` bigint unsigned DEFAULT NULL COMMENT '项目群ID',
-  `data_base_file_id` bigint unsigned DEFAULT NULL COMMENT '数据库设计文件ID',
-  `table_schema` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '所属的库',
-  `table_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '表名称',
-  `table_comment` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '表注释',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `project_table`
---
-
-LOCK TABLES `project_table` WRITE;
-/*!40000 ALTER TABLE `project_table` DISABLE KEYS */;
-/*!40000 ALTER TABLE `project_table` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `undo_log`
---
-
-DROP TABLE IF EXISTS `undo_log`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `undo_log` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `branch_id` bigint NOT NULL COMMENT '分支事务id',
-  `xid` varchar(128) NOT NULL COMMENT '全局事务id',
-  `context` varchar(128) NOT NULL COMMENT 'undo_log上下文，例如序列化',
-  `rollback_info` longblob NOT NULL COMMENT '回滚信息',
-  `log_status` int NOT NULL COMMENT '状态 0:正常的状态,1:防御状态',
-  `log_created` datetime(6) NOT NULL COMMENT '创建时间',
-  `log_modified` datetime(6) NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`),
-  KEY `ix_log_created` (`log_created`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='AT事务模式撤销表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `undo_log`
---
-
-LOCK TABLES `undo_log` WRITE;
-/*!40000 ALTER TABLE `undo_log` DISABLE KEYS */;
-/*!40000 ALTER TABLE `undo_log` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Current Database: `capability`
@@ -508,20 +31,20 @@ DROP TABLE IF EXISTS `button`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `button` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `button_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '名称',
   `button_sign` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '标识',
   `on_click` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '点击事件',
-  `menu_id` bigint unsigned DEFAULT NULL COMMENT '菜单ID',
+  `menu_id` bigint DEFAULT NULL COMMENT '菜单ID',
   `button_order` int DEFAULT NULL COMMENT '排序;按数字从小到大',
   `remark` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
   `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
   `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='按钮';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -543,23 +66,23 @@ DROP TABLE IF EXISTS `menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `menu` (
-  `id` bigint unsigned NOT NULL COMMENT '主键ID',
+  `id` bigint NOT NULL COMMENT '主键ID',
   `menu_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '名称',
   `menu_url` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '路径',
   `menu_icon` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '菜单图标',
   `page_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '页面名称',
-  `parent_id` bigint unsigned DEFAULT NULL COMMENT '父级ID',
-  `is_turn` tinyint unsigned DEFAULT NULL COMMENT '是否跳转;（0.否、1.是）',
-  `is_home` tinyint unsigned DEFAULT NULL COMMENT '是否首页;（0.否、1.是）',
+  `parent_id` bigint DEFAULT NULL COMMENT '父级ID',
+  `is_turn` tinyint DEFAULT NULL COMMENT '是否跳转;（0.否、1.是）',
+  `is_home` tinyint DEFAULT NULL COMMENT '是否首页;（0.否、1.是）',
   `menu_order` int DEFAULT NULL COMMENT '排序;按数字从小到大',
   `remark` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
   `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
   `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='菜单';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -572,79 +95,6 @@ LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 INSERT INTO `menu` (`id`, `menu_name`, `menu_url`, `menu_icon`, `page_name`, `parent_id`, `is_turn`, `is_home`, `menu_order`, `remark`, `create_time`, `creator_id`, `creator_name`, `update_time`, `updater_id`, `updater_name`, `state`) VALUES (100,'首页','/home','icon-home','Home',NULL,1,1,100,'首页','2019-11-29 11:27:59',1,'超级管理员','2019-12-16 16:41:56',1,'超级管理员',0),(101,'系统管理',NULL,'icon-desktop',NULL,NULL,0,0,101,'系统管理操作','2019-11-29 11:27:59',1,'超级管理员','2019-12-16 22:38:03',1,'超级管理员',0),(102,'项目群管理',NULL,'icon-project',NULL,NULL,0,0,102,'项目群操作','2019-11-29 11:27:59',1,'超级管理员','2019-12-16 22:38:03',1,'超级管理员',0),(10101,'菜单管理','/menu/manage','icon-menu','MenuManage',101,1,0,10101,'菜单操作','2019-11-29 11:27:59',1,'超级管理员','2019-12-02 21:50:17',1,'超级管理员',0),(10102,'角色管理','/role/manage','icon-audit','RoleManage',101,1,0,10102,'角色操作','2019-11-29 11:27:59',1,'超级管理员','2019-11-29 11:28:07',1,'超级管理员',0),(10103,'用户管理','/manager/manage','icon-user','ManagerManage',101,1,0,10103,'用户操作','2019-11-29 11:27:59',1,'超级管理员','2019-11-29 11:28:07',1,'超级管理员',0),(10104,'参数管理','/parameter/manage','icon-wrench','ParameterManage',101,1,0,10104,'参数设置操作','2019-11-29 11:27:59',1,'超级管理员','2019-12-16 16:41:56',1,'超级管理员',0),(10201,'项目群管理','/group/manage','icon-project','GroupManage',102,1,0,10201,'项目群操作','2019-11-29 11:27:59',1,'超级管理员','2019-12-19 17:09:48',1,'超级管理员',0),(10202,'新增项目群','/group/detail','icon-file-add','GroupDetail',102,1,0,10202,'新增项目群操作','2019-11-29 11:27:59',1,'超级管理员','2019-12-16 16:41:56',1,'超级管理员',0);
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `undo_log`
---
-
-DROP TABLE IF EXISTS `undo_log`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `undo_log` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `branch_id` bigint NOT NULL COMMENT '分支事务id',
-  `xid` varchar(128) NOT NULL COMMENT '全局事务id',
-  `context` varchar(128) NOT NULL COMMENT 'undo_log上下文，例如序列化',
-  `rollback_info` longblob NOT NULL COMMENT '回滚信息',
-  `log_status` int NOT NULL COMMENT '状态 0:正常的状态,1:防御状态',
-  `log_created` datetime(6) NOT NULL COMMENT '创建时间',
-  `log_modified` datetime(6) NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`),
-  KEY `ix_log_created` (`log_created`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='AT事务模式撤销表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `undo_log`
---
-
-LOCK TABLES `undo_log` WRITE;
-/*!40000 ALTER TABLE `undo_log` DISABLE KEYS */;
-/*!40000 ALTER TABLE `undo_log` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Current Database: `dictionary`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dictionary` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `dictionary`;
-
---
--- Table structure for table `parameter`
---
-
-DROP TABLE IF EXISTS `parameter`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `parameter` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `parameter_code` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '参数代码',
-  `parameter_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '参数名称',
-  `parameter_value` text COLLATE utf8mb4_general_ci COMMENT '参数值',
-  `parameter_explain` varchar(4000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '参数说明',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
-  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
-  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='参数';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `parameter`
---
-
-LOCK TABLES `parameter` WRITE;
-/*!40000 ALTER TABLE `parameter` DISABLE KEYS */;
-INSERT INTO `parameter` (`id`, `parameter_code`, `parameter_name`, `parameter_value`, `parameter_explain`, `create_time`, `creator_id`, `creator_name`, `update_time`, `updater_id`, `updater_name`, `state`) VALUES (1,'CreateProjectGroupMaxNumber','创建项目群最大数','3','用于限制个人创建项目群最大数量','2019-12-30 09:20:07',1,'超级管理员','2020-01-03 23:25:02',1,'超级管理员',0);
-/*!40000 ALTER TABLE `parameter` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -694,28 +144,28 @@ DROP TABLE IF EXISTS `manager`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `manager` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `head_img_url` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '头像',
   `manager_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '姓名',
-  `age` tinyint unsigned DEFAULT NULL COMMENT '年龄',
-  `sex` tinyint unsigned DEFAULT NULL COMMENT '性别;（0.保密、1.男、2女）',
+  `age` tinyint DEFAULT NULL COMMENT '年龄',
+  `sex` tinyint DEFAULT NULL COMMENT '性别;（0.保密、1.男、2女）',
   `mobile` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '手机号',
   `mail` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '邮箱',
   `account` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '账号',
   `login_password` varchar(32) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '登陆密码',
   `last_attempt_login_request_ip` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '最后尝试请求IP',
   `last_attempt_login_time` datetime DEFAULT NULL COMMENT '最后尝试登陆时间',
-  `attempt_login_number` tinyint unsigned DEFAULT NULL COMMENT '尝试登陆次数',
+  `attempt_login_number` tinyint DEFAULT NULL COMMENT '尝试登陆次数',
   `request_ip` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '常用请求IP',
   `current_request_ip` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '当前请求IP',
   `remark` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
   `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
   `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、1.冻结、99.删除）',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、1.冻结、99.删除）',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='管理员';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -762,6 +212,574 @@ LOCK TABLES `undo_log` WRITE;
 UNLOCK TABLES;
 
 --
+-- Current Database: `builder`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `builder` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `builder`;
+
+--
+-- Table structure for table `commonly_version`
+--
+
+DROP TABLE IF EXISTS `commonly_version`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `commonly_version` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `manager_id` bigint DEFAULT NULL COMMENT '管理员ID',
+  `jdk_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'JDK版本',
+  `spring_cloud_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringCloudVersion',
+  `spring_cloud_alibaba_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringCloudAlibabaVersion',
+  `spring_boot_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringBootVersion',
+  `open_api_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'API文档组件',
+  `lombok_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '简化对象lombok',
+  `druid_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据访问监控Druid',
+  `mybatis_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据库框架MyBatis版本',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='常用版本';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `commonly_version`
+--
+
+LOCK TABLES `commonly_version` WRITE;
+/*!40000 ALTER TABLE `commonly_version` DISABLE KEYS */;
+/*!40000 ALTER TABLE `commonly_version` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `data_base_file`
+--
+
+DROP TABLE IF EXISTS `data_base_file`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `data_base_file` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `project_group_id` bigint DEFAULT NULL COMMENT '项目群ID',
+  `file_url` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '文件地址',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='数据库设计文件';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `data_base_file`
+--
+
+LOCK TABLES `data_base_file` WRITE;
+/*!40000 ALTER TABLE `data_base_file` DISABLE KEYS */;
+/*!40000 ALTER TABLE `data_base_file` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project`
+--
+
+DROP TABLE IF EXISTS `project`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `project` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `project_group_id` bigint DEFAULT NULL COMMENT '项目群ID',
+  `project_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目名称',
+  `artifact_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '工件ID',
+  `package_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目包目录',
+  `project_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目版本',
+  `project_description` varchar(4000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目的描述',
+  `project_url` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目访问路径',
+  `project_port` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目访问端口',
+  `is_service_interface` tinyint DEFAULT NULL COMMENT '是否Service创建接口;（0.否、1.是）',
+  `is_delete_bo` tinyint DEFAULT NULL COMMENT '是否去除BO层;（0.否、1.是）',
+  `is_basis_method` tinyint DEFAULT NULL COMMENT '是否生成基础方法;（0.否、1.是）',
+  `is_redis` tinyint DEFAULT NULL COMMENT '是否使用Redis缓存;（0.否、1.是）',
+  `is_minio` tinyint DEFAULT NULL COMMENT '是否使用MinIO文件服务器;（0.否、1.是）',
+  `is_mail` tinyint DEFAULT NULL COMMENT '是否使用Mail能力;（0.否、1.是）',
+  `is_dispose` tinyint DEFAULT NULL COMMENT '是否使用内容处理能力;（0.否、1.是）',
+  `is_encrypt` tinyint DEFAULT NULL COMMENT '是否使用加密能力;（0.否、1.是）',
+  `is_excel` tinyint DEFAULT NULL COMMENT '是否使用Excel能力;（0.否、1.是）',
+  `druid_url` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Druid访问路径',
+  `druid_account` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Druid登录账号',
+  `druid_password` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Druid登录密码',
+  `is_delete_not_pk` tinyint DEFAULT NULL COMMENT '是否去除无主键的表;（0.否、1.是）',
+  `is_order_key` tinyint DEFAULT NULL COMMENT '是否吧主键生成时放第一位;（0.否、1.是）',
+  `data_base_framework` tinyint DEFAULT NULL COMMENT '数据层框架类型;（0.不使用数据源、1.JPA、2.Mybatis）',
+  `data_base_format` tinyint DEFAULT NULL COMMENT '数据库格式设定;（0.没有格式转换、1.X_X_Xxxx => XXXXxxx）',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project`
+--
+
+LOCK TABLES `project` WRITE;
+/*!40000 ALTER TABLE `project` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project_column`
+--
+
+DROP TABLE IF EXISTS `project_column`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `project_column` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `project_table_id` bigint DEFAULT NULL COMMENT '项目表ID',
+  `table_schema` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '所属的库',
+  `table_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '表名称',
+  `column_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '字段名',
+  `is_nullable` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '是否可以为空',
+  `data_type` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据类型;不包括长度',
+  `character_maximum_length` int DEFAULT NULL COMMENT '数据长度varchar',
+  `numeric_precision` int DEFAULT NULL COMMENT '数字类型的整型部分长度',
+  `numeric_scale` int DEFAULT NULL COMMENT '数字类型的小数部分长度',
+  `column_type` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '字段类型',
+  `column_key` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'PRI为主键，MUL为外键',
+  `extra` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '自增标识',
+  `column_comment` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '字段注释',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目表字段';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project_column`
+--
+
+LOCK TABLES `project_column` WRITE;
+/*!40000 ALTER TABLE `project_column` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project_column` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project_group`
+--
+
+DROP TABLE IF EXISTS `project_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `project_group` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `manager_id` bigint DEFAULT NULL COMMENT '管理员ID',
+  `project_group_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目群名称',
+  `group_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '组ID',
+  `artifact_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '工件ID',
+  `version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '项目群版本号',
+  `jdk_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'JDK版本',
+  `spring_cloud_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringCloudVersion',
+  `spring_cloud_alibaba_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringCloudAlibabaVersion',
+  `spring_boot_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SpringBootVersion',
+  `open_api_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'API文档组件',
+  `lombok_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '简化对象lombok',
+  `druid_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据访问监控Druid',
+  `mybatis_version` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '数据库框架MyBatis版本',
+  `remark` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目群';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project_group`
+--
+
+LOCK TABLES `project_group` WRITE;
+/*!40000 ALTER TABLE `project_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project_project_table`
+--
+
+DROP TABLE IF EXISTS `project_project_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `project_project_table` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `project_id` bigint DEFAULT NULL COMMENT '项目ID',
+  `project_table_id` bigint DEFAULT NULL COMMENT '项目表ID',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目项目表关系';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project_project_table`
+--
+
+LOCK TABLES `project_project_table` WRITE;
+/*!40000 ALTER TABLE `project_project_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project_project_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `project_table`
+--
+
+DROP TABLE IF EXISTS `project_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `project_table` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `project_group_id` bigint DEFAULT NULL COMMENT '项目群ID',
+  `data_base_file_id` bigint DEFAULT NULL COMMENT '数据库设计文件ID',
+  `table_schema` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '所属的库',
+  `table_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '表名称',
+  `table_comment` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '表注释',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='项目表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `project_table`
+--
+
+LOCK TABLES `project_table` WRITE;
+/*!40000 ALTER TABLE `project_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `project_table` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `undo_log`
+--
+
+DROP TABLE IF EXISTS `undo_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `undo_log` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `branch_id` bigint NOT NULL COMMENT '分支事务id',
+  `xid` varchar(128) NOT NULL COMMENT '全局事务id',
+  `context` varchar(128) NOT NULL COMMENT 'undo_log上下文，例如序列化',
+  `rollback_info` longblob NOT NULL COMMENT '回滚信息',
+  `log_status` int NOT NULL COMMENT '状态 0:正常的状态,1:防御状态',
+  `log_created` datetime(6) NOT NULL COMMENT '创建时间',
+  `log_modified` datetime(6) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`),
+  KEY `ix_log_created` (`log_created`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='AT事务模式撤销表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `undo_log`
+--
+
+LOCK TABLES `undo_log` WRITE;
+/*!40000 ALTER TABLE `undo_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `undo_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Current Database: `xxl_job`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `xxl_job` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `xxl_job`;
+
+--
+-- Table structure for table `xxl_job_group`
+--
+
+DROP TABLE IF EXISTS `xxl_job_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `xxl_job_group` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `app_name` varchar(64) NOT NULL COMMENT '执行器AppName',
+  `title` varchar(12) NOT NULL COMMENT '执行器名称',
+  `address_type` tinyint NOT NULL DEFAULT '0' COMMENT '执行器地址类型：0=自动注册、1=手动录入',
+  `address_list` text COMMENT '执行器地址列表，多地址逗号分隔',
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xxl_job_group`
+--
+
+LOCK TABLES `xxl_job_group` WRITE;
+/*!40000 ALTER TABLE `xxl_job_group` DISABLE KEYS */;
+INSERT INTO `xxl_job_group` (`id`, `app_name`, `title`, `address_type`, `address_list`, `update_time`) VALUES (3,'build-xxl-job-executor','build定时任务执行器',0,NULL,'2025-07-01 15:21:51');
+/*!40000 ALTER TABLE `xxl_job_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `xxl_job_info`
+--
+
+DROP TABLE IF EXISTS `xxl_job_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `xxl_job_info` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `job_group` int NOT NULL COMMENT '执行器主键ID',
+  `job_desc` varchar(255) NOT NULL,
+  `add_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `author` varchar(64) DEFAULT NULL COMMENT '作者',
+  `alarm_email` varchar(255) DEFAULT NULL COMMENT '报警邮件',
+  `schedule_type` varchar(50) NOT NULL DEFAULT 'NONE' COMMENT '调度类型',
+  `schedule_conf` varchar(128) DEFAULT NULL COMMENT '调度配置，值含义取决于调度类型',
+  `misfire_strategy` varchar(50) NOT NULL DEFAULT 'DO_NOTHING' COMMENT '调度过期策略',
+  `executor_route_strategy` varchar(50) DEFAULT NULL COMMENT '执行器路由策略',
+  `executor_handler` varchar(255) DEFAULT NULL COMMENT '执行器任务handler',
+  `executor_param` varchar(512) DEFAULT NULL COMMENT '执行器任务参数',
+  `executor_block_strategy` varchar(50) DEFAULT NULL COMMENT '阻塞处理策略',
+  `executor_timeout` int NOT NULL DEFAULT '0' COMMENT '任务执行超时时间，单位秒',
+  `executor_fail_retry_count` int NOT NULL DEFAULT '0' COMMENT '失败重试次数',
+  `glue_type` varchar(50) NOT NULL COMMENT 'GLUE类型',
+  `glue_source` mediumtext COMMENT 'GLUE源代码',
+  `glue_remark` varchar(128) DEFAULT NULL COMMENT 'GLUE备注',
+  `glue_updatetime` datetime DEFAULT NULL COMMENT 'GLUE更新时间',
+  `child_jobid` varchar(255) DEFAULT NULL COMMENT '子任务ID，多个逗号分隔',
+  `trigger_status` tinyint NOT NULL DEFAULT '0' COMMENT '调度状态：0-停止，1-运行',
+  `trigger_last_time` bigint NOT NULL DEFAULT '0' COMMENT '上次调度时间',
+  `trigger_next_time` bigint NOT NULL DEFAULT '0' COMMENT '下次调度时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xxl_job_info`
+--
+
+LOCK TABLES `xxl_job_info` WRITE;
+/*!40000 ALTER TABLE `xxl_job_info` DISABLE KEYS */;
+INSERT INTO `xxl_job_info` (`id`, `job_group`, `job_desc`, `add_time`, `update_time`, `author`, `alarm_email`, `schedule_type`, `schedule_conf`, `misfire_strategy`, `executor_route_strategy`, `executor_handler`, `executor_param`, `executor_block_strategy`, `executor_timeout`, `executor_fail_retry_count`, `glue_type`, `glue_source`, `glue_remark`, `glue_updatetime`, `child_jobid`, `trigger_status`, `trigger_last_time`, `trigger_next_time`) VALUES (4,3,'简单任务示例','2025-06-27 21:03:09','2025-06-27 21:19:00','fyy','','CRON','* * * * * ?','DO_NOTHING','FIRST','demoJobHandler','','SERIAL_EXECUTION',0,0,'BEAN','','GLUE代码初始化','2025-06-27 21:03:09','',0,0,0),(5,3,'分片广播任务示例','2025-06-27 21:18:34','2025-06-27 21:32:02','fyy','','CRON','* * * * * ?','DO_NOTHING','FIRST','shardingJobHandler','','SERIAL_EXECUTION',0,0,'BEAN','','GLUE代码初始化','2025-06-27 21:18:34','',0,0,0);
+/*!40000 ALTER TABLE `xxl_job_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `xxl_job_lock`
+--
+
+DROP TABLE IF EXISTS `xxl_job_lock`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `xxl_job_lock` (
+  `lock_name` varchar(50) NOT NULL COMMENT '锁名称',
+  PRIMARY KEY (`lock_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xxl_job_lock`
+--
+
+LOCK TABLES `xxl_job_lock` WRITE;
+/*!40000 ALTER TABLE `xxl_job_lock` DISABLE KEYS */;
+INSERT INTO `xxl_job_lock` (`lock_name`) VALUES ('schedule_lock');
+/*!40000 ALTER TABLE `xxl_job_lock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `xxl_job_log`
+--
+
+DROP TABLE IF EXISTS `xxl_job_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `xxl_job_log` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `job_group` int NOT NULL COMMENT '执行器主键ID',
+  `job_id` int NOT NULL COMMENT '任务，主键ID',
+  `executor_address` varchar(255) DEFAULT NULL COMMENT '执行器地址，本次执行的地址',
+  `executor_handler` varchar(255) DEFAULT NULL COMMENT '执行器任务handler',
+  `executor_param` varchar(512) DEFAULT NULL COMMENT '执行器任务参数',
+  `executor_sharding_param` varchar(20) DEFAULT NULL COMMENT '执行器任务分片参数，格式如 1/2',
+  `executor_fail_retry_count` int NOT NULL DEFAULT '0' COMMENT '失败重试次数',
+  `trigger_time` datetime DEFAULT NULL COMMENT '调度-时间',
+  `trigger_code` int NOT NULL COMMENT '调度-结果',
+  `trigger_msg` text COMMENT '调度-日志',
+  `handle_time` datetime DEFAULT NULL COMMENT '执行-时间',
+  `handle_code` int NOT NULL COMMENT '执行-状态',
+  `handle_msg` text COMMENT '执行-日志',
+  `alarm_status` tinyint NOT NULL DEFAULT '0' COMMENT '告警状态：0-默认、1-无需告警、2-告警成功、3-告警失败',
+  PRIMARY KEY (`id`),
+  KEY `I_trigger_time` (`trigger_time`),
+  KEY `I_handle_code` (`handle_code`),
+  KEY `I_jobid_jobgroup` (`job_id`,`job_group`),
+  KEY `I_job_id` (`job_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xxl_job_log`
+--
+
+LOCK TABLES `xxl_job_log` WRITE;
+/*!40000 ALTER TABLE `xxl_job_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `xxl_job_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `xxl_job_log_report`
+--
+
+DROP TABLE IF EXISTS `xxl_job_log_report`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `xxl_job_log_report` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `trigger_day` datetime DEFAULT NULL COMMENT '调度-时间',
+  `running_count` int NOT NULL DEFAULT '0' COMMENT '运行中-日志数量',
+  `suc_count` int NOT NULL DEFAULT '0' COMMENT '执行成功-日志数量',
+  `fail_count` int NOT NULL DEFAULT '0' COMMENT '执行失败-日志数量',
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `i_trigger_day` (`trigger_day`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xxl_job_log_report`
+--
+
+LOCK TABLES `xxl_job_log_report` WRITE;
+/*!40000 ALTER TABLE `xxl_job_log_report` DISABLE KEYS */;
+INSERT INTO `xxl_job_log_report` (`id`, `trigger_day`, `running_count`, `suc_count`, `fail_count`, `update_time`) VALUES (1,'2025-06-27 00:00:00',0,0,0,NULL),(2,'2025-06-26 00:00:00',0,0,0,NULL),(3,'2025-06-25 00:00:00',0,0,0,NULL),(4,'2025-06-28 00:00:00',0,0,0,NULL),(5,'2025-06-29 00:00:00',0,0,0,NULL),(6,'2025-06-30 00:00:00',0,0,0,NULL),(7,'2025-07-01 00:00:00',0,0,0,NULL);
+/*!40000 ALTER TABLE `xxl_job_log_report` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `xxl_job_logglue`
+--
+
+DROP TABLE IF EXISTS `xxl_job_logglue`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `xxl_job_logglue` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `job_id` int NOT NULL COMMENT '任务，主键ID',
+  `glue_type` varchar(50) DEFAULT NULL COMMENT 'GLUE类型',
+  `glue_source` mediumtext COMMENT 'GLUE源代码',
+  `glue_remark` varchar(128) NOT NULL COMMENT 'GLUE备注',
+  `add_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xxl_job_logglue`
+--
+
+LOCK TABLES `xxl_job_logglue` WRITE;
+/*!40000 ALTER TABLE `xxl_job_logglue` DISABLE KEYS */;
+/*!40000 ALTER TABLE `xxl_job_logglue` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `xxl_job_registry`
+--
+
+DROP TABLE IF EXISTS `xxl_job_registry`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `xxl_job_registry` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `registry_group` varchar(50) NOT NULL,
+  `registry_key` varchar(255) NOT NULL,
+  `registry_value` varchar(255) NOT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `i_g_k_v` (`registry_group`,`registry_key`,`registry_value`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=449 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xxl_job_registry`
+--
+
+LOCK TABLES `xxl_job_registry` WRITE;
+/*!40000 ALTER TABLE `xxl_job_registry` DISABLE KEYS */;
+/*!40000 ALTER TABLE `xxl_job_registry` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `xxl_job_user`
+--
+
+DROP TABLE IF EXISTS `xxl_job_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `xxl_job_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL COMMENT '账号',
+  `password` varchar(50) NOT NULL COMMENT '密码',
+  `role` tinyint NOT NULL COMMENT '角色：0-普通用户、1-管理员',
+  `permission` varchar(255) DEFAULT NULL COMMENT '权限：执行器ID列表，多个逗号分割',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `i_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xxl_job_user`
+--
+
+LOCK TABLES `xxl_job_user` WRITE;
+/*!40000 ALTER TABLE `xxl_job_user` DISABLE KEYS */;
+INSERT INTO `xxl_job_user` (`id`, `username`, `password`, `role`, `permission`) VALUES (1,'admin','15c045b33a7afdead2376c302f12cade',1,NULL);
+/*!40000 ALTER TABLE `xxl_job_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Current Database: `message`
 --
 
@@ -777,18 +795,18 @@ DROP TABLE IF EXISTS `notice`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notice` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `notice_title` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '公告标题',
   `notice_content` text COLLATE utf8mb4_general_ci COMMENT '公告内容',
   `notice_author` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '公告作者',
   `notice_order` int DEFAULT NULL COMMENT '公告排序',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `creator_id` bigint unsigned DEFAULT NULL COMMENT '创建人ID',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
   `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `updater_id` bigint unsigned DEFAULT NULL COMMENT '更新人ID',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
   `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
-  `state` tinyint unsigned DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='公告';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1221,6 +1239,245 @@ INSERT INTO `users` (`username`, `password`, `enabled`) VALUES ('fyy','$2a$10$GO
 UNLOCK TABLES;
 
 --
+-- Current Database: `dictionary`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dictionary` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `dictionary`;
+
+--
+-- Table structure for table `parameter`
+--
+
+DROP TABLE IF EXISTS `parameter`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `parameter` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `parameter_code` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '参数代码',
+  `parameter_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '参数名称',
+  `parameter_value` text COLLATE utf8mb4_general_ci COMMENT '参数值',
+  `parameter_explain` varchar(4000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '参数说明',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='参数';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `parameter`
+--
+
+LOCK TABLES `parameter` WRITE;
+/*!40000 ALTER TABLE `parameter` DISABLE KEYS */;
+INSERT INTO `parameter` (`id`, `parameter_code`, `parameter_name`, `parameter_value`, `parameter_explain`, `create_time`, `creator_id`, `creator_name`, `update_time`, `updater_id`, `updater_name`, `state`) VALUES (1,'CreateProjectGroupMaxNumber','创建项目群最大数','3','用于限制个人创建项目群最大数量','2019-12-30 09:20:07',1,'超级管理员','2020-01-03 23:25:02',1,'超级管理员',0);
+/*!40000 ALTER TABLE `parameter` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `undo_log`
+--
+
+DROP TABLE IF EXISTS `undo_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `undo_log` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `branch_id` bigint NOT NULL COMMENT '分支事务id',
+  `xid` varchar(128) NOT NULL COMMENT '全局事务id',
+  `context` varchar(128) NOT NULL COMMENT 'undo_log上下文，例如序列化',
+  `rollback_info` longblob NOT NULL COMMENT '回滚信息',
+  `log_status` int NOT NULL COMMENT '状态 0:正常的状态,1:防御状态',
+  `log_created` datetime(6) NOT NULL COMMENT '创建时间',
+  `log_modified` datetime(6) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`),
+  KEY `ix_log_created` (`log_created`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='AT事务模式撤销表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `undo_log`
+--
+
+LOCK TABLES `undo_log` WRITE;
+/*!40000 ALTER TABLE `undo_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `undo_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Current Database: `authorization`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `authorization` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `authorization`;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `role_name` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '名称',
+  `remark` varchar(1000) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='角色';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` (`id`, `role_name`, `remark`, `create_time`, `creator_id`, `creator_name`, `update_time`, `updater_id`, `updater_name`, `state`) VALUES (1,'超级管理员','超级管理员','2019-12-04 11:09:27',1,'超级管理员','2019-12-09 16:59:37',1,'超级管理员',0),(2,'普通用户','普通用户','2019-12-10 17:28:58',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0);
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role_button`
+--
+
+DROP TABLE IF EXISTS `role_button`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role_button` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `role_id` bigint DEFAULT NULL COMMENT '角色ID',
+  `button_id` bigint DEFAULT NULL COMMENT '按钮ID',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='角色按钮关系';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_button`
+--
+
+LOCK TABLES `role_button` WRITE;
+/*!40000 ALTER TABLE `role_button` DISABLE KEYS */;
+/*!40000 ALTER TABLE `role_button` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role_manager`
+--
+
+DROP TABLE IF EXISTS `role_manager`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role_manager` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `role_id` bigint DEFAULT NULL COMMENT '角色ID',
+  `manager_id` bigint DEFAULT NULL COMMENT '管理员ID',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='角色管理员关系';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_manager`
+--
+
+LOCK TABLES `role_manager` WRITE;
+/*!40000 ALTER TABLE `role_manager` DISABLE KEYS */;
+INSERT INTO `role_manager` (`id`, `role_id`, `manager_id`, `create_time`, `creator_id`, `creator_name`, `update_time`, `updater_id`, `updater_name`, `state`) VALUES (1,1,1,'2019-12-16 22:41:25',1,'超级管理员','2019-12-16 22:41:25',1,'超级管理员',0);
+/*!40000 ALTER TABLE `role_manager` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role_menu`
+--
+
+DROP TABLE IF EXISTS `role_menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role_menu` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `role_id` bigint DEFAULT NULL COMMENT '角色ID',
+  `menu_id` bigint DEFAULT NULL COMMENT '菜单ID',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `creator_id` bigint DEFAULT NULL COMMENT '创建人ID',
+  `creator_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人名称',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `updater_id` bigint DEFAULT NULL COMMENT '更新人ID',
+  `updater_name` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人名称',
+  `state` tinyint DEFAULT NULL COMMENT '状态;（0.正常、99.删除）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='角色菜单关系';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role_menu`
+--
+
+LOCK TABLES `role_menu` WRITE;
+/*!40000 ALTER TABLE `role_menu` DISABLE KEYS */;
+INSERT INTO `role_menu` (`id`, `role_id`, `menu_id`, `create_time`, `creator_id`, `creator_name`, `update_time`, `updater_id`, `updater_name`, `state`) VALUES (1,1,100,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(2,1,101,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(3,1,10101,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(4,1,10102,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(5,1,10103,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(6,1,10104,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(7,1,102,'2019-12-09 16:59:38',1,'超级管理员','2019-12-09 16:59:38',1,'超级管理员',0),(8,1,10201,'2019-12-09 16:59:39',1,'超级管理员','2019-12-09 16:59:39',1,'超级管理员',0),(9,1,10202,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(10,2,100,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(11,2,102,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(12,2,10201,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0),(13,2,10202,'2019-12-10 17:29:53',1,'超级管理员','2019-12-10 17:29:53',1,'超级管理员',0);
+/*!40000 ALTER TABLE `role_menu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `undo_log`
+--
+
+DROP TABLE IF EXISTS `undo_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `undo_log` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `branch_id` bigint NOT NULL COMMENT '分支事务id',
+  `xid` varchar(128) NOT NULL COMMENT '全局事务id',
+  `context` varchar(128) NOT NULL COMMENT 'undo_log上下文，例如序列化',
+  `rollback_info` longblob NOT NULL COMMENT '回滚信息',
+  `log_status` int NOT NULL COMMENT '状态 0:正常的状态,1:防御状态',
+  `log_created` datetime(6) NOT NULL COMMENT '创建时间',
+  `log_modified` datetime(6) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`),
+  KEY `ix_log_created` (`log_created`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='AT事务模式撤销表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `undo_log`
+--
+
+LOCK TABLES `undo_log` WRITE;
+/*!40000 ALTER TABLE `undo_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `undo_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Current Database: `seata`
 --
 
@@ -1353,263 +1610,6 @@ LOCK TABLES `lock_table` WRITE;
 /*!40000 ALTER TABLE `lock_table` DISABLE KEYS */;
 /*!40000 ALTER TABLE `lock_table` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Current Database: `xxl_job`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `xxl_job` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `xxl_job`;
-
---
--- Table structure for table `xxl_job_group`
---
-
-DROP TABLE IF EXISTS `xxl_job_group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `xxl_job_group` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `app_name` varchar(64) NOT NULL COMMENT '执行器AppName',
-  `title` varchar(12) NOT NULL COMMENT '执行器名称',
-  `address_type` tinyint NOT NULL DEFAULT '0' COMMENT '执行器地址类型：0=自动注册、1=手动录入',
-  `address_list` text COMMENT '执行器地址列表，多地址逗号分隔',
-  `update_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `xxl_job_group`
---
-
-LOCK TABLES `xxl_job_group` WRITE;
-/*!40000 ALTER TABLE `xxl_job_group` DISABLE KEYS */;
-INSERT INTO `xxl_job_group` (`id`, `app_name`, `title`, `address_type`, `address_list`, `update_time`) VALUES (3,'build-xxl-job-executor','build定时任务执行器',0,NULL,'2025-07-01 15:21:51');
-/*!40000 ALTER TABLE `xxl_job_group` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `xxl_job_info`
---
-
-DROP TABLE IF EXISTS `xxl_job_info`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `xxl_job_info` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `job_group` int NOT NULL COMMENT '执行器主键ID',
-  `job_desc` varchar(255) NOT NULL,
-  `add_time` datetime DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
-  `author` varchar(64) DEFAULT NULL COMMENT '作者',
-  `alarm_email` varchar(255) DEFAULT NULL COMMENT '报警邮件',
-  `schedule_type` varchar(50) NOT NULL DEFAULT 'NONE' COMMENT '调度类型',
-  `schedule_conf` varchar(128) DEFAULT NULL COMMENT '调度配置，值含义取决于调度类型',
-  `misfire_strategy` varchar(50) NOT NULL DEFAULT 'DO_NOTHING' COMMENT '调度过期策略',
-  `executor_route_strategy` varchar(50) DEFAULT NULL COMMENT '执行器路由策略',
-  `executor_handler` varchar(255) DEFAULT NULL COMMENT '执行器任务handler',
-  `executor_param` varchar(512) DEFAULT NULL COMMENT '执行器任务参数',
-  `executor_block_strategy` varchar(50) DEFAULT NULL COMMENT '阻塞处理策略',
-  `executor_timeout` int NOT NULL DEFAULT '0' COMMENT '任务执行超时时间，单位秒',
-  `executor_fail_retry_count` int NOT NULL DEFAULT '0' COMMENT '失败重试次数',
-  `glue_type` varchar(50) NOT NULL COMMENT 'GLUE类型',
-  `glue_source` mediumtext COMMENT 'GLUE源代码',
-  `glue_remark` varchar(128) DEFAULT NULL COMMENT 'GLUE备注',
-  `glue_updatetime` datetime DEFAULT NULL COMMENT 'GLUE更新时间',
-  `child_jobid` varchar(255) DEFAULT NULL COMMENT '子任务ID，多个逗号分隔',
-  `trigger_status` tinyint NOT NULL DEFAULT '0' COMMENT '调度状态：0-停止，1-运行',
-  `trigger_last_time` bigint NOT NULL DEFAULT '0' COMMENT '上次调度时间',
-  `trigger_next_time` bigint NOT NULL DEFAULT '0' COMMENT '下次调度时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `xxl_job_info`
---
-
-LOCK TABLES `xxl_job_info` WRITE;
-/*!40000 ALTER TABLE `xxl_job_info` DISABLE KEYS */;
-INSERT INTO `xxl_job_info` (`id`, `job_group`, `job_desc`, `add_time`, `update_time`, `author`, `alarm_email`, `schedule_type`, `schedule_conf`, `misfire_strategy`, `executor_route_strategy`, `executor_handler`, `executor_param`, `executor_block_strategy`, `executor_timeout`, `executor_fail_retry_count`, `glue_type`, `glue_source`, `glue_remark`, `glue_updatetime`, `child_jobid`, `trigger_status`, `trigger_last_time`, `trigger_next_time`) VALUES (4,3,'简单任务示例','2025-06-27 21:03:09','2025-06-27 21:19:00','fyy','','CRON','* * * * * ?','DO_NOTHING','FIRST','demoJobHandler','','SERIAL_EXECUTION',0,0,'BEAN','','GLUE代码初始化','2025-06-27 21:03:09','',0,0,0),(5,3,'分片广播任务示例','2025-06-27 21:18:34','2025-06-27 21:32:02','fyy','','CRON','* * * * * ?','DO_NOTHING','FIRST','shardingJobHandler','','SERIAL_EXECUTION',0,0,'BEAN','','GLUE代码初始化','2025-06-27 21:18:34','',0,0,0);
-/*!40000 ALTER TABLE `xxl_job_info` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `xxl_job_lock`
---
-
-DROP TABLE IF EXISTS `xxl_job_lock`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `xxl_job_lock` (
-  `lock_name` varchar(50) NOT NULL COMMENT '锁名称',
-  PRIMARY KEY (`lock_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `xxl_job_lock`
---
-
-LOCK TABLES `xxl_job_lock` WRITE;
-/*!40000 ALTER TABLE `xxl_job_lock` DISABLE KEYS */;
-INSERT INTO `xxl_job_lock` (`lock_name`) VALUES ('schedule_lock');
-/*!40000 ALTER TABLE `xxl_job_lock` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `xxl_job_log`
---
-
-DROP TABLE IF EXISTS `xxl_job_log`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `xxl_job_log` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `job_group` int NOT NULL COMMENT '执行器主键ID',
-  `job_id` int NOT NULL COMMENT '任务，主键ID',
-  `executor_address` varchar(255) DEFAULT NULL COMMENT '执行器地址，本次执行的地址',
-  `executor_handler` varchar(255) DEFAULT NULL COMMENT '执行器任务handler',
-  `executor_param` varchar(512) DEFAULT NULL COMMENT '执行器任务参数',
-  `executor_sharding_param` varchar(20) DEFAULT NULL COMMENT '执行器任务分片参数，格式如 1/2',
-  `executor_fail_retry_count` int NOT NULL DEFAULT '0' COMMENT '失败重试次数',
-  `trigger_time` datetime DEFAULT NULL COMMENT '调度-时间',
-  `trigger_code` int NOT NULL COMMENT '调度-结果',
-  `trigger_msg` text COMMENT '调度-日志',
-  `handle_time` datetime DEFAULT NULL COMMENT '执行-时间',
-  `handle_code` int NOT NULL COMMENT '执行-状态',
-  `handle_msg` text COMMENT '执行-日志',
-  `alarm_status` tinyint NOT NULL DEFAULT '0' COMMENT '告警状态：0-默认、1-无需告警、2-告警成功、3-告警失败',
-  PRIMARY KEY (`id`),
-  KEY `I_trigger_time` (`trigger_time`),
-  KEY `I_handle_code` (`handle_code`),
-  KEY `I_jobid_jobgroup` (`job_id`,`job_group`),
-  KEY `I_job_id` (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `xxl_job_log`
---
-
-LOCK TABLES `xxl_job_log` WRITE;
-/*!40000 ALTER TABLE `xxl_job_log` DISABLE KEYS */;
-/*!40000 ALTER TABLE `xxl_job_log` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `xxl_job_log_report`
---
-
-DROP TABLE IF EXISTS `xxl_job_log_report`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `xxl_job_log_report` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `trigger_day` datetime DEFAULT NULL COMMENT '调度-时间',
-  `running_count` int NOT NULL DEFAULT '0' COMMENT '运行中-日志数量',
-  `suc_count` int NOT NULL DEFAULT '0' COMMENT '执行成功-日志数量',
-  `fail_count` int NOT NULL DEFAULT '0' COMMENT '执行失败-日志数量',
-  `update_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `i_trigger_day` (`trigger_day`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `xxl_job_log_report`
---
-
-LOCK TABLES `xxl_job_log_report` WRITE;
-/*!40000 ALTER TABLE `xxl_job_log_report` DISABLE KEYS */;
-INSERT INTO `xxl_job_log_report` (`id`, `trigger_day`, `running_count`, `suc_count`, `fail_count`, `update_time`) VALUES (1,'2025-06-27 00:00:00',0,0,0,NULL),(2,'2025-06-26 00:00:00',0,0,0,NULL),(3,'2025-06-25 00:00:00',0,0,0,NULL),(4,'2025-06-28 00:00:00',0,0,0,NULL),(5,'2025-06-29 00:00:00',0,0,0,NULL),(6,'2025-06-30 00:00:00',0,0,0,NULL),(7,'2025-07-01 00:00:00',0,0,0,NULL);
-/*!40000 ALTER TABLE `xxl_job_log_report` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `xxl_job_logglue`
---
-
-DROP TABLE IF EXISTS `xxl_job_logglue`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `xxl_job_logglue` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `job_id` int NOT NULL COMMENT '任务，主键ID',
-  `glue_type` varchar(50) DEFAULT NULL COMMENT 'GLUE类型',
-  `glue_source` mediumtext COMMENT 'GLUE源代码',
-  `glue_remark` varchar(128) NOT NULL COMMENT 'GLUE备注',
-  `add_time` datetime DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `xxl_job_logglue`
---
-
-LOCK TABLES `xxl_job_logglue` WRITE;
-/*!40000 ALTER TABLE `xxl_job_logglue` DISABLE KEYS */;
-/*!40000 ALTER TABLE `xxl_job_logglue` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `xxl_job_registry`
---
-
-DROP TABLE IF EXISTS `xxl_job_registry`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `xxl_job_registry` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `registry_group` varchar(50) NOT NULL,
-  `registry_key` varchar(255) NOT NULL,
-  `registry_value` varchar(255) NOT NULL,
-  `update_time` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `i_g_k_v` (`registry_group`,`registry_key`,`registry_value`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=449 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `xxl_job_registry`
---
-
-LOCK TABLES `xxl_job_registry` WRITE;
-/*!40000 ALTER TABLE `xxl_job_registry` DISABLE KEYS */;
-/*!40000 ALTER TABLE `xxl_job_registry` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `xxl_job_user`
---
-
-DROP TABLE IF EXISTS `xxl_job_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `xxl_job_user` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL COMMENT '账号',
-  `password` varchar(50) NOT NULL COMMENT '密码',
-  `role` tinyint NOT NULL COMMENT '角色：0-普通用户、1-管理员',
-  `permission` varchar(255) DEFAULT NULL COMMENT '权限：执行器ID列表，多个逗号分割',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `i_username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `xxl_job_user`
---
-
-LOCK TABLES `xxl_job_user` WRITE;
-/*!40000 ALTER TABLE `xxl_job_user` DISABLE KEYS */;
-INSERT INTO `xxl_job_user` (`id`, `username`, `password`, `role`, `permission`) VALUES (1,'admin','15c045b33a7afdead2376c302f12cade',1,NULL);
-/*!40000 ALTER TABLE `xxl_job_user` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1620,4 +1620,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-01  9:25:06
+-- Dump completed on 2025-07-25  6:48:48

@@ -1,41 +1,41 @@
 DROP TABLE IF EXISTS button;
 CREATE TABLE button(
-                       `id` INT AUTO_INCREMENT COMMENT '主键ID' ,
+                       `id` bigint AUTO_INCREMENT COMMENT '主键ID' ,
                        `button_name` varchar(200)   COMMENT '名称' ,
                        `button_sign` varchar(200)   COMMENT '标识' ,
                        `on_click` varchar(200)   COMMENT '点击事件' ,
-                       `menu_id` bigint unsigned   COMMENT '菜单ID' ,
+                       `menu_id` bigint   COMMENT '菜单ID' ,
                        `button_order` int   COMMENT '排序;按数字从小到大' ,
                        `remark` varchar(1000)   COMMENT '备注' ,
                        `create_time` datetime   COMMENT '创建时间' ,
-                       `creator_id` bigint unsigned   COMMENT '创建人ID' ,
+                       `creator_id` bigint   COMMENT '创建人ID' ,
                        `creator_name` varchar(50)   COMMENT '创建人名称' ,
                        `update_time` datetime   COMMENT '更新时间' ,
-                       `updater_id` bigint unsigned   COMMENT '更新人ID' ,
+                       `updater_id` bigint   COMMENT '更新人ID' ,
                        `updater_name` varchar(50)   COMMENT '更新人名称' ,
-                       `state` tinyint unsigned   COMMENT '状态;（0.正常、99.删除）' ,
+                       `state` tinyint   COMMENT '状态;（0.正常、99.删除）' ,
                        PRIMARY KEY (id)
 )  COMMENT = '按钮';
 
 DROP TABLE IF EXISTS menu;
 CREATE TABLE menu(
-                     `id` bigint unsigned NOT NULL  COMMENT '主键ID' ,
+                     `id` bigint NOT NULL  COMMENT '主键ID' ,
                      `menu_name` varchar(200)   COMMENT '名称' ,
                      `menu_url` varchar(500)   COMMENT '路径' ,
                      `menu_icon` varchar(200)   COMMENT '菜单图标' ,
                      `page_name` varchar(200)   COMMENT '页面名称' ,
-                     `parent_id` bigint unsigned   COMMENT '父级ID' ,
-                     `is_turn` tinyint unsigned   COMMENT '是否跳转;（0.否、1.是）' ,
-                     `is_home` tinyint unsigned   COMMENT '是否首页;（0.否、1.是）' ,
+                     `parent_id` bigint   COMMENT '父级ID' ,
+                     `is_turn` tinyint   COMMENT '是否跳转;（0.否、1.是）' ,
+                     `is_home` tinyint   COMMENT '是否首页;（0.否、1.是）' ,
                      `menu_order` int   COMMENT '排序;按数字从小到大' ,
                      `remark` varchar(1000)   COMMENT '备注' ,
                      `create_time` datetime   COMMENT '创建时间' ,
-                     `creator_id` bigint unsigned   COMMENT '创建人ID' ,
+                     `creator_id` bigint   COMMENT '创建人ID' ,
                      `creator_name` varchar(50)   COMMENT '创建人名称' ,
                      `update_time` datetime   COMMENT '更新时间' ,
-                     `updater_id` bigint unsigned   COMMENT '更新人ID' ,
+                     `updater_id` bigint   COMMENT '更新人ID' ,
                      `updater_name` varchar(50)   COMMENT '更新人名称' ,
-                     `state` tinyint unsigned   COMMENT '状态;（0.正常、99.删除）' ,
+                     `state` tinyint   COMMENT '状态;（0.正常、99.删除）' ,
                      PRIMARY KEY (id)
 )  COMMENT = '菜单';
 
