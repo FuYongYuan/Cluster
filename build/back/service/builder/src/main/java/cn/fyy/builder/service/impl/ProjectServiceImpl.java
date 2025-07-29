@@ -187,7 +187,7 @@ public class ProjectServiceImpl implements ProjectService {
      * @return T_Project 项目对象
      */
     @Override
-    public List<ProjectBO> queryByProjectGroupIdAndState(Long projectGroupId, Integer state) throws BusinessException {
+    public List<ProjectBO> queryByProjectGroupIdAndState(Long projectGroupId, Byte state) throws BusinessException {
         try {
             return ProjectBO.toBO(projectRepository.queryByProjectGroupIdAndState(projectGroupId, state));
         } catch (Exception e) {

@@ -81,56 +81,56 @@ public class ProjectDTO implements Serializable {
     /**
      * 是否Service创建接口;（0.否、1.是）
      */
-    @Schema(name = "isServiceInterface", description = "是否Service创建接口;（0.否、1.是）", type = "Integer")
-    private Integer isServiceInterface;
+    @Schema(name = "isServiceInterface", description = "是否Service创建接口;（0.否、1.是）", type = "Byte")
+    private Byte isServiceInterface;
 
     /**
      * 是否去除BO层;（0.否、1.是）
      */
-    @Schema(name = "isDeleteBo", description = "是否去除BO层;（0.否、1.是）", type = "Integer")
-    private Integer isDeleteBo;
+    @Schema(name = "isDeleteBo", description = "是否去除BO层;（0.否、1.是）", type = "Byte")
+    private Byte isDeleteBo;
 
     /**
      * 是否生成基础方法;（0.否、1.是）
      */
-    @Schema(name = "isBasisMethod", description = "是否生成基础方法;（0.否、1.是）", type = "Integer")
-    private Integer isBasisMethod;
+    @Schema(name = "isBasisMethod", description = "是否生成基础方法;（0.否、1.是）", type = "Byte")
+    private Byte isBasisMethod;
 
     /**
      * 是否使用Redis缓存;（0.否、1.是）
      */
-    @Schema(name = "isRedis", description = "是否使用Redis缓存;（0.否、1.是）", type = "Integer")
-    private Integer isRedis;
+    @Schema(name = "isRedis", description = "是否使用Redis缓存;（0.否、1.是）", type = "Byte")
+    private Byte isRedis;
 
     /**
      * 是否使用MinIO文件服务器;（0.否、1.是）
      */
-    @Schema(name = "isMinio", description = "是否使用MinIO文件服务器;（0.否、1.是）", type = "Integer")
-    private Integer isMinio;
+    @Schema(name = "isMinio", description = "是否使用MinIO文件服务器;（0.否、1.是）", type = "Byte")
+    private Byte isMinio;
 
     /**
      * 是否使用Mail能力;（0.否、1.是）
      */
-    @Schema(name = "isMail", description = "是否使用Mail能力;（0.否、1.是）", type = "Integer")
-    private Integer isMail;
+    @Schema(name = "isMail", description = "是否使用Mail能力;（0.否、1.是）", type = "Byte")
+    private Byte isMail;
 
     /**
      * 是否使用内容处理能力;（0.否、1.是）
      */
-    @Schema(name = "isDispose", description = "是否使用内容处理能力;（0.否、1.是）", type = "Integer")
-    private Integer isDispose;
+    @Schema(name = "isDispose", description = "是否使用内容处理能力;（0.否、1.是）", type = "Byte")
+    private Byte isDispose;
 
     /**
      * 是否使用加密能力;（0.否、1.是）
      */
-    @Schema(name = "isEncrypt", description = "是否使用加密能力;（0.否、1.是）", type = "Integer")
-    private Integer isEncrypt;
+    @Schema(name = "isEncrypt", description = "是否使用加密能力;（0.否、1.是）", type = "Byte")
+    private Byte isEncrypt;
 
     /**
      * 是否使用Excel能力;（0.否、1.是）
      */
-    @Schema(name = "isExcel", description = "是否使用Excel能力;（0.否、1.是）", type = "Integer")
-    private Integer isExcel;
+    @Schema(name = "isExcel", description = "是否使用Excel能力;（0.否、1.是）", type = "Byte")
+    private Byte isExcel;
 
     /**
      * Druid访问路径
@@ -153,26 +153,26 @@ public class ProjectDTO implements Serializable {
     /**
      * 是否去除无主键的表;（0.否、1.是）
      */
-    @Schema(name = "isDeleteNotPk", description = "是否去除无主键的表;（0.否、1.是）", type = "Integer")
-    private Integer isDeleteNotPk;
+    @Schema(name = "isDeleteNotPk", description = "是否去除无主键的表;（0.否、1.是）", type = "Byte")
+    private Byte isDeleteNotPk;
 
     /**
      * 是否吧主键生成时放第一位;（0.否、1.是）
      */
-    @Schema(name = "isOrderKey", description = "是否吧主键生成时放第一位;（0.否、1.是）", type = "Integer")
-    private Integer isOrderKey;
+    @Schema(name = "isOrderKey", description = "是否吧主键生成时放第一位;（0.否、1.是）", type = "Byte")
+    private Byte isOrderKey;
 
     /**
      * 数据层框架类型;（0.不使用数据源、1.JPA、2.Mybatis）
      */
-    @Schema(name = "dataBaseFramework", description = "数据层框架类型;（0.不使用数据源、1.JPA、2.Mybatis）", type = "Integer")
-    private Integer dataBaseFramework;
+    @Schema(name = "dataBaseFramework", description = "数据层框架类型;（0.不使用数据源、1.JPA、2.Mybatis）", type = "Byte")
+    private Byte dataBaseFramework;
 
     /**
      * 数据库格式设定;（0.没有格式转换、1.X_X_Xxxx => XXXXxxx）
      */
-    @Schema(name = "dataBaseFormat", description = "数据库格式设定;（0.没有格式转换、1.X_X_Xxxx => XXXXxxx）", type = "Integer")
-    private Integer dataBaseFormat;
+    @Schema(name = "dataBaseFormat", description = "数据库格式设定;（0.没有格式转换、1.X_X_Xxxx => XXXXxxx）", type = "Byte")
+    private Byte dataBaseFormat;
 
     /**
      * 创建时间
@@ -215,8 +215,8 @@ public class ProjectDTO implements Serializable {
     /**
      * 状态;（0.正常、99.删除）
      */
-    @Schema(name = "state", description = "状态(0.正常 99.删除)", type = "Integer")
-    private Integer state;
+    @Schema(name = "state", description = "状态(0.正常 99.删除)", type = "Byte")
+    private Byte state;
 
     //------------------------------------------------------------------------------------------------------------------转换
 

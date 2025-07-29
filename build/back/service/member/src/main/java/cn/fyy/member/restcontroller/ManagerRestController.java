@@ -218,7 +218,7 @@ public class ManagerRestController {
     public ResultMessage<Integer> updateStateById(
             HttpServletRequest request,
             @PathVariable("ids") String ids,
-            @PathVariable(value = "state") Integer state
+            @PathVariable(value = "state") Byte state
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = managerServiceImpl.updateStateByIds(ids, state, managerMessage.getManagerId(), managerMessage.getManagerName());

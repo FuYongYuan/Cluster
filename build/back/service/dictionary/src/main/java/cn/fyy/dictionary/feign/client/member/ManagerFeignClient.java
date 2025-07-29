@@ -101,7 +101,7 @@ public interface ManagerFeignClient {
     @PutMapping(value = "/update/state/{ids}/{state}")
     ResultMessage<Integer> updateStateById(
             @PathVariable("ids") String ids,
-            @PathVariable(value = "state") Integer state
+            @PathVariable(value = "state") Byte state
     ) throws BusinessException;
 
     /**

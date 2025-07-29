@@ -40,12 +40,12 @@ public class ManagerBO implements Serializable {
     /**
      * 年龄
      */
-    private Integer age;
+    private Byte age;
 
     /**
      * 性别;（0.保密、1.男、2女）
      */
-    private Integer sex;
+    private Byte sex;
 
     /**
      * 手机号码
@@ -130,7 +130,7 @@ public class ManagerBO implements Serializable {
     /**
      * 状态(0.正常 1.冻结 99.删除)
      */
-    private Integer state;
+    private Byte state;
 
     /**
      * 角色ID集合

@@ -86,6 +86,6 @@ public interface ProjectService {
      */
     List<ProjectBO> queryByProjectGroupIdAndState(
             Long projectGroupId,
-            Integer state
+            Byte state
     ) throws BusinessException;
 }

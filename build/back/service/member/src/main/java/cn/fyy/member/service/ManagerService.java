@@ -110,7 +110,7 @@ public interface ManagerService {
      * @return 受影响行数
      * @throws BusinessException 错误
      */
-    int updateStateByIds(String ids, Integer state, Long currentManagerId, String currentManagerName) throws BusinessException;
+    int updateStateByIds(String ids, Byte state, Long currentManagerId, String currentManagerName) throws BusinessException;
 
     /**
      * 根据账号查询

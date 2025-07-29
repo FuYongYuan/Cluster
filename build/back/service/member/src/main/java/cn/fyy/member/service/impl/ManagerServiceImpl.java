@@ -192,9 +192,9 @@ public class ManagerServiceImpl implements ManagerService {
                 Predicate predicate;
                 // 条件拼装
                 if (state == null) {
-                    CriteriaBuilder.In<Integer> in = criteriaBuilder.in(root.get("state"));
+                    CriteriaBuilder.In<Byte> in = criteriaBuilder.in(root.get("state"));
                     in.value(DataState.NORMAL.getCode());
-                    in.value(1);
+                    in.value((byte) 1);
                     predicate = criteriaBuilder.and(in);
                 } else {
                     predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), state));
@@ -306,7 +306,7 @@ public class ManagerServiceImpl implements ManagerService {
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public int updateStateByIds(String ids, Integer state, Long currentManagerId, String currentManagerName) throws BusinessException {
+    public int updateStateByIds(String ids, Byte state, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             return managerRepository.updateStateByIds(state, currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
         } catch (Exception e) {

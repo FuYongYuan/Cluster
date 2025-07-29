@@ -29,7 +29,7 @@ public interface ProjectRepository extends JpaRepository<ProjectDO, Long>, JpaSp
      */
     @Modifying
     @Query(value = "UPDATE ProjectDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
+    int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
 
     /**
@@ -39,5 +39,5 @@ public interface ProjectRepository extends JpaRepository<ProjectDO, Long>, JpaSp
      * @param state          状态
      * @return T_Project 项目对象
      */
-    List<ProjectDO> queryByProjectGroupIdAndState(Long projectGroupId, Integer state);
+    List<ProjectDO> queryByProjectGroupIdAndState(Long projectGroupId, Byte state);
 }

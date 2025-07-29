@@ -153,7 +153,7 @@ public class ProjectGroupDO implements Serializable {
      * 状态;（0.正常、99.删除）
      */
     @Column(name = "state")
-    private Integer state;
+    private Byte state;
 
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override

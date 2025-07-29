@@ -96,8 +96,8 @@ public class ParameterDTO implements Serializable {
     /**
      * 状态;（0.正常、99.删除）
      */
-    @Schema(name = "state", description = "状态(0.正常 99.删除)", type = "Integer")
-    private Integer state;
+    @Schema(name = "state", description = "状态(0.正常 99.删除)", type = "Byte")
+    private Byte state;
 
     //------------------------------------------------------------------------------------------------------------------转换
 

@@ -124,7 +124,7 @@ public class ProjectColumnBO implements Serializable {
     /**
      * 状态;（0.正常、99.删除）
      */
-    private Integer state;
+    private Byte state;
 
     //------------------------------------------------------------------------------------------------------------------转换
 

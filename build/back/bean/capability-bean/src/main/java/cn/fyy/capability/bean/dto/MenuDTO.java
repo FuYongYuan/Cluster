@@ -64,14 +64,14 @@ public class MenuDTO implements Serializable {
     /**
      * 是否跳转;（0.否、1.是）
      */
-    @Schema(name = "isTurn", description = "是否跳转;（0.否、1.是）", type = "Integer")
-    private Integer isTurn;
+    @Schema(name = "isTurn", description = "是否跳转;（0.否、1.是）", type = "Byte")
+    private Byte isTurn;
 
     /**
      * 是否首页;（0.否、1.是）
      */
-    @Schema(name = "isHome", description = "是否首页;（0.否、1.是）", type = "Integer")
-    private Integer isHome;
+    @Schema(name = "isHome", description = "是否首页;（0.否、1.是）", type = "Byte")
+    private Byte isHome;
 
     /**
      * 排序(按数字从小到大)
@@ -126,8 +126,8 @@ public class MenuDTO implements Serializable {
     /**
      * 状态;（0.正常、99.删除）
      */
-    @Schema(name = "state", description = "状态(0.正常 99.删除)", type = "Integer")
-    private Integer state;
+    @Schema(name = "state", description = "状态(0.正常 99.删除)", type = "Byte")
+    private Byte state;
 
     /**
      * 名称

@@ -64,13 +64,13 @@ public class MenuDO implements Serializable {
      * 是否跳转;（0.否、1.是）
      */
     @Column(name = "is_turn")
-    private Integer isTurn;
+    private Byte isTurn;
 
     /**
      * 是否首页;（0.否、1.是）
      */
     @Column(name = "is_home")
-    private Integer isHome;
+    private Byte isHome;
 
     /**
      * 排序(按数字从小到大)
@@ -124,7 +124,7 @@ public class MenuDO implements Serializable {
      * 状态;（0.正常、99.删除）
      */
     @Column(name = "state")
-    private Integer state;
+    private Byte state;
 
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override

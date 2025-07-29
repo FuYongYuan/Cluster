@@ -46,14 +46,14 @@ public class ManagerInternalDTO implements Serializable {
     /**
      * 年龄
      */
-    @Schema(name = "age", description = "年龄", type = "Integer", nullable = true)
-    private Integer age;
+    @Schema(name = "age", description = "年龄", type = "Byte", nullable = true)
+    private Byte age;
 
     /**
      * 性别;（0.保密、1.男、2女）
      */
-    @Schema(name = "sex", description = "性别(0.保密 1.男 2女)", type = "Integer")
-    private Integer sex;
+    @Schema(name = "sex", description = "性别(0.保密 1.男 2女)", type = "Byte")
+    private Byte sex;
 
     /**
      * 手机号码
@@ -157,8 +157,8 @@ public class ManagerInternalDTO implements Serializable {
     /**
      * 状态(0.正常 1.冻结 99.删除)
      */
-    @Schema(name = "state", description = "状态(0.正常 1.冻结 99.删除)", type = "Integer")
-    private Integer state;
+    @Schema(name = "state", description = "状态(0.正常 1.冻结 99.删除)", type = "Byte")
+    private Byte state;
 
     //------------------------------------------------------------------------------------------------------------------转换
 

@@ -9,14 +9,14 @@ import lombok.Getter;
  */
 @Getter
 public enum DataState {
-    NORMAL(0, "正常"),
-    FREEZE(1, "冻结"),
-    DELETE(99, "删除");
+    NORMAL((byte) 0, "正常"),
+    FREEZE((byte) 1, "冻结"),
+    DELETE((byte) 99, "删除");
 
     /**
      * 代码
      */
-    private final int code;
+    private final byte code;
     /**
      * 描述
      */
@@ -28,7 +28,7 @@ public enum DataState {
      * @param code        代码
      * @param description 描述
      */
-    DataState(int code, String description) {
+    DataState(byte code, String description) {
         this.code = code;
         this.description = description;
     }
@@ -39,7 +39,7 @@ public enum DataState {
      * @param code 代码
      * @return 数据状态
      */
-    public static DataState fromCode(int code) {
+    public static DataState fromCode(byte code) {
         for (DataState state : DataState.values()) {
             if (state.getCode() == code) {
                 return state;

@@ -80,7 +80,7 @@ public class ParameterExcel implements Serializable {
      * 状态;（0.正常、99.删除）
      */
     @ExcelField(columnName = "状态(0.正常 99.删除)", order = 10, valueLimit = "0=正常;99=删除;")
-    private Integer state;
+    private Byte state;
 
     //------------------------------------------------------------------------------------------------------------------转换
 

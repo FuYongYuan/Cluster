@@ -25,7 +25,7 @@ public interface ProjectGroupRepository extends JpaRepository<ProjectGroupDO, Lo
      * @param state     状态
      * @return 总数
      */
-    int countByManagerIdAndState(Long managerId, Integer state);
+    int countByManagerIdAndState(Long managerId, Byte state);
 
     /**
      * 根据ids保存状态
@@ -39,7 +39,7 @@ public interface ProjectGroupRepository extends JpaRepository<ProjectGroupDO, Lo
      */
     @Modifying
     @Query(value = "UPDATE ProjectGroupDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
+    int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
      * 根据当前登录人id查询对应的项目群列表

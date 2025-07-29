@@ -81,55 +81,55 @@ public class ProjectDO implements Serializable {
      * 是否Service创建接口;（0.否、1.是）
      */
     @Column(name = "is_service_interface")
-    private Integer isServiceInterface;
+    private Byte isServiceInterface;
 
     /**
      * 是否去除BO层;（0.否、1.是）
      */
     @Column(name = "is_delete_bo")
-    private Integer isDeleteBo;
+    private Byte isDeleteBo;
 
     /**
      * 是否生成基础方法;（0.否、1.是）
      */
     @Column(name = "is_basis_method")
-    private Integer isBasisMethod;
+    private Byte isBasisMethod;
 
     /**
      * 是否使用Redis缓存;（0.否、1.是）
      */
     @Column(name = "is_redis")
-    private Integer isRedis;
+    private Byte isRedis;
 
     /**
      * 是否使用MinIO文件服务器;（0.否、1.是）
      */
     @Column(name = "is_minio")
-    private Integer isMinio;
+    private Byte isMinio;
 
     /**
      * 是否使用Mail能力;（0.否、1.是）
      */
     @Column(name = "is_mail")
-    private Integer isMail;
+    private Byte isMail;
 
     /**
      * 是否使用内容处理能力;（0.否、1.是）
      */
     @Column(name = "is_dispose")
-    private Integer isDispose;
+    private Byte isDispose;
 
     /**
      * 是否使用加密能力;（0.否、1.是）
      */
     @Column(name = "is_encrypt")
-    private Integer isEncrypt;
+    private Byte isEncrypt;
 
     /**
      * 是否使用Excel能力;（0.否、1.是）
      */
     @Column(name = "is_excel")
-    private Integer isExcel;
+    private Byte isExcel;
 
     /**
      * Druid访问路径
@@ -153,25 +153,25 @@ public class ProjectDO implements Serializable {
      * 是否去除无主键的表;（0.否、1.是）
      */
     @Column(name = "is_delete_not_pk")
-    private Integer isDeleteNotPk;
+    private Byte isDeleteNotPk;
 
     /**
      * 是否吧主键生成时放第一位;（0.否、1.是）
      */
     @Column(name = "is_order_key")
-    private Integer isOrderKey;
+    private Byte isOrderKey;
 
     /**
      * 数据层框架类型;（0.不使用数据源、1.JPA、2.Mybatis）
      */
     @Column(name = "data_base_framework")
-    private Integer dataBaseFramework;
+    private Byte dataBaseFramework;
 
     /**
      * 数据库格式设定;（0.没有格式转换、1.X_X_Xxxx => XXXXxxx）
      */
     @Column(name = "data_base_format")
-    private Integer dataBaseFormat;
+    private Byte dataBaseFormat;
 
     /**
      * 创建时间
@@ -213,7 +213,7 @@ public class ProjectDO implements Serializable {
      * 状态;（0.正常、99.删除）
      */
     @Column(name = "state")
-    private Integer state;
+    private Byte state;
 
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override

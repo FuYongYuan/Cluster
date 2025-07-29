@@ -55,12 +55,12 @@ public class MenuBO implements Serializable {
     /**
      * 是否跳转;（0.否、1.是）
      */
-    private Integer isTurn;
+    private Byte isTurn;
 
     /**
      * 是否首页;（0.否、1.是）
      */
-    private Integer isHome;
+    private Byte isHome;
 
     /**
      * 排序(按数字从小到大)
@@ -105,7 +105,7 @@ public class MenuBO implements Serializable {
     /**
      * 状态;（0.正常、99.删除）
      */
-    private Integer state;
+    private Byte state;
 
     /**
      * 父级对象
@@ -122,8 +122,8 @@ public class MenuBO implements Serializable {
     /**
      * 构造
      */
-    public MenuBO(Long id, String menuName, String menuUrl, String menuIcon, String pageName, Integer isTurn, Integer isHome, Integer menuOrder, String remark, LocalDateTime createTime, Long creatorId, String creatorName, LocalDateTime updateTime, Long updaterId, String updaterName, Integer state
-            , Long parentId, String parentMenuName, String parentMenuUrl, String parentMenuIcon, String parentPageName, Long parentParentId, Integer parentIsTurn, Integer parentIsHome, Integer parentMenuOrder, String parentRemark, LocalDateTime parentCreateTime, Long parentCreatorId, String parentCreatorName, LocalDateTime parentUpdateTime, Long parentUpdaterId, String parentUpdaterName, Integer parentState) {
+    public MenuBO(Long id, String menuName, String menuUrl, String menuIcon, String pageName, Byte isTurn, Byte isHome, Integer menuOrder, String remark, LocalDateTime createTime, Long creatorId, String creatorName, LocalDateTime updateTime, Long updaterId, String updaterName, Byte state
+            , Long parentId, String parentMenuName, String parentMenuUrl, String parentMenuIcon, String parentPageName, Long parentParentId, Byte parentIsTurn, Byte parentIsHome, Integer parentMenuOrder, String parentRemark, LocalDateTime parentCreateTime, Long parentCreatorId, String parentCreatorName, LocalDateTime parentUpdateTime, Long parentUpdaterId, String parentUpdaterName, Byte parentState) {
         this.id = id;
         this.menuName = menuName;
         this.menuUrl = menuUrl;
