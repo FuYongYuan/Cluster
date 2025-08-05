@@ -5,7 +5,8 @@
 .jpb
 
 # 排除数据结构版本
-/build/document/database/structure/.back_*
+/build/document/database/structure_back/.back_*
+/build/document/database/structure/.*/log
 
 # 排除编译内容
 /build/*/*/*/log/
