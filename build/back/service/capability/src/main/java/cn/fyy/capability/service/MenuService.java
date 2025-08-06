@@ -52,7 +52,7 @@ public interface MenuService {
             int eachPageSize,
             String pageSort,
             String menuName,
-            Integer state
+            Byte state
     ) throws BusinessException;
 
     /**

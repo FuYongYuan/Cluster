@@ -148,7 +148,7 @@ public class RoleServiceImpl implements RoleService {
             int eachPageSize,
             String pageSort,
             String roleName,
-            Integer state
+            Byte state
     ) throws BusinessException {
         try {
             // 查询拼装

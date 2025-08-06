@@ -65,7 +65,7 @@ public class MenuRestController {
             @PathVariable(value = "eachPageSize") int eachPageSize,
             @RequestParam(value = "pageSort", required = false) String pageSort,
             @RequestParam(value = "menuName", required = false) String menuName,
-            @RequestParam(value = "state", required = false) Integer state
+            @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException {
         Page<MenuBO> boPage = menuServiceImpl.queryByMenuNameAndState(
                 currentPage,

@@ -52,7 +52,7 @@ public interface RoleService {
             int eachPageSize,
             String pageSort,
             String roleName,
-            Integer state
+            Byte state
     ) throws BusinessException;
 
     /**

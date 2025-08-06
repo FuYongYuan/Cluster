@@ -29,6 +29,6 @@ public interface ProjectColumnRepository extends JpaRepository<ProjectColumnDO, 
      */
     @Modifying
     @Query(value = "UPDATE ProjectColumnDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
-    int updateStateByIds(Integer state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
+    int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
 }

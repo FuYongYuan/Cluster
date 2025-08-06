@@ -73,7 +73,7 @@ public class ManagerRestController {
             @RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam(value = "mail", required = false) String mail,
             @RequestParam(value = "managerName", required = false) String managerName,
-            @RequestParam(value = "state", required = false) Integer state
+            @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException {
         Page<ManagerBO> boPage = managerServiceImpl.queryByAccountAndMobileAndEmailAndUserNameAndState(
                 currentPage,

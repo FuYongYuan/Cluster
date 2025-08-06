@@ -34,7 +34,7 @@ public interface MenuFeignClient {
             @PathVariable(value = "currentPage") int currentPage,
             @PathVariable(value = "eachPageSize") int eachPageSize,
             @RequestParam(value = "menuName", required = false) String menuName,
-            @RequestParam(value = "state", required = false) Integer state
+            @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException;
 
     /**

@@ -73,7 +73,7 @@ public interface ProjectGroupService {
             int eachPageSize,
             Long managerId,
             String projectGroupName,
-            Integer state
+            Byte state
     ) throws BusinessException;
 
     /**

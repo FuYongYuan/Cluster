@@ -172,7 +172,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
             int eachPageSize,
             Long managerId,
             String projectGroupName,
-            Integer state
+            Byte state
     ) throws BusinessException {
         try {
             // 查询拼装

@@ -32,7 +32,7 @@ public interface RoleFeignClient {
             @PathVariable(value = "currentPage") int currentPage,
             @PathVariable(value = "eachPageSize") int eachPageSize,
             @RequestParam(value = "roleName", required = false) String roleName,
-            @RequestParam(value = "state", required = false) Integer state
+            @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException;
 
     /**

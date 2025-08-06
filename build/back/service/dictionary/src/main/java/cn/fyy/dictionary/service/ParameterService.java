@@ -83,7 +83,7 @@ public interface ParameterService {
             String pageSort,
             String parameterCode,
             String parameterName,
-            Integer state
+            Byte state
     ) throws BusinessException;
 
     /**
@@ -100,6 +100,6 @@ public interface ParameterService {
             String pageSort,
             String parameterCode,
             String parameterName,
-            Integer state
+            Byte state
     ) throws BusinessException;
 }

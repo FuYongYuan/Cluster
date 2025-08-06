@@ -191,7 +191,7 @@ public class ParameterServiceImpl implements ParameterService {
             String pageSort,
             String parameterCode,
             String parameterName,
-            Integer state
+            Byte state
     ) throws BusinessException {
         try {
             // 查询拼装
@@ -237,7 +237,7 @@ public class ParameterServiceImpl implements ParameterService {
             String pageSort,
             String parameterCode,
             String parameterName,
-            Integer state
+            Byte state
     ) throws BusinessException {
         try {
             // 查询拼装

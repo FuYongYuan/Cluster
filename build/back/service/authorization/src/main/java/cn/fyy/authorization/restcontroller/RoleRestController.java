@@ -65,7 +65,7 @@ public class RoleRestController {
             @PathVariable(value = "eachPageSize") int eachPageSize,
             @RequestParam(value = "pageSort", required = false) String pageSort,
             @RequestParam(value = "roleName", required = false) String roleName,
-            @RequestParam(value = "state", required = false) Integer state
+            @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException {
         Page<RoleBO> boPage = roleServiceImpl.queryPageByRoleNameAndState(
                 currentPage,

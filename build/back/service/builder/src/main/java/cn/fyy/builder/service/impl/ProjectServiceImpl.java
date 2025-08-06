@@ -149,7 +149,7 @@ public class ProjectServiceImpl implements ProjectService {
      * @return T_Project 项目对象
      */
     @Override
-    public Page<ProjectBO> queryByProjectGroupIdAndProjectNameAndState(int currentPage, int eachPageSize, Long projectGroupId, String projectName, Integer state) throws BusinessException {
+    public Page<ProjectBO> queryByProjectGroupIdAndProjectNameAndState(int currentPage, int eachPageSize, Long projectGroupId, String projectName, Byte state) throws BusinessException {
         try {
             // 查询拼装
             Specification<ProjectDO> specification = (root, query, criteriaBuilder) -> {

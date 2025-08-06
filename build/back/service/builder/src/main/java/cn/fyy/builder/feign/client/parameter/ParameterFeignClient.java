@@ -31,7 +31,7 @@ public interface ParameterFeignClient {
             @PathVariable(value = "eachPageSize") int eachPageSize,
             @RequestParam(value = "parameterCode", required = false) String parameterCode,
             @RequestParam(value = "parameterName", required = false) String parameterName,
-            @RequestParam(value = "state", required = false) Integer state
+            @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException;
 
     /**

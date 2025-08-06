@@ -77,7 +77,7 @@ public class ParameterRestController {
             @RequestParam(value = "pageSort", required = false) String pageSort,
             @RequestParam(value = "parameterCode", required = false) String parameterCode,
             @RequestParam(value = "parameterName", required = false) String parameterName,
-            @RequestParam(value = "state", required = false) Integer state
+            @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException {
         Page<ParameterBO> boPage = parameterServiceImpl.queryByParameterCodeAndParameterNameAndState(
                 currentPage,
@@ -199,7 +199,7 @@ public class ParameterRestController {
             @RequestParam(value = "pageSort", required = false) String pageSort,
             @RequestParam(value = "parameterCode", required = false) String parameterCode,
             @RequestParam(value = "parameterName", required = false) String parameterName,
-            @RequestParam(value = "state", required = false) Integer state
+            @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException {
         try {
             ExcelExport excelExport = parameterServiceImpl.queryExportByParameterCodeAndParameterNameAndState(pageSort, parameterCode, parameterName, state);

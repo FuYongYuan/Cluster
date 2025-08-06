@@ -122,7 +122,7 @@ public class MenuServiceImpl implements MenuService {
             int eachPageSize,
             String pageSort,
             String menuName,
-            Integer state
+            Byte state
     ) throws BusinessException {
         try {
             // 查询拼装

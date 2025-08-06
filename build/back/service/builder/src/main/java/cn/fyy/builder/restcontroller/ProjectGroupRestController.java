@@ -134,7 +134,7 @@ public class ProjectGroupRestController {
             @PathVariable(value = "currentPage") int currentPage,
             @PathVariable(value = "eachPageSize") int eachPageSize,
             @RequestParam(value = "projectGroupName", required = false) String projectGroupName,
-            @RequestParam(value = "state", required = false) Integer state
+            @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException {
         Page<ProjectGroupBO> boPage = projectGroupServiceImpl.queryByManagerIdAndProjectGroupNameAndState(
                 currentPage,

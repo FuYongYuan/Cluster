@@ -68,7 +68,7 @@ public interface ManagerService {
             String mobile,
             String mail,
             String managerName,
-            Integer state
+            Byte state
     ) throws BusinessException;
 
     /**

@@ -184,7 +184,7 @@ public class ManagerServiceImpl implements ManagerService {
             String mobile,
             String mail,
             String managerName,
-            Integer state
+            Byte state
     ) throws BusinessException {
         try {
             // 查询拼装
@@ -194,7 +194,7 @@ public class ManagerServiceImpl implements ManagerService {
                 if (state == null) {
                     CriteriaBuilder.In<Byte> in = criteriaBuilder.in(root.get("state"));
                     in.value(DataState.NORMAL.getCode());
-                    in.value((byte) 1);
+                    in.value(DataState.FREEZE.getCode());
                     predicate = criteriaBuilder.and(in);
                 } else {
                     predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), state));
