@@ -44,7 +44,7 @@ public interface MenuService {
      * @param pageSort     排序
      * @param menuName     菜单名称
      * @param state        状态
-     * @return MenuDO 菜单对象
+     * @return MenuPO 菜单对象
      * @throws BusinessException 错误
      */
     Page<MenuBO> queryByMenuNameAndState(

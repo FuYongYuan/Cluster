@@ -1,4 +1,4 @@
-package cn.fyy.capability.bean.dbo;
+package cn.fyy.capability.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,19 +8,19 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 按钮
+ * 菜单
  *
  * @author fuyy
  */
 @Entity
-@Table(name = "button", schema = "capability")
+@Table(name = "menu", schema = "capability")
 @Getter
 @Setter
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ButtonDO implements Serializable {
+public class MenuPO implements Serializable {
 
     /**
      * 主键ID
@@ -33,32 +33,50 @@ public class ButtonDO implements Serializable {
     /**
      * 名称
      */
-    @Column(name = "button_name", length = 200)
-    private String buttonName;
+    @Column(name = "menu_name", length = 200)
+    private String menuName;
 
     /**
-     * 标识
+     * 路径
      */
-    @Column(name = "button_sign", length = 200)
-    private String buttonSign;
+    @Column(name = "menu_url", length = 500)
+    private String menuUrl;
 
     /**
-     * 点击事件
+     * 菜单图标
      */
-    @Column(name = "on_click", length = 200)
-    private String onClick;
+    @Column(name = "menu_icon", length = 200)
+    private String menuIcon;
 
     /**
-     * 菜单ID
+     * 页面名称
      */
-    @Column(name = "menu_id")
-    private Long menuId;
+    @Column(name = "page_name", length = 200)
+    private String pageName;
+
+    /**
+     * 父级ID
+     */
+    @Column(name = "parent_id", length = 32)
+    private Long parentId;
+
+    /**
+     * 是否跳转;（0.否、1.是）
+     */
+    @Column(name = "is_turn")
+    private Byte isTurn;
+
+    /**
+     * 是否首页;（0.否、1.是）
+     */
+    @Column(name = "is_home")
+    private Byte isHome;
 
     /**
      * 排序(按数字从小到大)
      */
-    @Column(name = "button_order")
-    private Integer buttonOrder;
+    @Column(name = "menu_order")
+    private Integer menuOrder;
 
     /**
      * 备注
@@ -114,60 +132,72 @@ public class ButtonDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ButtonDO buttonDO)) {
+        if (!(o instanceof MenuPO that)) {
             return false;
         }
 
-        if (!id.equals(buttonDO.id)) {
+        if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(buttonName, buttonDO.buttonName)) {
+        if (!Objects.equals(menuName, that.menuName)) {
             return false;
         }
-        if (!Objects.equals(buttonSign, buttonDO.buttonSign)) {
+        if (!Objects.equals(menuUrl, that.menuUrl)) {
             return false;
         }
-        if (!Objects.equals(onClick, buttonDO.onClick)) {
+        if (!Objects.equals(menuIcon, that.menuIcon)) {
             return false;
         }
-        if (!Objects.equals(menuId, buttonDO.menuId)) {
+        if (!Objects.equals(pageName, that.pageName)) {
             return false;
         }
-        if (!Objects.equals(buttonOrder, buttonDO.buttonOrder)) {
+        if (!Objects.equals(parentId, that.parentId)) {
             return false;
         }
-        if (!Objects.equals(remark, buttonDO.remark)) {
+        if (!Objects.equals(isTurn, that.isTurn)) {
             return false;
         }
-        if (!Objects.equals(createTime, buttonDO.createTime)) {
+        if (!Objects.equals(isHome, that.isHome)) {
             return false;
         }
-        if (!Objects.equals(creatorId, buttonDO.creatorId)) {
+        if (!Objects.equals(menuOrder, that.menuOrder)) {
             return false;
         }
-        if (!Objects.equals(creatorName, buttonDO.creatorName)) {
+        if (!Objects.equals(remark, that.remark)) {
             return false;
         }
-        if (!Objects.equals(updateTime, buttonDO.updateTime)) {
+        if (!Objects.equals(createTime, that.createTime)) {
             return false;
         }
-        if (!Objects.equals(updaterId, buttonDO.updaterId)) {
+        if (!Objects.equals(creatorId, that.creatorId)) {
             return false;
         }
-        if (!Objects.equals(updaterName, buttonDO.updaterName)) {
+        if (!Objects.equals(creatorName, that.creatorName)) {
             return false;
         }
-        return Objects.equals(state, buttonDO.state);
+        if (!Objects.equals(updateTime, that.updateTime)) {
+            return false;
+        }
+        if (!Objects.equals(updaterId, that.updaterId)) {
+            return false;
+        }
+        if (!Objects.equals(updaterName, that.updaterName)) {
+            return false;
+        }
+        return Objects.equals(state, that.state);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (buttonName != null ? buttonName.hashCode() : 0);
-        result = 31 * result + (buttonSign != null ? buttonSign.hashCode() : 0);
-        result = 31 * result + (onClick != null ? onClick.hashCode() : 0);
-        result = 31 * result + (menuId != null ? menuId.hashCode() : 0);
-        result = 31 * result + (buttonOrder != null ? buttonOrder.hashCode() : 0);
+        result = 31 * result + (menuName != null ? menuName.hashCode() : 0);
+        result = 31 * result + (menuUrl != null ? menuUrl.hashCode() : 0);
+        result = 31 * result + (menuIcon != null ? menuIcon.hashCode() : 0);
+        result = 31 * result + (pageName != null ? pageName.hashCode() : 0);
+        result = 31 * result + (parentId != null ? parentId.hashCode() : 0);
+        result = 31 * result + (isTurn != null ? isTurn.hashCode() : 0);
+        result = 31 * result + (isHome != null ? isHome.hashCode() : 0);
+        result = 31 * result + (menuOrder != null ? menuOrder.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);

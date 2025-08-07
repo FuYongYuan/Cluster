@@ -1,4 +1,4 @@
-package cn.fyy.member.bean.dbo;
+package cn.fyy.member.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,7 +20,7 @@ import java.util.Objects;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ManagerDO implements Serializable {
+public class ManagerPO implements Serializable {
 
     /**
      * 主键ID
@@ -162,74 +162,74 @@ public class ManagerDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ManagerDO managerDO)) {
+        if (!(o instanceof ManagerPO that)) {
             return false;
         }
 
-        if (!id.equals(managerDO.id)) {
+        if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(headImgUrl, managerDO.headImgUrl)) {
+        if (!Objects.equals(headImgUrl, that.headImgUrl)) {
             return false;
         }
-        if (!Objects.equals(managerName, managerDO.managerName)) {
+        if (!Objects.equals(managerName, that.managerName)) {
             return false;
         }
-        if (!Objects.equals(age, managerDO.age)) {
+        if (!Objects.equals(age, that.age)) {
             return false;
         }
-        if (!Objects.equals(sex, managerDO.sex)) {
+        if (!Objects.equals(sex, that.sex)) {
             return false;
         }
-        if (!Objects.equals(mobile, managerDO.mobile)) {
+        if (!Objects.equals(mobile, that.mobile)) {
             return false;
         }
-        if (!Objects.equals(mail, managerDO.mail)) {
+        if (!Objects.equals(mail, that.mail)) {
             return false;
         }
-        if (!Objects.equals(account, managerDO.account)) {
+        if (!Objects.equals(account, that.account)) {
             return false;
         }
-        if (!Objects.equals(loginPassword, managerDO.loginPassword)) {
+        if (!Objects.equals(loginPassword, that.loginPassword)) {
             return false;
         }
-        if (!Objects.equals(lastAttemptLoginRequestIp, managerDO.lastAttemptLoginRequestIp)) {
+        if (!Objects.equals(lastAttemptLoginRequestIp, that.lastAttemptLoginRequestIp)) {
             return false;
         }
-        if (!Objects.equals(lastAttemptLoginTime, managerDO.lastAttemptLoginTime)) {
+        if (!Objects.equals(lastAttemptLoginTime, that.lastAttemptLoginTime)) {
             return false;
         }
-        if (!Objects.equals(attemptLoginNumber, managerDO.attemptLoginNumber)) {
+        if (!Objects.equals(attemptLoginNumber, that.attemptLoginNumber)) {
             return false;
         }
-        if (!Objects.equals(requestIp, managerDO.requestIp)) {
+        if (!Objects.equals(requestIp, that.requestIp)) {
             return false;
         }
-        if (!Objects.equals(currentRequestIp, managerDO.currentRequestIp)) {
+        if (!Objects.equals(currentRequestIp, that.currentRequestIp)) {
             return false;
         }
-        if (!Objects.equals(remark, managerDO.remark)) {
+        if (!Objects.equals(remark, that.remark)) {
             return false;
         }
-        if (!Objects.equals(createTime, managerDO.createTime)) {
+        if (!Objects.equals(createTime, that.createTime)) {
             return false;
         }
-        if (!Objects.equals(creatorId, managerDO.creatorId)) {
+        if (!Objects.equals(creatorId, that.creatorId)) {
             return false;
         }
-        if (!Objects.equals(creatorName, managerDO.creatorName)) {
+        if (!Objects.equals(creatorName, that.creatorName)) {
             return false;
         }
-        if (!Objects.equals(updateTime, managerDO.updateTime)) {
+        if (!Objects.equals(updateTime, that.updateTime)) {
             return false;
         }
-        if (!Objects.equals(updaterId, managerDO.updaterId)) {
+        if (!Objects.equals(updaterId, that.updaterId)) {
             return false;
         }
-        if (!Objects.equals(updaterName, managerDO.updaterName)) {
+        if (!Objects.equals(updaterName, that.updaterName)) {
             return false;
         }
-        return Objects.equals(state, managerDO.state);
+        return Objects.equals(state, that.state);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package cn.fyy.authorization.bean.bo;
 
-import cn.fyy.authorization.bean.dbo.RoleButtonDO;
+import cn.fyy.authorization.bean.po.RoleButtonPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -75,21 +75,21 @@ public class RoleButtonBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 按钮角色关系 DO 转换 BO
+     * 按钮角色关系 PO 转换 BO
      */
-    public static RoleButtonBO toBO(RoleButtonDO dbo) {
-        if (dbo != null) {
+    public static RoleButtonBO toBO(RoleButtonPO po) {
+        if (po != null) {
             return RoleButtonBO.builder()
-                    .id(dbo.getId())
-                    .roleId(dbo.getRoleId())
-                    .buttonId(dbo.getButtonId())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .roleId(po.getRoleId())
+                    .buttonId(po.getButtonId())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -97,13 +97,13 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 DO 数组 转换 BO List
+     * 按钮角色关系 PO 数组 转换 BO List
      */
-    public static List<RoleButtonBO> toBO(RoleButtonDO[] dbos) {
-        if (dbos != null) {
+    public static List<RoleButtonBO> toBO(RoleButtonPO[] pos) {
+        if (pos != null) {
             List<RoleButtonBO> bos = new ArrayList<>();
-            for (RoleButtonDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (RoleButtonPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -112,13 +112,13 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 DO List 转换 BO List
+     * 按钮角色关系 PO List 转换 BO List
      */
-    public static List<RoleButtonBO> toBO(List<RoleButtonDO> dbos) {
-        if (dbos != null) {
+    public static List<RoleButtonBO> toBO(List<RoleButtonPO> pos) {
+        if (pos != null) {
             List<RoleButtonBO> bos = new ArrayList<>();
-            for (RoleButtonDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (RoleButtonPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -127,11 +127,11 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 BO 转换 DO
+     * 按钮角色关系 BO 转换 PO
      */
-    public static RoleButtonDO toDO(RoleButtonBO bo) {
+    public static RoleButtonPO toPO(RoleButtonBO bo) {
         if (bo != null) {
-            return RoleButtonDO.builder()
+            return RoleButtonPO.builder()
                     .id(bo.getId())
                     .roleId(bo.getRoleId())
                     .buttonId(bo.getButtonId())
@@ -149,13 +149,13 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 BO List 转换 DO List
+     * 按钮角色关系 BO List 转换 PO List
      */
-    public static List<RoleButtonDO> toDO(List<RoleButtonBO> bos) {
+    public static List<RoleButtonPO> toPO(List<RoleButtonBO> bos) {
         if (bos != null) {
-            List<RoleButtonDO> dos = new ArrayList<>();
+            List<RoleButtonPO> dos = new ArrayList<>();
             for (RoleButtonBO bo : bos) {
-                dos.add(toDO(bo));
+                dos.add(toPO(bo));
             }
             return dos;
         } else {
@@ -164,10 +164,10 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 BO 转换 DO
+     * 按钮角色关系 BO 转换 PO
      */
-    public RoleButtonDO toDO() {
-        return RoleButtonDO.builder()
+    public RoleButtonPO toPO() {
+        return RoleButtonPO.builder()
                 .id(this.getId())
                 .roleId(this.getRoleId())
                 .buttonId(this.getButtonId())

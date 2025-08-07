@@ -1,6 +1,6 @@
 package cn.fyy.authorization.repository;
 
-import cn.fyy.authorization.bean.dbo.RoleDO;
+import cn.fyy.authorization.bean.po.RolePO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface RoleRepository extends JpaRepository<RoleDO, Long>, JpaSpecificationExecutor<RoleDO> {
+public interface RoleRepository extends JpaRepository<RolePO, Long>, JpaSpecificationExecutor<RolePO> {
 
     /**
      * 根据ids保存状态
@@ -29,7 +29,7 @@ public interface RoleRepository extends JpaRepository<RoleDO, Long>, JpaSpecific
      * @return 受影响行数
      */
     @Modifying
-    @Query(value = "UPDATE RoleDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
+    @Query(value = "UPDATE RolePO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
     int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
@@ -46,7 +46,7 @@ public interface RoleRepository extends JpaRepository<RoleDO, Long>, JpaSpecific
                     "AND r.state = ?2 " +
                     "ORDER BY r.update_time"
     )
-    List<RoleDO> queryManagerHaveRoleByManagerIdAndState(Long managerId, int state);
+    List<RolePO> queryManagerHaveRoleByManagerIdAndState(Long managerId, int state);
 
     /**
      * 查询所有可用角色
@@ -57,6 +57,6 @@ public interface RoleRepository extends JpaRepository<RoleDO, Long>, JpaSpecific
             value = "SELECT * FROM role " +
                     "WHERE state = 0"
     )
-    List<RoleDO> queryAll();
+    List<RolePO> queryAll();
 
 }

@@ -1,4 +1,4 @@
-package cn.fyy.builder.bean.dbo;
+package cn.fyy.builder.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,19 +8,19 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 常用版本
+ * 项目群
  *
  * @author fuyy
  */
 @Entity
-@Table(name = "commonly_version", schema = "builder")
+@Table(name = "project_group", schema = "builder")
 @Getter
 @Setter
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommonlyVersionDO implements Serializable {
+public class ProjectGroupPO implements Serializable {
     /**
      * 主键ID
      */
@@ -34,6 +34,30 @@ public class CommonlyVersionDO implements Serializable {
      */
     @Column(name = "manager_id")
     private Long managerId;
+
+    /**
+     * 项目群名称
+     */
+    @Column(name = "project_group_name", length = 200)
+    private String projectGroupName;
+
+    /**
+     * 组ID
+     */
+    @Column(name = "group_id", length = 100)
+    private String groupId;
+
+    /**
+     * 工件ID
+     */
+    @Column(name = "artifact_id", length = 100)
+    private String artifactId;
+
+    /**
+     * 项目群版本号
+     */
+    @Column(name = "version", length = 100)
+    private String version;
 
     /**
      * JDK版本
@@ -84,6 +108,12 @@ public class CommonlyVersionDO implements Serializable {
     private String mybatisVersion;
 
     /**
+     * 备注
+     */
+    @Column(name = "remark", length = 1000)
+    private String remark;
+
+    /**
      * 创建时间
      */
     @Column(name = "create_time")
@@ -131,7 +161,7 @@ public class CommonlyVersionDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof CommonlyVersionDO that)) {
+        if (!(o instanceof ProjectGroupPO that)) {
             return false;
         }
 
@@ -139,6 +169,18 @@ public class CommonlyVersionDO implements Serializable {
             return false;
         }
         if (!Objects.equals(managerId, that.managerId)) {
+            return false;
+        }
+        if (!Objects.equals(projectGroupName, that.projectGroupName)) {
+            return false;
+        }
+        if (!Objects.equals(groupId, that.groupId)) {
+            return false;
+        }
+        if (!Objects.equals(artifactId, that.artifactId)) {
+            return false;
+        }
+        if (!Objects.equals(version, that.version)) {
             return false;
         }
         if (!Objects.equals(jdkVersion, that.jdkVersion)) {
@@ -163,6 +205,9 @@ public class CommonlyVersionDO implements Serializable {
             return false;
         }
         if (!Objects.equals(mybatisVersion, that.mybatisVersion)) {
+            return false;
+        }
+        if (!Objects.equals(remark, that.remark)) {
             return false;
         }
         if (!Objects.equals(createTime, that.createTime)) {
@@ -190,6 +235,10 @@ public class CommonlyVersionDO implements Serializable {
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + (managerId != null ? managerId.hashCode() : 0);
+        result = 31 * result + (projectGroupName != null ? projectGroupName.hashCode() : 0);
+        result = 31 * result + (groupId != null ? groupId.hashCode() : 0);
+        result = 31 * result + (artifactId != null ? artifactId.hashCode() : 0);
+        result = 31 * result + (version != null ? version.hashCode() : 0);
         result = 31 * result + (jdkVersion != null ? jdkVersion.hashCode() : 0);
         result = 31 * result + (springCloudVersion != null ? springCloudVersion.hashCode() : 0);
         result = 31 * result + (springCloudAlibabaVersion != null ? springCloudAlibabaVersion.hashCode() : 0);
@@ -198,6 +247,7 @@ public class CommonlyVersionDO implements Serializable {
         result = 31 * result + (lombokVersion != null ? lombokVersion.hashCode() : 0);
         result = 31 * result + (druidVersion != null ? druidVersion.hashCode() : 0);
         result = 31 * result + (mybatisVersion != null ? mybatisVersion.hashCode() : 0);
+        result = 31 * result + (remark != null ? remark.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
         result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);

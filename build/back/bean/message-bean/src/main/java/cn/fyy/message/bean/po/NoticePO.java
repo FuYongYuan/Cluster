@@ -1,4 +1,4 @@
-package cn.fyy.authorization.bean.dbo;
+package cn.fyy.message.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,19 +8,19 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 角色
+ * 公告
  *
  * @author fuyy
  */
 @Entity
-@Table(name = "role", schema = "authorization")
+@Table(name = "notice", schema = "message")
 @Getter
 @Setter
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleDO implements Serializable {
+public class NoticePO implements Serializable {
 
     /**
      * 主键ID
@@ -31,16 +31,31 @@ public class RoleDO implements Serializable {
     private Long id;
 
     /**
-     * 名称
+     * 公告标题
      */
-    @Column(name = "role_name", length = 200)
-    private String roleName;
+    @Column(name = "notice_title", length = 200)
+    private String noticeTitle;
 
     /**
-     * 备注
+     * 公告内容
      */
-    @Column(name = "remark", length = 1000)
-    private String remark;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "notice_content", columnDefinition = "text")
+    @ToString.Exclude
+    private String noticeContent;
+
+    /**
+     * 公告作者
+     */
+    @Column(name = "notice_author", length = 200)
+    private String noticeAuthor;
+
+    /**
+     * 公告排序
+     */
+    @Column(name = "notice_order")
+    private Integer noticeOrder;
 
     /**
      * 创建时间
@@ -90,45 +105,53 @@ public class RoleDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof RoleDO roleDO)) {
+        if (!(o instanceof NoticePO that)) {
             return false;
         }
 
-        if (!id.equals(roleDO.id)) {
+        if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(roleName, roleDO.roleName)) {
+        if (!Objects.equals(noticeTitle, that.noticeTitle)) {
             return false;
         }
-        if (!Objects.equals(remark, roleDO.remark)) {
+        if (!Objects.equals(noticeContent, that.noticeContent)) {
             return false;
         }
-        if (!Objects.equals(createTime, roleDO.createTime)) {
+        if (!Objects.equals(noticeAuthor, that.noticeAuthor)) {
             return false;
         }
-        if (!Objects.equals(creatorId, roleDO.creatorId)) {
+        if (!Objects.equals(noticeOrder, that.noticeOrder)) {
             return false;
         }
-        if (!Objects.equals(creatorName, roleDO.creatorName)) {
+        if (!Objects.equals(createTime, that.createTime)) {
             return false;
         }
-        if (!Objects.equals(updateTime, roleDO.updateTime)) {
+        if (!Objects.equals(creatorId, that.creatorId)) {
             return false;
         }
-        if (!Objects.equals(updaterId, roleDO.updaterId)) {
+        if (!Objects.equals(creatorName, that.creatorName)) {
             return false;
         }
-        if (!Objects.equals(updaterName, roleDO.updaterName)) {
+        if (!Objects.equals(updateTime, that.updateTime)) {
             return false;
         }
-        return Objects.equals(state, roleDO.state);
+        if (!Objects.equals(updaterId, that.updaterId)) {
+            return false;
+        }
+        if (!Objects.equals(updaterName, that.updaterName)) {
+            return false;
+        }
+        return Objects.equals(state, that.state);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
-        result = 31 * result + (remark != null ? remark.hashCode() : 0);
+        result = 31 * result + (noticeTitle != null ? noticeTitle.hashCode() : 0);
+        result = 31 * result + (noticeContent != null ? noticeContent.hashCode() : 0);
+        result = 31 * result + (noticeAuthor != null ? noticeAuthor.hashCode() : 0);
+        result = 31 * result + (noticeOrder != null ? noticeOrder.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
         result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);

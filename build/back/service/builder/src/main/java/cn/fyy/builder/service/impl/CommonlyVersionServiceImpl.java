@@ -1,7 +1,7 @@
 package cn.fyy.builder.service.impl;
 
 import cn.fyy.builder.bean.bo.CommonlyVersionBO;
-import cn.fyy.builder.bean.dbo.CommonlyVersionDO;
+import cn.fyy.builder.bean.po.CommonlyVersionPO;
 import cn.fyy.builder.repository.CommonlyVersionRepository;
 import cn.fyy.builder.service.CommonlyVersionService;
 import cn.fyy.common.bean.ao.DataState;
@@ -69,7 +69,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
     public CommonlyVersionBO save(CommonlyVersionBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            CommonlyVersionDO dbo;
+            CommonlyVersionPO po;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
@@ -78,18 +78,18 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
-                dbo = CommonlyVersionBO.toDO(bo);
+                po = CommonlyVersionBO.toPO(bo);
             } else {
-                CommonlyVersionDO old = commonlyVersionRepository.getReferenceById(bo.getId());
+                CommonlyVersionPO old = commonlyVersionRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, CommonlyVersionDO.class, getNull);
+                CopyClass.copyClassGetSet(bo, old, CommonlyVersionPO.class, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
-                dbo = old;
+                po = old;
             }
 
-            return CommonlyVersionBO.toBO(commonlyVersionRepository.save(dbo));
+            return CommonlyVersionBO.toBO(commonlyVersionRepository.save(po));
         } catch (Exception e) {
             throw new BusinessException("新增或者修改常用版本错误", e);
         }

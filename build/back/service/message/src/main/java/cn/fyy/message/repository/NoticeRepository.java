@@ -1,6 +1,6 @@
 package cn.fyy.message.repository;
 
-import cn.fyy.message.bean.dbo.NoticeDO;
+import cn.fyy.message.bean.po.NoticePO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface NoticeRepository extends JpaRepository<NoticeDO, Long>, JpaSpecificationExecutor<NoticeDO> {
+public interface NoticeRepository extends JpaRepository<NoticePO, Long>, JpaSpecificationExecutor<NoticePO> {
 
     /**
      * 根据ids保存状态
@@ -29,7 +29,7 @@ public interface NoticeRepository extends JpaRepository<NoticeDO, Long>, JpaSpec
      * @return 受影响行数
      */
     @Modifying
-    @Query(value = "UPDATE NoticeDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
+    @Query(value = "UPDATE NoticePO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
     int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
 }

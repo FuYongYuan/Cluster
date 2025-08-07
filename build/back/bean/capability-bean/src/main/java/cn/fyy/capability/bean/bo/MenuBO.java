@@ -1,6 +1,6 @@
 package cn.fyy.capability.bean.bo;
 
-import cn.fyy.capability.bean.dbo.MenuDO;
+import cn.fyy.capability.bean.po.MenuPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -165,28 +165,28 @@ public class MenuBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 菜单 DO 转换 BO
+     * 菜单 PO 转换 BO
      */
-    public static MenuBO toBO(MenuDO dbo) {
-        if (dbo != null) {
+    public static MenuBO toBO(MenuPO po) {
+        if (po != null) {
             return MenuBO.builder()
-                    .id(dbo.getId())
-                    .menuName(dbo.getMenuName())
-                    .menuUrl(dbo.getMenuUrl())
-                    .menuIcon(dbo.getMenuIcon())
-                    .pageName(dbo.getPageName())
-                    .parentId(dbo.getParentId())
-                    .isTurn(dbo.getIsTurn())
-                    .isHome(dbo.getIsHome())
-                    .menuOrder(dbo.getMenuOrder())
-                    .remark(dbo.getRemark())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .menuName(po.getMenuName())
+                    .menuUrl(po.getMenuUrl())
+                    .menuIcon(po.getMenuIcon())
+                    .pageName(po.getPageName())
+                    .parentId(po.getParentId())
+                    .isTurn(po.getIsTurn())
+                    .isHome(po.getIsHome())
+                    .menuOrder(po.getMenuOrder())
+                    .remark(po.getRemark())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -194,13 +194,13 @@ public class MenuBO implements Serializable {
     }
 
     /**
-     * 菜单 DO 数组 转换 BO List
+     * 菜单 PO 数组 转换 BO List
      */
-    public static List<MenuBO> toBO(MenuDO[] dbos) {
-        if (dbos != null) {
+    public static List<MenuBO> toBO(MenuPO[] pos) {
+        if (pos != null) {
             List<MenuBO> bos = new ArrayList<>();
-            for (MenuDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (MenuPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -209,13 +209,13 @@ public class MenuBO implements Serializable {
     }
 
     /**
-     * 菜单 DO List 转换 BO List
+     * 菜单 PO List 转换 BO List
      */
-    public static List<MenuBO> toBO(List<MenuDO> dbos) {
-        if (dbos != null) {
+    public static List<MenuBO> toBO(List<MenuPO> pos) {
+        if (pos != null) {
             List<MenuBO> bos = new ArrayList<>();
-            for (MenuDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (MenuPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -224,11 +224,11 @@ public class MenuBO implements Serializable {
     }
 
     /**
-     * 菜单 BO 转换 DO
+     * 菜单 BO 转换 PO
      */
-    public static MenuDO toDO(MenuBO bo) {
+    public static MenuPO toPO(MenuBO bo) {
         if (bo != null) {
-            return MenuDO.builder()
+            return MenuPO.builder()
                     .id(bo.getId())
                     .menuName(bo.getMenuName())
                     .menuUrl(bo.getMenuUrl())
@@ -253,25 +253,25 @@ public class MenuBO implements Serializable {
     }
 
     /**
-     * 菜单 BO List 转换 DO List
+     * 菜单 BO List 转换 PO List
      */
-    public static List<MenuDO> toDO(List<MenuBO> bos) {
+    public static List<MenuPO> toPO(List<MenuBO> bos) {
         if (bos != null) {
-            List<MenuDO> dbos = new ArrayList<>();
+            List<MenuPO> pos = new ArrayList<>();
             for (MenuBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 菜单 BO 转换 DO
+     * 菜单 BO 转换 PO
      */
-    public MenuDO toDO() {
-        return MenuDO.builder()
+    public MenuPO toPO() {
+        return MenuPO.builder()
                 .id(this.getId())
                 .menuName(this.getMenuName())
                 .menuUrl(this.getMenuUrl())

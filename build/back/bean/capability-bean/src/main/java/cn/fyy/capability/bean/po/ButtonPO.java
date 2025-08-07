@@ -1,4 +1,4 @@
-package cn.fyy.message.bean.dbo;
+package cn.fyy.capability.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,19 +8,19 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 公告
+ * 按钮
  *
  * @author fuyy
  */
 @Entity
-@Table(name = "notice", schema = "message")
+@Table(name = "button", schema = "capability")
 @Getter
 @Setter
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class NoticeDO implements Serializable {
+public class ButtonPO implements Serializable {
 
     /**
      * 主键ID
@@ -31,31 +31,40 @@ public class NoticeDO implements Serializable {
     private Long id;
 
     /**
-     * 公告标题
+     * 名称
      */
-    @Column(name = "notice_title", length = 200)
-    private String noticeTitle;
+    @Column(name = "button_name", length = 200)
+    private String buttonName;
 
     /**
-     * 公告内容
+     * 标识
      */
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "notice_content", columnDefinition = "text")
-    @ToString.Exclude
-    private String noticeContent;
+    @Column(name = "button_sign", length = 200)
+    private String buttonSign;
 
     /**
-     * 公告作者
+     * 点击事件
      */
-    @Column(name = "notice_author", length = 200)
-    private String noticeAuthor;
+    @Column(name = "on_click", length = 200)
+    private String onClick;
 
     /**
-     * 公告排序
+     * 菜单ID
      */
-    @Column(name = "notice_order")
-    private Integer noticeOrder;
+    @Column(name = "menu_id")
+    private Long menuId;
+
+    /**
+     * 排序(按数字从小到大)
+     */
+    @Column(name = "button_order")
+    private Integer buttonOrder;
+
+    /**
+     * 备注
+     */
+    @Column(name = "remark", length = 1000)
+    private String remark;
 
     /**
      * 创建时间
@@ -105,53 +114,61 @@ public class NoticeDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof NoticeDO noticeDO)) {
+        if (!(o instanceof ButtonPO that)) {
             return false;
         }
 
-        if (!id.equals(noticeDO.id)) {
+        if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(noticeTitle, noticeDO.noticeTitle)) {
+        if (!Objects.equals(buttonName, that.buttonName)) {
             return false;
         }
-        if (!Objects.equals(noticeContent, noticeDO.noticeContent)) {
+        if (!Objects.equals(buttonSign, that.buttonSign)) {
             return false;
         }
-        if (!Objects.equals(noticeAuthor, noticeDO.noticeAuthor)) {
+        if (!Objects.equals(onClick, that.onClick)) {
             return false;
         }
-        if (!Objects.equals(noticeOrder, noticeDO.noticeOrder)) {
+        if (!Objects.equals(menuId, that.menuId)) {
             return false;
         }
-        if (!Objects.equals(createTime, noticeDO.createTime)) {
+        if (!Objects.equals(buttonOrder, that.buttonOrder)) {
             return false;
         }
-        if (!Objects.equals(creatorId, noticeDO.creatorId)) {
+        if (!Objects.equals(remark, that.remark)) {
             return false;
         }
-        if (!Objects.equals(creatorName, noticeDO.creatorName)) {
+        if (!Objects.equals(createTime, that.createTime)) {
             return false;
         }
-        if (!Objects.equals(updateTime, noticeDO.updateTime)) {
+        if (!Objects.equals(creatorId, that.creatorId)) {
             return false;
         }
-        if (!Objects.equals(updaterId, noticeDO.updaterId)) {
+        if (!Objects.equals(creatorName, that.creatorName)) {
             return false;
         }
-        if (!Objects.equals(updaterName, noticeDO.updaterName)) {
+        if (!Objects.equals(updateTime, that.updateTime)) {
             return false;
         }
-        return Objects.equals(state, noticeDO.state);
+        if (!Objects.equals(updaterId, that.updaterId)) {
+            return false;
+        }
+        if (!Objects.equals(updaterName, that.updaterName)) {
+            return false;
+        }
+        return Objects.equals(state, that.state);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (noticeTitle != null ? noticeTitle.hashCode() : 0);
-        result = 31 * result + (noticeContent != null ? noticeContent.hashCode() : 0);
-        result = 31 * result + (noticeAuthor != null ? noticeAuthor.hashCode() : 0);
-        result = 31 * result + (noticeOrder != null ? noticeOrder.hashCode() : 0);
+        result = 31 * result + (buttonName != null ? buttonName.hashCode() : 0);
+        result = 31 * result + (buttonSign != null ? buttonSign.hashCode() : 0);
+        result = 31 * result + (onClick != null ? onClick.hashCode() : 0);
+        result = 31 * result + (menuId != null ? menuId.hashCode() : 0);
+        result = 31 * result + (buttonOrder != null ? buttonOrder.hashCode() : 0);
+        result = 31 * result + (remark != null ? remark.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
         result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);

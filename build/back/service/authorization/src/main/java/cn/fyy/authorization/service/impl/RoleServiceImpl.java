@@ -1,7 +1,7 @@
 package cn.fyy.authorization.service.impl;
 
 import cn.fyy.authorization.bean.bo.RoleBO;
-import cn.fyy.authorization.bean.dbo.RoleDO;
+import cn.fyy.authorization.bean.po.RolePO;
 import cn.fyy.authorization.feign.client.capability.MenuFeignClient;
 import cn.fyy.authorization.repository.RoleRepository;
 import cn.fyy.authorization.service.RoleMenuService;
@@ -104,7 +104,7 @@ public class RoleServiceImpl implements RoleService {
     public RoleBO save(RoleBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            RoleDO dbo;
+            RolePO po;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
@@ -113,18 +113,18 @@ public class RoleServiceImpl implements RoleService {
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
-                dbo = RoleBO.toDO(bo);
+                po = RoleBO.toPO(bo);
             } else {
-                RoleDO old = roleRepository.getReferenceById(bo.getId());
+                RolePO old = roleRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, RoleDO.class, getNull);
+                CopyClass.copyClassGetSet(bo, old, RolePO.class, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
-                dbo = old;
+                po = old;
             }
 
-            return RoleBO.toBO(roleRepository.save(dbo));
+            return RoleBO.toBO(roleRepository.save(po));
         } catch (Exception e) {
             throw new BusinessException("新增或者修改角色错误", e);
         }
@@ -140,7 +140,7 @@ public class RoleServiceImpl implements RoleService {
      * @param pageSort     排序
      * @param roleName     角色名称
      * @param state        状态
-     * @return TRoleDO 角色对象
+     * @return TRolePO 角色对象
      */
     @Override
     public Page<RoleBO> queryPageByRoleNameAndState(
@@ -152,7 +152,7 @@ public class RoleServiceImpl implements RoleService {
     ) throws BusinessException {
         try {
             // 查询拼装
-            Specification<RoleDO> specification = (root, query, criteriaBuilder) -> {
+            Specification<RolePO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
                 predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
@@ -168,7 +168,7 @@ public class RoleServiceImpl implements RoleService {
             // 分页信息
             Pageable pageable = PageRequest.of(currentPage, eachPageSize);
             // 执行查询
-            Page<RoleDO> doPage = roleRepository.findAll(specification, pageable);
+            Page<RolePO> doPage = roleRepository.findAll(specification, pageable);
             // 返回结果 执行查询
             return new PageImpl<>(RoleBO.toBO(doPage.getContent()), doPage.getPageable(), doPage.getTotalElements());
         } catch (Exception e) {

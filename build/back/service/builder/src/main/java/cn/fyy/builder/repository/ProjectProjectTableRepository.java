@@ -1,6 +1,6 @@
 package cn.fyy.builder.repository;
 
-import cn.fyy.builder.bean.dbo.ProjectProjectTableDO;
+import cn.fyy.builder.bean.po.ProjectProjectTablePO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author : FYY
  */
 @Repository
-public interface ProjectProjectTableRepository extends JpaRepository<ProjectProjectTableDO, Long>, JpaSpecificationExecutor<ProjectProjectTableDO> {
+public interface ProjectProjectTableRepository extends JpaRepository<ProjectProjectTablePO, Long>, JpaSpecificationExecutor<ProjectProjectTablePO> {
     /**
      * 根据ids保存状态
      *
@@ -28,7 +28,7 @@ public interface ProjectProjectTableRepository extends JpaRepository<ProjectProj
      * @return 受影响行数
      */
     @Modifying
-    @Query(value = "UPDATE ProjectProjectTableDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
+    @Query(value = "UPDATE ProjectProjectTablePO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
     int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
 }

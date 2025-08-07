@@ -1,6 +1,6 @@
 package cn.fyy.builder.bean.bo;
 
-import cn.fyy.builder.bean.dbo.ProjectDO;
+import cn.fyy.builder.bean.po.ProjectPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -184,43 +184,43 @@ public class ProjectBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 项目 DO 转换 BO
+     * 项目 PO 转换 BO
      */
-    public static ProjectBO toBO(ProjectDO dbo) {
-        if (dbo != null) {
+    public static ProjectBO toBO(ProjectPO po) {
+        if (po != null) {
             return ProjectBO.builder()
-                    .id(dbo.getId())
-                    .projectGroupId(dbo.getProjectGroupId())
-                    .projectName(dbo.getProjectName())
-                    .artifactId(dbo.getArtifactId())
-                    .packageName(dbo.getPackageName())
-                    .projectVersion(dbo.getProjectVersion())
-                    .projectDescription(dbo.getProjectDescription())
-                    .projectUrl(dbo.getProjectUrl())
-                    .projectPort(dbo.getProjectPort())
-                    .isServiceInterface(dbo.getIsServiceInterface())
-                    .isDeleteBo(dbo.getIsDeleteBo())
-                    .isBasisMethod(dbo.getIsBasisMethod())
-                    .isRedis(dbo.getIsRedis())
-                    .isMinio(dbo.getIsMinio())
-                    .isMail(dbo.getIsMail())
-                    .isDispose(dbo.getIsDispose())
-                    .isEncrypt(dbo.getIsEncrypt())
-                    .isExcel(dbo.getIsExcel())
-                    .druidUrl(dbo.getDruidUrl())
-                    .druidAccount(dbo.getDruidAccount())
-                    .druidPassword(dbo.getDruidPassword())
-                    .isDeleteNotPk(dbo.getIsDeleteNotPk())
-                    .isOrderKey(dbo.getIsOrderKey())
-                    .dataBaseFramework(dbo.getDataBaseFramework())
-                    .dataBaseFormat(dbo.getDataBaseFormat())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .projectGroupId(po.getProjectGroupId())
+                    .projectName(po.getProjectName())
+                    .artifactId(po.getArtifactId())
+                    .packageName(po.getPackageName())
+                    .projectVersion(po.getProjectVersion())
+                    .projectDescription(po.getProjectDescription())
+                    .projectUrl(po.getProjectUrl())
+                    .projectPort(po.getProjectPort())
+                    .isServiceInterface(po.getIsServiceInterface())
+                    .isDeleteBo(po.getIsDeleteBo())
+                    .isBasisMethod(po.getIsBasisMethod())
+                    .isRedis(po.getIsRedis())
+                    .isMinio(po.getIsMinio())
+                    .isMail(po.getIsMail())
+                    .isDispose(po.getIsDispose())
+                    .isEncrypt(po.getIsEncrypt())
+                    .isExcel(po.getIsExcel())
+                    .druidUrl(po.getDruidUrl())
+                    .druidAccount(po.getDruidAccount())
+                    .druidPassword(po.getDruidPassword())
+                    .isDeleteNotPk(po.getIsDeleteNotPk())
+                    .isOrderKey(po.getIsOrderKey())
+                    .dataBaseFramework(po.getDataBaseFramework())
+                    .dataBaseFormat(po.getDataBaseFormat())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -228,13 +228,13 @@ public class ProjectBO implements Serializable {
     }
 
     /**
-     * 项目 DO 数组 转换 BO List
+     * 项目 PO 数组 转换 BO List
      */
-    public static List<ProjectBO> toBO(ProjectDO[] dbos) {
-        if (dbos != null) {
+    public static List<ProjectBO> toBO(ProjectPO[] pos) {
+        if (pos != null) {
             List<ProjectBO> bos = new ArrayList<>();
-            for (ProjectDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ProjectPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -243,13 +243,13 @@ public class ProjectBO implements Serializable {
     }
 
     /**
-     * 项目 DO List 转换 BO List
+     * 项目 PO List 转换 BO List
      */
-    public static List<ProjectBO> toBO(List<ProjectDO> dbos) {
-        if (dbos != null) {
+    public static List<ProjectBO> toBO(List<ProjectPO> pos) {
+        if (pos != null) {
             List<ProjectBO> bos = new ArrayList<>();
-            for (ProjectDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ProjectPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -258,11 +258,11 @@ public class ProjectBO implements Serializable {
     }
 
     /**
-     * 项目 BO 转换 DO
+     * 项目 BO 转换 PO
      */
-    public static ProjectDO toDO(ProjectBO bo) {
+    public static ProjectPO toPO(ProjectBO bo) {
         if (bo != null) {
-            return ProjectDO.builder()
+            return ProjectPO.builder()
                     .id(bo.getId())
                     .projectGroupId(bo.getProjectGroupId())
                     .projectName(bo.getProjectName())
@@ -302,25 +302,25 @@ public class ProjectBO implements Serializable {
     }
 
     /**
-     * 项目 BO List 转换 DO List
+     * 项目 BO List 转换 PO List
      */
-    public static List<ProjectDO> toDO(List<ProjectBO> bos) {
+    public static List<ProjectPO> toPO(List<ProjectBO> bos) {
         if (bos != null) {
-            List<ProjectDO> dbos = new ArrayList<>();
+            List<ProjectPO> pos = new ArrayList<>();
             for (ProjectBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 项目 BO 转换 DO
+     * 项目 BO 转换 PO
      */
-    public ProjectDO toDO() {
-        return ProjectDO.builder()
+    public ProjectPO toPO() {
+        return ProjectPO.builder()
                 .id(this.getId())
                 .projectGroupId(this.getProjectGroupId())
                 .projectName(this.getProjectName())

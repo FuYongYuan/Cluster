@@ -44,7 +44,7 @@ public interface RoleService {
      * @param pageSort     排序
      * @param roleName     角色名称
      * @param state        状态
-     * @return TRoleDO 角色对象
+     * @return TRolePO 角色对象
      * @throws BusinessException 错误
      */
     Page<RoleBO> queryPageByRoleNameAndState(

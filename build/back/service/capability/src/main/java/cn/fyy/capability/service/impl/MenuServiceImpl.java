@@ -1,7 +1,7 @@
 package cn.fyy.capability.service.impl;
 
 import cn.fyy.capability.bean.bo.MenuBO;
-import cn.fyy.capability.bean.dbo.MenuDO;
+import cn.fyy.capability.bean.po.MenuPO;
 import cn.fyy.capability.repository.MenuRepository;
 import cn.fyy.capability.service.MenuService;
 import cn.fyy.common.bean.ao.DataState;
@@ -79,7 +79,7 @@ public class MenuServiceImpl implements MenuService {
     public MenuBO save(MenuBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            MenuDO dbo;
+            MenuPO po;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
@@ -88,17 +88,17 @@ public class MenuServiceImpl implements MenuService {
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
-                dbo = MenuBO.toDO(bo);
+                po = MenuBO.toPO(bo);
             } else {
-                MenuDO old = menuRepository.getReferenceById(bo.getId());
+                MenuPO old = menuRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, MenuDO.class, getNull);
+                CopyClass.copyClassGetSet(bo, old, MenuPO.class, getNull);
                 old.setParentId(bo.getParentId() == null ? null : bo.getParentId());
                 old.setUpdaterId(currentManagerId);
                 old.setUpdateTime(localDateTime);
-                dbo = old;
+                po = old;
             }
-            return MenuBO.toBO(menuRepository.save(dbo));
+            return MenuBO.toBO(menuRepository.save(po));
         } catch (Exception e) {
             throw new BusinessException("新增或者修改菜单错误", e);
         }
@@ -114,7 +114,7 @@ public class MenuServiceImpl implements MenuService {
      * @param pageSort     排序
      * @param menuName     菜单名称
      * @param state        状态
-     * @return MenuDO 菜单对象
+     * @return MenuPO 菜单对象
      */
     @Override
     public Page<MenuBO> queryByMenuNameAndState(
@@ -126,7 +126,7 @@ public class MenuServiceImpl implements MenuService {
     ) throws BusinessException {
         try {
             // 查询拼装
-            Specification<MenuDO> specification = (root, query, criteriaBuilder) -> {
+            Specification<MenuPO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
                 predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
@@ -142,7 +142,7 @@ public class MenuServiceImpl implements MenuService {
             // 分页信息
             Pageable pageable = PageRequest.of(currentPage, eachPageSize);
             // 执行查询
-            Page<MenuDO> doPage = menuRepository.findAll(specification, pageable);
+            Page<MenuPO> doPage = menuRepository.findAll(specification, pageable);
             // 返回结果 执行查询
             return new PageImpl<>(MenuBO.toBO(doPage.getContent()), doPage.getPageable(), doPage.getTotalElements());
         } catch (Exception e) {

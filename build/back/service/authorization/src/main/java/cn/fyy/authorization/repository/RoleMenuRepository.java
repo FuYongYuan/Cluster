@@ -1,7 +1,7 @@
 package cn.fyy.authorization.repository;
 
 
-import cn.fyy.authorization.bean.dbo.RoleMenuDO;
+import cn.fyy.authorization.bean.po.RoleMenuPO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface RoleMenuRepository extends JpaRepository<RoleMenuDO, Long>, JpaSpecificationExecutor<RoleMenuDO> {
+public interface RoleMenuRepository extends JpaRepository<RoleMenuPO, Long>, JpaSpecificationExecutor<RoleMenuPO> {
 
     /**
      * 根据角色主键ID删除
@@ -30,7 +30,7 @@ public interface RoleMenuRepository extends JpaRepository<RoleMenuDO, Long>, Jpa
      * @param roleId 角色主键ID
      * @return 现有菜单关系列表
      */
-    List<RoleMenuDO> queryByRoleIdOrderByUpdateTimeAsc(Long roleId);
+    List<RoleMenuPO> queryByRoleIdOrderByUpdateTimeAsc(Long roleId);
 
     /**
      * 根据角色ID集合查询现有菜单关系列表
@@ -44,5 +44,5 @@ public interface RoleMenuRepository extends JpaRepository<RoleMenuDO, Long>, Jpa
                     "WHERE role_id IN ?1 " +
                     "AND state = ?2 "
     )
-    List<RoleMenuDO> queryByRoleIdsAndState(List<Long> roleIds, int state);
+    List<RoleMenuPO> queryByRoleIdsAndState(List<Long> roleIds, int state);
 }

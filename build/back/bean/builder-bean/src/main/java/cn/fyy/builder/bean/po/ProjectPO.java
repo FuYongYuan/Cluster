@@ -1,4 +1,4 @@
-package cn.fyy.builder.bean.dbo;
+package cn.fyy.builder.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,7 +20,7 @@ import java.util.Objects;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectDO implements Serializable {
+public class ProjectPO implements Serializable {
     /**
      * 主键ID
      */
@@ -221,104 +221,104 @@ public class ProjectDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ProjectDO projectDO)) {
+        if (!(o instanceof ProjectPO that)) {
             return false;
         }
 
-        if (!id.equals(projectDO.id)) {
+        if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(projectGroupId, projectDO.projectGroupId)) {
+        if (!Objects.equals(projectGroupId, that.projectGroupId)) {
             return false;
         }
-        if (!Objects.equals(projectName, projectDO.projectName)) {
+        if (!Objects.equals(projectName, that.projectName)) {
             return false;
         }
-        if (!Objects.equals(artifactId, projectDO.artifactId)) {
+        if (!Objects.equals(artifactId, that.artifactId)) {
             return false;
         }
-        if (!Objects.equals(packageName, projectDO.packageName)) {
+        if (!Objects.equals(packageName, that.packageName)) {
             return false;
         }
-        if (!Objects.equals(projectVersion, projectDO.projectVersion)) {
+        if (!Objects.equals(projectVersion, that.projectVersion)) {
             return false;
         }
-        if (!Objects.equals(projectDescription, projectDO.projectDescription)) {
+        if (!Objects.equals(projectDescription, that.projectDescription)) {
             return false;
         }
-        if (!Objects.equals(projectUrl, projectDO.projectUrl)) {
+        if (!Objects.equals(projectUrl, that.projectUrl)) {
             return false;
         }
-        if (!Objects.equals(projectPort, projectDO.projectPort)) {
+        if (!Objects.equals(projectPort, that.projectPort)) {
             return false;
         }
-        if (!Objects.equals(isServiceInterface, projectDO.isServiceInterface)) {
+        if (!Objects.equals(isServiceInterface, that.isServiceInterface)) {
             return false;
         }
-        if (!Objects.equals(isDeleteBo, projectDO.isDeleteBo)) {
+        if (!Objects.equals(isDeleteBo, that.isDeleteBo)) {
             return false;
         }
-        if (!Objects.equals(isBasisMethod, projectDO.isBasisMethod)) {
+        if (!Objects.equals(isBasisMethod, that.isBasisMethod)) {
             return false;
         }
-        if (!Objects.equals(isRedis, projectDO.isRedis)) {
+        if (!Objects.equals(isRedis, that.isRedis)) {
             return false;
         }
-        if (!Objects.equals(isMinio, projectDO.isMinio)) {
+        if (!Objects.equals(isMinio, that.isMinio)) {
             return false;
         }
-        if (!Objects.equals(isMail, projectDO.isMail)) {
+        if (!Objects.equals(isMail, that.isMail)) {
             return false;
         }
-        if (!Objects.equals(isDispose, projectDO.isDispose)) {
+        if (!Objects.equals(isDispose, that.isDispose)) {
             return false;
         }
-        if (!Objects.equals(isEncrypt, projectDO.isEncrypt)) {
+        if (!Objects.equals(isEncrypt, that.isEncrypt)) {
             return false;
         }
-        if (!Objects.equals(isExcel, projectDO.isExcel)) {
+        if (!Objects.equals(isExcel, that.isExcel)) {
             return false;
         }
-        if (!Objects.equals(druidUrl, projectDO.druidUrl)) {
+        if (!Objects.equals(druidUrl, that.druidUrl)) {
             return false;
         }
-        if (!Objects.equals(druidAccount, projectDO.druidAccount)) {
+        if (!Objects.equals(druidAccount, that.druidAccount)) {
             return false;
         }
-        if (!Objects.equals(druidPassword, projectDO.druidPassword)) {
+        if (!Objects.equals(druidPassword, that.druidPassword)) {
             return false;
         }
-        if (!Objects.equals(isDeleteNotPk, projectDO.isDeleteNotPk)) {
+        if (!Objects.equals(isDeleteNotPk, that.isDeleteNotPk)) {
             return false;
         }
-        if (!Objects.equals(isOrderKey, projectDO.isOrderKey)) {
+        if (!Objects.equals(isOrderKey, that.isOrderKey)) {
             return false;
         }
-        if (!Objects.equals(dataBaseFramework, projectDO.dataBaseFramework)) {
+        if (!Objects.equals(dataBaseFramework, that.dataBaseFramework)) {
             return false;
         }
-        if (!Objects.equals(dataBaseFormat, projectDO.dataBaseFormat)) {
+        if (!Objects.equals(dataBaseFormat, that.dataBaseFormat)) {
             return false;
         }
-        if (!Objects.equals(createTime, projectDO.createTime)) {
+        if (!Objects.equals(createTime, that.createTime)) {
             return false;
         }
-        if (!Objects.equals(creatorId, projectDO.creatorId)) {
+        if (!Objects.equals(creatorId, that.creatorId)) {
             return false;
         }
-        if (!Objects.equals(creatorName, projectDO.creatorName)) {
+        if (!Objects.equals(creatorName, that.creatorName)) {
             return false;
         }
-        if (!Objects.equals(updateTime, projectDO.updateTime)) {
+        if (!Objects.equals(updateTime, that.updateTime)) {
             return false;
         }
-        if (!Objects.equals(updaterId, projectDO.updaterId)) {
+        if (!Objects.equals(updaterId, that.updaterId)) {
             return false;
         }
-        if (!Objects.equals(updaterName, projectDO.updaterName)) {
+        if (!Objects.equals(updaterName, that.updaterName)) {
             return false;
         }
-        return Objects.equals(state, projectDO.state);
+        return Objects.equals(state, that.state);
     }
 
     @Override

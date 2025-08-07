@@ -2,7 +2,7 @@ package cn.fyy.mongodb.service;
 
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.mongodb.bean.ao.MongoDBCollection;
-import cn.fyy.mongodb.bean.dbo.AbstractMongoDO;
+import cn.fyy.mongodb.bean.po.AbstractMongoPO;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Set;
  *
  * @author fyy
  */
-public interface MongoDBService<T extends AbstractMongoDO> {
+public interface MongoDBService<T extends AbstractMongoPO> {
     /**
      * 插入数据-有数据则报错不更新
      *

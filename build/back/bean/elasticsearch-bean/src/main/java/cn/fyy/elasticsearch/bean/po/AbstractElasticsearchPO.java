@@ -1,4 +1,4 @@
-package cn.fyy.elasticsearch.bean.dbo;
+package cn.fyy.elasticsearch.bean.po;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 抽象DO
+ * 抽象PO
  *
  * @author fyy
  */
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @ToString
 // 索引名称
 @Document(indexName = "share")
-public abstract class AbstractElasticsearchDO implements Serializable {
+public abstract class AbstractElasticsearchPO implements Serializable {
 
     /**
      * 主键

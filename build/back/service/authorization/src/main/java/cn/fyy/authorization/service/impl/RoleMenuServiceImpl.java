@@ -1,7 +1,7 @@
 package cn.fyy.authorization.service.impl;
 
 import cn.fyy.authorization.bean.bo.RoleMenuBO;
-import cn.fyy.authorization.bean.dbo.RoleMenuDO;
+import cn.fyy.authorization.bean.po.RoleMenuPO;
 import cn.fyy.authorization.repository.RoleMenuRepository;
 import cn.fyy.authorization.service.RoleMenuService;
 import cn.fyy.common.bean.ao.DataState;
@@ -72,7 +72,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     public RoleMenuBO save(RoleMenuBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            RoleMenuDO dbo;
+            RoleMenuPO po;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
@@ -81,18 +81,18 @@ public class RoleMenuServiceImpl implements RoleMenuService {
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
-                dbo = RoleMenuBO.toDO(bo);
+                po = RoleMenuBO.toPO(bo);
             } else {
-                RoleMenuDO old = roleMenuRepository.getReferenceById(bo.getId());
+                RoleMenuPO old = roleMenuRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, RoleMenuDO.class, getNull);
+                CopyClass.copyClassGetSet(bo, old, RoleMenuPO.class, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
-                dbo = old;
+                po = old;
             }
 
-            return RoleMenuBO.toBO(roleMenuRepository.save(dbo));
+            return RoleMenuBO.toBO(roleMenuRepository.save(po));
         } catch (Exception e) {
             throw new BusinessException("新增或者修改角色菜单关系错误", e);
         }
@@ -118,9 +118,9 @@ public class RoleMenuServiceImpl implements RoleMenuService {
                 roleMenuRepository.deleteByRoleId(roleId);
                 // 新增角色菜单关系
                 List<Long> menuId = Stream.of(menuIds.split(",")).map(Long::valueOf).toList();
-                List<RoleMenuDO> list = new ArrayList<>();
+                List<RoleMenuPO> list = new ArrayList<>();
                 for (Long id : menuId) {
-                    RoleMenuDO bo = RoleMenuDO.builder()
+                    RoleMenuPO bo = RoleMenuPO.builder()
                             .roleId(roleId)
                             .menuId(id)
                             .creatorId(currentManagerId)

@@ -3,7 +3,7 @@ package cn.fyy.mongodb.service.impl;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.mongodb.bean.ao.MongoDBCollection;
-import cn.fyy.mongodb.bean.dbo.AbstractMongoDO;
+import cn.fyy.mongodb.bean.po.AbstractMongoPO;
 import cn.fyy.mongodb.service.MongoDBService;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
@@ -28,7 +28,7 @@ import java.util.Set;
  */
 @Slf4j
 @Service
-public class MongoDBServiceImpl<T extends AbstractMongoDO> implements MongoDBService<T> {
+public class MongoDBServiceImpl<T extends AbstractMongoPO> implements MongoDBService<T> {
     /**
      * mongoTemplate 操作模板
      */

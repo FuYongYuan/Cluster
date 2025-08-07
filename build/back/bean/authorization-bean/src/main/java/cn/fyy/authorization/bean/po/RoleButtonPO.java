@@ -1,4 +1,4 @@
-package cn.fyy.builder.bean.dbo;
+package cn.fyy.authorization.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,19 +8,20 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 数据库设计文件
+ * 按钮角色关系
  *
  * @author fuyy
  */
 @Entity
-@Table(name = "data_base_file", schema = "builder")
+@Table(name = "role_button", schema = "authorization")
 @Getter
 @Setter
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class DataBaseFileDO implements Serializable {
+public class RoleButtonPO implements Serializable {
+
     /**
      * 主键ID
      */
@@ -30,16 +31,16 @@ public class DataBaseFileDO implements Serializable {
     private Long id;
 
     /**
-     * 项目群ID
+     * 角色ID
      */
-    @Column(name = "project_group_id")
-    private Long projectGroupId;
+    @Column(name = "role_id")
+    private Long roleId;
 
     /**
-     * 文件地址
+     * 按钮ID
      */
-    @Column(name = "file_url", length = 200)
-    private String fileUrl;
+    @Column(name = "button_id")
+    private Long buttonId;
 
     /**
      * 创建时间
@@ -89,17 +90,17 @@ public class DataBaseFileDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof DataBaseFileDO that)) {
+        if (!(o instanceof RoleButtonPO that)) {
             return false;
         }
 
         if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(projectGroupId, that.projectGroupId)) {
+        if (!Objects.equals(roleId, that.roleId)) {
             return false;
         }
-        if (!Objects.equals(fileUrl, that.fileUrl)) {
+        if (!Objects.equals(buttonId, that.buttonId)) {
             return false;
         }
         if (!Objects.equals(createTime, that.createTime)) {
@@ -126,8 +127,8 @@ public class DataBaseFileDO implements Serializable {
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (projectGroupId != null ? projectGroupId.hashCode() : 0);
-        result = 31 * result + (fileUrl != null ? fileUrl.hashCode() : 0);
+        result = 31 * result + (roleId != null ? roleId.hashCode() : 0);
+        result = 31 * result + (buttonId != null ? buttonId.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
         result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);

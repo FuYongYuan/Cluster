@@ -1,7 +1,7 @@
 package cn.fyy.dictionary.repository;
 
 
-import cn.fyy.dictionary.bean.dbo.ParameterDO;
+import cn.fyy.dictionary.bean.po.ParameterPO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,7 +17,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface ParameterRepository extends JpaRepository<ParameterDO, Long>, JpaSpecificationExecutor<ParameterDO> {
+public interface ParameterRepository extends JpaRepository<ParameterPO, Long>, JpaSpecificationExecutor<ParameterPO> {
 
     /**
      * 根据参数编号查询
@@ -27,7 +27,7 @@ public interface ParameterRepository extends JpaRepository<ParameterDO, Long>, J
      * @return 参数
      */
     @Query(nativeQuery = true, value = "SELECT * FROM parameter WHERE parameter_code = ?1 AND state = ?2")
-    ParameterDO getByParameterCodeAndState(String parameterCode, int state);
+    ParameterPO getByParameterCodeAndState(String parameterCode, int state);
 
     /**
      * 根据ids保存状态
@@ -40,6 +40,6 @@ public interface ParameterRepository extends JpaRepository<ParameterDO, Long>, J
      * @return 受影响行数
      */
     @Modifying
-    @Query(value = "UPDATE ParameterDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
+    @Query(value = "UPDATE ParameterPO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
     int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 }

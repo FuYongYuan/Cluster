@@ -1,6 +1,6 @@
 package cn.fyy.builder.bean.bo;
 
-import cn.fyy.builder.bean.dbo.DataBaseFileDO;
+import cn.fyy.builder.bean.po.DataBaseFilePO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -74,21 +74,21 @@ public class DataBaseFileBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 数据库设计文件 DO 转换 BO
+     * 数据库设计文件 PO 转换 BO
      */
-    public static DataBaseFileBO toBO(DataBaseFileDO dbo) {
-        if (dbo != null) {
+    public static DataBaseFileBO toBO(DataBaseFilePO po) {
+        if (po != null) {
             return DataBaseFileBO.builder()
-                    .id(dbo.getId())
-                    .projectGroupId(dbo.getProjectGroupId())
-                    .fileUrl(dbo.getFileUrl())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .projectGroupId(po.getProjectGroupId())
+                    .fileUrl(po.getFileUrl())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -96,13 +96,13 @@ public class DataBaseFileBO implements Serializable {
     }
 
     /**
-     * 数据库设计文件 DO 数组 转换 BO List
+     * 数据库设计文件 PO 数组 转换 BO List
      */
-    public static List<DataBaseFileBO> toBO(DataBaseFileDO[] dbos) {
-        if (dbos != null) {
+    public static List<DataBaseFileBO> toBO(DataBaseFilePO[] pos) {
+        if (pos != null) {
             List<DataBaseFileBO> bos = new ArrayList<>();
-            for (DataBaseFileDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (DataBaseFilePO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -111,13 +111,13 @@ public class DataBaseFileBO implements Serializable {
     }
 
     /**
-     * 数据库设计文件 DO List 转换 BO List
+     * 数据库设计文件 PO List 转换 BO List
      */
-    public static List<DataBaseFileBO> toBO(List<DataBaseFileDO> dbos) {
-        if (dbos != null) {
+    public static List<DataBaseFileBO> toBO(List<DataBaseFilePO> pos) {
+        if (pos != null) {
             List<DataBaseFileBO> bos = new ArrayList<>();
-            for (DataBaseFileDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (DataBaseFilePO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -126,11 +126,11 @@ public class DataBaseFileBO implements Serializable {
     }
 
     /**
-     * 数据库设计文件 BO 转换 DO
+     * 数据库设计文件 BO 转换 PO
      */
-    public static DataBaseFileDO toDO(DataBaseFileBO bo) {
+    public static DataBaseFilePO toPO(DataBaseFileBO bo) {
         if (bo != null) {
-            return DataBaseFileDO.builder()
+            return DataBaseFilePO.builder()
                     .id(bo.getId())
                     .projectGroupId(bo.getProjectGroupId())
                     .fileUrl(bo.getFileUrl())
@@ -148,25 +148,25 @@ public class DataBaseFileBO implements Serializable {
     }
 
     /**
-     * 数据库设计文件 BO List 转换 DO List
+     * 数据库设计文件 BO List 转换 PO List
      */
-    public static List<DataBaseFileDO> toDO(List<DataBaseFileBO> bos) {
+    public static List<DataBaseFilePO> toPO(List<DataBaseFileBO> bos) {
         if (bos != null) {
-            List<DataBaseFileDO> dbos = new ArrayList<>();
+            List<DataBaseFilePO> pos = new ArrayList<>();
             for (DataBaseFileBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 数据库设计文件 BO 转换 DO
+     * 数据库设计文件 BO 转换 PO
      */
-    public DataBaseFileDO toDO() {
-        return DataBaseFileDO.builder()
+    public DataBaseFilePO toPO() {
+        return DataBaseFilePO.builder()
                 .id(this.getId())
                 .projectGroupId(this.getProjectGroupId())
                 .fileUrl(this.getFileUrl())

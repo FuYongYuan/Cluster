@@ -1,4 +1,4 @@
-package cn.fyy.dictionary.bean.dbo;
+package cn.fyy.authorization.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,19 +8,19 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 参数
+ * 角色
  *
  * @author fuyy
  */
 @Entity
-@Table(name = "parameter", schema = "dictionary")
+@Table(name = "role", schema = "authorization")
 @Getter
 @Setter
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ParameterDO implements Serializable {
+public class RolePO implements Serializable {
 
     /**
      * 主键ID
@@ -31,31 +31,16 @@ public class ParameterDO implements Serializable {
     private Long id;
 
     /**
-     * 参数代码
+     * 名称
      */
-    @Column(name = "parameter_code", length = 200)
-    private String parameterCode;
+    @Column(name = "role_name", length = 200)
+    private String roleName;
 
     /**
-     * 参数名称
+     * 备注
      */
-    @Column(name = "parameter_name", length = 200)
-    private String parameterName;
-
-    /**
-     * 参数值
-     */
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "parameter_value", columnDefinition = "text")
-    @ToString.Exclude
-    private String parameterValue;
-
-    /**
-     * 参数说明
-     */
-    @Column(name = "parameter_explain", length = 4000)
-    private String parameterExplain;
+    @Column(name = "remark", length = 1000)
+    private String remark;
 
     /**
      * 创建时间
@@ -105,23 +90,17 @@ public class ParameterDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ParameterDO that)) {
+        if (!(o instanceof RolePO that)) {
             return false;
         }
 
         if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(parameterCode, that.parameterCode)) {
+        if (!Objects.equals(roleName, that.roleName)) {
             return false;
         }
-        if (!Objects.equals(parameterName, that.parameterName)) {
-            return false;
-        }
-        if (!Objects.equals(parameterValue, that.parameterValue)) {
-            return false;
-        }
-        if (!Objects.equals(parameterExplain, that.parameterExplain)) {
+        if (!Objects.equals(remark, that.remark)) {
             return false;
         }
         if (!Objects.equals(createTime, that.createTime)) {
@@ -148,10 +127,8 @@ public class ParameterDO implements Serializable {
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (parameterCode != null ? parameterCode.hashCode() : 0);
-        result = 31 * result + (parameterName != null ? parameterName.hashCode() : 0);
-        result = 31 * result + (parameterValue != null ? parameterValue.hashCode() : 0);
-        result = 31 * result + (parameterExplain != null ? parameterExplain.hashCode() : 0);
+        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
+        result = 31 * result + (remark != null ? remark.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
         result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);

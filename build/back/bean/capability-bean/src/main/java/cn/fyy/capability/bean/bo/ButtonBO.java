@@ -1,6 +1,6 @@
 package cn.fyy.capability.bean.bo;
 
-import cn.fyy.capability.bean.dbo.ButtonDO;
+import cn.fyy.capability.bean.po.ButtonPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -95,25 +95,25 @@ public class ButtonBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 按钮 DO 转换 BO
+     * 按钮 PO 转换 BO
      */
-    public static ButtonBO toBO(ButtonDO dbo) {
-        if (dbo != null) {
+    public static ButtonBO toBO(ButtonPO po) {
+        if (po != null) {
             return ButtonBO.builder()
-                    .id(dbo.getId())
-                    .buttonName(dbo.getButtonName())
-                    .buttonSign(dbo.getButtonSign())
-                    .onClick(dbo.getOnClick())
-                    .menuId(dbo.getMenuId())
-                    .buttonOrder(dbo.getButtonOrder())
-                    .remark(dbo.getRemark())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .buttonName(po.getButtonName())
+                    .buttonSign(po.getButtonSign())
+                    .onClick(po.getOnClick())
+                    .menuId(po.getMenuId())
+                    .buttonOrder(po.getButtonOrder())
+                    .remark(po.getRemark())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -121,13 +121,13 @@ public class ButtonBO implements Serializable {
     }
 
     /**
-     * 按钮 DO 数组 转换 BO List
+     * 按钮 PO 数组 转换 BO List
      */
-    public static List<ButtonBO> toBO(ButtonDO[] dbos) {
-        if (dbos != null) {
+    public static List<ButtonBO> toBO(ButtonPO[] pos) {
+        if (pos != null) {
             List<ButtonBO> bos = new ArrayList<>();
-            for (ButtonDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ButtonPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -136,13 +136,13 @@ public class ButtonBO implements Serializable {
     }
 
     /**
-     * 按钮 DO List 转换 BO List
+     * 按钮 PO List 转换 BO List
      */
-    public static List<ButtonBO> toBO(List<ButtonDO> dbos) {
-        if (dbos != null) {
+    public static List<ButtonBO> toBO(List<ButtonPO> pos) {
+        if (pos != null) {
             List<ButtonBO> bos = new ArrayList<>();
-            for (ButtonDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ButtonPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -151,11 +151,11 @@ public class ButtonBO implements Serializable {
     }
 
     /**
-     * 按钮 BO 转换 DO
+     * 按钮 BO 转换 PO
      */
-    public static ButtonDO toDO(ButtonBO bo) {
+    public static ButtonPO toPO(ButtonBO bo) {
         if (bo != null) {
-            return ButtonDO.builder()
+            return ButtonPO.builder()
                     .id(bo.getId())
                     .buttonName(bo.getButtonName())
                     .buttonSign(bo.getButtonSign())
@@ -177,25 +177,25 @@ public class ButtonBO implements Serializable {
     }
 
     /**
-     * 按钮 BO List 转换 DO List
+     * 按钮 BO List 转换 PO List
      */
-    public static List<ButtonDO> toDO(List<ButtonBO> bos) {
+    public static List<ButtonPO> toPO(List<ButtonBO> bos) {
         if (bos != null) {
-            List<ButtonDO> dbos = new ArrayList<>();
+            List<ButtonPO> pos = new ArrayList<>();
             for (ButtonBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 按钮 BO 转换 DO
+     * 按钮 BO 转换 PO
      */
-    public ButtonDO toDO() {
-        return ButtonDO.builder()
+    public ButtonPO toPO() {
+        return ButtonPO.builder()
                 .id(this.getId())
                 .buttonName(this.getButtonName())
                 .buttonSign(this.getButtonSign())

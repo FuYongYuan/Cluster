@@ -1,4 +1,4 @@
-package cn.fyy.authorization.bean.dbo;
+package cn.fyy.builder.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,20 +8,19 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 菜单角色关系
+ * 项目表
  *
  * @author fuyy
  */
 @Entity
-@Table(name = "role_menu", schema = "authorization")
+@Table(name = "project_table", schema = "builder")
 @Getter
 @Setter
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleMenuDO implements Serializable {
-
+public class ProjectTablePO implements Serializable {
     /**
      * 主键ID
      */
@@ -31,16 +30,34 @@ public class RoleMenuDO implements Serializable {
     private Long id;
 
     /**
-     * 角色ID
+     * 项目群ID
      */
-    @Column(name = "role_id")
-    private Long roleId;
+    @Column(name = "project_group_id")
+    private Long projectGroupId;
 
     /**
-     * 菜单ID
+     * 数据库设计文件ID
      */
-    @Column(name = "menu_id")
-    private Long menuId;
+    @Column(name = "data_base_file_id")
+    private Long dataBaseFileId;
+
+    /**
+     * 所属的库
+     */
+    @Column(name = "table_schema", length = 200)
+    private String tableSchema;
+
+    /**
+     * 表名称
+     */
+    @Column(name = "table_name", length = 200)
+    private String tableName;
+
+    /**
+     * 表注释
+     */
+    @Column(name = "table_comment", length = 1000)
+    private String tableComment;
 
     /**
      * 创建时间
@@ -90,17 +107,26 @@ public class RoleMenuDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof RoleMenuDO that)) {
+        if (!(o instanceof ProjectTablePO that)) {
             return false;
         }
 
         if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(roleId, that.roleId)) {
+        if (!Objects.equals(projectGroupId, that.projectGroupId)) {
             return false;
         }
-        if (!Objects.equals(menuId, that.menuId)) {
+        if (!Objects.equals(dataBaseFileId, that.dataBaseFileId)) {
+            return false;
+        }
+        if (!Objects.equals(tableSchema, that.tableSchema)) {
+            return false;
+        }
+        if (!Objects.equals(tableName, that.tableName)) {
+            return false;
+        }
+        if (!Objects.equals(tableComment, that.tableComment)) {
             return false;
         }
         if (!Objects.equals(createTime, that.createTime)) {
@@ -127,8 +153,11 @@ public class RoleMenuDO implements Serializable {
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (roleId != null ? roleId.hashCode() : 0);
-        result = 31 * result + (menuId != null ? menuId.hashCode() : 0);
+        result = 31 * result + (projectGroupId != null ? projectGroupId.hashCode() : 0);
+        result = 31 * result + (dataBaseFileId != null ? dataBaseFileId.hashCode() : 0);
+        result = 31 * result + (tableSchema != null ? tableSchema.hashCode() : 0);
+        result = 31 * result + (tableName != null ? tableName.hashCode() : 0);
+        result = 31 * result + (tableComment != null ? tableComment.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
         result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);

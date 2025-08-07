@@ -1,4 +1,4 @@
-package cn.fyy.builder.bean.dbo;
+package cn.fyy.dictionary.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,19 +8,20 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 项目表
+ * 参数
  *
  * @author fuyy
  */
 @Entity
-@Table(name = "project_table", schema = "builder")
+@Table(name = "parameter", schema = "dictionary")
 @Getter
 @Setter
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectTableDO implements Serializable {
+public class ParameterPO implements Serializable {
+
     /**
      * 主键ID
      */
@@ -30,34 +31,31 @@ public class ProjectTableDO implements Serializable {
     private Long id;
 
     /**
-     * 项目群ID
+     * 参数代码
      */
-    @Column(name = "project_group_id")
-    private Long projectGroupId;
+    @Column(name = "parameter_code", length = 200)
+    private String parameterCode;
 
     /**
-     * 数据库设计文件ID
+     * 参数名称
      */
-    @Column(name = "data_base_file_id")
-    private Long dataBaseFileId;
+    @Column(name = "parameter_name", length = 200)
+    private String parameterName;
 
     /**
-     * 所属的库
+     * 参数值
      */
-    @Column(name = "table_schema", length = 200)
-    private String tableSchema;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "parameter_value", columnDefinition = "text")
+    @ToString.Exclude
+    private String parameterValue;
 
     /**
-     * 表名称
+     * 参数说明
      */
-    @Column(name = "table_name", length = 200)
-    private String tableName;
-
-    /**
-     * 表注释
-     */
-    @Column(name = "table_comment", length = 1000)
-    private String tableComment;
+    @Column(name = "parameter_explain", length = 4000)
+    private String parameterExplain;
 
     /**
      * 创建时间
@@ -107,26 +105,23 @@ public class ProjectTableDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ProjectTableDO that)) {
+        if (!(o instanceof ParameterPO that)) {
             return false;
         }
 
         if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(projectGroupId, that.projectGroupId)) {
+        if (!Objects.equals(parameterCode, that.parameterCode)) {
             return false;
         }
-        if (!Objects.equals(dataBaseFileId, that.dataBaseFileId)) {
+        if (!Objects.equals(parameterName, that.parameterName)) {
             return false;
         }
-        if (!Objects.equals(tableSchema, that.tableSchema)) {
+        if (!Objects.equals(parameterValue, that.parameterValue)) {
             return false;
         }
-        if (!Objects.equals(tableName, that.tableName)) {
-            return false;
-        }
-        if (!Objects.equals(tableComment, that.tableComment)) {
+        if (!Objects.equals(parameterExplain, that.parameterExplain)) {
             return false;
         }
         if (!Objects.equals(createTime, that.createTime)) {
@@ -153,11 +148,10 @@ public class ProjectTableDO implements Serializable {
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (projectGroupId != null ? projectGroupId.hashCode() : 0);
-        result = 31 * result + (dataBaseFileId != null ? dataBaseFileId.hashCode() : 0);
-        result = 31 * result + (tableSchema != null ? tableSchema.hashCode() : 0);
-        result = 31 * result + (tableName != null ? tableName.hashCode() : 0);
-        result = 31 * result + (tableComment != null ? tableComment.hashCode() : 0);
+        result = 31 * result + (parameterCode != null ? parameterCode.hashCode() : 0);
+        result = 31 * result + (parameterName != null ? parameterName.hashCode() : 0);
+        result = 31 * result + (parameterValue != null ? parameterValue.hashCode() : 0);
+        result = 31 * result + (parameterExplain != null ? parameterExplain.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
         result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);

@@ -1,6 +1,6 @@
 package cn.fyy.authorization.bean.bo;
 
-import cn.fyy.authorization.bean.dbo.RoleMenuDO;
+import cn.fyy.authorization.bean.po.RoleMenuPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -75,21 +75,21 @@ public class RoleMenuBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 菜单角色关系 DO 转换 BO
+     * 菜单角色关系 PO 转换 BO
      */
-    public static RoleMenuBO toBO(RoleMenuDO dbo) {
-        if (dbo != null) {
+    public static RoleMenuBO toBO(RoleMenuPO po) {
+        if (po != null) {
             return RoleMenuBO.builder()
-                    .id(dbo.getId())
-                    .roleId(dbo.getRoleId())
-                    .menuId(dbo.getMenuId())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .roleId(po.getRoleId())
+                    .menuId(po.getMenuId())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -97,13 +97,13 @@ public class RoleMenuBO implements Serializable {
     }
 
     /**
-     * 菜单角色关系 DO 数组 转换 BO List
+     * 菜单角色关系 PO 数组 转换 BO List
      */
-    public static List<RoleMenuBO> toBO(RoleMenuDO[] dbos) {
-        if (dbos != null) {
+    public static List<RoleMenuBO> toBO(RoleMenuPO[] pos) {
+        if (pos != null) {
             List<RoleMenuBO> bos = new ArrayList<>();
-            for (RoleMenuDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (RoleMenuPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -112,13 +112,13 @@ public class RoleMenuBO implements Serializable {
     }
 
     /**
-     * 菜单角色关系 DO List 转换 BO List
+     * 菜单角色关系 PO List 转换 BO List
      */
-    public static List<RoleMenuBO> toBO(List<RoleMenuDO> dbos) {
-        if (dbos != null) {
+    public static List<RoleMenuBO> toBO(List<RoleMenuPO> pos) {
+        if (pos != null) {
             List<RoleMenuBO> bos = new ArrayList<>();
-            for (RoleMenuDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (RoleMenuPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -127,11 +127,11 @@ public class RoleMenuBO implements Serializable {
     }
 
     /**
-     * 菜单角色关系 BO 转换 DO
+     * 菜单角色关系 BO 转换 PO
      */
-    public static RoleMenuDO toDO(RoleMenuBO bo) {
+    public static RoleMenuPO toPO(RoleMenuBO bo) {
         if (bo != null) {
-            return RoleMenuDO.builder()
+            return RoleMenuPO.builder()
                     .id(bo.getId())
                     .roleId(bo.getRoleId())
                     .menuId(bo.getMenuId())
@@ -149,25 +149,25 @@ public class RoleMenuBO implements Serializable {
     }
 
     /**
-     * 菜单角色关系 BO List 转换 DO List
+     * 菜单角色关系 BO List 转换 PO List
      */
-    public static List<RoleMenuDO> toDO(List<RoleMenuBO> bos) {
+    public static List<RoleMenuPO> toPO(List<RoleMenuBO> bos) {
         if (bos != null) {
-            List<RoleMenuDO> dbos = new ArrayList<>();
+            List<RoleMenuPO> pos = new ArrayList<>();
             for (RoleMenuBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 菜单角色关系 BO 转换 DO
+     * 菜单角色关系 BO 转换 PO
      */
-    public RoleMenuDO toDO() {
-        return RoleMenuDO.builder()
+    public RoleMenuPO toPO() {
+        return RoleMenuPO.builder()
                 .id(this.getId())
                 .roleId(this.getRoleId())
                 .menuId(this.getMenuId())

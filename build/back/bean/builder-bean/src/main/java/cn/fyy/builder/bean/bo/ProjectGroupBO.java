@@ -1,6 +1,6 @@
 package cn.fyy.builder.bean.bo;
 
-import cn.fyy.builder.bean.dbo.ProjectGroupDO;
+import cn.fyy.builder.bean.po.ProjectGroupPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -134,33 +134,33 @@ public class ProjectGroupBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 项目群 DO 转换 BO
+     * 项目群 PO 转换 BO
      */
-    public static ProjectGroupBO toBO(ProjectGroupDO dbo) {
-        if (dbo != null) {
+    public static ProjectGroupBO toBO(ProjectGroupPO po) {
+        if (po != null) {
             return ProjectGroupBO.builder()
-                    .id(dbo.getId())
-                    .managerId(dbo.getManagerId())
-                    .projectGroupName(dbo.getProjectGroupName())
-                    .groupId(dbo.getGroupId())
-                    .artifactId(dbo.getArtifactId())
-                    .version(dbo.getVersion())
-                    .jdkVersion(dbo.getJdkVersion())
-                    .springCloudVersion(dbo.getSpringCloudVersion())
-                    .springCloudAlibabaVersion(dbo.getSpringCloudAlibabaVersion())
-                    .springBootVersion(dbo.getSpringBootVersion())
-                    .openApiVersion(dbo.getOpenApiVersion())
-                    .lombokVersion(dbo.getLombokVersion())
-                    .druidVersion(dbo.getDruidVersion())
-                    .mybatisVersion(dbo.getMybatisVersion())
-                    .remark(dbo.getRemark())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .managerId(po.getManagerId())
+                    .projectGroupName(po.getProjectGroupName())
+                    .groupId(po.getGroupId())
+                    .artifactId(po.getArtifactId())
+                    .version(po.getVersion())
+                    .jdkVersion(po.getJdkVersion())
+                    .springCloudVersion(po.getSpringCloudVersion())
+                    .springCloudAlibabaVersion(po.getSpringCloudAlibabaVersion())
+                    .springBootVersion(po.getSpringBootVersion())
+                    .openApiVersion(po.getOpenApiVersion())
+                    .lombokVersion(po.getLombokVersion())
+                    .druidVersion(po.getDruidVersion())
+                    .mybatisVersion(po.getMybatisVersion())
+                    .remark(po.getRemark())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -168,13 +168,13 @@ public class ProjectGroupBO implements Serializable {
     }
 
     /**
-     * 项目群 DO 数组 转换 BO List
+     * 项目群 PO 数组 转换 BO List
      */
-    public static List<ProjectGroupBO> toBO(ProjectGroupDO[] dbos) {
-        if (dbos != null) {
+    public static List<ProjectGroupBO> toBO(ProjectGroupPO[] pos) {
+        if (pos != null) {
             List<ProjectGroupBO> bos = new ArrayList<>();
-            for (ProjectGroupDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ProjectGroupPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -183,13 +183,13 @@ public class ProjectGroupBO implements Serializable {
     }
 
     /**
-     * 项目群 DO List 转换 BO List
+     * 项目群 PO List 转换 BO List
      */
-    public static List<ProjectGroupBO> toBO(List<ProjectGroupDO> dbos) {
-        if (dbos != null) {
+    public static List<ProjectGroupBO> toBO(List<ProjectGroupPO> pos) {
+        if (pos != null) {
             List<ProjectGroupBO> bos = new ArrayList<>();
-            for (ProjectGroupDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ProjectGroupPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -198,11 +198,11 @@ public class ProjectGroupBO implements Serializable {
     }
 
     /**
-     * 项目群 BO 转换 DO
+     * 项目群 BO 转换 PO
      */
-    public static ProjectGroupDO toDO(ProjectGroupBO bo) {
+    public static ProjectGroupPO toPO(ProjectGroupBO bo) {
         if (bo != null) {
-            return ProjectGroupDO.builder()
+            return ProjectGroupPO.builder()
                     .id(bo.getId())
                     .managerId(bo.getManagerId())
                     .projectGroupName(bo.getProjectGroupName())
@@ -232,25 +232,25 @@ public class ProjectGroupBO implements Serializable {
     }
 
     /**
-     * 项目群 BO List 转换 DO List
+     * 项目群 BO List 转换 PO List
      */
-    public static List<ProjectGroupDO> toDO(List<ProjectGroupBO> bos) {
+    public static List<ProjectGroupPO> toPO(List<ProjectGroupBO> bos) {
         if (bos != null) {
-            List<ProjectGroupDO> dbos = new ArrayList<>();
+            List<ProjectGroupPO> pos = new ArrayList<>();
             for (ProjectGroupBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 项目群 BO 转换 DO
+     * 项目群 BO 转换 PO
      */
-    public ProjectGroupDO toDO() {
-        return ProjectGroupDO.builder()
+    public ProjectGroupPO toPO() {
+        return ProjectGroupPO.builder()
                 .id(this.getId())
                 .managerId(this.getManagerId())
                 .projectGroupName(this.getProjectGroupName())

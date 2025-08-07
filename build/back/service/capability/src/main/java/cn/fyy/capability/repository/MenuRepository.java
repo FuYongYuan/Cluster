@@ -1,6 +1,6 @@
 package cn.fyy.capability.repository;
 
-import cn.fyy.capability.bean.dbo.MenuDO;
+import cn.fyy.capability.bean.po.MenuPO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface MenuRepository extends JpaRepository<MenuDO, Long>, JpaSpecificationExecutor<MenuDO> {
+public interface MenuRepository extends JpaRepository<MenuPO, Long>, JpaSpecificationExecutor<MenuPO> {
 
     /**
      * 根据ids保存状态
@@ -29,7 +29,7 @@ public interface MenuRepository extends JpaRepository<MenuDO, Long>, JpaSpecific
      * @return 受影响行数
      */
     @Modifying
-    @Query(value = "UPDATE MenuDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
+    @Query(value = "UPDATE MenuPO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
     int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
@@ -47,7 +47,7 @@ public interface MenuRepository extends JpaRepository<MenuDO, Long>, JpaSpecific
                     "AND state = ?3 " +
                     "ORDER BY menu_order"
     )
-    List<MenuDO> queryHierarchyMenuByMenuIdListAndParentIdAndState(List<Long> menuIdList, Long parentId, int state);
+    List<MenuPO> queryHierarchyMenuByMenuIdListAndParentIdAndState(List<Long> menuIdList, Long parentId, int state);
 
     /**
      * 根据菜单ID集合查询菜单
@@ -62,7 +62,7 @@ public interface MenuRepository extends JpaRepository<MenuDO, Long>, JpaSpecific
                     "AND state = ?2 " +
                     "ORDER BY menu_order"
     )
-    List<MenuDO> queryHierarchyMenuByMenuIdListAndState(List<Long> menuIdList, int state);
+    List<MenuPO> queryHierarchyMenuByMenuIdListAndState(List<Long> menuIdList, int state);
 
     /**
      * 查询所有可用菜单
@@ -73,7 +73,7 @@ public interface MenuRepository extends JpaRepository<MenuDO, Long>, JpaSpecific
             value = "SELECT * FROM menu " +
                     "WHERE state = 0"
     )
-    List<MenuDO> queryAll();
+    List<MenuPO> queryAll();
 
     /**
      * 查询所有可用父级菜单
@@ -85,5 +85,5 @@ public interface MenuRepository extends JpaRepository<MenuDO, Long>, JpaSpecific
                     "WHERE parent_id IS NULL " +
                     "AND state = 0"
     )
-    List<MenuDO> queryAllParent();
+    List<MenuPO> queryAllParent();
 }

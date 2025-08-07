@@ -1,6 +1,6 @@
 package cn.fyy.authorization.bean.bo;
 
-import cn.fyy.authorization.bean.dbo.RoleManagerDO;
+import cn.fyy.authorization.bean.po.RoleManagerPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -75,21 +75,21 @@ public class RoleManagerBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 角色管理员关系 DO 转换 BO
+     * 角色管理员关系 PO 转换 BO
      */
-    public static RoleManagerBO toBO(RoleManagerDO dbo) {
-        if (dbo != null) {
+    public static RoleManagerBO toBO(RoleManagerPO po) {
+        if (po != null) {
             return RoleManagerBO.builder()
-                    .id(dbo.getId())
-                    .managerId(dbo.getManagerId())
-                    .roleId(dbo.getRoleId())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .managerId(po.getManagerId())
+                    .roleId(po.getRoleId())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -97,13 +97,13 @@ public class RoleManagerBO implements Serializable {
     }
 
     /**
-     * 角色管理员关系 DO 数组 转换 BO List
+     * 角色管理员关系 PO 数组 转换 BO List
      */
-    public static List<RoleManagerBO> toBO(RoleManagerDO[] dbos) {
-        if (dbos != null) {
+    public static List<RoleManagerBO> toBO(RoleManagerPO[] pos) {
+        if (pos != null) {
             List<RoleManagerBO> bos = new ArrayList<>();
-            for (RoleManagerDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (RoleManagerPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -112,13 +112,13 @@ public class RoleManagerBO implements Serializable {
     }
 
     /**
-     * 角色管理员关系 DO List 转换 BO List
+     * 角色管理员关系 PO List 转换 BO List
      */
-    public static List<RoleManagerBO> toBO(List<RoleManagerDO> dbos) {
-        if (dbos != null) {
+    public static List<RoleManagerBO> toBO(List<RoleManagerPO> pos) {
+        if (pos != null) {
             List<RoleManagerBO> bos = new ArrayList<>();
-            for (RoleManagerDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (RoleManagerPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -127,11 +127,11 @@ public class RoleManagerBO implements Serializable {
     }
 
     /**
-     * 角色管理员关系 BO 转换 DO
+     * 角色管理员关系 BO 转换 PO
      */
-    public static RoleManagerDO toDO(RoleManagerBO bo) {
+    public static RoleManagerPO toPO(RoleManagerBO bo) {
         if (bo != null) {
-            return RoleManagerDO.builder()
+            return RoleManagerPO.builder()
                     .id(bo.getId())
                     .managerId(bo.getManagerId())
                     .roleId(bo.getRoleId())
@@ -149,13 +149,13 @@ public class RoleManagerBO implements Serializable {
     }
 
     /**
-     * 角色管理员关系 BO List 转换 DO List
+     * 角色管理员关系 BO List 转换 PO List
      */
-    public static List<RoleManagerDO> toDO(List<RoleManagerBO> bos) {
+    public static List<RoleManagerPO> toPO(List<RoleManagerBO> bos) {
         if (bos != null) {
-            List<RoleManagerDO> dos = new ArrayList<>();
+            List<RoleManagerPO> dos = new ArrayList<>();
             for (RoleManagerBO bo : bos) {
-                dos.add(toDO(bo));
+                dos.add(toPO(bo));
             }
             return dos;
         } else {
@@ -164,10 +164,10 @@ public class RoleManagerBO implements Serializable {
     }
 
     /**
-     * 角色管理员关系 BO 转换 DO
+     * 角色管理员关系 BO 转换 PO
      */
-    public RoleManagerDO toDO() {
-        return RoleManagerDO.builder()
+    public RoleManagerPO toPO() {
+        return RoleManagerPO.builder()
                 .id(this.getId())
                 .managerId(this.getManagerId())
                 .roleId(this.getRoleId())

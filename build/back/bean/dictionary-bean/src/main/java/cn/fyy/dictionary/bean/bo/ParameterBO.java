@@ -1,6 +1,6 @@
 package cn.fyy.dictionary.bean.bo;
 
-import cn.fyy.dictionary.bean.dbo.ParameterDO;
+import cn.fyy.dictionary.bean.po.ParameterPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -85,23 +85,23 @@ public class ParameterBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 参数 DO 转换 BO
+     * 参数 PO 转换 BO
      */
-    public static ParameterBO toBO(ParameterDO dbo) {
-        if (dbo != null) {
+    public static ParameterBO toBO(ParameterPO po) {
+        if (po != null) {
             return ParameterBO.builder()
-                    .id(dbo.getId())
-                    .parameterCode(dbo.getParameterCode())
-                    .parameterName(dbo.getParameterName())
-                    .parameterValue(dbo.getParameterValue())
-                    .parameterExplain(dbo.getParameterExplain())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .parameterCode(po.getParameterCode())
+                    .parameterName(po.getParameterName())
+                    .parameterValue(po.getParameterValue())
+                    .parameterExplain(po.getParameterExplain())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -109,13 +109,13 @@ public class ParameterBO implements Serializable {
     }
 
     /**
-     * 参数 DO 数组 转换 BO List
+     * 参数 PO 数组 转换 BO List
      */
-    public static List<ParameterBO> toBO(ParameterDO[] dbos) {
-        if (dbos != null) {
+    public static List<ParameterBO> toBO(ParameterPO[] pos) {
+        if (pos != null) {
             List<ParameterBO> bos = new ArrayList<>();
-            for (ParameterDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ParameterPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -124,13 +124,13 @@ public class ParameterBO implements Serializable {
     }
 
     /**
-     * 参数 DO List 转换 BO List
+     * 参数 PO List 转换 BO List
      */
-    public static List<ParameterBO> toBO(List<ParameterDO> dbos) {
-        if (dbos != null) {
+    public static List<ParameterBO> toBO(List<ParameterPO> pos) {
+        if (pos != null) {
             List<ParameterBO> bos = new ArrayList<>();
-            for (ParameterDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ParameterPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -139,11 +139,11 @@ public class ParameterBO implements Serializable {
     }
 
     /**
-     * 参数 BO 转换 DO
+     * 参数 BO 转换 PO
      */
-    public static ParameterDO toDO(ParameterBO bo) {
+    public static ParameterPO toPO(ParameterBO bo) {
         if (bo != null) {
-            return ParameterDO.builder()
+            return ParameterPO.builder()
                     .id(bo.getId())
                     .parameterCode(bo.getParameterCode())
                     .parameterName(bo.getParameterName())
@@ -163,25 +163,25 @@ public class ParameterBO implements Serializable {
     }
 
     /**
-     * 参数 BO List 转换 DO List
+     * 参数 BO List 转换 PO List
      */
-    public static List<ParameterDO> toDO(List<ParameterBO> bos) {
+    public static List<ParameterPO> toPO(List<ParameterBO> bos) {
         if (bos != null) {
-            List<ParameterDO> dbos = new ArrayList<>();
+            List<ParameterPO> pos = new ArrayList<>();
             for (ParameterBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 参数 BO 转换 DO
+     * 参数 BO 转换 PO
      */
-    public ParameterDO toDO() {
-        return ParameterDO.builder()
+    public ParameterPO toPO() {
+        return ParameterPO.builder()
                 .id(this.getId())
                 .parameterCode(this.getParameterCode())
                 .parameterName(this.getParameterName())

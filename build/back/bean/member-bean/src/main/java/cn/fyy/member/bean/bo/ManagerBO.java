@@ -1,6 +1,6 @@
 package cn.fyy.member.bean.bo;
 
-import cn.fyy.member.bean.dbo.ManagerDO;
+import cn.fyy.member.bean.po.ManagerPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -140,33 +140,33 @@ public class ManagerBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 管理员 DO 转换 BO
+     * 管理员 PO 转换 BO
      */
-    public static ManagerBO toBO(ManagerDO dbo) {
-        if (dbo != null) {
+    public static ManagerBO toBO(ManagerPO po) {
+        if (po != null) {
             return ManagerBO.builder()
-                    .id(dbo.getId())
-                    .headImgUrl(dbo.getHeadImgUrl())
-                    .managerName(dbo.getManagerName())
-                    .age(dbo.getAge())
-                    .sex(dbo.getSex())
-                    .mobile(dbo.getMobile())
-                    .mail(dbo.getMail())
-                    .account(dbo.getAccount())
-                    .loginPassword(dbo.getLoginPassword())
-                    .lastAttemptLoginRequestIp(dbo.getLastAttemptLoginRequestIp())
-                    .lastAttemptLoginTime(dbo.getLastAttemptLoginTime())
-                    .attemptLoginNumber(dbo.getAttemptLoginNumber())
-                    .requestIp(dbo.getRequestIp())
-                    .currentRequestIp(dbo.getCurrentRequestIp())
-                    .remark(dbo.getRemark())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .headImgUrl(po.getHeadImgUrl())
+                    .managerName(po.getManagerName())
+                    .age(po.getAge())
+                    .sex(po.getSex())
+                    .mobile(po.getMobile())
+                    .mail(po.getMail())
+                    .account(po.getAccount())
+                    .loginPassword(po.getLoginPassword())
+                    .lastAttemptLoginRequestIp(po.getLastAttemptLoginRequestIp())
+                    .lastAttemptLoginTime(po.getLastAttemptLoginTime())
+                    .attemptLoginNumber(po.getAttemptLoginNumber())
+                    .requestIp(po.getRequestIp())
+                    .currentRequestIp(po.getCurrentRequestIp())
+                    .remark(po.getRemark())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -174,13 +174,13 @@ public class ManagerBO implements Serializable {
     }
 
     /**
-     * 管理员 DO 数组 转换 BO List
+     * 管理员 PO 数组 转换 BO List
      */
-    public static List<ManagerBO> toBO(ManagerDO[] dbos) {
-        if (dbos != null) {
+    public static List<ManagerBO> toBO(ManagerPO[] pos) {
+        if (pos != null) {
             List<ManagerBO> bos = new ArrayList<>();
-            for (ManagerDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ManagerPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -189,13 +189,13 @@ public class ManagerBO implements Serializable {
     }
 
     /**
-     * 管理员 DO List 转换 BO List
+     * 管理员 PO List 转换 BO List
      */
-    public static List<ManagerBO> toBO(List<ManagerDO> dbos) {
-        if (dbos != null) {
+    public static List<ManagerBO> toBO(List<ManagerPO> pos) {
+        if (pos != null) {
             List<ManagerBO> bos = new ArrayList<>();
-            for (ManagerDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ManagerPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -204,11 +204,11 @@ public class ManagerBO implements Serializable {
     }
 
     /**
-     * 管理员 BO 转换 DO
+     * 管理员 BO 转换 PO
      */
-    public static ManagerDO toDO(ManagerBO bo) {
+    public static ManagerPO toPO(ManagerBO bo) {
         if (bo != null) {
-            return ManagerDO.builder()
+            return ManagerPO.builder()
                     .id(bo.getId())
                     .headImgUrl(bo.getHeadImgUrl())
                     .managerName(bo.getManagerName())
@@ -238,25 +238,25 @@ public class ManagerBO implements Serializable {
     }
 
     /**
-     * 管理员 BO List 转换 DO List
+     * 管理员 BO List 转换 PO List
      */
-    public static List<ManagerDO> toDO(List<ManagerBO> bos) {
+    public static List<ManagerPO> toPO(List<ManagerBO> bos) {
         if (bos != null) {
-            List<ManagerDO> dbos = new ArrayList<>();
+            List<ManagerPO> pos = new ArrayList<>();
             for (ManagerBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 管理员 BO 转换 DO
+     * 管理员 BO 转换 PO
      */
-    public ManagerDO toDO() {
-        return ManagerDO.builder()
+    public ManagerPO toPO() {
+        return ManagerPO.builder()
                 .id(this.getId())
                 .headImgUrl(this.getHeadImgUrl())
                 .managerName(this.getManagerName())

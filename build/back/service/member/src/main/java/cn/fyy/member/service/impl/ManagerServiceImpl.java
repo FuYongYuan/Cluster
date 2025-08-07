@@ -8,7 +8,7 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.service.ConstantService;
 import cn.fyy.member.bean.bo.ManagerBO;
-import cn.fyy.member.bean.dbo.ManagerDO;
+import cn.fyy.member.bean.po.ManagerPO;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
 import cn.fyy.member.config.properties.AesProperties;
 import cn.fyy.member.feign.client.authorization.RoleFeignClient;
@@ -124,7 +124,7 @@ public class ManagerServiceImpl implements ManagerService {
     public ManagerBO save(ManagerBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            ManagerDO dbo;
+            ManagerPO po;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
@@ -133,18 +133,18 @@ public class ManagerServiceImpl implements ManagerService {
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
-                dbo = ManagerBO.toDO(bo);
+                po = ManagerBO.toPO(bo);
             } else {
-                ManagerDO old = managerRepository.getReferenceById(bo.getId());
+                ManagerPO old = managerRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, ManagerDO.class, getNull);
+                CopyClass.copyClassGetSet(bo, old, ManagerPO.class, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
-                dbo = old;
+                po = old;
             }
 
-            return ManagerBO.toBO(managerRepository.save(dbo));
+            return ManagerBO.toBO(managerRepository.save(po));
         } catch (Exception e) {
             throw new BusinessException("新增或者修改管理员错误", e);
         }
@@ -188,7 +188,7 @@ public class ManagerServiceImpl implements ManagerService {
     ) throws BusinessException {
         try {
             // 查询拼装
-            Specification<ManagerDO> specification = (root, query, criteriaBuilder) -> {
+            Specification<ManagerPO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
                 if (state == null) {
@@ -220,7 +220,7 @@ public class ManagerServiceImpl implements ManagerService {
             // 分页信息
             Pageable pageable = PageRequest.of(currentPage, eachPageSize);
             // 执行查询
-            Page<ManagerDO> results = managerRepository.findAll(specification, pageable);
+            Page<ManagerPO> results = managerRepository.findAll(specification, pageable);
             // 返回结果
             return new PageImpl<>(ManagerBO.toBO(results.getContent()), pageable, results.getTotalElements());
         } catch (Exception e) {

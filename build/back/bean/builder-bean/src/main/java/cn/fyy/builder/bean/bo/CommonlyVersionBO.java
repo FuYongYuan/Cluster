@@ -1,6 +1,6 @@
 package cn.fyy.builder.bean.bo;
 
-import cn.fyy.builder.bean.dbo.CommonlyVersionDO;
+import cn.fyy.builder.bean.po.CommonlyVersionPO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -109,28 +109,28 @@ public class CommonlyVersionBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 常用版本 DO 转换 BO
+     * 常用版本 PO 转换 BO
      */
-    public static CommonlyVersionBO toBO(CommonlyVersionDO dbo) {
-        if (dbo != null) {
+    public static CommonlyVersionBO toBO(CommonlyVersionPO po) {
+        if (po != null) {
             return CommonlyVersionBO.builder()
-                    .id(dbo.getId())
-                    .managerId(dbo.getManagerId())
-                    .jdkVersion(dbo.getJdkVersion())
-                    .springCloudVersion(dbo.getSpringCloudVersion())
-                    .springCloudAlibabaVersion(dbo.getSpringCloudAlibabaVersion())
-                    .springBootVersion(dbo.getSpringBootVersion())
-                    .openApiVersion(dbo.getOpenApiVersion())
-                    .lombokVersion(dbo.getLombokVersion())
-                    .druidVersion(dbo.getDruidVersion())
-                    .mybatisVersion(dbo.getMybatisVersion())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .managerId(po.getManagerId())
+                    .jdkVersion(po.getJdkVersion())
+                    .springCloudVersion(po.getSpringCloudVersion())
+                    .springCloudAlibabaVersion(po.getSpringCloudAlibabaVersion())
+                    .springBootVersion(po.getSpringBootVersion())
+                    .openApiVersion(po.getOpenApiVersion())
+                    .lombokVersion(po.getLombokVersion())
+                    .druidVersion(po.getDruidVersion())
+                    .mybatisVersion(po.getMybatisVersion())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -138,13 +138,13 @@ public class CommonlyVersionBO implements Serializable {
     }
 
     /**
-     * 常用版本 DO 数组 转换 BO List
+     * 常用版本 PO 数组 转换 BO List
      */
-    public static List<CommonlyVersionBO> toBO(CommonlyVersionDO[] dbos) {
-        if (dbos != null) {
+    public static List<CommonlyVersionBO> toBO(CommonlyVersionPO[] pos) {
+        if (pos != null) {
             List<CommonlyVersionBO> bos = new ArrayList<>();
-            for (CommonlyVersionDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (CommonlyVersionPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -153,13 +153,13 @@ public class CommonlyVersionBO implements Serializable {
     }
 
     /**
-     * 常用版本 DO List 转换 BO List
+     * 常用版本 PO List 转换 BO List
      */
-    public static List<CommonlyVersionBO> toBO(List<CommonlyVersionDO> dbos) {
-        if (dbos != null) {
+    public static List<CommonlyVersionBO> toBO(List<CommonlyVersionPO> pos) {
+        if (pos != null) {
             List<CommonlyVersionBO> bos = new ArrayList<>();
-            for (CommonlyVersionDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (CommonlyVersionPO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -168,11 +168,11 @@ public class CommonlyVersionBO implements Serializable {
     }
 
     /**
-     * 常用版本 BO 转换 DO
+     * 常用版本 BO 转换 PO
      */
-    public static CommonlyVersionDO toDO(CommonlyVersionBO bo) {
+    public static CommonlyVersionPO toPO(CommonlyVersionBO bo) {
         if (bo != null) {
-            return CommonlyVersionDO.builder()
+            return CommonlyVersionPO.builder()
                     .id(bo.getId())
                     .managerId(bo.getManagerId())
                     .jdkVersion(bo.getJdkVersion())
@@ -197,25 +197,25 @@ public class CommonlyVersionBO implements Serializable {
     }
 
     /**
-     * 常用版本 BO List 转换 DO List
+     * 常用版本 BO List 转换 PO List
      */
-    public static List<CommonlyVersionDO> toDO(List<CommonlyVersionBO> bos) {
+    public static List<CommonlyVersionPO> toPO(List<CommonlyVersionBO> bos) {
         if (bos != null) {
-            List<CommonlyVersionDO> dbos = new ArrayList<>();
+            List<CommonlyVersionPO> pos = new ArrayList<>();
             for (CommonlyVersionBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 常用版本 BO 转换 DO
+     * 常用版本 BO 转换 PO
      */
-    public CommonlyVersionDO toDO() {
-        return CommonlyVersionDO.builder()
+    public CommonlyVersionPO toPO() {
+        return CommonlyVersionPO.builder()
                 .id(this.getId())
                 .managerId(this.getManagerId())
                 .jdkVersion(this.getJdkVersion())

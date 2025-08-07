@@ -1,6 +1,6 @@
 package cn.fyy.builder.bean.bo;
 
-import cn.fyy.builder.bean.dbo.ProjectTableDO;
+import cn.fyy.builder.bean.po.ProjectTablePO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -89,24 +89,24 @@ public class ProjectTableBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 项目表 DO 转换 BO
+     * 项目表 PO 转换 BO
      */
-    public static ProjectTableBO toBO(ProjectTableDO dbo) {
-        if (dbo != null) {
+    public static ProjectTableBO toBO(ProjectTablePO po) {
+        if (po != null) {
             return ProjectTableBO.builder()
-                    .id(dbo.getId())
-                    .projectGroupId(dbo.getProjectGroupId())
-                    .dataBaseFileId(dbo.getDataBaseFileId())
-                    .tableSchema(dbo.getTableSchema())
-                    .tableName(dbo.getTableName())
-                    .tableComment(dbo.getTableComment())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .projectGroupId(po.getProjectGroupId())
+                    .dataBaseFileId(po.getDataBaseFileId())
+                    .tableSchema(po.getTableSchema())
+                    .tableName(po.getTableName())
+                    .tableComment(po.getTableComment())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -114,13 +114,13 @@ public class ProjectTableBO implements Serializable {
     }
 
     /**
-     * 项目表 DO 数组 转换 BO List
+     * 项目表 PO 数组 转换 BO List
      */
-    public static List<ProjectTableBO> toBO(ProjectTableDO[] dbos) {
-        if (dbos != null) {
+    public static List<ProjectTableBO> toBO(ProjectTablePO[] pos) {
+        if (pos != null) {
             List<ProjectTableBO> bos = new ArrayList<>();
-            for (ProjectTableDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ProjectTablePO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -129,13 +129,13 @@ public class ProjectTableBO implements Serializable {
     }
 
     /**
-     * 项目表 DO List 转换 BO List
+     * 项目表 PO List 转换 BO List
      */
-    public static List<ProjectTableBO> toBO(List<ProjectTableDO> dbos) {
-        if (dbos != null) {
+    public static List<ProjectTableBO> toBO(List<ProjectTablePO> pos) {
+        if (pos != null) {
             List<ProjectTableBO> bos = new ArrayList<>();
-            for (ProjectTableDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (ProjectTablePO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -144,11 +144,11 @@ public class ProjectTableBO implements Serializable {
     }
 
     /**
-     * 项目表 BO 转换 DO
+     * 项目表 BO 转换 PO
      */
-    public static ProjectTableDO toDO(ProjectTableBO bo) {
+    public static ProjectTablePO toPO(ProjectTableBO bo) {
         if (bo != null) {
-            return ProjectTableDO.builder()
+            return ProjectTablePO.builder()
                     .id(bo.getId())
                     .projectGroupId(bo.getProjectGroupId())
                     .dataBaseFileId(bo.getDataBaseFileId())
@@ -169,25 +169,25 @@ public class ProjectTableBO implements Serializable {
     }
 
     /**
-     * 项目表 BO List 转换 DO List
+     * 项目表 BO List 转换 PO List
      */
-    public static List<ProjectTableDO> toDO(List<ProjectTableBO> bos) {
+    public static List<ProjectTablePO> toPO(List<ProjectTableBO> bos) {
         if (bos != null) {
-            List<ProjectTableDO> dbos = new ArrayList<>();
+            List<ProjectTablePO> pos = new ArrayList<>();
             for (ProjectTableBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 项目表 BO 转换 DO
+     * 项目表 BO 转换 PO
      */
-    public ProjectTableDO toDO() {
-        return ProjectTableDO.builder()
+    public ProjectTablePO toPO() {
+        return ProjectTablePO.builder()
                 .id(this.getId())
                 .projectGroupId(this.getProjectGroupId())
                 .dataBaseFileId(this.getDataBaseFileId())

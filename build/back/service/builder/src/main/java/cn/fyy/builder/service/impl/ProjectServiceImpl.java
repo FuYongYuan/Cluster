@@ -1,7 +1,7 @@
 package cn.fyy.builder.service.impl;
 
 import cn.fyy.builder.bean.bo.ProjectBO;
-import cn.fyy.builder.bean.dbo.ProjectDO;
+import cn.fyy.builder.bean.po.ProjectPO;
 import cn.fyy.builder.repository.ProjectRepository;
 import cn.fyy.builder.service.ProjectService;
 import cn.fyy.common.bean.ao.DataState;
@@ -78,7 +78,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectBO save(ProjectBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            ProjectDO dbo;
+            ProjectPO po;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
@@ -87,18 +87,18 @@ public class ProjectServiceImpl implements ProjectService {
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
-                dbo = ProjectBO.toDO(bo);
+                po = ProjectBO.toPO(bo);
             } else {
-                ProjectDO old = projectRepository.getReferenceById(bo.getId());
+                ProjectPO old = projectRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, ProjectDO.class, getNull);
+                CopyClass.copyClassGetSet(bo, old, ProjectPO.class, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
-                dbo = old;
+                po = old;
             }
 
-            return ProjectBO.toBO(projectRepository.save(dbo));
+            return ProjectBO.toBO(projectRepository.save(po));
         } catch (Exception e) {
             throw new BusinessException("新增或者修改项目群错误", e);
         }
@@ -152,7 +152,7 @@ public class ProjectServiceImpl implements ProjectService {
     public Page<ProjectBO> queryByProjectGroupIdAndProjectNameAndState(int currentPage, int eachPageSize, Long projectGroupId, String projectName, Byte state) throws BusinessException {
         try {
             // 查询拼装
-            Specification<ProjectDO> specification = (root, query, criteriaBuilder) -> {
+            Specification<ProjectPO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
                 predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
@@ -171,7 +171,7 @@ public class ProjectServiceImpl implements ProjectService {
             // 分页信息
             Pageable pageable = PageRequest.of(currentPage, eachPageSize);
             // 执行查询
-            Page<ProjectDO> results = projectRepository.findAll(specification, pageable);
+            Page<ProjectPO> results = projectRepository.findAll(specification, pageable);
             // 返回结果
             return new PageImpl<>(ProjectBO.toBO(results.getContent()), pageable, results.getTotalElements());
         } catch (Exception e) {

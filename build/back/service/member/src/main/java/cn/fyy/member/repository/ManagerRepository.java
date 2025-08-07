@@ -1,7 +1,7 @@
 package cn.fyy.member.repository;
 
 
-import cn.fyy.member.bean.dbo.ManagerDO;
+import cn.fyy.member.bean.po.ManagerPO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,7 +17,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface ManagerRepository extends JpaRepository<ManagerDO, Long>, JpaSpecificationExecutor<ManagerDO> {
+public interface ManagerRepository extends JpaRepository<ManagerPO, Long>, JpaSpecificationExecutor<ManagerPO> {
 
     /**
      * 根据账号查询对应的管理员
@@ -25,7 +25,7 @@ public interface ManagerRepository extends JpaRepository<ManagerDO, Long>, JpaSp
      * @param account 账号
      * @return 管理员
      */
-    ManagerDO getByAccountIgnoreCase(String account);
+    ManagerPO getByAccountIgnoreCase(String account);
 
     /**
      * 根据电子邮箱查询对应的管理员
@@ -33,7 +33,7 @@ public interface ManagerRepository extends JpaRepository<ManagerDO, Long>, JpaSp
      * @param mail 电子邮箱
      * @return 管理员
      */
-    ManagerDO getByMailIgnoreCase(String mail);
+    ManagerPO getByMailIgnoreCase(String mail);
 
     /**
      * 根据账号密码查询对应的管理员
@@ -42,7 +42,7 @@ public interface ManagerRepository extends JpaRepository<ManagerDO, Long>, JpaSp
      * @param loginPassword 密码
      * @return 管理员
      */
-    ManagerDO getByAccountAndLoginPassword(String account, String loginPassword);
+    ManagerPO getByAccountAndLoginPassword(String account, String loginPassword);
 
     /**
      * 查询尝试次数大于0的管理员
@@ -50,7 +50,7 @@ public interface ManagerRepository extends JpaRepository<ManagerDO, Long>, JpaSp
      * @param attemptLoginNumber 尝试次数
      * @return 尝试次数大于集合
      */
-    List<ManagerDO> queryByAttemptLoginNumberGreaterThan(Integer attemptLoginNumber);
+    List<ManagerPO> queryByAttemptLoginNumberGreaterThan(Integer attemptLoginNumber);
 
     /**
      * 根据ids保存状态
@@ -63,7 +63,7 @@ public interface ManagerRepository extends JpaRepository<ManagerDO, Long>, JpaSp
      * @return 受影响行数
      */
     @Modifying
-    @Query(value = "UPDATE ManagerDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
+    @Query(value = "UPDATE ManagerPO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
     int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
@@ -74,7 +74,7 @@ public interface ManagerRepository extends JpaRepository<ManagerDO, Long>, JpaSp
      * @return 受影响行数
      */
     @Modifying
-    @Query(value = "UPDATE ManagerDO SET loginPassword = ?2 WHERE mail = ?1")
+    @Query(value = "UPDATE ManagerPO SET loginPassword = ?2 WHERE mail = ?1")
     int updateLoginPasswordByMail(String mail, String loginPassword);
 
 }

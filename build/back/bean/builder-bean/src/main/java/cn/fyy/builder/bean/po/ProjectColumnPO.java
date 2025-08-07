@@ -1,4 +1,4 @@
-package cn.fyy.builder.bean.dbo;
+package cn.fyy.builder.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,7 +20,7 @@ import java.util.Objects;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectColumnDO implements Serializable {
+public class ProjectColumnPO implements Serializable {
     /**
      * 主键ID
      */
@@ -155,7 +155,7 @@ public class ProjectColumnDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ProjectColumnDO that)) {
+        if (!(o instanceof ProjectColumnPO that)) {
             return false;
         }
 

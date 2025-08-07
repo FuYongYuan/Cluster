@@ -5,7 +5,7 @@ import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.message.bean.bo.NoticeBO;
-import cn.fyy.message.bean.dbo.NoticeDO;
+import cn.fyy.message.bean.po.NoticePO;
 import cn.fyy.message.repository.NoticeRepository;
 import cn.fyy.message.service.NoticeService;
 import dispose.CopyClass;
@@ -70,7 +70,7 @@ public class NoticeServiceImpl implements NoticeService {
     public NoticeBO save(NoticeBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            NoticeDO dbo;
+            NoticePO po;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
@@ -79,20 +79,20 @@ public class NoticeServiceImpl implements NoticeService {
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
-                dbo = NoticeBO.toDO(bo);
+                po = NoticeBO.toPO(bo);
             } else {
-                NoticeDO old = noticeRepository.getReferenceById(bo.getId());
+                NoticePO old = noticeRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, NoticeDO.class, getNull);
+                CopyClass.copyClassGetSet(bo, old, NoticePO.class, getNull);
                 old.setNoticeTitle(StringUtils.hasText(bo.getNoticeTitle()) ? bo.getNoticeTitle() : null);
                 old.setNoticeContent(StringUtils.hasText(bo.getNoticeContent()) ? bo.getNoticeContent() : null);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
-                dbo = old;
+                po = old;
             }
 
-            return NoticeBO.toBO(noticeRepository.save(dbo));
+            return NoticeBO.toBO(noticeRepository.save(po));
         } catch (Exception e) {
             throw new BusinessException("新增或者修改公告错误", e);
         }

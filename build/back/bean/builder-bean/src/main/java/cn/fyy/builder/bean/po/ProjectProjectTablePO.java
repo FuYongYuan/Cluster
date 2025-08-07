@@ -1,4 +1,4 @@
-package cn.fyy.authorization.bean.dbo;
+package cn.fyy.builder.bean.po;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,20 +8,19 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 角色管理员关系
+ * 项目项目表关系
  *
  * @author fuyy
  */
 @Entity
-@Table(name = "role_manager", schema = "authorization")
+@Table(name = "project_project_table", schema = "builder")
 @Getter
 @Setter
 @ToString
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleManagerDO implements Serializable {
-
+public class ProjectProjectTablePO implements Serializable {
     /**
      * 主键ID
      */
@@ -31,16 +30,16 @@ public class RoleManagerDO implements Serializable {
     private Long id;
 
     /**
-     * 管理员ID
+     * 项目ID
      */
-    @Column(name = "manager_id")
-    private Long managerId;
+    @Column(name = "project_id")
+    private Long projectId;
 
     /**
-     * 角色ID
+     * 项目表ID
      */
-    @Column(name = "role_id")
-    private Long roleId;
+    @Column(name = "project_table_id")
+    private Long projectTableId;
 
     /**
      * 创建时间
@@ -90,17 +89,17 @@ public class RoleManagerDO implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof RoleManagerDO that)) {
+        if (!(o instanceof ProjectProjectTablePO that)) {
             return false;
         }
 
         if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(managerId, that.managerId)) {
+        if (!Objects.equals(projectId, that.projectId)) {
             return false;
         }
-        if (!Objects.equals(roleId, that.roleId)) {
+        if (!Objects.equals(projectTableId, that.projectTableId)) {
             return false;
         }
         if (!Objects.equals(createTime, that.createTime)) {
@@ -127,8 +126,8 @@ public class RoleManagerDO implements Serializable {
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (managerId != null ? managerId.hashCode() : 0);
-        result = 31 * result + (roleId != null ? roleId.hashCode() : 0);
+        result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
+        result = 31 * result + (projectTableId != null ? projectTableId.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
         result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);

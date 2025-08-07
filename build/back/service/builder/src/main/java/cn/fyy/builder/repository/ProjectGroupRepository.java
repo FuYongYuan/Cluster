@@ -1,6 +1,6 @@
 package cn.fyy.builder.repository;
 
-import cn.fyy.builder.bean.dbo.ProjectGroupDO;
+import cn.fyy.builder.bean.po.ProjectGroupPO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +16,7 @@ import java.util.List;
  * @author fuyy
  */
 @Repository
-public interface ProjectGroupRepository extends JpaRepository<ProjectGroupDO, Long>, JpaSpecificationExecutor<ProjectGroupDO> {
+public interface ProjectGroupRepository extends JpaRepository<ProjectGroupPO, Long>, JpaSpecificationExecutor<ProjectGroupPO> {
 
     /**
      * 根据用户编号查询当前用户项目群数量
@@ -38,7 +38,7 @@ public interface ProjectGroupRepository extends JpaRepository<ProjectGroupDO, Lo
      * @return 受影响行数
      */
     @Modifying
-    @Query(value = "UPDATE ProjectGroupDO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
+    @Query(value = "UPDATE ProjectGroupPO SET state = ?1, updaterId = ?2, updaterName = ?3, updateTime = ?4 WHERE id IN ?5")
     int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
@@ -47,7 +47,7 @@ public interface ProjectGroupRepository extends JpaRepository<ProjectGroupDO, Lo
      * @param managerId 当前登陆人主键ID
      * @return 项目群
      */
-    List<ProjectGroupDO> queryByManagerIdOrderByCreateTime(Long managerId);
+    List<ProjectGroupPO> queryByManagerIdOrderByCreateTime(Long managerId);
 
     /**
      * 根据主键ID和管理员主键ID查询项目群
@@ -56,5 +56,5 @@ public interface ProjectGroupRepository extends JpaRepository<ProjectGroupDO, Lo
      * @param managerId 管理员主键ID
      * @return 项目群
      */
-    ProjectGroupDO getByIdAndManagerId(Long id, Long managerId);
+    ProjectGroupPO getByIdAndManagerId(Long id, Long managerId);
 }

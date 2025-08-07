@@ -45,8 +45,8 @@ public class DataSourceEntityManager {
     /**
      * 数据模型目录
      */
-    @Value("${spring.jpa.dbo-path}")
-    private String dboPath;
+    @Value("${spring.jpa.po-path}")
+    private String poPath;
 
     /**
      * 构建实体工厂
@@ -59,7 +59,7 @@ public class DataSourceEntityManager {
                 // JPA配置
                 .properties(jpaProperties.getProperties())
                 // 设置实体类所在位置
-                .packages(dboPath)
+                .packages(poPath)
                 // 持久化单元名称
                 .persistenceUnit("persistenceUnit")
                 .build();

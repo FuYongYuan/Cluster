@@ -7,7 +7,7 @@ import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.service.ConstantService;
 import cn.fyy.dictionary.bean.bo.ParameterBO;
 import cn.fyy.dictionary.bean.bo.ParameterExcel;
-import cn.fyy.dictionary.bean.dbo.ParameterDO;
+import cn.fyy.dictionary.bean.po.ParameterPO;
 import cn.fyy.dictionary.feign.client.member.ManagerFeignClient;
 import cn.fyy.dictionary.repository.ParameterRepository;
 import cn.fyy.dictionary.service.ParameterService;
@@ -93,7 +93,7 @@ public class ParameterServiceImpl implements ParameterService {
     public ParameterBO save(ParameterBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            ParameterDO dbo;
+            ParameterPO po;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
@@ -102,20 +102,20 @@ public class ParameterServiceImpl implements ParameterService {
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
-                dbo = ParameterBO.toDO(bo);
+                po = ParameterBO.toPO(bo);
             } else {
-                ParameterDO old = parameterRepository.getReferenceById(bo.getId());
+                ParameterPO old = parameterRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, ParameterDO.class, getNull);
+                CopyClass.copyClassGetSet(bo, old, ParameterPO.class, getNull);
                 old.setParameterValue(StringUtils.hasText(bo.getParameterValue()) ? bo.getParameterValue() : null);
                 old.setParameterExplain(StringUtils.hasText(bo.getParameterExplain()) ? bo.getParameterExplain() : null);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
-                dbo = old;
+                po = old;
             }
 
-            return ParameterBO.toBO(parameterRepository.save(dbo));
+            return ParameterBO.toBO(parameterRepository.save(po));
         } catch (Exception e) {
             throw new BusinessException("新增或者修改参数错误", e);
         }
@@ -195,7 +195,7 @@ public class ParameterServiceImpl implements ParameterService {
     ) throws BusinessException {
         try {
             // 查询拼装
-            Specification<ParameterDO> specification = (root, query, criteriaBuilder) -> {
+            Specification<ParameterPO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
                 predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
@@ -214,7 +214,7 @@ public class ParameterServiceImpl implements ParameterService {
             // 分页信息
             Pageable pageable = PageRequest.of(currentPage, eachPageSize);
             // 执行查询
-            Page<ParameterDO> doPage = parameterRepository.findAll(specification, pageable);
+            Page<ParameterPO> doPage = parameterRepository.findAll(specification, pageable);
             // 返回结果 执行查询
             return new PageImpl<>(ParameterBO.toBO(doPage.getContent()), doPage.getPageable(), doPage.getTotalElements());
         } catch (Exception e) {
@@ -241,7 +241,7 @@ public class ParameterServiceImpl implements ParameterService {
     ) throws BusinessException {
         try {
             // 查询拼装
-            Specification<ParameterDO> specification = (root, query, criteriaBuilder) -> {
+            Specification<ParameterPO> specification = (root, query, criteriaBuilder) -> {
                 Predicate predicate;
                 // 条件拼装
                 predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
@@ -258,7 +258,7 @@ public class ParameterServiceImpl implements ParameterService {
                 return query.getRestriction();
             };
             // 执行全量查询
-            List<ParameterDO> doList = parameterRepository.findAll(specification);
+            List<ParameterPO> doList = parameterRepository.findAll(specification);
             // 拼装Excel导出内容
             ExcelExport excelExport = new ExcelExport(new XSSFWorkbook());
             // 导出页签

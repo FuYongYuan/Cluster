@@ -1,6 +1,6 @@
 package cn.fyy.message.bean.bo;
 
-import cn.fyy.message.bean.dbo.NoticeDO;
+import cn.fyy.message.bean.po.NoticePO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -85,23 +85,23 @@ public class NoticeBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 公告 DO 转换 BO
+     * 公告 PO 转换 BO
      */
-    public static NoticeBO toBO(NoticeDO dbo) {
-        if (dbo != null) {
+    public static NoticeBO toBO(NoticePO po) {
+        if (po != null) {
             return NoticeBO.builder()
-                    .id(dbo.getId())
-                    .noticeTitle(dbo.getNoticeTitle())
-                    .noticeContent(dbo.getNoticeContent())
-                    .noticeAuthor(dbo.getNoticeAuthor())
-                    .noticeOrder(dbo.getNoticeOrder())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .noticeTitle(po.getNoticeTitle())
+                    .noticeContent(po.getNoticeContent())
+                    .noticeAuthor(po.getNoticeAuthor())
+                    .noticeOrder(po.getNoticeOrder())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -109,13 +109,13 @@ public class NoticeBO implements Serializable {
     }
 
     /**
-     * 公告 DO 数组 转换 BO List
+     * 公告 PO 数组 转换 BO List
      */
-    public static List<NoticeBO> toBO(NoticeDO[] dbos) {
-        if (dbos != null) {
+    public static List<NoticeBO> toBO(NoticePO[] pos) {
+        if (pos != null) {
             List<NoticeBO> bos = new ArrayList<>();
-            for (NoticeDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (NoticePO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -124,13 +124,13 @@ public class NoticeBO implements Serializable {
     }
 
     /**
-     * 公告 DO List 转换 BO List
+     * 公告 PO List 转换 BO List
      */
-    public static List<NoticeBO> toBO(List<NoticeDO> dbos) {
-        if (dbos != null) {
+    public static List<NoticeBO> toBO(List<NoticePO> pos) {
+        if (pos != null) {
             List<NoticeBO> bos = new ArrayList<>();
-            for (NoticeDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (NoticePO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -139,11 +139,11 @@ public class NoticeBO implements Serializable {
     }
 
     /**
-     * 公告 BO 转换 DO
+     * 公告 BO 转换 PO
      */
-    public static NoticeDO toDO(NoticeBO bo) {
+    public static NoticePO toPO(NoticeBO bo) {
         if (bo != null) {
-            return NoticeDO.builder()
+            return NoticePO.builder()
                     .id(bo.getId())
                     .noticeTitle(bo.getNoticeTitle())
                     .noticeContent(bo.getNoticeContent())
@@ -163,25 +163,25 @@ public class NoticeBO implements Serializable {
     }
 
     /**
-     * 公告 BO List 转换 DO List
+     * 公告 BO List 转换 PO List
      */
-    public static List<NoticeDO> toDO(List<NoticeBO> bos) {
+    public static List<NoticePO> toPO(List<NoticeBO> bos) {
         if (bos != null) {
-            List<NoticeDO> dbos = new ArrayList<>();
+            List<NoticePO> pos = new ArrayList<>();
             for (NoticeBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 公告 BO 转换 DO
+     * 公告 BO 转换 PO
      */
-    public NoticeDO toDO() {
-        return NoticeDO.builder()
+    public NoticePO toPO() {
+        return NoticePO.builder()
                 .id(this.getId())
                 .noticeTitle(this.getNoticeTitle())
                 .noticeContent(this.getNoticeContent())

@@ -1,4 +1,4 @@
-package cn.fyy.mongodb.bean.dbo;
+package cn.fyy.mongodb.bean.po;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @Document
-public abstract class AbstractMongoDO implements Serializable {
+public abstract class AbstractMongoPO implements Serializable {
     /**
      * 主键ID，自动映射到 MongoDB 的 _id 字段
      */

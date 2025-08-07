@@ -1,6 +1,6 @@
 package cn.fyy.authorization.bean.bo;
 
-import cn.fyy.authorization.bean.dbo.RoleDO;
+import cn.fyy.authorization.bean.po.RolePO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -80,21 +80,21 @@ public class RoleBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 角色 DO 转换 BO
+     * 角色 PO 转换 BO
      */
-    public static RoleBO toBO(RoleDO dbo) {
-        if (dbo != null) {
+    public static RoleBO toBO(RolePO po) {
+        if (po != null) {
             return RoleBO.builder()
-                    .id(dbo.getId())
-                    .roleName(dbo.getRoleName())
-                    .remark(dbo.getRemark())
-                    .createTime(dbo.getCreateTime())
-                    .creatorId(dbo.getCreatorId())
-                    .creatorName(dbo.getCreatorName())
-                    .updateTime(dbo.getUpdateTime())
-                    .updaterId(dbo.getUpdaterId())
-                    .updaterName(dbo.getUpdaterName())
-                    .state(dbo.getState())
+                    .id(po.getId())
+                    .roleName(po.getRoleName())
+                    .remark(po.getRemark())
+                    .createTime(po.getCreateTime())
+                    .creatorId(po.getCreatorId())
+                    .creatorName(po.getCreatorName())
+                    .updateTime(po.getUpdateTime())
+                    .updaterId(po.getUpdaterId())
+                    .updaterName(po.getUpdaterName())
+                    .state(po.getState())
                     .build();
         } else {
             return null;
@@ -102,13 +102,13 @@ public class RoleBO implements Serializable {
     }
 
     /**
-     * 角色 DO 数组 转换 BO List
+     * 角色 PO 数组 转换 BO List
      */
-    public static List<RoleBO> toBO(RoleDO[] dbos) {
-        if (dbos != null) {
+    public static List<RoleBO> toBO(RolePO[] pos) {
+        if (pos != null) {
             List<RoleBO> bos = new ArrayList<>();
-            for (RoleDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (RolePO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -117,13 +117,13 @@ public class RoleBO implements Serializable {
     }
 
     /**
-     * 角色 DO List 转换 BO List
+     * 角色 PO List 转换 BO List
      */
-    public static List<RoleBO> toBO(List<RoleDO> dbos) {
-        if (dbos != null) {
+    public static List<RoleBO> toBO(List<RolePO> pos) {
+        if (pos != null) {
             List<RoleBO> bos = new ArrayList<>();
-            for (RoleDO dbo : dbos) {
-                bos.add(toBO(dbo));
+            for (RolePO po : pos) {
+                bos.add(toBO(po));
             }
             return bos;
         } else {
@@ -132,11 +132,11 @@ public class RoleBO implements Serializable {
     }
 
     /**
-     * 角色 BO 转换 DO
+     * 角色 BO 转换 PO
      */
-    public static RoleDO toDO(RoleBO bo) {
+    public static RolePO toPO(RoleBO bo) {
         if (bo != null) {
-            return RoleDO.builder()
+            return RolePO.builder()
                     .id(bo.getId())
                     .roleName(bo.getRoleName())
                     .remark(bo.getRemark())
@@ -154,25 +154,25 @@ public class RoleBO implements Serializable {
     }
 
     /**
-     * 角色 BO List 转换 DO List
+     * 角色 BO List 转换 PO List
      */
-    public static List<RoleDO> toDO(List<RoleBO> bos) {
+    public static List<RolePO> toPO(List<RoleBO> bos) {
         if (bos != null) {
-            List<RoleDO> dbos = new ArrayList<>();
+            List<RolePO> pos = new ArrayList<>();
             for (RoleBO bo : bos) {
-                dbos.add(toDO(bo));
+                pos.add(toPO(bo));
             }
-            return dbos;
+            return pos;
         } else {
             return null;
         }
     }
 
     /**
-     * 角色 BO 转换 DO
+     * 角色 BO 转换 PO
      */
-    public RoleDO toDO() {
-        return RoleDO.builder()
+    public RolePO toPO() {
+        return RolePO.builder()
                 .id(this.getId())
                 .roleName(this.getRoleName())
                 .remark(this.getRemark())

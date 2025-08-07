@@ -1,7 +1,7 @@
 package cn.fyy.authorization.service.impl;
 
 import cn.fyy.authorization.bean.bo.RoleManagerBO;
-import cn.fyy.authorization.bean.dbo.RoleManagerDO;
+import cn.fyy.authorization.bean.po.RoleManagerPO;
 import cn.fyy.authorization.repository.RoleManagerRepository;
 import cn.fyy.authorization.service.RoleManagerService;
 import cn.fyy.common.bean.ao.DataState;
@@ -72,7 +72,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     public RoleManagerBO save(RoleManagerBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            RoleManagerDO dbo;
+            RoleManagerPO po;
             if (bo.getId() == null) {
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
@@ -81,18 +81,18 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                 bo.setUpdaterName(currentManagerName);
                 bo.setUpdateTime(localDateTime);
                 bo.setState(DataState.NORMAL.getCode());
-                dbo = RoleManagerBO.toDO(bo);
+                po = RoleManagerBO.toPO(bo);
             } else {
-                RoleManagerDO old = roleManagerRepository.getReferenceById(bo.getId());
+                RoleManagerPO old = roleManagerRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, RoleManagerDO.class, getNull);
+                CopyClass.copyClassGetSet(bo, old, RoleManagerPO.class, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
-                dbo = old;
+                po = old;
             }
 
-            return RoleManagerBO.toBO(roleManagerRepository.save(dbo));
+            return RoleManagerBO.toBO(roleManagerRepository.save(po));
         } catch (Exception e) {
             throw new BusinessException("新增或者修改用户角色关系错误", e);
         }
@@ -118,9 +118,9 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                 roleManagerRepository.deleteByManagerId(managerId);
                 // 新增用户角色关系
                 List<Long> menuId = Stream.of(menuIds.split(",")).map(Long::valueOf).toList();
-                List<RoleManagerDO> list = new ArrayList<>();
+                List<RoleManagerPO> list = new ArrayList<>();
                 for (Long id : menuId) {
-                    RoleManagerDO bo = RoleManagerDO.builder()
+                    RoleManagerPO bo = RoleManagerPO.builder()
                             .managerId(managerId)
                             .roleId(id)
                             .creatorId(currentManagerId)
