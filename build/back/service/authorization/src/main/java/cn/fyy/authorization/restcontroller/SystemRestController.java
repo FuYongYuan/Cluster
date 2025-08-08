@@ -6,7 +6,7 @@ import cn.fyy.capability.bean.dto.MenuDTO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.common.service.ConstantService;
+import cn.fyy.common.util.ServerUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -100,7 +100,7 @@ public class SystemRestController {
             @PathVariable("mailCaptcha") String mailCaptcha,
             @PathVariable("mailCaptchaCacheName") String mailCaptchaCacheName
     ) throws BusinessException {
-        return systemServiceImpl.register(mail, account, loginPassword, mailCaptcha, mailCaptchaCacheName, ConstantService.getVisitorIp(request));
+        return systemServiceImpl.register(mail, account, loginPassword, mailCaptcha, mailCaptchaCacheName, ServerUtil.getVisitorIp(request));
     }
 
     /**

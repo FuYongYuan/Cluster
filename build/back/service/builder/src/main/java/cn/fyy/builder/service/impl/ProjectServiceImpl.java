@@ -8,7 +8,7 @@ import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import dispose.CopyClass;
+import cn.fyy.common.util.BeanUtil;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
@@ -91,7 +91,7 @@ public class ProjectServiceImpl implements ProjectService {
             } else {
                 ProjectPO old = projectRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, ProjectPO.class, getNull);
+                BeanUtil.copyProperties(bo, old, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);

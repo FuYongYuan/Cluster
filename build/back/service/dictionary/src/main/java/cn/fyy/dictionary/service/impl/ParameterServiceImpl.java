@@ -4,14 +4,14 @@ import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.service.ConstantService;
+import cn.fyy.common.util.BeanUtil;
+import cn.fyy.common.util.PageUtil;
 import cn.fyy.dictionary.bean.bo.ParameterBO;
 import cn.fyy.dictionary.bean.bo.ParameterExcel;
 import cn.fyy.dictionary.bean.po.ParameterPO;
 import cn.fyy.dictionary.feign.client.member.ManagerFeignClient;
 import cn.fyy.dictionary.repository.ParameterRepository;
 import cn.fyy.dictionary.service.ParameterService;
-import dispose.CopyClass;
 import excel.operation.ExcelExport;
 import excel.operation.set.SheetSet;
 import jakarta.annotation.Resource;
@@ -106,7 +106,7 @@ public class ParameterServiceImpl implements ParameterService {
             } else {
                 ParameterPO old = parameterRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, ParameterPO.class, getNull);
+                BeanUtil.copyProperties(bo, old, getNull);
                 old.setParameterValue(StringUtils.hasText(bo.getParameterValue()) ? bo.getParameterValue() : null);
                 old.setParameterExplain(StringUtils.hasText(bo.getParameterExplain()) ? bo.getParameterExplain() : null);
                 old.setUpdaterId(currentManagerId);
@@ -207,7 +207,7 @@ public class ParameterServiceImpl implements ParameterService {
                 }
                 query.where(predicate);
                 // 排序拼装
-                query.orderBy(ConstantService.getSort(root, criteriaBuilder, pageSort));
+                query.orderBy(PageUtil.getSort(root, criteriaBuilder, pageSort));
                 // 生成拼装结果
                 return query.getRestriction();
             };
@@ -253,7 +253,7 @@ public class ParameterServiceImpl implements ParameterService {
                 }
                 query.where(predicate);
                 // 排序拼装
-                query.orderBy(ConstantService.getSort(root, criteriaBuilder, pageSort));
+                query.orderBy(PageUtil.getSort(root, criteriaBuilder, pageSort));
                 // 生成拼装结果
                 return query.getRestriction();
             };

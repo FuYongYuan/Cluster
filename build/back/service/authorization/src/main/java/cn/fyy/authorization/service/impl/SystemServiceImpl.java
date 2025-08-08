@@ -16,7 +16,7 @@ import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.common.service.ConstantService;
+import cn.fyy.common.util.ServerUtil;
 import cn.fyy.database.config.data.annotation.WriteDataSource;
 import cn.fyy.jwt.config.jwt.JwtProperties;
 import cn.fyy.jwt.config.security.bean.bo.SecurityRedis;
@@ -129,7 +129,7 @@ public class SystemServiceImpl implements SystemService {
     public ResultMessage<JwtDTO> login(String account, String loginPassword, String imageCaptcha, String imageCaptchaCacheName, HttpServletRequest request) throws BusinessException {
         try {
             LocalDateTime lastLoginDate = LocalDateTime.now();
-            String visitorIpAddress = ConstantService.getVisitorIp(request);
+            String visitorIpAddress = ServerUtil.getVisitorIp(request);
             String captchaCheck = redisServiceImpl.get(RedisSelect.FOURTEEN, imageCaptchaCacheName, String.class);
             if (StringUtils.hasText(captchaCheck)) {
                 if (imageCaptcha.equalsIgnoreCase(captchaCheck)) {

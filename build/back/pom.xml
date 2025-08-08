@@ -15,6 +15,7 @@
         <module>base/dispose</module>
         <module>base/encrypt</module>
         <module>base/excel</module>
+        <module>base/http</module>
         <module>base/schedule</module>
 
         <!-- 数据模型 -->

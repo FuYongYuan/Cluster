@@ -4,11 +4,11 @@ import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
+import cn.fyy.common.util.BeanUtil;
 import cn.fyy.message.bean.bo.NoticeBO;
 import cn.fyy.message.bean.po.NoticePO;
 import cn.fyy.message.repository.NoticeRepository;
 import cn.fyy.message.service.NoticeService;
-import dispose.CopyClass;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -83,7 +83,7 @@ public class NoticeServiceImpl implements NoticeService {
             } else {
                 NoticePO old = noticeRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, NoticePO.class, getNull);
+                BeanUtil.copyProperties(bo, old, getNull);
                 old.setNoticeTitle(StringUtils.hasText(bo.getNoticeTitle()) ? bo.getNoticeTitle() : null);
                 old.setNoticeContent(StringUtils.hasText(bo.getNoticeContent()) ? bo.getNoticeContent() : null);
                 old.setUpdaterId(currentManagerId);

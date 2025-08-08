@@ -11,8 +11,8 @@ import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.service.ConstantService;
-import dispose.CopyClass;
+import cn.fyy.common.util.BeanUtil;
+import cn.fyy.common.util.PageUtil;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
@@ -117,7 +117,7 @@ public class RoleServiceImpl implements RoleService {
             } else {
                 RolePO old = roleRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, RolePO.class, getNull);
+                BeanUtil.copyProperties(bo, old, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
@@ -161,7 +161,7 @@ public class RoleServiceImpl implements RoleService {
                 }
                 query.where(predicate);
                 // 排序拼装
-                query.orderBy(ConstantService.getSort(root, criteriaBuilder, pageSort));
+                query.orderBy(PageUtil.getSort(root, criteriaBuilder, pageSort));
                 // 生成拼装结果
                 return query.getRestriction();
             };

@@ -6,16 +6,17 @@ import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.service.ConstantService;
+import cn.fyy.common.util.BeanUtil;
+import cn.fyy.common.util.PageUtil;
+import cn.fyy.common.util.ServerUtil;
 import cn.fyy.member.bean.bo.ManagerBO;
-import cn.fyy.member.bean.po.ManagerPO;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
+import cn.fyy.member.bean.po.ManagerPO;
 import cn.fyy.member.config.properties.AesProperties;
 import cn.fyy.member.feign.client.authorization.RoleFeignClient;
 import cn.fyy.member.feign.client.authorization.RoleManagerFeignClient;
 import cn.fyy.member.repository.ManagerRepository;
 import cn.fyy.member.service.ManagerService;
-import dispose.CopyClass;
 import encrypt.AesUtil;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -137,7 +138,7 @@ public class ManagerServiceImpl implements ManagerService {
             } else {
                 ManagerPO old = managerRepository.getReferenceById(bo.getId());
                 // 根据getNull复制其中的非空或包含空字段
-                CopyClass.copyClassGetSet(bo, old, ManagerPO.class, getNull);
+                BeanUtil.copyProperties(bo, old, getNull);
                 old.setUpdaterId(currentManagerId);
                 old.setUpdaterName(currentManagerName);
                 old.setUpdateTime(localDateTime);
@@ -213,7 +214,7 @@ public class ManagerServiceImpl implements ManagerService {
                 }
                 query.where(predicate);
                 // 排序拼装
-                query.orderBy(ConstantService.getSort(root, criteriaBuilder, pageSort));
+                query.orderBy(PageUtil.getSort(root, criteriaBuilder, pageSort));
                 // 生成拼装结果
                 return query.getRestriction();
             };
@@ -405,7 +406,7 @@ public class ManagerServiceImpl implements ManagerService {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
-            String visitorIpAddress = ConstantService.getVisitorIp(request);
+            String visitorIpAddress = ServerUtil.getVisitorIp(request);
 
             ManagerBO bo = ManagerBO.toBO(managerRepository.getByAccountAndLoginPassword(account, loginPassword));
             if (bo == null) {

@@ -83,7 +83,17 @@ public enum UsedType {
     /**
      * java.lang.Long
      */
-    Type_Long("java.lang.Long");
+    Type_Long("java.lang.Long"),
+
+    /**
+     * byte
+     */
+    Type_byte("byte"),
+
+    /**
+     * java.lang.Byte
+     */
+    Type_Byte("java.lang.Byte");
 
     /**
      * 实际值

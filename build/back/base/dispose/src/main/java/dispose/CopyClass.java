@@ -91,18 +91,24 @@ public class CopyClass {
                     if (value instanceof BigDecimal) {
                         field.set(object2, value);
                     }
-                } else if (field.getType().getName().equals(UsedType.Type_Long.getValue())) {
-                    Long d = null;
+                } else if (field.getType().getName().equals(UsedType.Type_Long.getValue()) || field.getType().getName().equals(UsedType.Type_long.getValue())) {
+                    Long l = null;
                     if (value != null) {
-                        d = Long.parseLong(value.toString());
+                        l = Long.parseLong(value.toString());
                     }
-                    field.set(object2, d);
+                    field.set(object2, l);
+                } else if (field.getType().getName().equals(UsedType.Type_Byte.getValue()) || field.getType().getName().equals(UsedType.Type_byte.getValue())) {
+                    Byte b = null;
+                    if (value != null) {
+                        b = Byte.parseByte(value.toString());
+                    }
+                    field.set(object2, b);
                 } else if (field.getType().getName().equals(UsedType.Type_BigInteger.getValue())) {
-                    BigInteger d = null;
+                    BigInteger bi = null;
                     if (value != null) {
-                        d = new BigInteger(value.toString());
+                        bi = new BigInteger(value.toString());
                     }
-                    field.set(object2, d);
+                    field.set(object2, bi);
                 } else {
                     field.set(object2, value);
                 }
@@ -136,8 +142,10 @@ public class CopyClass {
                     field.set(obj, value);
                 } else if (field.getType().getName().equals(UsedType.Type_BigDecimal.getValue())) {
                     field.set(obj, new BigDecimal(value.toString()));
-                } else if (field.getType().getName().equals(UsedType.Type_Long.getValue())) {
+                } else if (field.getType().getName().equals(UsedType.Type_Long.getValue()) || field.getType().getName().equals(UsedType.Type_long.getValue())) {
                     field.set(obj, Long.parseLong(value.toString()));
+                } else if (field.getType().getName().equals(UsedType.Type_Byte.getValue()) || field.getType().getName().equals(UsedType.Type_byte.getValue())) {
+                    field.set(obj, Byte.parseByte(value.toString()));
                 } else if (field.getType().getName().equals(UsedType.Type_BigInteger.getValue())) {
                     field.set(obj, new BigInteger(value.toString()));
                 } else {
@@ -182,8 +190,10 @@ public class CopyClass {
                         value = Double.parseDouble(value.toString());
                     } else if (field.getType().getName().equals(UsedType.Type_BigDecimal.getValue())) {
                         value = new BigDecimal(value.toString());
-                    } else if (field.getType().getName().equals(UsedType.Type_Long.getValue())) {
+                    } else if (field.getType().getName().equals(UsedType.Type_Long.getValue()) || field.getType().getName().equals(UsedType.Type_long.getValue())) {
                         value = Long.parseLong(value.toString());
+                    } else if (field.getType().getName().equals(UsedType.Type_Byte.getValue()) || field.getType().getName().equals(UsedType.Type_byte.getValue())) {
+                        value = Byte.parseByte(value.toString());
                     } else if (field.getType().getName().equals(UsedType.Type_BigInteger.getValue())) {
                         value = new BigInteger(value.toString());
                     }
@@ -223,10 +233,12 @@ public class CopyClass {
             method = clazz.getMethod("set" + fieldNameFirstUpperCase, BigDecimal.class);
         } else if (field.getType().getName().equals(UsedType.Type_Timestamp.getValue())) {
             method = clazz.getMethod("set" + fieldNameFirstUpperCase, Timestamp.class);
-        } else if (field.getType().getName().equals(UsedType.Type_Long.getValue())) {
+        } else if (field.getType().getName().equals(UsedType.Type_Long.getValue()) || field.getType().getName().equals(UsedType.Type_long.getValue())) {
             method = clazz.getMethod("set" + fieldNameFirstUpperCase, Long.class);
         } else if (field.getType().getName().equals(UsedType.Type_BigInteger.getValue())) {
             method = clazz.getMethod("set" + fieldNameFirstUpperCase, BigInteger.class);
+        } else if (field.getType().getName().equals(UsedType.Type_Byte.getValue()) || field.getType().getName().equals(UsedType.Type_byte.getValue())) {
+            method = clazz.getMethod("set" + fieldNameFirstUpperCase, Byte.class);
         } else {
             method = clazz.getMethod("set" + fieldNameFirstUpperCase, Object.class);
         }
