@@ -24,7 +24,6 @@ import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
@@ -127,9 +126,9 @@ public class MenuServiceImpl implements MenuService {
         try {
             // 查询拼装
             Specification<MenuPO> specification = (root, query, criteriaBuilder) -> {
-                Predicate predicate;
                 // 条件拼装
-                predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
+                Predicate predicate = SelectUtil.getPredicate(root, criteriaBuilder, state);
+                // 其他条件拼装
                 if (StringUtils.hasText(menuName)) {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("menuName"), "%" + menuName + "%"));
                 }
