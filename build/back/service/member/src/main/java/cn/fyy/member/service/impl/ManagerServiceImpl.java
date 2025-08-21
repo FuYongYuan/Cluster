@@ -190,16 +190,8 @@ public class ManagerServiceImpl implements ManagerService {
         try {
             // 查询拼装
             Specification<ManagerPO> specification = (root, query, criteriaBuilder) -> {
-                Predicate predicate;
+                Predicate predicate = SelectUtil.getPredicate(root, criteriaBuilder);
                 // 条件拼装
-                if (state == null) {
-                    CriteriaBuilder.In<Byte> in = criteriaBuilder.in(root.get("state"));
-                    in.value(DataState.NORMAL.getCode());
-                    in.value(DataState.FREEZE.getCode());
-                    predicate = criteriaBuilder.and(in);
-                } else {
-                    predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), state));
-                }
                 if (StringUtils.hasText(account)) {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("account"), "%" + account + "%"));
                 }
@@ -211,6 +203,14 @@ public class ManagerServiceImpl implements ManagerService {
                 }
                 if (StringUtils.hasText(managerName)) {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("managerName"), "%" + managerName + "%"));
+                }
+                if (state == null) {
+                    CriteriaBuilder.In<Byte> in = criteriaBuilder.in(root.get("state"));
+                    in.value(DataState.NORMAL.getCode());
+                    in.value(DataState.FREEZE.getCode());
+                    predicate = criteriaBuilder.and(predicate, in);
+                } else {
+                    predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("state"), state));
                 }
                 query.where(predicate);
                 // 排序拼装
