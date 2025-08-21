@@ -7,7 +7,7 @@ import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.util.BeanUtil;
-import cn.fyy.common.util.PageUtil;
+import cn.fyy.common.util.SelectUtil;
 import cn.fyy.common.util.ServerUtil;
 import cn.fyy.member.bean.bo.ManagerBO;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
@@ -214,7 +214,7 @@ public class ManagerServiceImpl implements ManagerService {
                 }
                 query.where(predicate);
                 // 排序拼装
-                query.orderBy(PageUtil.getSort(root, criteriaBuilder, pageSort));
+                query.orderBy(SelectUtil.getSort(root, criteriaBuilder, pageSort));
                 // 生成拼装结果
                 return query.getRestriction();
             };

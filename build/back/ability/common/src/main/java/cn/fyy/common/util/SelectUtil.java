@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
  *
  * @author fyy
  */
-public class PageUtil {
+public class SelectUtil {
     //------------------------------------------------------------------------------------------------------------------查询语句排序拼装
 
     /**

@@ -5,7 +5,7 @@ import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.util.BeanUtil;
-import cn.fyy.common.util.PageUtil;
+import cn.fyy.common.util.SelectUtil;
 import cn.fyy.dictionary.bean.bo.ParameterBO;
 import cn.fyy.dictionary.bean.bo.ParameterExcel;
 import cn.fyy.dictionary.bean.po.ParameterPO;
@@ -207,7 +207,7 @@ public class ParameterServiceImpl implements ParameterService {
                 }
                 query.where(predicate);
                 // 排序拼装
-                query.orderBy(PageUtil.getSort(root, criteriaBuilder, pageSort));
+                query.orderBy(SelectUtil.getSort(root, criteriaBuilder, pageSort));
                 // 生成拼装结果
                 return query.getRestriction();
             };
@@ -253,7 +253,7 @@ public class ParameterServiceImpl implements ParameterService {
                 }
                 query.where(predicate);
                 // 排序拼装
-                query.orderBy(PageUtil.getSort(root, criteriaBuilder, pageSort));
+                query.orderBy(SelectUtil.getSort(root, criteriaBuilder, pageSort));
                 // 生成拼装结果
                 return query.getRestriction();
             };
