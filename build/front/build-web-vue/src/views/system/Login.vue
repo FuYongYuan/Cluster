@@ -94,7 +94,7 @@ import {
 import { getImageCaptcha } from "@src/apis/message/service";
 import { login, queryHaveMenu } from "@src/apis/authorization/service";
 import type { ImageCaptchaDTO } from "@src/apis/message/dto";
-import { Md5 } from "ts-md5/dist/esm/md5";
+import { Md5 } from "ts-md5";
 import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
