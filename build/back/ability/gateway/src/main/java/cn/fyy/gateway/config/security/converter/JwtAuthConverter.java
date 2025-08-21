@@ -1,5 +1,6 @@
 package cn.fyy.gateway.config.security.converter;
 
+import cn.fyy.jwt.config.jwt.JwtProperties;
 import cn.fyy.jwt.service.JwtTokenService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,12 @@ import java.util.List;
 @Component
 public class JwtAuthConverter implements ServerAuthenticationConverter {
     /**
+     * JWT参数
+     */
+    @Resource
+    protected JwtProperties jwtProperties;
+
+    /**
      * JWT 工具类
      */
     @Resource
@@ -35,9 +42,9 @@ public class JwtAuthConverter implements ServerAuthenticationConverter {
      */
     @Override
     public Mono<Authentication> convert(ServerWebExchange exchange) {
-        return Mono.justOrEmpty(exchange.getRequest().getHeaders().getFirst("Authorization"))
-                .filter(token -> token.startsWith("Bearer "))
-                .map(token -> token.substring(7))
+        return Mono.justOrEmpty(exchange.getRequest().getHeaders().getFirst(jwtProperties.getTokenHeader()))
+                .filter(token -> token.startsWith(jwtProperties.getTokenHead() + " "))
+                .map(token -> token.substring(jwtProperties.getTokenHead().length() + 1))
                 .flatMap(this::createAuthentication);
     }
 

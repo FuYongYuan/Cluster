@@ -1,4 +1,4 @@
-# 根据启动推荐顺序
+# 根据启动推荐顺序-jdk版本如按照以下搭建可以都用java21
 
 1、minio 版本 【可最新】 版本只需要配合java可以链接使用即可
 docker pull minio/minio:RELEASE.2025-06-13T11-33-47Z

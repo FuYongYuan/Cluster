@@ -125,7 +125,7 @@ public class JwtTokenService {
             try {
                 Jwt jwt = getJwtFromToken(token);
                 if (jwt != null) {
-                    authorities = jwt.getClaimAsStringList("authorities");
+                    authorities = jwt.getClaimAsStringList(ConstantParameter.JWT_AUTHORITIES);
                 }
             } catch (Exception e) {
                 log.error("获取管理员账号", e);
