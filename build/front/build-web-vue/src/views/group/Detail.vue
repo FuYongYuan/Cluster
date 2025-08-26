@@ -69,7 +69,7 @@ export default defineComponent({
 		};
 
 		/**
-		 * 验证图片正确性
+		 * 验证json正确性
 		 *
 		 * @param file 选中文件
 		 */

@@ -53,8 +53,8 @@ export const imageFormatValidate = (file: any) => {
  */
 export const jsonFormatValidate = (file: any) => {
 	if (file !== undefined) {
-		const isJpgOrPng = file.type === "application/json";
-		if (!isJpgOrPng) {
+		const isJson = file.type === "application/json";
+		if (!isJson) {
 			return "请选择正确的格式文件！";
 		}
 		const isLt2M = file.size / 1024 / 1024 < 2;
