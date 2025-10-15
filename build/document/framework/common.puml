@@ -1,0 +1,163 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+' 基础主题和样式
+!theme plain
+skinparam backgroundColor #E8F8F5 '薄荷绿主背景'
+skinparam roundCorner 20
+skinparam defaultFontName "Microsoft YaHei"
+skinparam shadowing false
+
+' 统一配色方案
+skinparam {
+    ArrowColor #7FDBFF '浅蓝箭头'
+    ArrowThickness 2
+
+    BorderColor #A3E4D7 '浅绿边框'
+    BorderThickness 2
+
+    FontColor #34495E '深灰字体'
+    AttributeFontColor #7F8C8D
+    StereotypeFontColor #7F8C8D
+
+    BackgroundColor #E8F8F5 '薄荷绿主背景'
+}
+' 类图样式
+skinparam class {
+    BackgroundColor #D6EAF8 '浅蓝'
+    BorderColor #A3E4D7 '浅绿'
+    BorderThickness 2
+    FontColor #34495E
+    AttributeFontColor #7F8C8D
+    StereotypeFontColor #7F8C8D
+}
+
+' 包样式
+skinparam package {
+    BackgroundColor #FCF3CF '淡黄'
+    BorderColor #F9E79F '浅黄边框'
+    FontColor #34495E
+    BorderThickness 2
+}
+
+' 接口样式
+skinparam interface {
+    BackgroundColor #D1F2EB '浅绿'
+    BorderColor #76D7C4 '薄荷绿边框'
+    FontColor #34495E
+}
+
+' 数据库样式
+skinparam database {
+    BackgroundColor #F9E79F '淡黄'
+    BorderColor #F7DC6F '亮黄边框'
+    FontColor #34495E
+}
+
+' 箭头样式
+skinparam arrow {
+    Color #7FDBFF '浅蓝'
+    FontColor #34495E
+    Thickness 2
+}
+
+' 时序图样式
+skinparam sequence {
+    ArrowColor #7FDBFF
+    ArrowThickness 2
+
+    LifeLineBorderColor #A3E4D7
+    LifeLineBackgroundColor #E8F8F5
+
+    ParticipantBorderColor #A3E4D7
+    ParticipantBackgroundColor #D6EAF8
+    ParticipantFontColor #34495E
+
+    ActorBorderColor #A3E4D7
+    ActorBackgroundColor #D1F2EB
+
+    BoxBorderColor #76D7C4
+    BoxBackgroundColor #D1F2EB
+
+    DividerBackgroundColor #FCF3CF
+    DividerBorderColor #F9E79F
+
+    GroupBackgroundColor #FCF3CF
+    GroupBorderColor #F9E79F
+    GroupFontColor #34495E
+}
+
+' 状态图样式
+skinparam state {
+    BackgroundColor #D6EAF8
+    BorderColor #A3E4D7
+    FontColor #34495E
+
+    StartColor #76D7C4
+    EndColor #F7DC6F
+
+    AttributeFontColor #7F8C8D
+}
+
+' 用例图样式
+skinparam usecase {
+    BackgroundColor #D1F2EB
+    BorderColor #76D7C4
+    FontColor #34495E
+}
+
+' 活动图样式
+skinparam activity {
+    BackgroundColor #D6EAF8
+    BorderColor #A3E4D7
+    FontColor #34495E
+
+    DiamondBackgroundColor #FCF3CF
+    DiamondBorderColor #F9E79F
+}
+
+skinparam component {
+    BackgroundColor #D6EAF8
+    BorderColor #7FDBFF
+    FontColor #34495E
+}
+skinparam database {
+    BackgroundColor #F9E79F
+    BorderColor #F7DC6F
+    FontColor #34495E
+}
+skinparam note {
+    BackgroundColor #FCF3CF
+    BorderColor #F9E79F
+    FontColor #34495E
+}
+' 立体样式
+skinparam stereotypePosition right
+skinparam stereotypeAlignment center
+
+' 泳道图（Swimlane）样式
+skinparam activity {
+    BackgroundColor #D1F2EB
+    BorderColor #A3E4D7
+    FontColor #34495E
+
+    DiamondBackgroundColor #FCF3CF
+    DiamondBorderColor #F9E79F
+}
+
+skinparam swimlane {
+    BackgroundColor #D1F2EB
+    BorderColor #A3E4D7
+    FontColor #34495E
+    TitleBackgroundColor #76D7C4
+    TitleFontColor #FFFFFF
+}
+skinparam partition {
+    BackgroundColor #D6EAF8
+    BorderColor #F9E79F
+}
+
+skinparam legend {
+    BackgroundColor #FFA726
+}
+@enduml

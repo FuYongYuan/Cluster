@@ -1,0 +1,104 @@
+@startuml
+'https://plantuml.com/deployment-diagram
+
+!include common.puml
+
+actor "用户" as manager
+
+participant "项目" as project
+participant "服务网关" as gateway
+participant "权限服务" as authorization
+participant "用户服务" as member
+participant "能力服务" as capability
+participant "字典服务" as dictionary
+participant "数据服务" as data
+participant "信息服务" as message
+
+group 登录操作
+
+manager -> project: 打开登陆页面
+activate manager
+activate project
+
+project -> message: 获取图片验证码
+activate message
+
+message -> project: 返回图片验证码
+deactivate message
+
+project -> manager: 登陆页面加载完成
+deactivate project
+
+manager -> project: 登录-填写账户信息
+
+project -> gateway: 输入账户信息
+
+gateway -> authorization: 验证账户信息
+activate gateway
+
+activate authorization
+authorization -> authorization: 验证验证码
+activate authorization
+
+authorization x-->gateway: 验证验证码失败
+gateway x--> manager: 返回：验证验证码失败
+
+authorization -> member: 验证验证码成功\n验证账户信息
+deactivate authorization
+activate member
+
+member -> member: 验证账户信息
+activate member
+
+
+member -> dictionary: 获取可尝试的次数
+activate dictionary
+
+dictionary -> member: 返回可尝试的次数
+deactivate dictionary
+
+member -> member: 验证是否超过次数，超过则冻结
+
+member x-->gateway: 验证超过尝试次数冻结登陆失败
+gateway x--> manager: 验证超过尝试次数冻结登陆失败
+
+member x-->gateway: 验证账户信息失败
+gateway x--> manager: 验证账户信息失败
+
+member -> data: 验证账户信息成功\n获取头像
+activate data
+
+data -> member: 账户头像
+deactivate data
+
+member -> capability: 验证账户信息成功\n获取登陆菜单
+activate capability
+
+capability -> member: 账户拥有权限的菜单集合
+deactivate capability
+
+member -> authorization: 获取用户+权限+菜单
+deactivate member
+
+authorization -> authorization: 将获取的用户+权限+菜单封装成为JWT信息
+activate authorization
+
+authorization -> gateway: 返回JWT信息
+deactivate authorization
+
+gateway -> manager: 返回JWT信息
+deactivate gateway
+
+end
+
+
+
+database "MySQL" as MySQL
+database "Redis" as Redis
+database "MinIO" as MinIO
+database "ElasticSearch" as ElasticSearch
+
+
+
+
+@enduml
