@@ -2,7 +2,7 @@ import dispose.MoneyToChinese;
 
 public class Test {
     public static void main(String[] args) {
-        System.out.println(MoneyToChinese.to(289940.00));
+        System.out.println(MoneyToChinese.to(300160.00));
     }
 
 }
