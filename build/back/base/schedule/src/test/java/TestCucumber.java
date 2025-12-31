@@ -33,9 +33,7 @@ public class TestCucumber {
 
     public static void testDemo() {
 
-        Job job = Job.with(() -> {
-            System.out.println(LocalDateTime.now());
-        }).when(
+        Job job = Job.with(() -> System.out.println(LocalDateTime.now())).when(
                 Month.at(7, 8).with(
                         Hour.at(11, 18).with(
                                 Minute.at(0, 59).with(

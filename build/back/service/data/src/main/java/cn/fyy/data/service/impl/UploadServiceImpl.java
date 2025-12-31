@@ -1,8 +1,9 @@
 package cn.fyy.data.service.impl;
 
+import cn.fyy.common.bean.ao.ConstantParameter;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.data.service.UploadService;
-import cn.fyy.minio.service.MinioService;
+import cn.fyy.rustfs.service.RustfsService;
 import encrypt.UUIDUtil;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -27,7 +29,7 @@ public class UploadServiceImpl implements UploadService {
      * 文件服务器操作
      */
     @Resource
-    private MinioService minioServiceImpl;
+    private RustfsService rustfsServiceImpl;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
@@ -53,11 +55,11 @@ public class UploadServiceImpl implements UploadService {
 
                             String uploadFileName = UUIDUtil.get32() + "." + suffix;
 
-                            String minioUrl = managerId + "/" + businessType + "/" + uploadFileName;
+                            String rustfsUrl = ConstantParameter.UPLOAD_USER_DATA_PATH_NAME + "/" + managerId + "/" + businessType + "/" + uploadFileName;
 
-                            minioServiceImpl.putObject(minioUrl, file.getInputStream());
+                            rustfsServiceImpl.putObject(rustfsUrl, file.getInputStream(), file.getSize());
 
-                            result.put(file.getOriginalFilename(), this.ocrTransfer(minioUrl));
+                            result.put(file.getOriginalFilename(), this.ocrTransfer(rustfsUrl));
                         }
                     }
                 }
@@ -91,11 +93,11 @@ public class UploadServiceImpl implements UploadService {
 
                     String uploadFileName = UUIDUtil.get32() + "." + suffix;
 
-                    String minioUrl = managerId + "/" + businessType + "/" + uploadFileName;
+                    String rustfsUrl = ConstantParameter.UPLOAD_USER_DATA_PATH_NAME + "/" + managerId + "/" + businessType + "/" + uploadFileName;
 
-                    minioServiceImpl.putObject(minioUrl, uploadFile.getInputStream());
+                    rustfsServiceImpl.putObject(rustfsUrl, uploadFile.getInputStream(), uploadFile.getSize());
 
-                    return this.ocrTransfer(minioUrl);
+                    return this.ocrTransfer(rustfsUrl);
                 }
             }
         } catch (Exception e) {
@@ -105,20 +107,73 @@ public class UploadServiceImpl implements UploadService {
     }
 
     /**
+     * 上传文件
+     *
+     * @param managerId    上传人Id
+     * @param businessType 业务类型
+     * @param uploadFile   文件
+     * @return 文件名称
+     * @throws BusinessException 错误
+     */
+    @Override
+    public String fileUploadReturnFileName(
+            Long managerId,
+            String businessType,
+            MultipartFile uploadFile
+    ) throws BusinessException {
+        try {
+            if (uploadFile != null) {
+                if (StringUtils.hasText(uploadFile.getOriginalFilename())) {
+                    String suffix = uploadFile.getOriginalFilename()
+                            .substring(uploadFile.getOriginalFilename().lastIndexOf(".") + 1).toLowerCase();
+
+                    String uploadFileName = UUIDUtil.get32() + "." + suffix;
+
+                    String rustfsUrl = ConstantParameter.UPLOAD_USER_DATA_PATH_NAME + "/" + managerId + "/" + businessType + "/" + uploadFileName;
+
+                    rustfsServiceImpl.putObject(rustfsUrl, uploadFile.getInputStream(), uploadFile.getSize());
+
+                    return uploadFileName;
+                }
+            }
+        } catch (Exception e) {
+            throw new BusinessException("上传错误", e);
+        }
+        return null;
+    }
+
+    /**
+     * 查询文件临时访问地址
+     *
+     * @param managerId    上传人Id
+     * @param businessType 业务类型
+     * @param fileName     文件名称
+     * @param duration     签名有效期(分钟)
+     * @return 文件访问地址
+     * @throws BusinessException 错误
+     */
+    @Override
+    public String getFileTemporaryUrl(Long managerId, String businessType, String fileName, Long duration) throws BusinessException {
+        String rustfsUrl = ConstantParameter.UPLOAD_USER_DATA_PATH_NAME + "/" + managerId + "/" + businessType + "/" + fileName;
+        return rustfsServiceImpl.presignGetObject(rustfsUrl, Duration.ofMinutes(duration));
+    }
+
+
+    /**
      * 查询新上传的图片Url
      *
-     * @param minioUrl 图片目录
+     * @param rustfsUrl 图片目录
      * @return 图片Url
      * @throws Exception 错误
      */
-    private String ocrTransfer(String minioUrl) throws Exception {
-        String url = minioServiceImpl.searchObject(minioUrl);
+    private String ocrTransfer(String rustfsUrl) throws Exception {
+        String url = rustfsServiceImpl.presignGetObject(rustfsUrl, Duration.ofHours(1));
         if (url == null || url.isEmpty()) {
             Thread.sleep(1000);
-            ocrTransfer(minioUrl);
+            ocrTransfer(rustfsUrl);
         } else {
             return url;
         }
-        return ocrTransfer(minioUrl);
+        return ocrTransfer(rustfsUrl);
     }
 }

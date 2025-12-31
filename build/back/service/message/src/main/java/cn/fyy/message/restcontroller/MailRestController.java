@@ -48,9 +48,9 @@ public class MailRestController {
     )
     @GetMapping(value = "/send/captcha/{mail}/{imageCaptcha}/{imageCaptchaCacheName}")
     public ResultMessage<MailCaptchaDTO> sendCaptcha(
-            @PathVariable("mail") String mail,
-            @PathVariable("imageCaptcha") String imageCaptcha,
-            @PathVariable("imageCaptchaCacheName") String imageCaptchaCacheName
+            @PathVariable String mail,
+            @PathVariable String imageCaptcha,
+            @PathVariable String imageCaptchaCacheName
     ) throws BusinessException {
         return captchaServiceImpl.getMailCaptcha(mail, imageCaptcha, imageCaptchaCacheName);
     }

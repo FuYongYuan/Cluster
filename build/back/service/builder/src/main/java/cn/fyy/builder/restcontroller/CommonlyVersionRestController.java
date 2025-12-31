@@ -55,7 +55,7 @@ public class CommonlyVersionRestController {
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
             HttpServletRequest request,
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = commonlyVersionServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
@@ -81,7 +81,7 @@ public class CommonlyVersionRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<CommonlyVersionDTO> get(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException {
         return new ResultMessage<>(CommonlyVersionDTO.toDTO(commonlyVersionServiceImpl.getById(id)));
     }

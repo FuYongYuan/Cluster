@@ -156,16 +156,20 @@ public class ProjectServiceImpl implements ProjectService {
                 // 条件拼装
                 Predicate predicate = SelectUtil.getPredicate(root, criteriaBuilder, state);
                 // 其他条件拼装
-                predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("projectGroupID"), projectGroupId));
+                predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("projectGroupId"), projectGroupId));
 
                 if (StringUtils.hasText(projectName)) {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("projectName"), "%" + projectName + "%"));
                 }
-                query.where(predicate);
-                // 排序拼装
-                query.orderBy(criteriaBuilder.asc(root.get("createTime")));
-                // 生成拼装结果
-                return query.getRestriction();
+                if (query != null) {
+                    query.where(predicate);
+                    // 排序拼装
+                    query.orderBy(criteriaBuilder.asc(root.get("createTime")));
+                    // 生成拼装结果
+                    return query.getRestriction();
+                } else {
+                    return predicate;
+                }
             };
             // 分页信息
             Pageable pageable = PageRequest.of(currentPage, eachPageSize);

@@ -3,9 +3,10 @@
 # 在用maven打包，完进入xxl-job/xxl-job-admin目录
 
 # 将Dockerfile文件放入xxl-job/xxl-job-admin目录
-
+ 
 # 执行 docker build -t xxl-job-admin:版本号 .
 
+数据库初始化地址在 /doc/db/tables_xxl_job.sql
 
 /**
 * 如需自定义 mysql 等配置，可通过 "-e PARAMS" 指定，参数格式 PARAMS="--key=value  --key2=value2" ；
@@ -13,4 +14,4 @@
 * 如需自定义 JVM内存参数 等配置，可通过 "-e JAVA_OPTS" 指定，参数格式 JAVA_OPTS="-Xmx512m" ；
 */
 
-docker run -p 10905:8080 -v ./logs:/data/applogs --name xxl-job-admin-3.1.2  -d xxl-job-admin:3.1.2
+docker run -p 10905:8080 -v ./logs:/data/applogs --name xxl-job-admin-3.3.2  -d xxl-job-admin:3.3.2

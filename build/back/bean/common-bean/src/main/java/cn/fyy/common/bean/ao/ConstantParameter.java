@@ -83,6 +83,11 @@ public class ConstantParameter {
      */
     public static final String DOWNLOAD_PATH_NAME = "download";
 
+    /**
+     * 上传用户数据目录名称
+     */
+    public static final String UPLOAD_USER_DATA_PATH_NAME = "user-data";
+
     //------------------------------------------------------------------------------------------------------------------参数表值
     /**
      * 最大创建次数

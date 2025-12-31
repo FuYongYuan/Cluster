@@ -1,4 +1,7 @@
-# FYY 项目群说明文档
+# FYY 项目群说明文档---版本升级中
+#
+# rustfs存储时候报错
+# 分布式事务报错
 
 ## 目录结构说明
 
@@ -12,10 +15,10 @@
         - **gateway** - 网关能力
         - **jwt** - JWT 鉴权能力
         - **mail** - 邮件能力
-        - **minio** - 文件存储能力
         - **mongodb** - MongoDB 非关系型数据库能力
         - **redis** - Redis 能力
         - **rocketmq** - RocketMQ 消息队列能力
+        - **rustfs** - RustFS 文件存储能力
     - **base** - 基础模块
         - **dispose** - 处理模块
         - **encrypt** - 加密模块
@@ -48,12 +51,12 @@
         - **structure** - 数据库结构 - 使用 PDManer 打开json
     - **docker** - Docker 部署说明文档
         - **elk** - ELK 日志管理部署 - 含 Elasticsearch【日志存储】、Kibana【日志查询】、Logstash【日志存储】、Filebeat【日志采集】
-        - **minio** - MinIO 文件存储部署
         - **mongodb** - MongoDB 部署
         - **mysql** - MySQL 数据库部署
         - **nacos** - Nacos 配置管理部署
         - **redis** - Redis 缓存部署
         - **rocketmq** - RocketMQ 消息队列部署 - 含 NameServer【消息队列】、Broker【消息队列】、Proxy【消息队列】
+        - **rustfs** - RustFS 文件存储部署
         - **seata** - Seata 分布式事务管理器部署
         - **sentinel-dashboard** - Sentinel 熔断器部署
         - **skywalking** - Skywalking 链路追踪部署 - 含 Skywalking-oap【链路追踪-服务】、Skywalking-ui【链路追踪-UI】
@@ -91,4 +94,5 @@
 
 > -javaagent:/Users/fyy/work/tool/skywalking/skywalking-agent/skywalking-agent.jar \
 > -Dskywalking.agent.service_name=build::gateway \
-> -Dskywalking.collector.backend_service=127.0.0.1:11800
+> -Dskywalking.collector.backend_service=127.0.0.1:11800 \
+> -Dskywalking.logging.level=WARN

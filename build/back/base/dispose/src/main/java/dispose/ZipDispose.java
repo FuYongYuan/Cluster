@@ -29,21 +29,11 @@ public class ZipDispose {
             OutputStream outputStream,
             boolean keepPathStructure
     ) throws RuntimeException {
-        ZipOutputStream zos = null;
-        try {
-            zos = new ZipOutputStream(outputStream);
+        try (ZipOutputStream zos = new ZipOutputStream(outputStream)) {
             File sourceFile = new File(filePath);
             compress(sourceFile, zos, sourceFile.getName(), keepPathStructure);
         } catch (Exception e) {
             throw new RuntimeException("压缩处理失败！", e);
-        } finally {
-            if (zos != null) {
-                try {
-                    zos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
@@ -57,9 +47,7 @@ public class ZipDispose {
             List<File> fileList,
             OutputStream outputStream
     ) throws RuntimeException {
-        ZipOutputStream zos = null;
-        try {
-            zos = new ZipOutputStream(outputStream);
+        try (ZipOutputStream zos = new ZipOutputStream(outputStream)) {
             for (File file : fileList) {
                 byte[] buf = new byte[BUFFER_SIZE];
                 zos.putNextEntry(new ZipEntry(file.getName()));
@@ -73,14 +61,6 @@ public class ZipDispose {
             }
         } catch (Exception e) {
             throw new RuntimeException("压缩处理失败！", e);
-        } finally {
-            if (zos != null) {
-                try {
-                    zos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 

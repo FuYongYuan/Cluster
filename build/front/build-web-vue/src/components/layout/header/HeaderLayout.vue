@@ -6,7 +6,7 @@
         <div>
           <a-dropdown>
             <span class="ant-dropdown-link">
-              <a-avatar :src="headImgUrl"/>
+              <a-avatar :src="avatar"/>
               {{ managerName }}
               <icon-font type="icon-down"/>
             </span>
@@ -40,7 +40,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import {
-	LocalStorageHeadImgUrl,
+	LocalStorageAvatar,
 	LocalStorageManagerName,
 } from "@src/apis/commons/constant";
 import { logout } from "@src/apis/authorization/service";
@@ -68,7 +68,7 @@ export default defineComponent({
 		// 获取路由
 		const router = useRouter();
 		// 头像地址
-		const headImgUrl = localStorage.getItem(LocalStorageHeadImgUrl);
+		const avatar = localStorage.getItem(LocalStorageAvatar);
 		// 管理员名称
 		const managerName = localStorage.getItem(LocalStorageManagerName);
 		// 个人详情页显示
@@ -104,7 +104,7 @@ export default defineComponent({
 
 		//------------------------------------------------------------------------------------------------------------------返回
 		return {
-			headImgUrl,
+			avatar,
 			managerName,
 			logoutClick,
 			managerDetailDrawerVisible,

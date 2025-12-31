@@ -34,8 +34,8 @@ public class ManagerDTO implements Serializable {
     /**
      * 头像
      */
-    @Schema(name = "headImgUrl", description = "头像", type = "String")
-    private String headImgUrl;
+    @Schema(name = "avatar", description = "头像", type = "String")
+    private String avatar;
 
     /**
      * 姓名
@@ -144,7 +144,7 @@ public class ManagerDTO implements Serializable {
         if (bo != null) {
             return ManagerDTO.builder()
                     .id(bo.getId())
-                    .headImgUrl(bo.getHeadImgUrl())
+                    .avatar(bo.getAvatar())
                     .managerName(bo.getManagerName())
                     .age(bo.getAge())
                     .sex(bo.getSex())
@@ -204,7 +204,7 @@ public class ManagerDTO implements Serializable {
         if (dto != null) {
             return ManagerBO.builder()
                     .id(dto.getId())
-                    .headImgUrl(dto.getHeadImgUrl())
+                    .avatar(dto.getAvatar())
                     .managerName(dto.getManagerName())
                     .age(dto.getAge())
                     .sex(dto.getSex())
@@ -248,7 +248,7 @@ public class ManagerDTO implements Serializable {
     public ManagerBO toBO() {
         return ManagerBO.builder()
                 .id(this.getId())
-                .headImgUrl(this.getHeadImgUrl())
+                .avatar(this.getAvatar())
                 .managerName(this.getManagerName())
                 .age(this.getAge())
                 .sex(this.getSex())

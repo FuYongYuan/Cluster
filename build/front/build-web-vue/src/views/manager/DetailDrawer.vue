@@ -38,16 +38,16 @@
                 @change="handleChange"
             >
               <div>
-                <a-avatar v-if="form.headImgUrl"
+                <a-avatar v-if="avatarUrl"
                           :size="{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }"
-                          :src="form.headImgUrl" shape="square">
+                          :src="avatarUrl" shape="square">
                 </a-avatar>
                 <div v-else>
                   <icon-font type="icon-reload" v-if="loadingState"/>
                   <icon-font type="icon-image" v-else/>
                   <div class="ant-upload-text">上传头像</div>
                 </div>
-                <a-progress v-if="headImgProgressShow" :percent="headImgProgress" :steps="6"
+                <a-progress v-if="avatarProgressShow" :percent="avatarProgress" :steps="6"
                             :show-info="false"/>
               </div>
             </a-upload>
@@ -139,8 +139,12 @@
 import { defineComponent, reactive, ref, toRefs } from "vue";
 import { FormInstance, message, UploadChangeParam } from "ant-design-vue";
 import IconFont from "@src/assets/iconfont/icon";
-import { BusinessTypeUserHeadImage } from "@src/apis/commons/constant";
-import { uploadFormData } from "@src/apis/data/service";
+import {
+	BusinessTypeUserHeadImage,
+	FailImage,
+	LocalStorageAvatar,
+} from "@src/apis/commons/constant";
+import { getFileTemporaryUrl, uploadFormData } from "@src/apis/data/service";
 import { getManagerByJwtToken, saveManager } from "@src/apis/member/service";
 import type { ManagerDTO } from "@src/apis/member/dto";
 import {
@@ -185,9 +189,11 @@ export default defineComponent({
 			// 加载状态
 			loadingState: false,
 			// 头像上传进度条
-			headImgProgress: 0,
+			avatarProgress: 0,
 			// 头像进度是否显示
-			headImgProgressShow: false,
+			avatarProgressShow: false,
+			// 头像缓存
+			avatarUrl: ref<string>(""),
 		});
 
 		//------------------------------------------------------------------------------------------------------------------方法
@@ -255,6 +261,8 @@ export default defineComponent({
 			const result = await getManagerByJwtToken();
 			if (result !== undefined) {
 				detailData.form = result;
+				detailData.avatarUrl =
+					localStorage.getItem(LocalStorageAvatar) ?? FailImage;
 			}
 
 			// 结束
@@ -266,15 +274,24 @@ export default defineComponent({
 		 *
 		 * @param info 处理内容，文件传输开始、完毕，进度条进展
 		 */
-		const handleChange = (info: UploadChangeParam) => {
+		const handleChange = async (info: UploadChangeParam) => {
 			// 必定要加判断，否则会报错
 			if (info.event !== undefined) {
 				// 当前进度
-				detailData.headImgProgress = info.event.percent;
+				detailData.avatarProgress = info.event.percent;
 			}
 			if (info.file.status === "done") {
-				detailData.headImgProgressShow = false;
-				detailData.form.headImgUrl = info.file.response;
+				detailData.avatarProgressShow = false;
+				detailData.form.avatar = info.file.response;
+				if (detailData.form.avatar) {
+					const temporaryUrl = await getFileTemporaryUrl(
+						BusinessTypeUserHeadImage,
+						detailData.form.avatar,
+					);
+					localStorage.setItem(LocalStorageAvatar, temporaryUrl);
+					detailData.avatarUrl =
+						localStorage.getItem(LocalStorageAvatar) ?? FailImage;
+				}
 			}
 		};
 
@@ -302,7 +319,7 @@ export default defineComponent({
 			const formData = new FormData();
 			formData.append(options.filename, options.file);
 
-			detailData.headImgProgressShow = true;
+			detailData.avatarProgressShow = true;
 
 			const result = await uploadFormData(
 				BusinessTypeUserHeadImage,

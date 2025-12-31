@@ -60,7 +60,7 @@ export default defineComponent({
 			}
 			if (info.file.status === "done") {
 				detailData.fileProgressShow = false;
-				// detailData.form.headImgUrl = info.file.response;
+				// detailData.form.avatar = info.file.response;
 			}
 		};
 

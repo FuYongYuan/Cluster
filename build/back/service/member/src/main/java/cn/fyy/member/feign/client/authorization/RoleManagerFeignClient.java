@@ -38,8 +38,8 @@ public interface RoleManagerFeignClient {
      */
     @PostMapping(value = "/save/list/{roleId}/{menuIds}")
     ResultMessage<String> saveList(
-            @PathVariable("roleId") Long roleId,
-            @PathVariable("menuIds") String menuIds
+            @PathVariable Long roleId,
+            @PathVariable String menuIds
     ) throws BusinessException;
 
 }

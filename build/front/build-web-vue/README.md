@@ -21,7 +21,7 @@
 - vue状态管理
     - "pinia"
 - skywalking 链路跟踪
-    - "skywalking-backend-js": "^0.8.0"
+    - "skywalking-client-js"
 - md5加密
     - "ts-md5"
 - vue

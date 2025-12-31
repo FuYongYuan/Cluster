@@ -47,6 +47,19 @@ export default defineConfig({
                 // 路径改写规则 以/proxy/为开头的改写为''
                 rewrite: (path) => path.replace(/^\/api/, ""),
             },
+            // SkyWalking代理配置
+            "/skywalking": {
+                // SkyWalking接口域名
+                target: "http://localhost:12800",
+                // false为http访问，true为https访问
+                secure: false,
+                // 跨域访问设置，true代表跨域
+                changeOrigin: true,
+                //如果要代理 websockets，配置这个参数
+                ws: false,
+                // 路径改写规则 以/proxy/为开头的改写为''
+                rewrite: (path) => path.replace(/^\/skywalking/, "")
+            }
         },
     },
 

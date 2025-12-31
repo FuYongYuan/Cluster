@@ -61,8 +61,8 @@ public class MenuRestController {
     )
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
     public ResultMessage<PageImpl<MenuDTO>> queryByMenuNameAndState(
-            @PathVariable(value = "currentPage") int currentPage,
-            @PathVariable(value = "eachPageSize") int eachPageSize,
+            @PathVariable int currentPage,
+            @PathVariable int eachPageSize,
             @RequestParam(value = "pageSort", required = false) String pageSort,
             @RequestParam(value = "menuName", required = false) String menuName,
             @RequestParam(value = "state", required = false) Byte state
@@ -93,7 +93,7 @@ public class MenuRestController {
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
             HttpServletRequest request,
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = menuServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
@@ -119,7 +119,7 @@ public class MenuRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<MenuDTO> getById(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException {
         return new ResultMessage<>(MenuDTO.toDTO(menuServiceImpl.getById(id)));
     }
@@ -191,7 +191,7 @@ public class MenuRestController {
     )
     @GetMapping(value = "/query/hierarchy/menu/list/{menuIdList}")
     public ResultMessage<List<MenuDTO>> queryHierarchyMenuByMenuIdList(
-            @PathVariable(value = "menuIdList") List<Long> menuIdList
+            @PathVariable List<Long> menuIdList
     ) throws BusinessException {
         return new ResultMessage<>(MenuDTO.toDTO(menuServiceImpl.queryHierarchyMenuByMenuIdList(menuIdList)));
     }
@@ -211,7 +211,7 @@ public class MenuRestController {
     )
     @GetMapping(value = "/query/menu/list/{menuIdList}")
     public ResultMessage<List<MenuDTO>> queryMenuByMenuIdList(
-            @PathVariable(value = "menuIdList") List<Long> menuIdList
+            @PathVariable List<Long> menuIdList
     ) throws BusinessException {
         return new ResultMessage<>(MenuDTO.toDTO(menuServiceImpl.queryMenuByMenuIdList(menuIdList)));
     }

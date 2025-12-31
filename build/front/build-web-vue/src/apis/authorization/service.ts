@@ -3,7 +3,7 @@ import {
 	AuthorizationApiBaseURL,
 	LocalStorageAccount,
 	LocalStorageAccountMenuList,
-	LocalStorageHeadImgUrl,
+	LocalStorageAvatar,
 	LocalStorageInvalidDate,
 	LocalStorageJwtToken,
 	LocalStorageManagerName,
@@ -63,7 +63,7 @@ export const logout = async (): Promise<boolean> => {
 		.then((response) => {
 			if (response.data.data) {
 				localStorage.removeItem(LocalStorageAccount);
-				localStorage.removeItem(LocalStorageHeadImgUrl);
+				localStorage.removeItem(LocalStorageAvatar);
 				localStorage.removeItem(LocalStorageManagerName);
 				localStorage.removeItem(LocalStorageJwtToken);
 				localStorage.removeItem(LocalStorageInvalidDate);

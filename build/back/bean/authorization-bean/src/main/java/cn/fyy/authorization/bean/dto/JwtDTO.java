@@ -36,8 +36,8 @@ public class JwtDTO implements Serializable {
     /**
      * 头像
      */
-    @Schema(name = "headImgUrl", description = "头像", type = "String")
-    private String headImgUrl;
+    @Schema(name = "avatar", description = "头像", type = "String")
+    private String avatar;
 
     /**
      * jwtToken

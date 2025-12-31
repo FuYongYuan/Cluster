@@ -7,10 +7,10 @@ docker exec -it elasticsearch \
   bin/elasticsearch-service-tokens create elastic/kibana kibana_server_token
 
 # 输出内容
-SERVICE_TOKEN elastic/kibana/kibana_server_token = AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYV9zZXJ2ZXJfdG9rZW46ckRGbjgyb2pRZGFpNDZ6TkhhY0R6Zw
+SERVICE_TOKEN elastic/kibana/kibana_server_token = AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYV9zZXJ2ZXJfdG9rZW46cFZIVWc5SkNTcS1UVmd3Z2JWWUR5QQ
 
 # 复制
-AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYV9zZXJ2ZXJfdG9rZW46ckRGbjgyb2pRZGFpNDZ6TkhhY0R6Zw
+AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYV9zZXJ2ZXJfdG9rZW46cFZIVWc5SkNTcS1UVmd3Z2JWWUR5QQ
 
 # 修改 docker-compose 中的kibana的配置
 

@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   skywalking-oap:
-    image: apache/skywalking-oap-server:10.2.0-java21
+    image: apache/skywalking-oap-server:10.3.0-java21
     container_name: skywalking-oap
     volumes:
       - ./skywalking/config/application.yml:/skywalking/config/application.yml
@@ -13,7 +13,7 @@ services:
       - skywalking
 
   skywalking-ui:
-    image: apache/skywalking-ui:10.2.0-java21
+    image: apache/skywalking-ui:10.3.0-java21
     container_name: skywalking-ui
     depends_on:
       - skywalking-oap

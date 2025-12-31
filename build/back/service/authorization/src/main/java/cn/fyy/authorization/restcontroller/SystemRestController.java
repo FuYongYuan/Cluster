@@ -62,10 +62,10 @@ public class SystemRestController {
     @PostMapping(value = "/login/{account}/{loginPassword}/{imageCaptcha}/{imageCaptchaCacheName}")
     public ResultMessage<JwtDTO> login(
             HttpServletRequest request,
-            @PathVariable("account") String account,
-            @PathVariable("loginPassword") String loginPassword,
-            @PathVariable("imageCaptcha") String imageCaptcha,
-            @PathVariable("imageCaptchaCacheName") String imageCaptchaCacheName
+            @PathVariable String account,
+            @PathVariable String loginPassword,
+            @PathVariable String imageCaptcha,
+            @PathVariable String imageCaptchaCacheName
     ) throws BusinessException {
         return systemServiceImpl.login(account, loginPassword, imageCaptcha, imageCaptchaCacheName, request);
     }
@@ -94,11 +94,11 @@ public class SystemRestController {
     @PostMapping(value = "/register/{mail}/{account}/{loginPassword}/{mailCaptcha}/{mailCaptchaCacheName}")
     public ResultMessage<Boolean> register(
             HttpServletRequest request,
-            @PathVariable("mail") String mail,
-            @PathVariable("account") String account,
-            @PathVariable("loginPassword") String loginPassword,
-            @PathVariable("mailCaptcha") String mailCaptcha,
-            @PathVariable("mailCaptchaCacheName") String mailCaptchaCacheName
+            @PathVariable String mail,
+            @PathVariable String account,
+            @PathVariable String loginPassword,
+            @PathVariable String mailCaptcha,
+            @PathVariable String mailCaptchaCacheName
     ) throws BusinessException {
         return systemServiceImpl.register(mail, account, loginPassword, mailCaptcha, mailCaptchaCacheName, ServerUtil.getVisitorIp(request));
     }
@@ -124,10 +124,10 @@ public class SystemRestController {
     )
     @PutMapping(value = "/recover/{mail}/{loginPassword}/{mailCaptcha}/{mailCaptchaCacheName}")
     public ResultMessage<Integer> recover(
-            @PathVariable("mail") String mail,
-            @PathVariable("loginPassword") String loginPassword,
-            @PathVariable("mailCaptcha") String mailCaptcha,
-            @PathVariable("mailCaptchaCacheName") String mailCaptchaCacheName
+            @PathVariable String mail,
+            @PathVariable String loginPassword,
+            @PathVariable String mailCaptcha,
+            @PathVariable String mailCaptchaCacheName
     ) throws BusinessException {
         return systemServiceImpl.recover(mail, loginPassword, mailCaptcha, mailCaptchaCacheName);
     }

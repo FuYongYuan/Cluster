@@ -79,8 +79,8 @@ public class RoleMenuRestController {
     @PostMapping(value = "/save/list/{roleId}/{menuIds}")
     public ResultMessage<String> saveList(
             HttpServletRequest request,
-            @PathVariable("roleId") Long roleId,
-            @PathVariable("menuIds") String menuIds
+            @PathVariable Long roleId,
+            @PathVariable String menuIds
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         return roleMenuServiceImpl.saveList(roleId, menuIds, managerMessage.getManagerId(), managerMessage.getManagerName());
@@ -101,7 +101,7 @@ public class RoleMenuRestController {
     )
     @GetMapping(value = "/query/list/{roleId}")
     public ResultMessage<List<RoleMenuDTO>> queryByRoleIdOrderByUpdateTimeAsc(
-            @PathVariable("roleId") Long roleId
+            @PathVariable Long roleId
     ) throws BusinessException {
         return new ResultMessage<>(RoleMenuDTO.toDTO(roleMenuServiceImpl.queryByRoleIdOrderByUpdateTimeAsc(roleId)));
     }

@@ -31,8 +31,8 @@ public interface ManagerFeignClient {
      */
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
     ResultMessage<PageImpl<ManagerDTO>> queryByAccountAndMobileAndEmailAndUserNameAndState(
-            @PathVariable(value = "currentPage") int currentPage,
-            @PathVariable(value = "eachPageSize") int eachPageSize,
+            @PathVariable int currentPage,
+            @PathVariable int eachPageSize,
             @RequestParam(value = "account", required = false) String account,
             @RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam(value = "mail", required = false) String mail,
@@ -49,7 +49,7 @@ public interface ManagerFeignClient {
      */
     @DeleteMapping(value = "/delete/{ids}")
     ResultMessage<Integer> delete(
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException;
 
     /**
@@ -61,7 +61,7 @@ public interface ManagerFeignClient {
      */
     @GetMapping(value = "/get/{id}")
     ResultMessage<ManagerDTO> getById(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException;
 
 
@@ -88,7 +88,7 @@ public interface ManagerFeignClient {
     @PostMapping(value = "/save/return/dto/{authentication}")
     ResultMessage<Long> saveReturnDTO(
             @RequestBody ManagerInternalDTO dto,
-            @PathVariable(value = "authentication") String authentication
+            @PathVariable String authentication
     ) throws BusinessException;
 
     /**
@@ -101,8 +101,8 @@ public interface ManagerFeignClient {
      */
     @PutMapping(value = "/update/state/{ids}/{state}")
     ResultMessage<Integer> updateStateById(
-            @PathVariable("ids") String ids,
-            @PathVariable(value = "state") Byte state
+            @PathVariable String ids,
+            @PathVariable Byte state
     ) throws BusinessException;
 
     /**
@@ -114,7 +114,7 @@ public interface ManagerFeignClient {
      */
     @GetMapping(value = "/get/account/exist/{account}")
     ResultMessage<Boolean> getByAccountIsExist(
-            @PathVariable("account") String account
+            @PathVariable String account
     ) throws BusinessException;
 
     /**
@@ -126,7 +126,7 @@ public interface ManagerFeignClient {
      */
     @GetMapping(value = "/get/mail/exist/{mail}")
     ResultMessage<Boolean> getByMailIsExist(
-            @PathVariable("mail") String mail
+            @PathVariable String mail
     ) throws BusinessException;
 
     /**
@@ -138,7 +138,7 @@ public interface ManagerFeignClient {
      */
     @GetMapping(value = "/get/attempt/login/number/{account}")
     ResultMessage<Integer> getAttemptLoginNumberByAccount(
-            @PathVariable("account") String account
+            @PathVariable String account
     ) throws BusinessException;
 
     /**
@@ -152,9 +152,9 @@ public interface ManagerFeignClient {
      */
     @PutMapping(value = "/update/login/password/{mail}/{loginPassword}/{authentication}")
     ResultMessage<Integer> updateLoginPasswordByMail(
-            @PathVariable("mail") String mail,
-            @PathVariable("loginPassword") String loginPassword,
-            @PathVariable("authentication") String authentication
+            @PathVariable String mail,
+            @PathVariable String loginPassword,
+            @PathVariable String authentication
     ) throws BusinessException;
 
     /**
@@ -167,7 +167,7 @@ public interface ManagerFeignClient {
      */
     @GetMapping(value = "/get/account/password/{account}/{loginPassword}")
     ResultMessage<ManagerInternalDTO> getByAccountAndLoginPassword(
-            @PathVariable("account") String account,
-            @PathVariable("loginPassword") String loginPassword
+            @PathVariable String account,
+            @PathVariable String loginPassword
     ) throws BusinessException;
 }

@@ -185,11 +185,15 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
                 if (StringUtils.hasText(projectGroupName)) {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("projectGroupName"), "%" + projectGroupName + "%"));
                 }
-                query.where(predicate);
-                // 排序拼装
-                query.orderBy(criteriaBuilder.asc(root.get("createTime")));
-                // 生成拼装结果
-                return query.getRestriction();
+                if (query != null) {
+                    query.where(predicate);
+                    // 排序拼装
+                    query.orderBy(criteriaBuilder.asc(root.get("createTime")));
+                    // 生成拼装结果
+                    return query.getRestriction();
+                } else {
+                    return predicate;
+                }
             };
             // 分页信息
             Pageable pageable = PageRequest.of(currentPage, eachPageSize);

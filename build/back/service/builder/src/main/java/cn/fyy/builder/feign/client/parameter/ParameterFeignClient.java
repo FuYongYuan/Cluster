@@ -27,8 +27,8 @@ public interface ParameterFeignClient {
      */
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
     ResultMessage<PageImpl<ParameterDTO>> queryByRoleNameAndState(
-            @PathVariable(value = "currentPage") int currentPage,
-            @PathVariable(value = "eachPageSize") int eachPageSize,
+            @PathVariable int currentPage,
+            @PathVariable int eachPageSize,
             @RequestParam(value = "parameterCode", required = false) String parameterCode,
             @RequestParam(value = "parameterName", required = false) String parameterName,
             @RequestParam(value = "state", required = false) Byte state
@@ -43,7 +43,7 @@ public interface ParameterFeignClient {
      */
     @DeleteMapping(value = "/delete/{ids}")
     ResultMessage<Integer> delete(
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException;
 
     /**
@@ -55,7 +55,7 @@ public interface ParameterFeignClient {
      */
     @GetMapping(value = "/get/{id}")
     ResultMessage<ParameterDTO> getById(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException;
 
     /**
@@ -67,7 +67,7 @@ public interface ParameterFeignClient {
      */
     @GetMapping(value = "/get/parameter/code/{parameterCode}")
     ResultMessage<ParameterDTO> getByParameterCode(
-            @PathVariable("parameterCode") String parameterCode
+            @PathVariable String parameterCode
     ) throws BusinessException;
 
     /**

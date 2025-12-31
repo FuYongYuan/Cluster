@@ -118,7 +118,7 @@ public class Test {
                     .setAlignment(HorizontalAlignment.CENTER, VerticalAlignment.CENTER)
             ;
             //总计 - 方法写法
-            Map<String, Integer> calculationFieldNameAndOrder = new HashMap<String, Integer>();
+            Map<String, Integer> calculationFieldNameAndOrder = new HashMap<>();
             calculationFieldNameAndOrder.put("小数点", 4);
             calculationFieldNameAndOrder.put("钱", 2);
             sheetSet.getFunction().getTotal().setCalculationModel(
@@ -249,7 +249,7 @@ public class Test {
 //            excelEntity.bT = RandomUtil.randomBoolean();
 //            excelEntities.add(excelEntity);
 
-            Map<String, Object> omap = new HashMap<String, Object>();
+            Map<String, Object> omap = new HashMap<>();
             omap.put("sT", "测试" + ix);
             omap.put("iT", i / 5);
 //            if (i % 2 == 0) {

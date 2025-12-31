@@ -30,7 +30,7 @@ public class ManagerBO implements Serializable {
     /**
      * 头像
      */
-    private String headImgUrl;
+    private String avatar;
 
     /**
      * 姓名
@@ -146,7 +146,7 @@ public class ManagerBO implements Serializable {
         if (po != null) {
             return ManagerBO.builder()
                     .id(po.getId())
-                    .headImgUrl(po.getHeadImgUrl())
+                    .avatar(po.getAvatar())
                     .managerName(po.getManagerName())
                     .age(po.getAge())
                     .sex(po.getSex())
@@ -210,7 +210,7 @@ public class ManagerBO implements Serializable {
         if (bo != null) {
             return ManagerPO.builder()
                     .id(bo.getId())
-                    .headImgUrl(bo.getHeadImgUrl())
+                    .avatar(bo.getAvatar())
                     .managerName(bo.getManagerName())
                     .age(bo.getAge())
                     .sex(bo.getSex())
@@ -258,7 +258,7 @@ public class ManagerBO implements Serializable {
     public ManagerPO toPO() {
         return ManagerPO.builder()
                 .id(this.getId())
-                .headImgUrl(this.getHeadImgUrl())
+                .avatar(this.getAvatar())
                 .managerName(this.getManagerName())
                 .age(this.getAge())
                 .sex(this.getSex())

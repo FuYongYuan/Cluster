@@ -78,8 +78,8 @@ public class RoleManagerRestController {
     @PostMapping(value = "/save/list/{managerId}/{roleIds}")
     public ResultMessage<String> saveList(
             HttpServletRequest request,
-            @PathVariable("managerId") Long managerId,
-            @PathVariable("roleIds") String roleIds
+            @PathVariable Long managerId,
+            @PathVariable String roleIds
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         return roleManagerServiceImpl.saveList(managerId, roleIds, managerMessage.getManagerId(), managerMessage.getManagerName());

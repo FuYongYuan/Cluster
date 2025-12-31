@@ -5,7 +5,7 @@ export type ManagerDTO = {
 	// 主键ID
 	id: number;
 	// 头像
-	headImgUrl?: string;
+	avatar?: string;
 	// 姓名
 	managerName?: string;
 	// 年龄

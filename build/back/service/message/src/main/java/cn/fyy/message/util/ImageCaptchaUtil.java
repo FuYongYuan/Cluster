@@ -177,20 +177,17 @@ public class ImageCaptchaUtil {
         }
         // 释放绘图资源
         g.dispose();
-        ByteArrayOutputStream bs = new ByteArrayOutputStream();
-        try {
-            // 将绘制得图片输出到流
-            ImageIO.write(image, "png", bs);
-            String imgsrc = byteArrayToBase64(bs.toByteArray(), false);
-            validate.setBase64Str(imgsrc);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
+        try (ByteArrayOutputStream bs = new ByteArrayOutputStream()) {
             try {
-                bs.close();
-            } catch (IOException e) {
+                // 将绘制得图片输出到流
+                ImageIO.write(image, "png", bs);
+                String imgsrc = byteArrayToBase64(bs.toByteArray(), false);
+                validate.setBase64Str(imgsrc);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return validate;
     }

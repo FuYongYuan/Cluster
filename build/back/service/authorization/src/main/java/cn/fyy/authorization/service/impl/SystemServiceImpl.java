@@ -391,7 +391,7 @@ public class SystemServiceImpl implements SystemService {
                         JwtDTO jwtDTO = new JwtDTO().toBuilder()
                                 .account(dto.getAccount())
                                 .managerName(dto.getManagerName())
-                                .headImgUrl(dto.getHeadImgUrl())
+                                .avatar(dto.getAvatar())
                                 .jwtToken(securityRedis.getToken())
                                 .invalidDate(invalidDate)
                                 .build();

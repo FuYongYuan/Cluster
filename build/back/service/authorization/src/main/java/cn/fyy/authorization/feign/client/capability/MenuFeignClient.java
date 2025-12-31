@@ -31,8 +31,8 @@ public interface MenuFeignClient {
      */
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
     ResultMessage<PageImpl<MenuDTO>> queryByMenuNameAndState(
-            @PathVariable(value = "currentPage") int currentPage,
-            @PathVariable(value = "eachPageSize") int eachPageSize,
+            @PathVariable int currentPage,
+            @PathVariable int eachPageSize,
             @RequestParam(value = "menuName", required = false) String menuName,
             @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException;
@@ -46,7 +46,7 @@ public interface MenuFeignClient {
      */
     @DeleteMapping(value = "/delete/{ids}")
     ResultMessage<Integer> delete(
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException;
 
     /**
@@ -58,7 +58,7 @@ public interface MenuFeignClient {
      */
     @GetMapping(value = "/get/{id}")
     ResultMessage<MenuDTO> getById(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException;
 
     /**
@@ -92,7 +92,7 @@ public interface MenuFeignClient {
      */
     @GetMapping(value = "/query/hierarchy/menu/list/{menuIdList}")
     ResultMessage<List<MenuDTO>> queryHierarchyMenuByMenuIdList(
-            @PathVariable(value = "menuIdList") List<Long> menuIdList
+            @PathVariable List<Long> menuIdList
     ) throws BusinessException;
 
     /**
@@ -104,6 +104,6 @@ public interface MenuFeignClient {
      */
     @GetMapping(value = "/query/menu/list/{menuIdList}")
     ResultMessage<List<MenuDTO>> queryMenuByMenuIdList(
-            @PathVariable(value = "menuIdList") List<Long> menuIdList
+            @PathVariable List<Long> menuIdList
     ) throws BusinessException;
 }

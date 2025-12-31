@@ -33,7 +33,6 @@
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.mdc.TraceIdMDCPatternLogbackLayout">
                 <Pattern>${LOG_PATTERN}</Pattern>
-                <charset>utf8</charset>
             </layout>
         </encoder>
     </appender>
@@ -44,18 +43,13 @@
         <file>log/${APP_NAME}-${PROFILE}.log</file>
 
         <!-- 滚动策略：基于时间和大小，并压缩 -->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!-- 文件名模式：按天分割 + 序号 + GZ 压缩 -->
             <fileNamePattern>log/${APP_NAME}-${PROFILE}.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
-
             <!-- 触发策略：每个日志文件最大10MB -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>10MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-
+            <maxFileSize>10MB</maxFileSize>
             <!-- 保留历史日志天数：30天 -->
             <maxHistory>30</maxHistory>
-
             <!-- 可选：限制总日志大小（例如最多保留2GB） -->
             <!-- <totalSizeCap>2GB</totalSizeCap> -->
         </rollingPolicy>
@@ -64,7 +58,6 @@
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.mdc.TraceIdMDCPatternLogbackLayout">
                 <Pattern>${LOG_PATTERN}</Pattern>
-                <charset>utf8</charset>
             </layout>
         </encoder>
     </appender>
@@ -74,7 +67,6 @@
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.mdc.TraceIdMDCPatternLogbackLayout">
                 <Pattern>${LOG_PATTERN}</Pattern>
-                <charset>utf8</charset>
             </layout>
         </encoder>
     </appender>
@@ -93,6 +85,10 @@
         <neverBlock>false</neverBlock>
         <appender-ref ref="FILE"/>
     </appender>
+
+    <!-- Spring BeanPostProcessor Checker 降级（Seata 启动 WARN） -->
+    <logger name="org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker"
+            level="ERROR"/>
 
     <!-- Root logger -->
     <root level="INFO">

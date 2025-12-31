@@ -1,1 +1,1 @@
-docker run --name mysql-8.4.5 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=fyyain77 -d mysql:8.4.5
+docker run --name mysql-9.2.0 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=fyyain77 -d mysql:9.2.0

@@ -29,8 +29,8 @@ public interface RoleFeignClient {
      */
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
     ResultMessage<PageImpl<RoleDTO>> queryPageByRoleNameAndState(
-            @PathVariable(value = "currentPage") int currentPage,
-            @PathVariable(value = "eachPageSize") int eachPageSize,
+            @PathVariable int currentPage,
+            @PathVariable int eachPageSize,
             @RequestParam(value = "roleName", required = false) String roleName,
             @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException;
@@ -44,7 +44,7 @@ public interface RoleFeignClient {
      */
     @DeleteMapping(value = "/delete/{ids}")
     ResultMessage<Integer> delete(
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException;
 
     /**
@@ -56,7 +56,7 @@ public interface RoleFeignClient {
      */
     @GetMapping(value = "/get/{id}")
     ResultMessage<RoleDTO> getById(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException;
 
     /**
@@ -90,6 +90,6 @@ public interface RoleFeignClient {
      */
     @GetMapping(value = "/query/manager/have/role/{managerId}")
     ResultMessage<List<RoleDTO>> queryManagerHaveRoleByManagerId(
-            @PathVariable("managerId") Long managerId
+            @PathVariable Long managerId
     ) throws BusinessException;
 }

@@ -1,0 +1,8 @@
+docker pull rustfs/rustfs:1.0.0-alpha.73
+
+
+因为配置了本地集群，根目录下新建 /data 目录，并且新建 /rustfs0～/rustfs3 4个文件夹
+
+
+docker-compose up -d
+

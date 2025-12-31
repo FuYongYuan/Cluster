@@ -132,11 +132,15 @@ public class MenuServiceImpl implements MenuService {
                 if (StringUtils.hasText(menuName)) {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("menuName"), "%" + menuName + "%"));
                 }
-                query.where(predicate);
-                // 排序拼装
-                query.orderBy(SelectUtil.getSort(root, criteriaBuilder, pageSort));
-                // 生成拼装结果
-                return query.getRestriction();
+                if (query != null) {
+                    query.where(predicate);
+                    // 排序拼装
+                    query.orderBy(SelectUtil.getSort(root, criteriaBuilder, pageSort));
+                    // 生成拼装结果
+                    return query.getRestriction();
+                } else {
+                    return predicate;
+                }
             };
             // 分页信息
             Pageable pageable = PageRequest.of(currentPage, eachPageSize);

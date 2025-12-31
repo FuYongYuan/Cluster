@@ -5,7 +5,7 @@ version: '3.7'
 
 services:
   elasticsearch:
-    image: elasticsearch:8.10.4
+    image: elasticsearch:8.18.8
     container_name: elasticsearch
     environment:
       - discovery.type=single-node
@@ -29,7 +29,7 @@ services:
       - elk
 
   kibana:
-    image: kibana:8.10.4
+    image: kibana:8.18.8
     container_name: kibana
     depends_on:
       - elasticsearch
@@ -38,14 +38,14 @@ services:
     environment:
       # 设置 Kibana 连接到 Elasticsearch 的 URL 和认证信息
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-      - ELASTICSEARCH_SERVICEACCOUNTTOKEN=AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYV9zZXJ2ZXJfdG9rZW46ckRGbjgyb2pRZGFpNDZ6TkhhY0R6Zw
+      - ELASTICSEARCH_SERVICEACCOUNTTOKEN=AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYV9zZXJ2ZXJfdG9rZW46cFZIVWc5SkNTcS1UVmd3Z2JWWUR5QQ
       - XPACK_SECURITY_ENABLED=true
       - I18N_LOCALE=zh-CN
     networks:
       - elk
 
   logstash:
-    image: logstash:8.10.4
+    image: logstash:8.18.8
     container_name: logstash
     volumes:
       - ./logstash/conf:/usr/share/logstash/pipeline
@@ -61,7 +61,7 @@ services:
       - elk
 
   filebeat:
-    image: elastic/filebeat:8.10.4
+    image: elastic/filebeat:8.18.8
     container_name: filebeat
     user: root
     command: filebeat -e -c /usr/share/filebeat/config/filebeat.yml

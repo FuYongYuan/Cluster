@@ -66,8 +66,8 @@ public class ManagerRestController {
     )
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
     public ResultMessage<PageImpl<ManagerDTO>> queryByAccountAndMobileAndEmailAndUserNameAndState(
-            @PathVariable(value = "currentPage") int currentPage,
-            @PathVariable(value = "eachPageSize") int eachPageSize,
+            @PathVariable int currentPage,
+            @PathVariable int eachPageSize,
             @RequestParam(value = "pageSort", required = false) String pageSort,
             @RequestParam(value = "account", required = false) String account,
             @RequestParam(value = "mobile", required = false) String mobile,
@@ -104,7 +104,7 @@ public class ManagerRestController {
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
             HttpServletRequest request,
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = managerServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
@@ -130,7 +130,7 @@ public class ManagerRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<ManagerDTO> getById(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException {
         return new ResultMessage<>(ManagerDTO.toDTO(managerServiceImpl.getById(id)));
     }
@@ -194,7 +194,7 @@ public class ManagerRestController {
     @PostMapping(value = "/save/return/dto/{authentication}")
     public ResultMessage<Long> saveReturnDTO(
             @RequestBody ManagerInternalDTO dto,
-            @PathVariable(value = "authentication") String authentication
+            @PathVariable String authentication
     ) throws BusinessException {
         return managerServiceImpl.saveReturnDTO(dto, authentication);
     }
@@ -217,8 +217,8 @@ public class ManagerRestController {
     @PutMapping(value = "/update/state/{ids}/{state}")
     public ResultMessage<Integer> updateStateById(
             HttpServletRequest request,
-            @PathVariable("ids") String ids,
-            @PathVariable(value = "state") Byte state
+            @PathVariable String ids,
+            @PathVariable Byte state
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = managerServiceImpl.updateStateByIds(ids, state, managerMessage.getManagerId(), managerMessage.getManagerName());
@@ -244,7 +244,7 @@ public class ManagerRestController {
     )
     @GetMapping(value = "/get/account/exist/{account}")
     public ResultMessage<Boolean> getByAccountIsExist(
-            @PathVariable("account") String account
+            @PathVariable String account
     ) throws BusinessException {
         return new ResultMessage<>(managerServiceImpl.getByAccountIsExist(account));
     }
@@ -264,7 +264,7 @@ public class ManagerRestController {
     )
     @GetMapping(value = "/get/mail/exist/{mail}")
     public ResultMessage<Boolean> getByMailIsExist(
-            @PathVariable("mail") String mail
+            @PathVariable String mail
     ) throws BusinessException {
         return new ResultMessage<>(managerServiceImpl.getByMailIsExist(mail));
     }
@@ -284,7 +284,7 @@ public class ManagerRestController {
     )
     @GetMapping(value = "/get/attempt/login/number/{account}")
     public ResultMessage<Integer> getAttemptLoginNumberByAccount(
-            @PathVariable("account") String account
+            @PathVariable String account
     ) throws BusinessException {
         return new ResultMessage<>(managerServiceImpl.getAttemptLoginNumberByAccount(account));
     }
@@ -308,9 +308,9 @@ public class ManagerRestController {
     )
     @PutMapping(value = "/update/login/password/{mail}/{loginPassword}/{authentication}")
     public ResultMessage<Integer> updateLoginPasswordByMail(
-            @PathVariable("mail") String mail,
-            @PathVariable("loginPassword") String loginPassword,
-            @PathVariable("authentication") String authentication
+            @PathVariable String mail,
+            @PathVariable String loginPassword,
+            @PathVariable String authentication
     ) throws BusinessException {
         return managerServiceImpl.updateLoginPasswordByMail(mail, loginPassword, authentication);
     }
@@ -332,8 +332,8 @@ public class ManagerRestController {
     )
     @GetMapping(value = "/get/account/password/{account}/{loginPassword}")
     public ResultMessage<ManagerInternalDTO> getByAccountAndLoginPassword(
-            @PathVariable("account") String account,
-            @PathVariable("loginPassword") String loginPassword
+            @PathVariable String account,
+            @PathVariable String loginPassword
     ) throws BusinessException {
         return new ResultMessage<>(ManagerInternalDTO.toDTO(managerServiceImpl.getByAccountAndLoginPassword(account, loginPassword)));
     }

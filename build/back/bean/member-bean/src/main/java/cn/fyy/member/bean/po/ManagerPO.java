@@ -33,8 +33,8 @@ public class ManagerPO implements Serializable {
     /**
      * 头像
      */
-    @Column(name = "head_img_url", length = 1000)
-    private String headImgUrl;
+    @Column(name = "avatar", length = 1000)
+    private String avatar;
 
     /**
      * 姓名
@@ -169,7 +169,7 @@ public class ManagerPO implements Serializable {
         if (!id.equals(that.id)) {
             return false;
         }
-        if (!Objects.equals(headImgUrl, that.headImgUrl)) {
+        if (!Objects.equals(avatar, that.avatar)) {
             return false;
         }
         if (!Objects.equals(managerName, that.managerName)) {
@@ -235,7 +235,7 @@ public class ManagerPO implements Serializable {
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + (headImgUrl != null ? headImgUrl.hashCode() : 0);
+        result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
         result = 31 * result + (managerName != null ? managerName.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);

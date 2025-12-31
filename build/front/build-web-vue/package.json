@@ -16,17 +16,17 @@
     "consola": "^3.4.2",
     "dayjs": "^1.11.19",
     "pinia": "^3.0.4",
-    "skywalking-backend-js": "^0.8.0",
+    "skywalking-client-js": "^1.0.1",
     "ts-md5": "^2.0.1",
-    "vue": "^3.5.25",
-    "vue-router": "^4.6.3"
+    "vue": "^3.5.26",
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.8",
-    "@vitejs/plugin-vue": "^6.0.2",
+    "@biomejs/biome": "2.3.10",
+    "@vitejs/plugin-vue": "^6.0.3",
     "typescript": "^5.9.3",
-    "vite": "^7.2.6",
+    "vite": "^7.3.0",
     "vite-plugin-style-import": "^2.0.0",
-    "vue-tsc": "^3.1.5"
+    "vue-tsc": "^3.2.1"
   }
 }

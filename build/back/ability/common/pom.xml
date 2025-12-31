@@ -22,7 +22,7 @@
         <!-- reids模块 -->
         <redis.version>0.0.1</redis.version>
         <!-- skywalking -->
-        <skywalking.version>9.4.0</skywalking.version>
+        <skywalking.version>9.5.0</skywalking.version>
     </properties>
 
     <dependencies>

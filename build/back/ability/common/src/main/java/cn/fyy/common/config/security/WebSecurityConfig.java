@@ -118,13 +118,11 @@ public class WebSecurityConfig {
      *
      * @return AuthenticationProvider对象
      */
-    @Bean
     public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        // 注入UserDetailsService
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(userDetailsServiceImpl);
         // 关闭找不到用户错误
         authenticationProvider.setHideUserNotFoundExceptions(false);
-        // 注入UserDetailsService
-        authenticationProvider.setUserDetailsService(userDetailsServiceImpl);
         // 注入密码加密机制
         authenticationProvider.setPasswordEncoder(passwordEncoder);
         return authenticationProvider;

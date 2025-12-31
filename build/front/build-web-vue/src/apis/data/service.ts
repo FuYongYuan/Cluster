@@ -1,5 +1,10 @@
 import Request from "@src/utils/axios/request";
-import { DataApiBaseURL, SuccessRequestCode } from "@src/apis/commons/constant";
+import {
+	DataApiBaseURL,
+	FailImage,
+	ImageDuration,
+	SuccessRequestCode,
+} from "@src/apis/commons/constant";
 import { showErrorNotification } from "@src/antd/notification";
 import type { ResultMessage } from "@src/apis/commons/dto";
 
@@ -18,7 +23,7 @@ export const uploadFormData = async (
 	// 初始化
 	const request = new Request<ResultMessage<string>>();
 	// 地址
-	const url = `${DataApiBaseURL}/file/upload/get/url/${businessType}`;
+	const url = `${DataApiBaseURL}/file/upload/return/file/name/${businessType}`;
 	// 请求
 	return request
 		.upload(url, formData, (progressEvent) => {
@@ -52,5 +57,34 @@ export const uploadFormData = async (
 				message: "上传错误",
 				description: response.data.message,
 			});
+		});
+};
+
+/**
+ * 查询文件临时访问地址
+ */
+export const getFileTemporaryUrl = async (
+	businessType: string,
+	fileName: string,
+): Promise<string> => {
+	// 初始化
+	const request = new Request<string>();
+	// 地址
+	const url = `${DataApiBaseURL}/file/get/file/temporary/url/${businessType}/${fileName}/${ImageDuration}`;
+	// 发起GET请求并处理响应
+	return request
+		.get(url)
+		.then((response) => {
+			if (response.data.code === SuccessRequestCode) {
+				return response.data.data ?? FailImage;
+			}
+			showErrorNotification({
+				message: "查询文件临时访问地址错误",
+				description: response.data.message,
+			});
+			return FailImage;
+		})
+		.catch(() => {
+			return FailImage;
 		});
 };

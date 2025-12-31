@@ -17,8 +17,6 @@
     <description>数据库ORM模块</description>
 
     <properties>
-        <!-- 数据连接池 -->
-        <druid.version>1.2.27</druid.version>
         <!-- 实体 -->
         <java-bean.version>0.0.1</java-bean.version>
     </properties>
@@ -40,7 +38,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
         </dependency>
 
         <!-- 连接池Web监控页面需要 -->
@@ -50,7 +47,12 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- seata 分布式事务 -->
+        <!--
+            seata 分布式事务
+            注意点：
+                1、会报错因为没有引用protostuff、fury但这两个是用来做json格式化有Jackson即可，可以忽略警告；
+                2、数据库读写分离连接要分开即使是127.0.0.1、localhost也需要分开，如果同链接同地址，读写分离会导致写链接因为主链接先注入，读链接后注入，从而覆盖防火墙策略，导致不能增删改
+        -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>

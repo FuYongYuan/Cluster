@@ -58,7 +58,7 @@ public class ProjectGroupRestController {
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
             HttpServletRequest request,
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = projectGroupServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
@@ -84,7 +84,7 @@ public class ProjectGroupRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<ProjectGroupDTO> getById(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException {
         return new ResultMessage<>(ProjectGroupDTO.toDTO(projectGroupServiceImpl.getById(id)));
     }
@@ -131,8 +131,8 @@ public class ProjectGroupRestController {
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
     public ResultMessage<PageImpl<ProjectGroupDTO>> queryByManagerIdAndProjectGroupNameAndState(
             HttpServletRequest request,
-            @PathVariable(value = "currentPage") int currentPage,
-            @PathVariable(value = "eachPageSize") int eachPageSize,
+            @PathVariable int currentPage,
+            @PathVariable int eachPageSize,
             @RequestParam(value = "projectGroupName", required = false) String projectGroupName,
             @RequestParam(value = "state", required = false) Byte state
     ) throws BusinessException {

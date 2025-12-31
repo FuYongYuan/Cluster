@@ -7,7 +7,7 @@ export type JwtDTO = {
 	// 名称
 	managerName?: string;
 	// 头像
-	headImgUrl?: string;
+	avatar?: string;
 	// jwtToken
 	jwtToken: string;
 	// 失效时间

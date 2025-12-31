@@ -22,7 +22,7 @@ export const FailImage = `${DataImagePNG}iVBORw0KGgoAAAANSUhEUgAAAMIAAADDCAYAAAD
 /**
  * 用户头像图片
  */
-export const BusinessTypeUserHeadImage = "user-head-image";
+export const BusinessTypeUserHeadImage = "head-image";
 /**
  * 数据模型
  */
@@ -36,7 +36,7 @@ export const LocalStorageAccount = "Account";
 /**
  * 头像
  */
-export const LocalStorageHeadImgUrl = "HeadImgUrl";
+export const LocalStorageAvatar = "Avatar";
 /**
  * 管理员名称
  */
@@ -96,3 +96,9 @@ export const MessageApiBaseURL = ApiBaseURL + "/message";
  * 项目构建模块基础地址
  */
 export const BuilderApiBaseURL = ApiBaseURL + "/builder";
+
+//----------------------------------------------------------------------------------------------------------------------默认设置
+/**
+ * 图片有效期
+ */
+export const ImageDuration = 60;

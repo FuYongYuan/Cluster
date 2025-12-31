@@ -53,7 +53,7 @@ public class NoticeRestController {
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
             HttpServletRequest request,
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = noticeServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
@@ -79,7 +79,7 @@ public class NoticeRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<NoticeDTO> getById(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException {
         return new ResultMessage<>(NoticeDTO.toDTO(noticeServiceImpl.getById(id)));
     }

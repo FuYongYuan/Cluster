@@ -1,10 +1,10 @@
 1.从 https://github.com/apache/rocketmq-dashboard 拉取最新的控制台代码，编译并且将jar放在rocketmq根目录下。
 
-2.rocketmq根目录下运行 docker build -t rocketmq-dashboard:2.0.1-SNAPSHOT . ；
+2.rocketmq根目录下运行 docker build -t rocketmq-dashboard:2.1.0 . ；
 
 3.新建目录
 ./rocketmq/broker/conf/broker.conf 文件
-./rocketmq/broker/store 空
+./rocketmq/broker/store
 ./rocketmq/broker/logs 空
 ./rocketmq/namesrv/logs 空
 ./rocketmq/proxy/logs 空
@@ -21,10 +21,13 @@ rocketmq_broker：
 rocketmq_namesrv：
 	The Name Server boot success. serializeType=JSON, address 0.0.0.0:9876
 
+
+
 6.rocketmq根目录下运行 docker compose up -d rocketmq-dashboard
 
 
-
+或者单独运行
+docker run -d --name rocketmq-dashboard -e "JAVA_OPTS=-Drocketmq.namesrv.addr=host.docker.internal:9876" -p 10900:8082 -t apacherocketmq/rocketmq-dashboard:2.1.0
 
 
 rocketmq-dashboard 在 broker.conf 中 ip 是 127.0.0.1 的情况下不可用

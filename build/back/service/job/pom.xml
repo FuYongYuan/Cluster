@@ -16,7 +16,7 @@
     <description>xxl-job定时任务模块</description>
 
     <properties>
-        <xxljob.version>3.1.2-SNAPSHOT</xxljob.version>
+        <xxljob.version>3.3.2-SNAPSHOT</xxljob.version>
         <!-- 公共模块 -->
         <common.version>0.0.1</common.version>
     </properties>

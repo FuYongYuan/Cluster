@@ -61,8 +61,8 @@ public class RoleRestController {
     )
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
     public ResultMessage<PageImpl<RoleDTO>> queryPageByRoleNameAndState(
-            @PathVariable(value = "currentPage") int currentPage,
-            @PathVariable(value = "eachPageSize") int eachPageSize,
+            @PathVariable int currentPage,
+            @PathVariable int eachPageSize,
             @RequestParam(value = "pageSort", required = false) String pageSort,
             @RequestParam(value = "roleName", required = false) String roleName,
             @RequestParam(value = "state", required = false) Byte state
@@ -93,7 +93,7 @@ public class RoleRestController {
     @DeleteMapping(value = "/delete/{ids}")
     public ResultMessage<Integer> delete(
             HttpServletRequest request,
-            @PathVariable("ids") String ids
+            @PathVariable String ids
     ) throws BusinessException {
         ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
         int i = roleServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
@@ -119,7 +119,7 @@ public class RoleRestController {
     )
     @GetMapping(value = "/get/{id}")
     public ResultMessage<RoleDTO> getById(
-            @PathVariable("id") Long id
+            @PathVariable Long id
     ) throws BusinessException {
         return new ResultMessage<>(RoleDTO.toDTO(roleServiceImpl.getById(id)));
     }
@@ -176,7 +176,7 @@ public class RoleRestController {
     )
     @GetMapping(value = "/query/manager/have/role/{managerId}")
     public ResultMessage<List<RoleDTO>> queryManagerHaveRoleByManagerId(
-            @PathVariable("managerId") Long managerId
+            @PathVariable Long managerId
     ) throws BusinessException {
         return new ResultMessage<>(RoleDTO.toDTO(roleServiceImpl.queryManagerHaveRoleByManagerId(managerId)));
     }

@@ -1,9 +1,9 @@
 services:
   rocketmq-dashboard:
-    image: rocketmq-dashboard:2.0.1-SNAPSHOT
+    image: apacherocketmq/rocketmq-dashboard:2.1.0
     container_name: dashboard
     ports:
-      - 10900:8080
+      - 10900:8082
     environment:
       - JAVA_OPTS=-Drocketmq.config.namesrvAddrs=namesrv:9876
     networks:

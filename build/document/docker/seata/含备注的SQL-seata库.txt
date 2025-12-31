@@ -17,6 +17,8 @@
 
 -- -------------------------------- The script used when storeMode is 'db' --------------------------------
 -- the table to store GlobalSession data
+drop table global_table;
+
 CREATE TABLE IF NOT EXISTS `global_table`
 (
     `xid`                       VARCHAR(128) NOT NULL COMMENT '全局事务ID',
@@ -31,12 +33,14 @@ CREATE TABLE IF NOT EXISTS `global_table`
     `gmt_create`                DATETIME COMMENT '记录创建时间',
     `gmt_modified`              DATETIME COMMENT '记录最后修改时间',
     PRIMARY KEY (`xid`),
-    KEY `idx_status_gmt_modified` (`status`, `gmt_modified`),
+    KEY `idx_status_gmt_modified` (`status` , `gmt_modified`),
     KEY `idx_transaction_id` (`transaction_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT '全局事务表';
 
 -- the table to store BranchSession data
+drop table branch_table;
+
 CREATE TABLE IF NOT EXISTS `branch_table`
 (
     `branch_id`         BIGINT       NOT NULL COMMENT '分支事务ID',
@@ -56,6 +60,8 @@ CREATE TABLE IF NOT EXISTS `branch_table`
   DEFAULT CHARSET = utf8mb4 COMMENT '分支事务表';
 
 -- the table to store lock data
+drop table lock_table;
+
 CREATE TABLE IF NOT EXISTS `lock_table`
 (
     `row_key`        VARCHAR(128) NOT NULL COMMENT '行锁键',
@@ -75,6 +81,8 @@ CREATE TABLE IF NOT EXISTS `lock_table`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT '锁记录表';
 
+drop table distributed_lock;
+
 CREATE TABLE IF NOT EXISTS `distributed_lock`
 (
     `lock_key`   CHAR(20)    NOT NULL COMMENT '锁键',
@@ -84,11 +92,18 @@ CREATE TABLE IF NOT EXISTS `distributed_lock`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT '分布式锁表';
 
-INSERT INTO `distributed_lock` (lock_key, lock_value, expire)
-VALUES ('AsyncCommitting', ' ', 0);
-INSERT INTO `distributed_lock` (lock_key, lock_value, expire)
-VALUES ('RetryCommitting', ' ', 0);
-INSERT INTO `distributed_lock` (lock_key, lock_value, expire)
-VALUES ('RetryRollbacking', ' ', 0);
-INSERT INTO `distributed_lock` (lock_key, lock_value, expire)
-VALUES ('TxTimeoutCheck', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('AsyncCommitting', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('RetryCommitting', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('RetryRollbacking', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('TxTimeoutCheck', ' ', 0);
+
+drop table vgroup_table;
+
+CREATE TABLE IF NOT EXISTS `vgroup_table`
+(
+    `vGroup`    VARCHAR(255) COMMENT 'v组',
+    `namespace` VARCHAR(255) COMMENT '命名空间',
+    `cluster`   VARCHAR(255) COMMENT '集群',
+    UNIQUE KEY `idx_vgroup_namespace_cluster` (`vGroup`,`namespace`,`cluster`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT 'v组表';

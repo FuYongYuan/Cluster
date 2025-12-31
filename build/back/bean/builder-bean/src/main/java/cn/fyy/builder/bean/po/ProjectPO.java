@@ -102,10 +102,10 @@ public class ProjectPO implements Serializable {
     private Byte isRedis;
 
     /**
-     * 是否使用MinIO文件服务器;（0.否、1.是）
+     * 是否使用RustFS文件服务器;（0.否、1.是）
      */
-    @Column(name = "is_minio")
-    private Byte isMinio;
+    @Column(name = "is_rustfs")
+    private Byte isRustfs;
 
     /**
      * 是否使用Mail能力;（0.否、1.是）

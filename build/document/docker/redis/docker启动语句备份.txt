@@ -1,1 +1,1 @@
-docker run -d --name redis-7.4.4 -p 6379:6379 redis:7.4.4 --appendonly yes --requirepass 'fyyain77'
+docker run -d --name redis-8.4.0 -p 6379:6379 redis:8.4.0 --appendonly yes --requirepass 'fyyain77'

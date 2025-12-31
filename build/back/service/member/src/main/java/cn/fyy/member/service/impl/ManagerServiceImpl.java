@@ -9,6 +9,7 @@ import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.util.BeanUtil;
 import cn.fyy.common.util.SelectUtil;
 import cn.fyy.common.util.ServerUtil;
+import cn.fyy.database.config.data.annotation.WriteDataSource;
 import cn.fyy.member.bean.bo.ManagerBO;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
 import cn.fyy.member.bean.po.ManagerPO;
@@ -121,7 +122,6 @@ public class ManagerServiceImpl implements ManagerService {
      * @return !=null 成功，==null 失败
      */
     @Override
-    @Transactional(rollbackFor = BusinessException.class)
     public ManagerBO save(ManagerBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
@@ -212,11 +212,15 @@ public class ManagerServiceImpl implements ManagerService {
                 } else {
                     predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("state"), state));
                 }
-                query.where(predicate);
-                // 排序拼装
-                query.orderBy(SelectUtil.getSort(root, criteriaBuilder, pageSort));
-                // 生成拼装结果
-                return query.getRestriction();
+                if (query != null) {
+                    query.where(predicate);
+                    // 排序拼装
+                    query.orderBy(SelectUtil.getSort(root, criteriaBuilder, pageSort));
+                    // 生成拼装结果
+                    return query.getRestriction();
+                } else {
+                    return predicate;
+                }
             };
             // 分页信息
             Pageable pageable = PageRequest.of(currentPage, eachPageSize);
@@ -401,7 +405,8 @@ public class ManagerServiceImpl implements ManagerService {
      * @throws BusinessException 错误
      */
     @Override
-    @Transactional
+    @WriteDataSource
+    @Transactional(rollbackFor = BusinessException.class)
     public ManagerBO getByAccountAndLoginPassword(String account, String loginPassword) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
@@ -446,7 +451,7 @@ public class ManagerServiceImpl implements ManagerService {
      * @throws BusinessException 错误
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BusinessException.class)
     public ResultMessage<Long> saveReturnDTO(ManagerInternalDTO dto, String authentication) throws BusinessException {
         try {
             String encryptString = dto.getAccount() + dto.getLoginPassword();

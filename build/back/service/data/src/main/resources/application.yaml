@@ -25,8 +25,8 @@ spring:
       - nacos:jwt-${spring.profiles.active}.yaml?group=system
       # redis 配置
       - nacos:redis-${spring.profiles.active}.yaml?group=system
-      # minio配置
-      - nacos:minio-${spring.profiles.active}.yaml?group=system
+      # rustfs配置
+      - nacos:rustfs-${spring.profiles.active}.yaml?group=system
   cloud:
     nacos:
       # 注册中心
