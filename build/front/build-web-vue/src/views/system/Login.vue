@@ -166,6 +166,28 @@ export default defineComponent({
 				message.success("登录成功");
 				localStorage.setItem(LocalStorageAccount, result.account);
 				if (
+					result.managerName !== undefined &&
+					result.managerName !== null &&
+					result.managerName !== ""
+				) {
+					localStorage.setItem(LocalStorageManagerName, result.managerName);
+				} else {
+					localStorage.setItem(LocalStorageManagerName, result.account);
+				}
+				// 缓存准备，后面请求需要用
+				localStorage.setItem(LocalStorageJwtToken, result.jwtToken);
+				localStorage.setItem(
+					LocalStorageInvalidDate,
+					result.invalidDate.toString(),
+				);
+				// 获取菜单
+				const menuList = await queryHaveMenu();
+				localStorage.setItem(
+					LocalStorageAccountMenuList,
+					JSON.stringify(menuList),
+				);
+				// 获取头像
+				if (
 					result.avatar !== undefined &&
 					result.avatar !== null &&
 					result.avatar !== ""
@@ -178,26 +200,6 @@ export default defineComponent({
 				} else {
 					localStorage.setItem(LocalStorageAvatar, FailImage);
 				}
-				if (
-					result.managerName !== undefined &&
-					result.managerName !== null &&
-					result.managerName !== ""
-				) {
-					localStorage.setItem(LocalStorageManagerName, result.managerName);
-				} else {
-					localStorage.setItem(LocalStorageManagerName, result.account);
-				}
-				localStorage.setItem(LocalStorageJwtToken, result.jwtToken);
-				localStorage.setItem(
-					LocalStorageInvalidDate,
-					result.invalidDate.toString(),
-				);
-
-				const menuList = await queryHaveMenu();
-				localStorage.setItem(
-					LocalStorageAccountMenuList,
-					JSON.stringify(menuList),
-				);
 
 				// 获取登录成功后要跳转的路由。
 				const toPath = decodeURIComponent("/");
