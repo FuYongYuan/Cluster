@@ -1,7 +1,4 @@
-# FYY 项目群说明文档---版本升级中
-#
-# rustfs存储时候报错
-# 分布式事务报错
+# FYY 项目群说明文档
 
 ## 目录结构说明
 
@@ -96,3 +93,10 @@
 > -Dskywalking.agent.service_name=build::gateway \
 > -Dskywalking.collector.backend_service=127.0.0.1:11800 \
 > -Dskywalking.logging.level=WARN
+
+---
+### 当前版本可能会出现但不影响使用的警告
+
+1. 注册中心中seata被多次注册，可忽略；
+2. 分布式事务执行是会爆出protostuff、fury找不到类的错误，与jackson同属于转换json时使用，有jackson即可，可忽略；
+3. 事务可能会超过最大的数值，可忽略；
