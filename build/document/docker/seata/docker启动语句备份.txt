@@ -18,26 +18,8 @@ docker run -d \
         -v ./replace/seata-server-entrypoint.sh:/seata-server-entrypoint.sh \
 	apache/seata-server:2.5.0.jdk21
 
-# 2、替换根目录下的 seata-server-entrypoint.sh 文件
 
-# 3、替换 /seata-server/classes/org/apache/seata/server/Server.class 文件
-
-# 4、重启服务
-
-
-
-
-
-# 后台管理
-docker run -d --name seata-naming-server-2.5.0.jdk21 \
-        -p 8081:8081 \
-        -v ./seata-naming-server/resources/application.yml:/seata-naming-server/resources/application.yml \
-        apache/seata-naming-server:2.5.0.jdk21
-
-
-
-
-
+2.4.0版本后不推荐在使用控制台，直接接入nacos等注册中心中做统一管理
 
 
 # 修改 Server 类
