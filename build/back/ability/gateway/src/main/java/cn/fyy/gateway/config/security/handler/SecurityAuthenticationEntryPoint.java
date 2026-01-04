@@ -37,7 +37,6 @@ public class SecurityAuthenticationEntryPoint implements ServerAuthenticationEnt
                 ex.getStackTrace()[0].getLineNumber(),
                 ex.getMessage()
         );
-        ex.printStackTrace();
 
         return Mono.defer(() -> Mono.just(exchange.getResponse()).flatMap(response -> {
             ObjectMapper mapper = new ObjectMapper();
