@@ -4,7 +4,7 @@
 
 3.新建目录
 ./rocketmq/broker/conf/broker.conf 文件
-./rocketmq/broker/store
+./rocketmq/broker/store 空
 ./rocketmq/broker/logs 空
 ./rocketmq/namesrv/logs 空
 ./rocketmq/proxy/logs 空

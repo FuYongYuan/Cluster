@@ -14,6 +14,8 @@ docker-compose up -d
 -Dskywalking.collector.backend_service=127.0.0.1:11800
 -Dskywalking.logging.level=WARN
 
+
 logging.level是为了降噪
+
 
 如果UI无法使用则在确定skywalking-oap正常后重新启动即可
