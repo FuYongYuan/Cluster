@@ -95,7 +95,7 @@ end
 
 database "MySQL" as MySQL
 database "Redis" as Redis
-database "MinIO" as MinIO
+database "RustFS" as RustFS
 database "ElasticSearch" as ElasticSearch
 
 

@@ -264,7 +264,7 @@ public class ProjectPO implements Serializable {
         if (!Objects.equals(isRedis, that.isRedis)) {
             return false;
         }
-        if (!Objects.equals(isMinio, that.isMinio)) {
+        if (!Objects.equals(isRustfs, that.isRustfs)) {
             return false;
         }
         if (!Objects.equals(isMail, that.isMail)) {
@@ -336,7 +336,7 @@ public class ProjectPO implements Serializable {
         result = 31 * result + (isDeleteBo != null ? isDeleteBo.hashCode() : 0);
         result = 31 * result + (isBasisMethod != null ? isBasisMethod.hashCode() : 0);
         result = 31 * result + (isRedis != null ? isRedis.hashCode() : 0);
-        result = 31 * result + (isMinio != null ? isMinio.hashCode() : 0);
+        result = 31 * result + (isRustfs != null ? isRustfs.hashCode() : 0);
         result = 31 * result + (isMail != null ? isMail.hashCode() : 0);
         result = 31 * result + (isDispose != null ? isDispose.hashCode() : 0);
         result = 31 * result + (isEncrypt != null ? isEncrypt.hashCode() : 0);

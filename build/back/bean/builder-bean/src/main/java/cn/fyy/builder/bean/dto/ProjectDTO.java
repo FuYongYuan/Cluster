@@ -103,10 +103,10 @@ public class ProjectDTO implements Serializable {
     private Byte isRedis;
 
     /**
-     * 是否使用MinIO文件服务器;（0.否、1.是）
+     * 是否使用RustFS文件服务器;（0.否、1.是）
      */
-    @Schema(name = "isMinio", description = "是否使用MinIO文件服务器;（0.否、1.是）", type = "Byte")
-    private Byte isMinio;
+    @Schema(name = "isRustfs", description = "是否使用RustFS文件服务器;（0.否、1.是）", type = "Byte")
+    private Byte isRustfs;
 
     /**
      * 是否使用Mail能力;（0.否、1.是）
@@ -239,7 +239,7 @@ public class ProjectDTO implements Serializable {
                     .isDeleteBo(bo.getIsDeleteBo())
                     .isBasisMethod(bo.getIsBasisMethod())
                     .isRedis(bo.getIsRedis())
-                    .isMinio(bo.getIsMinio())
+                    .isRustfs(bo.getIsRustfs())
                     .isMail(bo.getIsMail())
                     .isDispose(bo.getIsDispose())
                     .isEncrypt(bo.getIsEncrypt())
@@ -313,7 +313,7 @@ public class ProjectDTO implements Serializable {
                     .isDeleteBo(dto.getIsDeleteBo())
                     .isBasisMethod(dto.getIsBasisMethod())
                     .isRedis(dto.getIsRedis())
-                    .isMinio(dto.getIsMinio())
+                    .isRustfs(dto.getIsRustfs())
                     .isMail(dto.getIsMail())
                     .isDispose(dto.getIsDispose())
                     .isEncrypt(dto.getIsEncrypt())
@@ -371,7 +371,7 @@ public class ProjectDTO implements Serializable {
                 .isDeleteBo(this.getIsDeleteBo())
                 .isBasisMethod(this.getIsBasisMethod())
                 .isRedis(this.getIsRedis())
-                .isMinio(this.getIsMinio())
+                .isRustfs(this.getIsRustfs())
                 .isMail(this.getIsMail())
                 .isDispose(this.getIsDispose())
                 .isEncrypt(this.getIsEncrypt())

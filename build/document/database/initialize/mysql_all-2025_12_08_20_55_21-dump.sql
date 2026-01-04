@@ -279,7 +279,7 @@ CREATE TABLE `project` (
   `is_delete_bo` tinyint DEFAULT NULL COMMENT '是否去除BO层;（0.否、1.是）',
   `is_basis_method` tinyint DEFAULT NULL COMMENT '是否生成基础方法;（0.否、1.是）',
   `is_redis` tinyint DEFAULT NULL COMMENT '是否使用Redis缓存;（0.否、1.是）',
-  `is_minio` tinyint DEFAULT NULL COMMENT '是否使用MinIO文件服务器;（0.否、1.是）',
+  `is_Rustfs` tinyint DEFAULT NULL COMMENT '是否使用RustFS文件服务器;（0.否、1.是）',
   `is_mail` tinyint DEFAULT NULL COMMENT '是否使用Mail能力;（0.否、1.是）',
   `is_dispose` tinyint DEFAULT NULL COMMENT '是否使用内容处理能力;（0.否、1.是）',
   `is_encrypt` tinyint DEFAULT NULL COMMENT '是否使用加密能力;（0.否、1.是）',

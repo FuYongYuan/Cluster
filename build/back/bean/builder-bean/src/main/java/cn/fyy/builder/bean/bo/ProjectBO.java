@@ -87,9 +87,9 @@ public class ProjectBO implements Serializable {
     private Byte isRedis;
 
     /**
-     * 是否使用MinIO文件服务器;（0.否、1.是）
+     * 是否使用RustFS文件服务器;（0.否、1.是）
      */
-    private Byte isMinio;
+    private Byte isRustfs;
 
     /**
      * 是否使用Mail能力;（0.否、1.是）
@@ -202,7 +202,7 @@ public class ProjectBO implements Serializable {
                     .isDeleteBo(po.getIsDeleteBo())
                     .isBasisMethod(po.getIsBasisMethod())
                     .isRedis(po.getIsRedis())
-                    .isMinio(po.getIsMinio())
+                    .isRustfs(po.getIsRustfs())
                     .isMail(po.getIsMail())
                     .isDispose(po.getIsDispose())
                     .isEncrypt(po.getIsEncrypt())
@@ -276,7 +276,7 @@ public class ProjectBO implements Serializable {
                     .isDeleteBo(bo.getIsDeleteBo())
                     .isBasisMethod(bo.getIsBasisMethod())
                     .isRedis(bo.getIsRedis())
-                    .isMinio(bo.getIsMinio())
+                    .isRustfs(bo.getIsRustfs())
                     .isMail(bo.getIsMail())
                     .isDispose(bo.getIsDispose())
                     .isEncrypt(bo.getIsEncrypt())
@@ -334,7 +334,7 @@ public class ProjectBO implements Serializable {
                 .isDeleteBo(this.getIsDeleteBo())
                 .isBasisMethod(this.getIsBasisMethod())
                 .isRedis(this.getIsRedis())
-                .isMinio(this.getIsMinio())
+                .isRustfs(this.getIsRustfs())
                 .isMail(this.getIsMail())
                 .isDispose(this.getIsDispose())
                 .isEncrypt(this.getIsEncrypt())
