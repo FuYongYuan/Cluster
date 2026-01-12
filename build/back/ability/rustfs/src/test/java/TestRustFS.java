@@ -34,7 +34,8 @@ public class TestRustFS {
     }
 
     private static void update() throws Exception {
-        try (S3Client s3Client = S3Client.builder()
+        try (
+                S3Client s3Client = S3Client.builder()
                 // 配置文件服务器地址
                 .endpointOverride(URI.create("http://" + inet + ":10000"))
                 // 可写死，RustFS 不校验 地区，我选择中国北部1
@@ -50,7 +51,8 @@ public class TestRustFS {
                 )
                 // 关键配置！RustFS 需启用 Path-Style
                 .forcePathStyle(true)
-                .build()) {
+                .build()
+        ) {
 
             System.out.println("初始化");
 
@@ -84,7 +86,8 @@ public class TestRustFS {
 
     private static void get() throws Exception {
         PresignedGetObjectRequest presignedRequest;
-        try (S3Presigner presigner = S3Presigner.builder()
+        try (
+                S3Presigner presigner = S3Presigner.builder()
                 .endpointOverride(URI.create("http://" + inet + ":10000"))
                 .region(Region.CN_NORTH_1)
                 .credentialsProvider(
@@ -95,7 +98,8 @@ public class TestRustFS {
                                 )
                         )
                 )
-                .build()) {
+                .build()
+        ) {
 
             GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                     .bucket(bucketName)

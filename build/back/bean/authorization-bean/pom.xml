@@ -17,7 +17,8 @@
     <description>权限模块-数据模型</description>
 
     <properties>
-
+        <!-- 实体 -->
+        <java-bean.version>0.0.1</java-bean.version>
     </properties>
 
     <dependencies>
@@ -25,6 +26,13 @@
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
+        </dependency>
+
+        <!-- 实体 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>common-bean</artifactId>
+            <version>${java-bean.version}</version>
         </dependency>
     </dependencies>
 </project>

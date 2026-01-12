@@ -26,8 +26,8 @@ public class NoticePO implements Serializable {
      * 主键ID
      */
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     /**

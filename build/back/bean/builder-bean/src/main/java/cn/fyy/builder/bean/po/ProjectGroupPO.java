@@ -25,8 +25,8 @@ public class ProjectGroupPO implements Serializable {
      * 主键ID
      */
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     /**
@@ -56,8 +56,8 @@ public class ProjectGroupPO implements Serializable {
     /**
      * 项目群版本号
      */
-    @Column(name = "version", length = 100)
-    private String version;
+    @Column(name = "group_version", length = 100)
+    private String groupVersion;
 
     /**
      * JDK版本
@@ -180,7 +180,7 @@ public class ProjectGroupPO implements Serializable {
         if (!Objects.equals(artifactId, that.artifactId)) {
             return false;
         }
-        if (!Objects.equals(version, that.version)) {
+        if (!Objects.equals(groupVersion, that.groupVersion)) {
             return false;
         }
         if (!Objects.equals(jdkVersion, that.jdkVersion)) {
@@ -238,7 +238,7 @@ public class ProjectGroupPO implements Serializable {
         result = 31 * result + (projectGroupName != null ? projectGroupName.hashCode() : 0);
         result = 31 * result + (groupId != null ? groupId.hashCode() : 0);
         result = 31 * result + (artifactId != null ? artifactId.hashCode() : 0);
-        result = 31 * result + (version != null ? version.hashCode() : 0);
+        result = 31 * result + (groupVersion != null ? groupVersion.hashCode() : 0);
         result = 31 * result + (jdkVersion != null ? jdkVersion.hashCode() : 0);
         result = 31 * result + (springCloudVersion != null ? springCloudVersion.hashCode() : 0);
         result = 31 * result + (springCloudAlibabaVersion != null ? springCloudAlibabaVersion.hashCode() : 0);

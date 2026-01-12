@@ -1,4 +1,12 @@
-import encrypt.AesUtil;
+import snowflake.ClockBackwardStrategy;
+import snowflake.SnowflakeIdConstant;
+import snowflake.SnowflakeIdGenerator;
+import snowflake.SnowflakeIdInfo;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -38,10 +46,81 @@ public class Test {
 
 //        System.out.println(Md5Util.encode("1"));
 
-        System.out.println(AesUtil.encryptString("appsetr", "EBS"));
-        System.out.println(AesUtil.decryptString("10C615A9E5E6125181F01B6D6F1AD340", "EBS"));
+//        System.out.println(AesUtil.encryptString("appsetr", "EBS"));
+//        System.out.println(AesUtil.decryptString("10C615A9E5E6125181F01B6D6F1AD340", "EBS"));
+//
+//        System.out.println(AesUtil.encryptString("weblogic123", "EBS"));
+//        System.out.println(AesUtil.decryptString("A8C709E60599D0610492B079C724674B", "EBS"));
 
-        System.out.println(AesUtil.encryptString("weblogic123", "EBS"));
-        System.out.println(AesUtil.decryptString("A8C709E60599D0610492B079C724674B", "EBS"));
+        // 创建ID生成器实例
+        SnowflakeIdGenerator authorizationGenerator = new SnowflakeIdGenerator(200L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator builderGenerator = new SnowflakeIdGenerator(700L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator capabilityGenerator = new SnowflakeIdGenerator(300L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator dictionaryGenerator = new SnowflakeIdGenerator(400L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator memberGenerator = new SnowflakeIdGenerator(100L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator messageGenerator = new SnowflakeIdGenerator(600L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
+
+        List<Long> l = new ArrayList<>();
+
+        // 生成多个ID
+        for (int i = 0; i < 16; i++) {
+            long id = authorizationGenerator.nextId();
+            System.out.println("authorizationGenerator Generated ID: " + id);
+            l.add(id);
+        }
+
+        for (int i = 0; i < 9; i++) {
+            long id = capabilityGenerator.nextId();
+            System.out.println("capabilityGenerator Generated ID: " + id);
+            l.add(id);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            long id = dictionaryGenerator.nextId();
+            System.out.println("dictionaryGenerator Generated ID: " + id);
+            l.add(id);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            long id = memberGenerator.nextId();
+            System.out.println("memberGenerator Generated ID: " + id);
+            l.add(id);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            long id = messageGenerator.nextId();
+            System.out.println("messageGenerator Generated ID: " + id);
+            l.add(id);
+        }
+
+        // 使用示例
+        boolean hasDup = hasDuplicates(l);
+        System.out.println("是否有重复: " + hasDup);
+
+
+        //输出
+        for (Long id : l){
+            SnowflakeIdInfo info = SnowflakeIdInfo.parseId(id);
+            System.out.println(info.getCreateTime());
+            System.out.println(info.getDataCenterId());
+            System.out.println(info.getWorkerId());
+            System.out.println(info.getSequence());
+        }
+
+
     }
+
+    // 验证是否有重复
+    public static boolean hasDuplicates(List<Long> list) {
+        Set<Long> seen = new HashSet<>();
+        for (Long item : list) {
+            if (!seen.add(item)) {
+                System.out.println("发现重复ID: " + item);
+                return true;  // 发现重复立即返回
+            }
+        }
+        return false;  // 无重复
+    }
+
+
 }

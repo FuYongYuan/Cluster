@@ -331,8 +331,8 @@ envoy-metric:
     alsHTTPAnalysis: ${SW_ENVOY_METRIC_ALS_HTTP_ANALYSIS:""}
     alsTCPAnalysis: ${SW_ENVOY_METRIC_ALS_TCP_ANALYSIS:""}
     # `k8sServiceNameRule` allows you to customize the service name in ALS via Kubernetes metadata,
-    # the available variables are `pod`, `service`, f.e., you can use `${service.metadata.name}-${pod.metadata.labels.version}`
-    # to append the version number to the service name.
+    # the available variables are `pod`, `service`, f.e., you can use `${service.metadata.name}-${pod.metadata.labels.groupVersion}`
+    # to append the groupVersion number to the service name.
     # Be careful, when using environment variables to pass this configuration, use single quotes(`''`) to avoid it being evaluated by the shell.
     k8sServiceNameRule: ${K8S_SERVICE_NAME_RULE:"${pod.metadata.labels.(service.istio.io/canonical-name)}.${pod.metadata.namespace}"}
     istioServiceNameRule: ${ISTIO_SERVICE_NAME_RULE:"${serviceEntry.metadata.name}.${serviceEntry.metadata.namespace}"}

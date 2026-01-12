@@ -5,6 +5,7 @@ import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.util.BeanUtil;
+import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
 import cn.fyy.message.bean.bo.NoticeBO;
 import cn.fyy.message.bean.po.NoticePO;
 import cn.fyy.message.repository.NoticeRepository;
@@ -26,6 +27,11 @@ import java.util.stream.Stream;
 @Slf4j
 @Service
 public class NoticeServiceImpl implements NoticeService {
+    /**
+     * 雪花算法
+     */
+    @Resource
+    private SnowflakeIdUtil snowflakeIdUtil;
 
     /**
      * 公告 Repository
@@ -72,6 +78,7 @@ public class NoticeServiceImpl implements NoticeService {
             LocalDateTime localDateTime = LocalDateTime.now();
             NoticePO po;
             if (bo.getId() == null) {
+                bo.setId(snowflakeIdUtil.getGenerator().nextId());
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
                 bo.setCreateTime(localDateTime);

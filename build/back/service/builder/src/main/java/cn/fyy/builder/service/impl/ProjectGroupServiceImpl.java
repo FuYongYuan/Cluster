@@ -12,6 +12,7 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.util.BeanUtil;
 import cn.fyy.common.util.SelectUtil;
+import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
 import cn.fyy.dictionary.bean.dto.ParameterDTO;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.Predicate;
@@ -37,6 +38,11 @@ import java.util.stream.Stream;
 @Slf4j
 @Service
 public class ProjectGroupServiceImpl implements ProjectGroupService {
+    /**
+     * 雪花算法
+     */
+    @Resource
+    private SnowflakeIdUtil snowflakeIdUtil;
 
     /**
      * 项目群 Repository
@@ -98,6 +104,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
             LocalDateTime localDateTime = LocalDateTime.now();
             ProjectGroupPO po;
             if (bo.getId() == null) {
+                bo.setId(snowflakeIdUtil.getGenerator().nextId());
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
                 bo.setCreateTime(localDateTime);

@@ -13,6 +13,7 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.util.BeanUtil;
 import cn.fyy.common.util.SelectUtil;
+import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,11 @@ import java.util.stream.Stream;
 @Slf4j
 @Service
 public class RoleServiceImpl implements RoleService {
+    /**
+     * 雪花算法
+     */
+    @Resource
+    private SnowflakeIdUtil snowflakeIdUtil;
 
     /**
      * 角色 Repository
@@ -105,6 +111,7 @@ public class RoleServiceImpl implements RoleService {
             LocalDateTime localDateTime = LocalDateTime.now();
             RolePO po;
             if (bo.getId() == null) {
+                bo.setId(snowflakeIdUtil.getGenerator().nextId());
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
                 bo.setCreateTime(localDateTime);

@@ -57,8 +57,8 @@ public class ProjectGroupDTO implements Serializable {
     /**
      * 项目群版本号
      */
-    @Schema(name = "version", description = "项目群版本号", type = "String")
-    private String version;
+    @Schema(name = "groupVersion", description = "项目群版本号", type = "String")
+    private String groupVersion;
 
     /**
      * JDK版本
@@ -171,7 +171,7 @@ public class ProjectGroupDTO implements Serializable {
                     .projectGroupName(bo.getProjectGroupName())
                     .groupId(bo.getGroupId())
                     .artifactId(bo.getArtifactId())
-                    .version(bo.getVersion())
+                    .groupVersion(bo.getGroupVersion())
                     .jdkVersion(bo.getJdkVersion())
                     .springCloudVersion(bo.getSpringCloudVersion())
                     .springCloudAlibabaVersion(bo.getSpringCloudAlibabaVersion())
@@ -235,7 +235,7 @@ public class ProjectGroupDTO implements Serializable {
                     .projectGroupName(dto.getProjectGroupName())
                     .groupId(dto.getGroupId())
                     .artifactId(dto.getArtifactId())
-                    .version(dto.getVersion())
+                    .groupVersion(dto.getGroupVersion())
                     .jdkVersion(dto.getJdkVersion())
                     .springCloudVersion(dto.getSpringCloudVersion())
                     .springCloudAlibabaVersion(dto.getSpringCloudAlibabaVersion())
@@ -283,7 +283,7 @@ public class ProjectGroupDTO implements Serializable {
                 .projectGroupName(this.getProjectGroupName())
                 .groupId(this.getGroupId())
                 .artifactId(this.getArtifactId())
-                .version(this.getVersion())
+                .groupVersion(this.getGroupVersion())
                 .jdkVersion(this.getJdkVersion())
                 .springCloudVersion(this.getSpringCloudVersion())
                 .springCloudAlibabaVersion(this.getSpringCloudAlibabaVersion())

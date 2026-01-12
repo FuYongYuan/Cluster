@@ -49,7 +49,7 @@ public class ProjectGroupBO implements Serializable {
     /**
      * 项目群版本号
      */
-    private String version;
+    private String groupVersion;
 
     /**
      * JDK版本
@@ -144,7 +144,7 @@ public class ProjectGroupBO implements Serializable {
                     .projectGroupName(po.getProjectGroupName())
                     .groupId(po.getGroupId())
                     .artifactId(po.getArtifactId())
-                    .version(po.getVersion())
+                    .groupVersion(po.getGroupVersion())
                     .jdkVersion(po.getJdkVersion())
                     .springCloudVersion(po.getSpringCloudVersion())
                     .springCloudAlibabaVersion(po.getSpringCloudAlibabaVersion())
@@ -208,7 +208,7 @@ public class ProjectGroupBO implements Serializable {
                     .projectGroupName(bo.getProjectGroupName())
                     .groupId(bo.getGroupId())
                     .artifactId(bo.getArtifactId())
-                    .version(bo.getVersion())
+                    .groupVersion(bo.getGroupVersion())
                     .jdkVersion(bo.getJdkVersion())
                     .springCloudVersion(bo.getSpringCloudVersion())
                     .springCloudAlibabaVersion(bo.getSpringCloudAlibabaVersion())
@@ -256,7 +256,7 @@ public class ProjectGroupBO implements Serializable {
                 .projectGroupName(this.getProjectGroupName())
                 .groupId(this.getGroupId())
                 .artifactId(this.getArtifactId())
-                .version(this.getVersion())
+                .groupVersion(this.getGroupVersion())
                 .jdkVersion(this.getJdkVersion())
                 .springCloudVersion(this.getSpringCloudVersion())
                 .springCloudAlibabaVersion(this.getSpringCloudAlibabaVersion())

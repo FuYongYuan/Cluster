@@ -67,7 +67,7 @@ public class XxlJobConfig {
                <dependency>
                   <groupId>org.springframework.cloud</groupId>
                   <artifactId>spring-cloud-commons</artifactId>
-                  <version>${version}</version>
+                  <groupVersion>${groupVersion}</groupVersion>
               </dependency>
 
            2、配置文件，或者容器启动变量

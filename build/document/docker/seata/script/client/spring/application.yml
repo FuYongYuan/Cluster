@@ -114,7 +114,7 @@ seata:
       group: SEATA_GROUP
       context-path:
       data-id: seata.properties
-      ##1.The following configuration is for the open source version of Nacos
+      ##1.The following configuration is for the open source groupVersion of Nacos
       username:
       password:
       ##2.The following configuration is for the MSE Nacos on aliyun
@@ -167,7 +167,7 @@ seata:
       namespace:
       context-path:
       client-application: ${spring.application.name}
-      ##1.The following configuration is for the open source version of Nacos
+      ##1.The following configuration is for the open source groupVersion of Nacos
       username:
       password:
       ##2.The following configuration is for the MSE Nacos on aliyun

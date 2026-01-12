@@ -6,6 +6,7 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.util.BeanUtil;
 import cn.fyy.common.util.SelectUtil;
+import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
 import cn.fyy.dictionary.bean.bo.ParameterBO;
 import cn.fyy.dictionary.bean.bo.ParameterExcel;
 import cn.fyy.dictionary.bean.po.ParameterPO;
@@ -40,6 +41,11 @@ import java.util.stream.Stream;
 @Slf4j
 @Service
 public class ParameterServiceImpl implements ParameterService {
+    /**
+     * 雪花算法
+     */
+    @Resource
+    private SnowflakeIdUtil snowflakeIdUtil;
 
     //------------------------------------------------------------------------------------------------------------------Repository
     /**
@@ -94,6 +100,7 @@ public class ParameterServiceImpl implements ParameterService {
             LocalDateTime localDateTime = LocalDateTime.now();
             ParameterPO po;
             if (bo.getId() == null) {
+                bo.setId(snowflakeIdUtil.getGenerator().nextId());
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
                 bo.setCreateTime(localDateTime);

@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `seata_state_machine_def`
     `app_name`         VARCHAR(32)  NOT NULL COMMENT 'application name',
     `type`             VARCHAR(20)  COMMENT 'state language type',
     `comment_`         VARCHAR(255) COMMENT 'comment',
-    `ver`              VARCHAR(16)  NOT NULL COMMENT 'version',
+    `ver`              VARCHAR(16)  NOT NULL COMMENT 'groupVersion',
     `gmt_create`       DATETIME(3)  NOT NULL COMMENT 'create time',
     `status`           VARCHAR(2)   NOT NULL COMMENT 'status(AC:active|IN:inactive)',
     `content`          TEXT COMMENT 'content',

@@ -23,7 +23,7 @@ create table if not exists seata_state_machine_def
     app_name         varchar(32)  not null comment 'application name',
     type             varchar(20) comment 'state language type',
     comment_         varchar(255) comment 'comment',
-    ver              varchar(16)  not null comment 'version',
+    ver              varchar(16)  not null comment 'groupVersion',
     gmt_create       timestamp(3)    not null comment 'create time',
     status           varchar(2)   not null comment 'status(AC:active|IN:inactive)',
     content          clob comment 'content',

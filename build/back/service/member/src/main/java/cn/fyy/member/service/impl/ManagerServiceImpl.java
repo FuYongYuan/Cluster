@@ -10,6 +10,7 @@ import cn.fyy.common.util.BeanUtil;
 import cn.fyy.common.util.SelectUtil;
 import cn.fyy.common.util.ServerUtil;
 import cn.fyy.database.config.data.annotation.WriteDataSource;
+import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
 import cn.fyy.member.bean.bo.ManagerBO;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
 import cn.fyy.member.bean.po.ManagerPO;
@@ -50,6 +51,11 @@ import java.util.stream.Stream;
 @Slf4j
 @Service
 public class ManagerServiceImpl implements ManagerService {
+    /**
+     * 雪花算法
+     */
+    @Resource
+    private SnowflakeIdUtil snowflakeIdUtil;
 
     /**
      * 管理员 Repository
@@ -127,6 +133,7 @@ public class ManagerServiceImpl implements ManagerService {
             LocalDateTime localDateTime = LocalDateTime.now();
             ManagerPO po;
             if (bo.getId() == null) {
+                bo.setId(snowflakeIdUtil.getGenerator().nextId());
                 bo.setCreatorId(currentManagerId);
                 bo.setCreatorName(currentManagerName);
                 bo.setCreateTime(localDateTime);
