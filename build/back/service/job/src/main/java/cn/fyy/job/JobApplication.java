@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * xxljob定时任务模块
+ * xxl job 定时任务模块
  *
  * @author fuyy
  */
@@ -19,16 +19,16 @@ import org.springframework.context.annotation.ComponentScan;
         "cn.fyy.job",
         // 公共模块
         "cn.fyy.common",
-        // jwt模块
+        // jwt 模块
         "cn.fyy.jwt",
-        // redis模块
+        // redis 模块
         "cn.fyy.redis",
 })
 // 启用 nacos 注册中心、配置中心
 @EnableDiscoveryClient
 // 动态加载配置文件
 @RefreshScope
-// 启用feign
+// 启用 feign
 @EnableFeignClients
 public class JobApplication {
 

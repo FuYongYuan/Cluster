@@ -23,7 +23,7 @@ import java.util.List;
 public class ManagerBO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
@@ -68,7 +68,7 @@ public class ManagerBO implements Serializable {
     private String loginPassword;
 
     /**
-     * 最后尝试请求IP
+     * 最后尝试请求 IP
      */
     private String lastAttemptLoginRequestIp;
 
@@ -83,12 +83,12 @@ public class ManagerBO implements Serializable {
     private Integer attemptLoginNumber;
 
     /**
-     * 常用请求IP
+     * 常用请求 IP
      */
     private String requestIp;
 
     /**
-     * 当前请求IP
+     * 当前请求 IP
      */
     private String currentRequestIp;
 
@@ -103,7 +103,7 @@ public class ManagerBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -118,7 +118,7 @@ public class ManagerBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 
@@ -133,7 +133,7 @@ public class ManagerBO implements Serializable {
     private Byte state;
 
     /**
-     * 角色ID集合
+     * 角色 ID 集合
      */
     private String roleIds;
 

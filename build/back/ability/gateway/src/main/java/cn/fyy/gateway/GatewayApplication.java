@@ -15,13 +15,13 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
         scanBasePackages = {
                 // 本模块
                 "cn.fyy.gateway",
-                // redis模块
+                // redis 模块
                 "cn.fyy.redis",
-                // jwt模块
+                // jwt 模块
                 "cn.fyy.jwt",
         }
 )
-// 启用 gateway 网关，nacos 注册中心、配置中心
+// 启用 gateway 网关， Nacos 注册中心、配置中心
 @EnableDiscoveryClient
 // 动态加载配置文件
 @RefreshScope

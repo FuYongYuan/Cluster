@@ -22,12 +22,12 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjectColumnBO implements Serializable {
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
     /**
-     * 项目表ID
+     * 项目表 ID
      */
     private Long projectTableId;
 
@@ -57,7 +57,7 @@ public class ProjectColumnBO implements Serializable {
     private String dataType;
 
     /**
-     * 数据长度varchar
+     * 数据长度 varchar
      */
     private Integer characterMaximumLength;
 
@@ -77,7 +77,7 @@ public class ProjectColumnBO implements Serializable {
     private String columnType;
 
     /**
-     * PRI为主键，MUL为外键
+     * PRI 为主键，MUL 为外键
      */
     private String columnKey;
 
@@ -97,7 +97,7 @@ public class ProjectColumnBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -112,7 +112,7 @@ public class ProjectColumnBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 

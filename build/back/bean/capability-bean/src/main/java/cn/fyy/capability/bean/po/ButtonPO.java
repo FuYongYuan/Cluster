@@ -1,10 +1,13 @@
 package cn.fyy.capability.bean.po;
 
-import jakarta.persistence.*;
+import cn.fyy.jpa.bean.po.BasePO;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -17,18 +20,10 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@Builder(toBuilder = true)
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ButtonPO implements Serializable {
-
-    /**
-     * 主键ID
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class ButtonPO extends BasePO implements Serializable {
 
     /**
      * 名称
@@ -49,7 +44,7 @@ public class ButtonPO implements Serializable {
     private String onClick;
 
     /**
-     * 菜单ID
+     * 菜单 ID
      */
     @Column(name = "menu_id")
     private Long menuId;
@@ -66,116 +61,36 @@ public class ButtonPO implements Serializable {
     @Column(name = "remark", length = 1000)
     private String remark;
 
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 创建人ID
-     */
-    @Column(name = "creator_id")
-    private Long creatorId;
-
-    /**
-     * 创建人名称
-     */
-    @Column(name = "creator_name", length = 50)
-    private String creatorName;
-
-    /**
-     * 更新时间
-     */
-    @Column(name = "update_time")
-    private LocalDateTime updateTime;
-
-    /**
-     * 更新人ID
-     */
-    @Column(name = "updater_id")
-    private Long updaterId;
-
-    /**
-     * 更新人名称
-     */
-    @Column(name = "updater_name", length = 50)
-    private String updaterName;
-
-    /**
-     * 状态;（0.正常、99.删除）
-     */
-    @Column(name = "state")
-    private Byte state;
-
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof ButtonPO that)) {
             return false;
         }
+        if (!super.equals(that)) {
+            return false;
+        }
 
-        if (!id.equals(that.id)) {
-            return false;
-        }
-        if (!Objects.equals(buttonName, that.buttonName)) {
-            return false;
-        }
-        if (!Objects.equals(buttonSign, that.buttonSign)) {
-            return false;
-        }
-        if (!Objects.equals(onClick, that.onClick)) {
-            return false;
-        }
-        if (!Objects.equals(menuId, that.menuId)) {
-            return false;
-        }
-        if (!Objects.equals(buttonOrder, that.buttonOrder)) {
-            return false;
-        }
-        if (!Objects.equals(remark, that.remark)) {
-            return false;
-        }
-        if (!Objects.equals(createTime, that.createTime)) {
-            return false;
-        }
-        if (!Objects.equals(creatorId, that.creatorId)) {
-            return false;
-        }
-        if (!Objects.equals(creatorName, that.creatorName)) {
-            return false;
-        }
-        if (!Objects.equals(updateTime, that.updateTime)) {
-            return false;
-        }
-        if (!Objects.equals(updaterId, that.updaterId)) {
-            return false;
-        }
-        if (!Objects.equals(updaterName, that.updaterName)) {
-            return false;
-        }
-        return Objects.equals(state, that.state);
+        return Objects.equals(buttonName, that.buttonName) &&
+                Objects.equals(buttonSign, that.buttonSign) &&
+                Objects.equals(onClick, that.onClick) &&
+                Objects.equals(menuId, that.menuId) &&
+                Objects.equals(buttonOrder, that.buttonOrder) &&
+                Objects.equals(remark, that.remark);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (buttonName != null ? buttonName.hashCode() : 0);
-        result = 31 * result + (buttonSign != null ? buttonSign.hashCode() : 0);
-        result = 31 * result + (onClick != null ? onClick.hashCode() : 0);
-        result = 31 * result + (menuId != null ? menuId.hashCode() : 0);
-        result = 31 * result + (buttonOrder != null ? buttonOrder.hashCode() : 0);
-        result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
-        result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);
-        result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
-        result = 31 * result + (updaterId != null ? updaterId.hashCode() : 0);
-        result = 31 * result + (updaterName != null ? updaterName.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(buttonName);
+        result = 31 * result + Objects.hashCode(buttonSign);
+        result = 31 * result + Objects.hashCode(onClick);
+        result = 31 * result + Objects.hashCode(menuId);
+        result = 31 * result + Objects.hashCode(buttonOrder);
+        result = 31 * result + Objects.hashCode(remark);
         return result;
     }
 }

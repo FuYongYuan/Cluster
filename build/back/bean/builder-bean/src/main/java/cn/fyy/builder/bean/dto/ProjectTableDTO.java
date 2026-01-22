@@ -25,21 +25,21 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjectTableDTO implements Serializable {
     /**
-     * 主键ID
+     * 主键 ID
      */
-    @Schema(name = "id", description = "主键ID", type = "Long", nullable = false)
+    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
     private Long id;
 
     /**
-     * 项目群ID
+     * 项目群 ID
      */
-    @Schema(name = "projectGroupId", description = "项目群ID", type = "Long")
+    @Schema(name = "projectGroupId", description = "项目群 ID", type = "Long")
     private Long projectGroupId;
 
     /**
-     * 数据库设计文件ID
+     * 数据库设计文件 ID
      */
-    @Schema(name = "dataBaseFileId", description = "数据库设计文件ID", type = "Long")
+    @Schema(name = "dataBaseFileId", description = "数据库设计文件 ID", type = "Long")
     private Long dataBaseFileId;
 
     /**
@@ -68,9 +68,9 @@ public class ProjectTableDTO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    @Schema(name = "creatorId", description = "创建人 ID", type = "Long")
     private Long creatorId;
 
     /**
@@ -87,9 +87,9 @@ public class ProjectTableDTO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    @Schema(name = "updaterId", description = "修改人 ID", type = "Long")
     private Long updaterId;
 
     /**

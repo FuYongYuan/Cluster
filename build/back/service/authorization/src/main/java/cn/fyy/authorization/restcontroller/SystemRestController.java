@@ -43,8 +43,8 @@ public class SystemRestController {
     /**
      * 根据电子邮箱、账号、密码登录管理员
      *
-     * @param account               账号account
-     * @param loginPassword         密码passwordMD5
+     * @param account               账号 account
+     * @param loginPassword         密码 passwordMD5
      * @param imageCaptcha          图形验证码
      * @param imageCaptchaCacheName 图形验证码缓存名称
      * @return ManagerDTO 管理员对象
@@ -74,8 +74,8 @@ public class SystemRestController {
      * 根据电子邮箱、账号、密码创建新管理员
      *
      * @param mail                 电子邮箱
-     * @param account              账号account
-     * @param loginPassword        密码passwordMD5
+     * @param account              账号 account
+     * @param loginPassword        密码 passwordMD5
      * @param mailCaptcha          邮件验证码
      * @param mailCaptchaCacheName 邮件验证码缓存名称
      * @return ManagerDTO 管理员对象
@@ -107,7 +107,7 @@ public class SystemRestController {
      * 根据电子邮箱、密码找回密码
      *
      * @param mail                 电子邮箱
-     * @param loginPassword        密码passwordMD5
+     * @param loginPassword        密码 passwordMD5
      * @param mailCaptcha          邮件验证码
      * @param mailCaptchaCacheName 邮件验证码缓存名称
      * @return ManagerDTO 管理员对象
@@ -154,13 +154,13 @@ public class SystemRestController {
     }
 
     /**
-     * 根据JWTToken查询拥有的菜单权限
+     * 根据 JWTToken 查询拥有的菜单权限
      *
      * @return 管理员拥有的菜单
      * @throws BusinessException 错误
      */
     @Operation(
-            summary = "根据JWTToken查询拥有的菜单权限", description = "MenuDTO 管理员拥有的菜单"
+            summary = "根据 JWTToken 查询拥有的菜单权限", description = "MenuDTO 管理员拥有的菜单"
     )
     @GetMapping(value = "/query/manager/have/menu")
     public ResultMessage<List<MenuDTO>> queryManagerHaveMenuByJwtToken(

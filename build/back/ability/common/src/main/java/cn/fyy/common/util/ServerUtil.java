@@ -21,7 +21,7 @@ public class ServerUtil {
     private static final String UNKNOWN = "unknown";
 
     /**
-     * 获取访问者ip地址
+     * 获取访问者 IP 地址
      */
     public static String getVisitorIp(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
@@ -38,7 +38,7 @@ public class ServerUtil {
     }
 
     /**
-     * 获取本机IP
+     * 获取本机 IP
      */
     public static String getHostIp() {
         try {
@@ -49,7 +49,7 @@ public class ServerUtil {
                 while (addresses.hasMoreElements()) {
                     InetAddress ip = addresses.nextElement();
                     if (ip instanceof Inet4Address
-                            && !ip.isLoopbackAddress() //loopback地址即本机地址，IPv4的loopback范围是127.0.0.0 ~ 127.255.255.255
+                            && !ip.isLoopbackAddress() // loopback 地址即本机地址，IPv4 的 loopback 范围是 127.0.0.0 ~ 127.255.255.255
                             && !ip.getHostAddress().contains(":")) {
                         return ip.getHostAddress();
                     }

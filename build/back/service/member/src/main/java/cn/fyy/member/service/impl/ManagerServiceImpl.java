@@ -2,15 +2,15 @@ package cn.fyy.member.service.impl;
 
 import cn.fyy.authorization.bean.dto.RoleDTO;
 import cn.fyy.common.bean.ao.ConstantParameter;
-import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.util.BeanUtil;
-import cn.fyy.common.util.SelectUtil;
 import cn.fyy.common.util.ServerUtil;
 import cn.fyy.database.config.data.annotation.WriteDataSource;
+import cn.fyy.database.util.BeanUtil;
+import cn.fyy.database.util.SelectUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
+import cn.fyy.jpa.bean.ao.DataState;
 import cn.fyy.member.bean.bo.ManagerBO;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
 import cn.fyy.member.bean.po.ManagerPO;
@@ -79,7 +79,7 @@ public class ManagerServiceImpl implements ManagerService {
     //------------------------------------------------------------------------------------------------------------------越鉴权处理加密信息
 
     /**
-     * aes加密信息
+     * aes 加密信息
      */
     @Resource
     private AesProperties aesProperties;
@@ -90,7 +90,7 @@ public class ManagerServiceImpl implements ManagerService {
      * 新增或者修改
      *
      * @param bo                 管理员 BO
-     * @param currentManagerId   当前登陆人id
+     * @param currentManagerId   当前登陆人 ID
      * @param currentManagerName 当前登陆人名称
      * @return !=null 成功，==null 失败
      */
@@ -122,7 +122,7 @@ public class ManagerServiceImpl implements ManagerService {
      * 新增或者修改
      *
      * @param bo                 表_管理员 BO
-     * @param currentManagerId   当前登陆人id
+     * @param currentManagerId   当前登陆人 ID
      * @param currentManagerName 当前登陆人名称
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -133,23 +133,23 @@ public class ManagerServiceImpl implements ManagerService {
             LocalDateTime localDateTime = LocalDateTime.now();
             ManagerPO po;
             if (bo.getId() == null) {
-                bo.setId(snowflakeIdUtil.getGenerator().nextId());
-                bo.setCreatorId(currentManagerId);
-                bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(localDateTime);
-                bo.setUpdaterId(currentManagerId);
-                bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(localDateTime);
-                bo.setState(DataState.NORMAL.getCode());
-                po = ManagerBO.toPO(bo);
+                po = BeanUtil.insert(
+                        ManagerBO.toPO(bo),
+                        snowflakeIdUtil.getGenerator().nextId(),
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             } else {
                 ManagerPO old = managerRepository.getReferenceById(bo.getId());
-                // 根据getNull复制其中的非空或包含空字段
+                // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
-                old.setUpdaterId(currentManagerId);
-                old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(localDateTime);
-                po = old;
+                po = BeanUtil.update(
+                        old,
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             }
 
             return ManagerBO.toBO(managerRepository.save(po));
@@ -244,7 +244,7 @@ public class ManagerServiceImpl implements ManagerService {
      * 根据主键删除 主键可以是多个用,分割
      *
      * @param ids                删除主键 可以使用,分割
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
@@ -272,7 +272,7 @@ public class ManagerServiceImpl implements ManagerService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 管理员
      */
     @Override
@@ -295,7 +295,7 @@ public class ManagerServiceImpl implements ManagerService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 管理员
      */
     @Override
@@ -308,11 +308,11 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     /**
-     * 根据id保存状态
+     * 根据 id 保存状态
      *
-     * @param ids                需要修改的管理员id
+     * @param ids                需要修改的管理员 id
      * @param state              状态
-     * @param currentManagerId   当前登陆管理员id
+     * @param currentManagerId   当前登陆管理员 id
      * @param currentManagerName 当前登陆管理员名称
      * @return 受影响行数
      */
@@ -322,7 +322,7 @@ public class ManagerServiceImpl implements ManagerService {
         try {
             return managerRepository.updateStateByIds(state, currentManagerId, currentManagerName, LocalDateTime.now(), Stream.of(ids.split(",")).map(Long::valueOf).toList());
         } catch (Exception e) {
-            throw new BusinessException("根据id保存状态错误", e);
+            throw new BusinessException("根据 id 保存状态错误", e);
         }
     }
 
@@ -450,11 +450,11 @@ public class ManagerServiceImpl implements ManagerService {
 
 
     /**
-     * 保存并返回DTO
+     * 保存并返回 DTO
      *
-     * @param dto            需要保存的DTO
+     * @param dto            需要保存的 DTO
      * @param authentication 鉴权串
-     * @return 管理员DTO
+     * @return 管理员 DTO
      * @throws BusinessException 错误
      */
     @Override

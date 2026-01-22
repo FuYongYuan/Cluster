@@ -22,7 +22,7 @@
     </properties>
 
     <dependencies>
-        <!-- Hibernate注解包 -->
+        <!-- Hibernate 注解包 -->
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -31,7 +31,7 @@
         <!-- 实体 -->
         <dependency>
             <groupId>cn.fyy.build</groupId>
-            <artifactId>common-bean</artifactId>
+            <artifactId>jpa-bean</artifactId>
             <version>${java-bean.version}</version>
         </dependency>
     </dependencies>

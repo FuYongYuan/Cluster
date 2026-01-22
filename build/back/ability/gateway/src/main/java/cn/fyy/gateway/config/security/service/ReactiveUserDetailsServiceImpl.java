@@ -40,7 +40,7 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
     /**
      * 验证用户是否登录
      *
-     * @param managerId 用户ID-来自于JwtAuthConverter中createAuthentication方法
+     * @param managerId 用户 ID - 来自于 JwtAuthConverter 中 createAuthentication 方法
      * @return 登录用户信息
      * @throws UsernameNotFoundException 错误
      */
@@ -65,8 +65,8 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
                                 .build();
                         return Mono.just(ud);
                     }
-                    return Mono.error(new UsernameNotFoundException("管理员ID不存在: " + managerId));
+                    return Mono.error(new UsernameNotFoundException("管理员 ID 不存在: " + managerId));
                 })
-                .doOnError(e -> log.error("查询管理员ID的用户详细信息时出错: {}", managerId, e));
+                .doOnError(e -> log.error("查询管理员 ID 的用户详细信息时出错: {}", managerId, e));
     }
 }

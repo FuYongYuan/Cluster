@@ -85,7 +85,7 @@ public class SendMailServiceImpl implements SendMailService {
      * @param cc       抄送邮箱
      * @param bcc      密送邮箱
      * @param filePath 附件地址
-     * @return String家庭经济管理系统
+     * @return String 是否成功
      */
     @Override
     public boolean sendMail(String theme, String content, String[] to, String[] cc, String[] bcc, String filePath) {
@@ -96,11 +96,11 @@ public class SendMailServiceImpl implements SendMailService {
             mimeMessageHelper.setFrom(mailProperties.getUsername());
             // 邮件接收人
             mimeMessageHelper.setTo(to);
-            // 邮件抄送（校验 cc 是否为 null）
+            // 邮件抄送（ 校验 cc 是否为 null ）
             if (cc != null && cc.length > 0) {
                 mimeMessageHelper.setCc(cc);
             }
-            // 邮件密送（校验 bcc 是否为 null）
+            // 邮件密送（ 校验 bcc 是否为 null ）
             if (bcc != null && bcc.length > 0) {
                 mimeMessageHelper.setBcc(bcc);
             }
@@ -108,7 +108,7 @@ public class SendMailServiceImpl implements SendMailService {
             mimeMessageHelper.setSubject(theme);
             // 邮件内容
             mimeMessageHelper.setText(content, true);
-            // 邮件附件（校验 filePath 是否为 null）
+            // 邮件附件（ 校验 filePath 是否为 null ）
             if (filePath != null && !filePath.isEmpty()) {
                 FileSystemResource file = new FileSystemResource(new File(filePath));
                 if (file.exists()) {

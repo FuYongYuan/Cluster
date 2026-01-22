@@ -18,11 +18,11 @@ import org.springframework.context.annotation.ComponentScan;
         "cn.fyy.data",
         // 公共模块
         "cn.fyy.common",
-        // jwt模块
+        // jwt 模块
         "cn.fyy.jwt",
-        // redis模块
+        // redis 模块
         "cn.fyy.redis",
-        // RustFS模块
+        // RustFS 模块
         "cn.fyy.rustfs",
 })
 // 启用 nacos 注册中心、配置中心

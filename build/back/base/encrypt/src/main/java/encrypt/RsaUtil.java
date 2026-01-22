@@ -10,7 +10,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 /**
- * RSA加密
+ * RSA 加密
  *
  * @author fyy
  */
@@ -55,7 +55,7 @@ public class RsaUtil {
     }
 
     /**
-     * 使用getRSAPublicKey得到公钥,返回类型为PublicKey
+     * 使用 getRsaPublicKey 得到公钥,返回类型为 PublicKey
      *
      * @param publicKey base64
      */
@@ -72,7 +72,7 @@ public class RsaUtil {
     }
 
     /**
-     * 使用getRsaPrivateKey得到公钥,返回类型为PrivateKey
+     * 使用 getRsaPrivateKey 得到公钥,返回类型为 PrivateKey
      *
      * @param privateKey base64
      */

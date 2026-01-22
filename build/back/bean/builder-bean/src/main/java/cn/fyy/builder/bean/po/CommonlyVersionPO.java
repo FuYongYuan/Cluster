@@ -1,10 +1,13 @@
 package cn.fyy.builder.bean.po;
 
-import jakarta.persistence.*;
+import cn.fyy.jpa.bean.po.BasePO;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -17,26 +20,19 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@Builder(toBuilder = true)
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommonlyVersionPO implements Serializable {
-    /**
-     * 主键ID
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class CommonlyVersionPO extends BasePO implements Serializable {
 
     /**
-     * 管理员ID
+     * 管理员 ID
      */
     @Column(name = "manager_id")
     private Long managerId;
 
     /**
-     * JDK版本
+     * JDK 版本
      */
     @Column(name = "jdk_version", length = 100)
     private String jdkVersion;
@@ -60,151 +56,65 @@ public class CommonlyVersionPO implements Serializable {
     private String springBootVersion;
 
     /**
-     * API文档组件
+     * API 文档组件
      */
     @Column(name = "open_api_version", length = 100)
     private String openApiVersion;
 
     /**
-     * 简化对象lombok
+     * 简化对象 lombok
      */
     @Column(name = "lombok_version", length = 100)
     private String lombokVersion;
 
     /**
-     * 数据访问监控Druid
+     * 数据访问监控 Druid
      */
     @Column(name = "druid_version", length = 100)
     private String druidVersion;
 
     /**
-     * 数据库框架MyBatis版本
+     * 数据库框架 MyBatis 版本
      */
     @Column(name = "mybatis_version", length = 100)
     private String mybatisVersion;
 
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 创建人ID
-     */
-    @Column(name = "creator_id")
-    private Long creatorId;
-
-    /**
-     * 创建人名称
-     */
-    @Column(name = "creator_name", length = 50)
-    private String creatorName;
-
-    /**
-     * 更新时间
-     */
-    @Column(name = "update_time")
-    private LocalDateTime updateTime;
-
-    /**
-     * 更新人ID
-     */
-    @Column(name = "updater_id")
-    private Long updaterId;
-
-    /**
-     * 更新人名称
-     */
-    @Column(name = "updater_name", length = 50)
-    private String updaterName;
-
-    /**
-     * 状态;（0.正常、99.删除）
-     */
-    @Column(name = "state")
-    private Byte state;
-
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof CommonlyVersionPO that)) {
             return false;
         }
+        if (!super.equals(that)) {
+            return false;
+        }
 
-        if (!id.equals(that.id)) {
-            return false;
-        }
-        if (!Objects.equals(managerId, that.managerId)) {
-            return false;
-        }
-        if (!Objects.equals(jdkVersion, that.jdkVersion)) {
-            return false;
-        }
-        if (!Objects.equals(springCloudVersion, that.springCloudVersion)) {
-            return false;
-        }
-        if (!Objects.equals(springCloudAlibabaVersion, that.springCloudAlibabaVersion)) {
-            return false;
-        }
-        if (!Objects.equals(springBootVersion, that.springBootVersion)) {
-            return false;
-        }
-        if (!Objects.equals(openApiVersion, that.openApiVersion)) {
-            return false;
-        }
-        if (!Objects.equals(lombokVersion, that.lombokVersion)) {
-            return false;
-        }
-        if (!Objects.equals(druidVersion, that.druidVersion)) {
-            return false;
-        }
-        if (!Objects.equals(mybatisVersion, that.mybatisVersion)) {
-            return false;
-        }
-        if (!Objects.equals(createTime, that.createTime)) {
-            return false;
-        }
-        if (!Objects.equals(creatorId, that.creatorId)) {
-            return false;
-        }
-        if (!Objects.equals(creatorName, that.creatorName)) {
-            return false;
-        }
-        if (!Objects.equals(updateTime, that.updateTime)) {
-            return false;
-        }
-        if (!Objects.equals(updaterId, that.updaterId)) {
-            return false;
-        }
-        if (!Objects.equals(updaterName, that.updaterName)) {
-            return false;
-        }
-        return Objects.equals(state, that.state);
+        return Objects.equals(managerId, that.managerId) &&
+                Objects.equals(jdkVersion, that.jdkVersion) &&
+                Objects.equals(springCloudVersion, that.springCloudVersion) &&
+                Objects.equals(springCloudAlibabaVersion, that.springCloudAlibabaVersion) &&
+                Objects.equals(springBootVersion, that.springBootVersion) &&
+                Objects.equals(openApiVersion, that.openApiVersion) &&
+                Objects.equals(lombokVersion, that.lombokVersion) &&
+                Objects.equals(druidVersion, that.druidVersion) &&
+                Objects.equals(mybatisVersion, that.mybatisVersion);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (managerId != null ? managerId.hashCode() : 0);
-        result = 31 * result + (jdkVersion != null ? jdkVersion.hashCode() : 0);
-        result = 31 * result + (springCloudVersion != null ? springCloudVersion.hashCode() : 0);
-        result = 31 * result + (springCloudAlibabaVersion != null ? springCloudAlibabaVersion.hashCode() : 0);
-        result = 31 * result + (springBootVersion != null ? springBootVersion.hashCode() : 0);
-        result = 31 * result + (openApiVersion != null ? openApiVersion.hashCode() : 0);
-        result = 31 * result + (lombokVersion != null ? lombokVersion.hashCode() : 0);
-        result = 31 * result + (druidVersion != null ? druidVersion.hashCode() : 0);
-        result = 31 * result + (mybatisVersion != null ? mybatisVersion.hashCode() : 0);
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
-        result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);
-        result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
-        result = 31 * result + (updaterId != null ? updaterId.hashCode() : 0);
-        result = 31 * result + (updaterName != null ? updaterName.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(managerId);
+        result = 31 * result + Objects.hashCode(jdkVersion);
+        result = 31 * result + Objects.hashCode(springCloudVersion);
+        result = 31 * result + Objects.hashCode(springCloudAlibabaVersion);
+        result = 31 * result + Objects.hashCode(springBootVersion);
+        result = 31 * result + Objects.hashCode(openApiVersion);
+        result = 31 * result + Objects.hashCode(lombokVersion);
+        result = 31 * result + Objects.hashCode(druidVersion);
+        result = 31 * result + Objects.hashCode(mybatisVersion);
         return result;
     }
 }

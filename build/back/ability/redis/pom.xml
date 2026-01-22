@@ -14,7 +14,7 @@
     <artifactId>redis</artifactId>
     <version>0.0.1</version>
     <name>redis</name>
-    <description>redis模块</description>
+    <description>redis 模块</description>
 
     <properties>
 

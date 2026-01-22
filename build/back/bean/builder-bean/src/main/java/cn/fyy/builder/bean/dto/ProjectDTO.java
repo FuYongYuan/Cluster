@@ -25,15 +25,15 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjectDTO implements Serializable {
     /**
-     * 主键ID
+     * 主键 ID
      */
-    @Schema(name = "id", description = "主键ID", type = "Long", nullable = false)
+    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
     private Long id;
 
     /**
-     * 项目群ID
+     * 项目群 ID
      */
-    @Schema(name = "projectGroupId", description = "项目群ID", type = "Long")
+    @Schema(name = "projectGroupId", description = "项目群 ID", type = "Long")
     private Long projectGroupId;
 
     /**
@@ -43,9 +43,9 @@ public class ProjectDTO implements Serializable {
     private String projectName;
 
     /**
-     * 工件ID
+     * 工件 ID
      */
-    @Schema(name = "artifactId", description = "工件ID", type = "String")
+    @Schema(name = "artifactId", description = "工件 ID", type = "String")
     private String artifactId;
 
     /**
@@ -79,15 +79,15 @@ public class ProjectDTO implements Serializable {
     private String projectPort;
 
     /**
-     * 是否Service创建接口;（0.否、1.是）
+     * 是否 Service 创建接口;（0.否、1.是）
      */
-    @Schema(name = "isServiceInterface", description = "是否Service创建接口;（0.否、1.是）", type = "Byte")
+    @Schema(name = "isServiceInterface", description = "是否 Service 创建接口;（0.否、1.是）", type = "Byte")
     private Byte isServiceInterface;
 
     /**
-     * 是否去除BO层;（0.否、1.是）
+     * 是否去除 BO 层;（0.否、1.是）
      */
-    @Schema(name = "isDeleteBo", description = "是否去除BO层;（0.否、1.是）", type = "Byte")
+    @Schema(name = "isDeleteBo", description = "是否去除 BO 层;（0.否、1.是）", type = "Byte")
     private Byte isDeleteBo;
 
     /**
@@ -97,21 +97,21 @@ public class ProjectDTO implements Serializable {
     private Byte isBasisMethod;
 
     /**
-     * 是否使用Redis缓存;（0.否、1.是）
+     * 是否使用 Redis 缓存;（0.否、1.是）
      */
-    @Schema(name = "isRedis", description = "是否使用Redis缓存;（0.否、1.是）", type = "Byte")
+    @Schema(name = "isRedis", description = "是否使用 Redis 缓存;（0.否、1.是）", type = "Byte")
     private Byte isRedis;
 
     /**
-     * 是否使用RustFS文件服务器;（0.否、1.是）
+     * 是否使用 RustFS 文件服务器;（0.否、1.是）
      */
-    @Schema(name = "isRustfs", description = "是否使用RustFS文件服务器;（0.否、1.是）", type = "Byte")
+    @Schema(name = "isRustfs", description = "是否使用 RustFS 文件服务器;（0.否、1.是）", type = "Byte")
     private Byte isRustfs;
 
     /**
-     * 是否使用Mail能力;（0.否、1.是）
+     * 是否使用 Mail 能力;（0.否、1.是）
      */
-    @Schema(name = "isMail", description = "是否使用Mail能力;（0.否、1.是）", type = "Byte")
+    @Schema(name = "isMail", description = "是否使用 Mail 能力;（0.否、1.是）", type = "Byte")
     private Byte isMail;
 
     /**
@@ -127,27 +127,27 @@ public class ProjectDTO implements Serializable {
     private Byte isEncrypt;
 
     /**
-     * 是否使用Excel能力;（0.否、1.是）
+     * 是否使用 Excel 能力;（0.否、1.是）
      */
-    @Schema(name = "isExcel", description = "是否使用Excel能力;（0.否、1.是）", type = "Byte")
+    @Schema(name = "isExcel", description = "是否使用 Excel 能力;（0.否、1.是）", type = "Byte")
     private Byte isExcel;
 
     /**
-     * Druid访问路径
+     * Druid 访问路径
      */
-    @Schema(name = "druidUrl", description = "Druid访问路径", type = "String")
+    @Schema(name = "druidUrl", description = "Druid 访问路径", type = "String")
     private String druidUrl;
 
     /**
-     * Druid登录账号
+     * Druid 登录账号
      */
-    @Schema(name = "druidAccount", description = "Druid登录账号", type = "String")
+    @Schema(name = "druidAccount", description = "Druid 登录账号", type = "String")
     private String druidAccount;
 
     /**
-     * Druid登录密码
+     * Druid 登录密码
      */
-    @Schema(name = "druidPassword", description = "Druid登录密码", type = "String")
+    @Schema(name = "druidPassword", description = "Druid 登录密码", type = "String")
     private String druidPassword;
 
     /**
@@ -182,9 +182,9 @@ public class ProjectDTO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    @Schema(name = "creatorId", description = "创建人 ID", type = "Long")
     private Long creatorId;
 
     /**
@@ -201,9 +201,9 @@ public class ProjectDTO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    @Schema(name = "updaterId", description = "修改人 ID", type = "Long")
     private Long updaterId;
 
     /**

@@ -23,7 +23,7 @@ import java.util.List;
 public class NoticeBO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
@@ -53,7 +53,7 @@ public class NoticeBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -68,7 +68,7 @@ public class NoticeBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import snowflake.SnowflakeIdGenerator;
 
 /**
- * ID生成器工具类
+ * ID 生成器工具类
  *
  * @author fyy
  */
@@ -19,6 +19,9 @@ public class SnowflakeIdUtil {
     @Resource
     private SnowflakeIdProperties snowflakeIdProperties;
 
+    /**
+     * 雪花算法生成器
+     */
     @Getter
     private SnowflakeIdGenerator generator;
 

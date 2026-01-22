@@ -12,7 +12,7 @@ import cn.fyy.authorization.service.RoleService;
 import cn.fyy.authorization.service.SystemService;
 import cn.fyy.capability.bean.dto.MenuDTO;
 import cn.fyy.common.bean.ao.ConstantParameter;
-import cn.fyy.common.bean.ao.DataState;
+import cn.fyy.jpa.bean.ao.DataState;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.config.security.service.JwtTokenWebService;
@@ -88,7 +88,7 @@ public class SystemServiceImpl implements SystemService {
     private JwtTokenWebService jwtTokenWebService;
 
     /**
-     * JWT参数
+     * JWT 参数
      */
     @Resource
     private JwtProperties jwtProperties;
@@ -102,7 +102,7 @@ public class SystemServiceImpl implements SystemService {
     //------------------------------------------------------------------------------------------------------------------越鉴权处理加密信息
 
     /**
-     * aes加密信息
+     * aes 加密信息
      */
     @Resource
     private AesProperties aesProperties;
@@ -162,7 +162,7 @@ public class SystemServiceImpl implements SystemService {
      * @param loginPassword        密码
      * @param mailCaptcha          邮箱验证码
      * @param mailCaptchaCacheName 邮箱验证码缓存名称
-     * @param visitorIpAddress     访问者IP
+     * @param visitorIpAddress     访问者 IP
      * @return 管理员
      */
     @Override
@@ -264,7 +264,7 @@ public class SystemServiceImpl implements SystemService {
     /**
      * 登出
      *
-     * @param managerId 当前登陆人ID
+     * @param managerId 当前登陆人 ID
      * @return 登出结果
      * @throws BusinessException 错误
      */
@@ -279,9 +279,9 @@ public class SystemServiceImpl implements SystemService {
     }
 
     /**
-     * 根据管理员ID查询拥有的菜单权限
+     * 根据管理员 ID 查询拥有的菜单权限
      *
-     * @param managerId 当前登陆人ID
+     * @param managerId 当前登陆人 ID
      * @return 管理员拥有的菜单
      * @throws BusinessException 错误
      */
@@ -292,7 +292,7 @@ public class SystemServiceImpl implements SystemService {
             List<Long> menuList = roleMenuServiceImpl.queryMenuIdsByRoleIds(roleList);
             return menuFeignClient.queryHierarchyMenuByMenuIdList(menuList);
         } catch (Exception e) {
-            throw new BusinessException("根据管理员ID查询拥有的菜单权限", e);
+            throw new BusinessException("根据管理员 ID 查询拥有的菜单权限", e);
         }
     }
 
@@ -324,7 +324,7 @@ public class SystemServiceImpl implements SystemService {
      * 登录成功处理
      *
      * @param localDateTime    当前时间
-     * @param visitorIpAddress IP地址
+     * @param visitorIpAddress IP 地址
      * @param dto              管理员对象
      * @return 登录成功
      * @throws BusinessException 登录成功处理错误
@@ -351,7 +351,7 @@ public class SystemServiceImpl implements SystemService {
                                 .map(i -> String.valueOf(i.getId()))
                                 .toArray(String[]::new);
 
-                        // 返回token的管理员
+                        // 返回 token 的管理员
                         SecurityRedis securityRedis = SecurityRedis.builder()
                                 .managerId(dto.getId())
                                 .managerName(dto.getManagerName())
@@ -360,7 +360,7 @@ public class SystemServiceImpl implements SystemService {
                                 .authorities(roleBOList)
                                 .seconds(jwtProperties.getAccessTokenExpireTime().toMillis() / 1000)
                                 .build();
-                        // 创建SecurityUser
+                        // 创建 SecurityUser
                         SecurityUser securityUser = new SecurityUser(
                                 securityRedis.getManagerId(),
                                 securityRedis.getManagerName(),
@@ -369,7 +369,7 @@ public class SystemServiceImpl implements SystemService {
                                 AuthorityUtils.createAuthorityList(securityRedis.getAuthorities())
                         );
 
-                        // 创建token
+                        // 创建 token
                         String token = jwtTokenWebService.generateToken(
                                 jwtProperties.getIssuer(),
                                 securityRedis.getUsername(),
@@ -378,7 +378,7 @@ public class SystemServiceImpl implements SystemService {
                         );
                         securityRedis.setToken(token);
 
-                        // 失效时间，必须在入redis之前计算好，进入redis后才不会因为代码执行顺序的问题导致秒级过期问题
+                        // 失效时间，必须在入 redis 之前计算好，进入 redis 后才不会因为代码执行顺序的问题导致秒级过期问题
                         LocalDateTime invalidDate = LocalDateTimeDispose.secondsCalculate(localDateTime, Math.toIntExact(securityRedis.getSeconds()));
 
                         redisServiceImpl.set(

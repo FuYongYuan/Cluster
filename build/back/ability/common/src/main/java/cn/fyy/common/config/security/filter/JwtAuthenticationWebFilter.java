@@ -25,7 +25,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 /**
- * JWT认证过滤器
+ * JWT 认证过滤器
  *
  * @author fyy
  */
@@ -86,7 +86,7 @@ public class JwtAuthenticationWebFilter extends OncePerRequestFilter {
                 return;
             }
         }
-        // 继续调用filter链
+        // 继续调用 filter 链
         filterChain.doFilter(request, response);
     }
 

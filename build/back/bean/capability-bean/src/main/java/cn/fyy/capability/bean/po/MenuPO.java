@@ -1,10 +1,13 @@
 package cn.fyy.capability.bean.po;
 
-import jakarta.persistence.*;
+import cn.fyy.jpa.bean.po.BasePO;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -17,18 +20,10 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@Builder(toBuilder = true)
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class MenuPO implements Serializable {
-
-    /**
-     * 主键ID
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class MenuPO extends BasePO implements Serializable {
 
     /**
      * 名称
@@ -55,7 +50,7 @@ public class MenuPO implements Serializable {
     private String pageName;
 
     /**
-     * 父级ID
+     * 父级 ID
      */
     @Column(name = "parent_id", length = 32)
     private Long parentId;
@@ -84,128 +79,42 @@ public class MenuPO implements Serializable {
     @Column(name = "remark", length = 1000)
     private String remark;
 
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 创建人ID
-     */
-    @Column(name = "creator_id")
-    private Long creatorId;
-
-    /**
-     * 创建人名称
-     */
-    @Column(name = "creator_name", length = 50)
-    private String creatorName;
-
-    /**
-     * 更新时间
-     */
-    @Column(name = "update_time")
-    private LocalDateTime updateTime;
-
-    /**
-     * 更新人ID
-     */
-    @Column(name = "updater_id")
-    private Long updaterId;
-
-    /**
-     * 更新人名称
-     */
-    @Column(name = "updater_name", length = 50)
-    private String updaterName;
-
-    /**
-     * 状态;（0.正常、99.删除）
-     */
-    @Column(name = "state")
-    private Byte state;
-
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof MenuPO that)) {
             return false;
         }
+        if (!super.equals(that)) {
+            return false;
+        }
 
-        if (!id.equals(that.id)) {
-            return false;
-        }
-        if (!Objects.equals(menuName, that.menuName)) {
-            return false;
-        }
-        if (!Objects.equals(menuUrl, that.menuUrl)) {
-            return false;
-        }
-        if (!Objects.equals(menuIcon, that.menuIcon)) {
-            return false;
-        }
-        if (!Objects.equals(pageName, that.pageName)) {
-            return false;
-        }
-        if (!Objects.equals(parentId, that.parentId)) {
-            return false;
-        }
-        if (!Objects.equals(isTurn, that.isTurn)) {
-            return false;
-        }
-        if (!Objects.equals(isHome, that.isHome)) {
-            return false;
-        }
-        if (!Objects.equals(menuOrder, that.menuOrder)) {
-            return false;
-        }
-        if (!Objects.equals(remark, that.remark)) {
-            return false;
-        }
-        if (!Objects.equals(createTime, that.createTime)) {
-            return false;
-        }
-        if (!Objects.equals(creatorId, that.creatorId)) {
-            return false;
-        }
-        if (!Objects.equals(creatorName, that.creatorName)) {
-            return false;
-        }
-        if (!Objects.equals(updateTime, that.updateTime)) {
-            return false;
-        }
-        if (!Objects.equals(updaterId, that.updaterId)) {
-            return false;
-        }
-        if (!Objects.equals(updaterName, that.updaterName)) {
-            return false;
-        }
-        return Objects.equals(state, that.state);
+        return Objects.equals(menuName, that.menuName) &&
+                Objects.equals(menuUrl, that.menuUrl) &&
+                Objects.equals(menuIcon, that.menuIcon) &&
+                Objects.equals(pageName, that.pageName) &&
+                Objects.equals(parentId, that.parentId) &&
+                Objects.equals(isTurn, that.isTurn) &&
+                Objects.equals(isHome, that.isHome) &&
+                Objects.equals(menuOrder, that.menuOrder) &&
+                Objects.equals(remark, that.remark);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (menuName != null ? menuName.hashCode() : 0);
-        result = 31 * result + (menuUrl != null ? menuUrl.hashCode() : 0);
-        result = 31 * result + (menuIcon != null ? menuIcon.hashCode() : 0);
-        result = 31 * result + (pageName != null ? pageName.hashCode() : 0);
-        result = 31 * result + (parentId != null ? parentId.hashCode() : 0);
-        result = 31 * result + (isTurn != null ? isTurn.hashCode() : 0);
-        result = 31 * result + (isHome != null ? isHome.hashCode() : 0);
-        result = 31 * result + (menuOrder != null ? menuOrder.hashCode() : 0);
-        result = 31 * result + (remark != null ? remark.hashCode() : 0);
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
-        result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);
-        result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
-        result = 31 * result + (updaterId != null ? updaterId.hashCode() : 0);
-        result = 31 * result + (updaterName != null ? updaterName.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(menuName);
+        result = 31 * result + Objects.hashCode(menuUrl);
+        result = 31 * result + Objects.hashCode(menuIcon);
+        result = 31 * result + Objects.hashCode(pageName);
+        result = 31 * result + Objects.hashCode(parentId);
+        result = 31 * result + Objects.hashCode(isTurn);
+        result = 31 * result + Objects.hashCode(isHome);
+        result = 31 * result + Objects.hashCode(menuOrder);
+        result = 31 * result + Objects.hashCode(remark);
         return result;
     }
 }

@@ -13,7 +13,7 @@
     <artifactId>elasticsearch</artifactId>
     <version>0.0.1</version>
     <name>elasticsearch</name>
-    <description>Elasticsearch能力模块</description>
+    <description>Elasticsearch 能力模块</description>
 
     <properties>
         <!-- 实体 -->

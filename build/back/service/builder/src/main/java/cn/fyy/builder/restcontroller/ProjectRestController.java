@@ -50,7 +50,7 @@ public class ProjectRestController {
     @Operation(
             summary = "根据主键删除 主键可以是多个用,分割", description = "受影响行数",
             parameters = {
-                    @Parameter(name = "ids", description = "删除ID", required = true)
+                    @Parameter(name = "ids", description = "删除 ID", required = true)
             }
     )
     @DeleteMapping(value = "/delete/{ids}")
@@ -70,14 +70,14 @@ public class ProjectRestController {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 项目群对象
      * @throws BusinessException 业务错误
      */
     @Operation(
             summary = "根据主键查询", description = "TProjectDTO 项目群对象",
             parameters = {
-                    @Parameter(name = "id", description = "主键ID", required = true)
+                    @Parameter(name = "id", description = "主键 ID", required = true)
             }
     )
     @GetMapping(value = "/get/{id}")
@@ -122,7 +122,7 @@ public class ProjectRestController {
             parameters = {
                     @Parameter(name = "currentPage", description = "当前页", required = true, example = "0"),
                     @Parameter(name = "eachPageSize", description = "每页条数", required = true, example = "10"),
-                    @Parameter(name = "projectGroupId", description = "项目群ID", required = true),
+                    @Parameter(name = "projectGroupId", description = "项目群 ID", required = true),
                     @Parameter(name = "projectName", description = "项目名称"),
                     @Parameter(name = "state", description = "状态", example = "0")
             }

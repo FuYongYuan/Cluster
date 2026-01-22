@@ -18,11 +18,11 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository<ProjectPO, Long>, JpaSpecificationExecutor<ProjectPO> {
     /**
-     * 根据ids保存状态
+     * 根据 ids 保存状态
      *
-     * @param ids                主键ID(可用,分割传入多个)
+     * @param ids                主键 ID (可用,分割传入多个)
      * @param state              状态
-     * @param currentManagerId   当前登陆管理员id
+     * @param currentManagerId   当前登陆管理员 ID
      * @param currentManagerName 当前登陆管理员名称
      * @param updateTime         当前时间
      * @return 受影响行数
@@ -35,7 +35,7 @@ public interface ProjectRepository extends JpaRepository<ProjectPO, Long>, JpaSp
     /**
      * 根据名称查询项目列表
      *
-     * @param projectGroupId 项目群主键ID
+     * @param projectGroupId 项目群主键 ID
      * @param state          状态
      * @return T_Project 项目对象
      */

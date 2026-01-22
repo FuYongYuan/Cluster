@@ -23,9 +23,9 @@ import java.util.List;
 public class ParameterExcel implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
-    @ExcelField(columnName = "主键ID", order = 1)
+    @ExcelField(columnName = "主键 ID", order = 1)
     private Long id;
 
     /**

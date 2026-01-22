@@ -19,7 +19,7 @@ import java.time.Duration;
 
 public class TestRustFS {
     /**
-     * 获取本机IP地址
+     * 获取本机 IP 地址
      */
     static String inet = S3DisposeUtil.urlDispose("localhost");
 
@@ -36,22 +36,22 @@ public class TestRustFS {
     private static void update() throws Exception {
         try (
                 S3Client s3Client = S3Client.builder()
-                // 配置文件服务器地址
-                .endpointOverride(URI.create("http://" + inet + ":10000"))
-                // 可写死，RustFS 不校验 地区，我选择中国北部1
-                .region(Region.CN_NORTH_1)
-                // 创建凭证
-                .credentialsProvider(
-                        StaticCredentialsProvider.create(
-                                AwsBasicCredentials.create(
-                                        "IPBwkfeL3HnUCoqrlZWa",
-                                        "GRrD0A46f1zFMpkQundT8eWYBxsSijHcJyLEtoOU"
-                                ) //管理后台直接创建的访问密钥
+                        // 配置文件服务器地址
+                        .endpointOverride(URI.create("http://" + inet + ":10000"))
+                        // 可写死，RustFS 不校验 地区，我选择中国北部1
+                        .region(Region.CN_NORTH_1)
+                        // 创建凭证
+                        .credentialsProvider(
+                                StaticCredentialsProvider.create(
+                                        AwsBasicCredentials.create(
+                                                "IPBwkfeL3HnUCoqrlZWa",
+                                                "GRrD0A46f1zFMpkQundT8eWYBxsSijHcJyLEtoOU"
+                                        ) //管理后台直接创建的访问密钥
+                                )
                         )
-                )
-                // 关键配置！RustFS 需启用 Path-Style
-                .forcePathStyle(true)
-                .build()
+                        // 关键配置！RustFS 需启用 Path-Style
+                        .forcePathStyle(true)
+                        .build()
         ) {
 
             System.out.println("初始化");
@@ -76,7 +76,7 @@ public class TestRustFS {
                     .contentType(FileDispose.getContextType(fileName))
                     .build();
 
-            System.out.println("request结束");
+            System.out.println("request 结束");
 
             s3Client.putObject(putObjectRequest,
                     RequestBody.fromInputStream(stream, contentLength));
@@ -88,17 +88,17 @@ public class TestRustFS {
         PresignedGetObjectRequest presignedRequest;
         try (
                 S3Presigner presigner = S3Presigner.builder()
-                .endpointOverride(URI.create("http://" + inet + ":10000"))
-                .region(Region.CN_NORTH_1)
-                .credentialsProvider(
-                        StaticCredentialsProvider.create(
-                                AwsBasicCredentials.create(
-                                        "IPBwkfeL3HnUCoqrlZWa",
-                                        "GRrD0A46f1zFMpkQundT8eWYBxsSijHcJyLEtoOU"
+                        .endpointOverride(URI.create("http://" + inet + ":10000"))
+                        .region(Region.CN_NORTH_1)
+                        .credentialsProvider(
+                                StaticCredentialsProvider.create(
+                                        AwsBasicCredentials.create(
+                                                "IPBwkfeL3HnUCoqrlZWa",
+                                                "GRrD0A46f1zFMpkQundT8eWYBxsSijHcJyLEtoOU"
+                                        )
                                 )
                         )
-                )
-                .build()
+                        .build()
         ) {
 
             GetObjectRequest getObjectRequest = GetObjectRequest.builder()

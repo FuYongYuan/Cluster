@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * RustFS配置
+ * RustFS 配置
  *
  * @author fuyy
  */

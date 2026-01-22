@@ -49,7 +49,7 @@ public interface ParameterFeignClient {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 参数对象
      * @throws BusinessException 业务错误
      */

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Redis操作实现类
+ * Redis 操作实现类
  *
  * @author fyy
  */
@@ -20,13 +20,13 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RedisServiceImpl implements RedisService {
     /**
-     * RedisTemplate选择工具类
+     * RedisTemplate 选择工具类
      */
     @Resource
     private RedisTemplateSelectUtil redisTemplateSelectUtil;
 
     /**
-     * json操作类
+     * json 操作类
      */
     private final ObjectMapper mapper = new ObjectMapper();
 

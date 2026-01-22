@@ -4,12 +4,12 @@ import cn.fyy.authorization.bean.bo.RoleMenuBO;
 import cn.fyy.authorization.bean.po.RoleMenuPO;
 import cn.fyy.authorization.repository.RoleMenuRepository;
 import cn.fyy.authorization.service.RoleMenuService;
-import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.util.BeanUtil;
+import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
+import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -47,7 +47,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
      * 新增或者修改
      *
      * @param bo                 角色 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return !=null 成功，==null 失败
      */
@@ -69,7 +69,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
      * 新增或者修改
      *
      * @param bo                 角色 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -80,23 +80,23 @@ public class RoleMenuServiceImpl implements RoleMenuService {
             LocalDateTime localDateTime = LocalDateTime.now();
             RoleMenuPO po;
             if (bo.getId() == null) {
-                bo.setId(snowflakeIdUtil.getGenerator().nextId());
-                bo.setCreatorId(currentManagerId);
-                bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(localDateTime);
-                bo.setUpdaterId(currentManagerId);
-                bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(localDateTime);
-                bo.setState(DataState.NORMAL.getCode());
-                po = RoleMenuBO.toPO(bo);
+                po = BeanUtil.insert(
+                        RoleMenuBO.toPO(bo),
+                        snowflakeIdUtil.getGenerator().nextId(),
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             } else {
                 RoleMenuPO old = roleMenuRepository.getReferenceById(bo.getId());
-                // 根据getNull复制其中的非空或包含空字段
+                // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
-                old.setUpdaterId(currentManagerId);
-                old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(localDateTime);
-                po = old;
+                po = BeanUtil.update(
+                        old,
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             }
 
             return RoleMenuBO.toBO(roleMenuRepository.save(po));
@@ -110,8 +110,8 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     /**
      * 保存集合
      *
-     * @param menuIds            菜单主键ID集合
-     * @param currentManagerId   当前登录人id
+     * @param menuIds            菜单主键 ID 集合
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return 是否成功
      */
@@ -157,7 +157,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
     /**
      * 根据角色查询现有菜单关系列表
      *
-     * @param roleId 角色主键ID
+     * @param roleId 角色主键 ID
      * @return 现有菜单关系列表
      */
     @Override
@@ -171,9 +171,9 @@ public class RoleMenuServiceImpl implements RoleMenuService {
 
 
     /**
-     * 根据现有管理员拥有的角色查询所拥有的菜单ID
+     * 根据现有管理员拥有的角色查询所拥有的菜单 ID
      *
-     * @param roleIds 角色主键ID
+     * @param roleIds 角色主键 ID
      * @return 现有菜单关系列表
      */
     @Override
@@ -190,7 +190,7 @@ public class RoleMenuServiceImpl implements RoleMenuService {
                 return menuList;
             }
         } catch (Exception e) {
-            throw new BusinessException("根据现有管理员拥有的角色查询所拥有的菜单ID错误", e);
+            throw new BusinessException("根据现有管理员拥有的角色查询所拥有的菜单 ID 错误", e);
         }
     }
 }

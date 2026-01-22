@@ -1,11 +1,10 @@
 package cn.fyy.dictionary.service.impl;
 
-import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.util.BeanUtil;
-import cn.fyy.common.util.SelectUtil;
+import cn.fyy.database.util.BeanUtil;
+import cn.fyy.database.util.SelectUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
 import cn.fyy.dictionary.bean.bo.ParameterBO;
 import cn.fyy.dictionary.bean.bo.ParameterExcel;
@@ -13,6 +12,7 @@ import cn.fyy.dictionary.bean.po.ParameterPO;
 import cn.fyy.dictionary.feign.client.member.ManagerFeignClient;
 import cn.fyy.dictionary.repository.ParameterRepository;
 import cn.fyy.dictionary.service.ParameterService;
+import cn.fyy.jpa.bean.ao.DataState;
 import excel.operation.ExcelExport;
 import excel.operation.set.SheetSet;
 import jakarta.annotation.Resource;
@@ -67,7 +67,7 @@ public class ParameterServiceImpl implements ParameterService {
      * 新增或者修改
      *
      * @param bo                 参数 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return !=null 成功，==null 失败
      */
@@ -89,7 +89,7 @@ public class ParameterServiceImpl implements ParameterService {
      * 新增或者修改
      *
      * @param bo                 参数 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -100,25 +100,25 @@ public class ParameterServiceImpl implements ParameterService {
             LocalDateTime localDateTime = LocalDateTime.now();
             ParameterPO po;
             if (bo.getId() == null) {
-                bo.setId(snowflakeIdUtil.getGenerator().nextId());
-                bo.setCreatorId(currentManagerId);
-                bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(localDateTime);
-                bo.setUpdaterId(currentManagerId);
-                bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(localDateTime);
-                bo.setState(DataState.NORMAL.getCode());
-                po = ParameterBO.toPO(bo);
+                po = BeanUtil.insert(
+                        ParameterBO.toPO(bo),
+                        snowflakeIdUtil.getGenerator().nextId(),
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             } else {
                 ParameterPO old = parameterRepository.getReferenceById(bo.getId());
-                // 根据getNull复制其中的非空或包含空字段
+                // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
                 old.setParameterValue(StringUtils.hasText(bo.getParameterValue()) ? bo.getParameterValue() : null);
                 old.setParameterExplain(StringUtils.hasText(bo.getParameterExplain()) ? bo.getParameterExplain() : null);
-                old.setUpdaterId(currentManagerId);
-                old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(localDateTime);
-                po = old;
+                po = BeanUtil.update(
+                        old,
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             }
 
             return ParameterBO.toBO(parameterRepository.save(po));
@@ -132,7 +132,7 @@ public class ParameterServiceImpl implements ParameterService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 参数
      */
     @Override
@@ -163,7 +163,7 @@ public class ParameterServiceImpl implements ParameterService {
      * 根据主键删除 主键可以是多个用,分割
      *
      * @param ids                删除主键 可以使用,分割
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
@@ -273,7 +273,7 @@ public class ParameterServiceImpl implements ParameterService {
             };
             // 执行全量查询
             List<ParameterPO> doList = parameterRepository.findAll(specification);
-            // 拼装Excel导出内容
+            // 拼装 Excel 导出内容
             ExcelExport excelExport = new ExcelExport(new XSSFWorkbook());
             // 导出页签
             List<SheetSet> sheetSets = new ArrayList<>();

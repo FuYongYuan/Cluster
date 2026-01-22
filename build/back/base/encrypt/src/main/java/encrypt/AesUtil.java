@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.stream.IntStream;
 
 /**
- * AES加密
+ * AES 加密
  *
  * @author fyy
  */

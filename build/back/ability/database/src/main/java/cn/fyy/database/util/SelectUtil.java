@@ -1,6 +1,6 @@
-package cn.fyy.common.util;
+package cn.fyy.database.util;
 
-import cn.fyy.common.bean.ao.DataState;
+import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Order;
 import jakarta.persistence.criteria.Predicate;
@@ -73,7 +73,12 @@ public class SelectUtil {
     public static Predicate getPredicate(Root<?> root, CriteriaBuilder criteriaBuilder, Byte state) {
         Predicate predicate;
         // 条件拼装
-        predicate = criteriaBuilder.and(criteriaBuilder.equal(root.get("state"), Objects.requireNonNullElse(state, DataState.NORMAL.getCode())));
+        predicate = criteriaBuilder.and(
+                criteriaBuilder.equal(
+                        root.get("state"),
+                        Objects.requireNonNullElse(state, DataState.NORMAL.getCode())
+                )
+        );
         // 行级权限条件拼装
 
         return predicate;

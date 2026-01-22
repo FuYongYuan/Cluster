@@ -22,12 +22,12 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjectBO implements Serializable {
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
     /**
-     * 项目群ID
+     * 项目群 ID
      */
     private Long projectGroupId;
 
@@ -37,7 +37,7 @@ public class ProjectBO implements Serializable {
     private String projectName;
 
     /**
-     * 工件ID
+     * 工件 ID
      */
     private String artifactId;
 
@@ -67,12 +67,12 @@ public class ProjectBO implements Serializable {
     private String projectPort;
 
     /**
-     * 是否Service创建接口;（0.否、1.是）
+     * 是否 Service 创建接口;（0.否、1.是）
      */
     private Byte isServiceInterface;
 
     /**
-     * 是否去除BO层;（0.否、1.是）
+     * 是否去除 BO 层;（0.否、1.是）
      */
     private Byte isDeleteBo;
 
@@ -82,17 +82,17 @@ public class ProjectBO implements Serializable {
     private Byte isBasisMethod;
 
     /**
-     * 是否使用Redis缓存;（0.否、1.是）
+     * 是否使用 Redis 缓存;（0.否、1.是）
      */
     private Byte isRedis;
 
     /**
-     * 是否使用RustFS文件服务器;（0.否、1.是）
+     * 是否使用 RustFS 文件服务器;（0.否、1.是）
      */
     private Byte isRustfs;
 
     /**
-     * 是否使用Mail能力;（0.否、1.是）
+     * 是否使用 Mail 能力;（0.否、1.是）
      */
     private Byte isMail;
 
@@ -107,22 +107,22 @@ public class ProjectBO implements Serializable {
     private Byte isEncrypt;
 
     /**
-     * 是否使用Excel能力;（0.否、1.是）
+     * 是否使用 Excel 能力;（0.否、1.是）
      */
     private Byte isExcel;
 
     /**
-     * Druid访问路径
+     * Druid 访问路径
      */
     private String druidUrl;
 
     /**
-     * Druid登录账号
+     * Druid 登录账号
      */
     private String druidAccount;
 
     /**
-     * Druid登录密码
+     * Druid 登录密码
      */
     private String druidPassword;
 
@@ -137,12 +137,12 @@ public class ProjectBO implements Serializable {
     private Byte isOrderKey;
 
     /**
-     * 数据层框架类型;（0.不使用数据源、1.JPA、2.Mybatis）
+     * 数据层框架类型;（ 0.不使用数据源、1.JPA、2.Mybatis ）
      */
     private Byte dataBaseFramework;
 
     /**
-     * 数据库格式设定;（0.没有格式转换、1.X_X_Xxxx => XXXXxxx）
+     * 数据库格式设定;（ 0.没有格式转换、1.X_X_Xxxx => XXXXxxx ）
      */
     private Byte dataBaseFormat;
 
@@ -152,7 +152,7 @@ public class ProjectBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -167,7 +167,7 @@ public class ProjectBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 

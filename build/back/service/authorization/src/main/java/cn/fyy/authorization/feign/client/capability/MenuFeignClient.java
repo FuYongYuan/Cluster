@@ -52,7 +52,7 @@ public interface MenuFeignClient {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 菜单对象
      * @throws BusinessException 业务错误
      */
@@ -84,9 +84,9 @@ public interface MenuFeignClient {
     ) throws BusinessException;
 
     /**
-     * 根据菜单ID集合查询菜单列表
+     * 根据菜单 ID 集合查询菜单列表
      *
-     * @param menuIdList 菜单ID集合
+     * @param menuIdList 菜单 ID 集合
      * @return TMenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
@@ -96,9 +96,9 @@ public interface MenuFeignClient {
     ) throws BusinessException;
 
     /**
-     * 根据菜单ID集合查询菜单列表
+     * 根据菜单 ID 集合查询菜单列表
      *
-     * @param menuIdList 菜单ID集合
+     * @param menuIdList 菜单 ID 集合
      * @return TMenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */

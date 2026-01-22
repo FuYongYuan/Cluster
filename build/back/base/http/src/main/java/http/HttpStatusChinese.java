@@ -4,18 +4,18 @@ import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
- * http状态返回中文描述
+ * http 状态返回中文描述
  *
  * @author fyy
  */
 @Getter
 public enum HttpStatusChinese {
-    //http状态返回代码 1xx（临时响应）表示临时响应并需要请求者继续执行操作的状态代码。
+    // http 状态返回代码 1xx（临时响应）表示临时响应并需要请求者继续执行操作的状态代码。
     CONTINUE(HttpStatus.CONTINUE, "（继续）请求者应当继续提出请求。 服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。"),
     SWITCHING_PROTOCOLS(HttpStatus.SWITCHING_PROTOCOLS, "（切换协议）请求者已要求服务器切换协议，服务器已确认并准备切换。"),
     PROCESSING(HttpStatus.PROCESSING, "（代理处理）由WebDAV（RFC 2518）扩展的状态码，代表处理将被继续执行。"),
 
-    //http状态返回代码 2xx （成功）表示成功处理了请求的状态代码。
+    // http 状态返回代码 2xx （成功）表示成功处理了请求的状态代码。
     OK(HttpStatus.OK, "（成功）服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。"),
     CREATED(HttpStatus.CREATED, "（已创建）请求成功并且服务器创建了新的资源。"),
     ACCEPTED(HttpStatus.ACCEPTED, "（已接受）服务器已接受请求，但尚未处理。"),
@@ -25,7 +25,7 @@ public enum HttpStatusChinese {
     PARTIAL_CONTENT(HttpStatus.PARTIAL_CONTENT, "（部分内容）服务器成功处理了部分 GET 请求。"),
     MULTI_STATUS(HttpStatus.MULTI_STATUS, "（独立响应）由WebDAV(RFC 2518)扩展的状态码，代表之后的消息体将是一个XML消息，并且可能依照之前子请求数量的不同，包含一系列独立的响应代码。"),
 
-    //http状态返回代码 3xx （重定向）表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。
+    // http 状态返回代码 3xx （重定向）表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。
     MULTIPLE_CHOICES(HttpStatus.MULTIPLE_CHOICES, "（多种选择）针对请求，服务器可执行多种操作。服务器可根据请求者(user agent)选择一项操作，或提供操作列表供请求者选择。"),
     MOVED_PERMANENTLY(HttpStatus.MOVED_PERMANENTLY, "（永久移动）请求的网页已永久移动到新位置。服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。"),
     FOUND(HttpStatus.FOUND, "（临时移动）服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。"),
@@ -33,7 +33,7 @@ public enum HttpStatusChinese {
     NOT_MODIFIED(HttpStatus.NOT_MODIFIED, "（未修改）自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。"),
     TEMPORARY_REDIRECT(HttpStatus.TEMPORARY_REDIRECT, "（临时重定向）服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。"),
 
-    //http状态返回代码 4xx（请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。
+    // http 状态返回代码 4xx（请求错误）这些状态代码表示请求可能出错，妨碍了服务器的处理。
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "（错误请求）服务器不理解请求的语法。"),
     UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "（未授权）请求要求身份验证。对于需要登录的网页，服务器可能返回此响应。"),
     FORBIDDEN(HttpStatus.FORBIDDEN, "（禁止）服务器拒绝请求。"),
@@ -58,7 +58,7 @@ public enum HttpStatusChinese {
     UPGRADE_REQUIRED(HttpStatus.UPGRADE_REQUIRED, "客户端应当切换到TLS/1.0。（RFC 2817）"),
     UNAVAILABLE_FOR_LEGAL_REASONS(HttpStatus.UNAVAILABLE_FOR_LEGAL_REASONS, "该请求因法律原因不可用。（RFC 7725）"),
 
-    //http状态返回代码 5xx（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。
+    // http 状态返回代码 5xx（服务器错误）这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "（服务器内部错误）服务器遇到错误，无法完成请求。"),
     NOT_IMPLEMENTED(HttpStatus.NOT_IMPLEMENTED, "（尚未实施）服务器不具备完成请求的功能。例如，服务器无法识别请求方法时可能会返回此代码。"),
     BAD_GATEWAY(HttpStatus.BAD_GATEWAY, "（错误网关）服务器作为网关或代理，从上游服务器收到无效响应。"),
@@ -71,7 +71,7 @@ public enum HttpStatusChinese {
     NOT_EXTENDED(HttpStatus.NOT_EXTENDED, "获取资源所需要的策略并没有被满足。（RFC 2774）");
 
     /**
-     * http状态返回代码
+     * http 状态返回代码
      */
     private final HttpStatus httpStatus;
     /**
@@ -82,7 +82,7 @@ public enum HttpStatusChinese {
     /**
      * 构造器
      *
-     * @param httpStatus         http状态码
+     * @param httpStatus         http 状态码
      * @param chineseDescription 中文描述
      */
     HttpStatusChinese(HttpStatus httpStatus, String chineseDescription) {
@@ -91,9 +91,9 @@ public enum HttpStatusChinese {
     }
 
     /**
-     * 根据http状态码获取中文描述
+     * 根据 http 状态码获取中文描述
      *
-     * @param httpStatus http状态码
+     * @param httpStatus http 状态码
      * @return 中文描述
      */
     public static String getChineseDescriptionByHttpStatus(HttpStatus httpStatus) {

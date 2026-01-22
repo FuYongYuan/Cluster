@@ -31,8 +31,8 @@ public interface RoleManagerFeignClient {
     /**
      * 保存角色管理员关系集合
      *
-     * @param roleId  角色ID
-     * @param menuIds 菜单ID集合
+     * @param roleId  角色 ID
+     * @param menuIds 菜单 ID 集合
      * @return 角色管理员关系对象
      * @throws BusinessException 业务错误
      */

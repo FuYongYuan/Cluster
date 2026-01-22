@@ -6,7 +6,7 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 /**
- * ID分解信息
+ * ID 分解信息
  *
  * @author fyy
  */
@@ -24,12 +24,12 @@ public class SnowflakeIdInfo {
     private LocalDateTime createTime;
 
     /**
-     * 数据中心ID
+     * 数据中心 ID
      */
     private long dataCenterId;
 
     /**
-     * 工作节点ID
+     * 工作节点 ID
      */
     private long workerId;
 
@@ -38,23 +38,12 @@ public class SnowflakeIdInfo {
      */
     private long sequence;
 
-
     /**
-     * 解析ID信息
-     *
-     * @param id ID
-     * @return ID信息
-     */
-    public static SnowflakeIdInfo parseId(long id) {
-        return parseId(id, SnowflakeIdConstant.DEFAULT_EPOCH);
-    }
-
-    /**
-     * 解析ID信息
+     * 解析 ID 信息
      *
      * @param id    ID
      * @param epoch 起始时间戳
-     * @return ID信息
+     * @return ID 信息
      */
     public static SnowflakeIdInfo parseId(long id, long epoch) {
         if (epoch > System.currentTimeMillis()) {
@@ -73,10 +62,10 @@ public class SnowflakeIdInfo {
                 java.time.ZoneId.systemDefault()
         );
 
-        // 提取数据中心ID
+        // 提取数据中心 ID
         info.dataCenterId = (id >> SnowflakeIdConstant.DATA_CENTER_ID_SHIFT) & SnowflakeIdConstant.MAX_DATA_CENTER_ID;
 
-        // 提取工作节点ID
+        // 提取工作节点 ID
         info.workerId = (id >> SnowflakeIdConstant.WORKER_ID_SHIFT) & SnowflakeIdConstant.MAX_WORKER_ID;
 
         // 提取序列号

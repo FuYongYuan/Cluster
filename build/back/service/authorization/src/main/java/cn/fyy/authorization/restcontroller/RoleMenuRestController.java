@@ -64,16 +64,16 @@ public class RoleMenuRestController {
     /**
      * 保存菜单角色关系集合
      *
-     * @param roleId  角色ID
-     * @param menuIds 菜单ID集合
+     * @param roleId  角色 ID
+     * @param menuIds 菜单 ID 集合
      * @return 菜单角色关系对象
      * @throws BusinessException 业务错误
      */
     @Operation(
             summary = "保存菜单角色关系集合", description = "RoleMenuDTO 菜单角色关系对象",
             parameters = {
-                    @Parameter(name = "roleId", description = "角色ID", required = true),
-                    @Parameter(name = "menuIds", description = "菜单ID集合", required = true)
+                    @Parameter(name = "roleId", description = "角色 ID", required = true),
+                    @Parameter(name = "menuIds", description = "菜单 ID 集合", required = true)
             }
     )
     @PostMapping(value = "/save/list/{roleId}/{menuIds}")
@@ -87,16 +87,16 @@ public class RoleMenuRestController {
     }
 
     /**
-     * 根据角色ID菜单角色关系集合
+     * 根据角色 ID 菜单角色关系集合
      *
-     * @param roleId 角色ID
+     * @param roleId 角色 ID
      * @return 菜单角色关系集合
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据角色ID菜单角色关系集合", description = "RoleMenuDTO 菜单角色关系集合",
+            summary = "根据角色 ID 菜单角色关系集合", description = "RoleMenuDTO 菜单角色关系集合",
             parameters = {
-                    @Parameter(name = "roleId", description = "角色ID", required = true)
+                    @Parameter(name = "roleId", description = "角色 ID", required = true)
             }
     )
     @GetMapping(value = "/query/list/{roleId}")

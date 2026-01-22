@@ -26,9 +26,9 @@ import java.util.List;
 public class ManagerDTO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
-    @Schema(name = "id", description = "主键ID", type = "Long")
+    @Schema(name = "id", description = "主键 ID", type = "Long")
     private Long id;
 
     /**
@@ -74,9 +74,9 @@ public class ManagerDTO implements Serializable {
     private String account;
 
     /**
-     * 当前请求IP
+     * 当前请求 IP
      */
-    @Schema(name = "currentRequestIp", description = "当前请求IP", type = "String", nullable = true)
+    @Schema(name = "currentRequestIp", description = "当前请求 IP", type = "String", nullable = true)
     private String currentRequestIp;
 
     /**
@@ -93,9 +93,9 @@ public class ManagerDTO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    @Schema(name = "creatorId", description = "创建人 ID", type = "Long")
     private Long creatorId;
 
     /**
@@ -112,9 +112,9 @@ public class ManagerDTO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    @Schema(name = "updaterId", description = "修改人 ID", type = "Long")
     private Long updaterId;
 
     /**
@@ -130,9 +130,9 @@ public class ManagerDTO implements Serializable {
     private Byte state;
 
     /**
-     * 角色ID集合
+     * 角色 ID 集合
      */
-    @Schema(name = "roleIds", description = "角色ID集合", type = "String")
+    @Schema(name = "roleIds", description = "角色 ID 集合", type = "String")
     private String roleIds;
 
     //------------------------------------------------------------------------------------------------------------------转换

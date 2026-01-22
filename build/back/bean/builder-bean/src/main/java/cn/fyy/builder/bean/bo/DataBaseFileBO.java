@@ -22,12 +22,12 @@ import java.util.List;
 @AllArgsConstructor
 public class DataBaseFileBO implements Serializable {
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
     /**
-     * 项目群ID
+     * 项目群 ID
      */
     private Long projectGroupId;
 
@@ -42,7 +42,7 @@ public class DataBaseFileBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -57,7 +57,7 @@ public class DataBaseFileBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 

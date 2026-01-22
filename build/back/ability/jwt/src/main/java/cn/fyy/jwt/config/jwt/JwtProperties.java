@@ -44,7 +44,7 @@ public class JwtProperties {
     private Duration refreshTokenExpireTime;
 
     /**
-     * APP刷新过期时间
+     * APP 刷新过期时间
      */
     private Duration refreshTokenExpireAppTime;
 
@@ -54,12 +54,12 @@ public class JwtProperties {
     private String issuer;
 
     /**
-     * JWT存储的请求头
+     * JWT 存储的请求头
      */
     private String tokenHeader;
 
     /**
-     * JWT负载中拿到开头
+     * JWT 负载中拿到开头
      */
     private String tokenHead;
 

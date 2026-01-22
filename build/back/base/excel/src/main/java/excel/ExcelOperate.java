@@ -18,7 +18,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 /**
- * Excel简单操作类
+ * Excel 简单操作类
  *
  * @author fyy
  */
@@ -29,7 +29,7 @@ public class ExcelOperate {
     private final String path;
 
     /**
-     * 是否使用get读取值
+     * 是否使用 get 读取值
      */
     private final boolean isGetMethodFieldValue;
 
@@ -66,7 +66,7 @@ public class ExcelOperate {
      * 新增
      *
      * @param sheetName 页标签名称
-     * @param obj       Excel对象
+     * @param obj       Excel 对象
      * @return 添加后的行号
      */
     public int addRow(String sheetName, Object obj) {
@@ -193,7 +193,7 @@ public class ExcelOperate {
                 throw new ExcelOperateException("诊断：传入文档地址为空！", new NullPointerException());
             }
         } catch (IOException e) {
-            throw new ExcelOperateException("诊断：Excel操作写入文件被占用！", e);
+            throw new ExcelOperateException("诊断：Excel 操作写入文件被占用！", e);
         }
     }
 
@@ -208,7 +208,7 @@ public class ExcelOperate {
                 workbook.close();
             }
         } catch (IOException e) {
-            throw new ExcelOperateException("诊断：Excel操作类销毁失败！", e);
+            throw new ExcelOperateException("诊断：Excel 操作类销毁失败！", e);
         }
     }
 }

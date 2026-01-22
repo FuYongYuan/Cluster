@@ -26,9 +26,9 @@ import java.util.List;
 public class MenuDTO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
-    @Schema(name = "id", description = "主键ID", type = "Long")
+    @Schema(name = "id", description = "主键 ID", type = "Long")
     private Long id;
 
     /**
@@ -56,9 +56,9 @@ public class MenuDTO implements Serializable {
     private String pageName;
 
     /**
-     * 父级ID
+     * 父级 ID
      */
-    @Schema(name = "parentId", description = "父级ID", type = "Long", nullable = true)
+    @Schema(name = "parentId", description = "父级 ID", type = "Long", nullable = true)
     private Long parentId;
 
     /**
@@ -93,9 +93,9 @@ public class MenuDTO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    @Schema(name = "creatorId", description = "创建人 ID", type = "Long")
     private Long creatorId;
 
     /**
@@ -112,9 +112,9 @@ public class MenuDTO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    @Schema(name = "updaterId", description = "修改人 ID", type = "Long")
     private Long updaterId;
 
     /**

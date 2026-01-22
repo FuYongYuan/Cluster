@@ -50,7 +50,7 @@ public interface RoleFeignClient {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 角色对象
      * @throws BusinessException 业务错误
      */
@@ -84,7 +84,7 @@ public interface RoleFeignClient {
     /**
      * 根据用户查询现有角色关系列表
      *
-     * @param managerId 管理员主键ID
+     * @param managerId 管理员主键 ID
      * @return 用户角色关系对象
      * @throws BusinessException 业务错误
      */

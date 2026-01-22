@@ -10,21 +10,21 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * Feign配置
- * 使用FeignClient进行服务间调用，传递headers信息
+ * Feign 配置
+ * 使用 FeignClient 进行服务间调用，传递 headers 信息
  *
  * @author fuyy
  */
 @Configuration
 public class FeignConfig implements RequestInterceptor {
     /**
-     * JWT参数
+     * JWT 参数
      */
     @Resource
     private JwtProperties securityProperties;
 
     /**
-     * 设置携带的Header
+     * 设置携带的 Header
      */
     @Override
     public void apply(RequestTemplate requestTemplate) {

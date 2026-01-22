@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class TestJobService {
     /**
-     * 1、简单任务示例（Bean模式）
+     * 1、简单任务示例（ Bean 模式）
      */
     @XxlJob("demoJobHandler")
     public void demoJobHandler() throws Exception {

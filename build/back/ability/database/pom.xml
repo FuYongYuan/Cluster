@@ -42,7 +42,7 @@
             <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- 连接池Web监控页面需要 -->
+        <!-- 连接池 Web 监控页面需要 -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
@@ -52,19 +52,12 @@
         <!--
             seata 分布式事务
             注意点：
-                1、会报错因为没有引用protostuff、fury但这两个是用来做json格式化有Jackson即可，可以忽略警告；
-                2、数据库读写分离连接要分开即使是127.0.0.1、localhost也需要分开，如果同链接同地址，读写分离会导致写链接因为主链接先注入，读链接后注入，从而覆盖防火墙策略，导致不能增删改
+                1、会报错因为没有引用 protostuff、fury 但这两个是用来做 json 格式化有 Jackson 即可，可以忽略警告；
+                2、数据库读写分离连接要分开即使是 127.0.0.1、localhost 也需要分开，如果同链接同地址，读写分离会导致写链接因为主链接先注入，读链接后注入，从而覆盖防火墙策略，导致不能增删改
         -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
-        </dependency>
-
-        <!-- 实体 -->
-        <dependency>
-            <groupId>cn.fyy.build</groupId>
-            <artifactId>common-bean</artifactId>
-            <version>${java-bean.version}</version>
         </dependency>
 
         <!-- 加密模块 -->
@@ -72,6 +65,13 @@
             <groupId>cn.fyy.build</groupId>
             <artifactId>encrypt</artifactId>
             <version>${encrypt.version}</version>
+        </dependency>
+
+        <!-- 实体 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>jpa-bean</artifactId>
+            <version>${java-bean.version}</version>
         </dependency>
     </dependencies>
 </project>

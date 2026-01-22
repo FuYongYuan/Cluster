@@ -19,11 +19,11 @@ import java.util.List;
 public interface MenuRepository extends JpaRepository<MenuPO, Long>, JpaSpecificationExecutor<MenuPO> {
 
     /**
-     * 根据ids保存状态
+     * 根据 ids 保存状态
      *
-     * @param ids                主键ID(可用,分割传入多个)
+     * @param ids                主键 ID (可用,分割传入多个)
      * @param state              状态
-     * @param currentManagerId   当前登陆管理员id
+     * @param currentManagerId   当前登陆管理员 ID
      * @param currentManagerName 当前登陆管理员名称
      * @param updateTime         当前时间
      * @return 受影响行数
@@ -33,10 +33,10 @@ public interface MenuRepository extends JpaRepository<MenuPO, Long>, JpaSpecific
     int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
-     * 根据菜单ID集合查询菜单
+     * 根据菜单 ID 集合查询菜单
      *
-     * @param menuIdList 菜单ID集合
-     * @param parentId   父级id
+     * @param menuIdList 菜单 ID 集合
+     * @param parentId   父级 ID
      * @param state      状态
      * @return 能够使用的菜单列表
      */
@@ -50,9 +50,9 @@ public interface MenuRepository extends JpaRepository<MenuPO, Long>, JpaSpecific
     List<MenuPO> queryHierarchyMenuByMenuIdListAndParentIdAndState(List<Long> menuIdList, Long parentId, int state);
 
     /**
-     * 根据菜单ID集合查询菜单
+     * 根据菜单 ID 集合查询菜单
      *
-     * @param menuIdList 菜单ID集合
+     * @param menuIdList 菜单 ID 集合
      * @param state      状态
      * @return 能够使用的菜单列表
      */

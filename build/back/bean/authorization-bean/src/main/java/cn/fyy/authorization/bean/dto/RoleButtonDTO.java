@@ -26,21 +26,21 @@ import java.util.List;
 public class RoleButtonDTO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
-    @Schema(name = "id", description = "主键ID", type = "Long")
+    @Schema(name = "id", description = "主键 ID", type = "Long")
     private Long id;
 
     /**
-     * 角色ID
+     * 角色 ID
      */
-    @Schema(name = "roleId", description = "角色ID", type = "Long")
+    @Schema(name = "roleId", description = "角色 ID", type = "Long")
     private Long roleId;
 
     /**
-     * 按钮ID
+     * 按钮 ID
      */
-    @Schema(name = "buttonId", description = "按钮ID", type = "Long")
+    @Schema(name = "buttonId", description = "按钮 ID", type = "Long")
     private Long buttonId;
 
     /**
@@ -51,9 +51,9 @@ public class RoleButtonDTO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    @Schema(name = "creatorId", description = "创建人 ID", type = "Long")
     private Long creatorId;
 
     /**
@@ -70,9 +70,9 @@ public class RoleButtonDTO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    @Schema(name = "updaterId", description = "修改人 ID", type = "Long")
     private Long updaterId;
 
     /**

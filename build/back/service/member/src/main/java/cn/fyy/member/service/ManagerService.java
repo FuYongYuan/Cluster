@@ -19,7 +19,7 @@ public interface ManagerService {
      * 新增或者修改
      *
      * @param bo                 管理员 BO
-     * @param currentManagerId   当前登陆人id
+     * @param currentManagerId   当前登陆人 ID
      * @param currentManagerName 当前登陆人名称
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
@@ -30,7 +30,7 @@ public interface ManagerService {
      * 新增或者修改
      *
      * @param bo                 管理员 BO
-     * @param currentManagerId   当前登陆人id
+     * @param currentManagerId   当前登陆人 ID
      * @param currentManagerName 当前登陆人名称
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -75,7 +75,7 @@ public interface ManagerService {
      * 根据主键删除 主键可以是多个用,分割
      *
      * @param ids                删除主键 可以使用,分割
-     * @param currentManagerId   当前登陆人id
+     * @param currentManagerId   当前登陆人 ID
      * @param currentManagerName 当前登陆人名称
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
@@ -85,7 +85,7 @@ public interface ManagerService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 管理员
      * @throws BusinessException 错误
      */
@@ -94,18 +94,18 @@ public interface ManagerService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 管理员
      * @throws BusinessException 错误
      */
     ManagerBO getByJwtToken(Long id) throws BusinessException;
 
     /**
-     * 根据id保存状态
+     * 根据 ID 保存状态
      *
-     * @param ids                需要修改的管理员id
+     * @param ids                需要修改的管理员 ID
      * @param state              状态
-     * @param currentManagerId   当前登陆管理员id
+     * @param currentManagerId   当前登陆管理员 ID
      * @param currentManagerName 当前登陆人名称
      * @return 受影响行数
      * @throws BusinessException 错误
@@ -161,11 +161,11 @@ public interface ManagerService {
     ManagerBO getByAccountAndLoginPassword(String account, String loginPassword) throws BusinessException;
 
     /**
-     * 保存并返回DTO
+     * 保存并返回 DTO
      *
-     * @param dto            需要保存的DTO
+     * @param dto            需要保存的 DTO
      * @param authentication 鉴权串
-     * @return 管理员DTO
+     * @return 管理员 DTO
      * @throws BusinessException 错误
      */
     ResultMessage<Long> saveReturnDTO(ManagerInternalDTO dto, String authentication) throws BusinessException;

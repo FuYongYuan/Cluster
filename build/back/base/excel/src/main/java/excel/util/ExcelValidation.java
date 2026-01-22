@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Excel校验帮助类
+ * Excel 校验帮助类
  *
  * @author fyy
  */
@@ -34,7 +34,7 @@ public class ExcelValidation {
      *
      * @param path      地址
      * @param sheetName 页名
-     * @param tClass    Excel数据类型
+     * @param tClass    Excel 数据类型
      * @param <T>       类型
      */
     public static <T> void validationDocument(String path, String sheetName, Class<T> tClass) {

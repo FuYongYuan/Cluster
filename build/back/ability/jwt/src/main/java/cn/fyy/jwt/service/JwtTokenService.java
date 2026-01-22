@@ -15,7 +15,7 @@ import java.time.Instant;
 import java.util.*;
 
 /**
- * JWT工具类
+ * JWT 工具类
  *
  * @author fuyy
  */
@@ -23,19 +23,19 @@ import java.util.*;
 @Service
 public class JwtTokenService {
     /**
-     * JWT参数
+     * JWT 参数
      */
     @Resource
     protected JwtProperties jwtProperties;
 
     /**
-     * JWT解码器
+     * JWT 解码器
      */
     @Resource
     protected JwtDecoder jwtDecoder;
 
     /**
-     * JWT编码器
+     * JWT 编码器
      */
     @Resource
     protected JwtEncoder jwtEncoder;
@@ -43,8 +43,8 @@ public class JwtTokenService {
     /**
      * 生成 access_token
      *
-     * @param subject      代表这个JWT的主体，即它的所有人 一般是用户账号
-     * @param securityUser 存储在JWT里面的信息 一般放些用户的权限/角色信息
+     * @param subject      代表这个 JWT 的主体，即它的所有人 一般是用户账号
+     * @param securityUser 存储在 JWT 里面的信息 一般放些用户的权限/角色信息
      * @return java.lang.String
      */
     public String getAccessToken(String subject, SecurityUser securityUser) {
@@ -52,11 +52,11 @@ public class JwtTokenService {
     }
 
     /**
-     * 签发token
+     * 签发 token
      *
      * @param issuer        签发系统
-     * @param subject       代表这个JWT的主体，即它的所有人 一般是用户账号
-     * @param securityUser  存储在JWT里面的信息 一般放些用户的权限/角色信息
+     * @param subject       代表这个 JWT 的主体，即它的所有人 一般是用户账号
+     * @param securityUser  存储在 JWT 里面的信息 一般放些用户的权限/角色信息
      * @param expireAppTime 有效时间(毫秒)
      * @return java.lang.String
      */
@@ -67,11 +67,11 @@ public class JwtTokenService {
                 : now.plusSeconds(ConstantParameter.JWT_EXPIRATION_REFRESH);
 
         Map<String, Object> claims = new HashMap<>();
-        // 在org.springframework.security.core.userdetails.User中的需要手动添加，因为并不是每一个字段都需要
+        // 在 org.springframework.security.core.userdetails.User 中的需要手动添加，因为并不是每一个字段都需要
         claims.put(ConstantParameter.JWT_USERNAME, securityUser.getUsername());
         claims.put(ConstantParameter.JWT_PASSWORD, securityUser.getPassword());
         claims.put(ConstantParameter.JWT_AUTHORITIES, securityUser.getAuthorities());
-        // 根据需要从SecurityUser添加其他字段
+        // 根据需要从 SecurityUser 添加其他字段
         Class<?> clazz = securityUser.getClass();
         for (Field field : clazz.getDeclaredFields()) {
             field.setAccessible(true);
@@ -149,7 +149,7 @@ public class JwtTokenService {
                     return Long.valueOf(String.valueOf(claims.get(ConstantParameter.JWT_MANAGER_ID)));
                 }
             } catch (Exception e) {
-                log.error("获取用户ID", e);
+                log.error("获取用户 ID", e);
             }
         }
         return null;
@@ -170,7 +170,7 @@ public class JwtTokenService {
                     return String.valueOf(claims.get(ConstantParameter.JWT_MANAGER_NAME));
                 }
             } catch (Exception e) {
-                log.error("获取用户ID", e);
+                log.error("获取用户 ID", e);
             }
         }
         return null;
@@ -191,7 +191,7 @@ public class JwtTokenService {
                     return String.valueOf(claims.get(ConstantParameter.JWT_PASSWORD));
                 }
             } catch (Exception e) {
-                log.error("获取用户ID", e);
+                log.error("获取用户 ID", e);
             }
         }
         return null;
@@ -275,7 +275,7 @@ public class JwtTokenService {
     }
 
     /**
-     * 获取token的剩余过期时间
+     * 获取 token 的剩余过期时间
      *
      * @return long
      */

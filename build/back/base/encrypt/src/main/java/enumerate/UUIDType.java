@@ -1,19 +1,19 @@
 package enumerate;
 
 /**
- * UUID类型
+ * UUID 类型
  *
  * @author fyy
  */
 public enum UUIDType {
 
     /**
-     * 32位
+     * 32 位
      */
     UUID32,
 
     /**
-     * 64位
+     * 64 位
      */
     UUID36
 }

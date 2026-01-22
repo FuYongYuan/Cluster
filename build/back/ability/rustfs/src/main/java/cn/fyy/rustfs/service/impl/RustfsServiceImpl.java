@@ -79,7 +79,7 @@ public class RustfsServiceImpl implements RustfsService {
     }
 
     /**
-     * 获取文件URL
+     * 获取文件 URL
      *
      * @param fileName 文件名称
      * @param duration 签名有效期

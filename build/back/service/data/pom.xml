@@ -20,7 +20,7 @@
         <encrypt.version>0.0.1</encrypt.version>
         <!-- 公共模块 -->
         <common.version>0.0.1</common.version>
-        <!-- RustFS模块 -->
+        <!-- RustFS 模块 -->
         <rustfs.version>0.0.1</rustfs.version>
     </properties>
 
@@ -39,7 +39,7 @@
             <version>${common.version}</version>
         </dependency>
 
-        <!-- RustFS文件管理平台 -->
+        <!-- RustFS 文件管理平台 -->
         <dependency>
             <groupId>cn.fyy.build</groupId>
             <artifactId>rustfs</artifactId>

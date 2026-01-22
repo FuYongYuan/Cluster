@@ -23,7 +23,7 @@ import java.util.List;
 public class RoleBO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
@@ -43,7 +43,7 @@ public class RoleBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -58,7 +58,7 @@ public class RoleBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 
@@ -73,7 +73,7 @@ public class RoleBO implements Serializable {
     private Byte state;
 
     /**
-     * 菜单ID集合
+     * 菜单 ID 集合
      */
     private String menuIds;
 

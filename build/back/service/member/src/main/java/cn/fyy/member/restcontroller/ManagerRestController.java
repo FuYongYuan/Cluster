@@ -98,7 +98,7 @@ public class ManagerRestController {
     @Operation(
             summary = "根据主键删除 主键可以是多个用,分割", description = "受影响行数",
             parameters = {
-                    @Parameter(name = "ids", description = "删除ID", required = true)
+                    @Parameter(name = "ids", description = "删除 ID", required = true)
             }
     )
     @DeleteMapping(value = "/delete/{ids}")
@@ -125,7 +125,7 @@ public class ManagerRestController {
     @Operation(
             summary = "根据主键查询", description = "ManagerDTO 管理员对象",
             parameters = {
-                    @Parameter(name = "id", description = "主键ID", required = true)
+                    @Parameter(name = "id", description = "主键 ID", required = true)
             }
     )
     @GetMapping(value = "/get/{id}")
@@ -136,13 +136,13 @@ public class ManagerRestController {
     }
 
     /**
-     * 根据JwtToken查询
+     * 根据 JwtToken 查询
      *
      * @return 管理员对象
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据JwtToken查询", description = "ManagerDTO 管理员对象"
+            summary = "根据 JwtToken 查询", description = "ManagerDTO 管理员对象"
     )
     @GetMapping(value = "/get/jwt/token")
     public ResultMessage<ManagerDTO> getByJwtToken(
@@ -200,17 +200,17 @@ public class ManagerRestController {
     }
 
     /**
-     * 根据id保存状态
+     * 根据 ID 保存状态
      *
-     * @param ids   需要修改的管理员ID
+     * @param ids   需要修改的管理员 ID
      * @param state 状态
      * @return 受影响行数
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据id保存状态", description = "受影响行数",
+            summary = "根据 ID 保存状态", description = "受影响行数",
             parameters = {
-                    @Parameter(name = "ids", description = "需要修改的管理员ID", required = true),
+                    @Parameter(name = "ids", description = "需要修改的管理员 ID", required = true),
                     @Parameter(name = "state", description = "状态", example = "0")
             }
     )

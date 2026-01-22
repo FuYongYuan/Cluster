@@ -15,13 +15,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 将一个Class对象的各个属性值，复制到另外一个Class对象
+ * 将一个 Class 对象的各个属性值，复制到另外一个 Class 对象
  *
  * @author fyy
  */
 public class CopyClass {
     /**
-     * 将一个Class对象的各个属性值通过setter和getter方法，复制到另外一个Class对象
+     * 将一个 Class 对象的各个属性值通过 setter 和 getter 方法，复制到另外一个 Class 对象
      *
      * @param object1 被取值的对象
      * @param object2 要赋值的对象
@@ -44,7 +44,7 @@ public class CopyClass {
     }
 
     /**
-     * 将一个Class对象的各个属性值不通过setter和getter方法，复制到另外一个Class对象
+     * 将一个 Class 对象的各个属性值不通过 setter 和 getter 方法，复制到另外一个 Class 对象
      *
      * @param object1 被取值的对象
      * @param object2 要赋值的对象
@@ -118,7 +118,7 @@ public class CopyClass {
 
 
     /**
-     * 将MAP中的值.复制至另一个Class对象 为NULL不复制
+     * 将 MAP 中的值.复制至另一个 Class 对象 为 NULL 不复制
      */
     public static <T> T copyMap(Map<String, Object> map, Class<T> clazz) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         T obj = clazz.getDeclaredConstructor().newInstance();
@@ -157,7 +157,7 @@ public class CopyClass {
     }
 
     /**
-     * 将MAP中的值.复制至另一个Class对象 为NULL不复制
+     * 将 MAP 中的值.复制至另一个 Class 对象 为 NULL 不复制
      */
     public static <T> List<T> copyMap(List<Map<String, Object>> mapList, Class<T> clazz) throws IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
         List<T> list = new ArrayList<>();
@@ -168,7 +168,7 @@ public class CopyClass {
     }
 
     /**
-     * 将MAP中的值.复制至另一个Class对象 为NULL不复制
+     * 将 MAP 中的值.复制至另一个 Class 对象 为 NULL 不复制
      */
     public static <T> T copyMapGetSet(Map<String, Object> map, Class<T> clazz) throws IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
         T obj = clazz.getDeclaredConstructor().newInstance();
@@ -205,7 +205,7 @@ public class CopyClass {
     }
 
     /**
-     * 将MAP中的值.复制至另一个Class对象 为NULL不复制
+     * 将 MAP 中的值.复制至另一个 Class 对象 为 NULL 不复制
      */
     public static <T> List<T> copyMapGetSet(List<Map<String, Object>> mapList, Class<T> clazz) throws IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
         List<T> list = new ArrayList<>();

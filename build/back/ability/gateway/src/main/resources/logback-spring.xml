@@ -86,7 +86,7 @@
         <appender-ref ref="FILE"/>
     </appender>
 
-    <!-- Spring BeanPostProcessor Checker 降级（Seata 启动 WARN） -->
+    <!-- Spring BeanPostProcessor Checker 降级（ Seata 启动 WARN） -->
     <logger name="org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker"
             level="ERROR"/>
 

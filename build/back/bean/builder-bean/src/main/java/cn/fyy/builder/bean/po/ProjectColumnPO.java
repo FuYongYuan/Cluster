@@ -1,10 +1,13 @@
 package cn.fyy.builder.bean.po;
 
-import jakarta.persistence.*;
+import cn.fyy.jpa.bean.po.BasePO;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -17,20 +20,13 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@Builder(toBuilder = true)
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectColumnPO implements Serializable {
-    /**
-     * 主键ID
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class ProjectColumnPO extends BasePO implements Serializable {
 
     /**
-     * 项目表ID
+     * 项目表 ID
      */
     @Column(name = "project_table_id")
     private Long projectTableId;
@@ -66,7 +62,7 @@ public class ProjectColumnPO implements Serializable {
     private String dataType;
 
     /**
-     * 数据长度varchar
+     * 数据长度 varchar
      */
     @Column(name = "character_maximum_length")
     private Integer characterMaximumLength;
@@ -90,7 +86,7 @@ public class ProjectColumnPO implements Serializable {
     private String columnType;
 
     /**
-     * PRI为主键，MUL为外键
+     * PRI 为主键，MUL 为外键
      */
     @Column(name = "column_key", length = 5)
     private String columnKey;
@@ -107,144 +103,50 @@ public class ProjectColumnPO implements Serializable {
     @Column(name = "column_comment", length = 1000)
     private String columnComment;
 
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 创建人ID
-     */
-    @Column(name = "creator_id")
-    private Long creatorId;
-
-    /**
-     * 创建人名称
-     */
-    @Column(name = "creator_name", length = 50)
-    private String creatorName;
-
-    /**
-     * 更新时间
-     */
-    @Column(name = "update_time")
-    private LocalDateTime updateTime;
-
-    /**
-     * 更新人ID
-     */
-    @Column(name = "updater_id")
-    private Long updaterId;
-
-    /**
-     * 更新人名称
-     */
-    @Column(name = "updater_name", length = 50)
-    private String updaterName;
-
-    /**
-     * 状态;（0.正常、99.删除）
-     */
-    @Column(name = "state")
-    private Byte state;
-
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof ProjectColumnPO that)) {
             return false;
         }
+        if (!super.equals(that)) {
+            return false;
+        }
 
-        if (!id.equals(that.id)) {
-            return false;
-        }
-        if (!Objects.equals(projectTableId, that.projectTableId)) {
-            return false;
-        }
-        if (!Objects.equals(tableSchema, that.tableSchema)) {
-            return false;
-        }
-        if (!Objects.equals(tableName, that.tableName)) {
-            return false;
-        }
-        if (!Objects.equals(columnName, that.columnName)) {
-            return false;
-        }
-        if (!Objects.equals(isNullable, that.isNullable)) {
-            return false;
-        }
-        if (!Objects.equals(dataType, that.dataType)) {
-            return false;
-        }
-        if (!Objects.equals(characterMaximumLength, that.characterMaximumLength)) {
-            return false;
-        }
-        if (!Objects.equals(numericPrecision, that.numericPrecision)) {
-            return false;
-        }
-        if (!Objects.equals(numericScale, that.numericScale)) {
-            return false;
-        }
-        if (!Objects.equals(columnType, that.columnType)) {
-            return false;
-        }
-        if (!Objects.equals(columnKey, that.columnKey)) {
-            return false;
-        }
-        if (!Objects.equals(extra, that.extra)) {
-            return false;
-        }
-        if (!Objects.equals(columnComment, that.columnComment)) {
-            return false;
-        }
-        if (!Objects.equals(createTime, that.createTime)) {
-            return false;
-        }
-        if (!Objects.equals(creatorId, that.creatorId)) {
-            return false;
-        }
-        if (!Objects.equals(creatorName, that.creatorName)) {
-            return false;
-        }
-        if (!Objects.equals(updateTime, that.updateTime)) {
-            return false;
-        }
-        if (!Objects.equals(updaterId, that.updaterId)) {
-            return false;
-        }
-        if (!Objects.equals(updaterName, that.updaterName)) {
-            return false;
-        }
-        return Objects.equals(state, that.state);
+        return Objects.equals(projectTableId, that.projectTableId) &&
+                Objects.equals(tableSchema, that.tableSchema) &&
+                Objects.equals(tableName, that.tableName) &&
+                Objects.equals(columnName, that.columnName) &&
+                Objects.equals(isNullable, that.isNullable) &&
+                Objects.equals(dataType, that.dataType) &&
+                Objects.equals(characterMaximumLength, that.characterMaximumLength) &&
+                Objects.equals(numericPrecision, that.numericPrecision) &&
+                Objects.equals(numericScale, that.numericScale) &&
+                Objects.equals(columnType, that.columnType) &&
+                Objects.equals(columnKey, that.columnKey) &&
+                Objects.equals(extra, that.extra) &&
+                Objects.equals(columnComment, that.columnComment);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (projectTableId != null ? projectTableId.hashCode() : 0);
-        result = 31 * result + (tableSchema != null ? tableSchema.hashCode() : 0);
-        result = 31 * result + (tableName != null ? tableName.hashCode() : 0);
-        result = 31 * result + (columnName != null ? columnName.hashCode() : 0);
-        result = 31 * result + (isNullable != null ? isNullable.hashCode() : 0);
-        result = 31 * result + (dataType != null ? dataType.hashCode() : 0);
-        result = 31 * result + (characterMaximumLength != null ? characterMaximumLength.hashCode() : 0);
-        result = 31 * result + (numericPrecision != null ? numericPrecision.hashCode() : 0);
-        result = 31 * result + (numericScale != null ? numericScale.hashCode() : 0);
-        result = 31 * result + (columnType != null ? columnType.hashCode() : 0);
-        result = 31 * result + (columnKey != null ? columnKey.hashCode() : 0);
-        result = 31 * result + (extra != null ? extra.hashCode() : 0);
-        result = 31 * result + (columnComment != null ? columnComment.hashCode() : 0);
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
-        result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);
-        result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
-        result = 31 * result + (updaterId != null ? updaterId.hashCode() : 0);
-        result = 31 * result + (updaterName != null ? updaterName.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(projectTableId);
+        result = 31 * result + Objects.hashCode(tableSchema);
+        result = 31 * result + Objects.hashCode(tableName);
+        result = 31 * result + Objects.hashCode(columnName);
+        result = 31 * result + Objects.hashCode(isNullable);
+        result = 31 * result + Objects.hashCode(dataType);
+        result = 31 * result + Objects.hashCode(characterMaximumLength);
+        result = 31 * result + Objects.hashCode(numericPrecision);
+        result = 31 * result + Objects.hashCode(numericScale);
+        result = 31 * result + Objects.hashCode(columnType);
+        result = 31 * result + Objects.hashCode(columnKey);
+        result = 31 * result + Objects.hashCode(extra);
+        result = 31 * result + Objects.hashCode(columnComment);
         return result;
     }
 }

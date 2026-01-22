@@ -13,7 +13,7 @@
     <artifactId>mongodb</artifactId>
     <version>0.0.1</version>
     <name>mongodb</name>
-    <description>MongoDB能力模块</description>
+    <description>MongoDB 能力模块</description>
 
     <properties>
         <!-- 实体 -->

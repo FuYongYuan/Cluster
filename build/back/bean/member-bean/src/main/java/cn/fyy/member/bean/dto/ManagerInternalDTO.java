@@ -26,9 +26,9 @@ import java.util.List;
 public class ManagerInternalDTO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
-    @Schema(name = "id", description = "主键ID", type = "Long")
+    @Schema(name = "id", description = "主键 ID", type = "Long")
     private Long id;
 
     /**
@@ -80,9 +80,9 @@ public class ManagerInternalDTO implements Serializable {
     private String loginPassword;
 
     /**
-     * 最后尝试请求IP
+     * 最后尝试请求 IP
      */
-    @Schema(name = "lastAttemptLoginRequestIp", description = "最后尝试请求IP", type = "String", nullable = true)
+    @Schema(name = "lastAttemptLoginRequestIp", description = "最后尝试请求 IP", type = "String", nullable = true)
     private String lastAttemptLoginRequestIp;
 
     /**
@@ -99,15 +99,15 @@ public class ManagerInternalDTO implements Serializable {
     private Integer attemptLoginNumber;
 
     /**
-     * 常用请求IP
+     * 常用请求 IP
      */
-    @Schema(name = "requestIp", description = "常用请求IP", type = "String", nullable = true)
+    @Schema(name = "requestIp", description = "常用请求 IP", type = "String", nullable = true)
     private String requestIp;
 
     /**
-     * 当前请求IP
+     * 当前请求 IP
      */
-    @Schema(name = "currentRequestIp", description = "当前请求IP", type = "String", nullable = true)
+    @Schema(name = "currentRequestIp", description = "当前请求 IP", type = "String", nullable = true)
     private String currentRequestIp;
 
     /**
@@ -124,9 +124,9 @@ public class ManagerInternalDTO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    @Schema(name = "creatorId", description = "创建人 ID", type = "Long")
     private Long creatorId;
 
     /**
@@ -143,9 +143,9 @@ public class ManagerInternalDTO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    @Schema(name = "updaterId", description = "修改人 ID", type = "Long")
     private Long updaterId;
 
     /**

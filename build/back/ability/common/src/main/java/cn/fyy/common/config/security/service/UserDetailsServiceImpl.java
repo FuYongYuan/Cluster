@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     /**
      * 验证用户是否登录
      *
-     * @param redisId Redis中格式的用户ID
+     * @param redisId Redis 中格式的用户 ID
      * @return 登录用户信息
      * @throws UsernameNotFoundException 错误
      */

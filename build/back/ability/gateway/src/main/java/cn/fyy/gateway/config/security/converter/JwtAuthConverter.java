@@ -23,7 +23,7 @@ import java.util.List;
 @Component
 public class JwtAuthConverter implements ServerAuthenticationConverter {
     /**
-     * JWT参数
+     * JWT 参数
      */
     @Resource
     protected JwtProperties jwtProperties;

@@ -26,8 +26,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * Http请求封装工具类（基于 Apache HttpClient 5.x）
- * 提供 GET 和 POST 请求的封装方法，支持添加 headers、参数和自定义字符集。
+ * Http 请求封装工具类
+ * 提供 GET 和 POST 请求的封装方法，支持添加 headers 、参数和自定义字符集。
  *
  * @author fyy
  */
@@ -270,7 +270,7 @@ public class HttpRequestUtil {
     /**
      * 获取响应内容
      *
-     * @param charset  字符集名称（如 UTF-8）
+     * @param charset  字符集名称（如 UTF-8 ）
      * @param response 响应对象
      * @return 响应内容
      */
@@ -294,7 +294,7 @@ public class HttpRequestUtil {
     /**
      * 向请求中添加多个 Header
      *
-     * @param request 请求对象（HttpGet 或 HttpPost）
+     * @param request 请求对象（ HttpGet 或 HttpPost ）
      * @param headers 请求头信息
      */
     private static void addHeader(HttpRequest request, Map<String, String> headers) throws URISyntaxException {

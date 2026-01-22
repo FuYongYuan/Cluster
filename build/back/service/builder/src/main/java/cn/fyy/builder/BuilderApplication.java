@@ -19,18 +19,18 @@ import org.springframework.context.annotation.ComponentScan;
         "cn.fyy.builder",
         // 公共模块
         "cn.fyy.common",
-        // jwt模块
+        // jwt 模块
         "cn.fyy.jwt",
         // 数据模块
         "cn.fyy.database",
-        // redis模块
+        // redis 模块
         "cn.fyy.redis",
 })
 // 启用 nacos 注册中心、配置中心
 @EnableDiscoveryClient
 // 动态加载配置文件
 @RefreshScope
-// 启用feign
+// 启用 feign
 @EnableFeignClients
 public class BuilderApplication {
 

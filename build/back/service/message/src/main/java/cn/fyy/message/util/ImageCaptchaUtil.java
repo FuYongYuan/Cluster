@@ -20,7 +20,7 @@ import java.util.Random;
  */
 public class ImageCaptchaUtil {
     /**
-     * 验证码类，用于最后返回此对象，包含验证码图片base64和真值
+     * 验证码类，用于最后返回此对象，包含验证码图片 base64 和真值
      */
     private static Validate validate = null;
     /**
@@ -53,7 +53,7 @@ public class ImageCaptchaUtil {
      */
     private static final int COLOR_MAX_VALUE = 255;
 
-    // 将构造函数私有化 禁止new创建
+    // 将构造函数私有化 禁止 new 创建
 
     /**
      * 验证码
@@ -63,12 +63,12 @@ public class ImageCaptchaUtil {
     }
 
     /**
-     * 获取随机字符,并返回字符的String格式
+     * 获取随机字符,并返回字符的 String 格式
      *
      * @param index (指定位置)
      */
     private static String getRandomChar(int index) {
-        // 获取指定位置index的字符，并转换成字符串表示形式
+        // 获取指定位置 index 的字符，并转换成字符串表示形式
         return String.valueOf(RAND_STRING.charAt(index));
     }
 
@@ -146,18 +146,18 @@ public class ImageCaptchaUtil {
     }
 
     /**
-     * @return 生成Base64图形验证码
+     * @return 生成 Base64 图形验证码
      */
     public static Validate getRandomCode() {
         validate = validate == null ? new Validate() : validate;
 
-        // BufferedImage类是具有缓冲区的Image类,Image类是用于描述图像信息的类  
+        // BufferedImage 类是具有缓冲区的 Image 类, Image 类是用于描述图像信息的类
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
         // 设置背景透明
         Graphics2D graphics = image.createGraphics();
         image = graphics.getDeviceConfiguration().createCompatibleImage(WIDTH, HEIGHT, Transparency.TRANSLUCENT);
         // 填充杂物
-        // 获得BufferedImage对象的Graphics对象
+        // 获得 BufferedImage 对象的 Graphics 对象
         Graphics g = image.getGraphics();
         //填充矩形背景白色
         g.fillRect(0, 0, WIDTH, HEIGHT);

@@ -31,20 +31,20 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Redis相关Bean配置
+ * Redis 相关 Bean 配置
  *
  * @author fyy
  */
 @Configuration
 public class RedisConfig {
     /**
-     * Redis配置
+     * Redis 配置
      */
     @Resource
     private RedisProperties redisProperties;
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -54,7 +54,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -64,7 +64,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -74,7 +74,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -84,7 +84,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -94,7 +94,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -104,7 +104,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -114,7 +114,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -124,7 +124,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -134,7 +134,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -144,7 +144,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -154,7 +154,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -164,7 +164,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -174,7 +174,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -184,7 +184,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -194,7 +194,7 @@ public class RedisConfig {
     }
 
     /**
-     * RedisTemplate配置
+     * RedisTemplate 配置
      *
      * @return RedisTemplate
      */
@@ -204,13 +204,13 @@ public class RedisConfig {
     }
 
     /**
-     * 获取RedisTemplate
+     * 获取 RedisTemplate
      *
-     * @param redisSelect RedisSelect选择
+     * @param redisSelect RedisSelect 选择
      * @return RedisTemplate
      */
     private RedisTemplate<String, Object> getRedisTemplate(RedisSelect redisSelect) {
-        // 配置Redis
+        // 配置 Redis
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
         configuration.setHostName(redisProperties.getHost());
         configuration.setPort(redisProperties.getPort());
@@ -232,7 +232,7 @@ public class RedisConfig {
     }
 
     /**
-     * Redis序列化方式
+     * Redis 序列化方式
      *
      * @return RedisSerializer
      */
@@ -240,10 +240,10 @@ public class RedisConfig {
     public RedisSerializer<Object> redisSerializer() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        //必须设置，否则无法将JSON转化为对象，会转化成Map类型
+        //必须设置，否则无法将 JSON 转化为对象，会转化成 Map 类型
         objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
 
-        // 自定义ObjectMapper的时间处理模块
+        // 自定义 ObjectMapper 的时间处理模块
         JavaTimeModule javaTimeModule = new JavaTimeModule();
 
         javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
@@ -260,12 +260,12 @@ public class RedisConfig {
         // 禁用将日期序列化为时间戳的行为
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        //创建JSON序列化器
+        //创建 JSON 序列化器
         return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
     }
 
     /**
-     * 初始化Redis链接选择工具类
+     * 初始化 Redis 链接选择工具类
      */
     @Bean
     public RedisTemplateSelectUtil redisTemplateSelectUtil() {

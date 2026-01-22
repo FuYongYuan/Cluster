@@ -3,13 +3,13 @@ package encrypt;
 import java.security.MessageDigest;
 
 /**
- * MD5加密
+ * MD5 加密
  *
  * @author fyy
  */
 public class Md5Util {
     /**
-     * MD5编码
+     * MD5 编码
      */
     public static String encode(String str) {
         if (str == null) {
@@ -32,7 +32,7 @@ public class Md5Util {
     }
 
     /**
-     * MD5编码-加盐算法
+     * MD5 编码-加盐算法
      */
     public static String encode(String str, String salt) {
         if (str == null) {

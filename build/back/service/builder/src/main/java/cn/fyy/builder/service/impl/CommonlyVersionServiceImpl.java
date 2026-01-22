@@ -4,12 +4,12 @@ import cn.fyy.builder.bean.bo.CommonlyVersionBO;
 import cn.fyy.builder.bean.po.CommonlyVersionPO;
 import cn.fyy.builder.repository.CommonlyVersionRepository;
 import cn.fyy.builder.service.CommonlyVersionService;
-import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.util.BeanUtil;
+import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
+import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -44,7 +44,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
      * 新增或者修改
      *
      * @param bo                 常用版本 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return !=null 成功，==null 失败
      */
@@ -66,7 +66,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
      * 新增或者修改
      *
      * @param bo                 常用版本 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -77,23 +77,23 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
             LocalDateTime localDateTime = LocalDateTime.now();
             CommonlyVersionPO po;
             if (bo.getId() == null) {
-                bo.setId(snowflakeIdUtil.getGenerator().nextId());
-                bo.setCreatorId(currentManagerId);
-                bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(localDateTime);
-                bo.setUpdaterId(currentManagerId);
-                bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(localDateTime);
-                bo.setState(DataState.NORMAL.getCode());
-                po = CommonlyVersionBO.toPO(bo);
+                po = BeanUtil.insert(
+                        CommonlyVersionBO.toPO(bo),
+                        snowflakeIdUtil.getGenerator().nextId(),
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             } else {
                 CommonlyVersionPO old = commonlyVersionRepository.getReferenceById(bo.getId());
-                // 根据getNull复制其中的非空或包含空字段
+                // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
-                old.setUpdaterId(currentManagerId);
-                old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(localDateTime);
-                po = old;
+                po = BeanUtil.update(
+                        old,
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             }
 
             return CommonlyVersionBO.toBO(commonlyVersionRepository.save(po));
@@ -107,7 +107,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 常用版本
      */
     @Override
@@ -123,7 +123,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
      * 根据主键删除 主键可以是多个用,分割
      *
      * @param ids                删除主键 可以使用,分割
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
@@ -141,7 +141,7 @@ public class CommonlyVersionServiceImpl implements CommonlyVersionService {
     /**
      * 根据用户主键查询
      *
-     * @param managerId 管理员主键ID
+     * @param managerId 管理员主键 ID
      * @return 常用版本
      */
     @Override

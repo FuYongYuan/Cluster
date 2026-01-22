@@ -36,7 +36,7 @@ public class UploadServiceImpl implements UploadService {
     /**
      * 上传文件
      *
-     * @param managerId    上传人Id
+     * @param managerId    上传人 ID
      * @param businessType 业务类型
      * @param uploadFile   文件集合
      * @return 文件访问地址
@@ -73,7 +73,7 @@ public class UploadServiceImpl implements UploadService {
     /**
      * 上传文件
      *
-     * @param managerId    上传人Id
+     * @param managerId    上传人 ID
      * @param businessType 业务类型
      * @param uploadFile   文件
      * @return 文件访问地址
@@ -109,7 +109,7 @@ public class UploadServiceImpl implements UploadService {
     /**
      * 上传文件
      *
-     * @param managerId    上传人Id
+     * @param managerId    上传人 ID
      * @param businessType 业务类型
      * @param uploadFile   文件
      * @return 文件名称
@@ -145,7 +145,7 @@ public class UploadServiceImpl implements UploadService {
     /**
      * 查询文件临时访问地址
      *
-     * @param managerId    上传人Id
+     * @param managerId    上传人 ID
      * @param businessType 业务类型
      * @param fileName     文件名称
      * @param duration     签名有效期(分钟)
@@ -160,10 +160,10 @@ public class UploadServiceImpl implements UploadService {
 
 
     /**
-     * 查询新上传的图片Url
+     * 查询新上传的图片 Url
      *
      * @param rustfsUrl 图片目录
-     * @return 图片Url
+     * @return 图片 Url
      * @throws Exception 错误
      */
     private String ocrTransfer(String rustfsUrl) throws Exception {

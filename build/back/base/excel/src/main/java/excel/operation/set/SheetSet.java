@@ -34,7 +34,7 @@ public class SheetSet {
     private Class<?> dataClass;
 
     /**
-     * 读取字段时是否采用的Get方法读取
+     * 读取字段时是否采用的 Get 方法读取
      */
     private Boolean isGetMethodFieldValue;
 
@@ -187,7 +187,7 @@ public class SheetSet {
     }
 
     /**
-     * 读取字段时是否采用的Get方法读取
+     * 读取字段时是否采用的 Get 方法读取
      */
     public SheetSet setIsGetMethodFieldValue(Boolean isGetMethodFieldValue) {
         this.isGetMethodFieldValue = isGetMethodFieldValue;

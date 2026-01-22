@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Jwt过滤匹配器
+ * JWT 过滤匹配器
  *
  * @author fyy
  */
@@ -40,18 +40,18 @@ public class JwtServerWebExchangeMatcher implements ServerWebExchangeMatcher {
     }
 
     /**
-     * 判断请求是否需要进行JWT验证
+     * 判断请求是否需要进行 JWT 验证
      *
-     * @param exchange 当前的HTTP请求交换信息
+     * @param exchange 当前的 HTTP 请求交换信息
      * @return 匹配结果，如果请求在白名单内则不需要验证
      */
     @Override
     public Mono<MatchResult> matches(ServerWebExchange exchange) {
-        // 使用any方法检查请求是否匹配任何白名单路径
+        // 使用 any 方法检查请求是否匹配任何白名单路径
         return Flux.fromIterable(whitelistMatchers)
                 .concatMap(matcher -> matcher.matches(exchange))
                 .any(MatchResult::isMatch)
-                // 根据白名单匹配结果返回相应的MatchResult
+                // 根据白名单匹配结果返回相应的 MatchResult
                 .flatMap(isWhiteListed -> isWhiteListed ? MatchResult.notMatch() : allPathsMatcher.matches(exchange));
     }
 }

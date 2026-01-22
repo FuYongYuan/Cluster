@@ -30,7 +30,7 @@ import java.util.TreeMap;
 
 
 /**
- * Excel导入
+ * Excel 导入
  *
  * @author fyy
  */
@@ -54,7 +54,7 @@ public class ExcelImport {
             // 循环之后的行数据
             for (int j = 0; j <= rows; j++) {
                 TreeMap<String, Object> map = new TreeMap<>();
-                // 得到第j行
+                // 得到第 j 行
                 row = sheet.getRow(j);
                 if (row != null) {
                     // 当前页一共多少列
@@ -62,13 +62,13 @@ public class ExcelImport {
                     // 循环列
                     for (int i = 0; i < columns; i++) {
                         try {
-                            // 获取cell，如果报异常，说明整个row是空的null，直接在catch里面捕获，并赋值为空
+                            // 获取 cell ，如果报异常，说明整个 row 是空的 null ，直接在 catch 里面捕获，并赋值为空
                             cell = row.getCell(i);
                         } catch (NullPointerException ignored) {
                         } finally {
                             // 如果没有读到数据行继续循环
                             if (cell != null) {
-                                // 获取cell的类型
+                                // 获取 cell 的类型
                                 CellType type = cell.getCellType();
                                 if (type != CellType.BLANK) {
                                     setObj(sheet, cell, type, map, loadSpanCacheList);
@@ -103,7 +103,7 @@ public class ExcelImport {
      *
      * @param sheet                 页
      * @param tClass                转换的对象
-     * @param isGetMethodFieldValue 是否使用Set来写入值
+     * @param isGetMethodFieldValue 是否使用 Set 来写入值
      */
     public static <T> List<T> getExcel(Sheet sheet, Class<T> tClass, Boolean isGetMethodFieldValue) {
         List<T> list = new ArrayList<>();
@@ -124,7 +124,7 @@ public class ExcelImport {
             List<LoadSpanCache> loadSpanCacheList = new ArrayList<>();
             // 循环之后的行数据
             for (int j = 1; j <= rows; j++) {
-                // 得到第j行
+                // 得到第 j 行
                 row = sheet.getRow(j);
                 // 创建类型对象
                 T obj = tClass.getDeclaredConstructor().newInstance();
@@ -134,15 +134,15 @@ public class ExcelImport {
                         try {
                             // 拿到标题列的值
                             cellf = sheet.getRow(0).getCell(i);
-                            // 获取cell，如果报异常，说明整个row是空的null，直接在catch里面捕获，并赋值为空
+                            // 获取 cell ，如果报异常，说明整个 row 是空的 null ，直接在 catch 里面捕获，并赋值为空
                             cell = row.getCell(i);
                         } catch (NullPointerException ignored) {
                         } finally {
                             // 如果没有读到数据行继续循环
                             if (cell != null && cellf != null) {
-                                // 获取cell的类型
+                                // 获取 cell 的类型
                                 CellType type = cell.getCellType();
-                                // 获取cell的类型
+                                // 获取 cell 的类型
                                 CellType typef = cellf.getCellType();
                                 // 判断是否为空如果为空则跳过.无论是标题列还是数据列
                                 if (typef != CellType.BLANK && type != CellType.BLANK) {
@@ -191,7 +191,7 @@ public class ExcelImport {
         for (LoadSpanCache loadSpanCache : loadSpanCacheList) {
             // 获取当前列值
             TreeMap<String, Object> map = list.get(loadSpanCache.rowSpan);
-            //长度转成ABC列
+            // 长度转成 ABC 列
             String colString = CellReference.convertNumToColString(loadSpanCache.colSpan);
             // 结果对象
             map.put(colString, loadSpanCache.value);
@@ -200,7 +200,7 @@ public class ExcelImport {
 
     private static void setObj(Sheet sheet, Cell cell, CellType type, TreeMap<String, Object> map, List<LoadSpanCache> loadSpanCacheList) {
         try {
-            //长度转成ABC列
+            // 长度转成 ABC 列
             String colString = CellReference.convertNumToColString(cell.getColumnIndex());
             // 结果对象
             Object value = null;
@@ -429,7 +429,7 @@ public class ExcelImport {
     }
 
     private static void setFieldValue(Field field, Object obj, Object value) throws Exception {
-        //判断哪个类型.读取set方法拿到结果
+        // 判断哪个类型.读取 set 方法拿到结果
         if (field.getType().getName().equals(UsedType.Type_LocalDateTime.getValue())) {
             if (JudgeDispose.isNumber(value.toString())) {
                 int d = (int) Double.parseDouble(value.toString()) - 2;
@@ -493,7 +493,7 @@ public class ExcelImport {
     }
 
     /**
-     * 获取cell跨的行数
+     * 获取 cell 跨的行数
      *
      * @param cell  单元格
      * @param sheet 页签
@@ -504,7 +504,7 @@ public class ExcelImport {
         List<CellRangeAddress> list = sheet.getMergedRegions();
         for (CellRangeAddress cellRangeAddress : list) {
             if (cellRangeAddress.isInRange(cell)) {
-                // +1是因为如果没跨，就算1
+                // +1 是因为如果没跨，就算 1
                 rowSpan = cellRangeAddress.getLastRow() - cellRangeAddress.getFirstRow() + 1;
                 break;
             }
@@ -513,7 +513,7 @@ public class ExcelImport {
     }
 
     /**
-     * 获取cell跨的列数
+     * 获取 cell 跨的列数
      *
      * @param cell  单元格
      * @param sheet 页签
@@ -524,7 +524,7 @@ public class ExcelImport {
         List<CellRangeAddress> list = sheet.getMergedRegions();
         for (CellRangeAddress cellRangeAddress : list) {
             if (cellRangeAddress.isInRange(cell)) {
-                // +1是因为如果没跨，就算1
+                // +1 是因为如果没跨，就算 1
                 colSpan = cellRangeAddress.getLastColumn() - cellRangeAddress.getFirstColumn() + 1;
                 break;
             }

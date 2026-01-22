@@ -18,24 +18,24 @@ import java.util.List;
 public interface RoleMenuRepository extends JpaRepository<RoleMenuPO, Long>, JpaSpecificationExecutor<RoleMenuPO> {
 
     /**
-     * 根据角色主键ID删除
+     * 根据角色主键 ID 删除
      *
-     * @param roleId 角色主键ID
+     * @param roleId 角色主键 ID
      */
     void deleteByRoleId(Long roleId);
 
     /**
      * 根据角色查询现有菜单关系列表
      *
-     * @param roleId 角色主键ID
+     * @param roleId 角色主键 ID
      * @return 现有菜单关系列表
      */
     List<RoleMenuPO> queryByRoleIdOrderByUpdateTimeAsc(Long roleId);
 
     /**
-     * 根据角色ID集合查询现有菜单关系列表
+     * 根据角色 ID 集合查询现有菜单关系列表
      *
-     * @param roleIds 角色主键ID集合
+     * @param roleIds 角色主键 ID 集合
      * @param state   状态
      * @return 现有菜单关系列表
      */

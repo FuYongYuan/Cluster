@@ -22,17 +22,17 @@ import java.util.List;
 @AllArgsConstructor
 public class CommonlyVersionBO implements Serializable {
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
     /**
-     * 管理员ID
+     * 管理员 ID
      */
     private Long managerId;
 
     /**
-     * JDK版本
+     * JDK 版本
      */
     private String jdkVersion;
 
@@ -52,22 +52,22 @@ public class CommonlyVersionBO implements Serializable {
     private String springBootVersion;
 
     /**
-     * API文档组件
+     * API 文档组件
      */
     private String openApiVersion;
 
     /**
-     * 简化对象lombok
+     * 简化对象 lombok
      */
     private String lombokVersion;
 
     /**
-     * 数据访问监控Druid
+     * 数据访问监控 Druid
      */
     private String druidVersion;
 
     /**
-     * 数据库框架MyBatis版本
+     * 数据库框架 MyBatis 版本
      */
     private String mybatisVersion;
 
@@ -77,7 +77,7 @@ public class CommonlyVersionBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -92,7 +92,7 @@ public class CommonlyVersionBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 

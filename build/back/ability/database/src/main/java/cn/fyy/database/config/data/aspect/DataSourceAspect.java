@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class DataSourceAspect {
 
     /**
-     * JAP参数
+     * JAP 参数
      */
     @Resource
     private JpaProperties jpaProperties;

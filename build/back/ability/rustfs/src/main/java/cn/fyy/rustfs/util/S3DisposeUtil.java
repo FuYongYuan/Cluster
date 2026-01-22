@@ -6,7 +6,7 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 
 /**
- * S3处理
+ * S3 处理
  *
  * @author fyy
  */
@@ -39,9 +39,9 @@ public class S3DisposeUtil {
                     }
                 }
             } catch (Exception ignored) {
-
+                return domain;
             }
         }
-        return "localhost";
+        return domain;
     }
 }

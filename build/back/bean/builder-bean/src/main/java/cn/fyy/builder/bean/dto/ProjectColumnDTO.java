@@ -25,15 +25,15 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjectColumnDTO implements Serializable {
     /**
-     * 主键ID
+     * 主键 ID
      */
-    @Schema(name = "id", description = "主键ID", type = "Long", nullable = false)
+    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
     private Long id;
 
     /**
-     * 项目表ID
+     * 项目表 ID
      */
-    @Schema(name = "projectTableId", description = "项目表ID", type = "Long")
+    @Schema(name = "projectTableId", description = "项目表 ID", type = "Long")
     private Long projectTableId;
 
     /**
@@ -67,9 +67,9 @@ public class ProjectColumnDTO implements Serializable {
     private String dataType;
 
     /**
-     * 数据长度varchar
+     * 数据长度 varchar
      */
-    @Schema(name = "characterMaximumLength", description = "数据长度varchar", type = "Integer")
+    @Schema(name = "characterMaximumLength", description = "数据长度 varchar", type = "Integer")
     private Integer characterMaximumLength;
 
     /**
@@ -91,9 +91,9 @@ public class ProjectColumnDTO implements Serializable {
     private String columnType;
 
     /**
-     * PRI为主键，MUL为外键
+     * PRI 为主键，MUL 为外键
      */
-    @Schema(name = "columnKey", description = "PRI为主键，MUL为外键", type = "String")
+    @Schema(name = "columnKey", description = "PRI 为主键，MUL 为外键", type = "String")
     private String columnKey;
 
     /**
@@ -116,9 +116,9 @@ public class ProjectColumnDTO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    @Schema(name = "creatorId", description = "创建人 ID", type = "Long")
     private Long creatorId;
 
     /**
@@ -135,9 +135,9 @@ public class ProjectColumnDTO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    @Schema(name = "updaterId", description = "修改人 ID", type = "Long")
     private Long updaterId;
 
     /**

@@ -25,6 +25,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.header.writers.CacheControlHeadersWriter;
 
 /**
+ * Spring Security 配置类
+ *
  * @author fyy
  */
 @Slf4j
@@ -45,7 +47,7 @@ public class WebSecurityConfig {
     private SecurityAccessDeniedHandler securityAccessDeniedHandler;
 
     /**
-     * 当未登录或者token失效访问接口时，自定义的返回结果
+     * 当未登录或者 token 失效访问接口时，自定义的返回结果
      */
     @Resource
     private SecurityAuthenticationEntryPoint securityAuthenticationEntryPoint;
@@ -63,28 +65,28 @@ public class WebSecurityConfig {
     private UserDetailsService userDetailsServiceImpl;
 
     /**
-     * 用于配置需要拦截的url路径、jwt过滤器及出异常后的处理器；
+     * 用于配置需要拦截的 URL 路径、JWT 过滤器及出异常后的处理器；
      *
-     * @return 配置HTTP安全性。
-     * 禁用CSRF保护，因为我们使用的是JWT。
-     * 配置会话管理策略为无状态（不创建HTTP session）。
+     * @return 配置 HTTP 安全性。
+     * 禁用 CSRF 保护，因为我们使用的是 JWT。
+     * 配置会话管理策略为无状态（不创建 HTTP session）。
      * 配置请求授权规则，允许特定路径访问，其他路径需要认证。
-     * 添加JWT认证过滤器。
+     * 添加 JWT 认证过滤器。
      * 配置异常处理，添加自定义的未授权和未登录结果返回处理器。
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // 由于使用的是JWT，我们这里不需要csrf
+                // 由于使用的是 JWT，我们这里不需要 csrf
                 .csrf(AbstractHttpConfigurer::disable)
-                // 基于token，所以不需要session,STATELESS不创建httpsession并不使用
+                // 基于 token，所以不需要 session,STATELESS 不创建 http session 并不使用
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
                         // 允许对于网站静态资源的无授权访问
                         .requestMatchers(
                                 permitUrl.getAll()
                         ).permitAll()
-                        // 跨域请求会先进行一次options请求
+                        // 跨域请求会先进行一次 options 请求
                         .requestMatchers(HttpMethod.OPTIONS).permitAll()
                         // 除上面外的所有请求全部需要鉴权认证
                         .anyRequest().authenticated()
@@ -114,12 +116,12 @@ public class WebSecurityConfig {
     }
 
     /**
-     * 配置DaoAuthenticationProvider
+     * 配置 DaoAuthenticationProvider
      *
-     * @return AuthenticationProvider对象
+     * @return AuthenticationProvider 对象
      */
     public AuthenticationProvider authenticationProvider() {
-        // 注入UserDetailsService
+        // 注入 UserDetailsService
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider(userDetailsServiceImpl);
         // 关闭找不到用户错误
         authenticationProvider.setHideUserNotFoundExceptions(false);
@@ -129,7 +131,7 @@ public class WebSecurityConfig {
     }
 
     /**
-     * JWT登录授权过滤器
+     * JWT 登录授权过滤器
      */
     @Bean
     public JwtAuthenticationWebFilter jwtAuthenticationWebFilter() {

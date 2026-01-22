@@ -19,11 +19,11 @@ import java.util.List;
 public interface NoticeRepository extends JpaRepository<NoticePO, Long>, JpaSpecificationExecutor<NoticePO> {
 
     /**
-     * 根据ids保存状态
+     * 根据 ids 保存状态
      *
-     * @param ids                主键ID(可用,分割传入多个)
+     * @param ids                主键 ID (可用,分割传入多个)
      * @param state              状态
-     * @param currentManagerId   当前登陆管理员id
+     * @param currentManagerId   当前登陆管理员 ID
      * @param currentManagerName 当前登陆管理员名称
      * @param updateTime         当前时间
      * @return 受影响行数

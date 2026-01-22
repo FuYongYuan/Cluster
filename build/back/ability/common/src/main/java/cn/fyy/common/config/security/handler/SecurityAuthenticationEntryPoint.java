@@ -30,7 +30,11 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
      * @throws IOException 错误
      */
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
+    public void commence(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            AuthenticationException exception
+    ) throws IOException {
         log.error("【用户认证的时候出现错误时抛出的异常】类:{}   方法:{}   行:{}   错误:{}",
                 exception.getStackTrace()[0].getClassName(),
                 exception.getStackTrace()[0].getMethodName(),

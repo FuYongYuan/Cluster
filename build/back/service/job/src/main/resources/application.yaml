@@ -1,5 +1,5 @@
-#linux 启动语句 nohup java -jar job.jar >log/job.log &
-#linux 查看日志 tail -f log/job.log
+# Linux 启动语句 nohup java -jar job.jar >log/job.log &
+# Linux 查看日志 tail -f log/job.log
 
 # 服务配置
 server:
@@ -8,7 +8,7 @@ server:
   servlet:
     # 项目名称
     context-path: /
-# spring配置
+# spring 配置
 spring:
   application:
     # 项目名称
@@ -21,9 +21,9 @@ spring:
     import:
       # 基础配置
       - nacos:${spring.application.name}-base-${spring.profiles.active}.yaml
-      # xxl链接配置
+      # xxl 链接配置
       - nacos:${spring.application.name}-xxl-${spring.profiles.active}.yaml
-      # jwt认证配置
+      # jwt 认证配置
       - nacos:jwt-${spring.profiles.active}.yaml?group=system
       # redis 配置
       - nacos:redis-${spring.profiles.active}.yaml?group=system

@@ -23,7 +23,7 @@ import java.util.List;
 public class ButtonBO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
@@ -43,7 +43,7 @@ public class ButtonBO implements Serializable {
     private String onClick;
 
     /**
-     * 菜单ID
+     * 菜单 ID
      */
     private Long menuId;
 
@@ -63,7 +63,7 @@ public class ButtonBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -78,7 +78,7 @@ public class ButtonBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 

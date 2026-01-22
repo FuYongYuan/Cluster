@@ -13,12 +13,12 @@ import java.util.List;
 @Getter
 public class ValueLimit {
     /**
-     * 是否是MAP数据类型
+     * 是否是 MAP 数据类型
      */
     private Boolean isMap;
 
     /**
-     * 是否使用get读取值
+     * 是否使用 get 读取值
      */
     private Boolean isGetMethodFieldValue;
 
@@ -84,7 +84,7 @@ public class ValueLimit {
     }
 
     /**
-     * 是否是MAP数据类型
+     * 是否是 MAP 数据类型
      */
     public ValueLimit setIsMap(Boolean isMap) {
         this.isMap = isMap;
@@ -92,7 +92,7 @@ public class ValueLimit {
     }
 
     /**
-     * 读取字段时是否采用的Get方法读取
+     * 读取字段时是否采用的 Get 方法读取
      */
     public ValueLimit setIsGetMethodFieldValue(Boolean isGetMethodFieldValue) {
         this.isGetMethodFieldValue = isGetMethodFieldValue;

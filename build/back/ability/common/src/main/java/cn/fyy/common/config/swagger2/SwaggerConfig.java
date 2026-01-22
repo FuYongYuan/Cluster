@@ -28,14 +28,15 @@ public class SwaggerConfig {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    // 创建扫描内容和分组情况
-
+    /**
+     * 创建扫描内容和分组情况
+     */
     @Bean
     public OpenAPI restfulOpenApi() {
         return new OpenAPI()
                 .info(
                         new Info().title(applicationName)
-                                .description("API接口说明文档（基于RESTful协议）")
+                                .description("API 接口说明文档（基于 RESTful 协议）")
                                 .version("1.0.0")
                                 .license(new License().name("哎呋歪歪").url("https://www.aifuwaiwai.com"))
                                 .contact(new Contact().name("FYY"))
@@ -46,7 +47,7 @@ public class SwaggerConfig {
     }
 
     /**
-     * 这个类决定了你使用哪种认证方式，我这里使用Token认证 即在Header中加入 Authorization: Bearer Header-头部.Payload-负载.Signature-签名
+     * 这个类决定了你使用哪种认证方式，我这里使用 Token 认证 即在 Header 中加入 Authorization: Bearer Header-头部.Payload-负载.Signature-签名
      */
     private List<SecurityRequirement> securityRequirements() {
         List<SecurityRequirement> list = new ArrayList<>();

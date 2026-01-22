@@ -1,11 +1,11 @@
 package cn.fyy.message.service.impl;
 
-import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.util.BeanUtil;
+import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
+import cn.fyy.jpa.bean.ao.DataState;
 import cn.fyy.message.bean.bo.NoticeBO;
 import cn.fyy.message.bean.po.NoticePO;
 import cn.fyy.message.repository.NoticeRepository;
@@ -45,7 +45,7 @@ public class NoticeServiceImpl implements NoticeService {
      * 新增或者修改
      *
      * @param bo                 公告 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return !=null 成功，==null 失败
      */
@@ -67,7 +67,7 @@ public class NoticeServiceImpl implements NoticeService {
      * 新增或者修改
      *
      * @param bo                 公告 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -78,25 +78,25 @@ public class NoticeServiceImpl implements NoticeService {
             LocalDateTime localDateTime = LocalDateTime.now();
             NoticePO po;
             if (bo.getId() == null) {
-                bo.setId(snowflakeIdUtil.getGenerator().nextId());
-                bo.setCreatorId(currentManagerId);
-                bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(localDateTime);
-                bo.setUpdaterId(currentManagerId);
-                bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(localDateTime);
-                bo.setState(DataState.NORMAL.getCode());
-                po = NoticeBO.toPO(bo);
+                po = BeanUtil.insert(
+                        NoticeBO.toPO(bo),
+                        snowflakeIdUtil.getGenerator().nextId(),
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             } else {
                 NoticePO old = noticeRepository.getReferenceById(bo.getId());
-                // 根据getNull复制其中的非空或包含空字段
+                // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
                 old.setNoticeTitle(StringUtils.hasText(bo.getNoticeTitle()) ? bo.getNoticeTitle() : null);
                 old.setNoticeContent(StringUtils.hasText(bo.getNoticeContent()) ? bo.getNoticeContent() : null);
-                old.setUpdaterId(currentManagerId);
-                old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(localDateTime);
-                po = old;
+                po = BeanUtil.update(
+                        old,
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             }
 
             return NoticeBO.toBO(noticeRepository.save(po));
@@ -110,7 +110,7 @@ public class NoticeServiceImpl implements NoticeService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 公告
      */
     @Override
@@ -126,7 +126,7 @@ public class NoticeServiceImpl implements NoticeService {
      * 根据主键删除 主键可以是多个用,分割
      *
      * @param ids                删除主键 可以使用,分割
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception

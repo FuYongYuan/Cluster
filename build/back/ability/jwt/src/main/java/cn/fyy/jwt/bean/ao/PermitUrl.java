@@ -7,14 +7,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 过滤url
+ * 过滤 URL
  *
  * @author fyy
  */
 @Component
 public class PermitUrl {
     /**
-     * 不鉴权URL-全项目统一不加前缀
+     * 不鉴权 URL - 全项目统一不加前缀
      */
     private final String[] apiUrl = {
             // API 页面
@@ -24,7 +24,7 @@ public class PermitUrl {
     };
 
     /**
-     * 不鉴权URL-全项目统一不加前缀
+     * 不鉴权 URL - 全项目统一不加前缀
      */
     private final String[] projectUrl = {
             // 项目图标
@@ -32,7 +32,7 @@ public class PermitUrl {
     };
 
     /**
-     * 不鉴权URL-全项目统一不加前缀
+     * 不鉴权 URL - 全项目统一不加前缀
      */
     private final String[] healthUrl = {
             // gateway健康检查链接
@@ -40,7 +40,7 @@ public class PermitUrl {
     };
 
     /**
-     * 不鉴权URL-全项目统一不加前缀
+     * 不鉴权 URL - 全项目统一不加前缀
      */
     private final String[] druidUrl = {
             // 忽略数据库监控
@@ -48,7 +48,7 @@ public class PermitUrl {
     };
 
     /**
-     * 不鉴权URL
+     * 不鉴权 URL - 全项目统一不加前缀
      */
     private final String[] messageUrl = {
             // 图形验证码
@@ -61,7 +61,7 @@ public class PermitUrl {
     };
 
     /**
-     * 不鉴权URL
+     * 不鉴权 URL - 全项目统一不加前缀
      */
     private final String[] authorizationUrl = {
             // 登录、注册、找回密码 数据请求方法
@@ -77,7 +77,7 @@ public class PermitUrl {
     };
 
     /**
-     * 不鉴权URL
+     * 不鉴权 URL - 全项目统一不加前缀
      */
     private final String[] memberUrl = {
             // 管理员模块需配合登录、注册、找回密码使用的越鉴权接口
@@ -97,10 +97,10 @@ public class PermitUrl {
     };
 
     /**
-     * 不鉴权地址--适用于除gateway的所有项目
+     * 不鉴权地址--适用于除 gateway 的所有项目
      *
-     * @param url 可新增自定义的url
-     * @return 自定义不鉴权的url集合
+     * @param url 可新增自定义的 URL
+     * @return 自定义不鉴权的 URL 集合
      */
     public String[] getAll(String... url) {
         Set<String> permitUrl = new HashSet<>();
@@ -119,11 +119,11 @@ public class PermitUrl {
     }
 
     /**
-     * 不鉴权地址--适用于gateway
+     * 不鉴权地址--适用于 gateway
      * 因gateway没有API页面和数据库页面所以不需要添加
      *
-     * @param url 可新增自定义的url
-     * @return 自定义不鉴权的url集合
+     * @param url 可新增自定义的 URL
+     * @return 自定义不鉴权的 URL 集合
      */
     public String[] getGateway(String... url) {
         Set<String> permitUrl = new HashSet<>();

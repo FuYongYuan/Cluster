@@ -1,10 +1,13 @@
 package cn.fyy.builder.bean.po;
 
-import jakarta.persistence.*;
+import cn.fyy.jpa.bean.po.BasePO;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -17,26 +20,19 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@Builder(toBuilder = true)
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectTablePO implements Serializable {
-    /**
-     * 主键ID
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class ProjectTablePO extends BasePO implements Serializable {
 
     /**
-     * 项目群ID
+     * 项目群 ID
      */
     @Column(name = "project_group_id")
     private Long projectGroupId;
 
     /**
-     * 数据库设计文件ID
+     * 数据库设计文件 ID
      */
     @Column(name = "data_base_file_id")
     private Long dataBaseFileId;
@@ -59,112 +55,34 @@ public class ProjectTablePO implements Serializable {
     @Column(name = "table_comment", length = 1000)
     private String tableComment;
 
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 创建人ID
-     */
-    @Column(name = "creator_id")
-    private Long creatorId;
-
-    /**
-     * 创建人名称
-     */
-    @Column(name = "creator_name", length = 50)
-    private String creatorName;
-
-    /**
-     * 更新时间
-     */
-    @Column(name = "update_time")
-    private LocalDateTime updateTime;
-
-    /**
-     * 更新人ID
-     */
-    @Column(name = "updater_id")
-    private Long updaterId;
-
-    /**
-     * 更新人名称
-     */
-    @Column(name = "updater_name", length = 50)
-    private String updaterName;
-
-    /**
-     * 状态;（0.正常、99.删除）
-     */
-    @Column(name = "state")
-    private Byte state;
-
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof ProjectTablePO that)) {
             return false;
         }
+        if (!super.equals(that)) {
+            return false;
+        }
 
-        if (!id.equals(that.id)) {
-            return false;
-        }
-        if (!Objects.equals(projectGroupId, that.projectGroupId)) {
-            return false;
-        }
-        if (!Objects.equals(dataBaseFileId, that.dataBaseFileId)) {
-            return false;
-        }
-        if (!Objects.equals(tableSchema, that.tableSchema)) {
-            return false;
-        }
-        if (!Objects.equals(tableName, that.tableName)) {
-            return false;
-        }
-        if (!Objects.equals(tableComment, that.tableComment)) {
-            return false;
-        }
-        if (!Objects.equals(createTime, that.createTime)) {
-            return false;
-        }
-        if (!Objects.equals(creatorId, that.creatorId)) {
-            return false;
-        }
-        if (!Objects.equals(creatorName, that.creatorName)) {
-            return false;
-        }
-        if (!Objects.equals(updateTime, that.updateTime)) {
-            return false;
-        }
-        if (!Objects.equals(updaterId, that.updaterId)) {
-            return false;
-        }
-        if (!Objects.equals(updaterName, that.updaterName)) {
-            return false;
-        }
-        return Objects.equals(state, that.state);
+        return Objects.equals(projectGroupId, that.projectGroupId) &&
+                Objects.equals(dataBaseFileId, that.dataBaseFileId) &&
+                Objects.equals(tableSchema, that.tableSchema) &&
+                Objects.equals(tableName, that.tableName) &&
+                Objects.equals(tableComment, that.tableComment);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (projectGroupId != null ? projectGroupId.hashCode() : 0);
-        result = 31 * result + (dataBaseFileId != null ? dataBaseFileId.hashCode() : 0);
-        result = 31 * result + (tableSchema != null ? tableSchema.hashCode() : 0);
-        result = 31 * result + (tableName != null ? tableName.hashCode() : 0);
-        result = 31 * result + (tableComment != null ? tableComment.hashCode() : 0);
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
-        result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);
-        result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
-        result = 31 * result + (updaterId != null ? updaterId.hashCode() : 0);
-        result = 31 * result + (updaterName != null ? updaterName.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(projectGroupId);
+        result = 31 * result + Objects.hashCode(dataBaseFileId);
+        result = 31 * result + Objects.hashCode(tableSchema);
+        result = 31 * result + Objects.hashCode(tableName);
+        result = 31 * result + Objects.hashCode(tableComment);
         return result;
     }
 }

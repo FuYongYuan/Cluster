@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Druid配置
+ * Druid 配置
  *
  * @author fuyy
  */
@@ -44,7 +44,7 @@ public class DataSourceConfig {
     @ConfigurationProperties("spring.datasource.druid.write")
     public DruidDataSource writeDataSource() {
         DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
-        // 配置防御SQL注入攻击策略
+        // 配置防御 SQL 注入攻击策略
         List<Filter> filtersList = new ArrayList<>();
         filtersList.add(writeStatFilter());
         filtersList.add(writeWallFilter());
@@ -53,7 +53,7 @@ public class DataSourceConfig {
     }
 
     /**
-     * 统计配置，当前只配置了慢sql检查
+     * 统计配置，当前只配置了慢 SQL 检查
      */
     @Bean(autowireCandidate = false)
     @ConfigurationProperties("spring.datasource.druid.write.filter.stat")
@@ -92,7 +92,7 @@ public class DataSourceConfig {
     @ConfigurationProperties("spring.datasource.druid.read")
     public DruidDataSource readDataSource() {
         DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
-        // 配置防御SQL注入攻击策略
+        // 配置防御 SQL 注入攻击策略
         List<Filter> filtersList = new ArrayList<>();
         filtersList.add(readStatFilter());
         filtersList.add(readWallFilter());
@@ -101,7 +101,7 @@ public class DataSourceConfig {
     }
 
     /**
-     * 统计配置，当前只配置了慢sql检查
+     * 统计配置，当前只配置了慢 SQL 检查
      */
     @Bean(autowireCandidate = false)
     @ConfigurationProperties("spring.datasource.druid.read.filter.stat")
@@ -143,7 +143,7 @@ public class DataSourceConfig {
         targetDataSources.put(DataSourceRouting.DataSourceType.ReadDataSource, readDataSource);
 
         DataSourceRouting dataSource = new DataSourceRouting();
-        // 该方法是AbstractRoutingDataSource的方法
+        // 该方法是 AbstractRoutingDataSource 的方法
         dataSource.setTargetDataSources(targetDataSources);
         dataSource.setDefaultTargetDataSource(writeDataSource);
         return dataSource;
@@ -152,7 +152,7 @@ public class DataSourceConfig {
     //------------------------------------------------------------------------------------------------------------------监控页面设置--不注入的话通过配置文件使用配置中心无法直接生效
 
     /**
-     * Druid监控页面Servlet注册
+     * Druid 监控页面 Servlet 注册
      */
     @Bean
     public ServletRegistrationBean<StatViewServlet> statViewServlet(DruidStatProperties properties) {
@@ -164,7 +164,7 @@ public class DataSourceConfig {
     }
 
     /**
-     * Druid Web监控过滤器注册
+     * Druid Web 监控过滤器注册
      */
     @Bean
     public FilterRegistrationBean<WebStatFilter> webStatFilter(DruidStatProperties properties) {

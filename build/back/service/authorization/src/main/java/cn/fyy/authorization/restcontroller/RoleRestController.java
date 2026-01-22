@@ -87,7 +87,7 @@ public class RoleRestController {
     @Operation(
             summary = "根据主键删除 主键可以是多个用,分割", description = "受影响行数",
             parameters = {
-                    @Parameter(name = "ids", description = "删除ID", required = true)
+                    @Parameter(name = "ids", description = "删除 ID", required = true)
             }
     )
     @DeleteMapping(value = "/delete/{ids}")
@@ -107,14 +107,14 @@ public class RoleRestController {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 角色对象
      * @throws BusinessException 业务错误
      */
     @Operation(
             summary = "根据主键查询", description = "TRoleDTO 角色对象",
             parameters = {
-                    @Parameter(name = "id", description = "主键ID", required = true)
+                    @Parameter(name = "id", description = "主键 ID", required = true)
             }
     )
     @GetMapping(value = "/get/{id}")
@@ -164,14 +164,14 @@ public class RoleRestController {
     /**
      * 根据用户查询现有角色关系列表
      *
-     * @param managerId 管理员主键ID
+     * @param managerId 管理员主键 ID
      * @return 用户角色关系对象
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据管理员ID查询拥有的角色列表", description = "TRoleDTO 角色对象集合",
+            summary = "根据管理员 ID 查询拥有的角色列表", description = "TRoleDTO 角色对象集合",
             parameters = {
-                    @Parameter(name = "managerId", description = "管理员ID", required = true)
+                    @Parameter(name = "managerId", description = "管理员 ID", required = true)
             }
     )
     @GetMapping(value = "/query/manager/have/role/{managerId}")

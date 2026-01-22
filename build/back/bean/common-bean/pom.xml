@@ -22,16 +22,10 @@
     </properties>
 
     <dependencies>
-        <!-- Spring参数校验 -->
+        <!-- Spring 参数校验 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-
-        <!-- Hibernate注解包 -->
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
         </dependency>
     </dependencies>
 </project>

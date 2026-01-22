@@ -1,19 +1,19 @@
 package snowflake;
 
 /**
- * 雪花ID生成器常量
+ * 雪花 ID 生成器常量
  *
  * @author fyy
  */
 public class SnowflakeIdConstant {
     //------------------------------------------------------------------------------------------------------------------常量定义
     /**
-     * 实例ID位数
+     * 实例 ID 位数
      */
     public static final long WORKER_ID_BITS = 10L;
 
     /**
-     * 数据中心ID位数
+     * 数据中心 ID 位数
      */
     public static final long DATA_CENTER_ID_BITS = 4L;
 
@@ -23,22 +23,22 @@ public class SnowflakeIdConstant {
     public static final long SEQUENCE_BITS = 8L;
 
     /**
-     * 最大实例ID (0~1023)
+     * 最大实例 ID (0~1023)
      */
     public static final long MAX_WORKER_ID = ~(-1L << WORKER_ID_BITS);
 
     /**
-     * 最大数据中心ID (0~15)
+     * 最大数据中心 ID (0~15)
      */
     public static final long MAX_DATA_CENTER_ID = ~(-1L << DATA_CENTER_ID_BITS);
 
     /**
-     * 实例ID左移位数
+     * 实例 ID 左移位数
      */
     public static final long WORKER_ID_SHIFT = SEQUENCE_BITS;
 
     /**
-     * 数据中心ID左移位数
+     * 数据中心 ID 左移位数
      */
     public static final long DATA_CENTER_ID_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS;
 

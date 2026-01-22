@@ -47,7 +47,7 @@ public class RandomUtil {
                 , 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         Random rd = new Random();
         StringBuilder result = new StringBuilder();
-        //随即10个拿出来看看
+        //随即 10 个拿出来看看
         for (int i = 0; i < length; i++) {
             result.append(alphabet[rd.nextInt(52)]);
         }
@@ -57,7 +57,7 @@ public class RandomUtil {
     //------------------------------------------------------------------------------------------------------------------随机boolean
 
     /**
-     * 随机boolean
+     * 随机 boolean
      */
     public static boolean randomBoolean() {
         Random rd = new Random();

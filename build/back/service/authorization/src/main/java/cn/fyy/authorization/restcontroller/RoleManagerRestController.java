@@ -63,16 +63,16 @@ public class RoleManagerRestController {
     /**
      * 保存角色管理员关系集合
      *
-     * @param managerId 管理员ID
-     * @param roleIds   角色ID集合
+     * @param managerId 管理员 ID
+     * @param roleIds   角色 ID 集合
      * @return 角色管理员关系对象
      * @throws BusinessException 业务错误
      */
     @Operation(
             summary = "保存角色管理员关系集合", description = "RoleManagerDTO 角色管理员关系对象",
             parameters = {
-                    @Parameter(name = "managerId", description = "管理员ID", required = true),
-                    @Parameter(name = "roleIds", description = "角色ID集合", required = true)
+                    @Parameter(name = "managerId", description = "管理员 ID", required = true),
+                    @Parameter(name = "roleIds", description = "角色 ID 集合", required = true)
             }
     )
     @PostMapping(value = "/save/list/{managerId}/{roleIds}")

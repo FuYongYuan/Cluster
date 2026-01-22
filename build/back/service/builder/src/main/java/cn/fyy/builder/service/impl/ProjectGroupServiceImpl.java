@@ -6,14 +6,14 @@ import cn.fyy.builder.feign.client.parameter.ParameterFeignClient;
 import cn.fyy.builder.repository.ProjectGroupRepository;
 import cn.fyy.builder.service.ProjectGroupService;
 import cn.fyy.common.bean.ao.ConstantParameter;
-import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.util.BeanUtil;
-import cn.fyy.common.util.SelectUtil;
+import cn.fyy.database.util.BeanUtil;
+import cn.fyy.database.util.SelectUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
 import cn.fyy.dictionary.bean.dto.ParameterDTO;
+import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +62,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
      * 新增或者修改
      *
      * @param bo                 项目群 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return !=null 成功，==null 失败
      */
@@ -93,7 +93,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
      * 新增或者修改
      *
      * @param bo                 项目群 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -104,23 +104,23 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
             LocalDateTime localDateTime = LocalDateTime.now();
             ProjectGroupPO po;
             if (bo.getId() == null) {
-                bo.setId(snowflakeIdUtil.getGenerator().nextId());
-                bo.setCreatorId(currentManagerId);
-                bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(localDateTime);
-                bo.setUpdaterId(currentManagerId);
-                bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(localDateTime);
-                bo.setState(DataState.NORMAL.getCode());
-                po = ProjectGroupBO.toPO(bo);
+                po = BeanUtil.insert(
+                        ProjectGroupBO.toPO(bo),
+                        snowflakeIdUtil.getGenerator().nextId(),
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             } else {
                 ProjectGroupPO old = projectGroupRepository.getReferenceById(bo.getId());
-                // 根据getNull复制其中的非空或包含空字段
+                // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
-                old.setUpdaterId(currentManagerId);
-                old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(localDateTime);
-                po = old;
+                po = BeanUtil.update(
+                        old,
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             }
 
             return ProjectGroupBO.toBO(projectGroupRepository.save(po));
@@ -134,7 +134,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 项目群
      */
     @Override
@@ -150,7 +150,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
      * 根据主键删除 主键可以是多个用,分割
      *
      * @param ids                删除主键 可以使用,分割
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
@@ -168,7 +168,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
     /**
      * 根据名称查询项目群列表
      *
-     * @param managerId        管理员主键ID
+     * @param managerId        管理员主键 ID
      * @param projectGroupName 项目群名称
      * @param state            状态
      * @return TProjectGroupBO 项目群对象
@@ -214,9 +214,9 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
     }
 
     /**
-     * 根据当前登录人id查询对应的项目群列表
+     * 根据当前登录人 ID 查询对应的项目群列表
      *
-     * @param managerId 当前登陆人主键ID
+     * @param managerId 当前登陆人主键 ID
      */
     @Override
     public List<ProjectGroupBO> queryByManagerId(Long managerId) throws BusinessException {

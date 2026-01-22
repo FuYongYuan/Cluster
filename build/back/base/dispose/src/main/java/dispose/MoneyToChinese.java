@@ -90,7 +90,7 @@ public class MoneyToChinese {
      */
     public static String to(BigDecimal money) {
         StringBuilder sb = new StringBuilder();
-        // -1、0、1，因为此BigDecimal的值是负数、零、正数
+        // -1、0、1，因为此 BigDecimal 的值是负数、零、正数
         int signum = money.signum();
         // 零元整的情况
         if (signum == 0) {
@@ -146,7 +146,7 @@ public class MoneyToChinese {
                 }
                 getZero = true;
             }
-            // 让number每次都去掉最后一个数
+            // 让 number 每次都去掉最后一个数
             number = number / 10;
             ++numIndex;
         }
@@ -154,7 +154,7 @@ public class MoneyToChinese {
         if (signum == -1) {
             sb.insert(0, CHINESE_NEGATIVE);
         }
-        // 输入的数字小数点后两位为"00"的情况，则要在最后追加特殊字符：整
+        // 输入的数字小数点后两位为 "00" 的情况，则要在最后追加特殊字符：整
         if (scale <= 0) {
             sb.append(CHINESE_FULL);
         }

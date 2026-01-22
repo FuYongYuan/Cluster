@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.time.Duration;
 
 /**
- * RustFS操作类
+ * RustFS 操作类
  *
  * @author fyy
  */
@@ -28,7 +28,7 @@ public interface RustfsService {
     void deleteObject(String fileName) throws BusinessException;
 
     /**
-     * 获取文件URL
+     * 获取文件 URL
      *
      * @param fileName 文件名称
      * @param duration 签名有效期

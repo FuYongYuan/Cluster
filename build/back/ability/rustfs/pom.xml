@@ -13,7 +13,7 @@
     <artifactId>rustfs</artifactId>
     <version>0.0.1</version>
     <name>rustfs</name>
-    <description>rustfs能力模块</description>
+    <description>rustfs 能力模块</description>
 
     <properties>
         <!-- s3 -->

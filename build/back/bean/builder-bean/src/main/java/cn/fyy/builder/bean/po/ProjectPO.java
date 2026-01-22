@@ -1,10 +1,13 @@
 package cn.fyy.builder.bean.po;
 
-import jakarta.persistence.*;
+import cn.fyy.jpa.bean.po.BasePO;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -17,20 +20,13 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@Builder(toBuilder = true)
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectPO implements Serializable {
-    /**
-     * 主键ID
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class ProjectPO extends BasePO implements Serializable {
 
     /**
-     * 项目群ID
+     * 项目群 ID
      */
     @Column(name = "project_group_id")
     private Long projectGroupId;
@@ -42,7 +38,7 @@ public class ProjectPO implements Serializable {
     private String projectName;
 
     /**
-     * 工件ID
+     * 工件 ID
      */
     @Column(name = "artifact_id", length = 100)
     private String artifactId;
@@ -78,13 +74,13 @@ public class ProjectPO implements Serializable {
     private String projectPort;
 
     /**
-     * 是否Service创建接口;（0.否、1.是）
+     * 是否 Service 创建接口;（0.否、1.是）
      */
     @Column(name = "is_service_interface")
     private Byte isServiceInterface;
 
     /**
-     * 是否去除BO层;（0.否、1.是）
+     * 是否去除 BO 层;（0.否、1.是）
      */
     @Column(name = "is_delete_bo")
     private Byte isDeleteBo;
@@ -96,19 +92,19 @@ public class ProjectPO implements Serializable {
     private Byte isBasisMethod;
 
     /**
-     * 是否使用Redis缓存;（0.否、1.是）
+     * 是否使用 Redis 缓存;（0.否、1.是）
      */
     @Column(name = "is_redis")
     private Byte isRedis;
 
     /**
-     * 是否使用RustFS文件服务器;（0.否、1.是）
+     * 是否使用 RustFS 文件服务器;（0.否、1.是）
      */
     @Column(name = "is_rustfs")
     private Byte isRustfs;
 
     /**
-     * 是否使用Mail能力;（0.否、1.是）
+     * 是否使用 Mail 能力;（0.否、1.是）
      */
     @Column(name = "is_mail")
     private Byte isMail;
@@ -126,25 +122,25 @@ public class ProjectPO implements Serializable {
     private Byte isEncrypt;
 
     /**
-     * 是否使用Excel能力;（0.否、1.是）
+     * 是否使用 Excel 能力;（0.否、1.是）
      */
     @Column(name = "is_excel")
     private Byte isExcel;
 
     /**
-     * Druid访问路径
+     * Druid 访问路径
      */
     @Column(name = "druid_url", length = 200)
     private String druidUrl;
 
     /**
-     * Druid登录账号
+     * Druid 登录账号
      */
     @Column(name = "druid_account", length = 50)
     private String druidAccount;
 
     /**
-     * Druid登录密码
+     * Druid 登录密码
      */
     @Column(name = "druid_password", length = 50)
     private String druidPassword;
@@ -173,188 +169,72 @@ public class ProjectPO implements Serializable {
     @Column(name = "data_base_format")
     private Byte dataBaseFormat;
 
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 创建人ID
-     */
-    @Column(name = "creator_id")
-    private Long creatorId;
-
-    /**
-     * 创建人名称
-     */
-    @Column(name = "creator_name", length = 50)
-    private String creatorName;
-
-    /**
-     * 更新时间
-     */
-    @Column(name = "update_time")
-    private LocalDateTime updateTime;
-
-    /**
-     * 更新人ID
-     */
-    @Column(name = "updater_id")
-    private Long updaterId;
-
-    /**
-     * 更新人名称
-     */
-    @Column(name = "updater_name", length = 50)
-    private String updaterName;
-
-    /**
-     * 状态;（0.正常、99.删除）
-     */
-    @Column(name = "state")
-    private Byte state;
-
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof ProjectPO that)) {
             return false;
         }
+        if (!super.equals(that)) {
+            return false;
+        }
 
-        if (!id.equals(that.id)) {
-            return false;
-        }
-        if (!Objects.equals(projectGroupId, that.projectGroupId)) {
-            return false;
-        }
-        if (!Objects.equals(projectName, that.projectName)) {
-            return false;
-        }
-        if (!Objects.equals(artifactId, that.artifactId)) {
-            return false;
-        }
-        if (!Objects.equals(packageName, that.packageName)) {
-            return false;
-        }
-        if (!Objects.equals(projectVersion, that.projectVersion)) {
-            return false;
-        }
-        if (!Objects.equals(projectDescription, that.projectDescription)) {
-            return false;
-        }
-        if (!Objects.equals(projectUrl, that.projectUrl)) {
-            return false;
-        }
-        if (!Objects.equals(projectPort, that.projectPort)) {
-            return false;
-        }
-        if (!Objects.equals(isServiceInterface, that.isServiceInterface)) {
-            return false;
-        }
-        if (!Objects.equals(isDeleteBo, that.isDeleteBo)) {
-            return false;
-        }
-        if (!Objects.equals(isBasisMethod, that.isBasisMethod)) {
-            return false;
-        }
-        if (!Objects.equals(isRedis, that.isRedis)) {
-            return false;
-        }
-        if (!Objects.equals(isRustfs, that.isRustfs)) {
-            return false;
-        }
-        if (!Objects.equals(isMail, that.isMail)) {
-            return false;
-        }
-        if (!Objects.equals(isDispose, that.isDispose)) {
-            return false;
-        }
-        if (!Objects.equals(isEncrypt, that.isEncrypt)) {
-            return false;
-        }
-        if (!Objects.equals(isExcel, that.isExcel)) {
-            return false;
-        }
-        if (!Objects.equals(druidUrl, that.druidUrl)) {
-            return false;
-        }
-        if (!Objects.equals(druidAccount, that.druidAccount)) {
-            return false;
-        }
-        if (!Objects.equals(druidPassword, that.druidPassword)) {
-            return false;
-        }
-        if (!Objects.equals(isDeleteNotPk, that.isDeleteNotPk)) {
-            return false;
-        }
-        if (!Objects.equals(isOrderKey, that.isOrderKey)) {
-            return false;
-        }
-        if (!Objects.equals(dataBaseFramework, that.dataBaseFramework)) {
-            return false;
-        }
-        if (!Objects.equals(dataBaseFormat, that.dataBaseFormat)) {
-            return false;
-        }
-        if (!Objects.equals(createTime, that.createTime)) {
-            return false;
-        }
-        if (!Objects.equals(creatorId, that.creatorId)) {
-            return false;
-        }
-        if (!Objects.equals(creatorName, that.creatorName)) {
-            return false;
-        }
-        if (!Objects.equals(updateTime, that.updateTime)) {
-            return false;
-        }
-        if (!Objects.equals(updaterId, that.updaterId)) {
-            return false;
-        }
-        if (!Objects.equals(updaterName, that.updaterName)) {
-            return false;
-        }
-        return Objects.equals(state, that.state);
+        return Objects.equals(projectGroupId, that.projectGroupId) &&
+                Objects.equals(projectName, that.projectName) &&
+                Objects.equals(artifactId, that.artifactId) &&
+                Objects.equals(packageName, that.packageName) &&
+                Objects.equals(projectVersion, that.projectVersion) &&
+                Objects.equals(projectDescription, that.projectDescription) &&
+                Objects.equals(projectUrl, that.projectUrl) &&
+                Objects.equals(projectPort, that.projectPort) &&
+                Objects.equals(isServiceInterface, that.isServiceInterface) &&
+                Objects.equals(isDeleteBo, that.isDeleteBo) &&
+                Objects.equals(isBasisMethod, that.isBasisMethod) &&
+                Objects.equals(isRedis, that.isRedis) &&
+                Objects.equals(isRustfs, that.isRustfs) &&
+                Objects.equals(isMail, that.isMail) &&
+                Objects.equals(isDispose, that.isDispose) &&
+                Objects.equals(isEncrypt, that.isEncrypt) &&
+                Objects.equals(isExcel, that.isExcel) &&
+                Objects.equals(druidUrl, that.druidUrl) &&
+                Objects.equals(druidAccount, that.druidAccount) &&
+                Objects.equals(druidPassword, that.druidPassword) &&
+                Objects.equals(isDeleteNotPk, that.isDeleteNotPk) &&
+                Objects.equals(isOrderKey, that.isOrderKey) &&
+                Objects.equals(dataBaseFramework, that.dataBaseFramework) &&
+                Objects.equals(dataBaseFormat, that.dataBaseFormat);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (projectGroupId != null ? projectGroupId.hashCode() : 0);
-        result = 31 * result + (projectName != null ? projectName.hashCode() : 0);
-        result = 31 * result + (artifactId != null ? artifactId.hashCode() : 0);
-        result = 31 * result + (packageName != null ? packageName.hashCode() : 0);
-        result = 31 * result + (projectVersion != null ? projectVersion.hashCode() : 0);
-        result = 31 * result + (projectDescription != null ? projectDescription.hashCode() : 0);
-        result = 31 * result + (projectUrl != null ? projectUrl.hashCode() : 0);
-        result = 31 * result + (projectPort != null ? projectPort.hashCode() : 0);
-        result = 31 * result + (isServiceInterface != null ? isServiceInterface.hashCode() : 0);
-        result = 31 * result + (isDeleteBo != null ? isDeleteBo.hashCode() : 0);
-        result = 31 * result + (isBasisMethod != null ? isBasisMethod.hashCode() : 0);
-        result = 31 * result + (isRedis != null ? isRedis.hashCode() : 0);
-        result = 31 * result + (isRustfs != null ? isRustfs.hashCode() : 0);
-        result = 31 * result + (isMail != null ? isMail.hashCode() : 0);
-        result = 31 * result + (isDispose != null ? isDispose.hashCode() : 0);
-        result = 31 * result + (isEncrypt != null ? isEncrypt.hashCode() : 0);
-        result = 31 * result + (isExcel != null ? isExcel.hashCode() : 0);
-        result = 31 * result + (druidUrl != null ? druidUrl.hashCode() : 0);
-        result = 31 * result + (druidAccount != null ? druidAccount.hashCode() : 0);
-        result = 31 * result + (druidPassword != null ? druidPassword.hashCode() : 0);
-        result = 31 * result + (isDeleteNotPk != null ? isDeleteNotPk.hashCode() : 0);
-        result = 31 * result + (isOrderKey != null ? isOrderKey.hashCode() : 0);
-        result = 31 * result + (dataBaseFramework != null ? dataBaseFramework.hashCode() : 0);
-        result = 31 * result + (dataBaseFormat != null ? dataBaseFormat.hashCode() : 0);
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (creatorId != null ? creatorId.hashCode() : 0);
-        result = 31 * result + (creatorName != null ? creatorName.hashCode() : 0);
-        result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
-        result = 31 * result + (updaterId != null ? updaterId.hashCode() : 0);
-        result = 31 * result + (updaterName != null ? updaterName.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(projectGroupId);
+        result = 31 * result + Objects.hashCode(projectName);
+        result = 31 * result + Objects.hashCode(artifactId);
+        result = 31 * result + Objects.hashCode(packageName);
+        result = 31 * result + Objects.hashCode(projectVersion);
+        result = 31 * result + Objects.hashCode(projectDescription);
+        result = 31 * result + Objects.hashCode(projectUrl);
+        result = 31 * result + Objects.hashCode(projectPort);
+        result = 31 * result + Objects.hashCode(isServiceInterface);
+        result = 31 * result + Objects.hashCode(isDeleteBo);
+        result = 31 * result + Objects.hashCode(isBasisMethod);
+        result = 31 * result + Objects.hashCode(isRedis);
+        result = 31 * result + Objects.hashCode(isRustfs);
+        result = 31 * result + Objects.hashCode(isMail);
+        result = 31 * result + Objects.hashCode(isDispose);
+        result = 31 * result + Objects.hashCode(isEncrypt);
+        result = 31 * result + Objects.hashCode(isExcel);
+        result = 31 * result + Objects.hashCode(druidUrl);
+        result = 31 * result + Objects.hashCode(druidAccount);
+        result = 31 * result + Objects.hashCode(druidPassword);
+        result = 31 * result + Objects.hashCode(isDeleteNotPk);
+        result = 31 * result + Objects.hashCode(isOrderKey);
+        result = 31 * result + Objects.hashCode(dataBaseFramework);
+        result = 31 * result + Objects.hashCode(dataBaseFormat);
         return result;
     }
 }

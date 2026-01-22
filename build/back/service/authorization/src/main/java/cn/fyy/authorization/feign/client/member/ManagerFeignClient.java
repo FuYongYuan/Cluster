@@ -92,9 +92,9 @@ public interface ManagerFeignClient {
     ) throws BusinessException;
 
     /**
-     * 根据id保存状态
+     * 根据 id 保存状态
      *
-     * @param ids   需要修改的管理员ID
+     * @param ids   需要修改的管理员 ID
      * @param state 状态
      * @return 受影响行数
      * @throws BusinessException 业务错误

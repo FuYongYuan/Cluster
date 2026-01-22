@@ -23,17 +23,17 @@ import java.util.List;
 public class RoleManagerBO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
     /**
-     * 管理员ID
+     * 管理员 ID
      */
     private Long managerId;
 
     /**
-     * 角色ID
+     * 角色 ID
      */
     private Long roleId;
 
@@ -43,7 +43,7 @@ public class RoleManagerBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -58,7 +58,7 @@ public class RoleManagerBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 

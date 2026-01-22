@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.stereotype.Component;
 
 /**
- * JWT编码器、解码器工具类
+ * JWT 编码器、解码器工具类
  *
  * @author fuyy
  */
@@ -25,13 +25,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtEncrypt {
     /**
-     * JWT参数
+     * JWT 参数
      */
     @Resource
     private JwtProperties jwtProperties;
 
     /**
-     * JWT解码器
+     * JWT 解码器
      */
     @Bean
     public JwtDecoder decoder() {
@@ -39,7 +39,7 @@ public class JwtEncrypt {
     }
 
     /**
-     * JWT编码器
+     * JWT 编码器
      */
     @Bean
     public JwtEncoder encoder() {

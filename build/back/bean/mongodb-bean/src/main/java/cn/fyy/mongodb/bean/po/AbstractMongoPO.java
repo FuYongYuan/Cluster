@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @Document
 public abstract class AbstractMongoPO implements Serializable {
     /**
-     * 主键ID，自动映射到 MongoDB 的 _id 字段
+     * 主键 ID ，自动映射到 MongoDB 的 _id 字段
      */
     @Id
     private String id;

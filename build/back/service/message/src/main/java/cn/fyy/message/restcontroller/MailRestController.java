@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/mail", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MailRestController {
     /**
-     * 验证码Service
+     * 验证码 Service
      */
     @Resource
     private CaptchaService captchaServiceImpl;

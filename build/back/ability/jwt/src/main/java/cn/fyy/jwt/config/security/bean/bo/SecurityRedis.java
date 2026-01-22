@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Security Token 实体 - 存储Redis用
+ * Security Token 实体 - 存储 Redis 用
  *
  * @author fuyy
  */
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SecurityRedis {
     /**
-     * 所属 管理员Id 即 Redis 中key
+     * 所属 管理员 Id 即 Redis 中 key
      */
     private Long managerId;
 

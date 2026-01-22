@@ -25,15 +25,15 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjectGroupDTO implements Serializable {
     /**
-     * 主键ID
+     * 主键 ID
      */
-    @Schema(name = "id", description = "主键ID", type = "Long", nullable = false)
+    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
     private Long id;
 
     /**
-     * 管理员ID
+     * 管理员 ID
      */
-    @Schema(name = "managerId", description = "管理员ID", type = "Long")
+    @Schema(name = "managerId", description = "管理员 ID", type = "Long")
     private Long managerId;
 
     /**
@@ -43,15 +43,15 @@ public class ProjectGroupDTO implements Serializable {
     private String projectGroupName;
 
     /**
-     * 组ID
+     * 组 ID
      */
-    @Schema(name = "groupId", description = "组ID", type = "String")
+    @Schema(name = "groupId", description = "组 ID", type = "String")
     private String groupId;
 
     /**
-     * 工件ID
+     * 工件 ID
      */
-    @Schema(name = "artifactId", description = "工件ID", type = "String")
+    @Schema(name = "artifactId", description = "工件 ID", type = "String")
     private String artifactId;
 
     /**
@@ -61,9 +61,9 @@ public class ProjectGroupDTO implements Serializable {
     private String groupVersion;
 
     /**
-     * JDK版本
+     * JDK 版本
      */
-    @Schema(name = "jdkVersion", description = "JDK版本", type = "String")
+    @Schema(name = "jdkVersion", description = "JDK 版本", type = "String")
     private String jdkVersion;
 
     /**
@@ -85,27 +85,27 @@ public class ProjectGroupDTO implements Serializable {
     private String springBootVersion;
 
     /**
-     * API文档组件
+     * API 文档组件
      */
-    @Schema(name = "openApiVersion", description = "API文档组件", type = "String")
+    @Schema(name = "openApiVersion", description = "API 文档组件", type = "String")
     private String openApiVersion;
 
     /**
-     * 简化对象lombok
+     * 简化对象 lombok
      */
-    @Schema(name = "lombokVersion", description = "简化对象lombok", type = "String")
+    @Schema(name = "lombokVersion", description = "简化对象 lombok", type = "String")
     private String lombokVersion;
 
     /**
-     * 数据访问监控Druid
+     * 数据访问监控 Druid
      */
-    @Schema(name = "druidVersion", description = "数据访问监控Druid", type = "String")
+    @Schema(name = "druidVersion", description = "数据访问监控 Druid", type = "String")
     private String druidVersion;
 
     /**
-     * 数据库框架MyBatis版本
+     * 数据库框架 MyBatis 版本
      */
-    @Schema(name = "mybatisVersion", description = "数据库框架MyBatis版本", type = "String")
+    @Schema(name = "mybatisVersion", description = "数据库框架 MyBatis 版本", type = "String")
     private String mybatisVersion;
 
     /**
@@ -122,9 +122,9 @@ public class ProjectGroupDTO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
-    @Schema(name = "creatorId", description = "创建人ID", type = "Long")
+    @Schema(name = "creatorId", description = "创建人 ID", type = "Long")
     private Long creatorId;
 
     /**
@@ -141,9 +141,9 @@ public class ProjectGroupDTO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
-    @Schema(name = "updaterId", description = "修改人ID", type = "Long")
+    @Schema(name = "updaterId", description = "修改人 ID", type = "Long")
     private Long updaterId;
 
     /**

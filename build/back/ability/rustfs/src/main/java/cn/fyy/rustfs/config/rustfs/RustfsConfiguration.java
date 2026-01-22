@@ -15,7 +15,7 @@ import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 import java.net.URI;
 
 /**
- * 构建基础的连接Bean
+ * 构建基础的连接 Bean
  *
  * @author fyy
  */
@@ -62,7 +62,7 @@ public class RustfsConfiguration {
     @Bean
     public S3Presigner rustfsPresignerFactory() {
         String domain = S3DisposeUtil.urlDispose(rustfsProperties.getDomain());
-        log.info("RustFS S3Presigner启动，访问地址：http://{}:{}", domain, rustfsProperties.getPort());
+        log.info("RustFS S3 Presigner 启动，访问地址：http://{}:{}", domain, rustfsProperties.getPort());
         // 创建预签名器
         return S3Presigner.builder()
                 .endpointOverride(URI.create("http://" + domain + ":10000"))

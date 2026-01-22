@@ -49,7 +49,7 @@ public interface SendMailService {
      * @param cc       抄送邮箱
      * @param bcc      密送邮箱
      * @param filePath 附件地址
-     * @return String家庭经济管理系统
+     * @return String 是否成功
      */
     boolean sendMail(String theme, String content, String[] to, String[] cc, String[] bcc, String filePath);
 }

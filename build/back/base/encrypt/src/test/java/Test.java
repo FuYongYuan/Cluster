@@ -1,5 +1,4 @@
 import snowflake.ClockBackwardStrategy;
-import snowflake.SnowflakeIdConstant;
 import snowflake.SnowflakeIdGenerator;
 import snowflake.SnowflakeIdInfo;
 
@@ -52,13 +51,15 @@ public class Test {
 //        System.out.println(AesUtil.encryptString("weblogic123", "EBS"));
 //        System.out.println(AesUtil.decryptString("A8C709E60599D0610492B079C724674B", "EBS"));
 
+        long epoch = 1767196800000L;
+
         // 创建ID生成器实例
-        SnowflakeIdGenerator authorizationGenerator = new SnowflakeIdGenerator(200L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
-        SnowflakeIdGenerator builderGenerator = new SnowflakeIdGenerator(700L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
-        SnowflakeIdGenerator capabilityGenerator = new SnowflakeIdGenerator(300L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
-        SnowflakeIdGenerator dictionaryGenerator = new SnowflakeIdGenerator(400L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
-        SnowflakeIdGenerator memberGenerator = new SnowflakeIdGenerator(100L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
-        SnowflakeIdGenerator messageGenerator = new SnowflakeIdGenerator(600L, 1L, 1767196800000L, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator authorizationGenerator = new SnowflakeIdGenerator(200L, 1L, epoch, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator builderGenerator = new SnowflakeIdGenerator(700L, 1L, epoch, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator capabilityGenerator = new SnowflakeIdGenerator(300L, 1L, epoch, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator dictionaryGenerator = new SnowflakeIdGenerator(400L, 1L, epoch, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator memberGenerator = new SnowflakeIdGenerator(100L, 1L, epoch, ClockBackwardStrategy.WAIT);
+        SnowflakeIdGenerator messageGenerator = new SnowflakeIdGenerator(600L, 1L, epoch, ClockBackwardStrategy.WAIT);
 
         List<Long> l = new ArrayList<>();
 
@@ -99,8 +100,8 @@ public class Test {
 
 
         //输出
-        for (Long id : l){
-            SnowflakeIdInfo info = SnowflakeIdInfo.parseId(id);
+        for (Long id : l) {
+            SnowflakeIdInfo info = SnowflakeIdInfo.parseId(id, epoch);
             System.out.println(info.getCreateTime());
             System.out.println(info.getDataCenterId());
             System.out.println(info.getWorkerId());

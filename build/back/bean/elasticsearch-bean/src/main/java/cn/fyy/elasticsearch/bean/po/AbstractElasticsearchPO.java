@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 抽象PO
+ * 抽象 PO
  *
  * @author fyy
  */

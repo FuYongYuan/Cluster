@@ -3,20 +3,20 @@ package snowflake;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * 雪花算法ID生成器 - 线程安全、高性能
- * 64位ID: 1位(符号) + 41位(时间戳) + 10位(实例ID) + 4位(数据中心ID) + 8位(序列号)
+ * 雪花算法 ID 生成器 - 线程安全、高性能
+ * 64位 ID: 1位(符号) + 41位(时间戳) + 10位(实例 ID) + 4位(数据中心 ID) + 8位(序列号)
  *
  * @author fyy
  */
 public class SnowflakeIdGenerator {
     //------------------------------------------------------------------------------------------------------------------实例变量
     /**
-     * 工作实例ID
+     * 工作实例 ID
      */
     private final long workerId;
 
     /**
-     * 数据中心ID
+     * 数据中心 ID
      */
     private final long dataCenterId;
 
@@ -45,8 +45,8 @@ public class SnowflakeIdGenerator {
     /**
      * 构造函数
      *
-     * @param workerId     工作实例ID (0~1023)
-     * @param dataCenterId 数据中心ID (0~15)
+     * @param workerId     工作实例 ID (0~1023)
+     * @param dataCenterId 数据中心 ID (0~15)
      */
     public SnowflakeIdGenerator(long workerId, long dataCenterId, long epoch) {
         this(workerId, dataCenterId, epoch, ClockBackwardStrategy.WAIT);
@@ -55,19 +55,19 @@ public class SnowflakeIdGenerator {
     /**
      * 构造函数
      *
-     * @param workerId     工作实例ID (0~1023)
-     * @param dataCenterId 数据中心ID (0~15)
+     * @param workerId     工作实例 ID (0~1023)
+     * @param dataCenterId 数据中心 ID (0~15)
      * @param epoch        起始时间戳
      * @param strategy     时钟回拨处理策略
      */
     public SnowflakeIdGenerator(long workerId, long dataCenterId, long epoch, ClockBackwardStrategy strategy) {
         if (workerId > SnowflakeIdConstant.MAX_WORKER_ID || workerId < 0) {
             throw new IllegalArgumentException(
-                    String.format("工作实例ID 必须介于 0 至 %d", SnowflakeIdConstant.MAX_WORKER_ID));
+                    String.format("工作实例 ID 必须介于 0 至 %d", SnowflakeIdConstant.MAX_WORKER_ID));
         }
         if (dataCenterId > SnowflakeIdConstant.MAX_DATA_CENTER_ID || dataCenterId < 0) {
             throw new IllegalArgumentException(
-                    String.format("数据中心ID 必须介于 0 至 %d", SnowflakeIdConstant.MAX_DATA_CENTER_ID));
+                    String.format("数据中心 ID 必须介于 0 至 %d", SnowflakeIdConstant.MAX_DATA_CENTER_ID));
         }
         if (epoch > System.currentTimeMillis()) {
             throw new IllegalArgumentException(
@@ -84,9 +84,9 @@ public class SnowflakeIdGenerator {
     //------------------------------------------------------------------------------------------------------------------核心方法
 
     /**
-     * 生成下一个ID
+     * 生成下一个 ID
      *
-     * @return 雪花算法生成的唯一ID
+     * @return 雪花算法生成的唯一 ID
      */
     public long nextId() {
         long timestamp = timeGen();
@@ -99,7 +99,7 @@ public class SnowflakeIdGenerator {
                 case EXCEPTION:
                     if (offset > 5000) {
                         throw new RuntimeException(
-                                String.format("检测到时钟回拨，拒绝生成ID %d 毫秒", offset));
+                                String.format("检测到时钟回拨，拒绝生成 ID %d 毫秒", offset));
                     }
                     break;
                 case WAIT:
@@ -130,7 +130,7 @@ public class SnowflakeIdGenerator {
 
         // 检查是否需要更新时间戳
         if (lastTimestamp.compareAndSet(lastTs, timestamp)) {
-            // 同一毫秒内生成多个ID
+            // 同一毫秒内生成多个 ID
             if (lastTs == timestamp) {
                 long currentSequence = sequence.incrementAndGet() & SnowflakeIdConstant.SEQUENCE_MASK;
                 if (currentSequence == 0) {
@@ -149,7 +149,7 @@ public class SnowflakeIdGenerator {
                     (workerId << SnowflakeIdConstant.WORKER_ID_SHIFT) |
                     sequence.get();
         } else {
-            // CAS失败，递归调用
+            // CAS 失败，递归调用
             return nextId();
         }
     }

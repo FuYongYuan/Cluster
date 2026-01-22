@@ -100,7 +100,7 @@ public class ParameterRestController {
     @Operation(
             summary = "根据主键删除 主键可以是多个用,分割", description = "受影响行数",
             parameters = {
-                    @Parameter(name = "ids", description = "删除ID", required = true)
+                    @Parameter(name = "ids", description = "删除 ID", required = true)
             }
     )
     @DeleteMapping(value = "/delete/{ids}")
@@ -120,14 +120,14 @@ public class ParameterRestController {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 参数对象
      * @throws BusinessException 业务错误
      */
     @Operation(
             summary = "根据主键查询", description = "TParameterDTO 菜单对象",
             parameters = {
-                    @Parameter(name = "id", description = "主键ID", required = true)
+                    @Parameter(name = "id", description = "主键 ID", required = true)
             }
     )
     @GetMapping(value = "/get/{id}")
@@ -147,7 +147,7 @@ public class ParameterRestController {
     @Operation(
             summary = "根据主键查询", description = "TParameterDTO 参数对象",
             parameters = {
-                    @Parameter(name = "parameterCode", description = "主键ID", required = true)
+                    @Parameter(name = "parameterCode", description = "主键 ID", required = true)
             }
     )
     @GetMapping(value = "/get/parameter/code/{parameterCode}")

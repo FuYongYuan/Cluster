@@ -14,7 +14,7 @@ public enum SecurityHttpStatusChinese {
     FORBIDDEN(HttpStatus.FORBIDDEN, "当前接口您没有权限访问，请检查用户权限！");
 
     /**
-     * http状态码
+     * http 状态码
      */
     private final HttpStatus httpStatus;
     /**
@@ -25,7 +25,7 @@ public enum SecurityHttpStatusChinese {
     /**
      * 构造器
      *
-     * @param httpStatus         http状态码
+     * @param httpStatus         http 状态码
      * @param chineseDescription 中文描述
      */
     SecurityHttpStatusChinese(HttpStatus httpStatus, String chineseDescription) {
@@ -34,9 +34,9 @@ public enum SecurityHttpStatusChinese {
     }
 
     /**
-     * 根据http状态码获取中文描述
+     * 根据 http 状态码获取中文描述
      *
-     * @param httpStatus http状态码
+     * @param httpStatus http 状态码
      * @return 中文描述
      */
     public static String getChineseDescriptionByHttpStatus(HttpStatus httpStatus) {

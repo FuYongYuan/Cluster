@@ -15,9 +15,9 @@ import org.springframework.stereotype.Repository;
 public interface RoleManagerRepository extends JpaRepository<RoleManagerPO, Long>, JpaSpecificationExecutor<RoleManagerPO> {
 
     /**
-     * 根据管理员主键ID删除
+     * 根据管理员主键 ID 删除
      *
-     * @param managerId 管理员主键ID
+     * @param managerId 管理员主键 ID
      */
     void deleteByManagerId(Long managerId);
 

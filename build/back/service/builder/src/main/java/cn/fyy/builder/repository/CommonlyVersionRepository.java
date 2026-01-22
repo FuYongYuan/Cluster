@@ -21,17 +21,17 @@ public interface CommonlyVersionRepository extends JpaRepository<CommonlyVersion
     /**
      * 根据用户主键查询对应的数据
      *
-     * @param managerId 管理员主键ID
+     * @param managerId 管理员主键 ID
      * @return 常用版本
      */
     CommonlyVersionPO getByManagerId(Long managerId);
 
     /**
-     * 根据ids保存状态
+     * 根据 ids 保存状态
      *
-     * @param ids                主键ID(可用,分割传入多个)
+     * @param ids                主键 ID (可用,分割传入多个)
      * @param state              状态
-     * @param currentManagerId   当前登陆管理员id
+     * @param currentManagerId   当前登陆管理员 ID
      * @param currentManagerName 当前登陆管理员名称
      * @param updateTime         当前时间
      * @return 受影响行数

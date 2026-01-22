@@ -5,16 +5,16 @@ import enumerate.UUIDType;
 import java.util.UUID;
 
 /**
- * UUID密钥
+ * UUID 密钥
  *
  * @author fyy
  */
 public class UUIDUtil {
 
     /**
-     * 获得一个32位UUID
+     * 获得一个 32 位 UUID
      *
-     * @return String 32位UUID
+     * @return String 32 位 UUID
      */
     public static String get32() {
         String s = UUID.randomUUID().toString();
@@ -22,20 +22,20 @@ public class UUIDUtil {
     }
 
     /**
-     * 获得一个36位UUID
+     * 获得一个 36 位 UUID
      *
-     * @return String 36位UUID
+     * @return String 36 位 UUID
      */
     public static String get36() {
         return UUID.randomUUID().toString();
     }
 
     /**
-     * 获得指定数目的UUID
+     * 获得指定数目的 UUID
      *
-     * @param number       int 需要获得的UUID数量
+     * @param number       int 需要获得的 UUID 数量
      * @param length32Or36 int 32 OR 36 其余暂不识别
-     * @return String[] UUID数组
+     * @return String[] UUID 数组
      */
     public static String[] gets(int number, UUIDType length32Or36) {
         if (number < 1) {

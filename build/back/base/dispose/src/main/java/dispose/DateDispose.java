@@ -15,7 +15,7 @@ import java.util.Date;
 public class DateDispose {
 
     /**
-     * 当前时间-----------------------------------------------------------------------------------------------------------
+     * -----------------------------------------------------------------------------------------------------------------当前时间
      */
     public static String getYear() {
         return formattingDate(new Date(), DateType.Year);
@@ -97,7 +97,7 @@ public class DateDispose {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * date转String
+     * date 转 String
      */
     public static String formattingDate(Date date, DateType dateType) {
         SimpleDateFormat sdf = new SimpleDateFormat(dateType.getValue());
@@ -105,7 +105,7 @@ public class DateDispose {
     }
 
     /**
-     * String转date
+     * String 转 date
      */
     public static Date formattingDate(String date, DateType dateType) {
         SimpleDateFormat sdf = new SimpleDateFormat(dateType.getValue());
@@ -579,7 +579,7 @@ public class DateDispose {
         } else {
             //转换格式化
             SimpleDateFormat sdf = new SimpleDateFormat(DateType.Year_Month_Day_Hour_Minute_Second.getValue());
-            //转成String类型进行比较
+            //转成 String 类型进行比较
             String s1 = sdf.format(d1);
             String s2 = sdf.format(d2);
 
@@ -664,7 +664,7 @@ public class DateDispose {
      * @param returnType 返回类型   hh小时  mm分钟  ss秒  day天
      */
     public static Long dateDiff(String startTime, String endTime, DateType formatType, DateType returnType) {
-        // 按照传入的格式生成一个SimpleDateFormat对象
+        // 按照传入的格式生成一个 SimpleDateFormat 对象
         SimpleDateFormat sd = new SimpleDateFormat(formatType.getValue());
         // 一天的毫秒数
         long nd = 1000 * 24 * 60 * 60;
@@ -798,9 +798,9 @@ public class DateDispose {
         calendar.set(Calendar.MINUTE, Integer.parseInt(formattingDate(endDate, DateType.Minute)));
         calendar.set(Calendar.SECOND, Integer.parseInt(formattingDate(endDate, DateType.Second)));
         long max = calendar.getTime().getTime();
-        //得到大于等于min小于max的double值
+        //得到大于等于 min 小于 max 的 double 值
         double randomDate = Math.random() * (max - min) + min;
-        //将double值舍入为整数，转化成long类型
+        //将 double 值舍入为整数，转化成 long 类型
         calendar.setTimeInMillis(Math.round(randomDate));
         return calendar.getTime();
     }
@@ -832,9 +832,9 @@ public class DateDispose {
         calendar.set(Calendar.MINUTE, Integer.parseInt(formattingDate(formattingStringToDate(endDate), DateType.Minute)));
         calendar.set(Calendar.SECOND, Integer.parseInt(formattingDate(formattingStringToDate(endDate), DateType.Second)));
         long max = calendar.getTime().getTime();
-        //得到大于等于min小于max的double值
+        //得到大于等于 min 小于 max 的 double 值
         double randomDate = Math.random() * (max - min) + min;
-        //将double值舍入为整数，转化成long类型
+        //将 double 值舍入为整数，转化成 long 类型
         calendar.setTimeInMillis(Math.round(randomDate));
         return calendar.getTime();
     }

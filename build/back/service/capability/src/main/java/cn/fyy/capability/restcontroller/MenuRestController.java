@@ -87,7 +87,7 @@ public class MenuRestController {
     @Operation(
             summary = "根据主键删除 主键可以是多个用,分割", description = "受影响行数",
             parameters = {
-                    @Parameter(name = "ids", description = "删除ID", required = true)
+                    @Parameter(name = "ids", description = "删除 ID", required = true)
             }
     )
     @DeleteMapping(value = "/delete/{ids}")
@@ -107,14 +107,14 @@ public class MenuRestController {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 菜单对象
      * @throws BusinessException 业务错误
      */
     @Operation(
             summary = "根据主键查询", description = "TMenuDTO 菜单对象",
             parameters = {
-                    @Parameter(name = "id", description = "主键ID", required = true)
+                    @Parameter(name = "id", description = "主键 ID", required = true)
             }
     )
     @GetMapping(value = "/get/{id}")
@@ -177,16 +177,16 @@ public class MenuRestController {
     }
 
     /**
-     * 根据菜单ID集合查询菜单列表
+     * 根据菜单 ID 集合查询菜单列表
      *
-     * @param menuIdList 菜单ID集合
+     * @param menuIdList 菜单 ID 集合
      * @return TMenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据菜单ID集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
+            summary = "根据菜单 ID 集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
             parameters = {
-                    @Parameter(name = "menuIdList", description = "菜单ID集合", required = true)
+                    @Parameter(name = "menuIdList", description = "菜单 ID 集合", required = true)
             }
     )
     @GetMapping(value = "/query/hierarchy/menu/list/{menuIdList}")
@@ -197,16 +197,16 @@ public class MenuRestController {
     }
 
     /**
-     * 根据菜单ID集合查询菜单列表
+     * 根据菜单 ID 集合查询菜单列表
      *
-     * @param menuIdList 菜单ID集合
+     * @param menuIdList 菜单 ID 集合
      * @return TMenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据菜单ID集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
+            summary = "根据菜单 ID 集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
             parameters = {
-                    @Parameter(name = "menuIdList", description = "菜单ID集合", required = true)
+                    @Parameter(name = "menuIdList", description = "菜单 ID 集合", required = true)
             }
     )
     @GetMapping(value = "/query/menu/list/{menuIdList}")

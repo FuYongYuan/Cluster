@@ -16,7 +16,7 @@ import java.util.Collection;
 public class SecurityUser extends User {
 
     /**
-     * 管理员ID
+     * 管理员 ID
      */
     private Long managerId;
 
@@ -28,11 +28,11 @@ public class SecurityUser extends User {
     /**
      * 初始化
      *
-     * @param managerId   管理员ID
+     * @param managerId   管理员 ID
      * @param managerName 管理员名称
      * @param username    用户账号
      * @param password    用户密码
-     * @param authorities 权限ID集合
+     * @param authorities 权限 ID 集合
      */
     public SecurityUser(Long managerId, String managerName, String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
@@ -41,7 +41,7 @@ public class SecurityUser extends User {
     }
 
     /**
-     * 管理员ID
+     * 管理员 ID
      */
     public SecurityUser setManagerId(Long managerId) {
         this.managerId = managerId;

@@ -4,13 +4,13 @@ import cn.fyy.capability.bean.bo.MenuBO;
 import cn.fyy.capability.bean.po.MenuPO;
 import cn.fyy.capability.repository.MenuRepository;
 import cn.fyy.capability.service.MenuService;
-import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.util.BeanUtil;
-import cn.fyy.common.util.SelectUtil;
+import cn.fyy.database.util.BeanUtil;
+import cn.fyy.database.util.SelectUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
+import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +53,7 @@ public class MenuServiceImpl implements MenuService {
      * 新增或者修改
      *
      * @param bo                 菜单 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return !=null 成功，==null 失败
      */
@@ -75,7 +75,7 @@ public class MenuServiceImpl implements MenuService {
      * 新增或者修改
      *
      * @param bo                 菜单 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -86,23 +86,25 @@ public class MenuServiceImpl implements MenuService {
             LocalDateTime localDateTime = LocalDateTime.now();
             MenuPO po;
             if (bo.getId() == null) {
-                bo.setId(snowflakeIdUtil.getGenerator().nextId());
-                bo.setCreatorId(currentManagerId);
-                bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(localDateTime);
-                bo.setUpdaterId(currentManagerId);
-                bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(localDateTime);
-                bo.setState(DataState.NORMAL.getCode());
-                po = MenuBO.toPO(bo);
+                po = BeanUtil.insert(
+                        MenuBO.toPO(bo),
+                        snowflakeIdUtil.getGenerator().nextId(),
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             } else {
                 MenuPO old = menuRepository.getReferenceById(bo.getId());
-                // 根据getNull复制其中的非空或包含空字段
+                // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
+                // 因为前面非空才复制，所以这里特殊处理需要将空的更新也复制过来
                 old.setParentId(bo.getParentId() == null ? null : bo.getParentId());
-                old.setUpdaterId(currentManagerId);
-                old.setUpdateTime(localDateTime);
-                po = old;
+                po = BeanUtil.update(
+                        old,
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             }
             return MenuBO.toBO(menuRepository.save(po));
         } catch (Exception e) {
@@ -164,7 +166,7 @@ public class MenuServiceImpl implements MenuService {
      * 根据主键删除 主键可以是多个用,分割
      *
      * @param ids                删除主键 可以使用,分割
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
@@ -182,7 +184,7 @@ public class MenuServiceImpl implements MenuService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 菜单
      */
     @Override
@@ -229,9 +231,9 @@ public class MenuServiceImpl implements MenuService {
     }
 
     /**
-     * 根据管理员主键ID查询能够使用的菜单列表
+     * 根据管理员主键 ID 查询能够使用的菜单列表
      *
-     * @param menuIds 菜单ID集合
+     * @param menuIds 菜单 ID 集合
      * @return 能够使用的菜单列表
      */
     @Override
@@ -246,14 +248,14 @@ public class MenuServiceImpl implements MenuService {
             this.queryStructureByManagerId(menuIds, boList);
             return boList;
         } catch (Exception e) {
-            throw new BusinessException("根据管理员主键ID查询能够使用的菜单列表错误", e);
+            throw new BusinessException("根据管理员主键 ID 查询能够使用的菜单列表错误", e);
         }
     }
 
     /**
-     * 根据管理员主键ID查询能够使用的菜单列表
+     * 根据管理员主键 ID 查询能够使用的菜单列表
      *
-     * @param menuIds 菜单ID集合
+     * @param menuIds 菜单 ID 集合
      * @return 能够使用的菜单列表
      */
     @Override
@@ -265,7 +267,7 @@ public class MenuServiceImpl implements MenuService {
                     menuRepository.queryHierarchyMenuByMenuIdListAndState(menuIds, DataState.NORMAL.getCode())
             );
         } catch (Exception e) {
-            throw new BusinessException("根据管理员主键ID查询能够使用的菜单列表错误", e);
+            throw new BusinessException("根据管理员主键 ID 查询能够使用的菜单列表错误", e);
         }
     }
 
@@ -274,7 +276,7 @@ public class MenuServiceImpl implements MenuService {
     /**
      * 递归查询所有菜单
      *
-     * @param menuIds 菜单ID集合
+     * @param menuIds 菜单 ID 集合
      * @param boList  菜单集合
      */
     private void queryStructureByManagerId(List<Long> menuIds, List<MenuBO> boList) {

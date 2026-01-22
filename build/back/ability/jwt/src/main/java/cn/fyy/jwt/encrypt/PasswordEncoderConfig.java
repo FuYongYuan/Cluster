@@ -14,8 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class PasswordEncoderConfig {
 
     /**
-     * SpringSecurity定义的用于对密码进行编码及比对的接口，
-     * 目前使用的是BCryptPasswordEncoder；
+     * SpringSecurity 定义的用于对密码进行编码及比对的接口，
+     * 目前使用的是 BCryptPasswordEncoder；
      */
     @Bean
     public PasswordEncoder passwordEncoder() {

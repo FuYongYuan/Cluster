@@ -23,7 +23,7 @@ import java.util.List;
 public class MenuBO implements Serializable {
 
     /**
-     * 主键ID
+     * 主键 ID
      */
     private Long id;
 
@@ -48,7 +48,7 @@ public class MenuBO implements Serializable {
     private String pageName;
 
     /**
-     * 父级ID
+     * 父级 ID
      */
     private Long parentId;
 
@@ -78,7 +78,7 @@ public class MenuBO implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 创建人ID
+     * 创建人 ID
      */
     private Long creatorId;
 
@@ -93,7 +93,7 @@ public class MenuBO implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 更新人ID
+     * 更新人 ID
      */
     private Long updaterId;
 

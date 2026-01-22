@@ -25,6 +25,8 @@ import org.springframework.security.web.server.context.WebSessionServerSecurityC
 import java.util.List;
 
 /**
+ * 网关安全配置
+ *
  * @author fyy
  */
 @Configuration
@@ -43,7 +45,7 @@ public class WebFluxSecurityConfig {
     private SecurityAccessDeniedHandler securityAccessDeniedHandler;
 
     /**
-     * 当未登录或者token失效访问接口时，自定义的返回结果
+     * 当未登录或者 token 失效访问接口时，自定义的返回结果
      */
     @Resource
     private SecurityAuthenticationEntryPoint securityAuthenticationEntryPoint;
@@ -55,7 +57,7 @@ public class WebFluxSecurityConfig {
     private ReactiveUserDetailsService reactiveUserDetailsServiceImpl;
 
     /**
-     * jwt认证管理器
+     * JWT 认证管理器
      */
     @Resource
     private JwtAuthConverter jwtAuthConverter;
@@ -67,16 +69,16 @@ public class WebFluxSecurityConfig {
     private PasswordEncoder passwordEncoder;
 
     /**
-     * 用于配置需要拦截的url路径、jwt过滤器及出异常后的处理器；
+     * 用于配置需要拦截的 URL 路径、JWT 过滤器及出异常后的处理器；
      */
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
         http
-                // 由于使用的是JWT，我们这里不需要csrf
+                // 由于使用的是 JWT，我们这里不需要 csrf
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 // 禁用默认登录表单
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
-                // 禁用http请求默认登录
+                // 禁用 http 请求默认登录
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 // 无状态存储
                 .securityContextRepository(NoOpServerSecurityContextRepository.getInstance())
@@ -84,7 +86,7 @@ public class WebFluxSecurityConfig {
                 .authorizeExchange(exchange -> exchange
                         // 允许对于网站静态资源的无授权访问
                         .pathMatchers(permitUrl.getGateway()).permitAll()
-                        // 跨域请求会先进行一次options请求
+                        // 跨域请求会先进行一次 options 请求
                         .pathMatchers(HttpMethod.OPTIONS).permitAll()
                         // 除上面外的所有请求全部需要鉴权认证
                         .anyExchange().authenticated()
@@ -115,7 +117,7 @@ public class WebFluxSecurityConfig {
      */
     @Bean
     public UserDetailsRepositoryReactiveAuthenticationManager userDetailsRepositoryReactiveAuthenticationManager() {
-        // 注入UserDetailsService
+        // 注入 UserDetailsService
         UserDetailsRepositoryReactiveAuthenticationManager reactiveAuthenticationManager
                 = new UserDetailsRepositoryReactiveAuthenticationManager(reactiveUserDetailsServiceImpl);
         // 注入密码加密机制
@@ -124,7 +126,7 @@ public class WebFluxSecurityConfig {
     }
 
     /**
-     * JWT登录授权过滤器-不添加@Bean因为.addFilterAt(jwtAuthenticationWebFilter(), SecurityWebFiltersOrder.AUTHENTICATION)已经注入，使用@Bean会导致被执行两次
+     * JWT登录授权过滤器-不添加 @Bean 因为 .addFilterAt(jwtAuthenticationWebFilter(), SecurityWebFiltersOrder.AUTHENTICATION) 已经注入，使用 @Bean 会导致被执行两次
      */
     public AuthenticationWebFilter jwtAuthenticationWebFilter() {
         JwtAuthenticationWebFilter jwtAuthenticationWebFilter = new JwtAuthenticationWebFilter(authenticationManager());

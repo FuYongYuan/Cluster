@@ -17,7 +17,7 @@ public interface ParameterService {
      * 新增或者修改
      *
      * @param bo                 参数 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return !=null 成功，==null 失败
      * @throws BusinessException 错误
@@ -28,7 +28,7 @@ public interface ParameterService {
      * 根据主键删除 主键可以是多个用,分割
      *
      * @param ids                删除主键 可以使用,分割
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人名称
      * @return 受影响行数
      * @throws BusinessException 删除错误,Exception
@@ -39,7 +39,7 @@ public interface ParameterService {
      * 新增或者修改
      *
      * @param bo                 管理员 BO
-     * @param currentManagerId   当前登陆人id
+     * @param currentManagerId   当前登陆人 ID
      * @param currentManagerName 当前登陆人名称
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -50,7 +50,7 @@ public interface ParameterService {
     /**
      * 根据主键查询
      *
-     * @param id 主键ID
+     * @param id 主键 ID
      * @return 参数
      * @throws BusinessException 错误
      */

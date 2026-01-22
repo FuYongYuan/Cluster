@@ -1,5 +1,7 @@
-package cn.fyy.common.util;
+package cn.fyy.database.util;
 
+import cn.fyy.jpa.bean.ao.DataState;
+import cn.fyy.jpa.bean.po.BasePO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.FatalBeanException;
@@ -9,23 +11,25 @@ import org.springframework.util.ClassUtils;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 通用Bean工具类，支持控制null值复制
+ * 通用 Bean 工具类，支持控制 null 值复制
  *
  * @author fyy
  */
 public class BeanUtil {
+    //------------------------------------------------------------------------------------------------------------------复制
 
     /**
      * 复制对象属性
      *
      * @param source   源对象
      * @param target   目标对象
-     * @param copyNull 是否复制null值（true表示复制null值，false表示忽略null值）
+     * @param copyNull 是否复制 null 值（ true 表示复制 null 值， false 表示忽略 null 值）
      * @throws BeansException 如果复制过程中出错
      */
     public static void copyProperties(Object source, Object target, boolean copyNull) throws BeansException {
@@ -37,7 +41,7 @@ public class BeanUtil {
      *
      * @param source           源对象
      * @param target           目标对象
-     * @param copyNull         是否复制null值（true表示复制null值，false表示忽略null值）
+     * @param copyNull         是否复制 null 值（ true 表示复制 null 值， false 表示忽略 null 值）
      * @param ignoreProperties 要忽略的属性列表
      * @throws BeansException 如果复制过程中出错
      */
@@ -80,5 +84,58 @@ public class BeanUtil {
                 }
             }
         }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------赋值
+
+    /**
+     * 插入
+     *
+     * @param source             源
+     * @param id                 新增 ID
+     * @param currentManagerId   当前管理员 ID
+     * @param currentManagerName 当前管理员名称
+     * @param localDateTime      时间
+     * @param <T>                泛型
+     * @return 插入对象
+     */
+    public static <T extends BasePO> T insert(
+            T source,
+            Long id,
+            Long currentManagerId,
+            String currentManagerName,
+            LocalDateTime localDateTime
+    ) {
+        source.setId(id);
+        source.setCreatorId(currentManagerId);
+        source.setCreatorName(currentManagerName);
+        source.setCreateTime(localDateTime);
+        source.setUpdaterId(currentManagerId);
+        source.setUpdaterName(currentManagerName);
+        source.setUpdateTime(localDateTime);
+        source.setState(DataState.NORMAL.getCode());
+        return source;
+    }
+
+    /**
+     * 更新
+     *
+     * @param source             源
+     * @param currentManagerId   当前管理员 ID
+     * @param currentManagerName 当前管理员名称
+     * @param localDateTime      时间
+     * @param <T>                泛型
+     * @return 更新对象
+     */
+    public static <T extends BasePO> T update(
+            T source,
+            Long currentManagerId,
+            String currentManagerName,
+            LocalDateTime localDateTime
+    ) {
+        source.setUpdaterId(currentManagerId);
+        source.setUpdaterName(currentManagerName);
+        source.setUpdateTime(localDateTime);
+        return source;
     }
 }

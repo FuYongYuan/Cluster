@@ -16266,7 +16266,7 @@
           },
           {
             "id": "EDF06363-9EA0-4AFB-B3C8-B83BD50F30E4",
-            "defKey": "head_img_url",
+            "defKey": "avatar",
             "defName": "头像",
             "intro": "",
             "orderValue": 2,
@@ -43742,7 +43742,7 @@
     "readonly": false,
     "allowWs": false
   },
-  "updateTime": 1768207911918,
-  "signature": "fb6f28454704af57fea5a75f7eaa197b",
+  "updateTime": 1768813205070,
+  "signature": "02ad100363b60181ebb0488bac3aaddf",
   "branchId": "1111"
 }

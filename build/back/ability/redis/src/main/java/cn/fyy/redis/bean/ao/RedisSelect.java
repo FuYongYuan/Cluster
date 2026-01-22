@@ -3,15 +3,15 @@ package cn.fyy.redis.bean.ao;
 import lombok.Getter;
 
 /**
- * 通过枚举类选择redis使用的数据库
+ * 通过枚举类选择 redis 使用的数据库
  * <p>
- * 一般公司的redis会分不同的数据到不同的库，比如用户信息到 0 库，商品数据放在第二个库，运动数据放在 3 库等等跟随项目分配而分配
+ * 一般公司的 redis 会分不同的数据到不同的库，比如用户信息到 0 库，商品数据放在第二个库，运动数据放在 3 库等等跟随项目分配而分配
  *
  * @author fuyy
  */
 @Getter
 public enum RedisSelect {
-    // 以下分别代表redis 0-15库
+    // 以下分别代表 redis 0-15 库
     /**
      * 0号库
      */
@@ -93,11 +93,11 @@ public enum RedisSelect {
 
 
     /**
-     * 根据给定的数据库编号获取对应的RedisSelect枚举值。
+     * 根据给定的数据库编号获取对应的 RedisSelect 枚举值。
      * 如果没有找到匹配的枚举，则返回null。
      *
      * @param redisSelectValue 数据库编号
-     * @return 匹配的RedisSelect枚举值，如果没有找到则返回null
+     * @return 匹配的 RedisSelect 枚举值，如果没有找到则返回 null
      */
     public static RedisSelect getByRedisSelectValue(int redisSelectValue) {
         for (RedisSelect redisSelect : values()) {

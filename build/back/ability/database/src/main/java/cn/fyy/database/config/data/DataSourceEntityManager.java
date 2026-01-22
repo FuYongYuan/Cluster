@@ -26,12 +26,12 @@ import java.util.Objects;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactoryBean",
         transactionManagerRef = "platformTransactionManager",
-        basePackages = {"${spring.jpa.repository-path}"} //设置Repository所在位置
+        basePackages = {"${spring.jpa.repository-path}"} // 设置 Repository 所在位置
 )
 public class DataSourceEntityManager {
 
     /**
-     * JAP参数
+     * JAP 参数
      */
     @Resource
     private JpaProperties jpaProperties;
@@ -56,7 +56,7 @@ public class DataSourceEntityManager {
         return builder
                 // 数据源
                 .dataSource(dataSourceRouting)
-                // JPA配置
+                // JPA 配置
                 .properties(jpaProperties.getProperties())
                 // 设置实体类所在位置
                 .packages(poPath)

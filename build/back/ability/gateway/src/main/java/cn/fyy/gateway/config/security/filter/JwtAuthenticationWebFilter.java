@@ -10,17 +10,29 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
 /**
- * JWT认证过滤器
+ * JWT 认证过滤器
  *
  * @author fyy
  */
 @Slf4j
 public class JwtAuthenticationWebFilter extends AuthenticationWebFilter {
 
+    /**
+     * 构造方法
+     *
+     * @param authenticationManager 认证管理器
+     */
     public JwtAuthenticationWebFilter(ReactiveAuthenticationManager authenticationManager) {
         super(authenticationManager);
     }
 
+    /**
+     * 过滤器执行方法
+     *
+     * @param exchange 请求
+     * @param chain    过滤器链
+     * @return 响应
+     */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         log.info("{}被执行，访问地址：{}", this.getClass().getName(), exchange.getRequest().getPath());
@@ -29,6 +41,13 @@ public class JwtAuthenticationWebFilter extends AuthenticationWebFilter {
         return super.filter(exchange, chain);
     }
 
+    /**
+     * 认证成功处理方法
+     *
+     * @param authentication    认证信息
+     * @param webFilterExchange 请求
+     * @return 响应
+     */
     @Override
     protected Mono<Void> onAuthenticationSuccess(Authentication authentication, WebFilterExchange webFilterExchange) {
         log.info("认证通过: {}", authentication);

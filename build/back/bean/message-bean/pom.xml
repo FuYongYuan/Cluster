@@ -17,14 +17,22 @@
     <description>消息模块-数据模型</description>
 
     <properties>
-
+        <!-- 实体 -->
+        <java-bean.version>0.0.1</java-bean.version>
     </properties>
 
     <dependencies>
-        <!-- Hibernate注解包 -->
+        <!-- Hibernate 注解包 -->
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
+        </dependency>
+
+        <!-- 实体 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>jpa-bean</artifactId>
+            <version>${java-bean.version}</version>
         </dependency>
     </dependencies>
 </project>

@@ -25,17 +25,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Excel属性处理帮助工具类
+ * Excel 属性处理帮助工具类
  *
  * @author fyy
  */
 public class ExcelDispose {
     /**
-     * 对象和Excel有关的属性List获取
+     * 对象和 Excel 有关的属性 List 获取
      */
     public static void initialization(SheetSet sheetSet) {
         try {
-            //获取正确的要赋值的字段
+            // 获取正确的要赋值的字段
             Field[] fields = sheetSet.getDataClass().getDeclaredFields();
             Field[] excelFields = new Field[fields.length];
             for (Field field : fields) {
@@ -101,10 +101,10 @@ public class ExcelDispose {
                     }
                 }
             } else {
-                throw new ExcelOperateException("诊断：Excel导出未找到配置字段！", new NullPointerException());
+                throw new ExcelOperateException("诊断：Excel 导出未找到配置字段！", new NullPointerException());
             }
         } catch (Exception e) {
-            throw new ExcelOperateException("诊断：Excel对应关系错误！", e);
+            throw new ExcelOperateException("诊断：Excel 对应关系错误！", e);
         }
     }
 
@@ -113,7 +113,7 @@ public class ExcelDispose {
      *
      * @param field                 字段
      * @param obj                   对象
-     * @param isGetMethodFieldValue 是否根据GetSet方法取值
+     * @param isGetMethodFieldValue 是否根据 GetSet 方法取值
      * @param dateType              日期格式
      * @param decimalAfterDigit     保留小数
      * @param roundingMode          保留小数点方式
@@ -121,7 +121,7 @@ public class ExcelDispose {
      */
     public static String correspondingValue(Field field, Object obj, boolean isGetMethodFieldValue, DateType dateType, int decimalAfterDigit, RoundingMode roundingMode) {
         try {
-            //定义一个取对象中get方法的对象
+            // 定义一个取对象中 get 方法的对象
             Object objectValue;
             if (isGetMethodFieldValue) {
                 String fieldName = field.getName();
@@ -154,15 +154,15 @@ public class ExcelDispose {
             }
             return value;
         } catch (Exception e) {
-            throw new ExcelOperateException("诊断：Excel中数据格式转换错误！", e);
+            throw new ExcelOperateException("诊断：Excel 中数据格式转换错误！", e);
         }
     }
 
     /**
-     * 对象和Excel有关的属性List获取
+     * 对象和 Excel 有关的属性 List 获取
      *
      * @param tClass 类型
-     * @return 对象和Excel有关的属性List
+     * @return 对象和 Excel 有关的属性 List
      */
     public static <T> List<Field> getFieldList(Class<T> tClass) {
         List<Field> fieldList = new ArrayList<>();
@@ -181,7 +181,7 @@ public class ExcelDispose {
                 }
             }
         } catch (Exception e) {
-            throw new ExcelOperateException("诊断：Excel对应关系错误！", e);
+            throw new ExcelOperateException("诊断：Excel 对应关系错误！", e);
         }
         return fieldList;
     }

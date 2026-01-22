@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import snowflake.ClockBackwardStrategy;
 
 /**
- * 雪花ID生成器属性
+ * 雪花 ID 生成器属性
  *
  * @author fyy
  */
@@ -16,17 +16,17 @@ import snowflake.ClockBackwardStrategy;
 public class SnowflakeIdProperties {
 
     /**
-     * 工作实例ID
+     * 工作实例 ID
      */
     private Long workerId;
 
     /**
-     * 数据中心ID
+     * 数据中心 ID
      */
     private Long dataCenterId;
 
     /**
-     * 时间起始时间 默认2026-01-01 00:00:00.000
+     * 时间起始时间 默认 2026-01-01 00:00:00.000
      */
     private Long epoch = 1767196800000L;
 

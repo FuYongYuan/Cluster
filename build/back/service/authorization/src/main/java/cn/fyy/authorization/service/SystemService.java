@@ -35,7 +35,7 @@ public interface SystemService {
      * @param loginPassword        密码
      * @param mailCaptcha          验证码
      * @param mailCaptchaCacheName 邮箱验证码缓存名称
-     * @param visitorIpAddress     访问者IP
+     * @param visitorIpAddress     访问者 IP
      * @return 管理员
      * @throws BusinessException 错误
      */
@@ -56,16 +56,16 @@ public interface SystemService {
     /**
      * 登出
      *
-     * @param managerId 当前登陆人ID
+     * @param managerId 当前登陆人 ID
      * @return 登出结果
      * @throws BusinessException 错误
      */
     ResultMessage<Boolean> logout(Long managerId) throws BusinessException;
 
     /**
-     * 根据管理员ID查询拥有的菜单权限
+     * 根据管理员 ID 查询拥有的菜单权限
      *
-     * @param managerId 当前登陆人ID
+     * @param managerId 当前登陆人 ID
      * @return 管理员拥有的菜单
      * @throws BusinessException 错误
      */

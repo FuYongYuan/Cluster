@@ -1,5 +1,5 @@
-#linux 启动语句 nohup java -jar member.jar >log/member.log &
-#linux 查看日志 tail -f log/member.log
+# Linux 启动语句 nohup java -jar member.jar >log/member.log &
+# Linux 查看日志 tail -f log/member.log
 
 # 服务配置
 server:
@@ -8,7 +8,7 @@ server:
   servlet:
     # 项目名称
     context-path: /
-# spring配置
+# spring 配置
 spring:
   application:
     # 项目名称
@@ -23,7 +23,7 @@ spring:
       - nacos:${spring.application.name}-base-${spring.profiles.active}.yaml
       # 数据库配置
       - nacos:${spring.application.name}-data-${spring.profiles.active}.yaml
-      # jwt认证配置
+      # jwt 认证配置
       - nacos:jwt-${spring.profiles.active}.yaml?group=system
       # redis 配置
       - nacos:redis-${spring.profiles.active}.yaml?group=system

@@ -19,11 +19,11 @@ import java.util.List;
 public interface RoleRepository extends JpaRepository<RolePO, Long>, JpaSpecificationExecutor<RolePO> {
 
     /**
-     * 根据ids保存状态
+     * 根据 ids 保存状态
      *
      * @param ids                主键ID(可用,分割传入多个)
      * @param state              状态
-     * @param currentManagerId   当前登陆管理员id
+     * @param currentManagerId   当前登陆管理员 ID
      * @param currentManagerName 当前登陆管理员名称
      * @param updateTime         当前时间
      * @return 受影响行数
@@ -33,9 +33,9 @@ public interface RoleRepository extends JpaRepository<RolePO, Long>, JpaSpecific
     int updateStateByIds(Byte state, Long currentManagerId, String currentManagerName, LocalDateTime updateTime, List<Long> ids);
 
     /**
-     * 根据管理员主键ID查询能够使用的角色列表
+     * 根据管理员主键 ID 查询能够使用的角色列表
      *
-     * @param managerId 管理员主键ID
+     * @param managerId 管理员主键 ID
      * @param state     状态
      * @return 能够使用的角色列表
      */

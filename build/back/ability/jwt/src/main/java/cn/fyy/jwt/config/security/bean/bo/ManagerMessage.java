@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ManagerMessage {
     /**
-     * 管理员ID
+     * 管理员 ID
      */
     private Long managerId;
 

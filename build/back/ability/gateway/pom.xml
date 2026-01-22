@@ -17,9 +17,9 @@
     <description>网关模块</description>
 
     <properties>
-        <!-- redis版本 -->
+        <!-- redis 版本 -->
         <redis.version>0.0.1</redis.version>
-        <!-- jwt版本 -->
+        <!-- jwt 版本 -->
         <jwt.version>0.0.1</jwt.version>
         <!-- skywalking -->
         <skywalking.version>9.5.0</skywalking.version>
@@ -38,25 +38,25 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
-        <!-- gateway-WebFlux（非阻塞IO支持更大量的访问）网关 不可以引入spring-boot-starter-web会有冲突 -->
+        <!-- gateway-WebFlux（非阻塞IO支持更大量的访问）网关 不可以引入 spring-boot-starter-web 会有冲突 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway-server-webflux</artifactId>
         </dependency>
 
-        <!-- nacos注册中心 -->
+        <!-- nacos 注册中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!-- nacos配置中心 -->
+        <!-- nacos 配置中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-        <!-- sentinel高可用流控防护组件 -->
+        <!-- sentinel 高可用流控防护组件 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
@@ -72,7 +72,7 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- 客户端负载均衡loadbalancer -->
+        <!-- 客户端负载均衡 loadbalancer -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
@@ -118,7 +118,7 @@
             <version>${skywalking.version}</version>
         </dependency>
 
-        <!-- Mac M1芯片特别引入 -->
+        <!-- Mac M1 芯片特别引入 -->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-resolver-dns-native-macos</artifactId>

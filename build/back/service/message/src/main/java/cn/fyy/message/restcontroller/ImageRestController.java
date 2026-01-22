@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/image", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ImageRestController {
     /**
-     * 验证码Service
+     * 验证码 Service
      */
     @Resource
     private CaptchaService captchaServiceImpl;
@@ -34,7 +34,7 @@ public class ImageRestController {
      * 获取图形验证码
      */
     @Operation(
-            summary = "获取图形验证码", description = "验证码Base64字符串"
+            summary = "获取图形验证码", description = "验证码 Base64 字符串"
     )
     @GetMapping(value = "/get/captcha")
     public ResultMessage<ImageCaptchaDTO> getImageCaptcha(

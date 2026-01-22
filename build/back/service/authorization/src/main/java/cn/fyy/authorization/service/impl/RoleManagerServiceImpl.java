@@ -4,12 +4,12 @@ import cn.fyy.authorization.bean.bo.RoleManagerBO;
 import cn.fyy.authorization.bean.po.RoleManagerPO;
 import cn.fyy.authorization.repository.RoleManagerRepository;
 import cn.fyy.authorization.service.RoleManagerService;
-import cn.fyy.common.bean.ao.DataState;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.util.BeanUtil;
+import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
+import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -47,7 +47,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
      * 新增或者修改
      *
      * @param bo                 用户角色关系 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return !=null 成功，==null 失败
      */
@@ -69,7 +69,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
      * 新增或者修改
      *
      * @param bo                 用户角色关系 BO
-     * @param currentManagerId   当前登录人id
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
@@ -80,23 +80,23 @@ public class RoleManagerServiceImpl implements RoleManagerService {
             LocalDateTime localDateTime = LocalDateTime.now();
             RoleManagerPO po;
             if (bo.getId() == null) {
-                bo.setId(snowflakeIdUtil.getGenerator().nextId());
-                bo.setCreatorId(currentManagerId);
-                bo.setCreatorName(currentManagerName);
-                bo.setCreateTime(localDateTime);
-                bo.setUpdaterId(currentManagerId);
-                bo.setUpdaterName(currentManagerName);
-                bo.setUpdateTime(localDateTime);
-                bo.setState(DataState.NORMAL.getCode());
-                po = RoleManagerBO.toPO(bo);
+                po = BeanUtil.insert(
+                        RoleManagerBO.toPO(bo),
+                        snowflakeIdUtil.getGenerator().nextId(),
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             } else {
                 RoleManagerPO old = roleManagerRepository.getReferenceById(bo.getId());
-                // 根据getNull复制其中的非空或包含空字段
+                // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
-                old.setUpdaterId(currentManagerId);
-                old.setUpdaterName(currentManagerName);
-                old.setUpdateTime(localDateTime);
-                po = old;
+                po = BeanUtil.update(
+                        old,
+                        currentManagerId,
+                        currentManagerName,
+                        localDateTime
+                );
             }
 
             return RoleManagerBO.toBO(roleManagerRepository.save(po));
@@ -110,8 +110,8 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     /**
      * 保存集合
      *
-     * @param menuIds            菜单主键ID集合
-     * @param currentManagerId   当前登录人id
+     * @param menuIds            菜单主键 ID 集合
+     * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return 是否成功
      */

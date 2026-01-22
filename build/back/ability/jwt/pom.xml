@@ -14,7 +14,7 @@
     <artifactId>jwt</artifactId>
     <version>0.0.1</version>
     <name>jwt</name>
-    <description>jwt模块</description>
+    <description>jwt 模块</description>
 
     <properties>
         <!-- 实体 -->

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 /**
- * JWT工具类
+ * JWT 工具类
  *
  * @author fuyy
  */
@@ -17,10 +17,10 @@ import org.springframework.util.StringUtils;
 public class JwtTokenWebService extends JwtTokenService {
 
     /**
-     * 快速获取Request中的Token
+     * 快速获取 Request 中的 Token
      */
     public String getTokenFromRequest(HttpServletRequest request) {
-        // 从请求中提取JWT Token
+        // 从请求中提取 JWT Token
         String token = request.getHeader(jwtProperties.getTokenHeader());
         if (StringUtils.hasText(token) && token.startsWith(jwtProperties.getTokenHead() + " ")) {
             return token.substring(jwtProperties.getTokenHead().length());
@@ -29,7 +29,7 @@ public class JwtTokenWebService extends JwtTokenService {
     }
 
     /**
-     * 获取jwtProperties
+     * 获取 jwtProperties
      */
     public JwtProperties getJwtProperties() {
         return jwtProperties;

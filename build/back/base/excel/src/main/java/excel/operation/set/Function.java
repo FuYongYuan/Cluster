@@ -171,8 +171,7 @@ public class Function {
          */
         public Builder setCalculationFieldNames(String... calculationFieldNames) {
             for (String name : calculationFieldNames) {
-                Integer i = this.calculationFieldNameAndOrder.get(name);
-                this.calculationFieldNameAndOrder.put(name, Objects.requireNonNullElse(i, 0));
+                this.calculationFieldNameAndOrder.compute(name, (k, i) -> Objects.requireNonNullElse(i, 0));
             }
             return this;
         }
