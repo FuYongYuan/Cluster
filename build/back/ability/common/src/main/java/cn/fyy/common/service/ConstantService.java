@@ -15,6 +15,7 @@ public class ConstantService {
      * @return 日志 -> 类:***   方法:***   行:***  错误:***
      */
     public static String logMessage(Exception e) {
+        e.printStackTrace();
         return "类:" + e.getStackTrace()[0].getClassName() +
                 "   方法:" + e.getStackTrace()[0].getMethodName() +
                 "   行:" + e.getStackTrace()[0].getLineNumber() +

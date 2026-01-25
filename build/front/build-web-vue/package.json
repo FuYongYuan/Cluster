@@ -18,15 +18,15 @@
     "pinia": "^3.0.4",
     "skywalking-client-js": "^1.0.1",
     "ts-md5": "^2.0.1",
-    "vue": "^3.5.26",
+    "vue": "^3.5.27",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.11",
+    "@biomejs/biome": "2.3.12",
     "@vitejs/plugin-vue": "^6.0.3",
     "typescript": "^5.9.3",
-    "vite": "^7.3.0",
+    "vite": "^7.3.1",
     "vite-plugin-style-import": "^2.0.0",
-    "vue-tsc": "^3.2.1"
+    "vue-tsc": "^3.2.3"
   }
 }

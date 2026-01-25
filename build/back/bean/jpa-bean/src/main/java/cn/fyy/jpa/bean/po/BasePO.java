@@ -72,11 +72,12 @@ public abstract class BasePO implements Serializable {
     private Byte state;
 
     /**
-     * 版本号
+     * 数据版本号 - 用于乐观锁控制
+     * 初始化为0，每次更新时自动递增
      */
     @Version
-    @Column(name = "groupVersion")
-    private Long version;
+    @Column(name = "version")
+    private Long version = 0L;
 
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override
