@@ -1,4 +1,4 @@
-package cn.fyy.jwt.config.security.bean.bo;
+package cn.fyy.jwt.bean.bo;
 
 
 import lombok.Getter;

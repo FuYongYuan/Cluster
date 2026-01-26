@@ -2,6 +2,7 @@ package cn.fyy.authorization.service.impl;
 
 import cn.fyy.authorization.bean.bo.RoleBO;
 import cn.fyy.authorization.bean.bo.RoleManagerBO;
+import cn.fyy.authorization.bean.bo.RoleMenuBO;
 import cn.fyy.authorization.bean.dto.JwtDTO;
 import cn.fyy.authorization.config.properties.AesProperties;
 import cn.fyy.authorization.feign.client.capability.MenuFeignClient;
@@ -12,15 +13,16 @@ import cn.fyy.authorization.service.RoleService;
 import cn.fyy.authorization.service.SystemService;
 import cn.fyy.capability.bean.dto.MenuDTO;
 import cn.fyy.common.bean.ao.ConstantParameter;
-import cn.fyy.jpa.bean.ao.DataState;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.common.util.ServerUtil;
 import cn.fyy.database.config.data.annotation.WriteDataSource;
+import cn.fyy.jpa.bean.ao.DataState;
+import cn.fyy.jwt.bean.bo.SecurityAuthority;
+import cn.fyy.jwt.bean.bo.SecurityRedis;
+import cn.fyy.jwt.bean.bo.SecurityUser;
 import cn.fyy.jwt.config.jwt.JwtProperties;
-import cn.fyy.jwt.config.security.bean.bo.SecurityRedis;
-import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
 import cn.fyy.redis.bean.ao.RedisSelect;
 import cn.fyy.redis.service.RedisService;
@@ -37,6 +39,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -346,10 +350,11 @@ public class SystemServiceImpl implements SystemService {
                     ResultMessage<Long> saveResult = managerFeignClient.saveReturnDTO(dto, encrypt);
                     Integer saveState = saveResult.getCode();
                     if (saveState == HttpStatus.OK.value()) {
-                        String[] roleBOList = roleServiceImpl.queryManagerHaveRoleByManagerId(dto.getId())
-                                .stream()
-                                .map(i -> String.valueOf(i.getId()))
-                                .toArray(String[]::new);
+                        // 前置准备
+                        AuthorityPrepareCacheBO authorityPrepareCacheBO = this.getAuthorityPrepareCacheBO(dto.getId());
+
+                        // 权限列表内含，角色、菜单、按钮、数据、接口
+                        String[] authorities = this.getAuthorities(authorityPrepareCacheBO);
 
                         // 返回 token 的管理员
                         SecurityRedis securityRedis = SecurityRedis.builder()
@@ -357,7 +362,7 @@ public class SystemServiceImpl implements SystemService {
                                 .managerName(dto.getManagerName())
                                 .username(dto.getAccount())
                                 .password(dto.getLoginPassword())
-                                .authorities(roleBOList)
+                                .authorities(authorities)
                                 .seconds(jwtProperties.getAccessTokenExpireTime().toMillis() / 1000)
                                 .build();
                         // 创建 SecurityUser
@@ -371,10 +376,8 @@ public class SystemServiceImpl implements SystemService {
 
                         // 创建 token
                         String token = jwtTokenWebService.generateToken(
-                                jwtProperties.getIssuer(),
                                 securityRedis.getUsername(),
-                                securityUser,
-                                jwtProperties.getAccessTokenExpireTime().toMillis()
+                                securityUser
                         );
                         securityRedis.setToken(token);
 
@@ -411,5 +414,94 @@ public class SystemServiceImpl implements SystemService {
         } catch (Exception e) {
             throw new BusinessException("登录成功处理错误", e);
         }
+    }
+
+    /**
+     * 权限前置准备缓存
+     */
+    private static class AuthorityPrepareCacheBO {
+        /**
+         * 管理员ID
+         */
+        private Long managerId;
+        /**
+         * 角色ID列表
+         */
+        private List<Long> roleIdList;
+        /**
+         * 菜单ID列表
+         */
+        private List<Long> menuIdList;
+        /**
+         * 菜单列表
+         */
+        private List<MenuDTO> menuList;
+    }
+
+    /**
+     * 获取权限前置准备缓存
+     *
+     * @param managerId 管理员ID
+     * @return 权限前置准备缓存
+     * @throws BusinessException 获取权限前置准备缓存错误
+     */
+    private AuthorityPrepareCacheBO getAuthorityPrepareCacheBO(Long managerId) throws BusinessException {
+        AuthorityPrepareCacheBO bo = new AuthorityPrepareCacheBO();
+        bo.managerId = managerId;
+        bo.roleIdList = roleServiceImpl.queryManagerHaveRoleByManagerId(bo.managerId)
+                .stream()
+                .map(RoleBO::getId)
+                .toList();
+        bo.menuIdList = roleMenuServiceImpl.queryMenuByRoleIds(bo.roleIdList)
+                .stream()
+                .map(RoleMenuBO::getMenuId)
+                .toList();
+        bo.menuList = menuFeignClient.queryMenuByMenuIdList(bo.menuIdList).getData();
+        return bo;
+    }
+
+    /**
+     * 获取权限
+     *
+     * @param authorityPrepareCacheBO 权限前置准备缓存
+     * @return 权限列表
+     * @throws BusinessException 获取权限错误
+     */
+    private String[] getAuthorities(
+            AuthorityPrepareCacheBO authorityPrepareCacheBO
+    ) throws BusinessException {
+        // {type:role,id:1}，权限、菜单、按钮、数据权限、接口权限；菜单如果这里有id，查询的时候需要变化，不再用用户id查角色id再查菜单了，而是直接查菜单
+
+        // 权限列表内含，角色1、菜单1、按钮、数据、接口
+        List<String> authorities = new ArrayList<>();
+        // 创建角色权限
+        String[] roleBOList = authorityPrepareCacheBO.roleIdList
+                .stream()
+                .map(i ->
+                        SecurityAuthority.builder()
+                                .type("role")
+                                .id(i)
+                                .build()
+                                .toJson()
+                )
+                .toArray(String[]::new);
+        // 获取菜单权限
+        String[] roleMenuBOList = authorityPrepareCacheBO.menuList
+                .stream()
+                .map(i ->
+                        SecurityAuthority.builder()
+                                .type("menu")
+                                .id(i.getId())
+                                .value(i.getMenuUrl())
+                                .build()
+                                .toJson()
+                )
+                .toArray(String[]::new);
+
+        // 添加各类权限
+        authorities.addAll(Arrays.asList(roleBOList));
+        authorities.addAll(Arrays.asList(roleMenuBOList));
+
+        return authorities.toArray(new String[0]);
     }
 }

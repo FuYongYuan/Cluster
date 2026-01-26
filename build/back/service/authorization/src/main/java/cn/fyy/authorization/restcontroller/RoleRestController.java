@@ -5,8 +5,8 @@ import cn.fyy.authorization.bean.dto.RoleDTO;
 import cn.fyy.authorization.service.RoleService;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
+import cn.fyy.common.controller.BaseRestController;
+import cn.fyy.jwt.bean.bo.ManagerMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,18 +27,12 @@ import java.util.List;
 @Tag(name = "RoleRestController", description = "角色 RestController")
 @RestController
 @RequestMapping(value = "/role", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RoleRestController {
+public class RoleRestController extends BaseRestController {
     /**
      * 角色 Service
      */
     @Resource
     private RoleService roleServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 

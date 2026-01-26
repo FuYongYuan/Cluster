@@ -2,8 +2,8 @@ package cn.fyy.member.restcontroller;
 
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
+import cn.fyy.common.controller.BaseRestController;
+import cn.fyy.jwt.bean.bo.ManagerMessage;
 import cn.fyy.member.bean.bo.ManagerBO;
 import cn.fyy.member.bean.dto.ManagerDTO;
 import cn.fyy.member.bean.dto.ManagerInternalDTO;
@@ -26,18 +26,12 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "ManagerRestController", description = "管理员 RestController")
 @RestController
 @RequestMapping(value = "/manager", produces = MediaType.APPLICATION_JSON_VALUE)
-public class ManagerRestController {
+public class ManagerRestController extends BaseRestController {
     /**
      * 管理员 Service
      */
     @Resource
     private ManagerService managerServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 

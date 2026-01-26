@@ -193,4 +193,19 @@ public class RoleMenuServiceImpl implements RoleMenuService {
             throw new BusinessException("根据现有管理员拥有的角色查询所拥有的菜单 ID 错误", e);
         }
     }
+
+    /**
+     * 根据现有管理员拥有的角色查询所拥有的菜单
+     *
+     * @param roleIds 角色主键 ID
+     * @return 现有菜单关系列表
+     */
+    @Override
+    public List<RoleMenuBO> queryMenuByRoleIds(List<Long> roleIds) throws BusinessException {
+        try {
+            return RoleMenuBO.toBO(roleMenuRepository.queryByRoleIdsAndState(roleIds, DataState.NORMAL.getCode()));
+        } catch (Exception e) {
+            throw new BusinessException("根据现有管理员拥有的角色查询所拥有的菜单 ID 错误", e);
+        }
+    }
 }

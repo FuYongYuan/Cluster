@@ -2,8 +2,8 @@ package cn.fyy.message.restcontroller;
 
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
+import cn.fyy.common.controller.BaseRestController;
+import cn.fyy.jwt.bean.bo.ManagerMessage;
 import cn.fyy.message.bean.dto.NoticeDTO;
 import cn.fyy.message.service.NoticeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,18 +22,12 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "NoticeRestController", description = "公告 RestController")
 @RestController
 @RequestMapping(value = "/notice", produces = MediaType.APPLICATION_JSON_VALUE)
-public class NoticeRestController {
+public class NoticeRestController extends BaseRestController {
     /**
      * 公告 Service
      */
     @Resource
     private NoticeService noticeServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 

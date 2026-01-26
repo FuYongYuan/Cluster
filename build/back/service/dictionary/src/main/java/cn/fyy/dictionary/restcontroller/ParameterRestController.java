@@ -2,11 +2,11 @@ package cn.fyy.dictionary.restcontroller;
 
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
+import cn.fyy.common.controller.BaseRestController;
 import cn.fyy.dictionary.bean.bo.ParameterBO;
 import cn.fyy.dictionary.bean.dto.ParameterDTO;
 import cn.fyy.dictionary.service.ParameterService;
-import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
+import cn.fyy.jwt.bean.bo.ManagerMessage;
 import dispose.LocalDateTimeDispose;
 import enumerate.DateType;
 import excel.operation.ExcelExport;
@@ -35,18 +35,12 @@ import java.time.LocalDateTime;
 @Tag(name = "ParameterRestController", description = "参数 RestController")
 @RestController
 @RequestMapping(value = "/parameter", produces = MediaType.APPLICATION_JSON_VALUE)
-public class ParameterRestController {
+public class ParameterRestController extends BaseRestController {
     /**
      * 参数 Service
      */
     @Resource
     private ParameterService parameterServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 

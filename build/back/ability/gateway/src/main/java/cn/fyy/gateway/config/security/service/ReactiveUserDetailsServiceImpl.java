@@ -1,8 +1,8 @@
 package cn.fyy.gateway.config.security.service;
 
 import cn.fyy.common.bean.ao.ConstantParameter;
-import cn.fyy.jwt.config.security.bean.bo.SecurityRedis;
-import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
+import cn.fyy.jwt.bean.bo.SecurityRedis;
+import cn.fyy.jwt.bean.bo.SecurityUser;
 import cn.fyy.redis.bean.ao.RedisSelect;
 import cn.fyy.redis.service.RedisService;
 import jakarta.annotation.Resource;

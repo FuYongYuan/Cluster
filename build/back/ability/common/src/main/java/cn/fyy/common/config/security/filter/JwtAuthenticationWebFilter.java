@@ -4,7 +4,7 @@ import cn.fyy.common.bean.ao.ConstantParameter;
 import cn.fyy.common.bean.ao.SecurityHttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
+import cn.fyy.jwt.bean.bo.SecurityUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.Resource;
 import jakarta.servlet.FilterChain;

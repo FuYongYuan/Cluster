@@ -5,8 +5,8 @@ import cn.fyy.capability.bean.dto.MenuDTO;
 import cn.fyy.capability.service.MenuService;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
+import cn.fyy.common.controller.BaseRestController;
+import cn.fyy.jwt.bean.bo.ManagerMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,18 +27,12 @@ import java.util.List;
 @Tag(name = "MenuRestController", description = "菜单 RestController")
 @RestController
 @RequestMapping(value = "/menu", produces = MediaType.APPLICATION_JSON_VALUE)
-public class MenuRestController {
+public class MenuRestController extends BaseRestController {
     /**
      * 菜单 Service
      */
     @Resource
     private MenuService menuServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 

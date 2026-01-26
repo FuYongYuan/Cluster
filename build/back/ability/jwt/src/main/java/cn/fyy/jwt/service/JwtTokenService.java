@@ -2,8 +2,8 @@ package cn.fyy.jwt.service;
 
 import cn.fyy.common.bean.ao.ConstantParameter;
 import cn.fyy.jwt.config.jwt.JwtProperties;
-import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
-import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
+import cn.fyy.jwt.bean.bo.ManagerMessage;
+import cn.fyy.jwt.bean.bo.SecurityUser;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.jwt.*;
@@ -41,13 +41,13 @@ public class JwtTokenService {
     protected JwtEncoder jwtEncoder;
 
     /**
-     * 生成 access_token
+     * 签发 token
      *
      * @param subject      代表这个 JWT 的主体，即它的所有人 一般是用户账号
      * @param securityUser 存储在 JWT 里面的信息 一般放些用户的权限/角色信息
      * @return java.lang.String
      */
-    public String getAccessToken(String subject, SecurityUser securityUser) {
+    public String generateToken(String subject, SecurityUser securityUser) {
         return generateToken(jwtProperties.getIssuer(), subject, securityUser, jwtProperties.getAccessTokenExpireTime().toMillis());
     }
 

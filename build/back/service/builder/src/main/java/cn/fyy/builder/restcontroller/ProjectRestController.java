@@ -5,8 +5,8 @@ import cn.fyy.builder.bean.dto.ProjectDTO;
 import cn.fyy.builder.service.ProjectService;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
+import cn.fyy.common.controller.BaseRestController;
+import cn.fyy.jwt.bean.bo.ManagerMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,18 +25,12 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "ProjectRestController", description = "项目 RestController")
 @RestController
 @RequestMapping(value = "/project", produces = MediaType.APPLICATION_JSON_VALUE)
-public class ProjectRestController {
+public class ProjectRestController extends BaseRestController {
     /**
      * 项目群 Service
      */
     @Resource
     private ProjectService projectServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 

@@ -4,8 +4,8 @@ import cn.fyy.builder.bean.dto.CommonlyVersionDTO;
 import cn.fyy.builder.service.CommonlyVersionService;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
+import cn.fyy.common.controller.BaseRestController;
+import cn.fyy.jwt.bean.bo.ManagerMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,18 +23,12 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "CommonlyVersionRestController", description = "常用版本 RestController")
 @RestController
 @RequestMapping(value = "/commonly/version", produces = MediaType.APPLICATION_JSON_VALUE)
-public class CommonlyVersionRestController {
+public class CommonlyVersionRestController extends BaseRestController {
     /**
      * 常用版本 Service
      */
     @Resource
     private CommonlyVersionService commonlyVersionServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 

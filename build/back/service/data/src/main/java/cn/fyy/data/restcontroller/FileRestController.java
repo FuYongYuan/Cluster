@@ -2,7 +2,7 @@ package cn.fyy.data.restcontroller;
 
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
+import cn.fyy.common.controller.BaseRestController;
 import cn.fyy.data.service.UploadService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -24,18 +24,12 @@ import java.util.Map;
 @Tag(name = "FileRestController", description = "数据 RestController")
 @RestController
 @RequestMapping(value = "/file", produces = MediaType.APPLICATION_JSON_VALUE)
-public class FileRestController {
+public class FileRestController extends BaseRestController {
     /**
      * 上传 Service
      */
     @Resource
     private UploadService uploadServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 

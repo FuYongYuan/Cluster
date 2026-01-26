@@ -4,8 +4,8 @@ import cn.fyy.authorization.bean.dto.RoleMenuDTO;
 import cn.fyy.authorization.service.RoleMenuService;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
-import cn.fyy.jwt.config.security.bean.bo.ManagerMessage;
+import cn.fyy.common.controller.BaseRestController;
+import cn.fyy.jwt.bean.bo.ManagerMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,18 +24,12 @@ import java.util.List;
 @Tag(name = "RoleMenuRestController", description = "菜单角色关系 RestController")
 @RestController
 @RequestMapping(value = "/role/menu", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RoleMenuRestController {
+public class RoleMenuRestController extends BaseRestController {
     /**
      * 菜单角色关系 Service
      */
     @Resource
     private RoleMenuService roleMenuServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 

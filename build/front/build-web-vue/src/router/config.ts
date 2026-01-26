@@ -43,7 +43,7 @@ const routes: Array<RouteRecordRaw> = [
 				name: "Home",
 				component: () => import("@src/views/Home.vue"),
 				meta: {
-					menuId: 100,
+					menuId: 6508370886732800,
 					menuName: "首页",
 					keepAlive: true,
 				},
@@ -54,7 +54,7 @@ const routes: Array<RouteRecordRaw> = [
 				name: "MenuManage",
 				component: () => import("@src/views/menu/Manage.vue"),
 				meta: {
-					menuId: 10101,
+					menuId: 6508370886732803,
 					menuName: "菜单管理",
 					keepAlive: true,
 				},
@@ -64,7 +64,7 @@ const routes: Array<RouteRecordRaw> = [
 				name: "RoleManage",
 				component: () => import("@src/views/role/Manage.vue"),
 				meta: {
-					menuId: 10102,
+					menuId: 6508370886732804,
 					menuName: "角色管理",
 					keepAlive: true,
 				},
@@ -74,7 +74,7 @@ const routes: Array<RouteRecordRaw> = [
 				name: "ManagerManage",
 				component: () => import("@src/views/manager/Manage.vue"),
 				meta: {
-					menuId: 10103,
+					menuId: 6508370886732805,
 					menuName: "管理员管理",
 					keepAlive: true,
 				},
@@ -84,7 +84,7 @@ const routes: Array<RouteRecordRaw> = [
 				name: "ParameterManage",
 				component: () => import("@src/views/parameter/Manage.vue"),
 				meta: {
-					menuId: 10104,
+					menuId: 6508370886732806,
 					menuName: "参数管理",
 					keepAlive: true,
 				},
@@ -94,7 +94,7 @@ const routes: Array<RouteRecordRaw> = [
 				name: "GroupManage",
 				component: () => import("@src/views/group/Manage.vue"),
 				meta: {
-					menuId: 10201,
+					menuId: 6508370886732807,
 					menuName: "项目群管理",
 					keepAlive: true,
 				},
@@ -104,7 +104,7 @@ const routes: Array<RouteRecordRaw> = [
 				name: "GroupDetail",
 				component: () => import("@src/views/group/Detail.vue"),
 				meta: {
-					menuId: 10202,
+					menuId: 6508370886732808,
 					menuName: "新增项目群",
 					keepAlive: true,
 				},

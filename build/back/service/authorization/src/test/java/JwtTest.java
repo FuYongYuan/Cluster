@@ -1,5 +1,5 @@
 import cn.fyy.authorization.AuthorizationApplication;
-import cn.fyy.jwt.config.security.bean.bo.SecurityUser;
+import cn.fyy.jwt.bean.bo.SecurityUser;
 import cn.fyy.jwt.service.JwtTokenService;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ public class JwtTest {
         );
         System.out.println(securityUser);
         System.out.println(
-                jwtTokenService.getAccessToken(
+                jwtTokenService.generateToken(
                         "1",
                         securityUser
                 )

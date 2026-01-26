@@ -5,7 +5,7 @@ import cn.fyy.authorization.service.SystemService;
 import cn.fyy.capability.bean.dto.MenuDTO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import cn.fyy.common.config.security.service.JwtTokenWebService;
+import cn.fyy.common.controller.BaseRestController;
 import cn.fyy.common.util.ServerUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -25,18 +25,12 @@ import java.util.List;
 @Tag(name = "SystemRestController", description = "系统 RestController")
 @RestController
 @RequestMapping(value = "/system", produces = MediaType.APPLICATION_JSON_VALUE)
-public class SystemRestController {
+public class SystemRestController extends BaseRestController {
     /**
      * 管理员 Service
      */
     @Resource
     private SystemService systemServiceImpl;
-
-    /**
-     * JWT 工具类
-     */
-    @Resource
-    private JwtTokenWebService jwtTokenWebService;
 
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
