@@ -1,5 +1,6 @@
 package cn.fyy.authorization.bean.dto;
 
+import cn.fyy.capability.bean.dto.MenuDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 登录信息
@@ -38,6 +40,12 @@ public class JwtDTO implements Serializable {
      */
     @Schema(name = "avatar", description = "头像", type = "String")
     private String avatar;
+
+    /**
+     * 所拥有的菜单列表
+     */
+    @Schema(name = "menuList", description = "所拥有的菜单列表", type = "List")
+    private List<MenuDTO> menuList;
 
     /**
      * jwtToken

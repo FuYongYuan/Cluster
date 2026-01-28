@@ -83,7 +83,6 @@ import { message } from "ant-design-vue";
 import type { RuleObject } from "ant-design-vue/es/form";
 import IconFont from "@src/assets/iconfont/icon";
 import {
-	BusinessTypeUserHeadImage,
 	FailImage,
 	LocalStorageAccount,
 	LocalStorageAccountMenuList,
@@ -93,11 +92,10 @@ import {
 	LocalStorageManagerName,
 } from "@src/apis/commons/constant";
 import { getImageCaptcha } from "@src/apis/message/service";
-import { login, queryHaveMenu } from "@src/apis/authorization/service";
+import { login } from "@src/apis/authorization/service";
 import type { ImageCaptchaDTO } from "@src/apis/message/dto";
 import { Md5 } from "ts-md5";
 import { useRoute, useRouter } from "vue-router";
-import { getFileTemporaryUrl } from "@src/apis/data/service.ts";
 
 export default defineComponent({
 	// 页面名称
@@ -181,10 +179,9 @@ export default defineComponent({
 					result.invalidDate.toString(),
 				);
 				// 获取菜单
-				const menuList = await queryHaveMenu();
 				localStorage.setItem(
 					LocalStorageAccountMenuList,
-					JSON.stringify(menuList),
+					JSON.stringify(result.menuList),
 				);
 				// 获取头像
 				if (
@@ -192,11 +189,7 @@ export default defineComponent({
 					result.avatar !== null &&
 					result.avatar !== ""
 				) {
-					const temporaryUrl = await getFileTemporaryUrl(
-						BusinessTypeUserHeadImage,
-						result.avatar,
-					);
-					localStorage.setItem(LocalStorageAvatar, temporaryUrl);
+					localStorage.setItem(LocalStorageAvatar, result.avatar);
 				} else {
 					localStorage.setItem(LocalStorageAvatar, FailImage);
 				}

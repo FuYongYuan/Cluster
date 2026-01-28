@@ -19,6 +19,7 @@
     <properties>
         <!-- 实体 -->
         <java-bean.version>0.0.1</java-bean.version>
+        <capability-bean.version>0.0.1</capability-bean.version>
     </properties>
 
     <dependencies>
@@ -33,6 +34,12 @@
             <groupId>cn.fyy.build</groupId>
             <artifactId>jpa-bean</artifactId>
             <version>${java-bean.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>capability-bean</artifactId>
+            <version>${capability-bean.version}</version>
         </dependency>
     </dependencies>
 </project>

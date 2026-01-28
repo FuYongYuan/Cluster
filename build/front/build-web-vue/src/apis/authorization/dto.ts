@@ -1,3 +1,5 @@
+import { MenuDTO } from "@src/apis/capability/dto.ts";
+
 /**
  * Jwt返回对象
  */
@@ -8,6 +10,8 @@ export type JwtDTO = {
 	managerName?: string;
 	// 头像
 	avatar?: string;
+	// 菜单集合
+	menuList?: MenuDTO[];
 	// jwtToken
 	jwtToken: string;
 	// 失效时间

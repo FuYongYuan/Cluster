@@ -88,6 +88,22 @@ public class ConstantParameter {
      */
     public static final String UPLOAD_USER_DATA_PATH_NAME = "user-data";
 
+    /**
+     * 用户头像业务类型
+     */
+    public static final String BUSINESS_TYPE_USER_HEAD_IMAGE = "head-image";
+
+    /**
+     * 文件读取过期时间 秒
+     */
+    public static final Long FILE_READ_EXPIRATION_SECOND = 60L;
+
+    /**
+     * 文件读取过期时间 分钟
+     */
+    public static final Long FILE_READ_EXPIRATION_MINUTE = FILE_READ_EXPIRATION_SECOND * 60L;
+
+
     //------------------------------------------------------------------------------------------------------------------参数表值
     /**
      * 最大创建次数

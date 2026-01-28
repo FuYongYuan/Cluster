@@ -1,11 +1,13 @@
 package cn.fyy.authorization.service.impl;
 
+import cn.fyy.authorization.bean.bo.AuthorityPrepareCacheBO;
 import cn.fyy.authorization.bean.bo.RoleBO;
 import cn.fyy.authorization.bean.bo.RoleManagerBO;
 import cn.fyy.authorization.bean.bo.RoleMenuBO;
 import cn.fyy.authorization.bean.dto.JwtDTO;
 import cn.fyy.authorization.config.properties.AesProperties;
 import cn.fyy.authorization.feign.client.capability.MenuFeignClient;
+import cn.fyy.authorization.feign.client.data.FileFeignClient;
 import cn.fyy.authorization.feign.client.member.ManagerFeignClient;
 import cn.fyy.authorization.service.RoleManagerService;
 import cn.fyy.authorization.service.RoleMenuService;
@@ -81,6 +83,12 @@ public class SystemServiceImpl implements SystemService {
      */
     @Resource
     private MenuFeignClient menuFeignClient;
+
+    /**
+     * 文件服务
+     */
+    @Resource
+    private FileFeignClient fileFeignClient;
 
 
     //------------------------------------------------------------------------------------------------------------------JWT Redis
@@ -391,10 +399,19 @@ public class SystemServiceImpl implements SystemService {
                                 securityRedis.getSeconds()
                         );
 
+                        // 获取头像网络地址
+                        String avatar = fileFeignClient.getFileTemporaryUrl(
+                                ConstantParameter.BUSINESS_TYPE_USER_HEAD_IMAGE,
+                                dto.getAvatar(),
+                                ConstantParameter.FILE_READ_EXPIRATION_MINUTE
+                        ).getData();
+
+                        // 创建 JwtDTO
                         JwtDTO jwtDTO = new JwtDTO().toBuilder()
                                 .account(dto.getAccount())
                                 .managerName(dto.getManagerName())
-                                .avatar(dto.getAvatar())
+                                .avatar(avatar)
+                                .menuList(authorityPrepareCacheBO.getMenuList())
                                 .jwtToken(securityRedis.getToken())
                                 .invalidDate(invalidDate)
                                 .build();
@@ -417,28 +434,6 @@ public class SystemServiceImpl implements SystemService {
     }
 
     /**
-     * 权限前置准备缓存
-     */
-    private static class AuthorityPrepareCacheBO {
-        /**
-         * 管理员ID
-         */
-        private Long managerId;
-        /**
-         * 角色ID列表
-         */
-        private List<Long> roleIdList;
-        /**
-         * 菜单ID列表
-         */
-        private List<Long> menuIdList;
-        /**
-         * 菜单列表
-         */
-        private List<MenuDTO> menuList;
-    }
-
-    /**
      * 获取权限前置准备缓存
      *
      * @param managerId 管理员ID
@@ -447,16 +442,22 @@ public class SystemServiceImpl implements SystemService {
      */
     private AuthorityPrepareCacheBO getAuthorityPrepareCacheBO(Long managerId) throws BusinessException {
         AuthorityPrepareCacheBO bo = new AuthorityPrepareCacheBO();
-        bo.managerId = managerId;
-        bo.roleIdList = roleServiceImpl.queryManagerHaveRoleByManagerId(bo.managerId)
-                .stream()
-                .map(RoleBO::getId)
-                .toList();
-        bo.menuIdList = roleMenuServiceImpl.queryMenuByRoleIds(bo.roleIdList)
-                .stream()
-                .map(RoleMenuBO::getMenuId)
-                .toList();
-        bo.menuList = menuFeignClient.queryMenuByMenuIdList(bo.menuIdList).getData();
+        bo.setManagerId(managerId);
+        bo.setRoleIdList(
+                roleServiceImpl.queryManagerHaveRoleByManagerId(bo.getManagerId())
+                        .stream()
+                        .map(RoleBO::getId)
+                        .toList()
+        );
+        bo.setMenuIdList(
+                roleMenuServiceImpl.queryMenuByRoleIds(bo.getRoleIdList())
+                        .stream()
+                        .map(RoleMenuBO::getMenuId)
+                        .toList()
+        );
+        bo.setMenuList(
+                menuFeignClient.queryMenuByMenuIdList(bo.getMenuIdList()).getData()
+        );
         return bo;
     }
 
@@ -465,17 +466,16 @@ public class SystemServiceImpl implements SystemService {
      *
      * @param authorityPrepareCacheBO 权限前置准备缓存
      * @return 权限列表
-     * @throws BusinessException 获取权限错误
      */
     private String[] getAuthorities(
             AuthorityPrepareCacheBO authorityPrepareCacheBO
-    ) throws BusinessException {
+    ) {
         // {type:role,id:1}，权限、菜单、按钮、数据权限、接口权限；菜单如果这里有id，查询的时候需要变化，不再用用户id查角色id再查菜单了，而是直接查菜单
 
         // 权限列表内含，角色1、菜单1、按钮、数据、接口
         List<String> authorities = new ArrayList<>();
         // 创建角色权限
-        String[] roleBOList = authorityPrepareCacheBO.roleIdList
+        String[] roleBOList = authorityPrepareCacheBO.getRoleIdList()
                 .stream()
                 .map(i ->
                         SecurityAuthority.builder()
@@ -486,7 +486,7 @@ public class SystemServiceImpl implements SystemService {
                 )
                 .toArray(String[]::new);
         // 获取菜单权限
-        String[] roleMenuBOList = authorityPrepareCacheBO.menuList
+        String[] roleMenuBOList = authorityPrepareCacheBO.getMenuList()
                 .stream()
                 .map(i ->
                         SecurityAuthority.builder()
