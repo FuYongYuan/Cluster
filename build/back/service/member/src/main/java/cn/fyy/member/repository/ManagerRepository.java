@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 管理员 Repository
  *
- * @author fuyy
+ * @author fyy
  */
 @Repository
 public interface ManagerRepository extends JpaRepository<ManagerPO, Long>, JpaSpecificationExecutor<ManagerPO> {

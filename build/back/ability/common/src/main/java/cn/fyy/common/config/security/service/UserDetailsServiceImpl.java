@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 /**
  * 用户验证逻辑层
  *
- * @author fuyy
+ * @author fyy
  */
 @Slf4j
 @Service

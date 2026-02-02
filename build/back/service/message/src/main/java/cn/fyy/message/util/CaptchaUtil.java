@@ -5,7 +5,7 @@ import encrypt.RandomUtil;
 /**
  * 验证码工具类
  *
- * @author fuyy
+ * @author fyy
  */
 public class CaptchaUtil {
     /**

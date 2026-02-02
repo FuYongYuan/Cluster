@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 常用版本 Repository
  *
- * @author fuyy
+ * @author fyy
  */
 @Repository
 public interface CommonlyVersionRepository extends JpaRepository<CommonlyVersionPO, Long>, JpaSpecificationExecutor<CommonlyVersionPO> {

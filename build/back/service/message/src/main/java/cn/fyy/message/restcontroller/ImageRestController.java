@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 图片 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @Tag(name = "ImageRestController", description = "图片 RestController")
 @RestController

@@ -16,7 +16,7 @@ import java.util.Random;
 /**
  * 验证码生成工具类
  *
- * @author fuyy
+ * @author fyy
  */
 public class ImageCaptchaUtil {
     /**

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 管理员
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "ManagerInternalDTO", description = "管理员 实体类")
 @Data

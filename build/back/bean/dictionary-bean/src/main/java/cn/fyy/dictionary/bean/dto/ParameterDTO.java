@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 参数
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "ParameterDTO", description = "参数 实体类")
 @Data

@@ -7,7 +7,7 @@ import cn.fyy.common.bean.dto.ResultMessage;
 /**
  * 常用版本 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface CommonlyVersionService {
     /**

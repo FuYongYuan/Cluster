@@ -10,7 +10,7 @@ import java.util.Collection;
 /**
  * Security Token 实体 - 认证使用
  *
- * @author fuyy
+ * @author fyy
  */
 @Getter
 public class SecurityUser extends User {

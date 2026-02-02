@@ -7,7 +7,7 @@ import cn.fyy.common.bean.dto.ResultMessage;
 /**
  * 用户角色 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface RoleManagerService {
     /**

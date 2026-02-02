@@ -7,7 +7,7 @@ import lombok.Getter;
  * <p>
  * 一般公司的 redis 会分不同的数据到不同的库，比如用户信息到 0 库，商品数据放在第二个库，运动数据放在 3 库等等跟随项目分配而分配
  *
- * @author fuyy
+ * @author fyy
  */
 @Getter
 public enum RedisSelect {

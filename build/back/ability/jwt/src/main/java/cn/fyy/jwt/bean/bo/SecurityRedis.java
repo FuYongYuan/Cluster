@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * Security Token 实体 - 存储 Redis 用
  *
- * @author fuyy
+ * @author fyy
  */
 @Data
 @Builder(toBuilder = true)

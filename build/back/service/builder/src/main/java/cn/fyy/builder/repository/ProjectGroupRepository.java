@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 项目群 Repository
  *
- * @author fuyy
+ * @author fyy
  */
 @Repository
 public interface ProjectGroupRepository extends JpaRepository<ProjectGroupPO, Long>, JpaSpecificationExecutor<ProjectGroupPO> {

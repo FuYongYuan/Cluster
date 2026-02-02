@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * 参数
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "parameter", schema = "dictionary")

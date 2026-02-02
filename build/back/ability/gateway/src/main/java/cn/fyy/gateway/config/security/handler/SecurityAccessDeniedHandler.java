@@ -20,7 +20,7 @@ import java.nio.charset.Charset;
 /**
  * AccessDeniedException 主要是在用户在访问受保护资源时被拒绝而抛出的异常
  *
- * @author fuyy
+ * @author fyy
  */
 @Slf4j
 @Component

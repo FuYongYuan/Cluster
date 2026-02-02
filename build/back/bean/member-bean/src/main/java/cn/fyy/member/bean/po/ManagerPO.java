@@ -14,7 +14,7 @@ import java.util.Objects;
 /**
  * 管理员
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "manager", schema = "member")

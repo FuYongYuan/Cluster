@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 角色菜单 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface RoleMenuService {
     /**

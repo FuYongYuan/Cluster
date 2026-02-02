@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 /**
  * JWT 编码器、解码器工具类
  *
- * @author fuyy
+ * @author fyy
  */
 @Slf4j
 @Component

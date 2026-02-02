@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 /**
  * AuthenticationException 是在用户认证的时候出现错误时抛出的异常
  *
- * @author fuyy
+ * @author fyy
  */
 @Slf4j
 @Component

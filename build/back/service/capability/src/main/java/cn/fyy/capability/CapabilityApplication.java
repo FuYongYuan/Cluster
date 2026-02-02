@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * 启动类
  *
- * @author fuyy
+ * @author fyy
  */
 @SpringBootApplication
 // 扫描包

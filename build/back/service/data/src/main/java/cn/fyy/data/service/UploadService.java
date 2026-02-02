@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 上传 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface UploadService {
     /**

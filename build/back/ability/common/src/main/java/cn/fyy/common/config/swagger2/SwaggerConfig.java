@@ -18,7 +18,7 @@ import java.util.List;
  * IP:port/{context-path}/swagger-ui/index.html
  * 如:localhost:8080/XXX/swagger-ui/index.html
  *
- * @author fuyy
+ * @author fyy
  */
 @Configuration
 public class SwaggerConfig {

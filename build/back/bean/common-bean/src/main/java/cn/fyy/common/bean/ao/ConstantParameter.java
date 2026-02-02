@@ -3,7 +3,7 @@ package cn.fyy.common.bean.ao;
 /**
  * 静态参数类
  *
- * @author fuyy
+ * @author fyy
  */
 public class ConstantParameter {
     //------------------------------------------------------------------------------------------------------------------系统参数

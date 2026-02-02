@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 参数 FeignClient调用
  *
- * @author fuyy
+ * @author fyy
  */
 @FeignClient(name = "dictionary", contextId = "Parameter", path = "/parameter")
 public interface ParameterFeignClient {

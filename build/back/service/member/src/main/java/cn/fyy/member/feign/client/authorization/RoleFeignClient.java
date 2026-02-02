@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 角色 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @FeignClient(name = "authorization", contextId = "Role", path = "/role")
 public interface RoleFeignClient {

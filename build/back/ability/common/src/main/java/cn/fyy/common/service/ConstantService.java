@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 /**
  * 静态方法类
  *
- * @author fuyy
+ * @author fyy
  */
 public class ConstantService {
     /**

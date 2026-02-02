@@ -7,7 +7,7 @@ import cn.fyy.message.bean.bo.NoticeBO;
 /**
  * 公告 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface NoticeService {
     /**

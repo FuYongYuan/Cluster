@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 邮件发送 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @Tag(name = "MailRestController", description = "邮件 RestController")
 @RestController

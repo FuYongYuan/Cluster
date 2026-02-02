@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * 邮箱验证码
  *
- * @author fuyy
+ * @author fyy
  */
 @Data
 @Builder(toBuilder = true)

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 菜单
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "MenuDTO", description = "菜单 实体类")
 @Data

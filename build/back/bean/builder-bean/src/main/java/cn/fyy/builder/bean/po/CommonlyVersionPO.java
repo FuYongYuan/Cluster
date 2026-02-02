@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * 常用版本
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "commonly_version", schema = "builder")

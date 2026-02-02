@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * 公告
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "notice", schema = "message")

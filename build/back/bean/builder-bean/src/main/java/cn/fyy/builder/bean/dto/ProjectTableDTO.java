@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 项目表
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "project_table", description = "项目表 实体类")
 @Data

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 参数 Repository
  *
- * @author fuyy
+ * @author fyy
  */
 @Repository
 public interface ParameterRepository extends JpaRepository<ParameterPO, Long>, JpaSpecificationExecutor<ParameterPO> {

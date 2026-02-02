@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 管理员 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @FeignClient(name = "member", contextId = "Manager", path = "/manager")
 public interface ManagerFeignClient {

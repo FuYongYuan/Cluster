@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 公告 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @Tag(name = "NoticeRestController", description = "公告 RestController")
 @RestController

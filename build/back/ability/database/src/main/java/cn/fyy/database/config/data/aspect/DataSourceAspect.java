@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 /**
  * 数据源切换 切面设置
  *
- * @author fuyy
+ * @author fyy
  */
 @Aspect
 @Component

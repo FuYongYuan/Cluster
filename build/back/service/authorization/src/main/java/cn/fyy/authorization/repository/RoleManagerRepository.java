@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 /**
  * 用户角色 Repository
  *
- * @author fuyy
+ * @author fyy
  */
 @Repository
 public interface RoleManagerRepository extends JpaRepository<RoleManagerPO, Long>, JpaSpecificationExecutor<RoleManagerPO> {

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 管理员 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface ManagerService {
 

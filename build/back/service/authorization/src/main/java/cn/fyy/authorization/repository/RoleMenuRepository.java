@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 角色菜单关系 Repository
  *
- * @author fuyy
+ * @author fyy
  */
 @Repository
 public interface RoleMenuRepository extends JpaRepository<RoleMenuPO, Long>, JpaSpecificationExecutor<RoleMenuPO> {

@@ -17,7 +17,7 @@ import java.util.*;
 /**
  * JWT 工具类
  *
- * @author fuyy
+ * @author fyy
  */
 @Slf4j
 @Service

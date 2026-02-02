@@ -5,7 +5,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 /**
  * 数据源路由
  *
- * @author fuyy
+ * @author fyy
  */
 public class DataSourceRouting extends AbstractRoutingDataSource {
     /**

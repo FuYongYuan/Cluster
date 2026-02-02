@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 菜单 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface MenuService {
     /**

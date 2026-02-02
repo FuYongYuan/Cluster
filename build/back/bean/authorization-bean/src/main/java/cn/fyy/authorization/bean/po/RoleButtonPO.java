@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * 按钮角色关系
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "role_button", schema = "authorization")

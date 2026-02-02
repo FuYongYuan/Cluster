@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * 数据相关 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @FeignClient(name = "data", contextId = "File", path = "/file")
 public interface FileFeignClient {

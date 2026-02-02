@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * 角色
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "role", schema = "authorization")

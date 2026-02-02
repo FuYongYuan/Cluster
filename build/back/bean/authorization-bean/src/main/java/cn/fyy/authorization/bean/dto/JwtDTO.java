@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * 登录信息
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "JwtDTO", description = "登录信息 实体类")
 @Data

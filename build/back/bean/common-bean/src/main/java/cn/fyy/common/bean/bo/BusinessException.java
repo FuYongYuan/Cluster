@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 错误处理类
  *
- * @author fuyy
+ * @author fyy
  */
 @Slf4j
 public class BusinessException extends Exception implements Serializable {

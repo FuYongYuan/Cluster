@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 数据库设计文件
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "data_base_file", description = "数据库设计文件 实体类")
 @Data

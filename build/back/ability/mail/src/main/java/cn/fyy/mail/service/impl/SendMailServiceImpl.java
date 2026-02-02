@@ -16,7 +16,7 @@ import java.io.File;
 /**
  * 发送邮件 Service
  *
- * @author fuyy
+ * @author fyy
  */
 @Slf4j
 @Component

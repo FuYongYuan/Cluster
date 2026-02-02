@@ -3,7 +3,7 @@ package cn.fyy.mail.service;
 /**
  * 发送邮件 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface SendMailService {
 

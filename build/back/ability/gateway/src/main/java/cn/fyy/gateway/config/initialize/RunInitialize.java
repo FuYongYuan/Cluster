@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * 项目运行成功后立即执行
  *
- * @author fuyy
+ * @author fyy
  */
 @Slf4j
 @Component

@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * 操作结果枚举
  *
- * @author fuyy
+ * @author fyy
  */
 @Getter
 public enum OperateResult {

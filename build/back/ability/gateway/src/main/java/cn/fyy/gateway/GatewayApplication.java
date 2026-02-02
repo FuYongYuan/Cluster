@@ -8,7 +8,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 /**
  * 启动类
  *
- * @author fuyy
+ * @author fyy
  */
 //初始化目录
 @SpringBootApplication(

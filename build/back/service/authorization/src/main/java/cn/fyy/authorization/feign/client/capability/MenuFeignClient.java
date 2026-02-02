@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 菜单 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @FeignClient(name = "capability", contextId = "Menu", path = "/menu")
 public interface MenuFeignClient {

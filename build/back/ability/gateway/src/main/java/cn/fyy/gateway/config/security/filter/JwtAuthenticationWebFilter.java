@@ -1,5 +1,6 @@
 package cn.fyy.gateway.config.security.filter;
 
+import cn.fyy.jwt.bean.bo.SecurityAuthority;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -8,6 +9,8 @@ import org.springframework.security.web.server.authentication.AuthenticationWebF
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 /**
  * JWT 认证过滤器
@@ -50,6 +53,13 @@ public class JwtAuthenticationWebFilter extends AuthenticationWebFilter {
      */
     @Override
     protected Mono<Void> onAuthenticationSuccess(Authentication authentication, WebFilterExchange webFilterExchange) {
+        log.info("认证开始: {}", authentication);
+        List<SecurityAuthority> authorities = authentication.getAuthorities().stream()
+                .map(i -> new SecurityAuthority(i.getAuthority()))
+                .toList();
+
+
+
         log.info("认证通过: {}", authentication);
         return super.onAuthenticationSuccess(authentication, webFilterExchange);
     }

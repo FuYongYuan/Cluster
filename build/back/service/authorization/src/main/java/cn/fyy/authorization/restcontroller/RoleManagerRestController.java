@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 角色管理员关系 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @Tag(name = "RoleManagerRestController", description = "角色管理员关系 RestController")
 @RestController

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 角色管理员关系
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "RoleManagerDTO", description = "角色管理员关系 实体类")
 @Data

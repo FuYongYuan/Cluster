@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * 角色管理员关系 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @FeignClient(name = "authorization", contextId = "RoleManager", path = "/roleManager")
 public interface RoleManagerFeignClient {

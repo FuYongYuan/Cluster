@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 菜单角色关系
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "RoleMenuDTO", description = "菜单角色关系 实体类")
 @Data

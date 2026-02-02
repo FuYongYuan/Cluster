@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * 菜单
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "menu", schema = "capability")

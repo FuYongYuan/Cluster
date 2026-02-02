@@ -14,7 +14,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 /**
  * 错误处理
  *
- * @author fuyy
+ * @author fyy
  */
 @Slf4j
 @ControllerAdvice

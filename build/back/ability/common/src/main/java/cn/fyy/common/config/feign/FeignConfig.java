@@ -13,7 +13,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * Feign 配置
  * 使用 FeignClient 进行服务间调用，传递 headers 信息
  *
- * @author fuyy
+ * @author fyy
  */
 @Configuration
 public class FeignConfig implements RequestInterceptor {

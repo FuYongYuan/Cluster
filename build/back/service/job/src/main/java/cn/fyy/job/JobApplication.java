@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * xxl job 定时任务模块
  *
- * @author fuyy
+ * @author fyy
  */
 @SpringBootApplication
 // 扫描包

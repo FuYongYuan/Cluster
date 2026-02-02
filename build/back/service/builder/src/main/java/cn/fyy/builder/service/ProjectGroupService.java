@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 项目群 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface ProjectGroupService {
     /**

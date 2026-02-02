@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * 按钮
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "button", schema = "capability")

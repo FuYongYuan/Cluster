@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 公告
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "NoticeDTO", description = "公告 实体类")
 @Data

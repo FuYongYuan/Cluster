@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 项目群
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "project_group", description = "项目群 实体类")
 @Data

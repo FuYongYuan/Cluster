@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 /**
  * 参数 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface ParameterService {
     /**

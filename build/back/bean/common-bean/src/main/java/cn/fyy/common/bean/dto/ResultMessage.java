@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * 请求结果返回消息类
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "ResultMessage<T>", description = "统一返回对象")
 @Data

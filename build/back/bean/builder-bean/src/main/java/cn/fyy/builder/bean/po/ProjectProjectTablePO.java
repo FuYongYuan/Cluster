@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * 项目项目表关系
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "project_project_table", schema = "builder")

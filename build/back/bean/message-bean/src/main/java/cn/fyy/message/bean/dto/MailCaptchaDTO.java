@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 邮箱验证码
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "MailCaptchaDTO", description = "邮箱验证码 实体类")
 @Data

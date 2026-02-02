@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 公告 Repository
  *
- * @author fuyy
+ * @author fyy
  */
 @Repository
 public interface NoticeRepository extends JpaRepository<NoticePO, Long>, JpaSpecificationExecutor<NoticePO> {

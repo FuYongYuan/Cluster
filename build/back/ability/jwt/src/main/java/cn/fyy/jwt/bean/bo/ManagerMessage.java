@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * 管理员信息 - 项目中使用
  *
- * @author fuyy
+ * @author fyy
  */
 @Data
 @Builder(toBuilder = true)

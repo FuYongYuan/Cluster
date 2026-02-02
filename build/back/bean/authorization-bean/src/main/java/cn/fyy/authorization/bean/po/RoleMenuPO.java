@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * 菜单角色关系
  *
- * @author fuyy
+ * @author fyy
  */
 @Entity
 @Table(name = "role_menu", schema = "authorization")

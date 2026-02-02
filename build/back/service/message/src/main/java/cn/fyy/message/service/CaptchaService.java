@@ -8,7 +8,7 @@ import cn.fyy.message.bean.dto.MailCaptchaDTO;
 /**
  * 验证码 Service
  *
- * @author fuyy
+ * @author fyy
  */
 public interface CaptchaService {
 

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 图形验证码
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "ImageCaptchaDTO", description = "图形验证码 实体类")
 @Data

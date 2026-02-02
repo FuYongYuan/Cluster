@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 常用版本
  *
- * @author fuyy
+ * @author fyy
  */
 @Schema(name = "commonly_version", description = "常用版本 实体类")
 @Data

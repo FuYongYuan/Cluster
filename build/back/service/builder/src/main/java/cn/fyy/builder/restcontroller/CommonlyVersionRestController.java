@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 常用版本 RestController
  *
- * @author fuyy
+ * @author fyy
  */
 @Tag(name = "CommonlyVersionRestController", description = "常用版本 RestController")
 @RestController

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 公告
  *
- * @author fuyy
+ * @author fyy
  */
 @Data
 @Builder(toBuilder = true)
