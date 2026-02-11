@@ -147,4 +147,39 @@ public class FileRestController extends BaseRestController {
             return new ResultMessage<>(1, "查询文件临时访问地址失败！");
         }
     }
+
+    /**
+     * 查询文件临时访问地址
+     *
+     * @param businessType   业务类型
+     * @param fileName       文件名称
+     * @param duration       签名有效期(分钟)
+     * @param authentication 鉴权串
+     * @return 文件临时访问地址
+     */
+    @Operation(
+            summary = "查询文件临时访问地址", description = "文件临时访问地址",
+            parameters = {
+                    @Parameter(name = "managerId", description = "管理员ID", required = true),
+                    @Parameter(name = "businessType", description = "业务类型", required = true),
+                    @Parameter(name = "fileName", description = "文件名称", required = true),
+                    @Parameter(name = "duration", description = "签名有效期(分钟)", required = true),
+                    @Parameter(name = "authentication", description = "验证码", required = true)
+            }
+    )
+    @GetMapping(value = "/feign/get/file/temporary/url/{managerId}/{businessType}/{fileName}/{duration}/{authentication}")
+    public ResultMessage<String> feignGetFileTemporaryUrl(
+            @PathVariable Long managerId,
+            @PathVariable String businessType,
+            @PathVariable String fileName,
+            @PathVariable Long duration,
+            @PathVariable String authentication
+    ) throws BusinessException {
+        ResultMessage<String> fileUrl = uploadServiceImpl.feignGetFileTemporaryUrl(managerId, businessType, fileName, duration, authentication);
+        if (StringUtils.hasText(fileUrl.getData())) {
+            return fileUrl;
+        } else {
+            return new ResultMessage<>(1, "查询文件临时访问地址失败！");
+        }
+    }
 }

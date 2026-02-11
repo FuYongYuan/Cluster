@@ -98,6 +98,20 @@ public interface MenuFeignClient {
     /**
      * 根据菜单 ID 集合查询菜单列表
      *
+     * @param menuIdList     菜单 ID 集合
+     * @param authentication 鉴权串
+     * @return TMenuDTO 菜单对象集合
+     * @throws BusinessException 业务错误
+     */
+    @GetMapping(value = "/feign/query/hierarchy/menu/list/{menuIdList}/{authentication}")
+    public ResultMessage<List<MenuDTO>> feignQueryHierarchyMenuByMenuIdList(
+            @PathVariable List<Long> menuIdList,
+            @PathVariable String authentication
+    ) throws BusinessException;
+
+    /**
+     * 根据菜单 ID 集合查询菜单列表
+     *
      * @param menuIdList 菜单 ID 集合
      * @return TMenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
@@ -105,5 +119,19 @@ public interface MenuFeignClient {
     @GetMapping(value = "/query/menu/list/{menuIdList}")
     ResultMessage<List<MenuDTO>> queryMenuByMenuIdList(
             @PathVariable List<Long> menuIdList
+    ) throws BusinessException;
+
+    /**
+     * 根据菜单 ID 集合查询菜单列表
+     *
+     * @param menuIdList     菜单 ID 集合
+     * @param authentication 鉴权串
+     * @return TMenuDTO 菜单对象集合
+     * @throws BusinessException 业务错误
+     */
+    @GetMapping(value = "/feign/query/menu/list/{menuIdList}/{authentication}")
+    ResultMessage<List<MenuDTO>> feignQueryMenuByMenuIdList(
+            @PathVariable List<Long> menuIdList,
+            @PathVariable String authentication
     ) throws BusinessException;
 }

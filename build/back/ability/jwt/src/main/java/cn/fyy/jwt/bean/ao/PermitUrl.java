@@ -97,6 +97,26 @@ public class PermitUrl {
     };
 
     /**
+     * 不鉴权 URL - 全项目统一不加前缀
+     */
+    private final String[] capabilityUrl = {
+            // 管理员模块需配合登录、注册、找回密码使用的越鉴权接口
+            "/menu/feign/query/menu/list/**",
+
+            "/capability/menu/feign/query/menu/list/**",
+    };
+
+    /**
+     * 不鉴权 URL - 全项目统一不加前缀
+     */
+    private final String[] dataUrl = {
+            // 管理员模块需配合登录、注册、找回密码使用的越鉴权接口
+            "/file/feign/get/file/temporary/url/**",
+
+            "/data/file/feign/get/file/temporary/url/**",
+    };
+
+    /**
      * 不鉴权地址--适用于除 gateway 的所有项目
      *
      * @param url 可新增自定义的 URL
@@ -115,6 +135,8 @@ public class PermitUrl {
         Collections.addAll(permitUrl, messageUrl);
         Collections.addAll(permitUrl, authorizationUrl);
         Collections.addAll(permitUrl, memberUrl);
+        Collections.addAll(permitUrl, capabilityUrl);
+        Collections.addAll(permitUrl, dataUrl);
         return permitUrl.toArray(new String[0]);
     }
 
@@ -136,6 +158,8 @@ public class PermitUrl {
         Collections.addAll(permitUrl, messageUrl);
         Collections.addAll(permitUrl, authorizationUrl);
         Collections.addAll(permitUrl, memberUrl);
+        Collections.addAll(permitUrl, capabilityUrl);
+        Collections.addAll(permitUrl, dataUrl);
         return permitUrl.toArray(new String[0]);
     }
 }

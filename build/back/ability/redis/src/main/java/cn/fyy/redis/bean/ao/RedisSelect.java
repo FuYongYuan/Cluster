@@ -65,7 +65,7 @@ public enum RedisSelect {
      */
     TWELVE(12),
     /**
-     * 13号库
+     * 13号库 -- 已做 RestController 接口对象存储
      */
     THIRTEEN(13),
     /**

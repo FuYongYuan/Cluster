@@ -71,6 +71,8 @@ public class JwtAuthenticationWebFilter extends OncePerRequestFilter {
                 Long managerId = jwtTokenWebService.getManagerIdFromToken(jwt);
                 try {
                     SecurityUser userDetails = (SecurityUser) userDetailsServiceImpl.loadUserByUsername(ConstantParameter.MANAGER_JWT_INFO_KEY + managerId);
+                    //校验权限中是否含盖本次请求的权限
+
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                             userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

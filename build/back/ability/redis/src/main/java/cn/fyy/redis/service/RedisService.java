@@ -3,6 +3,8 @@ package cn.fyy.redis.service;
 import cn.fyy.redis.bean.ao.RedisSelect;
 import io.lettuce.core.RedisException;
 
+import java.util.Map;
+
 /**
  * Redis 操作实现类
  *
@@ -126,4 +128,34 @@ public interface RedisService {
      * @return 超时时间
      */
     Boolean expire(RedisSelect database, String key, long seconds);
+
+    /**
+     * 使用 Lua 脚本查询所有 Key 中包含指定前缀的对象及其对应的 Value
+     *
+     * @param pattern 匹配模式，例如 "ABC-*"
+     * @return 匹配的 Key 和对应 Value 的映射
+     */
+    Map<String, Object> scanKeyWithValueByLua(String pattern);
+
+    /**
+     * 使用 Lua 脚本查询指定数据库中所有 Key 中包含指定前缀的对象及其对应的 Value
+     *
+     * @param database 指定数据库
+     * @param pattern  匹配模式，例如 "ABC-*"
+     * @return 匹配的 Key 和对应 Value 的映射
+     */
+    Map<String, Object> scanKeyWithValueByLua(RedisSelect database, String pattern);
+
+    //------------------------------------------------------------------------------------------------------------------Lua脚本
+    // 获取所有 Key 中包含指定前缀的对象及其对应的 Value
+    String SCAN_KEY_WITH_VALUE =
+            """
+                    local pattern = ARGV[1]
+                    local keys = redis.call('keys', pattern)
+                    local result = {}
+                    for i, key in ipairs(keys) do
+                        result[key] = redis.call('get', key)
+                    end
+                    return result
+                    """;
 }

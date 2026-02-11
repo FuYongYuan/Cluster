@@ -28,8 +28,12 @@ service.interceptors.request.use(
 
 		// 改为使用 InternalAxiosRequestConfig 类型来避免类型冲突
 		if (jwtToken && config?.headers) {
+			// 设置请求头
 			config.headers[JwtTokenRequestHeaderName] =
 				`${JwtTokenBearerName} ${jwtToken}`;
+
+			// 设置菜单权限
+
 		}
 
 		return config;

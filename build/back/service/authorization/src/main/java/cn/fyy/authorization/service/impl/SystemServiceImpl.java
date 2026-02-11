@@ -400,11 +400,7 @@ public class SystemServiceImpl implements SystemService {
                         );
 
                         // 获取头像网络地址
-                        String avatar = fileFeignClient.getFileTemporaryUrl(
-                                ConstantParameter.BUSINESS_TYPE_USER_HEAD_IMAGE,
-                                dto.getAvatar(),
-                                ConstantParameter.FILE_READ_EXPIRATION_MINUTE
-                        ).getData();
+                        String avatar = this.getAvatar(dto.getId(), dto.getAvatar());
 
                         // 创建 JwtDTO
                         JwtDTO jwtDTO = new JwtDTO().toBuilder()
@@ -440,7 +436,9 @@ public class SystemServiceImpl implements SystemService {
      * @return 权限前置准备缓存
      * @throws BusinessException 获取权限前置准备缓存错误
      */
-    private AuthorityPrepareCacheBO getAuthorityPrepareCacheBO(Long managerId) throws BusinessException {
+    private AuthorityPrepareCacheBO getAuthorityPrepareCacheBO(
+            Long managerId
+    ) throws BusinessException {
         AuthorityPrepareCacheBO bo = new AuthorityPrepareCacheBO();
         bo.setManagerId(managerId);
         bo.setRoleIdList(
@@ -455,8 +453,10 @@ public class SystemServiceImpl implements SystemService {
                         .map(RoleMenuBO::getMenuId)
                         .toList()
         );
+        String encryptString = Arrays.toString(bo.getMenuIdList().toArray());
+        String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
         bo.setMenuList(
-                menuFeignClient.queryMenuByMenuIdList(bo.getMenuIdList()).getData()
+                menuFeignClient.feignQueryHierarchyMenuByMenuIdList(bo.getMenuIdList(), encrypt).getData()
         );
         return bo;
     }
@@ -503,5 +503,28 @@ public class SystemServiceImpl implements SystemService {
         authorities.addAll(Arrays.asList(roleMenuBOList));
 
         return authorities.toArray(new String[0]);
+    }
+
+    /**
+     * 获取头像网络地址
+     *
+     * @param managerId 管理员ID
+     * @param avatar    头像
+     * @return 头像网络地址
+     * @throws BusinessException 获取头像网络地址错误
+     */
+    private String getAvatar(
+            Long managerId,
+            String avatar
+    ) throws BusinessException {
+        String encryptString = managerId + ConstantParameter.BUSINESS_TYPE_USER_HEAD_IMAGE + avatar + ConstantParameter.FILE_READ_EXPIRATION_MINUTE;
+        String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
+        return fileFeignClient.feignGetFileTemporaryUrl(
+                managerId,
+                ConstantParameter.BUSINESS_TYPE_USER_HEAD_IMAGE,
+                avatar,
+                ConstantParameter.FILE_READ_EXPIRATION_MINUTE,
+                encrypt
+        ).getData();
     }
 }

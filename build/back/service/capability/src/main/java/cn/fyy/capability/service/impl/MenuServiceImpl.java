@@ -1,7 +1,9 @@
 package cn.fyy.capability.service.impl;
 
 import cn.fyy.capability.bean.bo.MenuBO;
+import cn.fyy.capability.bean.dto.MenuDTO;
 import cn.fyy.capability.bean.po.MenuPO;
+import cn.fyy.capability.config.properties.AesProperties;
 import cn.fyy.capability.repository.MenuRepository;
 import cn.fyy.capability.service.MenuService;
 import cn.fyy.common.bean.ao.OperateResult;
@@ -11,6 +13,7 @@ import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.SelectUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
 import cn.fyy.jpa.bean.ao.DataState;
+import encrypt.AesUtil;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -46,6 +50,13 @@ public class MenuServiceImpl implements MenuService {
      */
     @Resource
     private MenuRepository menuRepository;
+    //------------------------------------------------------------------------------------------------------------------越鉴权处理加密信息
+
+    /**
+     * aes 加密信息
+     */
+    @Resource
+    private AesProperties aesProperties;
 
     //------------------------------------------------------------------------------------------------------------------基础方法
 
@@ -256,6 +267,37 @@ public class MenuServiceImpl implements MenuService {
      * 根据管理员主键 ID 查询能够使用的菜单列表
      *
      * @param menuIds 菜单 ID 集合
+     * @param authentication 鉴权串
+     * @return 能够使用的菜单列表
+     */
+    @Override
+    public ResultMessage<List<MenuDTO>> feignQueryHierarchyMenuByMenuIdList(
+            List<Long> menuIds,
+            String authentication
+    ) throws BusinessException {
+        try {
+            String encryptString = Arrays.toString(menuIds.toArray());
+            String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
+            String decrypt = AesUtil.decryptString(authentication, aesProperties.getAesKey());
+            if (encrypt.equals(authentication) && decrypt.equals(encryptString)) {
+                List<MenuBO> boList = MenuBO.toBO(
+                        menuRepository.queryHierarchyMenuByMenuIdListAndParentIdAndState(menuIds, null, DataState.NORMAL.getCode())
+                );
+                //递归获取所有有权限的菜单
+                this.queryStructureByManagerId(menuIds, boList);
+                return new ResultMessage<>(MenuDTO.toDTO(boList));
+            } else {
+                return new ResultMessage<>(1, "试图篡改信息拒绝请求！");
+            }
+        } catch (Exception e) {
+            throw new BusinessException("根据管理员主键 ID 查询能够使用的菜单列表错误", e);
+        }
+    }
+
+    /**
+     * 根据管理员主键 ID 查询能够使用的菜单列表
+     *
+     * @param menuIds 菜单 ID 集合
      * @return 能够使用的菜单列表
      */
     @Override
@@ -266,6 +308,34 @@ public class MenuServiceImpl implements MenuService {
             return MenuBO.toBO(
                     menuRepository.queryHierarchyMenuByMenuIdListAndState(menuIds, DataState.NORMAL.getCode())
             );
+        } catch (Exception e) {
+            throw new BusinessException("根据管理员主键 ID 查询能够使用的菜单列表错误", e);
+        }
+    }
+
+    /**
+     * 根据管理员主键 ID 查询能够使用的菜单列表
+     *
+     * @param menuIds        菜单 ID 集合
+     * @param authentication 鉴权串
+     * @return 能够使用的菜单列表
+     */
+    @Override
+    public ResultMessage<List<MenuDTO>> feignQueryMenuByMenuIdList(
+            List<Long> menuIds,
+            String authentication
+    ) throws BusinessException {
+        try {
+            String encryptString = Arrays.toString(menuIds.toArray());
+            String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
+            String decrypt = AesUtil.decryptString(authentication, aesProperties.getAesKey());
+            if (encrypt.equals(authentication) && decrypt.equals(encryptString)) {
+                return new ResultMessage<>(MenuDTO.toDTO(MenuBO.toBO(
+                        menuRepository.queryHierarchyMenuByMenuIdListAndState(menuIds, DataState.NORMAL.getCode())
+                )));
+            } else {
+                return new ResultMessage<>(1, "试图篡改信息拒绝请求！");
+            }
         } catch (Exception e) {
             throw new BusinessException("根据管理员主键 ID 查询能够使用的菜单列表错误", e);
         }

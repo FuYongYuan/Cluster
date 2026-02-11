@@ -1,6 +1,7 @@
 package cn.fyy.capability.service;
 
 import cn.fyy.capability.bean.bo.MenuBO;
+import cn.fyy.capability.bean.dto.MenuDTO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import org.springframework.data.domain.Page;
@@ -108,10 +109,35 @@ public interface MenuService {
      * 根据管理员主键 ID 查询能够使用的菜单列表
      *
      * @param menuIds 菜单 ID 集合
+     * @param authentication 鉴权串
+     * @return 能够使用的菜单列表
+     */
+    ResultMessage<List<MenuDTO>> feignQueryHierarchyMenuByMenuIdList(
+            List<Long> menuIds,
+            String authentication
+    ) throws BusinessException;
+
+    /**
+     * 根据管理员主键 ID 查询能够使用的菜单列表
+     *
+     * @param menuIds 菜单 ID 集合
      * @return 能够使用的菜单列表
      * @throws BusinessException 业务错误
      */
     List<MenuBO> queryMenuByMenuIdList(
             List<Long> menuIds
+    ) throws BusinessException;
+
+    /**
+     * 根据管理员主键 ID 查询能够使用的菜单列表
+     *
+     * @param menuIds        菜单 ID 集合
+     * @param authentication 鉴权串
+     * @return 能够使用的菜单列表
+     * @throws BusinessException 业务错误
+     */
+    ResultMessage<List<MenuDTO>> feignQueryMenuByMenuIdList(
+            List<Long> menuIds,
+            String authentication
     ) throws BusinessException;
 }

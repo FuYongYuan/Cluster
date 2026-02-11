@@ -193,6 +193,29 @@ public class MenuRestController extends BaseRestController {
     /**
      * 根据菜单 ID 集合查询菜单列表
      *
+     * @param menuIdList     菜单 ID 集合
+     * @param authentication 鉴权串
+     * @return TMenuDTO 菜单对象集合
+     * @throws BusinessException 业务错误
+     */
+    @Operation(
+            summary = "根据菜单 ID 集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
+            parameters = {
+                    @Parameter(name = "menuIdList", description = "菜单 ID 集合", required = true),
+                    @Parameter(name = "authentication", description = "验证码", required = true)
+            }
+    )
+    @GetMapping(value = "/feign/query/hierarchy/menu/list/{menuIdList}/{authentication}")
+    public ResultMessage<List<MenuDTO>> feignQueryHierarchyMenuByMenuIdList(
+            @PathVariable List<Long> menuIdList,
+            @PathVariable String authentication
+    ) throws BusinessException {
+        return menuServiceImpl.feignQueryHierarchyMenuByMenuIdList(menuIdList, authentication);
+    }
+
+    /**
+     * 根据菜单 ID 集合查询菜单列表
+     *
      * @param menuIdList 菜单 ID 集合
      * @return TMenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
@@ -208,5 +231,28 @@ public class MenuRestController extends BaseRestController {
             @PathVariable List<Long> menuIdList
     ) throws BusinessException {
         return new ResultMessage<>(MenuDTO.toDTO(menuServiceImpl.queryMenuByMenuIdList(menuIdList)));
+    }
+
+    /**
+     * 根据菜单 ID 集合查询菜单列表
+     *
+     * @param menuIdList     菜单 ID 集合
+     * @param authentication 鉴权串
+     * @return TMenuDTO 菜单对象集合
+     * @throws BusinessException 业务错误
+     */
+    @Operation(
+            summary = "根据菜单 ID 集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
+            parameters = {
+                    @Parameter(name = "menuIdList", description = "菜单 ID 集合", required = true),
+                    @Parameter(name = "authentication", description = "验证码", required = true)
+            }
+    )
+    @GetMapping(value = "/feign/query/menu/list/{menuIdList}/{authentication}")
+    public ResultMessage<List<MenuDTO>> feignQueryMenuByMenuIdList(
+            @PathVariable List<Long> menuIdList,
+            @PathVariable String authentication
+    ) throws BusinessException {
+        return menuServiceImpl.feignQueryMenuByMenuIdList(menuIdList, authentication);
     }
 }

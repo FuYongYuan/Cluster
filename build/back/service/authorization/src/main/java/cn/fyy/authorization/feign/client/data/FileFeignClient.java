@@ -74,4 +74,22 @@ public interface FileFeignClient {
             @PathVariable String fileName,
             @PathVariable Long duration
     ) throws BusinessException;
+
+    /**
+     * 查询文件临时访问地址
+     *
+     * @param businessType   业务类型
+     * @param fileName       文件名称
+     * @param duration       签名有效期(分钟)
+     * @param authentication 鉴权串
+     * @return 文件临时访问地址
+     */
+    @GetMapping(value = "/feign/get/file/temporary/url/{managerId}/{businessType}/{fileName}/{duration}/{authentication}")
+    ResultMessage<String> feignGetFileTemporaryUrl(
+            @PathVariable Long managerId,
+            @PathVariable String businessType,
+            @PathVariable String fileName,
+            @PathVariable Long duration,
+            @PathVariable String authentication
+    ) throws BusinessException;
 }
