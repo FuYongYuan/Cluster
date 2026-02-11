@@ -104,7 +104,7 @@ public interface MenuFeignClient {
      * @throws BusinessException 业务错误
      */
     @GetMapping(value = "/feign/query/hierarchy/menu/list/{menuIdList}/{authentication}")
-    public ResultMessage<List<MenuDTO>> feignQueryHierarchyMenuByMenuIdList(
+    ResultMessage<List<MenuDTO>> feignQueryHierarchyMenuByMenuIdList(
             @PathVariable List<Long> menuIdList,
             @PathVariable String authentication
     ) throws BusinessException;

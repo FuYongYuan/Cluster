@@ -1,7 +1,6 @@
 package cn.fyy.gateway.config.security.filter;
 
 import cn.fyy.jwt.bean.bo.SecurityAuthority;
-import cn.fyy.jwt.bean.bo.SecurityUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.core.Authentication;
