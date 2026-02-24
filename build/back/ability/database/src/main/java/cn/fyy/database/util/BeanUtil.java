@@ -114,7 +114,10 @@ public class BeanUtil {
         source.setUpdaterName(currentManagerName);
         source.setUpdateTime(localDateTime);
         source.setState(DataState.NORMAL.getCode());
-        source.setVersion(0L);
+        // 初始化版本号 - BO 向下转换时忽略Version字段，又出现在insert中所以这里需要补充上
+        if (source.getVersion() == null) {
+            source.setVersion(0L);
+        }
         return source;
     }
 

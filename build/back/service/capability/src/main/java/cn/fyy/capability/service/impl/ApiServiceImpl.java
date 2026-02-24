@@ -186,7 +186,6 @@ public class ApiServiceImpl implements ApiService {
                 }
                 pos.add(po);
             }
-            pos.forEach(po -> log.info("{}", po));
             List<ApiBO> bos = ApiBO.toBO(apiRepository.saveAll(pos));
             if (!bos.isEmpty()) {
                 return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
