@@ -81,18 +81,18 @@ public class PermitUrl {
      */
     private final String[] memberUrl = {
             // 管理员模块需配合登录、注册、找回密码使用的越鉴权接口
-            "/manager/save/return/dto/**",
+            "/manager/feign/save/return/dto/**",
             "/manager/get/account/exist/**",
             "/manager/get/mail/exist/**",
             "/manager/get/attempt/login/number/**",
-            "/manager/update/login/password/**",
+            "/manager/feign/update/login/password/**",
             "/manager/get/account/password/**",
 
-            "/member/manager/save/return/dto/**",
+            "/member/manager/feign/save/return/dto/**",
             "/member/manager/get/account/exist/**",
             "/member/manager/get/mail/exist/**",
             "/member/manager/get/attempt/login/number/**",
-            "/member/manager/update/login/password/**",
+            "/member/manager/feign/update/login/password/**",
             "/member/manager/get/account/password/**",
     };
 
@@ -102,8 +102,10 @@ public class PermitUrl {
     private final String[] capabilityUrl = {
             // 管理员模块需配合登录、注册、找回密码使用的越鉴权接口
             "/menu/feign/query/menu/list/**",
+            "/api/feign/save/list/**",
 
             "/capability/menu/feign/query/menu/list/**",
+            "/capability/api/feign/save/list/**",
     };
 
     /**

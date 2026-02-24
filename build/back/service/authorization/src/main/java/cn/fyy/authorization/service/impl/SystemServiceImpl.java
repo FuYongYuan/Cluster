@@ -212,7 +212,7 @@ public class SystemServiceImpl implements SystemService {
                             String encryptString = dto.getAccount() + dto.getLoginPassword();
                             String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
 
-                            Long id = managerFeignClient.saveReturnDTO(dto, encrypt).getData();
+                            Long id = managerFeignClient.feignSaveReturnDTO(dto, encrypt).getData();
                             // 保存角色
                             RoleManagerBO roleManagerBO = RoleManagerBO.builder()
                                     .managerId(id)
@@ -260,7 +260,7 @@ public class SystemServiceImpl implements SystemService {
                     } else {
                         String encryptString = mail + loginPassword;
                         String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
-                        return managerFeignClient.updateLoginPasswordByMail(mail, loginPassword, encrypt);
+                        return managerFeignClient.feignUpdateLoginPasswordByMail(mail, loginPassword, encrypt);
                     }
                 } else {
                     return new ResultMessage<>(2, "邮件验证码错误！");
@@ -355,7 +355,7 @@ public class SystemServiceImpl implements SystemService {
                     String encryptString = dto.getAccount() + dto.getLoginPassword();
                     String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
 
-                    ResultMessage<Long> saveResult = managerFeignClient.saveReturnDTO(dto, encrypt);
+                    ResultMessage<Long> saveResult = managerFeignClient.feignSaveReturnDTO(dto, encrypt);
                     Integer saveState = saveResult.getCode();
                     if (saveState == HttpStatus.OK.value()) {
                         // 前置准备
@@ -453,7 +453,7 @@ public class SystemServiceImpl implements SystemService {
                         .map(RoleMenuBO::getMenuId)
                         .toList()
         );
-        String encryptString = Arrays.toString(bo.getMenuIdList().toArray());
+        String encryptString = String.valueOf(bo.getMenuIdList().size());
         String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
         bo.setMenuList(
                 menuFeignClient.feignQueryHierarchyMenuByMenuIdList(bo.getMenuIdList(), encrypt).getData()

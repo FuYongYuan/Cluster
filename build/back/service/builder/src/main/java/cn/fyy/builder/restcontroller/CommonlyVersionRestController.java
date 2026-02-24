@@ -51,7 +51,7 @@ public class CommonlyVersionRestController extends BaseRestController {
             HttpServletRequest request,
             @PathVariable String ids
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         int i = commonlyVersionServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
         if (i > 0) {
             return new ResultMessage<>(i);
@@ -98,7 +98,7 @@ public class CommonlyVersionRestController extends BaseRestController {
             HttpServletRequest request,
             @RequestBody CommonlyVersionDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         return commonlyVersionServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 
@@ -115,6 +115,12 @@ public class CommonlyVersionRestController extends BaseRestController {
     public ResultMessage<CommonlyVersionDTO> getBySecurityMessage(
             HttpServletRequest request
     ) throws BusinessException {
-        return new ResultMessage<>(CommonlyVersionDTO.toDTO(commonlyVersionServiceImpl.getByManagerId(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)))));
+        return new ResultMessage<>(
+                CommonlyVersionDTO.toDTO(
+                        commonlyVersionServiceImpl.getByManagerId(
+                                super.getLoginManagerId(request)
+                        )
+                )
+        );
     }
 }

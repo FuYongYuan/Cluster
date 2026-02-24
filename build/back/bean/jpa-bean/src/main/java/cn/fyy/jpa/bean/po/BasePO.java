@@ -1,6 +1,9 @@
 package cn.fyy.jpa.bean.po;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -25,7 +28,6 @@ public abstract class BasePO implements Serializable {
      * 主键 ID
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

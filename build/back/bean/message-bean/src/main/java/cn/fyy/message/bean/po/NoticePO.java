@@ -17,7 +17,7 @@ import java.util.Objects;
 @Table(name = "notice", schema = "message")
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor

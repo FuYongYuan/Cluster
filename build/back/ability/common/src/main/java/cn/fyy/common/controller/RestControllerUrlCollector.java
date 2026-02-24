@@ -1,5 +1,6 @@
 package cn.fyy.common.controller;
 
+import cn.fyy.common.bean.ao.ConstantParameter;
 import cn.fyy.common.bean.bo.RestControllerMappingBO;
 import cn.fyy.redis.bean.ao.RedisSelect;
 import cn.fyy.redis.service.RedisService;
@@ -61,12 +62,19 @@ public class RestControllerUrlCollector implements ApplicationRunner {
                     RestControllerMappingBO bo = RestControllerMappingBO.builder()
                             .className(method.getBeanType().getName())
                             .methodName(method.getMethod().getName())
-                            .mapping(pattern)
+                            .mapping("/" + applicationName + pattern)
                             .summary(summary)
                             .build();
 
-                    redisServiceImpl.set(RedisSelect.THIRTEEN, "/" + applicationName + bo.getMapping(), bo);
+                    // Mapping-cn.fyy.member.restcontroller.ManagerRestController.getByAccountAndLoginPassword
+                    redisServiceImpl.set(RedisSelect.THIRTEEN, ConstantParameter.MAPPING_KEY + bo.getClassName() + "." + bo.getMethodName(), bo);
 
+                    // RestControllerUrlBO(
+                    // className=cn.fyy.member.restcontroller.ManagerRestController,
+                    // methodName=getByAccountAndLoginPassword,
+                    // url=/manager/get/account/password/{account}/{loginPassword},
+                    // summary=根据账号密码查询
+                    // )
                     log.info("功能清单已收集 {}", bo);
                 }
             });

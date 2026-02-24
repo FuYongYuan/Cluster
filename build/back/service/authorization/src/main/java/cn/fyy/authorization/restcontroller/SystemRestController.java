@@ -140,7 +140,7 @@ public class SystemRestController extends BaseRestController {
     ) throws BusinessException {
         try {
             return systemServiceImpl.logout(
-                    jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request))
+                    super.getLoginManagerId(request)
             );
         } catch (Exception e) {
             throw new BusinessException("管理员未登录");
@@ -161,7 +161,7 @@ public class SystemRestController extends BaseRestController {
             HttpServletRequest request
     ) throws BusinessException {
         return systemServiceImpl.queryManagerHaveMenuByManagerId(
-                jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request))
+                super.getLoginManagerId(request)
         );
     }
 }

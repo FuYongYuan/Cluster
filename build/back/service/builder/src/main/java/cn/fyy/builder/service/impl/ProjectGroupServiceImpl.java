@@ -243,7 +243,7 @@ public class ProjectGroupServiceImpl implements ProjectGroupService {
 //                // 初始化地址
 //                path = ConstantParameter.projectGroupLocalPath
 //                        + File.separatorChar + ConstantParameter.DOWNLOAD_PATH_NAME
-//                        + File.separatorChar + projectGroupBO.getManagerId()
+//                        + File.separatorChar + projectGroupBO.getLoginManagerId()
 //                        + File.separatorChar + projectGroupBO.getId()
 //                        + File.separatorChar + projectGroupBO.getArtifactId();
 //                // 创建生成程序

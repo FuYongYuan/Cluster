@@ -53,7 +53,11 @@ public class FileRestController extends BaseRestController {
             @PathVariable String businessType,
             @RequestPart("uploadFile") MultipartFile[] uploadFile
     ) throws BusinessException {
-        Map<String, String> fileUrlMap = uploadServiceImpl.fileUpload(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)), businessType, uploadFile);
+        Map<String, String> fileUrlMap = uploadServiceImpl.fileUpload(
+                super.getLoginManagerId(request),
+                businessType,
+                uploadFile
+        );
         if (!fileUrlMap.isEmpty()) {
             return new ResultMessage<>(fileUrlMap);
         } else {
@@ -81,7 +85,11 @@ public class FileRestController extends BaseRestController {
             @PathVariable String businessType,
             @RequestPart("uploadFile") MultipartFile uploadFile
     ) throws BusinessException {
-        String fileUrl = uploadServiceImpl.fileUploadReturnUrl(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)), businessType, uploadFile);
+        String fileUrl = uploadServiceImpl.fileUploadReturnUrl(
+                super.getLoginManagerId(request),
+                businessType,
+                uploadFile
+        );
         if (StringUtils.hasText(fileUrl)) {
             return new ResultMessage<>(fileUrl);
         } else {
@@ -109,7 +117,11 @@ public class FileRestController extends BaseRestController {
             @PathVariable String businessType,
             @RequestPart("uploadFile") MultipartFile uploadFile
     ) throws BusinessException {
-        String fileUrl = uploadServiceImpl.fileUploadReturnFileName(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)), businessType, uploadFile);
+        String fileUrl = uploadServiceImpl.fileUploadReturnFileName(
+                super.getLoginManagerId(request),
+                businessType,
+                uploadFile
+        );
         if (StringUtils.hasText(fileUrl)) {
             return new ResultMessage<>(fileUrl);
         } else {
@@ -140,7 +152,12 @@ public class FileRestController extends BaseRestController {
             @PathVariable String fileName,
             @PathVariable Long duration
     ) throws BusinessException {
-        String fileUrl = uploadServiceImpl.getFileTemporaryUrl(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)), businessType, fileName, duration);
+        String fileUrl = uploadServiceImpl.getFileTemporaryUrl(
+                super.getLoginManagerId(request),
+                businessType,
+                fileName,
+                duration
+        );
         if (StringUtils.hasText(fileUrl)) {
             return new ResultMessage<>(fileUrl);
         } else {

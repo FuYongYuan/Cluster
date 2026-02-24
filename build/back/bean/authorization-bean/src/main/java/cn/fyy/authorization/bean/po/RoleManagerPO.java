@@ -19,7 +19,7 @@ import java.util.Objects;
 @Table(name = "role_manager", schema = "authorization")
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor

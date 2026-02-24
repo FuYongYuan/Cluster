@@ -72,6 +72,24 @@ public class Style {
     }
 
     /**
+     * 标题字体颜色
+     */
+    public Style setTitleFontColor(short titleColor) {
+        font.setColor(titleColor);
+        title.setFont(font);
+        return this;
+    }
+
+    /**
+     * 标题字体颜色
+     */
+    public Style setTitleFontColor(IndexedColors indexedColors) {
+        font.setColor(indexedColors.getIndex());
+        title.setFont(font);
+        return this;
+    }
+
+    /**
      * 水平位置设置
      */
     public Style setTitleHorizontalAlignment(HorizontalAlignment alignment) {

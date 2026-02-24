@@ -19,7 +19,7 @@ import java.util.Objects;
 @Table(name = "project", schema = "builder")
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor

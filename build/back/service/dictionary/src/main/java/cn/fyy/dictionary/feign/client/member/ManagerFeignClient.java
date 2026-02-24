@@ -3,6 +3,7 @@ package cn.fyy.dictionary.feign.client.member;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.member.bean.dto.ManagerDTO;
+import cn.fyy.member.bean.dto.ManagerInternalDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.web.bind.annotation.*;
@@ -84,9 +85,9 @@ public interface ManagerFeignClient {
      * @return 管理员对象
      * @throws BusinessException 业务错误
      */
-    @PostMapping(value = "/save/return/dto/{authentication}")
-    ResultMessage<Long> saveReturnDTO(
-            @RequestBody ManagerDTO dto,
+    @PostMapping(value = "/feign/save/return/dto/{authentication}")
+    ResultMessage<Long> feignSaveReturnDTO(
+            @RequestBody ManagerInternalDTO dto,
             @PathVariable String authentication
     ) throws BusinessException;
 
@@ -149,8 +150,8 @@ public interface ManagerFeignClient {
      * @return 受影响行数
      * @throws BusinessException 错误
      */
-    @PutMapping(value = "/update/login/password/{mail}/{loginPassword}/{authentication}")
-    ResultMessage<Integer> updateLoginPasswordByMail(
+    @PutMapping(value = "/feign/update/login/password/{mail}/{loginPassword}/{authentication}")
+    ResultMessage<Integer> feignUpdateLoginPasswordByMail(
             @PathVariable String mail,
             @PathVariable String loginPassword,
             @PathVariable String authentication

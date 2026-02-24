@@ -114,6 +114,7 @@ public class BeanUtil {
         source.setUpdaterName(currentManagerName);
         source.setUpdateTime(localDateTime);
         source.setState(DataState.NORMAL.getCode());
+        source.setVersion(0L);
         return source;
     }
 

@@ -19,6 +19,10 @@
         <xxljob.version>3.3.2-SNAPSHOT</xxljob.version>
         <!-- 公共模块 -->
         <common.version>0.0.1</common.version>
+        <!-- 加密模块 -->
+        <encrypt.version>0.0.1</encrypt.version>
+        <!-- 实体 -->
+        <java-bean.version>0.0.1</java-bean.version>
     </properties>
 
     <dependencies>
@@ -41,6 +45,20 @@
             <groupId>com.xuxueli</groupId>
             <artifactId>xxl-job-core</artifactId>
             <version>${xxljob.version}</version>
+        </dependency>
+
+        <!-- 加密模块 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>encrypt</artifactId>
+            <version>${encrypt.version}</version>
+        </dependency>
+
+        <!-- 实体 -->
+        <dependency>
+            <groupId>cn.fyy.build</groupId>
+            <artifactId>capability-bean</artifactId>
+            <version>${java-bean.version}</version>
         </dependency>
 
     </dependencies>

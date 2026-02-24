@@ -17,7 +17,7 @@ import java.util.Objects;
 @Table(name = "parameter", schema = "dictionary")
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor

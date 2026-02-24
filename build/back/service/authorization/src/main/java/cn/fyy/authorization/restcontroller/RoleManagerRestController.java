@@ -49,7 +49,7 @@ public class RoleManagerRestController extends BaseRestController {
             HttpServletRequest request,
             @RequestBody RoleManagerDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         return roleManagerServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 
@@ -74,7 +74,7 @@ public class RoleManagerRestController extends BaseRestController {
             @PathVariable Long managerId,
             @PathVariable String roleIds
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         return roleManagerServiceImpl.saveList(managerId, roleIds, managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 

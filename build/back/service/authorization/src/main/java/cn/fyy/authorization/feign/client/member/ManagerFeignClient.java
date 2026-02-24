@@ -85,8 +85,8 @@ public interface ManagerFeignClient {
      * @return 管理员对象
      * @throws BusinessException 业务错误
      */
-    @PostMapping(value = "/save/return/dto/{authentication}")
-    ResultMessage<Long> saveReturnDTO(
+    @PostMapping(value = "/feign/save/return/dto/{authentication}")
+    ResultMessage<Long> feignSaveReturnDTO(
             @RequestBody ManagerInternalDTO dto,
             @PathVariable String authentication
     ) throws BusinessException;
@@ -150,8 +150,8 @@ public interface ManagerFeignClient {
      * @return 受影响行数
      * @throws BusinessException 错误
      */
-    @PutMapping(value = "/update/login/password/{mail}/{loginPassword}/{authentication}")
-    ResultMessage<Integer> updateLoginPasswordByMail(
+    @PutMapping(value = "/feign/update/login/password/{mail}/{loginPassword}/{authentication}")
+    ResultMessage<Integer> feignUpdateLoginPasswordByMail(
             @PathVariable String mail,
             @PathVariable String loginPassword,
             @PathVariable String authentication

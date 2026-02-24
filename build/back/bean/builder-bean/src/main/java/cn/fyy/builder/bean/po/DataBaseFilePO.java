@@ -19,7 +19,7 @@ import java.util.Objects;
 @Table(name = "data_base_file", schema = "builder")
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor

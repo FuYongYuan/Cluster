@@ -7,12 +7,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.lettuce.core.RedisException;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
-import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -193,6 +192,55 @@ public class RedisServiceImpl implements RedisService {
     }
 
     /**
+     * 查询
+     *
+     * @param pattern 匹配
+     * @param <T>     类型
+     * @return 对象
+     * @throws RedisException 业务错误
+     */
+    @Override
+    public <T> List<T> getAll(String pattern, Class<T> tClass) {
+        Set<String> keys = redisTemplateSelectUtil.getDefaultRedisTemplate().keys(pattern + "*");
+        if (keys.isEmpty()) {
+            return new ArrayList<>();
+        }
+        List<T> result = new ArrayList<>();
+        for (String key : keys) {
+            T t = get(key, tClass);
+            if (t != null) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 查询
+     *
+     * @param database 库
+     * @param pattern  匹配
+     * @param <T>      类型
+     * @return 对象
+     * @throws RedisException 业务错误
+     */
+    @Override
+    public <T> List<T> getAll(RedisSelect database, String pattern, Class<T> tClass) {
+        Set<String> keys = redisTemplateSelectUtil.getRedisTemplate(database).keys(pattern + "*");
+        if (keys.isEmpty()) {
+            return new ArrayList<>();
+        }
+        List<T> result = new ArrayList<>();
+        for (String key : keys) {
+            T t = get(database, key, tClass);
+            if (t != null) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
+    /**
      * 删除
      *
      * @param key 键
@@ -262,56 +310,4 @@ public class RedisServiceImpl implements RedisService {
         }
     }
 
-    /**
-     * 使用 Lua 脚本查询所有 Key 中包含指定前缀的对象及其对应的 Value
-     *
-     * @param pattern 匹配模式，例如 "ABC-*"
-     * @return 匹配的 Key 和对应 Value 的映射
-     */
-    @Override
-    public Map<String, Object> scanKeyWithValueByLua(String pattern) {
-        // 创建 RedisScript 对象
-        RedisScript<Map<String, Object>> script = new DefaultRedisScript<>(SCAN_KEY_WITH_VALUE);
-
-        try {
-            // 执行 Lua 脚本
-            return redisTemplateSelectUtil.getDefaultRedisTemplate().execute(
-                    script,
-                    // KEYS 参数为空
-                    Collections.emptyList(),
-                    // ARGV 参数为匹配模式
-                    pattern
-            );
-        } catch (Exception e) {
-            log.error("Redis Lua 脚本执行失败", e);
-            return Collections.emptyMap();
-        }
-    }
-
-    /**
-     * 使用 Lua 脚本查询指定数据库中所有 Key 中包含指定前缀的对象及其对应的 Value
-     *
-     * @param database 指定数据库
-     * @param pattern  匹配模式，例如 "ABC-*"
-     * @return 匹配的 Key 和对应 Value 的映射
-     */
-    @Override
-    public Map<String, Object> scanKeyWithValueByLua(RedisSelect database, String pattern) {
-        // 创建 RedisScript 对象
-        RedisScript<Map<String, Object>> script = new DefaultRedisScript<>(SCAN_KEY_WITH_VALUE);
-
-        try {
-            // 执行 Lua 脚本（指定数据库）
-            return redisTemplateSelectUtil.getRedisTemplate(database).execute(
-                    script,
-                    // KEYS 参数为空
-                    Collections.emptyList(),
-                    // ARGV 参数为匹配模式
-                    pattern
-            );
-        } catch (Exception e) {
-            log.error("Redis Lua 脚本执行失败", e);
-            return Collections.emptyMap();
-        }
-    }
 }

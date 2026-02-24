@@ -52,7 +52,7 @@ public class ProjectRestController extends BaseRestController {
             HttpServletRequest request,
             @PathVariable String ids
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         int i = projectServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
         if (i > 0) {
             return new ResultMessage<>(i);
@@ -99,7 +99,7 @@ public class ProjectRestController extends BaseRestController {
             HttpServletRequest request,
             @RequestBody ProjectDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         return projectServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 

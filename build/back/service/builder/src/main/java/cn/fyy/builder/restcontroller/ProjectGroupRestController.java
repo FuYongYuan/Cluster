@@ -54,7 +54,7 @@ public class ProjectGroupRestController extends BaseRestController {
             HttpServletRequest request,
             @PathVariable String ids
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         int i = projectGroupServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
         if (i > 0) {
             return new ResultMessage<>(i);
@@ -101,7 +101,7 @@ public class ProjectGroupRestController extends BaseRestController {
             HttpServletRequest request,
             @RequestBody ProjectGroupDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         dto.setManagerId(managerMessage.getManagerId());
         return projectGroupServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
@@ -133,7 +133,7 @@ public class ProjectGroupRestController extends BaseRestController {
         Page<ProjectGroupBO> boPage = projectGroupServiceImpl.queryByManagerIdAndProjectGroupNameAndState(
                 currentPage,
                 eachPageSize,
-                jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)),
+                super.getLoginManagerId(request),
                 projectGroupName,
                 state
         );
@@ -153,7 +153,13 @@ public class ProjectGroupRestController extends BaseRestController {
     public ResultMessage<List<ProjectGroupDTO>> getByManagerId(
             HttpServletRequest request
     ) throws BusinessException {
-        return new ResultMessage<>(ProjectGroupDTO.toDTO(projectGroupServiceImpl.queryByManagerId(jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request)))));
+        return new ResultMessage<>(
+                ProjectGroupDTO.toDTO(
+                        projectGroupServiceImpl.queryByManagerId(
+                                super.getLoginManagerId(request)
+                        )
+                )
+        );
     }
 
 //    /**
@@ -169,6 +175,6 @@ public class ProjectGroupRestController extends BaseRestController {
 //    ) throws Exception {
 //        SecurityUser securityUser = SecurityMessage.getPrincipal();
 //        // 生成下载压缩文件
-//        projectGroupServiceImpl.generateById(request, response, id, securityUser.getManagerId());
+//        projectGroupServiceImpl.generateById(request, response, id, securityUser.getLoginManagerId());
 //    }
 }

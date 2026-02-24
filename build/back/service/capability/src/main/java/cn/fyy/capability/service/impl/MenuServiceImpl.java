@@ -27,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -266,7 +265,7 @@ public class MenuServiceImpl implements MenuService {
     /**
      * 根据管理员主键 ID 查询能够使用的菜单列表
      *
-     * @param menuIds 菜单 ID 集合
+     * @param menuIds        菜单 ID 集合
      * @param authentication 鉴权串
      * @return 能够使用的菜单列表
      */
@@ -276,7 +275,7 @@ public class MenuServiceImpl implements MenuService {
             String authentication
     ) throws BusinessException {
         try {
-            String encryptString = Arrays.toString(menuIds.toArray());
+            String encryptString = String.valueOf(menuIds.size());
             String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
             String decrypt = AesUtil.decryptString(authentication, aesProperties.getAesKey());
             if (encrypt.equals(authentication) && decrypt.equals(encryptString)) {
@@ -326,7 +325,7 @@ public class MenuServiceImpl implements MenuService {
             String authentication
     ) throws BusinessException {
         try {
-            String encryptString = Arrays.toString(menuIds.toArray());
+            String encryptString = String.valueOf(menuIds.size());
             String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
             String decrypt = AesUtil.decryptString(authentication, aesProperties.getAesKey());
             if (encrypt.equals(authentication) && decrypt.equals(encryptString)) {

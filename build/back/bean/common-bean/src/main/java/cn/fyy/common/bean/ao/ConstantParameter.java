@@ -24,6 +24,11 @@ public class ConstantParameter {
     public static final String MAIL_CAPTCHA_KEY = "MailCaptcha-";
 
     /**
+     * Redis 中 Mapping 缓存 Key 默认值
+     */
+    public static final String MAPPING_KEY = "Mapping-";
+
+    /**
      * 验证码过期时间 秒
      */
     public static final Long CAPTCHA_EXPIRATION = 600L;

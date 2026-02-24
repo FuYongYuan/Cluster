@@ -100,7 +100,7 @@ public class ManagerRestController extends BaseRestController {
             HttpServletRequest request,
             @PathVariable String ids
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         int i = managerServiceImpl.updateDelete(ids, managerMessage.getManagerId(), managerMessage.getManagerName());
         if (i > 0) {
             return new ResultMessage<>(i);
@@ -143,7 +143,7 @@ public class ManagerRestController extends BaseRestController {
             HttpServletRequest request
     ) throws BusinessException {
         return new ResultMessage<>(ManagerDTO.toDTO(managerServiceImpl.getByJwtToken(
-                jwtTokenWebService.getManagerIdFromToken(jwtTokenWebService.getTokenFromRequest(request))
+                super.getLoginManagerId(request)
         )));
     }
 
@@ -166,7 +166,7 @@ public class ManagerRestController extends BaseRestController {
             HttpServletRequest request,
             @RequestBody ManagerDTO dto
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         return managerServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 
@@ -185,8 +185,8 @@ public class ManagerRestController extends BaseRestController {
                     @Parameter(name = "authentication", description = "鉴权串", required = true)
             }
     )
-    @PostMapping(value = "/save/return/dto/{authentication}")
-    public ResultMessage<Long> saveReturnDTO(
+    @PostMapping(value = "/feign/save/return/dto/{authentication}")
+    public ResultMessage<Long> feignSaveReturnDTO(
             @RequestBody ManagerInternalDTO dto,
             @PathVariable String authentication
     ) throws BusinessException {
@@ -214,7 +214,7 @@ public class ManagerRestController extends BaseRestController {
             @PathVariable String ids,
             @PathVariable Byte state
     ) throws BusinessException {
-        ManagerMessage managerMessage = jwtTokenWebService.getManagerMessageFromToken(jwtTokenWebService.getTokenFromRequest(request));
+        ManagerMessage managerMessage = super.getLoginManagerMessage(request);
         int i = managerServiceImpl.updateStateByIds(ids, state, managerMessage.getManagerId(), managerMessage.getManagerName());
         if (i > 0) {
             return new ResultMessage<>(i);
@@ -300,8 +300,8 @@ public class ManagerRestController extends BaseRestController {
                     @Parameter(name = "authentication", description = "验证码", required = true)
             }
     )
-    @PutMapping(value = "/update/login/password/{mail}/{loginPassword}/{authentication}")
-    public ResultMessage<Integer> updateLoginPasswordByMail(
+    @PutMapping(value = "/feign/update/login/password/{mail}/{loginPassword}/{authentication}")
+    public ResultMessage<Integer> feignUpdateLoginPasswordByMail(
             @PathVariable String mail,
             @PathVariable String loginPassword,
             @PathVariable String authentication
