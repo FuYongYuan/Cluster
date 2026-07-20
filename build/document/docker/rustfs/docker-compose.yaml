@@ -1,7 +1,7 @@
 services:
   rustfs:
-    image: rustfs/rustfs:1.0.0-alpha.73
-    container_name: rustfs-1.0.0-alpha.73
+    image: rustfs/rustfs:1.0.0-beta.10
+    container_name: rustfs-1.0.0-beta.10
     security_opt:
       - "no-new-privileges:true"
     ports:
@@ -12,6 +12,8 @@ services:
     environment:
       # 数据卷（多个路径用逗号分隔）
       - RUSTFS_VOLUMES=/data/rustfs{0...3}
+      # 绕过本地多数据卷校验-不建议在生产环境使用
+      - RUSTFS_UNSAFE_BYPASS_DISK_CHECK=true
       # API 和控制台监听地址
       - RUSTFS_ADDRESS=0.0.0.0:9000
       - RUSTFS_CONSOLE_ADDRESS=0.0.0.0:9001
@@ -36,7 +38,7 @@ services:
 
     networks:
       - rustfs-network
-    
+
     healthcheck:
       test:
         [

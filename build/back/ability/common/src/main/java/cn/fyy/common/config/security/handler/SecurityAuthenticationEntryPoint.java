@@ -2,7 +2,7 @@ package cn.fyy.common.config.security.handler;
 
 import cn.fyy.common.bean.ao.SecurityHttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 
@@ -21,6 +22,12 @@ import java.io.IOException;
 @Slf4j
 @Component
 public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoint {
+    /**
+     * Jackson工具类
+     */
+    @Resource
+    private JsonMapper jsonMapper;
+
     /**
      * 当接口没有登录返回处理
      *
@@ -45,8 +52,7 @@ public class SecurityAuthenticationEntryPoint implements AuthenticationEntryPoin
         response.setContentType("application/json");
         // 没有访问权限
         ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.UNAUTHORIZED.value(), SecurityHttpStatusChinese.getChineseDescriptionByHttpStatus(HttpStatus.UNAUTHORIZED));
-        ObjectMapper mapper = new ObjectMapper();
-        response.getWriter().println(mapper.writeValueAsString(resultMessage));
+        response.getWriter().println(jsonMapper.writeValueAsString(resultMessage));
         response.getWriter().flush();
     }
 }

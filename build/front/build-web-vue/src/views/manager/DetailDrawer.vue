@@ -136,23 +136,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from "vue";
-import { FormInstance, message, UploadChangeParam } from "ant-design-vue";
-import IconFont from "@src/assets/iconfont/icon";
 import {
 	BusinessTypeUserHeadImage,
 	FailImage,
 	LocalStorageAvatar,
 } from "@src/apis/commons/constant";
 import { getFileTemporaryUrl, uploadFormData } from "@src/apis/data/service";
-import { getManagerByJwtToken, saveManager } from "@src/apis/member/service";
 import type { ManagerDTO } from "@src/apis/member/dto";
+import { getManagerByJwtToken, saveManager } from "@src/apis/member/service";
+import IconFont from "@src/assets/iconfont/icon";
 import {
 	imageFormatValidate,
 	mailFormatValidate,
 	phoneFormatValidate,
 } from "@src/utils/validate/regex";
-import { RuleObject } from "ant-design-vue/es/form";
+import {
+	type FormInstance,
+	message,
+	type UploadChangeParam,
+} from "ant-design-vue";
+import type { RuleObject } from "ant-design-vue/es/form";
+import { defineComponent, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
 	// 页面名称

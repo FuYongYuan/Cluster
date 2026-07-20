@@ -1,9 +1,3 @@
-import axios, {
-	AxiosPromise,
-	AxiosRequestConfig,
-	AxiosResponse,
-	InternalAxiosRequestConfig,
-} from "axios";
 import { showErrorNotification } from "@src/antd/notification";
 import {
 	AuthorizationOverdueCode,
@@ -12,6 +6,12 @@ import {
 	LocalStorageJwtToken,
 } from "@src/apis/commons/constant";
 import type { ResultMessage } from "@src/apis/commons/dto";
+import axios, {
+	type AxiosPromise,
+	type AxiosRequestConfig,
+	type AxiosResponse,
+	type InternalAxiosRequestConfig,
+} from "axios";
 
 // 设置请求参数
 const timeOut = 1000 * 1000 * 60;
@@ -33,7 +33,6 @@ service.interceptors.request.use(
 				`${JwtTokenBearerName} ${jwtToken}`;
 
 			// 设置菜单权限
-
 		}
 
 		return config;
@@ -146,8 +145,8 @@ class Request<T = any> {
 				filename = decodeURI(
 					disposition
 						.split(";")
-						.find((part: string) => part.trim().startsWith("filename="))!
-						.split("=")[1]
+						.find((part: string) => part.trim().startsWith("filename="))
+						?.split("=")[1]
 						.trim(),
 				);
 			}

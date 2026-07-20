@@ -17,7 +17,7 @@
 
     <properties>
         <!-- s3 -->
-        <rustfs.version>2.40.9</rustfs.version>
+        <rustfs.version>2.47.5</rustfs.version>
         <!-- 处理模块 -->
         <dispose.version>0.0.1</dispose.version>
         <!-- 实体 -->

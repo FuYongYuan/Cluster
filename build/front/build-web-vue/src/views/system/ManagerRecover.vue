@@ -100,22 +100,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import { message } from "ant-design-vue";
-import { RuleObject } from "ant-design-vue/es/form";
-import IconFont from "@src/assets/iconfont/icon";
 import { showSuccessNotification } from "@src/antd/notification";
-import { FailImage } from "@src/apis/commons/constant";
 import { recover } from "@src/apis/authorization/service";
-import { getImageCaptcha, getMailCaptcha } from "@src/apis/message/service";
+import { FailImage } from "@src/apis/commons/constant";
 import type { ImageCaptchaDTO, MailCaptchaDTO } from "@src/apis/message/dto";
+import { getImageCaptcha, getMailCaptcha } from "@src/apis/message/service";
+import IconFont from "@src/assets/iconfont/icon";
 import { mailFormatValidate } from "@src/utils/validate/regex";
+import { message } from "ant-design-vue";
+import type { RuleObject } from "ant-design-vue/es/form";
 import { Md5 } from "ts-md5";
+import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
 	// 页面名称
-	name: "Recover",
+	name: "ManagerRecover",
 	// 组件
 	components: {
 		// 图标库
@@ -181,10 +181,10 @@ export default defineComponent({
 			}
 			// 触发倒数
 			recoverData.mailLoading = true;
-			recoverData.mailCaptchaText = recoverData.mailTotalTime + "s";
+			recoverData.mailCaptchaText = `${recoverData.mailTotalTime}s`;
 			const clock = window.setInterval(() => {
 				recoverData.mailTotalTime--;
-				recoverData.mailCaptchaText = recoverData.mailTotalTime + "s";
+				recoverData.mailCaptchaText = `${recoverData.mailTotalTime}s`;
 				if (recoverData.mailTotalTime < 0) {
 					window.clearInterval(clock);
 					recoverData.mailCaptchaText = "发送验证码";

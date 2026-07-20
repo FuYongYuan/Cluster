@@ -10,6 +10,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-	name: "500",
+	name: "Error_500",
 });
 </script>

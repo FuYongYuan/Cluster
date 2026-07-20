@@ -106,22 +106,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import { message } from "ant-design-vue";
-import { RuleObject } from "ant-design-vue/es/form";
-import IconFont from "@src/assets/iconfont/icon";
 import { showSuccessNotification } from "@src/antd/notification";
-import { FailImage } from "@src/apis/commons/constant";
-import { getImageCaptcha, getMailCaptcha } from "@src/apis/message/service";
 import { register } from "@src/apis/authorization/service";
+import { FailImage } from "@src/apis/commons/constant";
 import type { ImageCaptchaDTO, MailCaptchaDTO } from "@src/apis/message/dto";
+import { getImageCaptcha, getMailCaptcha } from "@src/apis/message/service";
+import IconFont from "@src/assets/iconfont/icon";
 import { mailFormatValidate } from "@src/utils/validate/regex";
+import { message } from "ant-design-vue";
+import type { RuleObject } from "ant-design-vue/es/form";
 import { Md5 } from "ts-md5";
+import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
 	// 页面名称
-	name: "Register",
+	name: "ManagerRegister",
 	// 组件
 	components: {
 		// 图标库
@@ -187,10 +187,10 @@ export default defineComponent({
 			}
 			//触发倒数
 			registerData.mailLoading = true;
-			registerData.mailCaptchaText = registerData.mailTotalTime + "s";
+			registerData.mailCaptchaText = `${registerData.mailTotalTime}s`;
 			const clock = window.setInterval(() => {
 				registerData.mailTotalTime--;
-				registerData.mailCaptchaText = registerData.mailTotalTime + "s";
+				registerData.mailCaptchaText = `${registerData.mailTotalTime}s`;
 				if (registerData.mailTotalTime < 0) {
 					window.clearInterval(clock);
 					registerData.mailCaptchaText = "发送验证码";
@@ -235,8 +235,8 @@ export default defineComponent({
 			);
 			if (result) {
 				showSuccessNotification({
-					message: account + "注册成功",
-					description: "恭喜" + mail + "注册成功！",
+					message: `${account} 注册成功`,
+					description: `恭喜 ${mail} 注册成功！`,
 				});
 				// 获取注册成功后要跳转的路由。
 				await router.replace("/login");

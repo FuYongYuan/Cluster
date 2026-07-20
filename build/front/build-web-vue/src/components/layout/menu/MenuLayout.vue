@@ -43,12 +43,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
-import Logo from "@src/components/logo/Logo.vue";
-import IconFont from "@src/assets/iconfont/icon";
 import { LocalStorageAccountMenuList } from "@src/apis/commons/constant";
-import { useRoute, useRouter } from "vue-router";
+import IconFont from "@src/assets/iconfont/icon";
+import PlatformLogo from "@src/components/logo/PlatformLogo.vue";
 import { isNumber } from "@src/utils/validate/regex.ts";
+import { defineComponent, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
 	// 页面名称
@@ -58,7 +58,7 @@ export default defineComponent({
 		// 图标库
 		IconFont,
 		// logo
-		Logo,
+		Logo: PlatformLogo,
 	},
 	// 数据
 	data() {

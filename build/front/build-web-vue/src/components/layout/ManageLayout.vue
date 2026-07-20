@@ -12,19 +12,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import MenuLayout from "@src/components/layout/menu/MenuLayout.vue";
-import HeaderLayout from "@src/components/layout/header/HeaderLayout.vue";
-import FooterLayout from "@src/components/layout/footer/FooterLayout.vue";
 import ContentLayout from "@src/components/layout/content/ContentLayout.vue";
+import FooterLayout from "@src/components/layout/footer/FooterLayout.vue";
+import HeaderLayout from "@src/components/layout/header/HeaderLayout.vue";
+import MenuLayout from "@src/components/layout/menu/MenuLayout.vue";
 import zhCN from "ant-design-vue/es/locale/zh_CN";
 import dayjs from "dayjs";
+import { defineComponent } from "vue";
 import "dayjs/locale/zh-cn";
 
 dayjs.locale("zh-cn");
 
 export default defineComponent({
-	name: "Layout",
+	name: "ManageLayout",
 	components: {
 		MenuLayout,
 		HeaderLayout,

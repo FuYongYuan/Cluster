@@ -64,15 +64,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import { FormInstance, message } from "ant-design-vue";
-import { RuleObject } from "ant-design-vue/es/form";
-import IconFont from "@src/assets/iconfont/icon";
+import type { RoleDTO } from "@src/apis/authorization/dto";
 import { getRole, saveRole } from "@src/apis/authorization/service";
+import type { MenuDTO } from "@src/apis/capability/dto";
 import { queryMenuAll } from "@src/apis/capability/service";
 import type { TransferData } from "@src/apis/commons/dto";
-import type { RoleDTO } from "@src/apis/authorization/dto";
-import type { MenuDTO } from "@src/apis/capability/dto";
+import IconFont from "@src/assets/iconfont/icon";
+import { type FormInstance, message } from "ant-design-vue";
+import type { RuleObject } from "ant-design-vue/es/form";
+import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
 	// 页面名称

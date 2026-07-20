@@ -2,6 +2,7 @@ package cn.fyy.authorization.service.impl;
 
 import cn.fyy.authorization.bean.bo.RoleBO;
 import cn.fyy.authorization.bean.po.RolePO;
+import cn.fyy.authorization.config.properties.AesProperties;
 import cn.fyy.authorization.feign.client.capability.MenuFeignClient;
 import cn.fyy.authorization.repository.RoleRepository;
 import cn.fyy.authorization.service.RoleMenuService;
@@ -14,6 +15,7 @@ import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.SelectUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
 import cn.fyy.jpa.bean.ao.DataState;
+import encrypt.AesUtil;
 import jakarta.annotation.Resource;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +66,14 @@ public class RoleServiceImpl implements RoleService {
      */
     @Resource
     private MenuFeignClient menuFeignClient;
+
+    //------------------------------------------------------------------------------------------------------------------越鉴权处理加密信息
+
+    /**
+     * aes 加密信息
+     */
+    @Resource
+    private AesProperties aesProperties;
 
     //------------------------------------------------------------------------------------------------------------------基础方法
 
@@ -223,7 +233,9 @@ public class RoleServiceImpl implements RoleService {
                 List<Long> roleIdList = new ArrayList<>();
                 roleIdList.add(bo.getId());
                 List<Long> menuList = roleMenuServiceImpl.queryMenuIdsByRoleIds(roleIdList);
-                ResultMessage<List<MenuDTO>> resultMessage = menuFeignClient.queryMenuByMenuIdList(menuList);
+                String encryptString = String.valueOf(menuList.size());
+                String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
+                ResultMessage<List<MenuDTO>> resultMessage = menuFeignClient.feignQueryMenuByMenuIdList(menuList, encrypt);
                 if (resultMessage.getCode() == HttpStatus.OK.value()) {
                     List<String> menuIdList = resultMessage.getData().stream().map(r -> r.getId().toString()).toList();
                     bo.setMenuIds(String.join(",", menuIdList));

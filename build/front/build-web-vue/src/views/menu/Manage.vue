@@ -147,6 +147,18 @@
 </template>
 
 <script lang="ts">
+import type { MenuDTO } from "@src/apis/capability/dto";
+import { deleteMenu, queryMenu } from "@src/apis/capability/service";
+import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
+import IconFont from "@src/assets/iconfont/icon";
+import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
+import MenuDetail from "@src/views/menu/Detail.vue";
+import {
+	type FormInstance,
+	message,
+	Table,
+	type TablePaginationConfig,
+} from "ant-design-vue";
 import {
 	computed,
 	defineComponent,
@@ -156,18 +168,6 @@ import {
 	toRefs,
 	unref,
 } from "vue";
-import {
-	FormInstance,
-	message,
-	Table,
-	TablePaginationConfig,
-} from "ant-design-vue";
-import IconFont from "@src/assets/iconfont/icon";
-import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
-import { deleteMenu, queryMenu } from "@src/apis/capability/service";
-import type { MenuDTO } from "@src/apis/capability/dto";
-import MenuDetail from "@src/views/menu/Detail.vue";
-import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
 
 export default defineComponent({
 	// 页面名称
@@ -429,7 +429,7 @@ export default defineComponent({
 				// 删除
 				const result = await deleteMenu(manageData.selectedRowKeys.join(","));
 				if (result !== undefined && result > 0) {
-					message.success("成功删除 " + result + " 条数据！");
+					message.success(`成功删除 ${result} 条数据！`);
 					await query();
 				}
 				// 结束
@@ -447,7 +447,7 @@ export default defineComponent({
 				// 删除
 				const result = await deleteMenu(ids);
 				if (result !== undefined && result > 0) {
-					message.success("成功删除 " + result + " 条数据！");
+					message.success(`成功删除 ${result} 条数据！`);
 					await query();
 				}
 				// 结束

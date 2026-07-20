@@ -38,17 +38,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { logout } from "@src/apis/authorization/service";
 import {
 	LocalStorageAvatar,
 	LocalStorageManagerName,
 } from "@src/apis/commons/constant";
-import { logout } from "@src/apis/authorization/service";
-import { useRouter } from "vue-router";
-import { message } from "ant-design-vue";
 import IconFont from "@src/assets/iconfont/icon";
-import ManagerDetailDrawer from "@src/views/manager/DetailDrawer.vue";
 import ManagerChangePasswordDrawer from "@src/views/manager/ChangePasswordDrawer.vue";
+import ManagerDetailDrawer from "@src/views/manager/DetailDrawer.vue";
+import { message } from "ant-design-vue";
+import { defineComponent, ref } from "vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
 	// 页面名称

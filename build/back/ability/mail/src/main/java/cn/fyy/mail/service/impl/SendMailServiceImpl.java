@@ -5,7 +5,7 @@ import cn.fyy.mail.service.SendMailService;
 import jakarta.annotation.Resource;
 import jakarta.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.mail.MailProperties;
+import org.springframework.boot.mail.autoconfigure.MailProperties;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -93,7 +93,9 @@ public class SendMailServiceImpl implements SendMailService {
         try {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
             // 邮件发送人
-            mimeMessageHelper.setFrom(mailProperties.getUsername());
+            if (mailProperties.getUsername() != null) {
+                mimeMessageHelper.setFrom(mailProperties.getUsername());
+            }
             // 邮件接收人
             mimeMessageHelper.setTo(to);
             // 邮件抄送（ 校验 cc 是否为 null ）

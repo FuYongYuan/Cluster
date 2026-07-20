@@ -1,12 +1,12 @@
-import Request from "@src/utils/axios/request";
+import { showErrorNotification } from "@src/antd/notification";
 import {
 	DataApiBaseURL,
 	FailImage,
 	ImageDuration,
 	SuccessRequestCode,
 } from "@src/apis/commons/constant";
-import { showErrorNotification } from "@src/antd/notification";
 import type { ResultMessage } from "@src/apis/commons/dto";
+import Request from "@src/utils/axios/request";
 
 /**
  * 文件上传
@@ -35,6 +35,7 @@ export const uploadFormData = async (
 					((100 / (options.file.size / 65000)) * progressEvent.loaded) /
 					progressEvent.total
 				).toFixed(0),
+				10,
 			);
 			// 定时跳动进度条
 			const intervalId = setInterval(() => {

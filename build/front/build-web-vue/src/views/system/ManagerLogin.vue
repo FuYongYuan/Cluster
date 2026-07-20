@@ -78,10 +78,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import { message } from "ant-design-vue";
-import type { RuleObject } from "ant-design-vue/es/form";
-import IconFont from "@src/assets/iconfont/icon";
+import { login } from "@src/apis/authorization/service";
 import {
 	FailImage,
 	LocalStorageAccount,
@@ -91,15 +88,18 @@ import {
 	LocalStorageJwtToken,
 	LocalStorageManagerName,
 } from "@src/apis/commons/constant";
-import { getImageCaptcha } from "@src/apis/message/service";
-import { login } from "@src/apis/authorization/service";
 import type { ImageCaptchaDTO } from "@src/apis/message/dto";
+import { getImageCaptcha } from "@src/apis/message/service";
+import IconFont from "@src/assets/iconfont/icon";
+import { message } from "ant-design-vue";
+import type { RuleObject } from "ant-design-vue/es/form";
 import { Md5 } from "ts-md5";
+import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 export default defineComponent({
 	// 页面名称
-	name: "Login",
+	name: "ManagerLogin",
 	// 组件
 	components: {
 		// 图标库
@@ -197,7 +197,7 @@ export default defineComponent({
 				// 获取登录成功后要跳转的路由。
 				const toPath = decodeURIComponent("/");
 				router.replace(toPath).then(() => {
-					if (route.name === "Login") {
+					if (route.name === "ManagerLogin") {
 						router.replace("/");
 					}
 				});

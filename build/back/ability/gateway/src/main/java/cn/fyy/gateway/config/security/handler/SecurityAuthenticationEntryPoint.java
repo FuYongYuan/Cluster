@@ -2,8 +2,7 @@ package cn.fyy.gateway.config.security.handler;
 
 import cn.fyy.common.bean.ao.SecurityHttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
@@ -14,6 +13,7 @@ import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+import tools.jackson.databind.json.JsonMapper;
 
 /**
  * AuthenticationException 是在用户认证的时候出现错误时抛出的异常
@@ -23,6 +23,12 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @Component
 public class SecurityAuthenticationEntryPoint implements ServerAuthenticationEntryPoint {
+    /**
+     * Jackson工具类
+     */
+    @Resource
+    private JsonMapper jsonMapper;
+
     /**
      * 当接口没有登录返回处理
      *
@@ -39,7 +45,6 @@ public class SecurityAuthenticationEntryPoint implements ServerAuthenticationEnt
         );
 
         return Mono.defer(() -> Mono.just(exchange.getResponse()).flatMap(response -> {
-            ObjectMapper mapper = new ObjectMapper();
             // 没有访问权限
             ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.UNAUTHORIZED.value(), SecurityHttpStatusChinese.getChineseDescriptionByHttpStatus(HttpStatus.UNAUTHORIZED));
 
@@ -47,11 +52,8 @@ public class SecurityAuthenticationEntryPoint implements ServerAuthenticationEnt
 
             DataBufferFactory dataBufferFactory = response.bufferFactory();
             DataBuffer dataBuffer;
-            try {
-                dataBuffer = dataBufferFactory.wrap(mapper.writeValueAsString(resultMessage).getBytes());
-            } catch (JsonProcessingException e) {
-                return Mono.error(new RuntimeException(e));
-            }
+
+            dataBuffer = dataBufferFactory.wrap(jsonMapper.writeValueAsString(resultMessage).getBytes());
 
             return response.writeWith(Mono.just(dataBuffer));
         }));

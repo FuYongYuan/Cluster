@@ -3,7 +3,6 @@ package cn.fyy.redis.service.impl;
 import cn.fyy.redis.bean.ao.RedisSelect;
 import cn.fyy.redis.service.RedisService;
 import cn.fyy.redis.util.RedisTemplateSelectUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.lettuce.core.RedisException;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -27,11 +26,6 @@ public class RedisServiceImpl implements RedisService {
      */
     @Resource
     private RedisTemplateSelectUtil redisTemplateSelectUtil;
-
-    /**
-     * json 操作类
-     */
-    private final ObjectMapper mapper = new ObjectMapper();
 
     //------------------------------------------------------------------------------------------------------------------String操作
 
@@ -77,7 +71,7 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public Boolean set(String key, Object value) {
         try {
-            redisTemplateSelectUtil.getDefaultRedisTemplate().opsForValue().set(key, mapper.writeValueAsString(value));
+            redisTemplateSelectUtil.getDefaultRedisTemplate().opsForValue().set(key, value);
         } catch (Exception e) {
             log.error("Redis 添加失败", e);
             return false;
@@ -97,7 +91,7 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public Boolean set(RedisSelect database, String key, Object value) {
         try {
-            redisTemplateSelectUtil.getRedisTemplate(database).opsForValue().set(key, mapper.writeValueAsString(value));
+            redisTemplateSelectUtil.getRedisTemplate(database).opsForValue().set(key, value);
         } catch (Exception e) {
             log.error("Redis 添加失败", e);
             return false;
@@ -117,7 +111,7 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public Boolean set(String key, Object value, long seconds) {
         try {
-            redisTemplateSelectUtil.getDefaultRedisTemplate().opsForValue().set(key, mapper.writeValueAsString(value), seconds, TimeUnit.SECONDS);
+            redisTemplateSelectUtil.getDefaultRedisTemplate().opsForValue().set(key, value, seconds, TimeUnit.SECONDS);
         } catch (Exception e) {
             log.error("Redis 添加失败", e);
             return false;
@@ -138,7 +132,7 @@ public class RedisServiceImpl implements RedisService {
     @Override
     public Boolean set(RedisSelect database, String key, Object value, long seconds) {
         try {
-            redisTemplateSelectUtil.getRedisTemplate(database).opsForValue().set(key, mapper.writeValueAsString(value), seconds, TimeUnit.SECONDS);
+            redisTemplateSelectUtil.getRedisTemplate(database).opsForValue().set(key, value, seconds, TimeUnit.SECONDS);
         } catch (Exception e) {
             log.error("Redis 添加失败", e);
             return false;
@@ -159,7 +153,7 @@ public class RedisServiceImpl implements RedisService {
         try {
             Object obj = redisTemplateSelectUtil.getDefaultRedisTemplate().opsForValue().get(key);
             if (obj != null) {
-                return mapper.readValue(obj.toString(), tClass);
+                return tClass.cast(obj);
             }
         } catch (Exception e) {
             log.error("Redis 查询失败", e);
@@ -182,7 +176,7 @@ public class RedisServiceImpl implements RedisService {
         try {
             Object obj = redisTemplateSelectUtil.getRedisTemplate(database).opsForValue().get(key);
             if (obj != null) {
-                return mapper.readValue(obj.toString(), tClass);
+                return tClass.cast(obj);
             }
         } catch (Exception e) {
             log.error("Redis 查询失败", e);

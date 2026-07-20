@@ -1,11 +1,29 @@
 version: '3.8'
 
 services:
+  banyandb:
+    image: apache/skywalking-banyandb:0.10.2
+    container_name: banyandb
+    # ports:
+    #   - "17912:17912"
+    expose:
+      - 17912
+    command: standalone --stream-root-path /tmp/stream-data --measure-root-path /tmp/measure-data
+    volumes:
+      - ./skywalking/banyandb/stream-data:/tmp/stream-data
+      - ./skywalking/banyandb/measure-data:/tmp/measure-data
+    networks:
+      - skywalking
+
   skywalking-oap:
-    image: apache/skywalking-oap-server:10.3.0-java21
+    image: apache/skywalking-oap-server:10.4.0-java21
     container_name: skywalking-oap
+    depends_on:
+      - banyandb
     volumes:
       - ./skywalking/config/application.yml:/skywalking/config/application.yml
+      - ./skywalking/config/gen-ai-config.yml:/skywalking/config/gen-ai-config.yml
+      - ./skywalking/config/bydb.yml:/skywalking/config/bydb.yml
     ports:
       - "11800:11800"
       - "12800:12800"
@@ -13,12 +31,12 @@ services:
       - skywalking
 
   skywalking-ui:
-    image: apache/skywalking-ui:10.3.0-java21
+    image: apache/skywalking-ui:10.4.0-java21
     container_name: skywalking-ui
     depends_on:
       - skywalking-oap
     environment:
-      - SW_OAP_ADDRESS=http://host.docker.internal:12800
+      - SW_OAP_ADDRESS=http://skywalking-oap:12800
     ports:
       - "10907:8080"
     networks:

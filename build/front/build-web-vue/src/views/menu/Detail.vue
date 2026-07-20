@@ -114,16 +114,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import { FormInstance, message } from "ant-design-vue";
-import { RuleObject } from "ant-design-vue/es/form";
-import IconFont from "@src/assets/iconfont/icon";
+import type { MenuDTO } from "@src/apis/capability/dto";
 import {
 	getMenu,
 	queryMenuAllParent,
 	saveMenu,
 } from "@src/apis/capability/service";
-import type { MenuDTO } from "@src/apis/capability/dto";
+import IconFont from "@src/assets/iconfont/icon";
+import { type FormInstance, message } from "ant-design-vue";
+import type { RuleObject } from "ant-design-vue/es/form";
+import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
 	// 页面名称

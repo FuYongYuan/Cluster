@@ -1,11 +1,11 @@
-import Request from "@src/utils/axios/request";
+import { showErrorNotification } from "@src/antd/notification";
 import {
 	MemberApiBaseURL,
 	SuccessRequestCode,
 } from "@src/apis/commons/constant";
-import { showErrorNotification } from "@src/antd/notification";
 import type { PageImpl } from "@src/apis/commons/dto";
 import type { ManagerDTO } from "@src/apis/member/dto";
+import Request from "@src/utils/axios/request";
 
 /**
  * 根据JwtToken查询

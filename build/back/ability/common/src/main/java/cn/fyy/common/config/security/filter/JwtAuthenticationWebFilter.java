@@ -5,7 +5,6 @@ import cn.fyy.common.bean.ao.SecurityHttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.common.config.security.service.JwtTokenWebService;
 import cn.fyy.jwt.bean.bo.SecurityUser;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.Resource;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -21,6 +20,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 
@@ -42,6 +42,12 @@ public class JwtAuthenticationWebFilter extends OncePerRequestFilter {
      */
     @Resource
     private JwtTokenWebService jwtTokenWebService;
+
+    /**
+     * Jackson工具类
+     */
+    @Resource
+    private JsonMapper jsonMapper;
 
     //------------------------------------------------------------------------------------------------------------------拦截方法
 
@@ -102,10 +108,9 @@ public class JwtAuthenticationWebFilter extends OncePerRequestFilter {
      * @throws IOException 错误
      */
     private void returnErrorMessage(HttpServletResponse response, ResultMessage<String> resultMessage) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        response.getWriter().println(mapper.writeValueAsString(resultMessage));
+        response.getWriter().println(jsonMapper.writeValueAsString(resultMessage));
         response.getWriter().flush();
     }
 }

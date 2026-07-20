@@ -1,4 +1,4 @@
-docker run --name nacos-v3.0.3 --env MODE=standalone --env NACOS_AUTH_ENABLE=true --env NACOS_AUTH_IDENTITY_KEY=fyy --env NACOS_AUTH_IDENTITY_VALUE=fyyain77 --env NACOS_AUTH_TOKEN=U2VjcmV0S2V5Znl5Znl5YWluNzdJZnNzZnl5YWluc3M= --env MYSQL_SERVICE_HOST=host.docker.internal --env MYSQL_SERVICE_PORT=3306 --env MYSQL_SERVICE_DB_NAME=nacos --env MYSQL_SERVICE_USER=root --env MYSQL_SERVICE_PASSWORD=fyyain77 --env SPRING_DATASOURCE_PLATFORM=mysql -p 8848:8848 -p 9848:9848 -p 9849:8080 -d nacos/nacos-server:v3.0.3
+docker run --name nacos-v3.1.1 --env MODE=standalone --env NACOS_AUTH_ENABLE=true --env NACOS_AUTH_IDENTITY_KEY=fyy --env NACOS_AUTH_IDENTITY_VALUE=fyyain77 --env NACOS_AUTH_TOKEN=U2VjcmV0S2V5Znl5Znl5YWluNzdJZnNzZnl5YWluc3M= --env MYSQL_SERVICE_HOST=host.docker.internal --env MYSQL_SERVICE_PORT=3306 --env MYSQL_SERVICE_DB_NAME=nacos --env MYSQL_SERVICE_USER=root --env MYSQL_SERVICE_PASSWORD=fyyain77 --env SPRING_DATASOURCE_PLATFORM=mysql -p 8848:8848 -p 9848:9848 -p 9849:8080 -d nacos/nacos-server:v3.1.1
 
 
 U2VjcmV0S2V5Znl5Znl5YWluNzdJZnNzZnl5YWluc3M= 原值：SecretKeyfyyfyyain77Ifssfyyainss

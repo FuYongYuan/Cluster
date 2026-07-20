@@ -1,6 +1,5 @@
 package http;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
@@ -16,6 +15,7 @@ import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.util.TimeValue;
 import org.apache.hc.core5.util.Timeout;
 import org.springframework.http.HttpStatus;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -38,8 +38,8 @@ public class HttpRequestUtil {
      */
     public static boolean isOutputLog = false;
 
-    // Jackson ObjectMapper 实例
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    // Jackson JsonMapper 实例
+    private static final JsonMapper JSON_MAPPER = JsonMapper.builder().build();
 
     //------------------------------------------------------------------------------------------------------------------单例 httpClient
 
@@ -136,7 +136,7 @@ public class HttpRequestUtil {
             HttpPost httpPost = new HttpPost(url);
 
             if (params != null && !params.isEmpty()) {
-                String jsonBody = OBJECT_MAPPER.writeValueAsString(params);
+                String jsonBody = JSON_MAPPER.writeValueAsString(params);
                 StringEntity entity = new StringEntity(jsonBody, ContentType.APPLICATION_JSON);
                 httpPost.setEntity(entity);
             }

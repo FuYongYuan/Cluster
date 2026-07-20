@@ -1,47 +1,47 @@
+import ManageLayout from "@src/components/layout/ManageLayout.vue";
 import {
 	createRouter,
 	createWebHistory,
 	type RouteRecordRaw,
 } from "vue-router";
-import Layout from "@src/components/layout/Layout.vue";
 
 const routes: Array<RouteRecordRaw> = [
 	{
 		path: "/login",
-		name: "Login",
-		component: () => import("@src/views/system/Login.vue"),
+		name: "ManagerLogin",
+		component: () => import("@src/views/system/ManagerLogin.vue"),
 		meta: {
 			menuName: "登录",
 		},
 	},
 	{
 		path: "/register",
-		name: "Register",
-		component: () => import("@src/views/system/Register.vue"),
+		name: "ManagerRegister",
+		component: () => import("@src/views/system/ManagerRegister.vue"),
 		meta: {
 			menuName: "注册",
 		},
 	},
 	{
 		path: "/recover",
-		name: "Recover",
-		component: () => import("@src/views/system/Recover.vue"),
+		name: "ManagerRecover",
+		component: () => import("@src/views/system/ManagerRecover.vue"),
 		meta: {
 			menuName: "找回密码",
 		},
 	},
 	{
 		path: "/",
-		name: "Layout",
-		component: Layout,
+		name: "ManageLayout",
+		component: ManageLayout,
 		meta: {
 			menuName: "布局",
 		},
 		children: [
 			{
 				path: "/home",
-				name: "Home",
-				component: () => import("@src/views/Home.vue"),
+				name: "ManageHome",
+				component: () => import("@src/views/ManageHome.vue"),
 				meta: {
 					menuId: 6508370886732800,
 					menuName: "首页",
@@ -114,7 +114,7 @@ const routes: Array<RouteRecordRaw> = [
 	{
 		path: "/error",
 		name: "Error",
-		component: Layout,
+		component: ManageLayout,
 		redirect: "/error/404",
 		meta: {
 			menuName: "错误",

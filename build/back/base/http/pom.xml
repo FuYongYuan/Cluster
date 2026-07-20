@@ -18,8 +18,8 @@
 
     <properties>
         <!--Http 请求包-->
-        <httpclient.version>5.6</httpclient.version>
-        <httpcore.version>5.4</httpcore.version>
+        <httpclient.version>5.6.2</httpclient.version>
+        <httpcore.version>5.4.3</httpcore.version>
     </properties>
 
     <dependencies>

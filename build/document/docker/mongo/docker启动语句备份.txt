@@ -13,13 +13,13 @@ db.createUser({user: "fyy", pwd: "fyyain77", roles: [{role: "readWrite", db: "te
 
 
 
-docker run -d --name mongo-8.2.2 \
+docker run -d --name mongo-8.2.11 \
 	-p 17017:27017 \
 	-v ./mongo/conf/mongod.conf:/etc/mongo/mongod.conf \
 	-v ./mongo/data:/data/db \
 	-e MONGO_INITDB_ROOT_USERNAME=admin \
 	-e MONGO_INITDB_ROOT_PASSWORD=fyyain77 \
-	mongo:8.2.2 --config /etc/mongo/mongod.conf
+	mongo:8.2.11 --config /etc/mongo/mongod.conf
 
 
 新建

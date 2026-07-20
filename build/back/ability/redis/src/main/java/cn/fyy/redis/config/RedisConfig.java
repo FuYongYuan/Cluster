@@ -3,27 +3,25 @@ package cn.fyy.redis.config;
 import cn.fyy.redis.bean.ao.RedisSelect;
 import cn.fyy.redis.util.RedisTemplateSelectUtil;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import jakarta.annotation.Resource;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JacksonJsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.*;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+import tools.jackson.databind.module.SimpleModule;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,12 +34,15 @@ import java.time.format.DateTimeFormatter;
  * @author fyy
  */
 @Configuration
+@EnableConfigurationProperties(RedisProperties.class)
 public class RedisConfig {
     /**
      * Redis 配置
      */
     @Resource
     private RedisProperties redisProperties;
+
+    //------------------------------------------------------------------------------------------------------------------RedisTemplate
 
     /**
      * RedisTemplate 配置
@@ -230,6 +231,195 @@ public class RedisConfig {
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
+    //------------------------------------------------------------------------------------------------------------------ReactiveRedisTemplate
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate0() {
+        return getReactiveRedisTemplate(RedisSelect.INFO);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate1() {
+        return getReactiveRedisTemplate(RedisSelect.ONE);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate2() {
+        return getReactiveRedisTemplate(RedisSelect.TWO);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate3() {
+        return getReactiveRedisTemplate(RedisSelect.THREE);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate4() {
+        return getReactiveRedisTemplate(RedisSelect.FOUR);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate5() {
+        return getReactiveRedisTemplate(RedisSelect.FIVE);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate6() {
+        return getReactiveRedisTemplate(RedisSelect.SIX);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate7() {
+        return getReactiveRedisTemplate(RedisSelect.SEVEN);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate8() {
+        return getReactiveRedisTemplate(RedisSelect.EIGHT);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate9() {
+        return getReactiveRedisTemplate(RedisSelect.NINE);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate10() {
+        return getReactiveRedisTemplate(RedisSelect.TEN);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate11() {
+        return getReactiveRedisTemplate(RedisSelect.ELEVEN);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate12() {
+        return getReactiveRedisTemplate(RedisSelect.TWELVE);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate13() {
+        return getReactiveRedisTemplate(RedisSelect.THIRTEEN);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate14() {
+        return getReactiveRedisTemplate(RedisSelect.FOURTEEN);
+    }
+
+    /**
+     * ReactiveRedisTemplate 配置
+     *
+     * @return ReactiveRedisTemplate
+     */
+    @Bean
+    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate15() {
+        return getReactiveRedisTemplate(RedisSelect.FIFTEEN);
+    }
+
+    /**
+     * 获取 ReactiveRedisTemplate
+     *
+     * @param redisSelect RedisSelect 选择
+     * @return ReactiveRedisTemplate
+     */
+    private ReactiveRedisTemplate<String, Object> getReactiveRedisTemplate(RedisSelect redisSelect) {
+        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
+        configuration.setHostName(redisProperties.getHost());
+        configuration.setPort(redisProperties.getPort());
+        configuration.setPassword(redisProperties.getPassword());
+        configuration.setDatabase(redisSelect.getValue());
+        LettuceConnectionFactory factory = new LettuceConnectionFactory(configuration);
+        factory.start();
+
+        RedisSerializer<Object> serializer = redisSerializer();
+        RedisSerializationContext<String, Object> context = RedisSerializationContext
+                .<String, Object>newSerializationContext()
+                .key(new StringRedisSerializer())
+                .value(serializer)
+                .hashKey(new StringRedisSerializer())
+                .hashValue(serializer)
+                .build();
+
+        return new ReactiveRedisTemplate<>(factory, context);
+    }
+    //------------------------------------------------------------------------------------------------------------------公用方法
 
     /**
      * Redis 序列化方式
@@ -238,31 +428,71 @@ public class RedisConfig {
      */
     @Bean
     public RedisSerializer<Object> redisSerializer() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        //必须设置，否则无法将 JSON 转化为对象，会转化成 Map 类型
-        objectMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+        SimpleModule dateTimeModule = new SimpleModule("RedisDateTimeModule");
 
-        // 自定义 ObjectMapper 的时间处理模块
-        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        dateTimeModule.addSerializer(LocalDateTime.class, new ValueSerializer<>() {
+            @Override
+            public void serialize(LocalDateTime value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+                gen.writeString(value.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            }
+        });
+        dateTimeModule.addDeserializer(LocalDateTime.class, new ValueDeserializer<>() {
+            @Override
+            public LocalDateTime deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
+                return LocalDateTime.parse(p.getString(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            }
+        });
 
-        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        dateTimeModule.addSerializer(LocalDate.class, new ValueSerializer<>() {
+            @Override
+            public void serialize(LocalDate value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+                gen.writeString(value.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            }
+        });
+        dateTimeModule.addDeserializer(LocalDate.class, new ValueDeserializer<>() {
+            @Override
+            public LocalDate deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
+                return LocalDate.parse(p.getString(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            }
+        });
 
-        javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        dateTimeModule.addSerializer(LocalTime.class, new ValueSerializer<>() {
+            @Override
+            public void serialize(LocalTime value, JsonGenerator gen, SerializationContext serializers) throws JacksonException {
+                gen.writeString(value.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+            }
+        });
+        dateTimeModule.addDeserializer(LocalTime.class, new ValueDeserializer<>() {
+            @Override
+            public LocalTime deserialize(JsonParser p, DeserializationContext ctxt) throws JacksonException {
+                return LocalTime.parse(p.getString(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+            }
+        });
 
-        javaTimeModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern("HH:mm:ss")));
-        javaTimeModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        var typeValidator = BasicPolymorphicTypeValidator.builder()
+                .allowIfSubTypeIsArray()
+                .allowIfSubType("java.")
+                .allowIfSubType("javax.")
+                .allowIfSubType("org.")
+                .allowIfSubType("com.")
+                .allowIfSubType("cn.")
+                .build();
 
-        objectMapper.registerModule(javaTimeModule);
+        var mapper = JsonMapper.builder()
+                .changeDefaultVisibility(checker -> checker
+                        .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
+                        .withGetterVisibility(JsonAutoDetect.Visibility.ANY)
+                        .withSetterVisibility(JsonAutoDetect.Visibility.ANY)
+                        .withCreatorVisibility(JsonAutoDetect.Visibility.ANY))
+                .activateDefaultTypingAsProperty(typeValidator,
+                        DefaultTyping.NON_FINAL, "@class")
+                .addModule(dateTimeModule)
+                .build();
 
-        // 禁用将日期序列化为时间戳的行为
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        //创建 JSON 序列化器
-        return new Jackson2JsonRedisSerializer<>(objectMapper, Object.class);
+        return new JacksonJsonRedisSerializer<>(mapper, Object.class);
     }
+
 
     /**
      * 初始化 Redis 链接选择工具类

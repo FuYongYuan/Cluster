@@ -302,7 +302,9 @@ public class SystemServiceImpl implements SystemService {
         try {
             List<Long> roleList = roleServiceImpl.queryManagerHaveRoleByManagerId(managerId).stream().map(RoleBO::getId).toList();
             List<Long> menuList = roleMenuServiceImpl.queryMenuIdsByRoleIds(roleList);
-            return menuFeignClient.queryHierarchyMenuByMenuIdList(menuList);
+            String encryptString = String.valueOf(menuList.size());
+            String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
+            return menuFeignClient.feignQueryMenuByMenuIdList(menuList, encrypt);
         } catch (Exception e) {
             throw new BusinessException("根据管理员 ID 查询拥有的菜单权限", e);
         }

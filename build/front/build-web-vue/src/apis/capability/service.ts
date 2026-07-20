@@ -1,11 +1,11 @@
-import Request from "@src/utils/axios/request";
+import { showErrorNotification } from "@src/antd/notification";
+import type { MenuDTO } from "@src/apis/capability/dto";
 import {
 	CapabilityApiBaseURL,
 	SuccessRequestCode,
 } from "@src/apis/commons/constant";
-import { showErrorNotification } from "@src/antd/notification";
 import type { PageImpl } from "@src/apis/commons/dto";
-import type { MenuDTO } from "@src/apis/capability/dto";
+import Request from "@src/utils/axios/request";
 
 /**
  * 查询所有菜单

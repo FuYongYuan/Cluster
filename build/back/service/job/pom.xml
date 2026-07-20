@@ -16,7 +16,7 @@
     <description>xxl-job定时任务模块</description>
 
     <properties>
-        <xxljob.version>3.3.2-SNAPSHOT</xxljob.version>
+        <xxljob.version>3.5.0-SNAPSHOT</xxljob.version>
         <!-- 公共模块 -->
         <common.version>0.0.1</common.version>
         <!-- 加密模块 -->
@@ -61,6 +61,12 @@
             <version>${java-bean.version}</version>
         </dependency>
 
+        <!-- Netty macOS ARM64 DNS 原生解析器 -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+            <classifier>osx-aarch_64</classifier>
+        </dependency>
     </dependencies>
 
     <build>

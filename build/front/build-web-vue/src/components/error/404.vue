@@ -14,6 +14,6 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-	name: "404",
+	name: "Error_404",
 });
 </script>

@@ -2,8 +2,7 @@ package cn.fyy.gateway.config.security.handler;
 
 import cn.fyy.common.bean.ao.SecurityHttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
@@ -14,6 +13,7 @@ import org.springframework.security.web.server.authorization.ServerAccessDeniedH
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.nio.charset.Charset;
 
@@ -25,6 +25,12 @@ import java.nio.charset.Charset;
 @Slf4j
 @Component
 public class SecurityAccessDeniedHandler implements ServerAccessDeniedHandler {
+    /**
+     * Jackson工具类
+     */
+    @Resource
+    private JsonMapper jsonMapper;
+
     /**
      * 当接口没有权限返回处理
      *
@@ -41,7 +47,6 @@ public class SecurityAccessDeniedHandler implements ServerAccessDeniedHandler {
         );
 
         return Mono.defer(() -> Mono.just(exchange.getResponse())).flatMap(response -> {
-            ObjectMapper mapper = new ObjectMapper();
             // 没有访问权限
             ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.FORBIDDEN.value(), SecurityHttpStatusChinese.getChineseDescriptionByHttpStatus(HttpStatus.FORBIDDEN));
 
@@ -49,11 +54,9 @@ public class SecurityAccessDeniedHandler implements ServerAccessDeniedHandler {
 
             DataBufferFactory dataBufferFactory = response.bufferFactory();
             String result;
-            try {
-                result = mapper.writeValueAsString(resultMessage);
-            } catch (JsonProcessingException e) {
-                return Mono.error(new RuntimeException(e));
-            }
+
+            result = jsonMapper.writeValueAsString(resultMessage);
+
             DataBuffer buffer = dataBufferFactory.wrap(result.getBytes(Charset.defaultCharset()));
 
             return response.writeWith(Mono.just(buffer));

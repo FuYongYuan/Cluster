@@ -7,7 +7,7 @@
 
 <script lang="ts">
 export default {
-	name: "Logo",
+	name: "PlatformLogo",
 	props: {
 		collapsed: {
 			type: Boolean,

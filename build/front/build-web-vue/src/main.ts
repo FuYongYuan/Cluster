@@ -1,9 +1,9 @@
+// 引入状态管理
+import { createPinia } from "pinia";
 import { createApp } from "vue";
 import App from "./App.vue";
 // 引入路由
 import router from "./router/config.ts";
-// 引入状态管理
-import { createPinia } from "pinia";
 // 引入拦截器
 import "./router/interceptor.ts";
 // Antd组件引入
@@ -31,10 +31,10 @@ import skywalking from "skywalking-client-js";
 import pkg from "../package.json";
 
 skywalking.ClientMonitor.register({
-	service: pkg.name + "-skywalking",
-	serviceVersion: pkg.version,
-	pagePath: location.href,
-	collector: "/skywalking",
+	service: `${pkg.name}-skywalking`,
+	serviceVersion: `${pkg.version}`,
+	pagePath: `${location.href}`,
+	collector: `/skywalking`,
 	jsErrors: true,
 	apiErrors: true,
 	resourceErrors: true,

@@ -2,7 +2,7 @@
 docker-compose up -d elasticsearch logstash filebeat
 
 
-# 执行获取token
+# 执行获取token  如果不行直接用docker desktop界面去容器内执行
 docker exec -it elasticsearch \       
   bin/elasticsearch-service-tokens create elastic/kibana kibana_server_token
 
@@ -21,3 +21,6 @@ docker-compose up -d kibana
 
 # 验证登陆密码
  curl -u elastic http://localhost:9200
+
+
+如果提示无法直接升级可以删除掉重新来

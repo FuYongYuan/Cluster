@@ -2,7 +2,7 @@ package cn.fyy.common.config.security.handler;
 
 import cn.fyy.common.bean.ao.SecurityHttpStatusChinese;
 import cn.fyy.common.bean.dto.ResultMessage;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.io.IOException;
 
@@ -22,6 +23,12 @@ import java.io.IOException;
 @Slf4j
 @Component
 public class SecurityAccessDeniedHandler implements AccessDeniedHandler {
+    /**
+     * Jackson工具类
+     */
+    @Resource
+    private JsonMapper jsonMapper;
+
     /**
      * 当接口没有权限返回处理
      *
@@ -46,8 +53,7 @@ public class SecurityAccessDeniedHandler implements AccessDeniedHandler {
         response.setContentType("application/json");
         // 没有访问权限
         ResultMessage<String> resultMessage = new ResultMessage<>(HttpStatus.FORBIDDEN.value(), SecurityHttpStatusChinese.getChineseDescriptionByHttpStatus(HttpStatus.FORBIDDEN));
-        ObjectMapper mapper = new ObjectMapper();
-        response.getWriter().println(mapper.writeValueAsString(resultMessage));
+        response.getWriter().println(jsonMapper.writeValueAsString(resultMessage));
         response.getWriter().flush();
     }
 }

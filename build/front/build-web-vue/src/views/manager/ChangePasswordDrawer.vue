@@ -99,18 +99,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import { FormInstance, message } from "ant-design-vue";
-import { RuleObject } from "ant-design-vue/es/form";
-import IconFont from "@src/assets/iconfont/icon";
+import { showSuccessNotification } from "@src/antd/notification";
+import { recover } from "@src/apis/authorization/service";
 import { FailImage } from "@src/apis/commons/constant";
 import { getManagerByJwtToken } from "@src/apis/member/service";
-import { getImageCaptcha, getMailCaptcha } from "@src/apis/message/service";
 import type { ImageCaptchaDTO, MailCaptchaDTO } from "@src/apis/message/dto";
+import { getImageCaptcha, getMailCaptcha } from "@src/apis/message/service";
+import IconFont from "@src/assets/iconfont/icon";
 import { mailFormatValidate } from "@src/utils/validate/regex";
+import { type FormInstance, message } from "ant-design-vue";
+import type { RuleObject } from "ant-design-vue/es/form";
 import { Md5 } from "ts-md5";
-import { recover } from "@src/apis/authorization/service";
-import { showSuccessNotification } from "@src/antd/notification";
+import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
 import { useRouter } from "vue-router";
 
 export default defineComponent({
@@ -200,10 +200,10 @@ export default defineComponent({
 			}
 			// 触发倒数
 			detailData.mailLoading = true;
-			detailData.mailCaptchaText = detailData.mailTotalTime + "s";
+			detailData.mailCaptchaText = `${detailData.mailTotalTime}s`;
 			const clock = window.setInterval(() => {
 				detailData.mailTotalTime--;
-				detailData.mailCaptchaText = detailData.mailTotalTime + "s";
+				detailData.mailCaptchaText = `${detailData.mailTotalTime}s`;
 				if (detailData.mailTotalTime < 0) {
 					window.clearInterval(clock);
 					detailData.mailCaptchaText = "发送验证码";

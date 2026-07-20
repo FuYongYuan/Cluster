@@ -164,6 +164,23 @@
 </template>
 
 <script lang="ts">
+import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
+import type { ManagerDTO } from "@src/apis/member/dto";
+import {
+	deleteManager,
+	freezeManager,
+	queryManager,
+	recoverFreezeManager,
+} from "@src/apis/member/service";
+import IconFont from "@src/assets/iconfont/icon";
+import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
+import ManagerDetail from "@src/views/manager/Detail.vue";
+import {
+	type FormInstance,
+	message,
+	Table,
+	type TablePaginationConfig,
+} from "ant-design-vue";
 import {
 	computed,
 	defineComponent,
@@ -173,23 +190,6 @@ import {
 	toRefs,
 	unref,
 } from "vue";
-import {
-	FormInstance,
-	message,
-	Table,
-	TablePaginationConfig,
-} from "ant-design-vue";
-import IconFont from "@src/assets/iconfont/icon";
-import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
-import {
-	deleteManager,
-	freezeManager,
-	queryManager,
-	recoverFreezeManager,
-} from "@src/apis/member/service";
-import type { ManagerDTO } from "@src/apis/member/dto";
-import ManagerDetail from "@src/views/manager/Detail.vue";
-import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
 
 export default defineComponent({
 	// 页面名称
@@ -457,7 +457,7 @@ export default defineComponent({
 					manageData.selectedRowKeys.join(","),
 				);
 				if (result !== undefined && result > 0) {
-					message.success("成功删除 " + result + " 条数据！");
+					message.success(`成功删除 ${result} 条数据！`);
 					await query();
 				}
 				// 结束
@@ -475,7 +475,7 @@ export default defineComponent({
 				// 删除
 				const result = await deleteManager(ids);
 				if (result !== undefined && result > 0) {
-					message.success("成功删除 " + result + " 条数据！");
+					message.success(`成功删除 ${result} 条数据！`);
 					await query();
 				}
 				// 结束
@@ -493,7 +493,7 @@ export default defineComponent({
 				// 冻结
 				const result = await freezeManager(ids);
 				if (result !== undefined && result > 0) {
-					message.success("成功冻结 " + result + " 条数据！");
+					message.success(`成功冻结 ${result} 条数据！`);
 					await query();
 				}
 				// 结束
@@ -511,7 +511,7 @@ export default defineComponent({
 				// 冻结
 				const result = await recoverFreezeManager(ids);
 				if (result !== undefined && result > 0) {
-					message.success("成功解冻 " + result + " 条数据！");
+					message.success(`成功解冻 ${result} 条数据！`);
 					await query();
 				}
 				// 结束

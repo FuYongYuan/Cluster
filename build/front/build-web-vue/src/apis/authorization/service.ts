@@ -1,4 +1,6 @@
-import Request from "@src/utils/axios/request";
+import { showErrorNotification } from "@src/antd/notification";
+import type { JwtDTO, RoleDTO } from "@src/apis/authorization/dto";
+import type { MenuDTO } from "@src/apis/capability/dto";
 import {
 	AuthorizationApiBaseURL,
 	LocalStorageAccount,
@@ -9,10 +11,8 @@ import {
 	LocalStorageManagerName,
 	SuccessRequestCode,
 } from "@src/apis/commons/constant";
-import { showErrorNotification } from "@src/antd/notification";
 import type { PageImpl } from "@src/apis/commons/dto";
-import type { JwtDTO, RoleDTO } from "@src/apis/authorization/dto";
-import type { MenuDTO } from "@src/apis/capability/dto";
+import Request from "@src/utils/axios/request";
 
 //----------------------------------------------------------------------------------------------------------------------账号管理
 /**
@@ -31,15 +31,7 @@ export const login = async (
 	const request = new Request<JwtDTO>();
 	return request
 		.post(
-			AuthorizationApiBaseURL +
-				"/system/login/" +
-				account +
-				"/" +
-				loginPassword +
-				"/" +
-				imageCaptcha +
-				"/" +
-				imageCaptchaCacheName,
+			`${AuthorizationApiBaseURL}/system/login/${account}/${loginPassword}/${imageCaptcha}/${imageCaptchaCacheName}`,
 		)
 		.then((response) => {
 			if (response.data.code === SuccessRequestCode) {
@@ -59,7 +51,7 @@ export const login = async (
 export const logout = async (): Promise<boolean> => {
 	const request = new Request<string>();
 	return request
-		.post(AuthorizationApiBaseURL + "/system/logout")
+		.post(`${AuthorizationApiBaseURL}/system/logout`)
 		.then((response) => {
 			if (response.data.data) {
 				localStorage.removeItem(LocalStorageAccount);
@@ -97,17 +89,7 @@ export const register = async (
 	const request = new Request<JwtDTO>();
 	return request
 		.post(
-			AuthorizationApiBaseURL +
-				"/system/register/" +
-				mail +
-				"/" +
-				account +
-				"/" +
-				loginPassword +
-				"/" +
-				mailCaptcha +
-				"/" +
-				mailCaptchaCacheName,
+			`${AuthorizationApiBaseURL}/system/register/${mail}/${account}/${loginPassword}/${mailCaptcha}/${mailCaptchaCacheName}`,
 		)
 		.then((response) => {
 			if (response.data.code === SuccessRequestCode) {
@@ -137,15 +119,7 @@ export const recover = async (
 	const request = new Request<JwtDTO>();
 	return request
 		.put(
-			AuthorizationApiBaseURL +
-				"/system/recover/" +
-				mail +
-				"/" +
-				loginPassword +
-				"/" +
-				mailCaptcha +
-				"/" +
-				mailCaptchaCacheName,
+			`${AuthorizationApiBaseURL}/system/recover/${mail}/${loginPassword}/${mailCaptcha}/${mailCaptchaCacheName}`,
 		)
 		.then((response) => {
 			if (response.data.code === SuccessRequestCode) {
@@ -165,7 +139,7 @@ export const recover = async (
 export const queryHaveMenu = async (): Promise<MenuDTO[] | undefined> => {
 	const request = new Request<MenuDTO[]>();
 	return request
-		.get(AuthorizationApiBaseURL + "/system/query/manager/have/menu")
+		.get(`${AuthorizationApiBaseURL}/system/query/manager/have/menu`)
 		.then((response) => {
 			if (response.data.code === SuccessRequestCode) {
 				return response.data.data;
@@ -184,7 +158,7 @@ export const queryHaveMenu = async (): Promise<MenuDTO[] | undefined> => {
 export const queryRoleAll = async (): Promise<RoleDTO[] | undefined> => {
 	const request = new Request<RoleDTO[]>();
 	return request
-		.get(AuthorizationApiBaseURL + "/role/query/all")
+		.get(`${AuthorizationApiBaseURL}/role/query/all`)
 		.then((response) => {
 			if (response.data.code === SuccessRequestCode) {
 				return response.data.data;
@@ -223,8 +197,7 @@ export const queryRole = async (
 		state,
 	};
 	// 地址
-	const url =
-		AuthorizationApiBaseURL + "/role/query/" + currentPage + "/" + eachPageSize;
+	const url = `${AuthorizationApiBaseURL}/role/query/${currentPage}/${eachPageSize}`;
 	// 请求
 	return request.get(url, params).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -246,7 +219,7 @@ export const deleteRole = async (ids: string): Promise<number | undefined> => {
 	// 初始化
 	const request = new Request<number>();
 	// 地址
-	const url = AuthorizationApiBaseURL + "/role/delete/" + ids;
+	const url = `${AuthorizationApiBaseURL}/role/delete/${ids}`;
 	// 请求
 	return request.delete(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -269,7 +242,7 @@ export const getRole = async (id: number): Promise<RoleDTO | undefined> => {
 	// 初始化
 	const request = new Request<RoleDTO>();
 	// 地址
-	const url = AuthorizationApiBaseURL + "/role/get/" + id;
+	const url = `${AuthorizationApiBaseURL}/role/get/${id}`;
 	// 请求
 	return request.get(url).then((response) => {
 		if (response.data.code === SuccessRequestCode) {
@@ -292,7 +265,7 @@ export const saveRole = async (dto: RoleDTO): Promise<string | undefined> => {
 	// 初始化
 	const request = new Request<string>();
 	// 地址
-	const url = AuthorizationApiBaseURL + "/role/save";
+	const url = `${AuthorizationApiBaseURL}/role/save`;
 	// 请求
 	return request.post(url, dto).then((response) => {
 		if (response.data.code === SuccessRequestCode) {

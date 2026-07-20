@@ -119,6 +119,18 @@
 </template>
 
 <script lang="ts">
+import type { RoleDTO } from "@src/apis/authorization/dto";
+import { deleteRole, queryRole } from "@src/apis/authorization/service";
+import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
+import IconFont from "@src/assets/iconfont/icon";
+import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
+import RoleDetail from "@src/views/role/Detail.vue";
+import {
+	type FormInstance,
+	message,
+	Table,
+	type TablePaginationConfig,
+} from "ant-design-vue";
 import {
 	computed,
 	defineComponent,
@@ -128,18 +140,6 @@ import {
 	toRefs,
 	unref,
 } from "vue";
-import {
-	FormInstance,
-	message,
-	Table,
-	TablePaginationConfig,
-} from "ant-design-vue";
-import IconFont from "@src/assets/iconfont/icon";
-import { getPageSort, getSerializableSort } from "@src/apis/commons/method";
-import { deleteRole, queryRole } from "@src/apis/authorization/service";
-import type { RoleDTO } from "@src/apis/authorization/dto";
-import RoleDetail from "@src/views/role/Detail.vue";
-import useResponsiveTableColumnWidth from "@src/hooks/use-responsive-table-column-width.ts";
 
 export default defineComponent({
 	// 页面名称
@@ -354,7 +354,7 @@ export default defineComponent({
 				// 删除
 				const result = await deleteRole(manageData.selectedRowKeys.join(","));
 				if (result !== undefined && result > 0) {
-					message.success("成功删除 " + result + " 条数据！");
+					message.success(`成功删除 ${result} 条数据！`);
 					await query();
 				}
 				// 结束
@@ -372,7 +372,7 @@ export default defineComponent({
 				// 删除
 				const result = await deleteRole(ids);
 				if (result !== undefined && result > 0) {
-					message.success("成功删除 " + result + " 条数据！");
+					message.success(`成功删除 ${result} 条数据！`);
 					await query();
 				}
 				// 结束

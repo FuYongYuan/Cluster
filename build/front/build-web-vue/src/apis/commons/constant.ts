@@ -71,31 +71,31 @@ export const ApiBaseURL = "/api";
 /**
  * 管理员模块基础地址
  */
-export const MemberApiBaseURL = ApiBaseURL + "/member";
+export const MemberApiBaseURL = `${ApiBaseURL}/member`;
 /**
  * 权限模块基础地址
  */
-export const AuthorizationApiBaseURL = ApiBaseURL + "/authorization";
+export const AuthorizationApiBaseURL = `${ApiBaseURL}/authorization`;
 /**
  * 功能模块基础地址
  */
-export const CapabilityApiBaseURL = ApiBaseURL + "/capability";
+export const CapabilityApiBaseURL = `${ApiBaseURL}/capability`;
 /**
  * 数据字典模块基础地址
  */
-export const DictionaryApiBaseURL = ApiBaseURL + "/dictionary";
+export const DictionaryApiBaseURL = `${ApiBaseURL}/dictionary`;
 /**
  * 数据模块基础地址
  */
-export const DataApiBaseURL = ApiBaseURL + "/data";
+export const DataApiBaseURL = `${ApiBaseURL}/data`;
 /**
  * 消息模块基础地址
  */
-export const MessageApiBaseURL = ApiBaseURL + "/message";
+export const MessageApiBaseURL = `${ApiBaseURL}/message`;
 /**
  * 项目构建模块基础地址
  */
-export const BuilderApiBaseURL = ApiBaseURL + "/builder";
+export const BuilderApiBaseURL = `${ApiBaseURL}/builder`;
 
 //----------------------------------------------------------------------------------------------------------------------默认设置
 /**

@@ -21,7 +21,7 @@
     </properties>
 
     <dependencies>
-        <!-- 引入 Spring Boot data MongoDB 相关依赖，将 MongoDB 作为非关系型数据库，并实现对其的自动配置 -->
+        <!-- 引入 Spring Boot data MongoDB 相关依赖，将 MongoDB 作为非关系型数据库，并实现对其的自动配置 当前核心版本5.6.1最高支持到8.2.*版本Mongo，8.3版本需要5.8.*以上版本 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>

@@ -73,12 +73,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from "vue";
-import { FormInstance, message } from "ant-design-vue";
-import { RuleObject } from "ant-design-vue/es/form";
-import IconFont from "@src/assets/iconfont/icon";
-import { getParameter, saveParameter } from "@src/apis/dictionary/service";
 import type { ParameterDTO } from "@src/apis/dictionary/dto";
+import { getParameter, saveParameter } from "@src/apis/dictionary/service";
+import IconFont from "@src/assets/iconfont/icon";
+import { type FormInstance, message } from "ant-design-vue";
+import type { RuleObject } from "ant-design-vue/es/form";
+import { defineComponent, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
 	// 页面名称

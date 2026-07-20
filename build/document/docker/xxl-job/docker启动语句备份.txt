@@ -14,4 +14,4 @@
 * 如需自定义 JVM内存参数 等配置，可通过 "-e JAVA_OPTS" 指定，参数格式 JAVA_OPTS="-Xmx512m" ；
 */
 
-docker run -p 10905:8080 -v ./logs:/data/applogs --name xxl-job-admin-3.3.2  -d xxl-job-admin:3.3.2
+docker run -p 10905:8080 -v ./logs:/data/applogs --name xxl-job-admin-3.5.0-SNAPSHOT  -d xxl-job-admin:3.5.0-SNAPSHOT

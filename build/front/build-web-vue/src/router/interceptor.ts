@@ -1,9 +1,9 @@
-import router from "@src/router/config.ts";
 import {
 	LocalStorageAccountMenuList,
 	LocalStorageInvalidDate,
 	LocalStorageJwtToken,
 } from "@src/apis/commons/constant";
+import router from "@src/router/config.ts";
 import type {
 	NavigationGuardNext,
 	RouteLocationNormalized,
@@ -33,7 +33,7 @@ router.beforeEach(
 		const jwtToken = localStorage.getItem(LocalStorageJwtToken);
 		const invalidDate = localStorage.getItem(LocalStorageInvalidDate);
 		const invalidDateTime = invalidDate ? new Date(invalidDate).getTime() : 0;
-		const currentDate = new Date().getTime();
+		const currentDate = Date.now();
 
 		// 如果没有 Token 或者 Token 过期，跳转到登录页
 		if (!jwtToken || !invalidDateTime || invalidDateTime < currentDate) {

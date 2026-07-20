@@ -23,12 +23,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from "vue";
-import IconFont from "@src/assets/iconfont/icon";
-import { message, UploadChangeParam } from "ant-design-vue";
-import { uploadFormData } from "@src/apis/data/service";
 import { BusinessTypeDataModel } from "@src/apis/commons/constant";
+import { uploadFormData } from "@src/apis/data/service";
+import IconFont from "@src/assets/iconfont/icon";
 import { jsonFormatValidate } from "@src/utils/validate/regex";
+import { message, type UploadChangeParam } from "ant-design-vue";
+import { defineComponent, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
 	// 页面名称

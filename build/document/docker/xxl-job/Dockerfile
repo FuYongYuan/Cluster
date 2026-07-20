@@ -14,6 +14,9 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # copy jar
 ADD target/xxl-job-admin-*.jar /app.jar
 
+# expose port
+EXPOSE 8080
+
 # command
 # log home: -e LOG_HOME=/data/applogs
 # jvm options: -e JAVA_OPTS="-Xms128m -Xmx128m"

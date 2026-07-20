@@ -12,21 +12,25 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@vue-styled-components/core": "^1.13.3",
     "ant-design-vue": "^4.2.6",
-    "axios": "^1.13.3",
+    "axios": "^1.18.1",
     "consola": "^3.4.2",
-    "dayjs": "^1.11.19",
-    "pinia": "^3.0.4",
-    "skywalking-client-js": "^1.0.1",
+    "dayjs": "^1.11.21",
+    "pinia": "^4.0.2",
+    "skywalking-client-js": "^1.1.0",
     "ts-md5": "^2.0.1",
-    "vue": "^3.5.27",
-    "vue-router": "^4.6.4"
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.13",
-    "@vitejs/plugin-vue": "^6.0.3",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.1",
+    "@biomejs/biome": "2.5.4",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5",
     "vite-plugin-style-import": "^2.0.0",
-    "vue-tsc": "^3.2.4"
+    "vue-tsc": "^3.3.7"
+  },
+  "allowScripts": {
+    "core-js@3.39.0": true,
+    "fsevents@2.3.3": true
   }
 }

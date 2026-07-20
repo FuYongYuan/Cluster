@@ -1,11 +1,11 @@
-import Request from "@src/utils/axios/request";
+import { showErrorNotification } from "@src/antd/notification";
 import {
 	DictionaryApiBaseURL,
 	SuccessRequestCode,
 } from "@src/apis/commons/constant";
-import { showErrorNotification } from "@src/antd/notification";
 import type { PageImpl } from "@src/apis/commons/dto";
 import type { ParameterDTO } from "@src/apis/dictionary/dto";
+import Request from "@src/utils/axios/request";
 
 /**
  * 根据参数编码、参数名称、状态查询参数列表

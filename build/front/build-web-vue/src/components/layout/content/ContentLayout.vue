@@ -27,9 +27,9 @@
 </template>
 
 <script lang="ts">
+import { LocalStorageAccountMenuList } from "@src/apis/commons/constant";
 import { defineComponent, onMounted, reactive, toRefs, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { LocalStorageAccountMenuList } from "@src/apis/commons/constant";
 
 /**
  * 内容数据类型
@@ -204,7 +204,7 @@ export default defineComponent({
 		) => {
 			if (keepAlive) {
 				if (
-					visitedRoute.pageName != undefined &&
+					visitedRoute.pageName !== undefined &&
 					visitedRoute.pageName !== ""
 				) {
 					if (
@@ -217,7 +217,7 @@ export default defineComponent({
 				}
 			} else {
 				if (
-					visitedRoute.pageName != undefined &&
+					visitedRoute.pageName !== undefined &&
 					visitedRoute.pageName !== ""
 				) {
 					if (

@@ -147,21 +147,23 @@ core:
     # The long value of the max direct memory usage. The default max value is -1, representing no limit. The unit is in bytes.
     maxDirectMemoryUsage: ${SW_CORE_MAX_DIRECT_MEMORY_USAGE:-1}
 storage:
-  selector: ${SW_STORAGE:elasticsearch}
+  selector: ${SW_STORAGE:banyandb}
   banyandb:
     # Since 10.2.0, the banyandb configuration is separated to an independent configuration file: `bydb.yaml`.
   elasticsearch:
-    namespace: ${SW_NAMESPACE:"skywalking_build"}
-    clusterNodes: ${SW_STORAGE_ES_CLUSTER_NODES:host.docker.internal:9200}
+    namespace: ${SW_NAMESPACE:""}
+    clusterNodes: ${SW_STORAGE_ES_CLUSTER_NODES:localhost:9200}
     protocol: ${SW_STORAGE_ES_HTTP_PROTOCOL:"http"}
     connectTimeout: ${SW_STORAGE_ES_CONNECT_TIMEOUT:3000}
     socketTimeout: ${SW_STORAGE_ES_SOCKET_TIMEOUT:30000}
     responseTimeout: ${SW_STORAGE_ES_RESPONSE_TIMEOUT:15000}
     numHttpClientThread: ${SW_STORAGE_ES_NUM_HTTP_CLIENT_THREAD:0}
-    user: ${SW_ES_USER:"elastic"}
-    password: ${SW_ES_PASSWORD:"fyyain77"}
-    trustStorePath: ${SW_STORAGE_ES_SSL_JKS_PATH:""}
-    trustStorePass: ${SW_STORAGE_ES_SSL_JKS_PASS:""}
+    user: ${SW_ES_USER:""}
+    password: ${SW_ES_PASSWORD:""}
+    trustStorePath: ${SW_STORAGE_ES_SSL_JKS_PATH:""} # Path to the truststore that contains CA certificates used to verify the OpenSearch/Elasticsearch server certificate.
+    trustStorePass: ${SW_STORAGE_ES_SSL_JKS_PASS:""} # Password for the truststore defined in trustStorePath.
+    keyStorePath: ${SW_STORAGE_ES_SSL_KEY_STORE_PATH:""} # Path to the client certificate keystore for mutual TLS (OpenSearch/Elasticsearch client certificate authentication). 
+    keyStorePass: ${SW_STORAGE_ES_SSL_KEY_STORE_PASS:""} # Password for the client certificate keystore defined in keyStorePath. This can be externalized via secretsManagementFile.
     secretsManagementFile: ${SW_ES_SECRETS_MANAGEMENT_FILE:""} # Secrets management file in the properties format includes the username, password, which are managed by 3rd party tool.
     dayStep: ${SW_STORAGE_DAY_STEP:1} # Represent the number of days in the one minute/hour/day index.
     indexShardsNumber: ${SW_STORAGE_ES_INDEX_SHARDS_NUMBER:1} # Shard number of new indexes
@@ -196,9 +198,9 @@ storage:
     enableCustomRouting: ${SW_STORAGE_ES_ENABLE_CUSTOM_ROUTING:false}
   mysql:
     properties:
-      jdbcUrl: ${SW_JDBC_URL:"jdbc:mysql://host.docker.internal:3306/skywalking?rewriteBatchedStatements=true&allowMultiQueries=true&useUnicode=true&useSSL=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai"}
+      jdbcUrl: ${SW_JDBC_URL:"jdbc:mysql://localhost:3306/swtest?rewriteBatchedStatements=true&allowMultiQueries=true"}
       dataSource.user: ${SW_DATA_SOURCE_USER:root}
-      dataSource.password: ${SW_DATA_SOURCE_PASSWORD:fyyain77}
+      dataSource.password: ${SW_DATA_SOURCE_PASSWORD:root@1234}
       dataSource.cachePrepStmts: ${SW_DATA_SOURCE_CACHE_PREP_STMTS:true}
       dataSource.prepStmtCacheSize: ${SW_DATA_SOURCE_PREP_STMT_CACHE_SQL_SIZE:250}
       dataSource.prepStmtCacheSqlLimit: ${SW_DATA_SOURCE_PREP_STMT_CACHE_SQL_LIMIT:2048}
@@ -237,11 +239,15 @@ agent-analyzer:
 log-analyzer:
   selector: ${SW_LOG_ANALYZER:default}
   default:
-    lalFiles: ${SW_LOG_LAL_FILES:envoy-als,mesh-dp,mysql-slowsql,pgsql-slowsql,redis-slowsql,k8s-service,nginx,default}
+    lalFiles: ${SW_LOG_LAL_FILES:envoy-als,mesh-dp,mysql-slowsql,pgsql-slowsql,redis-slowsql,k8s-service,nginx,envoy-ai-gateway,default}
     malFiles: ${SW_LOG_MAL_FILES:"nginx"}
 
 event-analyzer:
   selector: ${SW_EVENT_ANALYZER:default}
+  default:
+
+gen-ai-analyzer:
+  selector: ${SW_GENAI_ANALYZER:default}
   default:
 
 receiver-sharing-server:
@@ -328,11 +334,12 @@ envoy-metric:
   selector: ${SW_ENVOY_METRIC:default}
   default:
     acceptMetricsService: ${SW_ENVOY_METRIC_SERVICE:true}
+    enabledEnvoyMetricsRules: ${SW_ENVOY_METRIC_ENABLED_RULES:"envoy,envoy-svc-relation"}
     alsHTTPAnalysis: ${SW_ENVOY_METRIC_ALS_HTTP_ANALYSIS:""}
     alsTCPAnalysis: ${SW_ENVOY_METRIC_ALS_TCP_ANALYSIS:""}
     # `k8sServiceNameRule` allows you to customize the service name in ALS via Kubernetes metadata,
-    # the available variables are `pod`, `service`, f.e., you can use `${service.metadata.name}-${pod.metadata.labels.groupVersion}`
-    # to append the groupVersion number to the service name.
+    # the available variables are `pod`, `service`, f.e., you can use `${service.metadata.name}-${pod.metadata.labels.version}`
+    # to append the version number to the service name.
     # Be careful, when using environment variables to pass this configuration, use single quotes(`''`) to avoid it being evaluated by the shell.
     k8sServiceNameRule: ${K8S_SERVICE_NAME_RULE:"${pod.metadata.labels.(service.istio.io/canonical-name)}.${pod.metadata.namespace}"}
     istioServiceNameRule: ${ISTIO_SERVICE_NAME_RULE:"${serviceEntry.metadata.name}.${serviceEntry.metadata.namespace}"}
@@ -384,8 +391,8 @@ receiver-meter:
 receiver-otel:
   selector: ${SW_OTEL_RECEIVER:default}
   default:
-    enabledHandlers: ${SW_OTEL_RECEIVER_ENABLED_HANDLERS:"otlp-metrics,otlp-logs"}
-    enabledOtelMetricsRules: ${SW_OTEL_RECEIVER_ENABLED_OTEL_METRICS_RULES:"apisix,nginx/*,k8s/*,istio-controlplane,vm,mysql/*,postgresql/*,oap,aws-eks/*,windows,aws-s3/*,aws-dynamodb/*,aws-gateway/*,redis/*,elasticsearch/*,rabbitmq/*,mongodb/*,kafka/*,pulsar/*,bookkeeper/*,rocketmq/*,clickhouse/*,activemq/*,kong/*,flink/*,banyandb/*"}
+    enabledHandlers: ${SW_OTEL_RECEIVER_ENABLED_HANDLERS:"otlp-traces,otlp-metrics,otlp-logs"}
+    enabledOtelMetricsRules: ${SW_OTEL_RECEIVER_ENABLED_OTEL_METRICS_RULES:"apisix,nginx/*,k8s/*,istio-controlplane,vm,mysql/*,postgresql/*,oap,aws-eks/*,windows,aws-s3/*,aws-dynamodb/*,aws-gateway/*,redis/*,elasticsearch/*,rabbitmq/*,mongodb/*,kafka/*,pulsar/*,bookkeeper/*,rocketmq/*,clickhouse/*,activemq/*,kong/*,flink/*,banyandb/*,envoy-ai-gateway/*"}
 
 receiver-zipkin:
   selector: ${SW_RECEIVER_ZIPKIN:-}
@@ -492,6 +499,23 @@ logql:
     restContextPath: ${SW_LOGQL_REST_CONTEXT_PATH:/}
     restIdleTimeOut: ${SW_LOGQL_REST_IDLE_TIMEOUT:30000}
     restAcceptQueueSize: ${SW_LOGQL_REST_QUEUE_SIZE:0}
+
+traceQL:
+  selector: ${SW_TRACEQL:-}
+  default:
+    restHost: ${SW_TRACEQL_REST_HOST:0.0.0.0}
+    restPort: ${SW_TRACEQL_REST_PORT:3200}
+    enableDatasourceZipkin: ${SW_TRACEQL_ENABLE_DATASOURCE_ZIPKIN:false}
+    enableDatasourceSkywalking: ${SW_TRACEQL_ENABLE_DATASOURCE_SKYWALKING:false}
+    restContextPathZipkin: ${SW_TRACEQL_REST_CONTEXT_PATH_ZIPKIN:/zipkin}
+    restContextPathSkywalking: ${SW_TRACEQL_REST_CONTEXT_PATH_SKYWALKING:/skywalking}
+    restIdleTimeOut: ${SW_TRACEQL_REST_IDLE_TIMEOUT:30000}
+    restAcceptQueueSize: ${SW_TRACEQL_REST_QUEUE_SIZE:0}
+    # If the query does not provide the start time (the default end time is current), the default lookback for traces and autocompleteTags is 1 day in milliseconds.
+    lookback: ${SW_TRACEQL_LOOKBACK:86400000}
+    # The tags in the list result of traces query, which would be used for trace grouping and shown in the trace list page.
+    zipkinTracesListResultTags: ${SW_TRACEQL_ZIPKIN_TRACES_LIST_RESULT_TAGS:http.method,error}
+    skywalkingTracesListResultTags: ${SW_TRACEQL_SKYWALKING_TRACES_LIST_RESULT_TAGS:http.method,http.status_code,rpc.status_code,db.type,db.instance,mq.queue,mq.topic,mq.broker}
 
 alarm:
   selector: ${SW_ALARM:default}

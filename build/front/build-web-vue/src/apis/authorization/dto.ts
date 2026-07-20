@@ -1,4 +1,4 @@
-import { MenuDTO } from "@src/apis/capability/dto.ts";
+import type { MenuDTO } from "@src/apis/capability/dto.ts";
 
 /**
  * Jwt返回对象

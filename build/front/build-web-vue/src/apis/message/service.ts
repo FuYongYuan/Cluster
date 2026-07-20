@@ -1,11 +1,11 @@
-import Request from "@src/utils/axios/request";
+import { showErrorNotification } from "@src/antd/notification";
 import {
 	DataImagePNG,
 	MessageApiBaseURL,
 	SuccessRequestCode,
 } from "@src/apis/commons/constant";
-import { showErrorNotification } from "@src/antd/notification";
 import type { ImageCaptchaDTO, MailCaptchaDTO } from "@src/apis/message/dto";
+import Request from "@src/utils/axios/request";
 
 /**
  * 获取图形验证码

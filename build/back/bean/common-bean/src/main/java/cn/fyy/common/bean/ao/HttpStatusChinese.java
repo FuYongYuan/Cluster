@@ -13,7 +13,6 @@ public enum HttpStatusChinese {
     // http 状态返回代码 1xx（临时响应）表示临时响应并需要请求者继续执行操作的状态代码。
     CONTINUE(HttpStatus.CONTINUE, "（继续）请求者应当继续提出请求。 服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。"),
     SWITCHING_PROTOCOLS(HttpStatus.SWITCHING_PROTOCOLS, "（切换协议）请求者已要求服务器切换协议，服务器已确认并准备切换。"),
-    PROCESSING(HttpStatus.PROCESSING, "（代理处理）由WebDAV（RFC 2518）扩展的状态码，代表处理将被继续执行。"),
 
     // http 状态返回代码 2xx （成功）表示成功处理了请求的状态代码。
     OK(HttpStatus.OK, "（成功）服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。"),
@@ -46,12 +45,10 @@ public enum HttpStatusChinese {
     GONE(HttpStatus.GONE, "（已删除）如果请求的资源已永久删除，服务器就会返回此响应。"),
     LENGTH_REQUIRED(HttpStatus.LENGTH_REQUIRED, "（需要有效长度）服务器不接受不含有效内容长度标头字段的请求。"),
     PRECONDITION_FAILED(HttpStatus.PRECONDITION_FAILED, "（未满足前提条件）服务器未满足请求者在请求中设置的其中一个前提条件。"),
-    PAYLOAD_TOO_LARGE(HttpStatus.PAYLOAD_TOO_LARGE, "（请求实体过大）服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。"),
     URI_TOO_LONG(HttpStatus.URI_TOO_LONG, "（请求的 URI 过长）请求的 URI（通常为网址）过长，服务器无法处理。"),
     UNSUPPORTED_MEDIA_TYPE(HttpStatus.UNSUPPORTED_MEDIA_TYPE, "（不支持的媒体类型）请求的格式不受请求页面的支持。"),
     REQUESTED_RANGE_NOT_SATISFIABLE(HttpStatus.REQUESTED_RANGE_NOT_SATISFIABLE, "（请求范围不符合要求）如果页面无法提供请求的范围，则服务器会返回此状态代码。"),
     EXPECTATION_FAILED(HttpStatus.EXPECTATION_FAILED, "（未满足期望值）服务器未满足\"期望\"请求标头字段的要求。"),
-    UNPROCESSABLE_ENTITY(HttpStatus.UNPROCESSABLE_ENTITY, "请求格式正确，但是由于含有语义错误，无法响应。"),
     LOCKED(HttpStatus.LOCKED, "当前资源被锁定。（RFC 4918 WebDAV）"),
     FAILED_DEPENDENCY(HttpStatus.FAILED_DEPENDENCY, "由于之前的某个请求发生的错误，导致当前请求失败，例如 PROPPATCH。（RFC 4918 WebDAV）"),
     TOO_EARLY(HttpStatus.TOO_EARLY, "状态码 425 Too Early 代表服务器不愿意冒风险来处理该请求，原因是处理该请求可能会被“重放”，从而造成潜在的重放攻击。（RFC 8470）"),
@@ -66,9 +63,7 @@ public enum HttpStatusChinese {
     GATEWAY_TIMEOUT(HttpStatus.GATEWAY_TIMEOUT, "（网关超时）服务器作为网关或代理，但是没有及时从上游服务器收到请求。"),
     HTTP_VERSION_NOT_SUPPORTED(HttpStatus.HTTP_VERSION_NOT_SUPPORTED, "（HTTP 版本不受支持）服务器不支持请求中所用的 HTTP 协议版本。"),
     VARIANT_ALSO_NEGOTIATES(HttpStatus.VARIANT_ALSO_NEGOTIATES, "由《透明内容协商协议》（RFC 2295）扩展，代表服务器存在内部配置错误：被请求的协商变元资源被配置为在透明内容协商中使用自己，因此在一个协商处理中不是一个合适的重点。"),
-    INSUFFICIENT_STORAGE(HttpStatus.INSUFFICIENT_STORAGE, "服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。WebDAV (RFC 4918)"),
-    BANDWIDTH_LIMIT_EXCEEDED(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED, "服务器达到带宽限制。这不是一个官方的状态码，但是仍被广泛使用。"),
-    NOT_EXTENDED(HttpStatus.NOT_EXTENDED, "获取资源所需要的策略并没有被满足。（RFC 2774）");
+    INSUFFICIENT_STORAGE(HttpStatus.INSUFFICIENT_STORAGE, "服务器无法存储完成请求所必须的内容。这个状况被认为是临时的。WebDAV (RFC 4918)");
 
     /**
      * http 状态返回代码

@@ -114,19 +114,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
-import { FormInstance, message } from "ant-design-vue";
-import IconFont from "@src/assets/iconfont/icon";
-import { getManager, saveManager } from "@src/apis/member/service";
+import type { RoleDTO } from "@src/apis/authorization/dto";
 import { queryRoleAll } from "@src/apis/authorization/service";
 import type { TransferData } from "@src/apis/commons/dto";
-import type { RoleDTO } from "@src/apis/authorization/dto";
 import type { ManagerDTO } from "@src/apis/member/dto";
-import { RuleObject } from "ant-design-vue/es/form";
+import { getManager, saveManager } from "@src/apis/member/service";
+import IconFont from "@src/assets/iconfont/icon";
 import {
 	mailFormatValidate,
 	phoneFormatValidate,
 } from "@src/utils/validate/regex";
+import { type FormInstance, message } from "ant-design-vue";
+import type { RuleObject } from "ant-design-vue/es/form";
+import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
 
 export default defineComponent({
 	// 页面名称

@@ -102,9 +102,11 @@ public class PermitUrl {
     private final String[] capabilityUrl = {
             // 管理员模块需配合登录、注册、找回密码使用的越鉴权接口
             "/menu/feign/query/menu/list/**",
+            "/menu/feign/query/hierarchy/menu/list/**",
             "/api/feign/save/list/**",
 
             "/capability/menu/feign/query/menu/list/**",
+            "/capability/menu/feign/query/hierarchy/menu/list/**",
             "/capability/api/feign/save/list/**",
     };
 

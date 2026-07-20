@@ -1,6 +1,7 @@
 package cn.fyy.redis.util;
 
 import cn.fyy.redis.bean.ao.RedisSelect;
+import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.Getter;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -122,19 +123,29 @@ public class RedisTemplateSelectUtil {
      * 获取默认库
      */
     @Getter
-    private final RedisTemplate<String, Object> defaultRedisTemplate;
+    private RedisTemplate<String, Object> defaultRedisTemplate;
+
+    /**
+     * 默认库选择
+     */
+    private final int defaultRedisSelect;
 
     /**
      * 初始化 Redis 操作实现类
      */
     public RedisTemplateSelectUtil(int defaultRedisSelect) {
+        this.defaultRedisSelect = defaultRedisSelect;
+    }
+
+    /**
+     * 初始化默认 Redis 操作实现类
+     */
+    @PostConstruct
+    public void init() {
         RedisSelect redisSelect = RedisSelect.getByRedisSelectValue(defaultRedisSelect);
-        // 指定的默认库选择
         if (redisSelect != null) {
-            // 指定默认库
             defaultRedisTemplate = getRedisTemplate(redisSelect);
         } else {
-            // 未找到对应的默认库则根据 Redis 默认的 0号 库为默认
             defaultRedisTemplate = redisTemplate0;
         }
     }
