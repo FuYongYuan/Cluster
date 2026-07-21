@@ -3,6 +3,11 @@ package cn.fyy.redis.config;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * redis配置类
+ *
+ * @author fyy
+ */
 @Data
 @ConfigurationProperties(prefix = "spring.data.redis")
 public class RedisProperties {

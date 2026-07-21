@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.EnumMap;
 
 /**
  * Redis 相关 Bean 配置
@@ -42,384 +43,60 @@ public class RedisConfig {
     @Resource
     private RedisProperties redisProperties;
 
-    //------------------------------------------------------------------------------------------------------------------RedisTemplate
 
     /**
-     * RedisTemplate 配置
+     * RedisTemplate 选择工具
      *
-     * @return RedisTemplate
+     * @return RedisTemplateSelectUtil
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate0() {
-        return getRedisTemplate(RedisSelect.INFO);
+    public RedisTemplateSelectUtil redisTemplateSelectUtil() {
+        RedisSerializer<Object> serializer = redisSerializer();
+
+        EnumMap<RedisSelect, RedisTemplate<String, Object>> redisTemplateMap = new EnumMap<>(RedisSelect.class);
+        EnumMap<RedisSelect, ReactiveRedisTemplate<String, Object>> reactiveRedisTemplateMap = new EnumMap<>(RedisSelect.class);
+
+        for (RedisSelect select : RedisSelect.values()) {
+            LettuceConnectionFactory factory = createConnectionFactory(select.getValue());
+
+            RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+            redisTemplate.setConnectionFactory(factory);
+            redisTemplate.setKeySerializer(new StringRedisSerializer());
+            redisTemplate.setValueSerializer(serializer);
+            redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+            redisTemplate.setHashValueSerializer(serializer);
+            redisTemplate.afterPropertiesSet();
+            redisTemplateMap.put(select, redisTemplate);
+
+            RedisSerializationContext<String, Object> context = RedisSerializationContext
+                    .<String, Object>newSerializationContext()
+                    .key(new StringRedisSerializer())
+                    .value(serializer)
+                    .hashKey(new StringRedisSerializer())
+                    .hashValue(serializer)
+                    .build();
+            reactiveRedisTemplateMap.put(select, new ReactiveRedisTemplate<>(factory, context));
+        }
+
+        return new RedisTemplateSelectUtil(redisTemplateMap, reactiveRedisTemplateMap, redisProperties.getDatabase());
     }
 
     /**
-     * RedisTemplate 配置
+     * 根据数据库创建连接工厂
      *
-     * @return RedisTemplate
+     * @param database 数据库
+     * @return LettuceConnectionFactory
      */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate1() {
-        return getRedisTemplate(RedisSelect.ONE);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate2() {
-        return getRedisTemplate(RedisSelect.TWO);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate3() {
-        return getRedisTemplate(RedisSelect.THREE);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate4() {
-        return getRedisTemplate(RedisSelect.FOUR);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate5() {
-        return getRedisTemplate(RedisSelect.FIVE);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate6() {
-        return getRedisTemplate(RedisSelect.SIX);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate7() {
-        return getRedisTemplate(RedisSelect.SEVEN);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate8() {
-        return getRedisTemplate(RedisSelect.EIGHT);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate9() {
-        return getRedisTemplate(RedisSelect.NINE);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate10() {
-        return getRedisTemplate(RedisSelect.TEN);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate11() {
-        return getRedisTemplate(RedisSelect.ELEVEN);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate12() {
-        return getRedisTemplate(RedisSelect.TWELVE);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate13() {
-        return getRedisTemplate(RedisSelect.THIRTEEN);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate14() {
-        return getRedisTemplate(RedisSelect.FOURTEEN);
-    }
-
-    /**
-     * RedisTemplate 配置
-     *
-     * @return RedisTemplate
-     */
-    @Bean
-    public RedisTemplate<String, Object> redisTemplate15() {
-        return getRedisTemplate(RedisSelect.FIFTEEN);
-    }
-
-    /**
-     * 获取 RedisTemplate
-     *
-     * @param redisSelect RedisSelect 选择
-     * @return RedisTemplate
-     */
-    private RedisTemplate<String, Object> getRedisTemplate(RedisSelect redisSelect) {
-        // 配置 Redis
+    private LettuceConnectionFactory createConnectionFactory(int database) {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
         configuration.setHostName(redisProperties.getHost());
         configuration.setPort(redisProperties.getPort());
         configuration.setPassword(redisProperties.getPassword());
-        configuration.setDatabase(redisSelect.getValue());
+        configuration.setDatabase(database);
         LettuceConnectionFactory factory = new LettuceConnectionFactory(configuration);
         factory.start();
-
-        // 序列化配置
-        RedisSerializer<Object> serializer = redisSerializer();
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(factory);
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(serializer);
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(serializer);
-        redisTemplate.afterPropertiesSet();
-        return redisTemplate;
+        return factory;
     }
-    //------------------------------------------------------------------------------------------------------------------ReactiveRedisTemplate
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate0() {
-        return getReactiveRedisTemplate(RedisSelect.INFO);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate1() {
-        return getReactiveRedisTemplate(RedisSelect.ONE);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate2() {
-        return getReactiveRedisTemplate(RedisSelect.TWO);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate3() {
-        return getReactiveRedisTemplate(RedisSelect.THREE);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate4() {
-        return getReactiveRedisTemplate(RedisSelect.FOUR);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate5() {
-        return getReactiveRedisTemplate(RedisSelect.FIVE);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate6() {
-        return getReactiveRedisTemplate(RedisSelect.SIX);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate7() {
-        return getReactiveRedisTemplate(RedisSelect.SEVEN);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate8() {
-        return getReactiveRedisTemplate(RedisSelect.EIGHT);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate9() {
-        return getReactiveRedisTemplate(RedisSelect.NINE);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate10() {
-        return getReactiveRedisTemplate(RedisSelect.TEN);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate11() {
-        return getReactiveRedisTemplate(RedisSelect.ELEVEN);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate12() {
-        return getReactiveRedisTemplate(RedisSelect.TWELVE);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate13() {
-        return getReactiveRedisTemplate(RedisSelect.THIRTEEN);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate14() {
-        return getReactiveRedisTemplate(RedisSelect.FOURTEEN);
-    }
-
-    /**
-     * ReactiveRedisTemplate 配置
-     *
-     * @return ReactiveRedisTemplate
-     */
-    @Bean
-    public ReactiveRedisTemplate<String, Object> reactiveRedisTemplate15() {
-        return getReactiveRedisTemplate(RedisSelect.FIFTEEN);
-    }
-
-    /**
-     * 获取 ReactiveRedisTemplate
-     *
-     * @param redisSelect RedisSelect 选择
-     * @return ReactiveRedisTemplate
-     */
-    private ReactiveRedisTemplate<String, Object> getReactiveRedisTemplate(RedisSelect redisSelect) {
-        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
-        configuration.setHostName(redisProperties.getHost());
-        configuration.setPort(redisProperties.getPort());
-        configuration.setPassword(redisProperties.getPassword());
-        configuration.setDatabase(redisSelect.getValue());
-        LettuceConnectionFactory factory = new LettuceConnectionFactory(configuration);
-        factory.start();
-
-        RedisSerializer<Object> serializer = redisSerializer();
-        RedisSerializationContext<String, Object> context = RedisSerializationContext
-                .<String, Object>newSerializationContext()
-                .key(new StringRedisSerializer())
-                .value(serializer)
-                .hashKey(new StringRedisSerializer())
-                .hashValue(serializer)
-                .build();
-
-        return new ReactiveRedisTemplate<>(factory, context);
-    }
-    //------------------------------------------------------------------------------------------------------------------公用方法
 
     /**
      * Redis 序列化方式
@@ -493,12 +170,4 @@ public class RedisConfig {
         return new JacksonJsonRedisSerializer<>(mapper, Object.class);
     }
 
-
-    /**
-     * 初始化 Redis 链接选择工具类
-     */
-    @Bean
-    public RedisTemplateSelectUtil redisTemplateSelectUtil() {
-        return new RedisTemplateSelectUtil(redisProperties.getDatabase());
-    }
 }

@@ -31,6 +31,7 @@ docker pull logstash:9.2.1
 docker pull elastic/filebeat:9.2.1
 
 10、skywalking 【可最新】 版本只需要配合java可以链接使用即可
+docker pull apache/skywalking-banyandb:0.10.2
 docker pull apache/skywalking-oap-server:10.4.0-java21
 docker pull apache/skywalking-ui:10.4.0-java21
 

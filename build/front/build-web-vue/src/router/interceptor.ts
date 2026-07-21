@@ -5,17 +5,12 @@ import {
 } from "@src/apis/commons/constant";
 import router from "@src/router/config.ts";
 import type {
-	NavigationGuardNext,
 	RouteLocationNormalized,
 	RouteLocationNormalizedLoaded,
 } from "vue-router";
 
 router.beforeEach(
-	async (
-		to: RouteLocationNormalized,
-		from: RouteLocationNormalizedLoaded,
-		next: NavigationGuardNext,
-	) => {
+	async (to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded) => {
 		// 排除不需要权限检查的路径
 		const excludedPaths = [
 			"/login",
@@ -26,7 +21,7 @@ router.beforeEach(
 			"/error/500",
 		];
 		if (excludedPaths.includes(to.path)) {
-			return next();
+			return;
 		}
 
 		// 检查 JWT Token 和有效期
@@ -42,13 +37,13 @@ router.beforeEach(
 			localStorage.removeItem(LocalStorageInvalidDate);
 			localStorage.removeItem(LocalStorageAccountMenuList);
 			// 跳转到登录页
-			return next("/login");
+			return "/login";
 		}
 
 		if (from.path !== to.path) {
 			// 如果是访问 /home 直接跳过
 			if (to.path === "/home") {
-				return next();
+				return;
 			}
 
 			// 检查菜单权限
@@ -57,14 +52,14 @@ router.beforeEach(
 
 			if (menuList) {
 				if (menuScan(menuList, to.path)) {
-					return next();
+					return;
 				}
-				return next("/error/403");
+				return "/error/403";
 			}
-			return next("/home");
+			return "/home";
 		} else {
-			// 如果 from.path 和 to.path 相同，直接调用 next
-			return next();
+			// 如果 from.path 和 to.path 相同，直接放行
+			return;
 		}
 	},
 );

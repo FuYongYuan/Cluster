@@ -2,21 +2,23 @@ package cn.fyy.redis.service;
 
 import cn.fyy.redis.bean.ao.RedisSelect;
 import io.lettuce.core.RedisException;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.List;
+import java.time.Duration;
 
 /**
- * Redis 阻塞式操作接口
+ * Redis 响应式操作接口
  *
  * @author fyy
  */
-public interface RedisService {
+public interface ReactiveRedisService {
     /**
      * 判断是否有该属性
      *
      * @param key 键
      */
-    Boolean hasKey(String key);
+    Mono<Boolean> hasKey(String key);
 
     /**
      * 判断是否有该属性
@@ -24,7 +26,7 @@ public interface RedisService {
      * @param key      键
      * @param database 库
      */
-    Boolean hasKey(RedisSelect database, String key);
+    Mono<Boolean> hasKey(RedisSelect database, String key);
 
     /**
      * 添加
@@ -34,7 +36,7 @@ public interface RedisService {
      * @return 是否存在-存在添加成功，不存在添加失败
      * @throws RedisException 业务错误
      */
-    Boolean set(String key, Object value);
+    Mono<Boolean> set(String key, Object value);
 
     /**
      * 添加
@@ -45,7 +47,7 @@ public interface RedisService {
      * @return 是否存在-存在添加成功，不存在添加失败
      * @throws RedisException 业务错误
      */
-    Boolean set(RedisSelect database, String key, Object value);
+    Mono<Boolean> set(RedisSelect database, String key, Object value);
 
     /**
      * 添加
@@ -56,7 +58,7 @@ public interface RedisService {
      * @return 是否存在-存在添加成功，不存在添加失败
      * @throws RedisException 业务错误
      */
-    Boolean set(String key, Object value, long seconds);
+    Mono<Boolean> set(String key, Object value, Duration seconds);
 
     /**
      * 添加
@@ -68,7 +70,7 @@ public interface RedisService {
      * @return 是否存在-存在添加成功，不存在添加失败
      * @throws RedisException 业务错误
      */
-    Boolean set(RedisSelect database, String key, Object value, long seconds);
+    Mono<Boolean> set(RedisSelect database, String key, Object value, Duration seconds);
 
     /**
      * 查询
@@ -78,7 +80,7 @@ public interface RedisService {
      * @return 对象
      * @throws RedisException 业务错误
      */
-    <T> T get(String key, Class<T> tClass);
+    <T> Mono<T> get(String key, Class<T> tClass);
 
     /**
      * 查询
@@ -89,7 +91,7 @@ public interface RedisService {
      * @return 对象
      * @throws RedisException 业务错误
      */
-    <T> T get(RedisSelect database, String key, Class<T> tClass);
+    <T> Mono<T> get(RedisSelect database, String key, Class<T> tClass);
 
     /**
      * 查询
@@ -99,7 +101,7 @@ public interface RedisService {
      * @return 对象
      * @throws RedisException 业务错误
      */
-    <T> List<T> getAll(String pattern, Class<T> tClass);
+    <T> Flux<T> getAll(String pattern, Class<T> tClass);
 
     /**
      * 查询
@@ -110,7 +112,7 @@ public interface RedisService {
      * @return 对象
      * @throws RedisException 业务错误
      */
-    <T> List<T> getAll(RedisSelect database, String pattern, Class<T> tClass);
+    <T> Flux<T> getAll(RedisSelect database, String pattern, Class<T> tClass);
 
     /**
      * 删除
@@ -119,7 +121,7 @@ public interface RedisService {
      * @return 是 否
      * @throws RedisException 业务错误
      */
-    Boolean delete(String key);
+    Mono<Long> delete(String key);
 
     /**
      * 删除
@@ -129,7 +131,7 @@ public interface RedisService {
      * @return 是 否
      * @throws RedisException 业务错误
      */
-    Boolean delete(RedisSelect database, String key);
+    Mono<Long> delete(RedisSelect database, String key);
 
     /**
      * 更新到期时间
@@ -138,7 +140,7 @@ public interface RedisService {
      * @param seconds 过期时间 秒
      * @return 超时时间
      */
-    Boolean expire(String key, long seconds);
+    Mono<Boolean> expire(String key, long seconds);
 
     /**
      * 更新到期时间
@@ -148,5 +150,5 @@ public interface RedisService {
      * @param seconds  过期时间 秒
      * @return 超时时间
      */
-    Boolean expire(RedisSelect database, String key, long seconds);
+    Mono<Boolean> expire(RedisSelect database, String key, long seconds);
 }

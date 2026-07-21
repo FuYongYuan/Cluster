@@ -2,9 +2,11 @@ package cn.fyy.redis.util;
 
 import cn.fyy.redis.bean.ao.RedisSelect;
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
 import lombok.Getter;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
+
+import java.util.EnumMap;
 
 /**
  * Redis 链接选择工具类
@@ -12,142 +14,83 @@ import org.springframework.data.redis.core.RedisTemplate;
  * @author fyy
  */
 public class RedisTemplateSelectUtil {
-    /**
-     * redis 操作模板 库0
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate0;
-    /**
-     * redis 操作模板 库1
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate1;
-    /**
-     * redis 操作模板 库2
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate2;
-    /**
-     * redis 操作模板 库3
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate3;
-    /**
-     * redis 操作模板 库4
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate4;
-    /**
-     * redis 操作模板 库5
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate5;
-    /**
-     * redis 操作模板 库6
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate6;
-    /**
-     * redis 操作模板 库7
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate7;
-    /**
-     * redis 操作模板 库8
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate8;
-    /**
-     * redis 操作模板 库9
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate9;
-    /**
-     * redis 操作模板 库10
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate10;
-    /**
-     * redis 操作模板 库11
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate11;
-    /**
-     * redis 操作模板 库12
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate12;
-    /**
-     * redis 操作模板 库13
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate13;
-    /**
-     * redis 操作模板 库14
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate14;
-    /**
-     * redis 操作模板 库15
-     */
-    @Resource
-    private RedisTemplate<String, Object> redisTemplate15;
 
     /**
-     * 选择不同的 redis 操作模板
+     * redisTemplateMap
      */
-    public RedisTemplate<String, Object> getRedisTemplate(RedisSelect redisSelect) {
-        return switch (redisSelect) {
-            case INFO -> redisTemplate0;
-            case ONE -> redisTemplate1;
-            case TWO -> redisTemplate2;
-            case THREE -> redisTemplate3;
-            case FOUR -> redisTemplate4;
-            case FIVE -> redisTemplate5;
-            case SIX -> redisTemplate6;
-            case SEVEN -> redisTemplate7;
-            case EIGHT -> redisTemplate8;
-            case NINE -> redisTemplate9;
-            case TEN -> redisTemplate10;
-            case ELEVEN -> redisTemplate11;
-            case TWELVE -> redisTemplate12;
-            case THIRTEEN -> redisTemplate13;
-            case FOURTEEN -> redisTemplate14;
-            case FIFTEEN -> redisTemplate15;
-        };
-    }
+    private final EnumMap<RedisSelect, RedisTemplate<String, Object>> redisTemplateMap;
+    /**
+     * reactiveRedisTemplateMap
+     */
+    private final EnumMap<RedisSelect, ReactiveRedisTemplate<String, Object>> reactiveRedisTemplateMap;
 
     /**
-     * 默认 Redis 操作实现类
-     * -- GETTER --
-     * 获取默认库
+     * defaultRedisTemplate
      */
     @Getter
     private RedisTemplate<String, Object> defaultRedisTemplate;
 
     /**
-     * 默认库选择
+     * defaultReactiveRedisTemplate
+     */
+    @Getter
+    private ReactiveRedisTemplate<String, Object> defaultReactiveRedisTemplate;
+
+    /**
+     * defaultRedisSelect
      */
     private final int defaultRedisSelect;
 
     /**
-     * 初始化 Redis 操作实现类
+     * 构造方法
+     *
+     * @param redisTemplateMap         redisTemplateMap
+     * @param reactiveRedisTemplateMap reactiveRedisTemplateMap
+     * @param defaultRedisSelect       defaultRedisSelect
      */
-    public RedisTemplateSelectUtil(int defaultRedisSelect) {
+    public RedisTemplateSelectUtil(
+            EnumMap<RedisSelect, RedisTemplate<String, Object>> redisTemplateMap,
+            EnumMap<RedisSelect, ReactiveRedisTemplate<String, Object>> reactiveRedisTemplateMap,
+            int defaultRedisSelect
+    ) {
+        this.redisTemplateMap = redisTemplateMap;
+        this.reactiveRedisTemplateMap = reactiveRedisTemplateMap;
         this.defaultRedisSelect = defaultRedisSelect;
     }
 
     /**
-     * 初始化默认 Redis 操作实现类
+     * 初始化
      */
     @PostConstruct
     public void init() {
         RedisSelect redisSelect = RedisSelect.getByRedisSelectValue(defaultRedisSelect);
         if (redisSelect != null) {
-            defaultRedisTemplate = getRedisTemplate(redisSelect);
+            defaultRedisTemplate = redisTemplateMap.get(redisSelect);
+            defaultReactiveRedisTemplate = reactiveRedisTemplateMap.get(redisSelect);
         } else {
-            defaultRedisTemplate = redisTemplate0;
+            defaultRedisTemplate = redisTemplateMap.get(RedisSelect.INFO);
+            defaultReactiveRedisTemplate = reactiveRedisTemplateMap.get(RedisSelect.INFO);
         }
+    }
+
+    /**
+     * 根据redisSelect获取redisTemplate
+     *
+     * @param redisSelect redisSelect
+     * @return redisTemplate
+     */
+    public RedisTemplate<String, Object> getRedisTemplate(RedisSelect redisSelect) {
+        return redisTemplateMap.get(redisSelect);
+    }
+
+    /**
+     * 根据redisSelect获取reactiveRedisTemplate
+     *
+     * @param redisSelect redisSelect
+     * @return reactiveRedisTemplate
+     */
+    public ReactiveRedisTemplate<String, Object> getReactiveRedisTemplate(RedisSelect redisSelect) {
+        return reactiveRedisTemplateMap.get(redisSelect);
     }
 
 }

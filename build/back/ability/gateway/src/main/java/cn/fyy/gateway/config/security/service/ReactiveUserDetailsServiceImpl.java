@@ -4,9 +4,10 @@ import cn.fyy.common.bean.ao.ConstantParameter;
 import cn.fyy.jwt.bean.bo.SecurityRedis;
 import cn.fyy.jwt.bean.bo.SecurityUser;
 import cn.fyy.redis.bean.ao.RedisSelect;
-import cn.fyy.redis.service.RedisService;
+import cn.fyy.redis.service.ReactiveRedisService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.User;
@@ -29,7 +30,7 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
      * Redis 业务类
      */
     @Resource
-    private RedisService redisServiceImpl;
+    private ReactiveRedisService reactiveRedisServiceImpl;
 
     /**
      * 密码加密器
@@ -46,9 +47,9 @@ public class ReactiveUserDetailsServiceImpl implements ReactiveUserDetailsServic
      */
 
     @Override
-    public Mono<UserDetails> findByUsername(String managerId) {
+    public @NonNull Mono<UserDetails> findByUsername(@NonNull String managerId) {
         log.info("ReactiveUserDetailsService.findByUsername(String managerId) 入参:{}，结果:{}", managerId, ConstantParameter.MANAGER_JWT_INFO_KEY + managerId);
-        return Mono.fromCallable(() -> redisServiceImpl.get(RedisSelect.FIFTEEN, ConstantParameter.MANAGER_JWT_INFO_KEY + managerId, SecurityRedis.class))
+        return reactiveRedisServiceImpl.get(RedisSelect.FIFTEEN, ConstantParameter.MANAGER_JWT_INFO_KEY + managerId, SecurityRedis.class)
                 .flatMap(securityRedis -> {
                     if (securityRedis != null) {
                         SecurityUser securityUser = new SecurityUser(

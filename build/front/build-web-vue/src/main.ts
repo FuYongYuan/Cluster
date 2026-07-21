@@ -27,14 +27,14 @@ app.use(router);
 app.mount("#app");
 
 // skywalking
-import skywalking from "skywalking-client-js";
+import ClientMonitor from "skywalking-client-js";
 import pkg from "../package.json";
 
-skywalking.ClientMonitor.register({
-	service: `${pkg.name}-skywalking`,
+ClientMonitor.register({
+	service: `${pkg.name}`,
 	serviceVersion: `${pkg.version}`,
 	pagePath: `${location.href}`,
-	collector: `/skywalking`,
+	collector: `${window.location.origin}/skywalking`,
 	jsErrors: true,
 	apiErrors: true,
 	resourceErrors: true,
