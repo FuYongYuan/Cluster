@@ -4307,6 +4307,11 @@
                 "refObjectId": "E6642064-8874-4F74-A1EF-6E8032B72330",
                 "refObjectType": "P",
                 "orderValue": 4
+              },
+              {
+                "refObjectId": "4447BC2D-1AB7-4A1A-B4DB-3103F25A4152",
+                "refObjectType": "P",
+                "orderValue": 5
               }
             ],
             "diagramRefs": [],
@@ -4527,6 +4532,11 @@
             "orderValue": 17
           },
           {
+            "refObjectId": "5A6B99F4-2EF8-42D7-A1C2-F3EDA8EBB2F6",
+            "refObjectType": "L",
+            "orderValue": 18
+          },
+          {
             "refObjectId": "B14C97E1-C17D-4A74-873A-5CF5BA0BC849",
             "refObjectType": "C",
             "orderValue": 1
@@ -4610,6 +4620,11 @@
             "refObjectId": "6087A24F-BFD9-4309-A9EA-80AEF0870B29",
             "refObjectType": "C",
             "orderValue": 17
+          },
+          {
+            "refObjectId": "C956C26A-038D-46A7-B81D-FA7CC0D1C1A1",
+            "refObjectType": "C",
+            "orderValue": 18
           }
         ],
         "diagramRefs": [
@@ -4739,6 +4754,11 @@
           "orderValue": 17
         },
         {
+          "refObjectId": "4447BC2D-1AB7-4A1A-B4DB-3103F25A4152",
+          "refObjectType": "P",
+          "orderValue": 18
+        },
+        {
           "refObjectId": "14B30E1D-2E82-415E-8A3B-0BE01EA513E2",
           "refObjectType": "L",
           "orderValue": 1
@@ -4824,6 +4844,11 @@
           "orderValue": 17
         },
         {
+          "refObjectId": "5A6B99F4-2EF8-42D7-A1C2-F3EDA8EBB2F6",
+          "refObjectType": "L",
+          "orderValue": 18
+        },
+        {
           "refObjectId": "B14C97E1-C17D-4A74-873A-5CF5BA0BC849",
           "refObjectType": "C",
           "orderValue": 1
@@ -4907,6 +4932,11 @@
           "refObjectId": "6087A24F-BFD9-4309-A9EA-80AEF0870B29",
           "refObjectType": "C",
           "orderValue": 17
+        },
+        {
+          "refObjectId": "C956C26A-038D-46A7-B81D-FA7CC0D1C1A1",
+          "refObjectType": "C",
+          "orderValue": 18
         }
       ]
     },
@@ -29848,6 +29878,757 @@
         "intro": "",
         "fields": [],
         "type": "C"
+      },
+      {
+        "id": "4447BC2D-1AB7-4A1A-B4DB-3103F25A4152",
+        "type": "P",
+        "defKey": "role_api",
+        "defName": "角色API接口访问关系",
+        "intro": "",
+        "schemaName": "authorization",
+        "props": null,
+        "mark": null,
+        "attr1": null,
+        "attr2": null,
+        "attr3": null,
+        "attr4": null,
+        "attr5": null,
+        "attr6": null,
+        "attr7": null,
+        "attr8": null,
+        "attr9": null,
+        "attr10": null,
+        "attr11": null,
+        "attr12": null,
+        "attr13": null,
+        "attr14": null,
+        "attr15": null,
+        "attr16": null,
+        "attr17": null,
+        "attr18": null,
+        "attr19": null,
+        "attr20": null,
+        "fields": [
+          {
+            "id": "A0602DD6-4480-4690-BFB9-8E3EB34D182C",
+            "defKey": "id",
+            "defName": "主键ID",
+            "intro": "",
+            "orderValue": 1,
+            "baseDataType": "BIGINT",
+            "bizDomainType": null,
+            "dbDataType": "BIGINT",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 1,
+            "notNull": 1,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "037FB4FD-2E1D-4660-9508-A61B9B6EC55B",
+            "defKey": "role_id",
+            "defName": "角色ID",
+            "intro": "",
+            "orderValue": 2,
+            "baseDataType": "BIGINT",
+            "bizDomainType": null,
+            "dbDataType": "BIGINT",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "E3FB62F4-F851-487C-A365-E2862D11A71A",
+            "defKey": "api_id",
+            "defName": "API_ID",
+            "intro": "",
+            "orderValue": 3,
+            "baseDataType": "BIGINT",
+            "bizDomainType": null,
+            "dbDataType": "BIGINT",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "DAF15959-D62B-4B9C-8871-4404FD6DA07C",
+            "defKey": "create_time",
+            "defName": "创建时间",
+            "intro": "",
+            "orderValue": 4,
+            "baseDataType": "DATETIME",
+            "bizDomainType": null,
+            "dbDataType": "DATETIME",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "95F5FBC9-7E78-48A6-9CDC-EEE196E24243",
+            "defKey": "creator_id",
+            "defName": "创建人ID",
+            "intro": "",
+            "orderValue": 5,
+            "baseDataType": "BIGINT",
+            "bizDomainType": null,
+            "dbDataType": "BIGINT",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "8DE1B019-5B34-4F14-8EE0-B95762B5787D",
+            "defKey": "creator_name",
+            "defName": "创建人名称",
+            "intro": "",
+            "orderValue": 6,
+            "baseDataType": "VARCHAR",
+            "bizDomainType": null,
+            "dbDataType": "VARCHAR",
+            "dataLen": 50,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "50D333F8-8EDA-4674-A1FE-6F0C4005AC24",
+            "defKey": "update_time",
+            "defName": "更新时间",
+            "intro": "",
+            "orderValue": 7,
+            "baseDataType": "DATETIME",
+            "bizDomainType": null,
+            "dbDataType": "DATETIME",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "5338CB9A-A5FC-4E79-9BD2-7B04BA482373",
+            "defKey": "updater_id",
+            "defName": "更新人ID",
+            "intro": "",
+            "orderValue": 8,
+            "baseDataType": "BIGINT",
+            "bizDomainType": null,
+            "dbDataType": "BIGINT",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "9B442B0E-9D28-4AD1-8AA9-6FAFD50FB19C",
+            "defKey": "updater_name",
+            "defName": "更新人名称",
+            "intro": "",
+            "orderValue": 9,
+            "baseDataType": "VARCHAR",
+            "bizDomainType": null,
+            "dbDataType": "VARCHAR",
+            "dataLen": 50,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "CC7D0F3D-0494-4DA2-B87B-D001D7139433",
+            "defKey": "state",
+            "defName": "状态",
+            "intro": "（0.正常、99.删除）",
+            "orderValue": 10,
+            "baseDataType": "TINYINT",
+            "bizDomainType": null,
+            "dbDataType": "TINYINT",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "BE19AFC6-1319-479E-8F81-F06F5FCC5E7E",
+            "defKey": "version",
+            "defName": "数据版本",
+            "intro": "",
+            "baseDataType": "BIGINT",
+            "bizDomainType": "",
+            "dbDataType": "BIGINT",
+            "dataLen": "",
+            "numScale": "",
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": "",
+            "stndDictId": "",
+            "stndFieldId": "",
+            "stndDictKey": "",
+            "stndFieldKey": "",
+            "stndComplianceLevel": "",
+            "stndComplianceType": "",
+            "dictFrom": "",
+            "dictItems": null,
+            "fieldTier": "",
+            "mark": null,
+            "attr1": "",
+            "attr2": "",
+            "attr3": "",
+            "attr4": "",
+            "attr5": "",
+            "attr6": "",
+            "attr7": "",
+            "attr8": "",
+            "attr9": "",
+            "attr10": "",
+            "attr11": "",
+            "attr12": "",
+            "attr13": "",
+            "attr14": "",
+            "attr15": "",
+            "attr16": "",
+            "attr17": "",
+            "attr18": "",
+            "attr19": "",
+            "attr20": "",
+            "origin": "PASTE"
+          }
+        ],
+        "correlations": null,
+        "indexes": [],
+        "refers": [
+          {
+            "type": "many-to-one",
+            "defKey": "",
+            "defName": "",
+            "intro": "",
+            "myFieldKey": "role_id",
+            "refSchemaName": "authorization",
+            "refEntityKey": "role",
+            "refFieldKey": "id",
+            "orderValue": 1
+          },
+          {
+            "type": "many-to-one",
+            "defKey": "",
+            "defName": "",
+            "intro": "",
+            "myFieldKey": "button_id",
+            "refSchemaName": "capability",
+            "refEntityKey": "button",
+            "refFieldKey": "id",
+            "orderValue": 1
+          }
+        ],
+        "origin": "PASTE"
+      },
+      {
+        "id": "C956C26A-038D-46A7-B81D-FA7CC0D1C1A1",
+        "defKey": "concept_role_api",
+        "parentId": "BF08D015-803D-4632-B9D6-3C2ADA7B00B3",
+        "schemaName": null,
+        "defName": "角色API接口访问关系",
+        "intro": "",
+        "fields": [],
+        "type": "C"
+      },
+      {
+        "id": "5A6B99F4-2EF8-42D7-A1C2-F3EDA8EBB2F6",
+        "type": "L",
+        "defKey": "logic_role_api",
+        "defName": "角色API接口访问关系",
+        "intro": "",
+        "schemaName": null,
+        "props": null,
+        "mark": null,
+        "attr1": null,
+        "attr2": null,
+        "attr3": null,
+        "attr4": null,
+        "attr5": null,
+        "attr6": null,
+        "attr7": null,
+        "attr8": null,
+        "attr9": null,
+        "attr10": null,
+        "attr11": null,
+        "attr12": null,
+        "attr13": null,
+        "attr14": null,
+        "attr15": null,
+        "attr16": null,
+        "attr17": null,
+        "attr18": null,
+        "attr19": null,
+        "attr20": null,
+        "fields": [
+          {
+            "id": "DCBF9CA0-6E8E-4220-8B23-273B66836227",
+            "defKey": "role_id",
+            "defName": "角色ID",
+            "intro": "",
+            "orderValue": 2,
+            "baseDataType": "BIGINT",
+            "bizDomainType": null,
+            "dbDataType": "BIGINT",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          },
+          {
+            "id": "D3A18F0A-5C36-4A7A-B216-E28A651644BF",
+            "defKey": "api_id",
+            "defName": "按钮ID",
+            "intro": "",
+            "orderValue": 3,
+            "baseDataType": "BIGINT",
+            "bizDomainType": null,
+            "dbDataType": "BIGINT",
+            "dataLen": null,
+            "numScale": null,
+            "primaryKey": 0,
+            "notNull": 0,
+            "autoIncrement": 0,
+            "defaultValue": null,
+            "stndDictId": null,
+            "stndDictKey": null,
+            "stndFieldId": null,
+            "stndFieldKey": null,
+            "mark": null,
+            "attr1": null,
+            "attr2": null,
+            "attr3": null,
+            "attr4": null,
+            "attr5": null,
+            "attr6": null,
+            "attr7": null,
+            "attr8": null,
+            "attr9": null,
+            "attr10": null,
+            "attr11": null,
+            "attr12": null,
+            "attr13": null,
+            "attr14": null,
+            "attr15": null,
+            "attr16": null,
+            "attr17": null,
+            "attr18": null,
+            "attr19": null,
+            "attr20": null,
+            "origin": null,
+            "stndComplianceType": null,
+            "stndComplianceLevel": null,
+            "updatedUserId": null,
+            "createdUserId": null,
+            "tblDefKey": "role_button",
+            "schemaName": "authorization"
+          }
+        ],
+        "correlations": null,
+        "indexes": [],
+        "refers": [
+          {
+            "type": "many-to-one",
+            "defKey": "",
+            "defName": "",
+            "intro": "",
+            "myFieldKey": "role_id",
+            "refSchemaName": "authorization",
+            "refEntityKey": "role",
+            "refFieldKey": "id",
+            "orderValue": 1
+          },
+          {
+            "type": "many-to-one",
+            "defKey": "",
+            "defName": "",
+            "intro": "",
+            "myFieldKey": "button_id",
+            "refSchemaName": "capability",
+            "refEntityKey": "button",
+            "refFieldKey": "id",
+            "orderValue": 1
+          }
+        ],
+        "origin": "PASTE",
+        "parentId": "BF08D015-803D-4632-B9D6-3C2ADA7B00B3"
       }
     ],
     "diagrams": [
@@ -30036,7 +30817,7 @@
         "cellsData": [
           {
             "position": {
-              "x": -480,
+              "x": -460,
               "y": -380
             },
             "size": {
@@ -33365,12 +34146,12 @@
           },
           {
             "position": {
-              "x": -620.0000000000241,
-              "y": -1349.9999999999688
+              "x": -710.0000000000209,
+              "y": -1779.9999999999723
             },
             "size": {
-              "width": 3850,
-              "height": 2890
+              "width": 3940,
+              "height": 3320
             },
             "view": "react-shape-view",
             "attrs": {
@@ -33444,7 +34225,9 @@
               "CA36DB35-B87D-4A6B-A8F3-0D7A60E0FB4B",
               "1FE723C5-03D1-4582-A816-B3494ECE1891",
               "D7CC188A-9B37-4647-B744-FCF6CBC9CBAF",
-              "BA472DF2-4896-45B4-83A1-A15FFE8884F3"
+              "BA472DF2-4896-45B4-83A1-A15FFE8884F3",
+              "571983da-17aa-4c1a-9199-3d401dc89615",
+              "3D2B450F-95E5-4F24-9371-0752F58FA13C"
             ]
           },
           {
@@ -34260,6 +35043,523 @@
             "target": {
               "cell": "81692f3a-170a-4037-9a15-d0d93c9b670a",
               "port": "8DED22CA-4A9E-4441-8F78-ADDB6CAF5D51_in"
+            },
+            "parent": "23b09663-8938-4b90-91a0-160093c1356c"
+          },
+          {
+            "position": {
+              "x": 1030,
+              "y": -1686.6849975585938
+            },
+            "size": {
+              "width": 500,
+              "height": 310
+            },
+            "view": "react-shape-view",
+            "attrs": {
+              "body": {
+                "rx": 5
+              }
+            },
+            "shape": "physical-entity-node",
+            "id": "845fe64c-94ea-4eb3-83d9-3b5f3b959dfe",
+            "cellType": "physical-entity-node",
+            "originData": {
+              "id": "A65C7590-5A25-462C-8C59-6C3499245CB3"
+            },
+            "autoSize": false,
+            "entityRelationRank": "F",
+            "entityDisplay": {
+              "showFields": [
+                "defKey",
+                "defName",
+                "dbDataType",
+                "dataLen",
+                "numScale"
+              ],
+              "logicModelCompactShow": "N",
+              "logicModelCompactDelimiter": ","
+            },
+            "entitySetting": {
+              "titleText": {
+                "customValue": "{defKey}[{defName}]",
+                "optionValue": "A"
+              },
+              "titleStyle": {
+                "body": {
+                  "fill": "rgb(159, 193, 255)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "rgb(0, 0, 0)",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "contentStyle": {
+                "body": {
+                  "fill": "#ffffff",
+                  "fill-opacity": 0.9
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "primaryKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "underline",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "foreignKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": null,
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "fieldStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "defaultSize": {
+                "width": 500,
+                "height": 310,
+                "optionValue": "C"
+              },
+              "borderStyle": {
+                "body": {
+                  "stroke": "rgb(179, 179, 179)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              },
+              "divideLineStyle": {
+                "body": {
+                  "stroke": "rgb(214, 214, 214)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              }
+            },
+            "tools": {
+              "items": [
+                "node-size",
+                "highlight-node",
+                "link-node"
+              ]
+            },
+            "ports": {
+              "groups": {
+                "in": {
+                  "position": "absolute",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "out": {
+                  "position": "absolute",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": []
+            },
+            "zIndex": 33
+          },
+          {
+            "position": {
+              "x": 269,
+              "y": -1686.6849975585938
+            },
+            "size": {
+              "width": 500,
+              "height": 310
+            },
+            "view": "react-shape-view",
+            "attrs": {
+              "body": {
+                "rx": 5
+              }
+            },
+            "shape": "physical-entity-node",
+            "id": "571983da-17aa-4c1a-9199-3d401dc89615",
+            "cellType": "physical-entity-node",
+            "originData": {
+              "id": "4447BC2D-1AB7-4A1A-B4DB-3103F25A4152"
+            },
+            "autoSize": false,
+            "entityRelationRank": "F",
+            "entityDisplay": {
+              "showFields": [
+                "defKey",
+                "defName",
+                "dbDataType",
+                "dataLen",
+                "numScale"
+              ],
+              "logicModelCompactShow": "N",
+              "logicModelCompactDelimiter": ","
+            },
+            "entitySetting": {
+              "titleText": {
+                "customValue": "{defKey}[{defName}]",
+                "optionValue": "A"
+              },
+              "titleStyle": {
+                "body": {
+                  "fill": "rgb(159, 193, 255)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "rgb(0, 0, 0)",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "contentStyle": {
+                "body": {
+                  "fill": "#ffffff",
+                  "fill-opacity": 0.9
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "primaryKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "underline",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "foreignKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": null,
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "fieldStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "defaultSize": {
+                "width": 500,
+                "height": 310,
+                "optionValue": "C"
+              },
+              "borderStyle": {
+                "body": {
+                  "stroke": "rgb(179, 179, 179)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              },
+              "divideLineStyle": {
+                "body": {
+                  "stroke": "rgb(214, 214, 214)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              }
+            },
+            "tools": {
+              "items": [
+                "node-size",
+                "highlight-node",
+                "link-node"
+              ]
+            },
+            "ports": {
+              "groups": {
+                "in": {
+                  "position": "absolute",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "out": {
+                  "position": "absolute",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "out",
+                  "id": "more_out",
+                  "args": {
+                    "x": "100%",
+                    "y": 296
+                  },
+                  "attrs": {
+                    "circle": {
+                      "magnet": false,
+                      "style": {
+                        "pointerEvents": "none",
+                        "opacity": 0
+                      }
+                    }
+                  }
+                },
+                {
+                  "group": "in",
+                  "id": "more_in",
+                  "args": {
+                    "x": 0,
+                    "y": 296
+                  },
+                  "attrs": {
+                    "circle": {
+                      "magnet": false,
+                      "style": {
+                        "pointerEvents": "none",
+                        "opacity": 0
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "zIndex": 34,
+            "parent": "23b09663-8938-4b90-91a0-160093c1356c"
+          },
+          {
+            "shape": "edge",
+            "attrs": {
+              "line": {
+                "stroke": "rgb(122, 167, 250)",
+                "targetMarker": {
+                  "name": "er-n",
+                  "strokeWidth": 1
+                },
+                "fill-opacity": 1,
+                "stroke-width": 1,
+                "stroke-opacity": 0.78695652173913,
+                "stroke-dasharray": "0",
+                "sourceMarker": {
+                  "name": "er-1",
+                  "strokeWidth": 1
+                }
+              },
+              "text": {
+                "textAnchor": "middle",
+                "textVerticalAnchor": "middle",
+                "fill": "#000000",
+                "fontSize": 14,
+                "font-weight": "normal",
+                "font-style": "normal",
+                "text-decoration": "none"
+              }
+            },
+            "id": "64757F2A-877C-4BBD-A52E-714F3043AE6E",
+            "connector": {
+              "name": "rounded"
+            },
+            "router": {
+              "name": "manhattan",
+              "args": {
+                "padding": 30,
+                "excludeShapes": [
+                  "group"
+                ]
+              }
+            },
+            "cellType": "edge",
+            "zIndex": 0,
+            "tools": {
+              "items": []
+            },
+            "source": {
+              "cell": "845fe64c-94ea-4eb3-83d9-3b5f3b959dfe",
+              "port": "DD14C2E3-3D82-4A75-8B52-8BF89BB31741_in"
+            },
+            "target": {
+              "cell": "571983da-17aa-4c1a-9199-3d401dc89615",
+              "port": "E3FB62F4-F851-487C-A365-E2862D11A71A_out"
+            }
+          },
+          {
+            "shape": "edge",
+            "attrs": {
+              "line": {
+                "stroke": "rgb(122, 167, 250)",
+                "targetMarker": {
+                  "name": "er-n",
+                  "strokeWidth": 1
+                },
+                "fill-opacity": 1,
+                "stroke-width": 1,
+                "stroke-opacity": 0.78695652173913,
+                "stroke-dasharray": "0",
+                "sourceMarker": {
+                  "name": "er-1",
+                  "strokeWidth": 1
+                }
+              },
+              "text": {
+                "textAnchor": "middle",
+                "textVerticalAnchor": "middle",
+                "fill": "#000000",
+                "fontSize": 14,
+                "font-weight": "normal",
+                "font-style": "normal",
+                "text-decoration": "none"
+              }
+            },
+            "id": "3D2B450F-95E5-4F24-9371-0752F58FA13C",
+            "connector": {
+              "name": "rounded"
+            },
+            "router": {
+              "name": "manhattan",
+              "args": {
+                "padding": 30,
+                "excludeShapes": [
+                  "group"
+                ]
+              }
+            },
+            "cellType": "edge",
+            "zIndex": 35,
+            "tools": {
+              "items": []
+            },
+            "source": {
+              "cell": "4e00c872-5cdf-4d7b-9640-f5558f80e4b8",
+              "port": "C1D52028-8F62-4343-8B37-EF72A89B63C9_out"
+            },
+            "target": {
+              "cell": "571983da-17aa-4c1a-9199-3d401dc89615",
+              "port": "037FB4FD-2E1D-4660-9508-A61B9B6EC55B_in"
             },
             "parent": "23b09663-8938-4b90-91a0-160093c1356c"
           }
@@ -37779,12 +39079,12 @@
           },
           {
             "position": {
-              "x": -620.0000000000241,
-              "y": -1349.9999999999688
+              "x": -620.0000000000218,
+              "y": -1839.9999999999695
             },
             "size": {
               "width": 3850,
-              "height": 2890
+              "height": 3380
             },
             "view": "react-shape-view",
             "attrs": {
@@ -38676,6 +39976,413 @@
               "port": "86F24B6E-2167-47E3-A481-C3DD9F518358_in"
             },
             "parent": "23b09663-8938-4b90-91a0-160093c1356c"
+          },
+          {
+            "position": {
+              "x": 1030,
+              "y": -1730
+            },
+            "size": {
+              "width": 500,
+              "height": 310
+            },
+            "view": "react-shape-view",
+            "attrs": {
+              "body": {
+                "rx": 5
+              }
+            },
+            "shape": "logic-entity-node",
+            "id": "eb2646df-9dd9-4cbe-8a51-6b9278bc21c3",
+            "cellType": "logic-entity-node",
+            "originData": {
+              "id": "95939EC8-3ED0-4850-8AA4-22561F85404E"
+            },
+            "isExpand": false,
+            "autoSize": false,
+            "entityRelationRank": "F",
+            "entityDisplay": {
+              "showFields": [
+                "defKey",
+                "defName",
+                "dbDataType",
+                "dataLen",
+                "numScale"
+              ],
+              "logicModelCompactShow": "N",
+              "logicModelCompactDelimiter": ","
+            },
+            "entitySetting": {
+              "titleText": {
+                "customValue": "{defKey}[{defName}]",
+                "optionValue": "A"
+              },
+              "titleStyle": {
+                "body": {
+                  "fill": "rgb(159, 193, 255)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "rgb(0, 0, 0)",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "contentStyle": {
+                "body": {
+                  "fill": "#ffffff",
+                  "fill-opacity": 0.9
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "primaryKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "underline",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "foreignKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": null,
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "fieldStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "defaultSize": {
+                "width": 500,
+                "height": 310,
+                "optionValue": "C"
+              },
+              "borderStyle": {
+                "body": {
+                  "stroke": "rgb(179, 179, 179)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              },
+              "divideLineStyle": {
+                "body": {
+                  "stroke": "rgb(214, 214, 214)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              }
+            },
+            "tools": {
+              "items": [
+                "node-size",
+                "highlight-node",
+                "link-node"
+              ]
+            },
+            "ports": {
+              "groups": {
+                "in": {
+                  "position": "absolute",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "out": {
+                  "position": "absolute",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": []
+            },
+            "zIndex": 17
+          },
+          {
+            "position": {
+              "x": 269,
+              "y": -1730
+            },
+            "size": {
+              "width": 500,
+              "height": 310
+            },
+            "view": "react-shape-view",
+            "attrs": {
+              "body": {
+                "rx": 5
+              }
+            },
+            "shape": "logic-entity-node",
+            "id": "92a843c0-2d41-4798-ae8a-322e49aa6d5c",
+            "cellType": "logic-entity-node",
+            "originData": {
+              "id": "5A6B99F4-2EF8-42D7-A1C2-F3EDA8EBB2F6"
+            },
+            "isExpand": false,
+            "autoSize": false,
+            "entityRelationRank": "F",
+            "entityDisplay": {
+              "showFields": [
+                "defKey",
+                "defName",
+                "dbDataType",
+                "dataLen",
+                "numScale"
+              ],
+              "logicModelCompactShow": "N",
+              "logicModelCompactDelimiter": ","
+            },
+            "entitySetting": {
+              "titleText": {
+                "customValue": "{defKey}[{defName}]",
+                "optionValue": "A"
+              },
+              "titleStyle": {
+                "body": {
+                  "fill": "rgb(159, 193, 255)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "rgb(0, 0, 0)",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "contentStyle": {
+                "body": {
+                  "fill": "#ffffff",
+                  "fill-opacity": 0.9
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "primaryKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "underline",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "foreignKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": null,
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "fieldStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "defaultSize": {
+                "width": 500,
+                "height": 310,
+                "optionValue": "C"
+              },
+              "borderStyle": {
+                "body": {
+                  "stroke": "rgb(179, 179, 179)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              },
+              "divideLineStyle": {
+                "body": {
+                  "stroke": "rgb(214, 214, 214)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              }
+            },
+            "tools": {
+              "items": [
+                "node-size",
+                "highlight-node",
+                "link-node"
+              ]
+            },
+            "ports": {
+              "groups": {
+                "in": {
+                  "position": "absolute",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "out": {
+                  "position": "absolute",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "out",
+                  "id": "more_out",
+                  "args": {
+                    "x": "100%",
+                    "y": 296
+                  },
+                  "attrs": {
+                    "circle": {
+                      "magnet": false,
+                      "style": {
+                        "pointerEvents": "none",
+                        "opacity": 0
+                      }
+                    }
+                  }
+                },
+                {
+                  "group": "in",
+                  "id": "more_in",
+                  "args": {
+                    "x": 0,
+                    "y": 296
+                  },
+                  "attrs": {
+                    "circle": {
+                      "magnet": false,
+                      "style": {
+                        "pointerEvents": "none",
+                        "opacity": 0
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "zIndex": 18
           }
         ]
       },
@@ -38864,12 +40571,12 @@
         "cellsData": [
           {
             "position": {
-              "x": -620.0000000000241,
-              "y": -1349.9999999999688
+              "x": -710.0000000000186,
+              "y": -1699.9999999999734
             },
             "size": {
-              "width": 3850,
-              "height": 2890
+              "width": 3940,
+              "height": 3240
             },
             "view": "react-shape-view",
             "attrs": {
@@ -44516,6 +46223,704 @@
               "port": "6CF00D0F-3714-44B2-8B69-07D9D04DA355"
             },
             "parent": "23b09663-8938-4b90-91a0-160093c1356c"
+          },
+          {
+            "position": {
+              "x": 1025,
+              "y": -1568.1401367187495
+            },
+            "size": {
+              "width": 210,
+              "height": 100
+            },
+            "view": "react-shape-view",
+            "attrs": {
+              "body": {
+                "rx": 5
+              }
+            },
+            "shape": "concept-entity-node",
+            "id": "696b6abc-e580-4e92-bff7-69e17f240041",
+            "cellType": "concept-entity-node",
+            "originData": {
+              "id": "6087A24F-BFD9-4309-A9EA-80AEF0870B29"
+            },
+            "entityDisplay": {
+              "showFields": [
+                "defKey",
+                "defName",
+                "dbDataType",
+                "dataLen",
+                "numScale"
+              ],
+              "logicModelCompactShow": "N",
+              "logicModelCompactDelimiter": ","
+            },
+            "entitySetting": {
+              "titleText": {
+                "customValue": "{defKey}[{defName}]",
+                "optionValue": "A"
+              },
+              "titleStyle": {
+                "body": {
+                  "fill": "rgb(159, 193, 255)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "rgb(0, 0, 0)",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "contentStyle": {
+                "body": {
+                  "fill": "#ffffff",
+                  "fill-opacity": 0.9
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "primaryKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "underline",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "foreignKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": null,
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "fieldStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "defaultSize": {
+                "width": 500,
+                "height": 310,
+                "optionValue": "C"
+              },
+              "borderStyle": {
+                "body": {
+                  "stroke": "rgb(179, 179, 179)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              },
+              "divideLineStyle": {
+                "body": {
+                  "stroke": "rgb(214, 214, 214)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              }
+            },
+            "tools": {
+              "items": [
+                "node-size",
+                "highlight-node",
+                "link-node"
+              ]
+            },
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "7818a88a-0633-41bf-b512-76d181d0f51e"
+                },
+                {
+                  "group": "top",
+                  "id": "34a81f43-f1a2-4b61-bef0-ac07216743e0"
+                },
+                {
+                  "group": "top",
+                  "id": "168f843d-ce12-4b33-a8d4-5202b7cbbeba"
+                },
+                {
+                  "group": "top",
+                  "id": "57fd6232-4d6c-44cb-9076-6deec911cfab"
+                },
+                {
+                  "group": "top",
+                  "id": "eaba9fbd-340e-4fb3-a11a-fe2fc7d054fe"
+                },
+                {
+                  "group": "right",
+                  "id": "fa701671-8999-40dd-9f50-8bf9738a6707"
+                },
+                {
+                  "group": "right",
+                  "id": "3f368505-8fb6-4e16-a837-fd248963fcbf"
+                },
+                {
+                  "group": "right",
+                  "id": "8a0460bb-007a-40f5-8cfa-35bc0bc653bb"
+                },
+                {
+                  "group": "right",
+                  "id": "55fb6a78-7fec-4610-ad71-9a7995233727"
+                },
+                {
+                  "group": "right",
+                  "id": "0b26e523-483a-4f5e-802e-f05825c73985"
+                },
+                {
+                  "group": "bottom",
+                  "id": "c794f8f0-2e4a-40ed-929e-d5ca5f0a4c1e"
+                },
+                {
+                  "group": "bottom",
+                  "id": "8bbfec06-cf81-4c15-8ebf-f66db1764cbb"
+                },
+                {
+                  "group": "bottom",
+                  "id": "1f2f4178-5752-42aa-99ca-ff28a521b491"
+                },
+                {
+                  "group": "bottom",
+                  "id": "f404f414-c012-47d7-9c4d-adfcde7a0f1e"
+                },
+                {
+                  "group": "bottom",
+                  "id": "13ce43bd-8070-4dd7-958e-54a0ae84c4a5"
+                },
+                {
+                  "group": "left",
+                  "id": "90a997c2-72cd-438f-b68b-ec61a8335677"
+                },
+                {
+                  "group": "left",
+                  "id": "4131e6ca-c814-4aa0-a4d8-b729aa5d3936"
+                },
+                {
+                  "group": "left",
+                  "id": "5772e1ca-be63-4edd-a815-2032f0a4cfe5"
+                },
+                {
+                  "group": "left",
+                  "id": "537869ae-1cdc-4731-8a7e-f7a3603e076f"
+                },
+                {
+                  "group": "left",
+                  "id": "b52569ec-7af5-4b55-ac60-8aff03b7cbf5"
+                }
+              ]
+            },
+            "zIndex": 33
+          },
+          {
+            "position": {
+              "x": 269,
+              "y": -1568.1401367187495
+            },
+            "size": {
+              "width": 190,
+              "height": 100
+            },
+            "view": "react-shape-view",
+            "attrs": {
+              "body": {
+                "rx": 5
+              }
+            },
+            "shape": "concept-entity-node",
+            "id": "0a4b708b-bbb4-4c12-9f95-c1a1ed0cfc94",
+            "cellType": "concept-entity-node",
+            "originData": {
+              "id": "C956C26A-038D-46A7-B81D-FA7CC0D1C1A1"
+            },
+            "entityDisplay": {
+              "showFields": [
+                "defKey",
+                "defName",
+                "dbDataType",
+                "dataLen",
+                "numScale"
+              ],
+              "logicModelCompactShow": "N",
+              "logicModelCompactDelimiter": ","
+            },
+            "entitySetting": {
+              "titleText": {
+                "customValue": "{defKey}[{defName}]",
+                "optionValue": "A"
+              },
+              "titleStyle": {
+                "body": {
+                  "fill": "rgb(159, 193, 255)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "rgb(0, 0, 0)",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "contentStyle": {
+                "body": {
+                  "fill": "#ffffff",
+                  "fill-opacity": 0.9
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "primaryKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "underline",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "foreignKeyStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "italic",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": null,
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "fieldStyle": {
+                "body": {
+                  "fill": "rgb(183，185，189)",
+                  "fill-opacity": 1
+                },
+                "text": {
+                  "fill": "",
+                  "fontSize": "12",
+                  "font-style": "",
+                  "fontFamily": "Arial",
+                  "textAnchor": "middle",
+                  "font-weight": "bold",
+                  "text-decoration": "",
+                  "textVerticalAnchor": "middle"
+                }
+              },
+              "defaultSize": {
+                "width": 500,
+                "height": 310,
+                "optionValue": "C"
+              },
+              "borderStyle": {
+                "body": {
+                  "stroke": "rgb(179, 179, 179)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              },
+              "divideLineStyle": {
+                "body": {
+                  "stroke": "rgb(214, 214, 214)",
+                  "stroke-width": 1,
+                  "stroke-opacity": 0.78695652173913,
+                  "stroke-dasharray": "0"
+                }
+              }
+            },
+            "tools": {
+              "items": [
+                "node-size",
+                "highlight-node",
+                "link-node"
+              ]
+            },
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "f2c891dc-cbfa-4cbf-bc54-297e1f27e0b4"
+                },
+                {
+                  "group": "top",
+                  "id": "82a071d3-6666-4015-abeb-7eb0e208df2b"
+                },
+                {
+                  "group": "top",
+                  "id": "8e7a9e01-18a5-4379-ba28-ef691a5cc512"
+                },
+                {
+                  "group": "top",
+                  "id": "dc914501-1bc1-41d5-97e1-81d940aebfc6"
+                },
+                {
+                  "group": "top",
+                  "id": "b0d4a701-f4df-44eb-932f-71491464b5e8"
+                },
+                {
+                  "group": "right",
+                  "id": "d0aa1c06-449e-43b6-9b90-c8d3e0b76482"
+                },
+                {
+                  "group": "right",
+                  "id": "409999eb-c9b1-4862-ab66-34794aa1c1c4"
+                },
+                {
+                  "group": "right",
+                  "id": "567453b9-222b-4365-a32b-fc945eeee62d"
+                },
+                {
+                  "group": "right",
+                  "id": "c804c3a3-6959-4e28-9688-80174aa5cc18"
+                },
+                {
+                  "group": "right",
+                  "id": "037432e3-5bfa-4a80-87a1-85c3068f4ef1"
+                },
+                {
+                  "group": "bottom",
+                  "id": "7acf15dc-811a-415c-91f2-9ecdf36a72bb"
+                },
+                {
+                  "group": "bottom",
+                  "id": "2cfbd771-8d59-42fa-a851-eb23c6eae77c"
+                },
+                {
+                  "group": "bottom",
+                  "id": "1f4b3b79-37e7-4a33-812d-624b5796598b"
+                },
+                {
+                  "group": "bottom",
+                  "id": "d956f3e3-60cd-4642-a6c2-bda80962f664"
+                },
+                {
+                  "group": "bottom",
+                  "id": "42b10567-ce96-411f-94fa-5cbf9cba9685"
+                },
+                {
+                  "group": "left",
+                  "id": "4cc42786-df76-4034-b35a-ad50e733373c"
+                },
+                {
+                  "group": "left",
+                  "id": "21a3da30-573c-4910-9c34-575c2469e733"
+                },
+                {
+                  "group": "left",
+                  "id": "20ad72d7-f5c6-42d1-958a-cc3297d38ccf"
+                },
+                {
+                  "group": "left",
+                  "id": "18b39c97-b342-483b-a8af-089511b5a2ed"
+                },
+                {
+                  "group": "left",
+                  "id": "0f88fed4-734e-41ba-8fcd-060d6a89aceb"
+                }
+              ]
+            },
+            "zIndex": 34
+          },
+          {
+            "shape": "edge",
+            "attrs": {
+              "line": {
+                "stroke": "rgb(122, 167, 250)",
+                "targetMarker": {
+                  "name": "er-n",
+                  "strokeWidth": 1
+                },
+                "fill-opacity": 1,
+                "stroke-width": 1,
+                "stroke-opacity": 0.78695652173913,
+                "stroke-dasharray": "0",
+                "sourceMarker": {
+                  "name": "er-1",
+                  "strokeWidth": 1
+                }
+              },
+              "text": {
+                "textAnchor": "middle",
+                "textVerticalAnchor": "middle",
+                "fill": "#000000",
+                "fontSize": 14,
+                "font-weight": "normal",
+                "font-style": "normal",
+                "text-decoration": "none"
+              }
+            },
+            "id": "B7AB0A5E-A8F1-4F8F-BB07-377169790DC3",
+            "connector": {
+              "name": "rounded"
+            },
+            "router": {
+              "name": "manhattan",
+              "args": {
+                "padding": 30,
+                "excludeShapes": [
+                  "group"
+                ]
+              }
+            },
+            "cellType": "edge",
+            "zIndex": 0,
+            "tools": {
+              "items": []
+            },
+            "source": {
+              "cell": "696b6abc-e580-4e92-bff7-69e17f240041",
+              "port": "4131e6ca-c814-4aa0-a4d8-b729aa5d3936"
+            },
+            "target": {
+              "cell": "0a4b708b-bbb4-4c12-9f95-c1a1ed0cfc94",
+              "port": "409999eb-c9b1-4862-ab66-34794aa1c1c4"
+            }
+          },
+          {
+            "shape": "edge",
+            "attrs": {
+              "line": {
+                "stroke": "rgb(122, 167, 250)",
+                "targetMarker": {
+                  "name": "er-n",
+                  "strokeWidth": 1
+                },
+                "fill-opacity": 1,
+                "stroke-width": 1,
+                "stroke-opacity": 0.78695652173913,
+                "stroke-dasharray": "0",
+                "sourceMarker": {
+                  "name": "er-1",
+                  "strokeWidth": 1
+                }
+              },
+              "text": {
+                "textAnchor": "middle",
+                "textVerticalAnchor": "middle",
+                "fill": "#000000",
+                "fontSize": 14,
+                "font-weight": "normal",
+                "font-style": "normal",
+                "text-decoration": "none"
+              }
+            },
+            "id": "CBCB8522-7F7F-4F1A-BE8B-AC7A61A40103",
+            "connector": {
+              "name": "rounded"
+            },
+            "router": {
+              "name": "manhattan",
+              "args": {
+                "padding": 30,
+                "excludeShapes": [
+                  "group"
+                ]
+              }
+            },
+            "cellType": "edge",
+            "zIndex": 0,
+            "tools": {
+              "items": []
+            },
+            "source": {
+              "cell": "0a4b708b-bbb4-4c12-9f95-c1a1ed0cfc94",
+              "port": "20ad72d7-f5c6-42d1-958a-cc3297d38ccf"
+            },
+            "target": {
+              "cell": "4e00c872-5cdf-4d7b-9640-f5558f80e4b8",
+              "port": "6935EE5E-DD3B-47BB-BFE9-E865F0369135"
+            }
           }
         ]
       }
@@ -44523,7 +46928,7 @@
     "readonly": false,
     "allowWs": false
   },
-  "updateTime": 1770772538547,
-  "signature": "4a9a71a83326a36fe3a6c451bfea8069",
+  "updateTime": 1784770848813,
+  "signature": "09e9552d10f8055de584a3f59212241c",
   "branchId": "1111"
 }

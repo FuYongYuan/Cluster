@@ -1,9 +1,9 @@
 package cn.fyy.authorization.service.impl;
 
-import cn.fyy.authorization.bean.bo.RoleManagerBO;
-import cn.fyy.authorization.bean.po.RoleManagerPO;
-import cn.fyy.authorization.repository.RoleManagerRepository;
-import cn.fyy.authorization.service.RoleManagerService;
+import cn.fyy.authorization.bean.bo.RoleButtonBO;
+import cn.fyy.authorization.bean.po.RoleButtonPO;
+import cn.fyy.authorization.repository.RoleButtonRepository;
+import cn.fyy.authorization.service.RoleButtonService;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
@@ -22,13 +22,13 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * 用户角色关系 Service
+ * 按钮角色关系 Service
  *
  * @author fyy
  */
 @Slf4j
 @Service
-public class RoleManagerServiceImpl implements RoleManagerService {
+public class RoleButtonServiceImpl implements RoleButtonService {
     /**
      * 雪花算法
      */
@@ -36,59 +36,59 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     private SnowflakeIdUtil snowflakeIdUtil;
 
     /**
-     * 用户角色关系 Repository
+     * 按钮角色关系 Repository
      */
     @Resource
-    private RoleManagerRepository roleManagerRepository;
+    private RoleButtonRepository roleButtonRepository;
 
     //------------------------------------------------------------------------------------------------------------------基础方法
 
     /**
      * 新增或者修改
      *
-     * @param bo                 用户角色关系 BO
+     * @param bo                 按钮角色关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(RoleManagerBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(RoleButtonBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            RoleManagerBO result = this.save(bo, currentManagerId, currentManagerName, false);
+            RoleButtonBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
                 return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             } else {
                 return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改按钮角色关系错误", e);
         }
     }
 
     /**
      * 新增或者修改
      *
-     * @param bo                 用户角色关系 BO
+     * @param bo                 按钮角色关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
      */
     @Override
-    public RoleManagerBO save(RoleManagerBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public RoleButtonBO save(RoleButtonBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            RoleManagerPO po;
+            RoleButtonPO po;
             if (bo.getId() == null) {
                 po = BeanUtil.insert(
-                        RoleManagerBO.toPO(bo),
+                        RoleButtonBO.toPO(bo),
                         snowflakeIdUtil.getGenerator().nextId(),
                         currentManagerId,
                         currentManagerName,
                         localDateTime
                 );
             } else {
-                RoleManagerPO old = roleManagerRepository.getReferenceById(bo.getId());
+                RoleButtonPO old = roleButtonRepository.getReferenceById(bo.getId());
                 // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
                 po = BeanUtil.update(
@@ -99,9 +99,9 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                 );
             }
 
-            return RoleManagerBO.toBO(roleManagerRepository.save(po));
+            return RoleButtonBO.toBO(roleButtonRepository.save(po));
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改按钮角色关系错误", e);
         }
     }
 
@@ -110,26 +110,27 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     /**
      * 保存集合
      *
-     * @param roleIds            权限主键 ID 集合
+     * @param roleId             角色主键 ID
+     * @param buttonIds          按钮主键 ID 集合
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return 是否成功
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public ResultMessage<String> saveList(Long managerId, String roleIds, Long currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> saveList(Long roleId, String buttonIds, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            if (StringUtils.hasText(roleIds)) {
-                // 删除原先的用户角色关系
-                roleManagerRepository.deleteByManagerId(managerId);
-                // 新增用户角色关系
-                List<Long> roleId = Stream.of(roleIds.split(",")).map(Long::valueOf).toList();
-                List<RoleManagerPO> list = new ArrayList<>();
-                for (Long id : roleId) {
-                    RoleManagerPO bo = RoleManagerPO.builder()
-                            .managerId(managerId)
-                            .roleId(id)
+            if (StringUtils.hasText(buttonIds)) {
+                // 删除原先的按钮角色关系
+                roleButtonRepository.deleteByRoleId(roleId);
+                // 新增按钮角色关系
+                List<Long> buttonId = Stream.of(buttonIds.split(",")).map(Long::valueOf).toList();
+                List<RoleButtonPO> list = new ArrayList<>();
+                for (Long id : buttonId) {
+                    RoleButtonPO bo = RoleButtonPO.builder()
+                            .roleId(roleId)
+                            .buttonId(id)
                             .creatorId(currentManagerId)
                             .creatorName(currentManagerName)
                             .createTime(localDateTime)
@@ -140,15 +141,15 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                             .build();
                     list.add(bo);
                 }
-                List<RoleManagerBO> tUserRoleBOList = RoleManagerBO.toBO(roleManagerRepository.saveAll(list));
-                if (!tUserRoleBOList.isEmpty()) {
+                List<RoleButtonBO> roleButtonBOList = RoleButtonBO.toBO(roleButtonRepository.saveAll(list));
+                if (!roleButtonBOList.isEmpty()) {
                     return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
                 }
             } else {
                 return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改按钮角色关系错误", e);
         }
         return null;
     }

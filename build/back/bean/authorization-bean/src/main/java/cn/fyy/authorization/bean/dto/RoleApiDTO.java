@@ -1,0 +1,199 @@
+package cn.fyy.authorization.bean.dto;
+
+import cn.fyy.authorization.bean.bo.RoleApiBO;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 角色API接口访问关系
+ *
+ * @author fyy
+ */
+@Schema(name = "RoleApiDTO", description = "角色API接口访问关系 实体类")
+@Data
+@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class RoleApiDTO implements Serializable {
+
+    /**
+     * 主键 ID
+     */
+    @Schema(name = "id", description = "主键 ID", type = "Long")
+    private Long id;
+
+    /**
+     * 角色ID
+     */
+    @Schema(name = "roleId", description = "角色ID", type = "Long")
+    private Long roleId;
+
+    /**
+     * API_ID
+     */
+    @Schema(name = "apiId", description = "API_ID", type = "Long")
+    private Long apiId;
+
+    /**
+     * 创建时间
+     */
+    @Schema(name = "createTime", description = "创建时间", type = "LocalDateTime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
+
+    /**
+     * 创建人 ID
+     */
+    @Schema(name = "creatorId", description = "创建人 ID", type = "Long")
+    private Long creatorId;
+
+    /**
+     * 创建人名称
+     */
+    @Schema(name = "creatorName", description = "创建人名称", type = "String")
+    private String creatorName;
+
+    /**
+     * 更新时间
+     */
+    @Schema(name = "updateTime", description = "修改时间", type = "LocalDateTime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
+
+    /**
+     * 更新人 ID
+     */
+    @Schema(name = "updaterId", description = "修改人 ID", type = "Long")
+    private Long updaterId;
+
+    /**
+     * 更新人名称
+     */
+    @Schema(name = "updaterName", description = "修改人名称", type = "String")
+    private String updaterName;
+
+    /**
+     * 状态;（0.正常、99.删除）
+     */
+    @Schema(name = "state", description = "状态(0.正常 99.删除)", type = "Byte")
+    private Byte state;
+
+    //------------------------------------------------------------------------------------------------------------------转换
+
+    /**
+     * 角色API关系 BO 转换 DTO
+     */
+    public static RoleApiDTO toDTO(RoleApiBO bo) {
+        if (bo != null) {
+            return RoleApiDTO.builder()
+                    .id(bo.getId())
+                    .roleId(bo.getRoleId())
+                    .apiId(bo.getApiId())
+                    .createTime(bo.getCreateTime())
+                    .creatorId(bo.getCreatorId())
+                    .creatorName(bo.getCreatorName())
+                    .updateTime(bo.getUpdateTime())
+                    .updaterId(bo.getUpdaterId())
+                    .updaterName(bo.getUpdaterName())
+                    .state(bo.getState())
+                    .build();
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 角色API关系 BO 数组 转换 DTO List
+     */
+    public static List<RoleApiDTO> toDTO(RoleApiBO[] bos) {
+        if (bos != null) {
+            List<RoleApiDTO> dtos = new ArrayList<>();
+            for (RoleApiBO bo : bos) {
+                dtos.add(toDTO(bo));
+            }
+            return dtos;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 角色API关系 BO List 转换 DTO List
+     */
+    public static List<RoleApiDTO> toDTO(List<RoleApiBO> bos) {
+        if (bos != null) {
+            List<RoleApiDTO> dtos = new ArrayList<>();
+            for (RoleApiBO bo : bos) {
+                dtos.add(toDTO(bo));
+            }
+            return dtos;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 角色API关系 DTO 转换 BO
+     */
+    public static RoleApiBO toBO(RoleApiDTO dto) {
+        if (dto != null) {
+            return RoleApiBO.builder()
+                    .id(dto.getId())
+                    .roleId(dto.getRoleId())
+                    .apiId(dto.getApiId())
+                    .createTime(dto.getCreateTime())
+                    .creatorId(dto.getCreatorId())
+                    .creatorName(dto.getCreatorName())
+                    .updateTime(dto.getUpdateTime())
+                    .updaterId(dto.getUpdaterId())
+                    .updaterName(dto.getUpdaterName())
+                    .state(dto.getState())
+                    .build();
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 角色API关系 DTO List 转换 BO List
+     */
+    public static List<RoleApiBO> toBO(List<RoleApiDTO> dtos) {
+        if (dtos != null) {
+            List<RoleApiBO> bos = new ArrayList<>();
+            for (RoleApiDTO dto : dtos) {
+                bos.add(toBO(dto));
+            }
+            return bos;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 角色API关系 DTO 转换 BO
+     */
+    public RoleApiBO toBO() {
+        return RoleApiBO.builder()
+                .id(this.getId())
+                .roleId(this.getRoleId())
+                .apiId(this.getApiId())
+                .createTime(this.getCreateTime())
+                .creatorId(this.getCreatorId())
+                .creatorName(this.getCreatorName())
+                .updateTime(this.getUpdateTime())
+                .updaterId(this.getUpdaterId())
+                .updaterName(this.getUpdaterName())
+                .state(this.getState())
+                .build();
+    }
+
+}

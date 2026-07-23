@@ -1,9 +1,9 @@
 package cn.fyy.authorization.service.impl;
 
-import cn.fyy.authorization.bean.bo.RoleManagerBO;
-import cn.fyy.authorization.bean.po.RoleManagerPO;
-import cn.fyy.authorization.repository.RoleManagerRepository;
-import cn.fyy.authorization.service.RoleManagerService;
+import cn.fyy.authorization.bean.bo.RoleApiBO;
+import cn.fyy.authorization.bean.po.RoleApiPO;
+import cn.fyy.authorization.repository.RoleApiRepository;
+import cn.fyy.authorization.service.RoleApiService;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
@@ -22,13 +22,13 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * 用户角色关系 Service
+ * 角色API接口访问关系 Service
  *
  * @author fyy
  */
 @Slf4j
 @Service
-public class RoleManagerServiceImpl implements RoleManagerService {
+public class RoleApiServiceImpl implements RoleApiService {
     /**
      * 雪花算法
      */
@@ -36,59 +36,59 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     private SnowflakeIdUtil snowflakeIdUtil;
 
     /**
-     * 用户角色关系 Repository
+     * 角色API关系 Repository
      */
     @Resource
-    private RoleManagerRepository roleManagerRepository;
+    private RoleApiRepository roleApiRepository;
 
     //------------------------------------------------------------------------------------------------------------------基础方法
 
     /**
      * 新增或者修改
      *
-     * @param bo                 用户角色关系 BO
+     * @param bo                 角色API关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return !=null 成功，==null 失败
      */
     @Override
-    public ResultMessage<String> save(RoleManagerBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> save(RoleApiBO bo, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
-            RoleManagerBO result = this.save(bo, currentManagerId, currentManagerName, false);
+            RoleApiBO result = this.save(bo, currentManagerId, currentManagerName, false);
             if (result != null) {
                 return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             } else {
                 return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改角色API关系错误", e);
         }
     }
 
     /**
      * 新增或者修改
      *
-     * @param bo                 用户角色关系 BO
+     * @param bo                 角色API关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @param getNull            是否更新空
      * @return !=null 成功，==null 失败
      */
     @Override
-    public RoleManagerBO save(RoleManagerBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
+    public RoleApiBO save(RoleApiBO bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            RoleManagerPO po;
+            RoleApiPO po;
             if (bo.getId() == null) {
                 po = BeanUtil.insert(
-                        RoleManagerBO.toPO(bo),
+                        RoleApiBO.toPO(bo),
                         snowflakeIdUtil.getGenerator().nextId(),
                         currentManagerId,
                         currentManagerName,
                         localDateTime
                 );
             } else {
-                RoleManagerPO old = roleManagerRepository.getReferenceById(bo.getId());
+                RoleApiPO old = roleApiRepository.getReferenceById(bo.getId());
                 // 根据 getNull 复制其中的非空或包含空字段
                 BeanUtil.copyProperties(bo, old, getNull);
                 po = BeanUtil.update(
@@ -99,9 +99,9 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                 );
             }
 
-            return RoleManagerBO.toBO(roleManagerRepository.save(po));
+            return RoleApiBO.toBO(roleApiRepository.save(po));
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改角色API关系错误", e);
         }
     }
 
@@ -110,26 +110,27 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     /**
      * 保存集合
      *
-     * @param roleIds            权限主键 ID 集合
+     * @param roleId             角色主键 ID
+     * @param apiIds             API主键 ID 集合
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return 是否成功
      */
     @Override
     @Transactional(rollbackFor = BusinessException.class)
-    public ResultMessage<String> saveList(Long managerId, String roleIds, Long currentManagerId, String currentManagerName) throws BusinessException {
+    public ResultMessage<String> saveList(Long roleId, String apiIds, Long currentManagerId, String currentManagerName) throws BusinessException {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
-            if (StringUtils.hasText(roleIds)) {
-                // 删除原先的用户角色关系
-                roleManagerRepository.deleteByManagerId(managerId);
-                // 新增用户角色关系
-                List<Long> roleId = Stream.of(roleIds.split(",")).map(Long::valueOf).toList();
-                List<RoleManagerPO> list = new ArrayList<>();
-                for (Long id : roleId) {
-                    RoleManagerPO bo = RoleManagerPO.builder()
-                            .managerId(managerId)
-                            .roleId(id)
+            if (StringUtils.hasText(apiIds)) {
+                // 删除原先的角色API关系
+                roleApiRepository.deleteByRoleId(roleId);
+                // 新增角色API关系
+                List<Long> apiId = Stream.of(apiIds.split(",")).map(Long::valueOf).toList();
+                List<RoleApiPO> list = new ArrayList<>();
+                for (Long id : apiId) {
+                    RoleApiPO bo = RoleApiPO.builder()
+                            .roleId(roleId)
+                            .apiId(id)
                             .creatorId(currentManagerId)
                             .creatorName(currentManagerName)
                             .createTime(localDateTime)
@@ -140,15 +141,15 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                             .build();
                     list.add(bo);
                 }
-                List<RoleManagerBO> tUserRoleBOList = RoleManagerBO.toBO(roleManagerRepository.saveAll(list));
-                if (!tUserRoleBOList.isEmpty()) {
+                List<RoleApiBO> roleApiBOList = RoleApiBO.toBO(roleApiRepository.saveAll(list));
+                if (!roleApiBOList.isEmpty()) {
                     return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
                 }
             } else {
                 return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改角色API关系错误", e);
         }
         return null;
     }

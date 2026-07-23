@@ -6,6 +6,7 @@ import {
 	LocalStorageJwtToken,
 } from "@src/apis/commons/constant";
 import type { ResultMessage } from "@src/apis/commons/dto";
+import router from "@src/router/config";
 import axios, {
 	type AxiosPromise,
 	type AxiosRequestConfig,
@@ -50,7 +51,13 @@ service.interceptors.request.use(
 service.interceptors.response.use(
 	(response: AxiosResponse) => {
 		if (response.data.code === AuthorizationOverdueCode) {
+			showErrorNotification({
+				message: "登录过期",
+				description: "登录已过期，请重新登录",
+			});
+			localStorage.removeItem(LocalStorageJwtToken);
 			window.location.href = "/login";
+			return Promise.reject(new Error("登录过期"));
 		}
 		const jwtToken = localStorage.getItem(LocalStorageJwtToken);
 		const authorization = `${JwtTokenBearerName} ${jwtToken}`;
@@ -73,10 +80,66 @@ service.interceptors.response.use(
 		return response;
 	},
 	(error: any) => {
-		showErrorNotification({
-			message: "请求错误",
-			description: error.message,
-		});
+		if (error.response) {
+			const status: number = error.response.status;
+			switch (status) {
+				case 401:
+					showErrorNotification({
+						message: "登录过期",
+						description: "登录已过期，请重新登录",
+					});
+					localStorage.removeItem(LocalStorageJwtToken);
+					window.location.href = "/login";
+					break;
+				case 403:
+					showErrorNotification({
+						message: "拒绝访问",
+						description: "您没有权限访问该资源",
+					});
+					break;
+				case 404:
+					showErrorNotification({
+						message: "请求失败",
+						description: "请求的资源不存在 (404)",
+					});
+					router.push("/error/404");
+					break;
+				case 500:
+					showErrorNotification({
+						message: "服务器错误",
+						description: "服务器内部错误，请稍后重试 (500)",
+					});
+					break;
+				case 502:
+					showErrorNotification({
+						message: "网关错误",
+						description: "网关错误，请稍后重试 (502)",
+					});
+					break;
+				case 503:
+					showErrorNotification({
+						message: "服务不可用",
+						description: "服务暂时不可用，请稍后重试 (503)",
+					});
+					break;
+				default:
+					showErrorNotification({
+						message: "请求失败",
+						description: `请求异常 (${status})，请稍后重试`,
+					});
+					break;
+			}
+		} else if (error.request) {
+			showErrorNotification({
+				message: "网络异常",
+				description: "无法连接到服务器，请检查网络连接",
+			});
+		} else {
+			showErrorNotification({
+				message: "请求错误",
+				description: error.message,
+			});
+		}
 		return Promise.reject(error);
 	},
 );

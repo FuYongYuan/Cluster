@@ -121,15 +121,6 @@ const routes: Array<RouteRecordRaw> = [
 		},
 		children: [
 			{
-				path: "403",
-				name: "403",
-				component: () => import("@src/components/error/403.vue"),
-				meta: {
-					menuId: 403,
-					menuName: "403错误",
-				},
-			},
-			{
 				path: "404",
 				name: "404",
 				component: () => import("@src/components/error/404.vue"),
@@ -138,16 +129,20 @@ const routes: Array<RouteRecordRaw> = [
 					menuName: "404错误",
 				},
 			},
-			{
-				path: "500",
-				name: "500",
-				component: () => import("@src/components/error/500.vue"),
-				meta: {
-					menuId: 500,
-					menuName: "500错误",
-				},
-			},
 		],
+	},
+	{
+		path: "/error/404",
+		name: "Error404Standalone",
+		component: () => import("@src/components/error/404.vue"),
+		meta: {
+			menuName: "404错误",
+		},
+	},
+	{
+		path: "/:pathMatch(.*)*",
+		name: "NotFound",
+		redirect: "/error/404",
 	},
 ];
 
