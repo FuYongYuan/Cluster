@@ -48,7 +48,7 @@
           />
         </a-form-item>
 
-        <a-form-item has-feedback label="菜单" name="menuIds">
+        <a-form-item label="菜单" name="menuIds">
           <a-transfer
               ref="transferRef"
               :target-keys="transferHave"
