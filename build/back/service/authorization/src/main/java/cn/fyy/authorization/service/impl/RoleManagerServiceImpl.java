@@ -9,7 +9,6 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
-import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -127,17 +126,16 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                 List<Long> roleId = Stream.of(roleIds.split(",")).map(Long::valueOf).toList();
                 List<RoleManagerPO> list = new ArrayList<>();
                 for (Long id : roleId) {
-                    RoleManagerPO bo = RoleManagerPO.builder()
-                            .managerId(managerId)
-                            .roleId(id)
-                            .creatorId(currentManagerId)
-                            .creatorName(currentManagerName)
-                            .createTime(localDateTime)
-                            .updaterId(currentManagerId)
-                            .updaterName(currentManagerName)
-                            .updateTime(localDateTime)
-                            .state(DataState.NORMAL.getCode())
-                            .build();
+                    RoleManagerPO bo = BeanUtil.insert(
+                            RoleManagerPO.builder()
+                                    .managerId(managerId)
+                                    .roleId(id)
+                                    .build(),
+                            snowflakeIdUtil.getGenerator().nextId(),
+                            currentManagerId,
+                            currentManagerName,
+                            localDateTime
+                    );
                     list.add(bo);
                 }
                 List<RoleManagerBO> tUserRoleBOList = RoleManagerBO.toBO(roleManagerRepository.saveAll(list));

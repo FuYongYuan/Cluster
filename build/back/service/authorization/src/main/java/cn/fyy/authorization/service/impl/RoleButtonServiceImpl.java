@@ -9,7 +9,6 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
-import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -128,17 +127,16 @@ public class RoleButtonServiceImpl implements RoleButtonService {
                 List<Long> buttonId = Stream.of(buttonIds.split(",")).map(Long::valueOf).toList();
                 List<RoleButtonPO> list = new ArrayList<>();
                 for (Long id : buttonId) {
-                    RoleButtonPO bo = RoleButtonPO.builder()
-                            .roleId(roleId)
-                            .buttonId(id)
-                            .creatorId(currentManagerId)
-                            .creatorName(currentManagerName)
-                            .createTime(localDateTime)
-                            .updaterId(currentManagerId)
-                            .updaterName(currentManagerName)
-                            .updateTime(localDateTime)
-                            .state(DataState.NORMAL.getCode())
-                            .build();
+                    RoleButtonPO bo = BeanUtil.insert(
+                            RoleButtonPO.builder()
+                                    .roleId(roleId)
+                                    .buttonId(id)
+                                    .build(),
+                            snowflakeIdUtil.getGenerator().nextId(),
+                            currentManagerId,
+                            currentManagerName,
+                            localDateTime
+                    );
                     list.add(bo);
                 }
                 List<RoleButtonBO> roleButtonBOList = RoleButtonBO.toBO(roleButtonRepository.saveAll(list));

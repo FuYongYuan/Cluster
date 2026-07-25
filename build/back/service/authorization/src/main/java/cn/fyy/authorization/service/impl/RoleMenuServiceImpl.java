@@ -127,18 +127,17 @@ public class RoleMenuServiceImpl implements RoleMenuService {
                 List<Long> menuId = Stream.of(menuIds.split(",")).map(Long::valueOf).toList();
                 List<RoleMenuPO> list = new ArrayList<>();
                 for (Long id : menuId) {
-                    RoleMenuPO bo = RoleMenuPO.builder()
-                            .roleId(roleId)
-                            .menuId(id)
-                            .creatorId(currentManagerId)
-                            .creatorName(currentManagerName)
-                            .createTime(localDateTime)
-                            .updaterId(currentManagerId)
-                            .updaterName(currentManagerName)
-                            .updateTime(localDateTime)
-                            .state(DataState.NORMAL.getCode())
-                            .build();
-                    list.add(bo);
+                    RoleMenuPO po = BeanUtil.insert(
+                            RoleMenuPO.builder()
+                                    .roleId(roleId)
+                                    .menuId(id)
+                                    .build(),
+                            snowflakeIdUtil.getGenerator().nextId(),
+                            currentManagerId,
+                            currentManagerName,
+                            localDateTime
+                    );
+                    list.add(po);
                 }
                 List<RoleMenuBO> tRoleMenuBOList = RoleMenuBO.toBO(roleMenuRepository.saveAll(list));
                 if (!tRoleMenuBOList.isEmpty()) {

@@ -9,7 +9,6 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
-import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -128,18 +127,17 @@ public class RoleApiServiceImpl implements RoleApiService {
                 List<Long> apiId = Stream.of(apiIds.split(",")).map(Long::valueOf).toList();
                 List<RoleApiPO> list = new ArrayList<>();
                 for (Long id : apiId) {
-                    RoleApiPO bo = RoleApiPO.builder()
-                            .roleId(roleId)
-                            .apiId(id)
-                            .creatorId(currentManagerId)
-                            .creatorName(currentManagerName)
-                            .createTime(localDateTime)
-                            .updaterId(currentManagerId)
-                            .updaterName(currentManagerName)
-                            .updateTime(localDateTime)
-                            .state(DataState.NORMAL.getCode())
-                            .build();
-                    list.add(bo);
+                    RoleApiPO po = BeanUtil.insert(
+                            RoleApiPO.builder()
+                                    .roleId(roleId)
+                                    .apiId(id)
+                                    .build(),
+                            snowflakeIdUtil.getGenerator().nextId(),
+                            currentManagerId,
+                            currentManagerName,
+                            localDateTime
+                    );
+                    list.add(po);
                 }
                 List<RoleApiBO> roleApiBOList = RoleApiBO.toBO(roleApiRepository.saveAll(list));
                 if (!roleApiBOList.isEmpty()) {
