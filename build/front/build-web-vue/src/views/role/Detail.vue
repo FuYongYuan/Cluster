@@ -50,7 +50,8 @@
 
         <a-form-item has-feedback label="菜单" name="menuIds">
           <a-transfer
-              v-model:target-keys="transferHave"
+              ref="transferRef"
+              :target-keys="transferHave"
               :data-source="transferData"
               show-search
               :filter-option="transferFilterOption"
@@ -58,18 +59,18 @@
               :show-select-all="false"
               class="tree-transfer"
               @change="transferHandleChange"
+              @search="transferHandleSearch"
           >
-            <template #children="{ direction }: any">
+            <template #children="{ direction, onItemSelect }: any">
               <a-tree
                   v-if="direction === 'left'"
                   block-node
                   checkable
                   check-strictly
                   default-expand-all
-                  :checked-keys="transferHave"
+                  :checked-keys="[...transferHave, ...leftCheckedKeys]"
                   :tree-data="menuTreeData"
-                  @check="(_: any, props: any) => {onTreeCheck(props)}"
-                  @select="(_: any, props: any) => {onTreeCheck(props)}"
+                  @check="(checked: any, e: any) => onLeftTreeCheck(checked, e, onItemSelect)"
               />
               <a-tree
                   v-else
@@ -77,9 +78,9 @@
                   checkable
                   check-strictly
                   default-expand-all
-                  :checked-keys="transferHave"
+                  :checked-keys="rightCheckedKeys"
                   :tree-data="rightTreeData"
-                  @check="(_: any, props: any) => {onRightTreeCheck(props)}"
+                  @check="(checked: any, e: any) => onRightTreeCheck(checked, e, onItemSelect)"
               />
             </template>
           </a-transfer>
@@ -96,7 +97,6 @@ import type { MenuDTO } from "@src/apis/capability/dto";
 import { queryMenuAllTree } from "@src/apis/capability/service";
 import type { TransferData } from "@src/apis/commons/dto";
 import IconFont from "@src/assets/iconfont/icon";
-import type { TreeProps } from "ant-design-vue";
 import { type FormInstance, message } from "ant-design-vue";
 import type { RuleObject } from "ant-design-vue/es/form";
 import {
@@ -107,6 +107,14 @@ import {
 	ref,
 	toRefs,
 } from "vue";
+
+/**
+ * check-strictly模式下Tree勾选事件首个参数（兼容数组格式）
+ */
+type TreeCheckStrictlyEvent = {
+	checked: (string | number)[];
+	halfChecked: (string | number)[];
+};
 
 export default defineComponent({
 	// 页面名称
@@ -137,6 +145,9 @@ export default defineComponent({
 		// 详情DOM
 		const detail = ref<FormInstance>();
 
+		// 穿梭框DOM
+		const transferRef = ref<any>();
+
 		// 详情页面数据
 		const detailData = reactive({
 			// 表单
@@ -153,20 +164,34 @@ export default defineComponent({
 			loadingState: false,
 		});
 
-		// 左侧树数据（全部节点，已选节点禁用）
+		// 左侧树待穿梭勾选keys（已勾选，待点击向右穿梭）
+		const leftCheckedKeys = ref<string[]>([]);
+
+		// 右侧树勾选keys（已勾选，待点击向左穿梭）
+		const rightCheckedKeys = ref<string[]>([]);
+
+		// 左侧面板搜索关键字
+		const leftSearchValue = ref("");
+
+		// 右侧面板搜索关键字
+		const rightSearchValue = ref("");
+
+		// 左侧树数据（全部节点，已拥有节点勾选置灰，按搜索关键字过滤）
 		const menuTreeData = computed(() => {
-			return buildLeftTreeData(
+			const filteredNodes = filterTreeByKeyword(
 				detailData.treeDataSource,
-				detailData.transferHave,
+				leftSearchValue.value,
 			);
+			return buildLeftTreeData(filteredNodes, detailData.transferHave);
 		});
 
-		// 右侧树数据（仅已选节点 + 祖先上下文）
+		// 右侧树数据（仅已选节点 + 祖先上下文，按搜索关键字过滤）
 		const rightTreeData = computed(() => {
-			return buildRightTreeData(
+			const filteredNodes = filterTreeByKeyword(
 				detailData.treeDataSource,
-				detailData.transferHave,
+				rightSearchValue.value,
 			);
+			return buildRightTreeData(filteredNodes, detailData.transferHave);
 		});
 
 		//------------------------------------------------------------------------------------------------------------------方法
@@ -179,6 +204,15 @@ export default defineComponent({
 				id: -1,
 			};
 			detailData.transferHave = [];
+			// 清理穿梭勾选状态
+			leftCheckedKeys.value = [];
+			rightCheckedKeys.value = [];
+			// 清理搜索关键字
+			leftSearchValue.value = "";
+			rightSearchValue.value = "";
+			// 重置穿梭框内部选中状态（避免遗留待穿梭选中项导致按钮残留亮起）
+			transferRef.value?.handleSelectChange("left", []);
+			transferRef.value?.handleSelectChange("right", []);
 
 			detail.value?.resetFields();
 		};
@@ -220,7 +254,7 @@ export default defineComponent({
 				const result = await getRole(searchId);
 				if (result !== undefined) {
 					detailData.form = result;
-					if (result.menuIds !== undefined) {
+					if (result.menuIds !== undefined && result.menuIds !== "") {
 						detailData.transferHave = result.menuIds.split(",");
 					}
 				}
@@ -262,18 +296,51 @@ export default defineComponent({
 			});
 		};
 
-		// 构建左侧树数据（全部节点，不设置禁用）
+		// ... existing code ...
+		// 按关键字递归过滤树节点（保留匹配节点及其祖先路径）
+		const filterTreeByKeyword = (
+			treeNodes: MenuDTO[],
+			keyword: string,
+		): MenuDTO[] => {
+			const trimKeyword = keyword.trim();
+			if (trimKeyword === "") {
+				return treeNodes;
+			}
+			const result: MenuDTO[] = [];
+			for (const node of treeNodes) {
+				const isMatch = (node.menuName ?? "").includes(trimKeyword);
+				const filteredChildren =
+					node.sub && node.sub.length > 0
+						? filterTreeByKeyword(node.sub, trimKeyword)
+						: [];
+				if (isMatch) {
+					// 自身匹配，保留完整子级
+					result.push(node);
+				} else if (filteredChildren.length > 0) {
+					// 自身不匹配但子孙匹配，仅保留匹配分支
+					result.push({ ...node, sub: filteredChildren });
+				}
+			}
+			return result;
+		};
+
+		// 构建左侧树数据（全部节点，已拥有节点勾选置灰禁用）
 		const buildLeftTreeData = (
 			treeNodes: MenuDTO[],
-			_targetKeys: string[] = [],
+			targetKeys: string[] = [],
 		): any[] => {
-			return treeNodes.map(({ sub, ...props }) => ({
-				...props,
-				key: props.id?.toString(),
-				title: props.menuName ?? "无名称",
-				children:
-					sub && sub.length > 0 ? buildLeftTreeData(sub, _targetKeys) : [],
-			}));
+			return treeNodes.map(({ sub, ...props }) => {
+				const nodeKey = props.id?.toString() ?? "";
+				return {
+					...props,
+					key: nodeKey,
+					title: props.menuName ?? "无名称",
+					// 已拥有（右侧存在）的节点置灰禁用，保持勾选
+					disabled: targetKeys.includes(nodeKey),
+					children:
+						sub && sub.length > 0 ? buildLeftTreeData(sub, targetKeys) : [],
+				};
+			});
 		};
 
 		// 构建右侧树数据（仅保留已选节点及其祖先上下文）
@@ -296,6 +363,7 @@ export default defineComponent({
 						...node,
 						key: nodeKey,
 						title: node.menuName ?? "无名称",
+						// 仅上下文祖先（未拥有）禁用，避免无效穿梭
 						disabled: !isSelected,
 						children: filteredChildren,
 					});
@@ -304,53 +372,134 @@ export default defineComponent({
 			return result;
 		};
 
-		// 左侧树勾选回调（直接操作 transferHave）
-		const onTreeCheck = (
-			e:
-				| Parameters<NonNullable<TreeProps["onCheck"]>>[1]
-				| Parameters<NonNullable<TreeProps["onSelect"]>>[1],
-		) => {
-			const eventKey = e.node.eventKey?.toString() ?? "";
-			const isCheckedNow = e.node.checked;
-
-			if (isCheckedNow) {
-				// 勾选 → 加入右侧
-				if (!detailData.transferHave.includes(eventKey)) {
-					detailData.transferHave = [...detailData.transferHave, eventKey];
+		// 递归收集指定keys的全部祖先节点keys
+		const findAncestorKeys = (
+			treeNodes: MenuDTO[],
+			targetKeySet: Set<string>,
+		): string[] => {
+			const ancestors: string[] = [];
+			const traverse = (nodes: MenuDTO[], path: string[]): boolean => {
+				let found = false;
+				for (const node of nodes) {
+					const nodeKey = node.id?.toString() ?? "";
+					let childFound = false;
+					if (node.sub && node.sub.length > 0) {
+						childFound = traverse(node.sub, [...path, nodeKey]);
+					}
+					if (targetKeySet.has(nodeKey)) {
+						// 命中目标节点，收集其全部祖先
+						ancestors.push(...path);
+						found = true;
+					} else if (childFound) {
+						found = true;
+					}
 				}
+				return found;
+			};
+			traverse(treeNodes, []);
+			return [...new Set(ancestors)];
+		};
+
+		// 归一化Tree勾选事件返回的keys（check-strictly为对象格式，兼容数组格式）
+		const normalizeCheckedKeys = (
+			checked: TreeCheckStrictlyEvent | any[],
+		): string[] => {
+			const raw = Array.isArray(checked) ? checked : (checked?.checked ?? []);
+			return raw.map((key) => key.toString());
+		};
+
+		// 左侧树勾选回调（仅更新待穿梭状态并联动穿梭向右按钮亮起，不直接移动）
+		const onLeftTreeCheck = (
+			checked: TreeCheckStrictlyEvent | any[],
+			_e: any,
+			onItemSelect: (key: string, selected: boolean) => void,
+		) => {
+			const checkedKeys = normalizeCheckedKeys(checked);
+			// 剔除已拥有keys（右侧已存在，勾选置灰不可操作），得到本次待穿梭keys
+			const haveSet = new Set(detailData.transferHave);
+			const newPendingKeys = checkedKeys.filter((key) => !haveSet.has(key));
+
+			// 与Transfer内部选中状态同步（控制中间穿梭按钮亮起/置灰）
+			for (const key of newPendingKeys) {
+				if (!leftCheckedKeys.value.includes(key)) {
+					onItemSelect(key, true);
+				}
+			}
+			for (const key of leftCheckedKeys.value) {
+				if (!newPendingKeys.includes(key)) {
+					onItemSelect(key, false);
+				}
+			}
+
+			leftCheckedKeys.value = newPendingKeys;
+		};
+
+		// 右侧树勾选回调（勾选后联动穿梭向左按钮亮起，不直接移动）
+		const onRightTreeCheck = (
+			checked: TreeCheckStrictlyEvent | any[],
+			_e: any,
+			onItemSelect: (key: string, selected: boolean) => void,
+		) => {
+			const checkedKeys = normalizeCheckedKeys(checked);
+
+			// 与Transfer内部选中状态同步（控制中间穿梭按钮亮起/置灰）
+			for (const key of checkedKeys) {
+				if (!rightCheckedKeys.value.includes(key)) {
+					onItemSelect(key, true);
+				}
+			}
+			for (const key of rightCheckedKeys.value) {
+				if (!checkedKeys.includes(key)) {
+					onItemSelect(key, false);
+				}
+			}
+
+			rightCheckedKeys.value = checkedKeys;
+		};
+
+		// 穿梭框内部过滤（自定义树渲染，恒为true，实际搜索由@search事件处理）
+		const transferFilterOption = (
+			_inputValue: string,
+			_option: TransferData,
+		) => {
+			return true;
+		};
+
+		// 穿梭框搜索回调
+		const transferHandleSearch = (direction: string, value: string) => {
+			if (direction === "left") {
+				leftSearchValue.value = value;
 			} else {
-				// 取消勾选 → 从右侧移除
-				detailData.transferHave = detailData.transferHave.filter(
-					(key) => key !== eventKey,
+				rightSearchValue.value = value;
+			}
+		};
+
+		// 穿梭框变化处理（点击中间穿梭按钮后执行实际移动）
+		const transferHandleChange = (
+			targetKeys: string[],
+			direction: string,
+			moveKeys: string[],
+		) => {
+			if (direction === "right") {
+				// 向右穿梭：新增勾选keys，并自动补齐缺失的祖先节点
+				const ancestorKeys = findAncestorKeys(
+					detailData.treeDataSource,
+					new Set(moveKeys),
 				);
+				const keysToAdd = [...new Set([...moveKeys, ...ancestorKeys])].filter(
+					(key) => !targetKeys.includes(key),
+				);
+				detailData.transferHave = [...targetKeys, ...keysToAdd];
+				// 清空左侧待穿梭勾选状态（已勾选节点保持勾选并置灰）
+				leftCheckedKeys.value = [];
+			} else {
+				// 向左穿梭：移除勾选keys（左侧对应节点恢复为未勾选可选择状态）
+				detailData.transferHave = targetKeys;
+				// 清空右侧勾选状态
+				rightCheckedKeys.value = [];
 			}
 			// 同步表单数据
 			detailData.form.menuIds = detailData.transferHave.toString();
-		};
-
-		// 右侧树取消勾选回调（从右侧移除）
-		const onRightTreeCheck = (
-			e: Parameters<NonNullable<TreeProps["onCheck"]>>[1],
-		) => {
-			const eventKey = e.node.eventKey?.toString() ?? "";
-			if (!e.node.checked) {
-				// 取消勾选 → 从右侧移除
-				detailData.transferHave = detailData.transferHave.filter(
-					(key) => key !== eventKey,
-				);
-				// 同步表单数据
-				detailData.form.menuIds = detailData.transferHave.toString();
-			}
-		};
-
-		// 穿梭框过滤
-		const transferFilterOption = (inputValue: string, option: TransferData) => {
-			return option.title.indexOf(inputValue) > -1;
-		};
-
-		// 穿梭框变化处理
-		const transferHandleChange = (keys: string[]) => {
-			detailData.form.menuIds = keys.toString();
 		};
 
 		//------------------------------------------------------------------------------------------------------------------验证
@@ -388,15 +537,19 @@ export default defineComponent({
 		return {
 			...toRefs(detailData),
 			detail,
+			transferRef,
 			rules,
 			getById,
 			handleCancel,
 			handleOk,
 			menuTreeData,
 			rightTreeData,
-			onTreeCheck,
+			leftCheckedKeys,
+			rightCheckedKeys,
+			onLeftTreeCheck,
 			onRightTreeCheck,
 			transferFilterOption,
+			transferHandleSearch,
 			transferHandleChange,
 		};
 	},
