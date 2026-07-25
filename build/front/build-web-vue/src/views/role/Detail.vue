@@ -55,8 +55,34 @@
               show-search
               :filter-option="transferFilterOption"
               :render="(item:TransferData) => item.title"
+              :show-select-all="false"
+              class="tree-transfer"
               @change="transferHandleChange"
-          />
+          >
+            <template #children="{ direction }: any">
+              <a-tree
+                  v-if="direction === 'left'"
+                  block-node
+                  checkable
+                  check-strictly
+                  default-expand-all
+                  :checked-keys="transferHave"
+                  :tree-data="menuTreeData"
+                  @check="(_: any, props: any) => {onTreeCheck(props)}"
+                  @select="(_: any, props: any) => {onTreeCheck(props)}"
+              />
+              <a-tree
+                  v-else
+                  block-node
+                  checkable
+                  check-strictly
+                  default-expand-all
+                  :checked-keys="transferHave"
+                  :tree-data="rightTreeData"
+                  @check="(_: any, props: any) => {onRightTreeCheck(props)}"
+              />
+            </template>
+          </a-transfer>
         </a-form-item>
       </a-form>
     </a-spin>
@@ -67,12 +93,20 @@
 import type { RoleDTO } from "@src/apis/authorization/dto";
 import { getRole, saveRole } from "@src/apis/authorization/service";
 import type { MenuDTO } from "@src/apis/capability/dto";
-import { queryMenuAll } from "@src/apis/capability/service";
+import { queryMenuAllTree } from "@src/apis/capability/service";
 import type { TransferData } from "@src/apis/commons/dto";
 import IconFont from "@src/assets/iconfont/icon";
+import type { TreeProps } from "ant-design-vue";
 import { type FormInstance, message } from "ant-design-vue";
 import type { RuleObject } from "ant-design-vue/es/form";
-import { defineComponent, onMounted, reactive, ref, toRefs } from "vue";
+import {
+	computed,
+	defineComponent,
+	onMounted,
+	reactive,
+	ref,
+	toRefs,
+} from "vue";
 
 export default defineComponent({
 	// 页面名称
@@ -109,12 +143,30 @@ export default defineComponent({
 			form: ref<RoleDTO>({
 				id: -1,
 			}),
-			// 穿梭框拥有
+			// 穿梭框拥有（右侧目标keys）
 			transferHave: ref<string[]>([]),
-			// 穿梭框数据
+			// 穿梭框数据（拍平后供Transfer内部管理）
 			transferData: ref<TransferData[]>([]),
+			// 菜单原始树数据
+			treeDataSource: ref<MenuDTO[]>([]),
 
 			loadingState: false,
+		});
+
+		// 左侧树数据（全部节点，已选节点禁用）
+		const menuTreeData = computed(() => {
+			return buildLeftTreeData(
+				detailData.treeDataSource,
+				detailData.transferHave,
+			);
+		});
+
+		// 右侧树数据（仅已选节点 + 祖先上下文）
+		const rightTreeData = computed(() => {
+			return buildRightTreeData(
+				detailData.treeDataSource,
+				detailData.transferHave,
+			);
 		});
 
 		//------------------------------------------------------------------------------------------------------------------方法
@@ -178,29 +230,117 @@ export default defineComponent({
 			}
 		};
 
-		// 查询所有菜单
+		// 查询所有菜单（树形结构）
 		const transferQueryData = async () => {
 			// 开始
 			detailData.loadingState = true;
 
-			const data = ref<MenuDTO[]>([]);
-
 			// 查询
-			const result = await queryMenuAll();
+			const result = await queryMenuAllTree();
 			if (result !== undefined) {
-				data.value = result;
+				detailData.treeDataSource = result;
 			}
 
-			// 穿梭框数据
-			for (let i = 0; i < data.value.length; i++) {
-				detailData.transferData.push({
-					key: data.value[i].id.toString(),
-					title: data.value[i].menuName ?? "无名称",
-				});
-			}
+			// 穿梭框数据（递归拍平所有层级）
+			detailData.transferData = [];
+			flattenTree(detailData.treeDataSource);
 
 			// 结束
 			detailData.loadingState = false;
+		};
+
+		// 递归拍平树数据为穿梭框一维数据
+		const flattenTree = (list: MenuDTO[]) => {
+			list.forEach((item) => {
+				detailData.transferData.push({
+					key: item.id.toString(),
+					title: item.menuName ?? "无名称",
+				});
+				if (item.sub && item.sub.length > 0) {
+					flattenTree(item.sub);
+				}
+			});
+		};
+
+		// 构建左侧树数据（全部节点，不设置禁用）
+		const buildLeftTreeData = (
+			treeNodes: MenuDTO[],
+			_targetKeys: string[] = [],
+		): any[] => {
+			return treeNodes.map(({ sub, ...props }) => ({
+				...props,
+				key: props.id?.toString(),
+				title: props.menuName ?? "无名称",
+				children:
+					sub && sub.length > 0 ? buildLeftTreeData(sub, _targetKeys) : [],
+			}));
+		};
+
+		// 构建右侧树数据（仅保留已选节点及其祖先上下文）
+		const buildRightTreeData = (
+			treeNodes: MenuDTO[],
+			targetKeys: string[],
+		): any[] => {
+			const result: any[] = [];
+			for (const node of treeNodes) {
+				const nodeKey = node.id?.toString();
+				const isSelected = targetKeys.includes(nodeKey);
+				const filteredChildren =
+					node.sub && node.sub.length > 0
+						? buildRightTreeData(node.sub, targetKeys)
+						: [];
+				const hasSelectedDescendant = filteredChildren.length > 0;
+
+				if (isSelected || hasSelectedDescendant) {
+					result.push({
+						...node,
+						key: nodeKey,
+						title: node.menuName ?? "无名称",
+						disabled: !isSelected,
+						children: filteredChildren,
+					});
+				}
+			}
+			return result;
+		};
+
+		// 左侧树勾选回调（直接操作 transferHave）
+		const onTreeCheck = (
+			e:
+				| Parameters<NonNullable<TreeProps["onCheck"]>>[1]
+				| Parameters<NonNullable<TreeProps["onSelect"]>>[1],
+		) => {
+			const eventKey = e.node.eventKey?.toString() ?? "";
+			const isCheckedNow = e.node.checked;
+
+			if (isCheckedNow) {
+				// 勾选 → 加入右侧
+				if (!detailData.transferHave.includes(eventKey)) {
+					detailData.transferHave = [...detailData.transferHave, eventKey];
+				}
+			} else {
+				// 取消勾选 → 从右侧移除
+				detailData.transferHave = detailData.transferHave.filter(
+					(key) => key !== eventKey,
+				);
+			}
+			// 同步表单数据
+			detailData.form.menuIds = detailData.transferHave.toString();
+		};
+
+		// 右侧树取消勾选回调（从右侧移除）
+		const onRightTreeCheck = (
+			e: Parameters<NonNullable<TreeProps["onCheck"]>>[1],
+		) => {
+			const eventKey = e.node.eventKey?.toString() ?? "";
+			if (!e.node.checked) {
+				// 取消勾选 → 从右侧移除
+				detailData.transferHave = detailData.transferHave.filter(
+					(key) => key !== eventKey,
+				);
+				// 同步表单数据
+				detailData.form.menuIds = detailData.transferHave.toString();
+			}
 		};
 
 		// 穿梭框过滤
@@ -252,6 +392,10 @@ export default defineComponent({
 			getById,
 			handleCancel,
 			handleOk,
+			menuTreeData,
+			rightTreeData,
+			onTreeCheck,
+			onRightTreeCheck,
 			transferFilterOption,
 			transferHandleChange,
 		};

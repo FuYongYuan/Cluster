@@ -44,6 +44,24 @@ export const queryMenuAllParent = async (): Promise<MenuDTO[] | undefined> => {
 };
 
 /**
+ * 查询所有菜单（树形结构）
+ */
+export const queryMenuAllTree = async (): Promise<MenuDTO[] | undefined> => {
+	const request = new Request<MenuDTO[]>();
+	return request
+		.get(`${CapabilityApiBaseURL}/menu/query/all/tree`)
+		.then((response) => {
+			if (response.data.code === SuccessRequestCode) {
+				return response.data.data;
+			}
+			showErrorNotification({
+				message: "查询所有菜单（树形）错误",
+				description: response.data.message,
+			});
+		});
+};
+
+/**
  * 根据菜单名称、状态查询参数列表
  *
  * @param currentPage 当前页

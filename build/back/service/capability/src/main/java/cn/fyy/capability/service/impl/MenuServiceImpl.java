@@ -27,7 +27,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -237,6 +240,40 @@ public class MenuServiceImpl implements MenuService {
             );
         } catch (Exception e) {
             throw new BusinessException("查询父级菜单列表错误", e);
+        }
+    }
+
+    /**
+     * 查询所有菜单（树形结构）
+     *
+     * @return MenuBO 菜单树
+     */
+    @Override
+    public List<MenuBO> queryAllTree() throws BusinessException {
+        try {
+            List<MenuBO> allMenus = MenuBO.toBO(menuRepository.queryAll());
+            Map<Long, MenuBO> menuMap = allMenus.stream()
+                    .collect(Collectors.toMap(MenuBO::getId, bo -> bo, (a, b) -> a));
+            List<MenuBO> roots = new ArrayList<>();
+            for (MenuBO bo : allMenus) {
+                Long parentId = bo.getParentId();
+                if (parentId == null) {
+                    roots.add(bo);
+                } else {
+                    MenuBO parent = menuMap.get(parentId);
+                    if (parent != null) {
+                        if (parent.getSub() == null) {
+                            parent.setSub(new ArrayList<>());
+                        }
+                        parent.getSub().add(bo);
+                    } else {
+                        roots.add(bo);
+                    }
+                }
+            }
+            return roots;
+        } catch (Exception e) {
+            throw new BusinessException("查询菜单树错误", e);
         }
     }
 

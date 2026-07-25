@@ -25,6 +25,7 @@ import {
 	Tabs,
 	Tooltip,
 	Transfer,
+	Tree,
 	Upload,
 } from "ant-design-vue";
 // 引入样式
@@ -60,5 +61,6 @@ export const components = [
 	Tabs,
 	Tooltip,
 	Transfer,
+	Tree,
 	Upload,
 ];

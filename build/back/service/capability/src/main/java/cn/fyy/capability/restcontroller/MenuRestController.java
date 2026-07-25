@@ -171,6 +171,21 @@ public class MenuRestController extends BaseRestController {
     }
 
     /**
+     * 查询所有菜单（树形结构）
+     *
+     * @return TMenuDTO 菜单树
+     * @throws BusinessException 业务错误
+     */
+    @Operation(
+            summary = "查询所有菜单（树形结构）", description = "TMenuDTO 菜单树"
+    )
+    @GetMapping(value = "/query/all/tree")
+    public ResultMessage<List<MenuDTO>> queryAllTree(
+    ) throws BusinessException {
+        return new ResultMessage<>(MenuDTO.toDTO(menuServiceImpl.queryAllTree()));
+    }
+
+    /**
      * 根据菜单 ID 集合查询菜单列表
      *
      * @param menuIdList 菜单 ID 集合

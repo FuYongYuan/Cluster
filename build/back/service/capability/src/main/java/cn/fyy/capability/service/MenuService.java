@@ -95,6 +95,14 @@ public interface MenuService {
     ) throws BusinessException;
 
     /**
+     * 查询所有菜单（树形结构）
+     *
+     * @return MenuBO 菜单树
+     * @throws BusinessException 错误
+     */
+    List<MenuBO> queryAllTree() throws BusinessException;
+
+    /**
      * 查询角色持有菜单列表
      *
      * @param menuIdList 角色 ID 集合
