@@ -153,19 +153,19 @@ public class ApiServiceImpl implements ApiService {
     public ResultMessage<String> saveList(List<ApiBO> list, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException {
         try {
             List<String> mappings = list.stream()
-                    .map(ApiBO::getMapping)
+                    .map(ApiBO::getMethodMapping)
                     .collect(Collectors.toList());
 
-            List<ApiPO> olds = apiRepository.findByMappingIn(mappings);
+            List<ApiPO> olds = apiRepository.findByMethodMappingIn(mappings);
 
             Map<String, ApiPO> map = olds.stream()
-                    .collect(Collectors.toMap(ApiPO::getMapping, e -> e));
+                    .collect(Collectors.toMap(ApiPO::getMethodMapping, e -> e));
 
             LocalDateTime localDateTime = LocalDateTime.now();
             List<ApiPO> pos = new ArrayList<>();
             for (ApiBO bo : list) {
                 ApiPO po;
-                ApiPO old = map.get(bo.getMapping());
+                ApiPO old = map.get(bo.getMethodMapping());
                 if (old == null) {
                     po = BeanUtil.insert(
                             ApiBO.toPO(bo),

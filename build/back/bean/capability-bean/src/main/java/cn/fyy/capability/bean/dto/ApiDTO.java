@@ -38,22 +38,34 @@ public class ApiDTO implements Serializable {
     private String className;
 
     /**
+     * 类Mapping值
+     */
+    @Schema(name = "classMapping", description = "类Mapping值", type = "String")
+    private String classMapping;
+
+    /**
+     * 类Swagger说明
+     */
+    @Schema(name = "classExplain", description = "类Swagger说明", type = "String")
+    private String classExplain;
+
+    /**
      * 方法名
      */
     @Schema(name = "methodName", description = "方法名", type = "String")
     private String methodName;
 
     /**
-     * Mapping值
+     * 方法Mapping值
      */
-    @Schema(name = "mapping", description = "Mapping值", type = "String")
-    private String mapping;
+    @Schema(name = "methodMapping", description = "方法Mapping值", type = "String")
+    private String methodMapping;
 
     /**
-     * Swagger说明
+     * 方法Swagger说明
      */
-    @Schema(name = "summary", description = "Swagger说明", type = "String")
-    private String summary;
+    @Schema(name = "methodExplain", description = "方法Swagger说明", type = "String")
+    private String methodExplain;
 
     /**
      * 创建时间
@@ -109,9 +121,11 @@ public class ApiDTO implements Serializable {
             return ApiDTO.builder()
                     .id(bo.getId())
                     .className(bo.getClassName())
+                    .classMapping(bo.getClassMapping())
+                    .classExplain(bo.getClassExplain())
                     .methodName(bo.getMethodName())
-                    .mapping(bo.getMapping())
-                    .summary(bo.getSummary())
+                    .methodMapping(bo.getMethodMapping())
+                    .methodExplain(bo.getMethodExplain())
                     .createTime(bo.getCreateTime())
                     .creatorId(bo.getCreatorId())
                     .creatorName(bo.getCreatorName())
@@ -163,9 +177,11 @@ public class ApiDTO implements Serializable {
             return ApiBO.builder()
                     .id(dto.getId())
                     .className(dto.getClassName())
+                    .classMapping(dto.getClassMapping())
+                    .classExplain(dto.getClassExplain())
                     .methodName(dto.getMethodName())
-                    .mapping(dto.getMapping())
-                    .summary(dto.getSummary())
+                    .methodMapping(dto.getMethodMapping())
+                    .methodExplain(dto.getMethodExplain())
                     .createTime(dto.getCreateTime())
                     .creatorId(dto.getCreatorId())
                     .creatorName(dto.getCreatorName())
@@ -201,9 +217,11 @@ public class ApiDTO implements Serializable {
         return ApiBO.builder()
                 .id(this.getId())
                 .className(this.getClassName())
+                .classMapping(this.getClassMapping())
+                .classExplain(this.getClassExplain())
                 .methodName(this.getMethodName())
-                .mapping(this.getMapping())
-                .summary(this.getSummary())
+                .methodMapping(this.getMethodMapping())
+                .methodExplain(this.getMethodExplain())
                 .createTime(this.getCreateTime())
                 .creatorId(this.getCreatorId())
                 .creatorName(this.getCreatorName())

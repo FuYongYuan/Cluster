@@ -19,16 +19,28 @@ public class RestControllerMappingBO {
      * 类名
      */
     private String className;
+
+    /**
+     * 类Mapping值
+     */
+    private String classMapping;
+
+    /**
+     * 类Swagger说明
+     */
+    private String classExplain;
     /**
      * 方法名
      */
     private String methodName;
+
     /**
-     * Mapping
+     * 方法Mapping值
      */
-    private String mapping;
+    private String methodMapping;
+
     /**
-     * 说明
+     * 方法Swagger说明
      */
-    private String summary;
+    private String methodExplain;
 }

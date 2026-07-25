@@ -61,9 +61,11 @@ public class CapabilityApiJobService {
 
                 ApiBO apiBO = ApiBO.builder()
                         .className(restControllerMappingBO.getClassName())
+                        .classMapping(restControllerMappingBO.getClassMapping())
+                        .classExplain(restControllerMappingBO.getClassExplain())
                         .methodName(restControllerMappingBO.getMethodName())
-                        .mapping(restControllerMappingBO.getMapping())
-                        .summary(restControllerMappingBO.getSummary())
+                        .methodMapping(restControllerMappingBO.getMethodMapping())
+                        .methodExplain(restControllerMappingBO.getMethodExplain())
                         .build();
                 apiBOList.add(apiBO);
             }

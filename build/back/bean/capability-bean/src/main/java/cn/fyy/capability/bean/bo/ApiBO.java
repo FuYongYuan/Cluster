@@ -33,19 +33,29 @@ public class ApiBO implements Serializable {
     private String className;
 
     /**
+     * 类Mapping值
+     */
+    private String classMapping;
+
+    /**
+     * 类Swagger说明
+     */
+    private String classExplain;
+
+    /**
      * 方法名
      */
     private String methodName;
 
     /**
-     * Mapping值
+     * 方法Mapping值
      */
-    private String mapping;
+    private String methodMapping;
 
     /**
-     * Swagger说明
+     * 方法Swagger说明
      */
-    private String summary;
+    private String methodExplain;
 
     /**
      * 创建时间
@@ -92,9 +102,11 @@ public class ApiBO implements Serializable {
             return ApiBO.builder()
                     .id(po.getId())
                     .className(po.getClassName())
+                    .classMapping(po.getClassMapping())
+                    .classExplain(po.getClassExplain())
                     .methodName(po.getMethodName())
-                    .mapping(po.getMapping())
-                    .summary(po.getSummary())
+                    .methodMapping(po.getMethodMapping())
+                    .methodExplain(po.getMethodExplain())
                     .createTime(po.getCreateTime())
                     .creatorId(po.getCreatorId())
                     .creatorName(po.getCreatorName())
@@ -146,9 +158,11 @@ public class ApiBO implements Serializable {
             return ApiPO.builder()
                     .id(bo.getId())
                     .className(bo.getClassName())
+                    .classMapping(bo.getClassMapping())
+                    .classExplain(bo.getClassExplain())
                     .methodName(bo.getMethodName())
-                    .mapping(bo.getMapping())
-                    .summary(bo.getSummary())
+                    .methodMapping(bo.getMethodMapping())
+                    .methodExplain(bo.getMethodExplain())
                     .createTime(bo.getCreateTime())
                     .creatorId(bo.getCreatorId())
                     .creatorName(bo.getCreatorName())
@@ -184,9 +198,11 @@ public class ApiBO implements Serializable {
         return ApiPO.builder()
                 .id(this.getId())
                 .className(this.getClassName())
+                .classMapping(this.getClassMapping())
+                .classExplain(this.getClassExplain())
                 .methodName(this.getMethodName())
-                .mapping(this.getMapping())
-                .summary(this.getSummary())
+                .methodMapping(this.getMethodMapping())
+                .methodExplain(this.getMethodExplain())
                 .createTime(this.getCreateTime())
                 .creatorId(this.getCreatorId())
                 .creatorName(this.getCreatorName())

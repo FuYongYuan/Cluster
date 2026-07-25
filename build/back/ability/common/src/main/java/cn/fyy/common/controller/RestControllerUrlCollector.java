@@ -5,16 +5,20 @@ import cn.fyy.common.bean.bo.RestControllerMappingBO;
 import cn.fyy.redis.bean.ao.RedisSelect;
 import cn.fyy.redis.service.RedisService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -44,13 +48,19 @@ public class RestControllerUrlCollector implements ApplicationRunner {
     private String applicationName;
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(@NonNull ApplicationArguments args) throws Exception {
         Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();
 
         log.info(">>>>>>>>>>>>======== 开始获取 RESTful 控制器 URL ========<<<<<<<<<<<<");
         for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : handlerMethods.entrySet()) {
             RequestMappingInfo info = entry.getKey();
             HandlerMethod method = entry.getValue();
+
+            Tag tag = method.getBeanType().getAnnotation(Tag.class);
+            String description = (tag != null) ? tag.description() : "未知";
+
+            RequestMapping requestMapping = method.getBeanType().getAnnotation(RequestMapping.class);
+            String[] classMapping = (requestMapping != null) ? requestMapping.value() : new String[]{"未知"};
 
             // 获取方法上的 @Operation 注解
             Operation operation = method.getMethodAnnotation(Operation.class);
@@ -61,20 +71,16 @@ public class RestControllerUrlCollector implements ApplicationRunner {
                 if (!method.getBeanType().getName().startsWith("org.springframework.boot")) {
                     RestControllerMappingBO bo = RestControllerMappingBO.builder()
                             .className(method.getBeanType().getName())
+                            .classMapping(Arrays.toString(classMapping))
+                            .classExplain(description)
                             .methodName(method.getMethod().getName())
-                            .mapping("/" + applicationName + pattern)
-                            .summary(summary)
+                            .methodMapping("/" + applicationName + pattern)
+                            .methodExplain(summary)
                             .build();
 
                     // Mapping-cn.fyy.member.restcontroller.ManagerRestController.getByAccountAndLoginPassword
                     redisServiceImpl.set(RedisSelect.THIRTEEN, ConstantParameter.MAPPING_KEY + bo.getClassName() + "." + bo.getMethodName(), bo);
 
-                    // RestControllerUrlBO(
-                    // className=cn.fyy.member.restcontroller.ManagerRestController,
-                    // methodName=getByAccountAndLoginPassword,
-                    // url=/manager/get/account/password/{account}/{loginPassword},
-                    // summary=根据账号密码查询
-                    // )
                     log.info("功能清单已收集 {}", bo);
                 }
             });

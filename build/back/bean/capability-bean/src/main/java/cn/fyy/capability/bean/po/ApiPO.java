@@ -32,22 +32,34 @@ public class ApiPO extends BasePO implements Serializable {
     private String className;
 
     /**
+     * 类Mapping值
+     */
+    @Column(name = "class_mapping", length = 4000)
+    private String classMapping;
+
+    /**
+     * 类Swagger说明
+     */
+    @Column(name = "class_explain", length = 1000)
+    private String classExplain;
+
+    /**
      * 方法名
      */
     @Column(name = "method_name", length = 200)
     private String methodName;
 
     /**
-     * Mapping值
+     * 方法Mapping值
      */
-    @Column(name = "mapping", length = 4000)
-    private String mapping;
+    @Column(name = "method_mapping", length = 4000)
+    private String methodMapping;
 
     /**
-     * Swagger说明
+     * 方法Swagger说明
      */
-    @Column(name = "summary", length = 1000)
-    private String summary;
+    @Column(name = "method_explain", length = 1000)
+    private String methodExplain;
 
     //------------------------------------------------------------------------------------------------------------------基础方法
     @Override
@@ -63,18 +75,22 @@ public class ApiPO extends BasePO implements Serializable {
         }
 
         return Objects.equals(className, that.className) &&
+                Objects.equals(classMapping, that.classMapping) &&
+                Objects.equals(classExplain, that.classExplain) &&
                 Objects.equals(methodName, that.methodName) &&
-                Objects.equals(mapping, that.mapping) &&
-                Objects.equals(summary, that.summary);
+                Objects.equals(methodMapping, that.methodMapping) &&
+                Objects.equals(methodExplain, that.methodExplain);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + Objects.hashCode(className);
+        result = 31 * result + Objects.hashCode(classMapping);
+        result = 31 * result + Objects.hashCode(classExplain);
         result = 31 * result + Objects.hashCode(methodName);
-        result = 31 * result + Objects.hashCode(mapping);
-        result = 31 * result + Objects.hashCode(summary);
+        result = 31 * result + Objects.hashCode(methodMapping);
+        result = 31 * result + Objects.hashCode(methodExplain);
         return result;
     }
 }

@@ -21,7 +21,7 @@ public interface ApiRepository extends JpaRepository<ApiPO, Long>, JpaSpecificat
      * @param mapping 映射
      * @return API信息
      */
-    ApiPO getByMapping(String mapping);
+    ApiPO getByMethodMapping(String mapping);
 
     /**
      * 根据映射列表获取API信息
@@ -29,5 +29,5 @@ public interface ApiRepository extends JpaRepository<ApiPO, Long>, JpaSpecificat
      * @param mappings 映射列表
      * @return API信息列表
      */
-    List<ApiPO> findByMappingIn(List<String> mappings);
+    List<ApiPO> findByMethodMappingIn(List<String> mappings);
 }

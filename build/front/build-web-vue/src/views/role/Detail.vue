@@ -1,6 +1,7 @@
 <template>
   <a-modal
       :open="open"
+      width="60%"
       :confirm-loading="loadingState"
       @cancel="handleCancel"
   >
