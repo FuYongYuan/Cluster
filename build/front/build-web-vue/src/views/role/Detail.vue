@@ -400,6 +400,39 @@ export default defineComponent({
 			return [...new Set(ancestors)];
 		};
 
+		// 递归收集指定keys的全部子孙节点keys
+		const findDescendantKeys = (
+			treeNodes: MenuDTO[],
+			targetKeySet: Set<string>,
+		): string[] => {
+			const descendants: string[] = [];
+			// 收集子树全部节点keys
+			const collectSubtreeKeys = (nodes: MenuDTO[]) => {
+				for (const node of nodes) {
+					descendants.push(node.id?.toString() ?? "");
+					if (node.sub && node.sub.length > 0) {
+						collectSubtreeKeys(node.sub);
+					}
+				}
+			};
+			// 遍历查找目标节点，命中则收集其全部子孙
+			const traverse = (nodes: MenuDTO[]) => {
+				for (const node of nodes) {
+					const nodeKey = node.id?.toString() ?? "";
+					if (targetKeySet.has(nodeKey)) {
+						// 命中目标节点，收集其子树全部后代
+						if (node.sub && node.sub.length > 0) {
+							collectSubtreeKeys(node.sub);
+						}
+					} else if (node.sub && node.sub.length > 0) {
+						traverse(node.sub);
+					}
+				}
+			};
+			traverse(treeNodes);
+			return [...new Set(descendants)];
+		};
+
 		// 归一化Tree勾选事件返回的keys（check-strictly为对象格式，兼容数组格式）
 		const normalizeCheckedKeys = (
 			checked: TreeCheckStrictlyEvent | any[],
@@ -494,7 +527,14 @@ export default defineComponent({
 				leftCheckedKeys.value = [];
 			} else {
 				// 向左穿梭：移除勾选keys（左侧对应节点恢复为未勾选可选择状态）
-				detailData.transferHave = targetKeys;
+				const descendantKeys = findDescendantKeys(
+					detailData.treeDataSource,
+					new Set(moveKeys),
+				);
+				const keysToRemove = new Set([...moveKeys, ...descendantKeys]);
+				detailData.transferHave = targetKeys.filter(
+					(key) => !keysToRemove.has(key),
+				);
 				// 清空右侧勾选状态
 				rightCheckedKeys.value = [];
 			}
