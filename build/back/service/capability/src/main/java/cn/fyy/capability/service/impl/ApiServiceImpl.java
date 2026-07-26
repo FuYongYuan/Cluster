@@ -191,7 +191,7 @@ public class ApiServiceImpl implements ApiService {
                 return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
             }
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改角色用户关系错误", e);
         }
         return new ResultMessage<>(OperateResult.FAIL.getMessage());
     }

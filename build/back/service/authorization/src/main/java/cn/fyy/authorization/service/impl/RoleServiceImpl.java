@@ -62,7 +62,7 @@ public class RoleServiceImpl implements RoleService {
 
     //------------------------------------------------------------------------------------------------------------------feign
     /**
-     * 角色关系 FeignClient
+     * 角色 FeignClient
      */
     @Resource
     private MenuFeignClient menuFeignClient;

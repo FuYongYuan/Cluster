@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 按钮角色关系
+ * 角色按钮关系
  *
  * @author fyy
  */
@@ -75,7 +75,7 @@ public class RoleButtonBO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 按钮角色关系 PO 转换 BO
+     * 角色按钮关系 PO 转换 BO
      */
     public static RoleButtonBO toBO(RoleButtonPO po) {
         if (po != null) {
@@ -97,7 +97,7 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 PO 数组 转换 BO List
+     * 角色按钮关系 PO 数组 转换 BO List
      */
     public static List<RoleButtonBO> toBO(RoleButtonPO[] pos) {
         if (pos != null) {
@@ -112,7 +112,7 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 PO List 转换 BO List
+     * 角色按钮关系 PO List 转换 BO List
      */
     public static List<RoleButtonBO> toBO(List<RoleButtonPO> pos) {
         if (pos != null) {
@@ -127,7 +127,7 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 BO 转换 PO
+     * 角色按钮关系 BO 转换 PO
      */
     public static RoleButtonPO toPO(RoleButtonBO bo) {
         if (bo != null) {
@@ -149,7 +149,7 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 BO List 转换 PO List
+     * 角色按钮关系 BO List 转换 PO List
      */
     public static List<RoleButtonPO> toPO(List<RoleButtonBO> bos) {
         if (bos != null) {
@@ -164,7 +164,7 @@ public class RoleButtonBO implements Serializable {
     }
 
     /**
-     * 按钮角色关系 BO 转换 PO
+     * 角色按钮关系 BO 转换 PO
      */
     public RoleButtonPO toPO() {
         return RoleButtonPO.builder()

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * 用户角色关系 Service
+ * 角色用户关系 Service
  *
  * @author fyy
  */
@@ -35,7 +35,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     private SnowflakeIdUtil snowflakeIdUtil;
 
     /**
-     * 用户角色关系 Repository
+     * 角色用户关系 Repository
      */
     @Resource
     private RoleManagerRepository roleManagerRepository;
@@ -45,7 +45,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
     /**
      * 新增或者修改
      *
-     * @param bo                 用户角色关系 BO
+     * @param bo                 角色用户关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return !=null 成功，==null 失败
@@ -60,14 +60,14 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                 return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改角色用户关系错误", e);
         }
     }
 
     /**
      * 新增或者修改
      *
-     * @param bo                 用户角色关系 BO
+     * @param bo                 角色用户关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @param getNull            是否更新空
@@ -100,7 +100,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
 
             return RoleManagerBO.toBO(roleManagerRepository.save(po));
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改角色用户关系错误", e);
         }
     }
 
@@ -120,9 +120,9 @@ public class RoleManagerServiceImpl implements RoleManagerService {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             if (StringUtils.hasText(roleIds)) {
-                // 删除原先的用户角色关系
+                // 删除原先的角色用户关系
                 roleManagerRepository.deleteByManagerId(managerId);
-                // 新增用户角色关系
+                // 新增角色用户关系
                 List<Long> roleId = Stream.of(roleIds.split(",")).map(Long::valueOf).toList();
                 List<RoleManagerPO> list = new ArrayList<>();
                 for (Long id : roleId) {
@@ -146,7 +146,7 @@ public class RoleManagerServiceImpl implements RoleManagerService {
                 return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改用户角色关系错误", e);
+            throw new BusinessException("新增或者修改角色用户关系错误", e);
         }
         return null;
     }

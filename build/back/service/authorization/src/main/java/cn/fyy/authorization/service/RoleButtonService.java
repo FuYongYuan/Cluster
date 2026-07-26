@@ -5,7 +5,7 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 
 /**
- * 按钮角色关系 Service
+ * 角色按钮关系 Service
  *
  * @author fyy
  */
@@ -13,7 +13,7 @@ public interface RoleButtonService {
     /**
      * 新增或者修改
      *
-     * @param bo                 按钮角色关系 BO
+     * @param bo                 角色按钮关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录用户名
      * @return !=null 成功，==null 失败
@@ -24,7 +24,7 @@ public interface RoleButtonService {
     /**
      * 新增或者修改
      *
-     * @param bo                 按钮角色关系 BO
+     * @param bo                 角色按钮关系 BO
      * @param currentManagerId   当前登陆人 ID
      * @param currentManagerName 当前登陆人名称
      * @param getNull            是否更新空

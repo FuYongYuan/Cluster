@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
- * 按钮角色关系 Repository
+ * 角色按钮关系 Repository
  *
  * @author fyy
  */

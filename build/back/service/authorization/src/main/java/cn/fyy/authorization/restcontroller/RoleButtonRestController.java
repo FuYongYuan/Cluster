@@ -15,16 +15,16 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 按钮角色关系 RestController
+ * 角色按钮关系 RestController
  *
  * @author fyy
  */
-@Tag(name = "RoleButtonRestController", description = "按钮角色关系 RestController")
+@Tag(name = "RoleButtonRestController", description = "角色按钮关系 RestController")
 @RestController
 @RequestMapping(value = "/role/button", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RoleButtonRestController extends BaseRestController {
     /**
-     * 按钮角色关系 Service
+     * 角色按钮关系 Service
      */
     @Resource
     private RoleButtonService roleButtonServiceImpl;
@@ -32,16 +32,16 @@ public class RoleButtonRestController extends BaseRestController {
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
     /**
-     * 保存按钮角色关系
+     * 保存角色按钮关系
      *
-     * @param dto 按钮角色关系对象
-     * @return 按钮角色关系对象
+     * @param dto 角色按钮关系对象
+     * @return 角色按钮关系对象
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "保存按钮角色关系", description = "RoleButtonDTO 按钮角色关系对象",
+            summary = "保存角色按钮关系", description = "RoleButtonDTO 角色按钮关系对象",
             parameters = {
-                    @Parameter(name = "dto", description = "按钮角色关系对象", required = true)
+                    @Parameter(name = "dto", description = "角色按钮关系对象", required = true)
             }
     )
     @PostMapping(value = "/save")
@@ -54,15 +54,15 @@ public class RoleButtonRestController extends BaseRestController {
     }
 
     /**
-     * 保存按钮角色关系集合
+     * 保存角色按钮关系集合
      *
      * @param roleId    角色 ID
      * @param buttonIds 按钮 ID 集合
-     * @return 按钮角色关系对象
+     * @return 角色按钮关系对象
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "保存按钮角色关系集合", description = "RoleButtonDTO 按钮角色关系对象",
+            summary = "保存角色按钮关系集合", description = "RoleButtonDTO 角色按钮关系对象",
             parameters = {
                     @Parameter(name = "roleId", description = "角色 ID", required = true),
                     @Parameter(name = "buttonIds", description = "按钮 ID 集合", required = true)

@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * 菜单角色关系
+ * 角色菜单关系
  *
  * @author fyy
  */

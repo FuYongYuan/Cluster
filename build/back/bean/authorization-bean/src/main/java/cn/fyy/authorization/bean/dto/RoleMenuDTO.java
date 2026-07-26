@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 菜单角色关系
+ * 角色菜单关系
  *
  * @author fyy
  */
-@Schema(name = "RoleMenuDTO", description = "菜单角色关系 实体类")
+@Schema(name = "RoleMenuDTO", description = "角色菜单关系 实体类")
 @Data
 @Builder(toBuilder = true)
 @NoArgsConstructor
@@ -90,7 +90,7 @@ public class RoleMenuDTO implements Serializable {
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
-     * 菜单角色关系 BO 转换 DTO
+     * 角色菜单关系 BO 转换 DTO
      */
     public static RoleMenuDTO toDTO(RoleMenuBO bo) {
         if (bo != null) {
@@ -112,7 +112,7 @@ public class RoleMenuDTO implements Serializable {
     }
 
     /**
-     * 菜单角色关系 BO 数组 转换 DTO List
+     * 角色菜单关系 BO 数组 转换 DTO List
      */
     public static List<RoleMenuDTO> toDTO(RoleMenuBO[] bos) {
         if (bos != null) {
@@ -127,7 +127,7 @@ public class RoleMenuDTO implements Serializable {
     }
 
     /**
-     * 菜单角色关系 BO List 转换 DTO List
+     * 角色菜单关系 BO List 转换 DTO List
      */
     public static List<RoleMenuDTO> toDTO(List<RoleMenuBO> bos) {
         if (bos != null) {
@@ -142,7 +142,7 @@ public class RoleMenuDTO implements Serializable {
     }
 
     /**
-     * 菜单角色关系 DTO 转换 BO
+     * 角色菜单关系 DTO 转换 BO
      */
     public static RoleMenuBO toBO(RoleMenuDTO dto) {
         if (dto != null) {
@@ -164,7 +164,7 @@ public class RoleMenuDTO implements Serializable {
     }
 
     /**
-     * 菜单角色关系 DTO List 转换 BO List
+     * 角色菜单关系 DTO List 转换 BO List
      */
     public static List<RoleMenuBO> toBO(List<RoleMenuDTO> dtos) {
         if (dtos != null) {
@@ -179,7 +179,7 @@ public class RoleMenuDTO implements Serializable {
     }
 
     /**
-     * 菜单角色关系 DTO 转换 BO
+     * 角色菜单关系 DTO 转换 BO
      */
     public RoleMenuBO toBO() {
         return RoleMenuBO.builder()

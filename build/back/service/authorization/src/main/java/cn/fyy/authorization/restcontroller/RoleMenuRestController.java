@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 菜单角色关系 RestController
+ * 角色菜单关系 RestController
  *
  * @author fyy
  */
-@Tag(name = "RoleMenuRestController", description = "菜单角色关系 RestController")
+@Tag(name = "RoleMenuRestController", description = "角色菜单关系 RestController")
 @RestController
 @RequestMapping(value = "/role/menu", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RoleMenuRestController extends BaseRestController {
     /**
-     * 菜单角色关系 Service
+     * 角色菜单关系 Service
      */
     @Resource
     private RoleMenuService roleMenuServiceImpl;
@@ -34,16 +34,16 @@ public class RoleMenuRestController extends BaseRestController {
     //------------------------------------------------------------------------------------------------------------------自定义方法
 
     /**
-     * 保存菜单角色关系
+     * 保存角色菜单关系
      *
-     * @param dto 菜单角色关系对象
-     * @return 菜单角色关系对象
+     * @param dto 角色菜单关系对象
+     * @return 角色菜单关系对象
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "保存菜单角色关系", description = "RoleMenuDTO 菜单角色关系对象",
+            summary = "保存角色菜单关系", description = "RoleMenuDTO 角色菜单关系对象",
             parameters = {
-                    @Parameter(name = "dto", description = "菜单角色关系对象", required = true)
+                    @Parameter(name = "dto", description = "角色菜单关系对象", required = true)
             }
     )
     @PostMapping(value = "/save")
@@ -56,15 +56,15 @@ public class RoleMenuRestController extends BaseRestController {
     }
 
     /**
-     * 保存菜单角色关系集合
+     * 保存角色菜单关系集合
      *
      * @param roleId  角色 ID
      * @param menuIds 菜单 ID 集合
-     * @return 菜单角色关系对象
+     * @return 角色菜单关系对象
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "保存菜单角色关系集合", description = "RoleMenuDTO 菜单角色关系对象",
+            summary = "保存角色菜单关系集合", description = "RoleMenuDTO 角色菜单关系对象",
             parameters = {
                     @Parameter(name = "roleId", description = "角色 ID", required = true),
                     @Parameter(name = "menuIds", description = "菜单 ID 集合", required = true)
@@ -81,14 +81,14 @@ public class RoleMenuRestController extends BaseRestController {
     }
 
     /**
-     * 根据角色 ID 菜单角色关系集合
+     * 根据角色 ID 角色菜单关系集合
      *
      * @param roleId 角色 ID
-     * @return 菜单角色关系集合
+     * @return 角色菜单关系集合
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据角色 ID 菜单角色关系集合", description = "RoleMenuDTO 菜单角色关系集合",
+            summary = "根据角色 ID 角色菜单关系集合", description = "RoleMenuDTO 角色菜单关系集合",
             parameters = {
                     @Parameter(name = "roleId", description = "角色 ID", required = true)
             }

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * 按钮角色关系 Service
+ * 角色按钮关系 Service
  *
  * @author fyy
  */
@@ -35,7 +35,7 @@ public class RoleButtonServiceImpl implements RoleButtonService {
     private SnowflakeIdUtil snowflakeIdUtil;
 
     /**
-     * 按钮角色关系 Repository
+     * 角色按钮关系 Repository
      */
     @Resource
     private RoleButtonRepository roleButtonRepository;
@@ -45,7 +45,7 @@ public class RoleButtonServiceImpl implements RoleButtonService {
     /**
      * 新增或者修改
      *
-     * @param bo                 按钮角色关系 BO
+     * @param bo                 角色按钮关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @return !=null 成功，==null 失败
@@ -60,14 +60,14 @@ public class RoleButtonServiceImpl implements RoleButtonService {
                 return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改按钮角色关系错误", e);
+            throw new BusinessException("新增或者修改角色按钮关系错误", e);
         }
     }
 
     /**
      * 新增或者修改
      *
-     * @param bo                 按钮角色关系 BO
+     * @param bo                 角色按钮关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录人姓名
      * @param getNull            是否更新空
@@ -100,7 +100,7 @@ public class RoleButtonServiceImpl implements RoleButtonService {
 
             return RoleButtonBO.toBO(roleButtonRepository.save(po));
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改按钮角色关系错误", e);
+            throw new BusinessException("新增或者修改角色按钮关系错误", e);
         }
     }
 
@@ -121,9 +121,9 @@ public class RoleButtonServiceImpl implements RoleButtonService {
         try {
             LocalDateTime localDateTime = LocalDateTime.now();
             if (StringUtils.hasText(buttonIds)) {
-                // 删除原先的按钮角色关系
+                // 删除原先的角色按钮关系
                 roleButtonRepository.deleteByRoleId(roleId);
-                // 新增按钮角色关系
+                // 新增角色按钮关系
                 List<Long> buttonId = Stream.of(buttonIds.split(",")).map(Long::valueOf).toList();
                 List<RoleButtonPO> list = new ArrayList<>();
                 for (Long id : buttonId) {
@@ -147,7 +147,7 @@ public class RoleButtonServiceImpl implements RoleButtonService {
                 return new ResultMessage<>(1, OperateResult.FAIL.getMessage());
             }
         } catch (Exception e) {
-            throw new BusinessException("新增或者修改按钮角色关系错误", e);
+            throw new BusinessException("新增或者修改角色按钮关系错误", e);
         }
         return null;
     }

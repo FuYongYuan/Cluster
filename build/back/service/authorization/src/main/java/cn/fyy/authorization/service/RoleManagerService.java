@@ -13,7 +13,7 @@ public interface RoleManagerService {
     /**
      * 新增或者修改
      *
-     * @param bo                 表_用户角色关系 BO
+     * @param bo                 表_角色用户关系 BO
      * @param currentManagerId   当前登录人 ID
      * @param currentManagerName 当前登录用户名
      * @return !=null 成功，==null 失败

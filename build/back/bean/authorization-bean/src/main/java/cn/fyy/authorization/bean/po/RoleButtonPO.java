@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * 按钮角色关系
+ * 角色按钮关系
  *
  * @author fyy
  */

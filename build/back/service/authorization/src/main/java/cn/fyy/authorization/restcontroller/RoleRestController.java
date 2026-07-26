@@ -156,10 +156,10 @@ public class RoleRestController extends BaseRestController {
     }
 
     /**
-     * 根据用户查询现有角色关系列表
+     * 根据用户查询现有角色列表
      *
      * @param managerId 管理员主键 ID
-     * @return 用户角色关系对象
+     * @return 角色用户关系对象
      * @throws BusinessException 业务错误
      */
     @Operation(
