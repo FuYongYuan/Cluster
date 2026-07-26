@@ -93,6 +93,12 @@ public class RoleDTO implements Serializable {
     @Schema(name = "menuIds", description = "菜单 ID 集合", type = "String", nullable = true)
     private String menuIds;
 
+    /**
+     * API ID 集合
+     */
+    @Schema(name = "apiIds", description = "API ID 集合", type = "String", nullable = true)
+    private String apiIds;
+
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**
@@ -112,6 +118,7 @@ public class RoleDTO implements Serializable {
                     .updaterName(bo.getUpdaterName())
                     .state(bo.getState())
                     .menuIds(bo.getMenuIds())
+                    .apiIds(bo.getApiIds())
                     .build();
         } else {
             return null;
@@ -165,6 +172,7 @@ public class RoleDTO implements Serializable {
                     .updaterName(dto.getUpdaterName())
                     .state(dto.getState())
                     .menuIds(dto.getMenuIds())
+                    .apiIds(dto.getApiIds())
                     .build();
         } else {
             return null;
@@ -202,6 +210,7 @@ public class RoleDTO implements Serializable {
                 .updaterName(this.getUpdaterName())
                 .state(this.getState())
                 .menuIds(this.getMenuIds())
+                .apiIds(this.getApiIds())
                 .build();
     }
 

@@ -77,4 +77,42 @@ public class ApiRestController extends BaseRestController {
     ) throws BusinessException {
         return apiServiceImpl.saveList(ApiDTO.toBO(list), authentication);
     }
+
+    /**
+     * 查询全部 Api 信息
+     *
+     * @return Api 信息对象集合
+     * @throws BusinessException 业务错误
+     */
+    @Operation(
+            summary = "查询全部 Api 信息", description = "ApiDTO Api 信息对象集合"
+    )
+    @GetMapping(value = "/query/all")
+    public ResultMessage<List<ApiDTO>> queryAll(
+    ) throws BusinessException {
+        return new ResultMessage<>(ApiDTO.toDTO(apiServiceImpl.queryAll()));
+    }
+
+    /**
+     * 根据Api信息 ID 集合查询API信息列表
+     *
+     * @param apiIdList      Api ID 集合
+     * @param authentication 鉴权串
+     * @return ApiDTO Api 信息对象集合
+     * @throws BusinessException 业务错误
+     */
+    @Operation(
+            summary = "根据Api ID 集合查询Api列表", description = "ApiDTO Api 信息对象集合",
+            parameters = {
+                    @Parameter(name = "apiIdList", description = "Api ID 集合", required = true),
+                    @Parameter(name = "authentication", description = "验证码", required = true)
+            }
+    )
+    @GetMapping(value = "/feign/query/api/list/{apiIdList}/{authentication}")
+    public ResultMessage<List<ApiDTO>> feignQueryApiByApiIdList(
+            @PathVariable List<Long> apiIdList,
+            @PathVariable String authentication
+    ) throws BusinessException {
+        return apiServiceImpl.feignQueryApiByApiIdList(apiIdList, authentication);
+    }
 }

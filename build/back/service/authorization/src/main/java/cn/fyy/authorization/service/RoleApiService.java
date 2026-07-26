@@ -4,6 +4,8 @@ import cn.fyy.authorization.bean.bo.RoleApiBO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 
+import java.util.List;
+
 /**
  * 角色API接口访问关系 Service
  *
@@ -45,4 +47,12 @@ public interface RoleApiService {
      */
     ResultMessage<String> saveList(Long roleId, String apiIds, Long currentManagerId, String currentManagerName) throws BusinessException;
 
+    /**
+     * 根据角色主键 ID 查询拥有的 API ID 集合
+     *
+     * @param roleIds 角色主键 ID
+     * @return API ID 集合
+     * @throws BusinessException 错误
+     */
+    List<Long> queryApiIdsByRoleIds(List<Long> roleIds) throws BusinessException;
 }

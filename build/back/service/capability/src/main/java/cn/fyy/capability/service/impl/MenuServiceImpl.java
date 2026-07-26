@@ -342,7 +342,7 @@ public class MenuServiceImpl implements MenuService {
     ) throws BusinessException {
         try {
             return MenuBO.toBO(
-                    menuRepository.queryHierarchyMenuByMenuIdListAndState(menuIds, DataState.NORMAL.getCode())
+                    menuRepository.queryMenuByMenuIdListAndState(menuIds, DataState.NORMAL.getCode())
             );
         } catch (Exception e) {
             throw new BusinessException("根据管理员主键 ID 查询能够使用的菜单列表错误", e);
@@ -367,7 +367,7 @@ public class MenuServiceImpl implements MenuService {
             String decrypt = AesUtil.decryptString(authentication, aesProperties.getAesKey());
             if (encrypt.equals(authentication) && decrypt.equals(encryptString)) {
                 return new ResultMessage<>(MenuDTO.toDTO(MenuBO.toBO(
-                        menuRepository.queryHierarchyMenuByMenuIdListAndState(menuIds, DataState.NORMAL.getCode())
+                        menuRepository.queryMenuByMenuIdListAndState(menuIds, DataState.NORMAL.getCode())
                 )));
             } else {
                 return new ResultMessage<>(1, "试图篡改信息拒绝请求！");

@@ -62,7 +62,7 @@ public interface MenuRepository extends JpaRepository<MenuPO, Long>, JpaSpecific
                     "AND state = ?2 " +
                     "ORDER BY menu_order"
     )
-    List<MenuPO> queryHierarchyMenuByMenuIdListAndState(List<Long> menuIdList, int state);
+    List<MenuPO> queryMenuByMenuIdListAndState(List<Long> menuIdList, int state);
 
     /**
      * 查询所有可用菜单

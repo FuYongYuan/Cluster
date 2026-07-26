@@ -40,4 +40,6 @@ export type RoleDTO = {
 	state?: number;
 	// 菜单ID集合
 	menuIds?: string;
+	// API ID集合
+	apiIds?: string;
 };

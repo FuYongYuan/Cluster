@@ -77,6 +77,11 @@ public class RoleBO implements Serializable {
      */
     private String menuIds;
 
+    /**
+     * API ID 集合
+     */
+    private String apiIds;
+
     //------------------------------------------------------------------------------------------------------------------转换
 
     /**

@@ -37,3 +37,33 @@ export type MenuDTO = {
 	// 子级菜单
 	sub?: MenuDTO[];
 };
+
+/**
+ * API信息
+ */
+export type ApiDTO = {
+	// 主键ID
+	id: number;
+	// 类名
+	className?: string;
+	// 类Mapping值
+	classMapping?: string;
+	// 类Swagger说明
+	classExplain?: string;
+	// 方法名
+	methodName?: string;
+	// 方法Mapping值
+	methodMapping?: string;
+	// 方法Swagger说明
+	methodExplain?: string;
+	// 创建时间
+	createTime?: Date;
+	// 创建人名称
+	creatorName?: string;
+	// 修改时间
+	updateTime?: Date;
+	// 修改人名称
+	updaterName?: string;
+	// 状态(0.正常 99.删除)
+	state?: number;
+};

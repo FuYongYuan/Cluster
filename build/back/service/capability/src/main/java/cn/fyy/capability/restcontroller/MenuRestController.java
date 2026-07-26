@@ -40,11 +40,11 @@ public class MenuRestController extends BaseRestController {
      * 根据名称查询菜单列表
      *
      * @param menuName 菜单名称
-     * @return TMenuDTO 菜单对象
+     * @return MenuDTO 菜单对象
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据名称查询菜单列表", description = "TMenuDTO 菜单对象集合",
+            summary = "根据名称查询菜单列表", description = "MenuDTO 菜单对象集合",
             parameters = {
                     @Parameter(name = "currentPage", description = "当前页", required = true, example = "0"),
                     @Parameter(name = "eachPageSize", description = "每页条数", required = true, example = "10"),
@@ -106,7 +106,7 @@ public class MenuRestController extends BaseRestController {
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据主键查询", description = "TMenuDTO 菜单对象",
+            summary = "根据主键查询", description = "MenuDTO 菜单对象",
             parameters = {
                     @Parameter(name = "id", description = "主键 ID", required = true)
             }
@@ -126,7 +126,7 @@ public class MenuRestController extends BaseRestController {
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "保存菜单", description = "TMenuDTO 菜单对象",
+            summary = "保存菜单", description = "MenuDTO 菜单对象",
             parameters = {
                     @Parameter(name = "dto", description = "菜单对象", required = true)
             }
@@ -143,11 +143,11 @@ public class MenuRestController extends BaseRestController {
     /**
      * 查询菜单列表
      *
-     * @return TMenuDTO 菜单对象
+     * @return MenuDTO 菜单对象
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "查询菜单列表", description = "TMenuDTO 菜单对象集合"
+            summary = "查询菜单列表", description = "MenuDTO 菜单对象集合"
     )
     @GetMapping(value = "/query/all")
     public ResultMessage<List<MenuDTO>> queryAll(
@@ -158,11 +158,11 @@ public class MenuRestController extends BaseRestController {
     /**
      * 查询父级菜单列表
      *
-     * @return TMenuDTO 菜单对象
+     * @return MenuDTO 菜单对象
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "查询父级菜单列表", description = "TMenuDTO 菜单对象集合"
+            summary = "查询父级菜单列表", description = "MenuDTO 菜单对象集合"
     )
     @GetMapping(value = "/query/all/parent")
     public ResultMessage<List<MenuDTO>> queryAllParent(
@@ -173,11 +173,11 @@ public class MenuRestController extends BaseRestController {
     /**
      * 查询所有菜单（树形结构）
      *
-     * @return TMenuDTO 菜单树
+     * @return MenuDTO 菜单树
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "查询所有菜单（树形结构）", description = "TMenuDTO 菜单树"
+            summary = "查询所有菜单（树形结构）", description = "MenuDTO 菜单树"
     )
     @GetMapping(value = "/query/all/tree")
     public ResultMessage<List<MenuDTO>> queryAllTree(
@@ -189,11 +189,11 @@ public class MenuRestController extends BaseRestController {
      * 根据菜单 ID 集合查询菜单列表
      *
      * @param menuIdList 菜单 ID 集合
-     * @return TMenuDTO 菜单对象集合
+     * @return MenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据菜单 ID 集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
+            summary = "根据菜单 ID 集合查询菜单列表", description = "MenuDTO 菜单对象集合",
             parameters = {
                     @Parameter(name = "menuIdList", description = "菜单 ID 集合", required = true)
             }
@@ -210,11 +210,11 @@ public class MenuRestController extends BaseRestController {
      *
      * @param menuIdList     菜单 ID 集合
      * @param authentication 鉴权串
-     * @return TMenuDTO 菜单对象集合
+     * @return MenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据菜单 ID 集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
+            summary = "根据菜单 ID 集合查询菜单列表", description = "MenuDTO 菜单对象集合",
             parameters = {
                     @Parameter(name = "menuIdList", description = "菜单 ID 集合", required = true),
                     @Parameter(name = "authentication", description = "验证码", required = true)
@@ -232,11 +232,11 @@ public class MenuRestController extends BaseRestController {
      * 根据菜单 ID 集合查询菜单列表
      *
      * @param menuIdList 菜单 ID 集合
-     * @return TMenuDTO 菜单对象集合
+     * @return MenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据菜单 ID 集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
+            summary = "根据菜单 ID 集合查询菜单列表", description = "MenuDTO 菜单对象集合",
             parameters = {
                     @Parameter(name = "menuIdList", description = "菜单 ID 集合", required = true)
             }
@@ -253,11 +253,11 @@ public class MenuRestController extends BaseRestController {
      *
      * @param menuIdList     菜单 ID 集合
      * @param authentication 鉴权串
-     * @return TMenuDTO 菜单对象集合
+     * @return MenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @Operation(
-            summary = "根据菜单 ID 集合查询菜单列表", description = "TMenuDTO 菜单对象集合",
+            summary = "根据菜单 ID 集合查询菜单列表", description = "MenuDTO 菜单对象集合",
             parameters = {
                     @Parameter(name = "menuIdList", description = "菜单 ID 集合", required = true),
                     @Parameter(name = "authentication", description = "验证码", required = true)

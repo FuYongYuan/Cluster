@@ -163,75 +163,20 @@ export default defineComponent({
 			transferData: ref<TransferData[]>([]),
 			// 菜单原始树数据
 			treeDataSource: ref<MenuDTO[]>([]),
+			// 左侧树待穿梭勾选keys（已勾选，待点击向右穿梭）
+			leftCheckedKeys: ref<string[]>([]),
+			// 右侧树勾选keys（已勾选，待点击向左穿梭）
+			rightCheckedKeys: ref<string[]>([]),
+			// 左侧树手动折叠的节点keys（配合expanded-keys实现"默认全展开、用户可折叠"）
+			leftCollapsedKeys: ref<string[]>([]),
+			// 右侧树手动折叠的节点keys
+			rightCollapsedKeys: ref<string[]>([]),
+			// 左侧面板搜索关键字
+			leftSearchValue: ref(""),
+			// 右侧面板搜索关键字
+			rightSearchValue: ref(""),
 
 			loadingState: false,
-		});
-
-		// 左侧树待穿梭勾选keys（已勾选，待点击向右穿梭）
-		const leftCheckedKeys = ref<string[]>([]);
-
-		// 右侧树勾选keys（已勾选，待点击向左穿梭）
-		const rightCheckedKeys = ref<string[]>([]);
-
-		// 左侧树手动折叠的节点keys（配合expanded-keys实现"默认全展开、用户可折叠"）
-		const leftCollapsedKeys = ref<string[]>([]);
-
-		// 右侧树手动折叠的节点keys
-		const rightCollapsedKeys = ref<string[]>([]);
-
-		// 左侧面板搜索关键字
-		const leftSearchValue = ref("");
-
-		// 右侧面板搜索关键字
-		const rightSearchValue = ref("");
-
-		// 左侧树数据（全部节点，已拥有节点勾选置灰，按搜索关键字过滤）
-		const menuTreeData = computed(() => {
-			const filteredNodes = filterTreeByKeyword(
-				detailData.treeDataSource,
-				leftSearchValue.value,
-			);
-			return buildLeftTreeData(filteredNodes, detailData.transferHave);
-		});
-
-		// 右侧树数据（仅已选节点 + 祖先上下文，按搜索关键字过滤）
-		const rightTreeData = computed(() => {
-			const filteredNodes = filterTreeByKeyword(
-				detailData.treeDataSource,
-				rightSearchValue.value,
-			);
-			return buildRightTreeData(filteredNodes, detailData.transferHave);
-		});
-
-		// 收集全部可展开节点keys（拥有子级的节点）
-		const collectExpandableKeys = (treeNodes: MenuDTO[]): string[] => {
-			const keys: string[] = [];
-			const traverse = (nodes: MenuDTO[]) => {
-				for (const node of nodes) {
-					if (node.sub && node.sub.length > 0) {
-						keys.push(node.id?.toString() ?? "");
-						traverse(node.sub);
-					}
-				}
-			};
-			traverse(treeNodes);
-			return keys;
-		};
-
-		// 左侧树展开keys（默认可展开节点全展开，剔除手动折叠的）
-		const leftExpandedKeys = computed(() => {
-			const collapsedSet = new Set(leftCollapsedKeys.value);
-			return collectExpandableKeys(detailData.treeDataSource).filter(
-				(key) => !collapsedSet.has(key),
-			);
-		});
-
-		// 右侧树展开keys（默认可展开节点全展开，剔除手动折叠的）
-		const rightExpandedKeys = computed(() => {
-			const collapsedSet = new Set(rightCollapsedKeys.value);
-			return collectExpandableKeys(detailData.treeDataSource).filter(
-				(key) => !collapsedSet.has(key),
-			);
 		});
 
 		//------------------------------------------------------------------------------------------------------------------方法
@@ -245,11 +190,11 @@ export default defineComponent({
 			};
 			detailData.transferHave = [];
 			// 清理穿梭勾选状态
-			leftCheckedKeys.value = [];
-			rightCheckedKeys.value = [];
+			detailData.leftCheckedKeys = [];
+			detailData.rightCheckedKeys = [];
 			// 清理搜索关键字
-			leftSearchValue.value = "";
-			rightSearchValue.value = "";
+			detailData.leftSearchValue = "";
+			detailData.rightSearchValue = "";
 			// 重置穿梭框内部选中状态（避免遗留待穿梭选中项导致按钮残留亮起）
 			transferRef.value?.handleSelectChange("left", []);
 			transferRef.value?.handleSelectChange("right", []);
@@ -336,7 +281,55 @@ export default defineComponent({
 			});
 		};
 
-		// ... existing code ...
+		// 左侧树数据（全部节点，已拥有节点勾选置灰，按搜索关键字过滤）
+		const menuTreeData = computed(() => {
+			const filteredNodes = filterTreeByKeyword(
+				detailData.treeDataSource,
+				detailData.leftSearchValue,
+			);
+			return buildLeftTreeData(filteredNodes, detailData.transferHave);
+		});
+
+		// 右侧树数据（仅已选节点 + 祖先上下文，按搜索关键字过滤）
+		const rightTreeData = computed(() => {
+			const filteredNodes = filterTreeByKeyword(
+				detailData.treeDataSource,
+				detailData.rightSearchValue,
+			);
+			return buildRightTreeData(filteredNodes, detailData.transferHave);
+		});
+
+		// 收集全部可展开节点keys（拥有子级的节点）
+		const collectExpandableKeys = (treeNodes: MenuDTO[]): string[] => {
+			const keys: string[] = [];
+			const traverse = (nodes: MenuDTO[]) => {
+				for (const node of nodes) {
+					if (node.sub && node.sub.length > 0) {
+						keys.push(node.id?.toString() ?? "");
+						traverse(node.sub);
+					}
+				}
+			};
+			traverse(treeNodes);
+			return keys;
+		};
+
+		// 左侧树展开keys（默认可展开节点全展开，剔除手动折叠的）
+		const leftExpandedKeys = computed(() => {
+			const collapsedSet = new Set(detailData.leftCollapsedKeys);
+			return collectExpandableKeys(detailData.treeDataSource).filter(
+				(key) => !collapsedSet.has(key),
+			);
+		});
+
+		// 右侧树展开keys（默认可展开节点全展开，剔除手动折叠的）
+		const rightExpandedKeys = computed(() => {
+			const collapsedSet = new Set(detailData.rightCollapsedKeys);
+			return collectExpandableKeys(detailData.treeDataSource).filter(
+				(key) => !collapsedSet.has(key),
+			);
+		});
+
 		// 按关键字递归过滤树节点（保留匹配节点及其祖先路径）
 		const filterTreeByKeyword = (
 			treeNodes: MenuDTO[],
@@ -515,17 +508,17 @@ export default defineComponent({
 
 			// 与Transfer内部选中状态同步（控制中间穿梭按钮亮起/置灰）
 			for (const key of newPendingKeys) {
-				if (!leftCheckedKeys.value.includes(key)) {
+				if (!detailData.leftCheckedKeys.includes(key)) {
 					onItemSelect(key, true);
 				}
 			}
-			for (const key of leftCheckedKeys.value) {
+			for (const key of detailData.leftCheckedKeys) {
 				if (!newPendingKeys.includes(key)) {
 					onItemSelect(key, false);
 				}
 			}
 
-			leftCheckedKeys.value = newPendingKeys;
+			detailData.leftCheckedKeys = newPendingKeys;
 		};
 
 		// 右侧树勾选回调（勾选后联动穿梭向左按钮亮起，不直接移动）
@@ -538,17 +531,17 @@ export default defineComponent({
 
 			// 与Transfer内部选中状态同步（控制中间穿梭按钮亮起/置灰）
 			for (const key of checkedKeys) {
-				if (!rightCheckedKeys.value.includes(key)) {
+				if (!detailData.rightCheckedKeys.includes(key)) {
 					onItemSelect(key, true);
 				}
 			}
-			for (const key of rightCheckedKeys.value) {
+			for (const key of detailData.rightCheckedKeys) {
 				if (!checkedKeys.includes(key)) {
 					onItemSelect(key, false);
 				}
 			}
 
-			rightCheckedKeys.value = checkedKeys;
+			detailData.rightCheckedKeys = checkedKeys;
 		};
 
 		// 左侧树展开/折叠回调（记录手动折叠的节点）
@@ -560,12 +553,15 @@ export default defineComponent({
 			}
 			if (info?.expanded) {
 				// 展开节点：从折叠集合移除
-				leftCollapsedKeys.value = leftCollapsedKeys.value.filter(
+				detailData.leftCollapsedKeys = detailData.leftCollapsedKeys.filter(
 					(key) => key !== eventKey,
 				);
-			} else if (!leftCollapsedKeys.value.includes(eventKey)) {
+			} else if (!detailData.leftCollapsedKeys.includes(eventKey)) {
 				// 折叠节点：加入折叠集合
-				leftCollapsedKeys.value = [...leftCollapsedKeys.value, eventKey];
+				detailData.leftCollapsedKeys = [
+					...detailData.leftCollapsedKeys,
+					eventKey,
+				];
 			}
 		};
 
@@ -577,11 +573,14 @@ export default defineComponent({
 				return;
 			}
 			if (info?.expanded) {
-				rightCollapsedKeys.value = rightCollapsedKeys.value.filter(
+				detailData.rightCollapsedKeys = detailData.rightCollapsedKeys.filter(
 					(key) => key !== eventKey,
 				);
-			} else if (!rightCollapsedKeys.value.includes(eventKey)) {
-				rightCollapsedKeys.value = [...rightCollapsedKeys.value, eventKey];
+			} else if (!detailData.rightCollapsedKeys.includes(eventKey)) {
+				detailData.rightCollapsedKeys = [
+					...detailData.rightCollapsedKeys,
+					eventKey,
+				];
 			}
 		};
 
@@ -596,9 +595,9 @@ export default defineComponent({
 		// 穿梭框搜索回调
 		const transferHandleSearch = (direction: string, value: string) => {
 			if (direction === "left") {
-				leftSearchValue.value = value;
+				detailData.leftSearchValue = value;
 			} else {
-				rightSearchValue.value = value;
+				detailData.rightSearchValue = value;
 			}
 		};
 
@@ -619,7 +618,7 @@ export default defineComponent({
 				);
 				detailData.transferHave = [...targetKeys, ...keysToAdd];
 				// 清空左侧待穿梭勾选状态（已勾选节点保持勾选并置灰）
-				leftCheckedKeys.value = [];
+				detailData.leftCheckedKeys = [];
 			} else {
 				// 向左穿梭：移除勾选keys（左侧对应节点恢复为未勾选可选择状态）
 				const descendantKeys = findDescendantKeys(
@@ -631,7 +630,7 @@ export default defineComponent({
 					(key) => !keysToRemove.has(key),
 				);
 				// 清空右侧勾选状态
-				rightCheckedKeys.value = [];
+				detailData.rightCheckedKeys = [];
 			}
 			// 同步表单数据
 			detailData.form.menuIds = detailData.transferHave.toString();
@@ -681,8 +680,6 @@ export default defineComponent({
 			rightTreeData,
 			leftExpandedKeys,
 			rightExpandedKeys,
-			leftCheckedKeys,
-			rightCheckedKeys,
 			onLeftTreeCheck,
 			onRightTreeCheck,
 			onLeftExpand,

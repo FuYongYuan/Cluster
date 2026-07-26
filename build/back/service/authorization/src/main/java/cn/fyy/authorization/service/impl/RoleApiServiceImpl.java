@@ -9,6 +9,7 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
+import cn.fyy.jpa.bean.ao.DataState;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -152,4 +153,27 @@ public class RoleApiServiceImpl implements RoleApiService {
         return null;
     }
 
+    /**
+     * 根据角色主键 ID 查询拥有的 API ID 集合
+     *
+     * @param roleId 角色主键 ID
+     * @return API ID 集合
+     */
+    @Override
+    public List<Long> queryApiIdsByRoleIds(List<Long> roleId) throws BusinessException {
+        try {
+            List<RoleApiBO> roleApiBOList = RoleApiBO.toBO(roleApiRepository.queryByRoleIdsAndState(roleId, DataState.NORMAL.getCode()));
+            if (roleApiBOList.isEmpty()) {
+                return null;
+            } else {
+                List<Long> apiList = new ArrayList<>();
+
+                roleApiBOList.forEach(bo -> apiList.add(bo.getApiId()));
+
+                return apiList;
+            }
+        } catch (Exception e) {
+            throw new BusinessException("根据角色主键 ID 查询拥有的 API ID 集合错误", e);
+        }
+    }
 }

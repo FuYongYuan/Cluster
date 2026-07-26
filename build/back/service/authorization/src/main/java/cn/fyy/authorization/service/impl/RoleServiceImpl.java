@@ -3,10 +3,13 @@ package cn.fyy.authorization.service.impl;
 import cn.fyy.authorization.bean.bo.RoleBO;
 import cn.fyy.authorization.bean.po.RolePO;
 import cn.fyy.authorization.config.properties.AesProperties;
+import cn.fyy.authorization.feign.client.capability.ApiFeignClient;
 import cn.fyy.authorization.feign.client.capability.MenuFeignClient;
 import cn.fyy.authorization.repository.RoleRepository;
+import cn.fyy.authorization.service.RoleApiService;
 import cn.fyy.authorization.service.RoleMenuService;
 import cn.fyy.authorization.service.RoleService;
+import cn.fyy.capability.bean.dto.ApiDTO;
 import cn.fyy.capability.bean.dto.MenuDTO;
 import cn.fyy.common.bean.ao.OperateResult;
 import cn.fyy.common.bean.bo.BusinessException;
@@ -60,12 +63,24 @@ public class RoleServiceImpl implements RoleService {
     @Resource
     private RoleMenuService roleMenuServiceImpl;
 
+    /**
+     * 角色API关系 Service
+     */
+    @Resource
+    private RoleApiService roleApiServiceImpl;
+
     //------------------------------------------------------------------------------------------------------------------feign
     /**
-     * 角色 FeignClient
+     * 菜单 FeignClient
      */
     @Resource
     private MenuFeignClient menuFeignClient;
+
+    /**
+     * API信息 FeignClient
+     */
+    @Resource
+    private ApiFeignClient apiFeignClient;
 
     //------------------------------------------------------------------------------------------------------------------越鉴权处理加密信息
 
@@ -95,6 +110,12 @@ public class RoleServiceImpl implements RoleService {
                     ResultMessage<String> roleMenuSaveListResult = roleMenuServiceImpl.saveList(bo.getId(), bo.getMenuIds(), currentManagerId, currentManagerName);
                     if (roleMenuSaveListResult.getCode() != HttpStatus.OK.value()) {
                         throw new RuntimeException("新增或者修改角色菜单关系错误");
+                    }
+                }
+                if (StringUtils.hasText(bo.getApiIds())) {
+                    ResultMessage<String> roleApiSaveListResult = roleApiServiceImpl.saveList(bo.getId(), bo.getApiIds(), currentManagerId, currentManagerName);
+                    if (roleApiSaveListResult.getCode() != HttpStatus.OK.value()) {
+                        throw new RuntimeException("新增或者修改角色API关系错误");
                     }
                 }
                 return new ResultMessage<>(OperateResult.SUCCESS.getMessage());
@@ -233,13 +254,23 @@ public class RoleServiceImpl implements RoleService {
                 List<Long> roleIdList = new ArrayList<>();
                 roleIdList.add(bo.getId());
                 List<Long> menuList = roleMenuServiceImpl.queryMenuIdsByRoleIds(roleIdList);
-                String encryptString = String.valueOf(menuList.size());
-                String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
-                ResultMessage<List<MenuDTO>> resultMessage = menuFeignClient.feignQueryMenuByMenuIdList(menuList, encrypt);
-                if (resultMessage.getCode() == HttpStatus.OK.value()) {
-                    List<String> menuIdList = resultMessage.getData().stream().map(r -> r.getId().toString()).toList();
+                String menuEncryptString = String.valueOf(menuList.size());
+                String menuEncrypt = AesUtil.encryptString(menuEncryptString, aesProperties.getAesKey());
+                ResultMessage<List<MenuDTO>> menuResultMessage = menuFeignClient.feignQueryMenuByMenuIdList(menuList, menuEncrypt);
+                if (menuResultMessage.getCode() == HttpStatus.OK.value()) {
+                    List<String> menuIdList = menuResultMessage.getData().stream().map(r -> r.getId().toString()).toList();
                     bo.setMenuIds(String.join(",", menuIdList));
                 }
+
+                List<Long> apiList = roleApiServiceImpl.queryApiIdsByRoleIds(roleIdList);
+                String apiEncryptString = String.valueOf(apiList.size());
+                String apiEncrypt = AesUtil.encryptString(apiEncryptString, aesProperties.getAesKey());
+                ResultMessage<List<ApiDTO>> apiResultMessage = apiFeignClient.feignQueryApiByApiIdList(apiList, apiEncrypt);
+                if (apiResultMessage.getCode() == HttpStatus.OK.value()) {
+                    List<String> apiIdList = apiResultMessage.getData().stream().map(r -> r.getId().toString()).toList();
+                    bo.setApiIds(String.join(",", apiIdList));
+                }
+
             }
             return bo;
         } catch (Exception e) {

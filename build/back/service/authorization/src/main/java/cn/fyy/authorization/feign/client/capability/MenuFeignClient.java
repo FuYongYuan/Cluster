@@ -26,7 +26,7 @@ public interface MenuFeignClient {
      * @param currentPage  当前页
      * @param eachPageSize 每页显示条数
      * @param state        状态
-     * @return TMenuDTO 菜单对象
+     * @return MenuDTO 菜单对象
      * @throws BusinessException 业务错误
      */
     @GetMapping(value = "/query/{currentPage}/{eachPageSize}")
@@ -76,7 +76,7 @@ public interface MenuFeignClient {
     /**
      * 查询菜单列表
      *
-     * @return TMenuDTO 菜单对象
+     * @return MenuDTO 菜单对象
      * @throws BusinessException 业务错误
      */
     @GetMapping(value = "/query/all")
@@ -87,7 +87,7 @@ public interface MenuFeignClient {
      * 根据菜单 ID 集合查询菜单列表
      *
      * @param menuIdList 菜单 ID 集合
-     * @return TMenuDTO 菜单对象集合
+     * @return MenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @GetMapping(value = "/query/hierarchy/menu/list/{menuIdList}")
@@ -100,7 +100,7 @@ public interface MenuFeignClient {
      *
      * @param menuIdList     菜单 ID 集合
      * @param authentication 鉴权串
-     * @return TMenuDTO 菜单对象集合
+     * @return MenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @GetMapping(value = "/feign/query/hierarchy/menu/list/{menuIdList}/{authentication}")
@@ -113,7 +113,7 @@ public interface MenuFeignClient {
      * 根据菜单 ID 集合查询菜单列表
      *
      * @param menuIdList 菜单 ID 集合
-     * @return TMenuDTO 菜单对象集合
+     * @return MenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @GetMapping(value = "/query/menu/list/{menuIdList}")
@@ -126,7 +126,7 @@ public interface MenuFeignClient {
      *
      * @param menuIdList     菜单 ID 集合
      * @param authentication 鉴权串
-     * @return TMenuDTO 菜单对象集合
+     * @return MenuDTO 菜单对象集合
      * @throws BusinessException 业务错误
      */
     @GetMapping(value = "/feign/query/menu/list/{menuIdList}/{authentication}")

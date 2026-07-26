@@ -1,6 +1,7 @@
 package cn.fyy.capability.service;
 
 import cn.fyy.capability.bean.bo.ApiBO;
+import cn.fyy.capability.bean.dto.ApiDTO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 
@@ -55,4 +56,24 @@ public interface ApiService {
      * @throws BusinessException 错误
      */
     ResultMessage<String> saveList(List<ApiBO> bo, Long currentManagerId, String currentManagerName, boolean getNull) throws BusinessException;
+
+    /**
+     * 查询全部 Api 信息
+     *
+     * @return Api 信息集合
+     * @throws BusinessException 错误
+     */
+    List<ApiBO> queryAll() throws BusinessException;
+
+    /**
+     * 根据管理员主键 ID 查询能够使用的API信息列表
+     *
+     * @param apiIds         API ID 集合
+     * @param authentication 鉴权串
+     * @return 能够使用的API信息列表
+     */
+    ResultMessage<List<ApiDTO>> feignQueryApiByApiIdList(
+            List<Long> apiIds,
+            String authentication
+    ) throws BusinessException;
 }

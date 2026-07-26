@@ -1,6 +1,7 @@
 package cn.fyy.capability.service.impl;
 
 import cn.fyy.capability.bean.bo.ApiBO;
+import cn.fyy.capability.bean.dto.ApiDTO;
 import cn.fyy.capability.bean.po.ApiPO;
 import cn.fyy.capability.config.properties.AesProperties;
 import cn.fyy.capability.repository.ApiRepository;
@@ -11,6 +12,7 @@ import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
 import cn.fyy.database.util.BeanUtil;
 import cn.fyy.database.util.snowflake.SnowflakeIdUtil;
+import cn.fyy.jpa.bean.ao.DataState;
 import encrypt.AesUtil;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -136,7 +138,7 @@ public class ApiServiceImpl implements ApiService {
                 return new ResultMessage<>(1, "试图篡改信息拒绝请求！");
             }
         } catch (Exception e) {
-            throw new BusinessException("根据管理员主键 ID 查询能够使用的菜单列表错误", e);
+            throw new BusinessException("根据管理员主键 ID 查询能够使用的API信息列表错误", e);
         }
     }
 
@@ -196,4 +198,47 @@ public class ApiServiceImpl implements ApiService {
         return new ResultMessage<>(OperateResult.FAIL.getMessage());
     }
 
+    /**
+     * 查询全部 Api 信息
+     *
+     * @return Api 信息集合
+     */
+    @Override
+    public List<ApiBO> queryAll() throws BusinessException {
+        try {
+            return ApiBO.toBO(
+                    apiRepository.queryAll()
+            );
+        } catch (Exception e) {
+            throw new BusinessException("查询全部 Api 信息错误", e);
+        }
+    }
+
+    /**
+     * 根据管理员主键 ID 查询能够使用的API信息列表
+     *
+     * @param apiIds         API ID 集合
+     * @param authentication 鉴权串
+     * @return 能够使用的API信息列表
+     */
+    @Override
+    public ResultMessage<List<ApiDTO>> feignQueryApiByApiIdList(
+            List<Long> apiIds,
+            String authentication
+    ) throws BusinessException {
+        try {
+            String encryptString = String.valueOf(apiIds.size());
+            String encrypt = AesUtil.encryptString(encryptString, aesProperties.getAesKey());
+            String decrypt = AesUtil.decryptString(authentication, aesProperties.getAesKey());
+            if (encrypt.equals(authentication) && decrypt.equals(encryptString)) {
+                return new ResultMessage<>(ApiDTO.toDTO(ApiBO.toBO(
+                        apiRepository.queryApiByApiIdListAndState(apiIds, DataState.NORMAL.getCode())
+                )));
+            } else {
+                return new ResultMessage<>(1, "试图篡改信息拒绝请求！");
+            }
+        } catch (Exception e) {
+            throw new BusinessException("根据管理员主键 ID 查询能够使用的API信息列表错误", e);
+        }
+    }
 }

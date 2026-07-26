@@ -1,5 +1,5 @@
 import { showErrorNotification } from "@src/antd/notification";
-import type { MenuDTO } from "@src/apis/capability/dto";
+import type { ApiDTO, MenuDTO } from "@src/apis/capability/dto";
 import {
 	CapabilityApiBaseURL,
 	SuccessRequestCode,
@@ -162,4 +162,22 @@ export const saveMenu = async (dto: MenuDTO): Promise<string | undefined> => {
 			description: response.data.message,
 		});
 	});
+};
+
+/**
+ * 查询所有API信息
+ */
+export const queryApiAll = async (): Promise<ApiDTO[] | undefined> => {
+	const request = new Request<ApiDTO[]>();
+	return request
+		.get(`${CapabilityApiBaseURL}/api/query/all`)
+		.then((response) => {
+			if (response.data.code === SuccessRequestCode) {
+				return response.data.data;
+			}
+			showErrorNotification({
+				message: "查询所有API信息错误",
+				description: response.data.message,
+			});
+		});
 };
