@@ -50,83 +50,123 @@
         </a-form-item>
 
         <a-form-item label="菜单权限" name="menuIds">
-          <a-transfer
-              ref="menuTransferRef"
-              :target-keys="menuTransferHave"
-              :data-source="menuTransferData"
-              show-search
-              :filter-option="transferFilterOption"
-              :render="(item:TransferData) => item.title"
-              :show-select-all="false"
-              class="tree-transfer"
-              @change="menuTransferHandleChange"
-              @search="menuTransferHandleSearch"
-          >
-            <template #children="{ direction, onItemSelect }: any">
-              <a-tree
-                  v-if="direction === 'left'"
-                  block-node
-                  checkable
-                  check-strictly
-                  :expanded-keys="menuLeftExpandedKeys"
-                  :checked-keys="[...menuTransferHave, ...menuLeftCheckedKeys]"
-                  :tree-data="menuLeftTreeData"
-                  @expand="(keys: any, info: any) => onMenuExpand(keys, info, 'left')"
-                  @check="(checked: any, e: any) => onMenuLeftTreeCheck(checked, e, onItemSelect)"
-              />
-              <a-tree
-                  v-else
-                  block-node
-                  checkable
-                  check-strictly
-                  :expanded-keys="menuRightExpandedKeys"
-                  :checked-keys="menuRightCheckedKeys"
-                  :tree-data="menuRightTreeData"
-                  @expand="(keys: any, info: any) => onMenuExpand(keys, info, 'right')"
-                  @check="(checked: any, e: any) => onMenuRightTreeCheck(checked, e, onItemSelect)"
-              />
-            </template>
-          </a-transfer>
+          <div class="transfer-wrapper">
+            <a-transfer
+                ref="menuTransferRef"
+                :target-keys="menuTransferHave"
+                :data-source="menuTransferData"
+                show-search
+                :filter-option="transferFilterOption"
+                :render="(item:TransferData) => item.title"
+                class="tree-transfer"
+                @change="menuTransferHandleChange"
+                @search="menuTransferHandleSearch"
+                @selectChange="menuTransferHandleSelectChange"
+            >
+              <template #children="{ direction, onItemSelect }: any">
+                <a-tree
+                    v-if="direction === 'left'"
+                    block-node
+                    checkable
+                    check-strictly
+                    :selected-keys="[]"
+                    :expanded-keys="menuLeftExpandedKeys"
+                    :checked-keys="[...menuTransferHave, ...menuLeftCheckedKeys]"
+                    :tree-data="menuLeftTreeData"
+                    @expand="(keys: any, info: any) => onMenuExpand(keys, info, 'left')"
+                    @check="(checked: any, e: any) => onMenuLeftTreeCheck(checked, e, onItemSelect)"
+                    @select="(_keys: any, e: any) => onMenuLeftTreeSelect(e, onItemSelect)"
+                />
+                <a-tree
+                    v-else
+                    block-node
+                    checkable
+                    check-strictly
+                    :selected-keys="[]"
+                    :expanded-keys="menuRightExpandedKeys"
+                    :checked-keys="menuRightCheckedKeys"
+                    :tree-data="menuRightTreeData"
+                    @expand="(keys: any, info: any) => onMenuExpand(keys, info, 'right')"
+                    @check="(checked: any, e: any) => onMenuRightTreeCheck(checked, e, onItemSelect)"
+                    @select="(_keys: any, e: any) => onMenuRightTreeSelect(e, onItemSelect)"
+                />
+              </template>
+            </a-transfer>
+            <icon-font type="icon-down" class="dropdown-trigger dropdown-trigger-left"/>
+            <div class="panel-dropdown panel-dropdown-left">
+              <a-button size="small" @click="menuSelectAll('left')">全选</a-button>
+              <a-button size="small" @click="menuDeselectAll('left')">取消全选</a-button>
+              <a-button size="small" @click="menuExpandAll('left')">全部展开</a-button>
+              <a-button size="small" @click="menuCollapseAll('left')">全部折叠</a-button>
+            </div>
+            <icon-font type="icon-down" class="dropdown-trigger dropdown-trigger-right"/>
+            <div class="panel-dropdown panel-dropdown-right">
+              <a-button size="small" @click="menuSelectAll('right')">全选</a-button>
+              <a-button size="small" @click="menuDeselectAll('right')">取消全选</a-button>
+              <a-button size="small" @click="menuExpandAll('right')">全部展开</a-button>
+              <a-button size="small" @click="menuCollapseAll('right')">全部折叠</a-button>
+            </div>
+          </div>
         </a-form-item>
 
         <a-form-item label="访问权限" name="apiIds">
-          <a-transfer
-              ref="apiTransferRef"
-              :target-keys="apiTransferHave"
-              :data-source="apiTransferData"
-              show-search
-              :filter-option="transferFilterOption"
-              :render="(item:TransferData) => item.title"
-              :show-select-all="false"
-              class="tree-transfer"
-              @change="apiTransferHandleChange"
-              @search="apiTransferHandleSearch"
-          >
-            <template #children="{ direction, onItemSelect }: any">
-              <a-tree
-                  v-if="direction === 'left'"
-                  block-node
-                  checkable
-                  check-strictly
-                  :expanded-keys="apiLeftExpandedKeys"
-                  :checked-keys="apiLeftTreeCheckedKeys"
-                  :tree-data="apiLeftTreeData"
-                  @expand="(keys: any, info: any) => onApiExpand(keys, info, 'left')"
-                  @check="(checked: any, e: any) => onApiLeftTreeCheck(checked, e, onItemSelect)"
-              />
-              <a-tree
-                  v-else
-                  block-node
-                  checkable
-                  check-strictly
-                  :expanded-keys="apiRightExpandedKeys"
-                  :checked-keys="apiRightCheckedKeys"
-                  :tree-data="apiRightTreeData"
-                  @expand="(keys: any, info: any) => onApiExpand(keys, info, 'right')"
-                  @check="(checked: any, e: any) => onApiRightTreeCheck(checked, e, onItemSelect)"
-              />
-            </template>
-          </a-transfer>
+          <div class="transfer-wrapper">
+            <a-transfer
+                ref="apiTransferRef"
+                :target-keys="apiTransferHave"
+                :data-source="apiTransferData"
+                show-search
+                :filter-option="transferFilterOption"
+                :render="(item:TransferData) => item.title"
+                class="tree-transfer"
+                @change="apiTransferHandleChange"
+                @search="apiTransferHandleSearch"
+                @selectChange="apiTransferHandleSelectChange"
+            >
+              <template #children="{ direction, onItemSelect }: any">
+                <a-tree
+                    v-if="direction === 'left'"
+                    block-node
+                    checkable
+                    check-strictly
+                    :selected-keys="[]"
+                    :expanded-keys="apiLeftExpandedKeys"
+                    :checked-keys="apiLeftTreeCheckedKeys"
+                    :tree-data="apiLeftTreeData"
+                    @expand="(keys: any, info: any) => onApiExpand(keys, info, 'left')"
+                    @check="(checked: any, e: any) => onApiLeftTreeCheck(checked, e, onItemSelect)"
+                    @select="(_keys: any, e: any) => onApiLeftTreeSelect(e, onItemSelect)"
+                />
+                <a-tree
+                    v-else
+                    block-node
+                    checkable
+                    check-strictly
+                    :selected-keys="[]"
+                    :expanded-keys="apiRightExpandedKeys"
+                    :checked-keys="apiRightCheckedKeys"
+                    :tree-data="apiRightTreeData"
+                    @expand="(keys: any, info: any) => onApiExpand(keys, info, 'right')"
+                    @check="(checked: any, e: any) => onApiRightTreeCheck(checked, e, onItemSelect)"
+                    @select="(_keys: any, e: any) => onApiRightTreeSelect(e, onItemSelect)"
+                />
+              </template>
+            </a-transfer>
+            <icon-font type="icon-down" class="dropdown-trigger dropdown-trigger-left"/>
+            <div class="panel-dropdown panel-dropdown-left">
+              <a-button size="small" @click="apiSelectAll('left')">全选</a-button>
+              <a-button size="small" @click="apiDeselectAll('left')">取消全选</a-button>
+              <a-button size="small" @click="apiExpandAll('left')">全部展开</a-button>
+              <a-button size="small" @click="apiCollapseAll('left')">全部折叠</a-button>
+            </div>
+            <icon-font type="icon-down" class="dropdown-trigger dropdown-trigger-right"/>
+            <div class="panel-dropdown panel-dropdown-right">
+              <a-button size="small" @click="apiSelectAll('right')">全选</a-button>
+              <a-button size="small" @click="apiDeselectAll('right')">取消全选</a-button>
+              <a-button size="small" @click="apiExpandAll('right')">全部展开</a-button>
+              <a-button size="small" @click="apiCollapseAll('right')">全部折叠</a-button>
+            </div>
+          </div>
         </a-form-item>
 
       </a-form>
@@ -665,6 +705,15 @@ export default defineComponent({
 			}
 		};
 
+		// 菜单顶部全选多选框联动（内置header多选框勾选/取消时同步树勾选状态）
+		const menuTransferHandleSelectChange = (
+			sourceSelectedKeys: string[],
+			targetSelectedKeys: string[],
+		) => {
+			detailData.menuLeftCheckedKeys = [...sourceSelectedKeys];
+			detailData.menuRightCheckedKeys = [...targetSelectedKeys];
+		};
+
 		// 菜单穿梭框变化处理（点击中间穿梭按钮后执行实际移动）
 		const menuTransferHandleChange = (
 			targetKeys: string[],
@@ -695,6 +744,104 @@ export default defineComponent({
 			detailData.form.menuIds = detailData.menuTransferHave.toString();
 		};
 
+		// 菜单左侧树点击文字勾选回调（selected-keys恒为空，每次点击均为选中事件，按当前勾选状态取反）
+		const onMenuLeftTreeSelect = (
+			e: any,
+			onItemSelect: (key: string, selected: boolean) => void,
+		) => {
+			const key = (e?.node?.eventKey ?? e?.node?.key)?.toString() ?? "";
+			if (key === "") {
+				return;
+			}
+			const isCurrentlyChecked =
+				detailData.menuLeftCheckedKeys.includes(key) ||
+				detailData.menuTransferHave.includes(key);
+			if (isCurrentlyChecked) {
+				detailData.menuLeftCheckedKeys = detailData.menuLeftCheckedKeys.filter(
+					(k) => k !== key,
+				);
+				onItemSelect(key, false);
+			} else if (!detailData.menuTransferHave.includes(key)) {
+				detailData.menuLeftCheckedKeys = [
+					...detailData.menuLeftCheckedKeys,
+					key,
+				];
+				onItemSelect(key, true);
+			}
+		};
+
+		// 菜单右侧树点击文字勾选回调
+		const onMenuRightTreeSelect = (
+			e: any,
+			onItemSelect: (key: string, selected: boolean) => void,
+		) => {
+			const key = (e?.node?.eventKey ?? e?.node?.key)?.toString() ?? "";
+			if (key === "") {
+				return;
+			}
+			const isCurrentlyChecked = detailData.menuRightCheckedKeys.includes(key);
+			if (isCurrentlyChecked) {
+				detailData.menuRightCheckedKeys =
+					detailData.menuRightCheckedKeys.filter((k) => k !== key);
+				onItemSelect(key, false);
+			} else {
+				detailData.menuRightCheckedKeys = [
+					...detailData.menuRightCheckedKeys,
+					key,
+				];
+				onItemSelect(key, true);
+			}
+		};
+
+		// 菜单全选（指定方向全部未拥有节点勾选）
+		const menuSelectAll = (direction: "left" | "right") => {
+			if (direction === "left") {
+				const haveSet = new Set(detailData.menuTransferHave);
+				const allKeys = detailData.menuTransferData
+					.map((item) => item.key)
+					.filter((key) => !haveSet.has(key));
+				detailData.menuLeftCheckedKeys = allKeys;
+				menuTransferRef.value?.handleSelectChange("left", allKeys);
+			} else {
+				const allKeys = [...detailData.menuTransferHave];
+				detailData.menuRightCheckedKeys = allKeys;
+				menuTransferRef.value?.handleSelectChange("right", allKeys);
+			}
+		};
+
+		// 菜单取消全选
+		const menuDeselectAll = (direction: "left" | "right") => {
+			if (direction === "left") {
+				detailData.menuLeftCheckedKeys = [];
+				menuTransferRef.value?.handleSelectChange("left", []);
+			} else {
+				detailData.menuRightCheckedKeys = [];
+				menuTransferRef.value?.handleSelectChange("right", []);
+			}
+		};
+
+		// 菜单全部展开
+		const menuExpandAll = (direction: "left" | "right") => {
+			if (direction === "left") {
+				detailData.menuLeftCollapsedKeys = [];
+			} else {
+				detailData.menuRightCollapsedKeys = [];
+			}
+		};
+
+		// 菜单全部折叠
+		const menuCollapseAll = (direction: "left" | "right") => {
+			if (direction === "left") {
+				detailData.menuLeftCollapsedKeys = collectMenuExpandableKeys(
+					detailData.menuTreeDataSource,
+				);
+			} else {
+				detailData.menuRightCollapsedKeys = collectMenuExpandableKeys(
+					detailData.menuTreeDataSource,
+				);
+			}
+		};
+
 		//------------------------------------------------------------------------------------------------------------------API穿梭框
 		// 生成API子级节点唯一key（className::methodName）
 		const apiItemKey = (api: ApiDTO): string =>
@@ -711,18 +858,9 @@ export default defineComponent({
 				detailData.apiDataSource = result;
 			}
 
-			// 穿梭框数据（父级分组节点 + 子级方法节点拍平）
+			// 穿梭框数据（仅子级方法节点，父级分组节点仅作树渲染分组不参与Transfer内部计数）
 			detailData.apiTransferData = [];
-			const existClassNames = new Set<string>();
 			for (const api of detailData.apiDataSource) {
-				const className = api.className ?? "未知Controller";
-				if (!existClassNames.has(className)) {
-					existClassNames.add(className);
-					detailData.apiTransferData.push({
-						key: `class::${className}`,
-						title: api.classExplain ?? className,
-					});
-				}
 				detailData.apiTransferData.push({
 					key: apiItemKey(api),
 					title: api.methodExplain ?? api.methodName ?? "无名称",
@@ -843,41 +981,41 @@ export default defineComponent({
 			return classNames.map((className) => `class::${className}`);
 		};
 
-    // API左侧树展开keys（默认全展开，剔除手动折叠的）
-    const apiLeftExpandedKeys = computed(() => {
-      const collapsedSet = new Set(detailData.apiLeftCollapsedKeys);
-      return collectApiExpandableKeys().filter((key) => !collapsedSet.has(key));
-    });
+		// API左侧树展开keys（默认全展开，剔除手动折叠的）
+		const apiLeftExpandedKeys = computed(() => {
+			const collapsedSet = new Set(detailData.apiLeftCollapsedKeys);
+			return collectApiExpandableKeys().filter((key) => !collapsedSet.has(key));
+		});
 
-    // API左侧树勾选keys（子级keys + 全部子级均已勾选的父级keys，父级仅用于视觉展示）
-    const apiLeftTreeCheckedKeys = computed(() => {
-      const checkedSet = new Set([
-        ...detailData.apiTransferHave,
-        ...detailData.apiLeftCheckedKeys,
-      ]);
-      const parentCheckedKeys: string[] = [];
-      const groupMap = new Map<string, { total: number; checked: number }>();
-      for (const api of detailData.apiDataSource) {
-        const className = api.className ?? "未知Controller";
-        const key = `${className}::${api.methodName ?? ""}`;
-        if (!groupMap.has(className)) {
-          groupMap.set(className, { total: 0, checked: 0 });
-        }
-        const group = groupMap.get(className);
-        if (group) {
-          group.total++;
-          if (checkedSet.has(key)) {
-            group.checked++;
-          }
-        }
-      }
-      for (const [className, { total, checked }] of groupMap) {
-        if (total > 0 && total === checked) {
-          parentCheckedKeys.push(`class::${className}`);
-        }
-      }
-      return [...checkedSet, ...parentCheckedKeys];
-    });
+		// API左侧树勾选keys（子级keys + 全部子级均已勾选的父级keys，父级仅用于视觉展示）
+		const apiLeftTreeCheckedKeys = computed(() => {
+			const checkedSet = new Set([
+				...detailData.apiTransferHave,
+				...detailData.apiLeftCheckedKeys,
+			]);
+			const parentCheckedKeys: string[] = [];
+			const groupMap = new Map<string, { total: number; checked: number }>();
+			for (const api of detailData.apiDataSource) {
+				const className = api.className ?? "未知Controller";
+				const key = `${className}::${api.methodName ?? ""}`;
+				if (!groupMap.has(className)) {
+					groupMap.set(className, { total: 0, checked: 0 });
+				}
+				const group = groupMap.get(className);
+				if (group) {
+					group.total++;
+					if (checkedSet.has(key)) {
+						group.checked++;
+					}
+				}
+			}
+			for (const [className, { total, checked }] of groupMap) {
+				if (total > 0 && total === checked) {
+					parentCheckedKeys.push(`class::${className}`);
+				}
+			}
+			return [...checkedSet, ...parentCheckedKeys];
+		});
 
 		// API右侧树展开keys（默认全展开，剔除手动折叠的）
 		const apiRightExpandedKeys = computed(() => {
@@ -1019,6 +1157,19 @@ export default defineComponent({
 			}
 		};
 
+		// API顶部全选多选框联动（内置header多选框勾选/取消时同步树勾选状态，剔除父级分组keys）
+		const apiTransferHandleSelectChange = (
+			sourceSelectedKeys: string[],
+			targetSelectedKeys: string[],
+		) => {
+			detailData.apiLeftCheckedKeys = sourceSelectedKeys.filter(
+				(key) => !key.startsWith("class::"),
+			);
+			detailData.apiRightCheckedKeys = targetSelectedKeys.filter(
+				(key) => !key.startsWith("class::"),
+			);
+		};
+
 		// API穿梭框变化处理（点击中间穿梭按钮后执行实际移动）
 		const apiTransferHandleChange = (
 			targetKeys: string[],
@@ -1040,6 +1191,98 @@ export default defineComponent({
 			}
 			// 将复合keys转换为实际API ID用于后端持久化
 			detailData.form.apiIds = apiKeysToIds(detailData.apiTransferHave);
+		};
+
+		// API左侧树点击文字勾选回调（selected-keys恒为空，每次点击均为选中事件，按当前勾选状态取反）
+		const onApiLeftTreeSelect = (
+			e: any,
+			onItemSelect: (key: string, selected: boolean) => void,
+		) => {
+			const key = (e?.node?.eventKey ?? e?.node?.key)?.toString() ?? "";
+			if (key === "" || key.startsWith("class::")) {
+				return;
+			}
+			const isCurrentlyChecked =
+				detailData.apiLeftCheckedKeys.includes(key) ||
+				detailData.apiTransferHave.includes(key);
+			if (isCurrentlyChecked) {
+				detailData.apiLeftCheckedKeys = detailData.apiLeftCheckedKeys.filter(
+					(k) => k !== key,
+				);
+				onItemSelect(key, false);
+			} else if (!detailData.apiTransferHave.includes(key)) {
+				detailData.apiLeftCheckedKeys = [...detailData.apiLeftCheckedKeys, key];
+				onItemSelect(key, true);
+			}
+		};
+
+		// API右侧树点击文字勾选回调
+		const onApiRightTreeSelect = (
+			e: any,
+			onItemSelect: (key: string, selected: boolean) => void,
+		) => {
+			const key = (e?.node?.eventKey ?? e?.node?.key)?.toString() ?? "";
+			if (key === "" || key.startsWith("class::")) {
+				return;
+			}
+			const isCurrentlyChecked = detailData.apiRightCheckedKeys.includes(key);
+			if (isCurrentlyChecked) {
+				detailData.apiRightCheckedKeys = detailData.apiRightCheckedKeys.filter(
+					(k) => k !== key,
+				);
+				onItemSelect(key, false);
+			} else {
+				detailData.apiRightCheckedKeys = [
+					...detailData.apiRightCheckedKeys,
+					key,
+				];
+				onItemSelect(key, true);
+			}
+		};
+
+		// API全选（指定方向全部未拥有子级方法勾选）
+		const apiSelectAll = (direction: "left" | "right") => {
+			if (direction === "left") {
+				const haveSet = new Set(detailData.apiTransferHave);
+				const allKeys = detailData.apiTransferData
+					.map((item) => item.key)
+					.filter((key) => !key.startsWith("class::") && !haveSet.has(key));
+				detailData.apiLeftCheckedKeys = allKeys;
+				apiTransferRef.value?.handleSelectChange("left", allKeys);
+			} else {
+				const allKeys = [...detailData.apiTransferHave];
+				detailData.apiRightCheckedKeys = allKeys;
+				apiTransferRef.value?.handleSelectChange("right", allKeys);
+			}
+		};
+
+		// API取消全选
+		const apiDeselectAll = (direction: "left" | "right") => {
+			if (direction === "left") {
+				detailData.apiLeftCheckedKeys = [];
+				apiTransferRef.value?.handleSelectChange("left", []);
+			} else {
+				detailData.apiRightCheckedKeys = [];
+				apiTransferRef.value?.handleSelectChange("right", []);
+			}
+		};
+
+		// API全部展开
+		const apiExpandAll = (direction: "left" | "right") => {
+			if (direction === "left") {
+				detailData.apiLeftCollapsedKeys = [];
+			} else {
+				detailData.apiRightCollapsedKeys = [];
+			}
+		};
+
+		// API全部折叠
+		const apiCollapseAll = (direction: "left" | "right") => {
+			if (direction === "left") {
+				detailData.apiLeftCollapsedKeys = collectApiExpandableKeys();
+			} else {
+				detailData.apiRightCollapsedKeys = collectApiExpandableKeys();
+			}
 		};
 
 		// 复合keys → API ID字符串（保存用）
@@ -1099,18 +1342,32 @@ export default defineComponent({
 			onMenuLeftTreeCheck,
 			onMenuRightTreeCheck,
 			onMenuExpand,
+			onMenuLeftTreeSelect,
+			onMenuRightTreeSelect,
+			menuSelectAll,
+			menuDeselectAll,
+			menuExpandAll,
+			menuCollapseAll,
 			transferFilterOption,
 			menuTransferHandleSearch,
+			menuTransferHandleSelectChange,
 			menuTransferHandleChange,
-      apiLeftTreeData,
-      apiRightTreeData,
-      apiLeftExpandedKeys,
-      apiLeftTreeCheckedKeys,
+			apiLeftTreeData,
+			apiRightTreeData,
+			apiLeftExpandedKeys,
+			apiLeftTreeCheckedKeys,
 			apiRightExpandedKeys,
 			onApiLeftTreeCheck,
 			onApiRightTreeCheck,
 			onApiExpand,
+			onApiLeftTreeSelect,
+			onApiRightTreeSelect,
+			apiSelectAll,
+			apiDeselectAll,
+			apiExpandAll,
+			apiCollapseAll,
 			apiTransferHandleSearch,
+			apiTransferHandleSelectChange,
 			apiTransferHandleChange,
 		};
 	},
@@ -1120,6 +1377,10 @@ export default defineComponent({
 <style scoped>
 @import "@src/assets/css/button.css";
 
+.transfer-wrapper {
+  position: relative;
+}
+
 .tree-transfer :deep(.ant-transfer-list) {
   height: 250px;
 }
@@ -1128,5 +1389,70 @@ export default defineComponent({
   flex: 1;
   overflow-y: auto;
 }
+
+.tree-transfer :deep(.ant-transfer-list-body-search-wrapper) {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+}
+
+.tree-transfer :deep(.ant-transfer-list-header-dropdown) {
+  display: none;
+}
+
+.tree-transfer :deep(.ant-transfer-list-header-selected) {
+  margin-left: 8px;
+}
+
+.dropdown-trigger {
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  padding: 13px 10px 23px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.dropdown-trigger-left {
+  left: calc(50% - 64px);
+}
+
+.dropdown-trigger-right {
+  right: 4px;
+}
+
+.panel-dropdown {
+  position: absolute;
+  top: 30px;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.panel-dropdown-left {
+  right: calc(50% + 42px);
+}
+
+.panel-dropdown-right {
+  right: 14px;
+}
+
+.dropdown-trigger-left:hover ~ .panel-dropdown-left,
+.panel-dropdown-left:hover {
+  display: flex;
+}
+
+.dropdown-trigger-right:hover ~ .panel-dropdown-right,
+.panel-dropdown-right:hover {
+  display: flex;
+}
+
 </style>
 
