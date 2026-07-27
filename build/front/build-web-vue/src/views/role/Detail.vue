@@ -49,7 +49,7 @@
           />
         </a-form-item>
 
-        <a-form-item label="菜单" name="menuIds">
+        <a-form-item label="菜单权限" name="menuIds">
           <a-transfer
               ref="menuTransferRef"
               :target-keys="menuTransferHave"
@@ -88,6 +88,47 @@
             </template>
           </a-transfer>
         </a-form-item>
+
+        <a-form-item label="访问权限" name="apiIds">
+          <a-transfer
+              ref="apiTransferRef"
+              :target-keys="apiTransferHave"
+              :data-source="apiTransferData"
+              show-search
+              :filter-option="transferFilterOption"
+              :render="(item:TransferData) => item.title"
+              :show-select-all="false"
+              class="tree-transfer"
+              @change="apiTransferHandleChange"
+              @search="apiTransferHandleSearch"
+          >
+            <template #children="{ direction, onItemSelect }: any">
+              <a-tree
+                  v-if="direction === 'left'"
+                  block-node
+                  checkable
+                  check-strictly
+                  :expanded-keys="apiLeftExpandedKeys"
+                  :checked-keys="apiLeftTreeCheckedKeys"
+                  :tree-data="apiLeftTreeData"
+                  @expand="(keys: any, info: any) => onApiExpand(keys, info, 'left')"
+                  @check="(checked: any, e: any) => onApiLeftTreeCheck(checked, e, onItemSelect)"
+              />
+              <a-tree
+                  v-else
+                  block-node
+                  checkable
+                  check-strictly
+                  :expanded-keys="apiRightExpandedKeys"
+                  :checked-keys="apiRightCheckedKeys"
+                  :tree-data="apiRightTreeData"
+                  @expand="(keys: any, info: any) => onApiExpand(keys, info, 'right')"
+                  @check="(checked: any, e: any) => onApiRightTreeCheck(checked, e, onItemSelect)"
+              />
+            </template>
+          </a-transfer>
+        </a-form-item>
+
       </a-form>
     </a-spin>
   </a-modal>
@@ -96,8 +137,8 @@
 <script lang="ts">
 import type { RoleDTO } from "@src/apis/authorization/dto";
 import { getRole, saveRole } from "@src/apis/authorization/service";
-import type { MenuDTO } from "@src/apis/capability/dto";
-import { queryMenuAllTree } from "@src/apis/capability/service";
+import type { ApiDTO, MenuDTO } from "@src/apis/capability/dto";
+import { queryApiAll, queryMenuAllTree } from "@src/apis/capability/service";
 import type { TransferData } from "@src/apis/commons/dto";
 import IconFont from "@src/assets/iconfont/icon";
 import { type FormInstance, message } from "ant-design-vue";
@@ -117,6 +158,16 @@ import {
 type TreeCheckStrictlyEvent = {
 	checked: (string | number)[];
 	halfChecked: (string | number)[];
+};
+
+/**
+ * API树分组节点（按className去重构建的父级Controller节点）
+ */
+type ApiGroupNode = {
+	key: string;
+	className: string;
+	classExplain: string;
+	children: ApiDTO[];
 };
 
 export default defineComponent({
@@ -143,6 +194,7 @@ export default defineComponent({
 		// 初始化加载执行
 		onMounted(() => {
 			menuTransferQueryData();
+			apiTransferQueryData();
 		});
 		//------------------------------------------------------------------------------------------------------------------参数
 		// 详情DOM
@@ -150,6 +202,9 @@ export default defineComponent({
 
 		// 菜单穿梭框DOM
 		const menuTransferRef = ref<any>();
+
+		// API穿梭框DOM
+		const apiTransferRef = ref<any>();
 
 		// 详情页面数据
 		const detailData = reactive({
@@ -176,6 +231,25 @@ export default defineComponent({
 			// 菜单右侧面板搜索关键字
 			menuRightSearchValue: ref(""),
 
+			// API穿梭框拥有（右侧目标keys，仅API方法ID）
+			apiTransferHave: ref<string[]>([]),
+			// API穿梭框数据（拍平后供Transfer内部管理）
+			apiTransferData: ref<TransferData[]>([]),
+			// API原始平铺数据
+			apiDataSource: ref<ApiDTO[]>([]),
+			// API左侧树待穿梭勾选keys（已勾选，待点击向右穿梭）
+			apiLeftCheckedKeys: ref<string[]>([]),
+			// API右侧树勾选keys（已勾选，待点击向左穿梭）
+			apiRightCheckedKeys: ref<string[]>([]),
+			// API左侧树手动折叠的节点keys
+			apiLeftCollapsedKeys: ref<string[]>([]),
+			// API右侧树手动折叠的节点keys
+			apiRightCollapsedKeys: ref<string[]>([]),
+			// API左侧面板搜索关键字
+			apiLeftSearchValue: ref(""),
+			// API右侧面板搜索关键字
+			apiRightSearchValue: ref(""),
+
 			loadingState: false,
 		});
 
@@ -189,15 +263,22 @@ export default defineComponent({
 				id: -1,
 			};
 			detailData.menuTransferHave = [];
+			detailData.apiTransferHave = [];
 			// 清理穿梭勾选状态
 			detailData.menuLeftCheckedKeys = [];
 			detailData.menuRightCheckedKeys = [];
+			detailData.apiLeftCheckedKeys = [];
+			detailData.apiRightCheckedKeys = [];
 			// 清理搜索关键字
 			detailData.menuLeftSearchValue = "";
 			detailData.menuRightSearchValue = "";
+			detailData.apiLeftSearchValue = "";
+			detailData.apiRightSearchValue = "";
 			// 重置穿梭框内部选中状态（避免遗留待穿梭选中项导致按钮残留亮起）
 			menuTransferRef.value?.handleSelectChange("left", []);
 			menuTransferRef.value?.handleSelectChange("right", []);
+			apiTransferRef.value?.handleSelectChange("left", []);
+			apiTransferRef.value?.handleSelectChange("right", []);
 
 			detail.value?.resetFields();
 		};
@@ -241,6 +322,9 @@ export default defineComponent({
 					detailData.form = result;
 					if (result.menuIds !== undefined && result.menuIds !== "") {
 						detailData.menuTransferHave = result.menuIds.split(",");
+					}
+					if (result.apiIds !== undefined && result.apiIds !== "") {
+						detailData.apiTransferHave = apiIdsToKeys(result.apiIds);
 					}
 				}
 
@@ -611,6 +695,375 @@ export default defineComponent({
 			detailData.form.menuIds = detailData.menuTransferHave.toString();
 		};
 
+		//------------------------------------------------------------------------------------------------------------------API穿梭框
+		// 生成API子级节点唯一key（className::methodName）
+		const apiItemKey = (api: ApiDTO): string =>
+			`${api.className ?? "未知Controller"}::${api.methodName ?? ""}`;
+
+		// 查询所有API信息（平铺结构，前端按className分组构建树）
+		const apiTransferQueryData = async () => {
+			// 开始
+			detailData.loadingState = true;
+
+			// 查询
+			const result = await queryApiAll();
+			if (result !== undefined) {
+				detailData.apiDataSource = result;
+			}
+
+			// 穿梭框数据（父级分组节点 + 子级方法节点拍平）
+			detailData.apiTransferData = [];
+			const existClassNames = new Set<string>();
+			for (const api of detailData.apiDataSource) {
+				const className = api.className ?? "未知Controller";
+				if (!existClassNames.has(className)) {
+					existClassNames.add(className);
+					detailData.apiTransferData.push({
+						key: `class::${className}`,
+						title: api.classExplain ?? className,
+					});
+				}
+				detailData.apiTransferData.push({
+					key: apiItemKey(api),
+					title: api.methodExplain ?? api.methodName ?? "无名称",
+				});
+			}
+
+			// 结束
+			detailData.loadingState = false;
+		};
+
+		// 按className去重分组构建API树结构（支持关键字过滤）
+		const groupApiByClassName = (
+			apiList: ApiDTO[],
+			keyword: string,
+		): ApiGroupNode[] => {
+			const trimKeyword = keyword.trim();
+			const groupMap = new Map<string, ApiGroupNode>();
+			for (const api of apiList) {
+				const className = api.className ?? "未知Controller";
+				if (!groupMap.has(className)) {
+					groupMap.set(className, {
+						key: `class::${className}`,
+						className: className,
+						classExplain: api.classExplain ?? className,
+						children: [],
+					});
+				}
+				const group = groupMap.get(className);
+				if (group) {
+					const isChildMatch =
+						trimKeyword === "" ||
+						(api.methodExplain ?? "").includes(trimKeyword) ||
+						(api.methodName ?? "").includes(trimKeyword);
+					if (isChildMatch) {
+						group.children.push(api);
+					}
+				}
+			}
+			const result: ApiGroupNode[] = [];
+			for (const group of groupMap.values()) {
+				const isParentMatch =
+					trimKeyword !== "" &&
+					(group.classExplain.includes(trimKeyword) ||
+						group.className.includes(trimKeyword));
+				if (isParentMatch) {
+					// 父级匹配：无关键字过滤时children已全量，父级关键字匹配时补充全量子级
+					if (group.children.length === 0) {
+						group.children = detailData.apiDataSource.filter(
+							(api) => (api.className ?? "未知Controller") === group.className,
+						);
+					}
+					result.push(group);
+				} else if (group.children.length > 0) {
+					result.push(group);
+				}
+			}
+			return result;
+		};
+
+		// API左侧树数据（全部分组节点，已拥有方法节点勾选置灰禁用）
+		const apiLeftTreeData = computed(() => {
+			const groups = groupApiByClassName(
+				detailData.apiDataSource,
+				detailData.apiLeftSearchValue,
+			);
+			return groups.map((group) => ({
+				key: group.key,
+				title: group.classExplain,
+				disabled: false,
+				children: group.children.map((api) => {
+					const childKey = apiItemKey(api);
+					return {
+						key: childKey,
+						title: api.methodExplain ?? api.methodName ?? "无名称",
+						disabled: detailData.apiTransferHave.includes(childKey),
+					};
+				}),
+			}));
+		});
+
+		// API右侧树数据（仅已选方法节点 + 父级分组上下文）
+		const apiRightTreeData = computed(() => {
+			const groups = groupApiByClassName(
+				detailData.apiDataSource,
+				detailData.apiRightSearchValue,
+			);
+			const result: any[] = [];
+			for (const group of groups) {
+				const selectedChildren = group.children.filter((api) =>
+					detailData.apiTransferHave.includes(apiItemKey(api)),
+				);
+				if (selectedChildren.length > 0) {
+					result.push({
+						key: group.key,
+						title: group.classExplain,
+						// 父级仅作分组上下文展示，禁用不可操作
+						disabled: true,
+						children: selectedChildren.map((api) => ({
+							key: apiItemKey(api),
+							title: api.methodExplain ?? api.methodName ?? "无名称",
+							disabled: false,
+						})),
+					});
+				}
+			}
+			return result;
+		});
+
+		// API树全部可展开节点keys（父级分组节点）
+		const collectApiExpandableKeys = (): string[] => {
+			const classNames = [
+				...new Set(
+					detailData.apiDataSource.map(
+						(api) => api.className ?? "未知Controller",
+					),
+				),
+			];
+			return classNames.map((className) => `class::${className}`);
+		};
+
+    // API左侧树展开keys（默认全展开，剔除手动折叠的）
+    const apiLeftExpandedKeys = computed(() => {
+      const collapsedSet = new Set(detailData.apiLeftCollapsedKeys);
+      return collectApiExpandableKeys().filter((key) => !collapsedSet.has(key));
+    });
+
+    // API左侧树勾选keys（子级keys + 全部子级均已勾选的父级keys，父级仅用于视觉展示）
+    const apiLeftTreeCheckedKeys = computed(() => {
+      const checkedSet = new Set([
+        ...detailData.apiTransferHave,
+        ...detailData.apiLeftCheckedKeys,
+      ]);
+      const parentCheckedKeys: string[] = [];
+      const groupMap = new Map<string, { total: number; checked: number }>();
+      for (const api of detailData.apiDataSource) {
+        const className = api.className ?? "未知Controller";
+        const key = `${className}::${api.methodName ?? ""}`;
+        if (!groupMap.has(className)) {
+          groupMap.set(className, { total: 0, checked: 0 });
+        }
+        const group = groupMap.get(className);
+        if (group) {
+          group.total++;
+          if (checkedSet.has(key)) {
+            group.checked++;
+          }
+        }
+      }
+      for (const [className, { total, checked }] of groupMap) {
+        if (total > 0 && total === checked) {
+          parentCheckedKeys.push(`class::${className}`);
+        }
+      }
+      return [...checkedSet, ...parentCheckedKeys];
+    });
+
+		// API右侧树展开keys（默认全展开，剔除手动折叠的）
+		const apiRightExpandedKeys = computed(() => {
+			const collapsedSet = new Set(detailData.apiRightCollapsedKeys);
+			return collectApiExpandableKeys().filter((key) => !collapsedSet.has(key));
+		});
+
+		// 收集指定父级分组节点下全部子级API方法keys
+		const findApiChildKeys = (parentKey: string): string[] => {
+			const className = parentKey.replace("class::", "");
+			return detailData.apiDataSource
+				.filter((api) => (api.className ?? "未知Controller") === className)
+				.map((api) => apiItemKey(api));
+		};
+
+		// API左侧树勾选回调（勾选父级级联全部子级方法，仅更新待穿梭状态并联动穿梭向右按钮亮起）
+		const onApiLeftTreeCheck = (
+			_checked: TreeCheckStrictlyEvent | any[],
+			e: any,
+			onItemSelect: (key: string, selected: boolean) => void,
+		) => {
+			const eventKey = (e?.node?.eventKey ?? e?.node?.key)?.toString() ?? "";
+			const isCheckedNow = e?.checked ?? e?.node?.checked ?? false;
+
+			if (eventKey === "") {
+				return;
+			}
+
+			let newCheckedKeys: string[];
+
+			if (eventKey.startsWith("class::")) {
+				// 操作节点为父级Controller分组，级联其全部子级方法
+				const childKeys = findApiChildKeys(eventKey);
+				if (isCheckedNow) {
+					newCheckedKeys = [
+						...new Set([...detailData.apiLeftCheckedKeys, ...childKeys]),
+					];
+				} else {
+					const childSet = new Set(childKeys);
+					newCheckedKeys = detailData.apiLeftCheckedKeys.filter(
+						(key) => !childSet.has(key),
+					);
+				}
+			} else {
+				// 操作节点为子级API方法
+				if (isCheckedNow) {
+					newCheckedKeys = [...detailData.apiLeftCheckedKeys, eventKey];
+				} else {
+					newCheckedKeys = detailData.apiLeftCheckedKeys.filter(
+						(key) => key !== eventKey,
+					);
+				}
+			}
+
+			// 剔除已拥有keys（右侧已存在，勾选置灰不可操作），得到本次待穿梭keys
+			const haveSet = new Set(detailData.apiTransferHave);
+			const newPendingKeys = newCheckedKeys.filter((key) => !haveSet.has(key));
+
+			// 与Transfer内部选中状态同步（控制中间穿梭按钮亮起/置灰）
+			for (const key of newPendingKeys) {
+				if (!detailData.apiLeftCheckedKeys.includes(key)) {
+					onItemSelect(key, true);
+				}
+			}
+			for (const key of detailData.apiLeftCheckedKeys) {
+				if (!newPendingKeys.includes(key)) {
+					onItemSelect(key, false);
+				}
+			}
+
+			detailData.apiLeftCheckedKeys = newPendingKeys;
+		};
+
+		// API右侧树勾选回调（勾选后联动穿梭向左按钮亮起，不直接移动）
+		const onApiRightTreeCheck = (
+			checked: TreeCheckStrictlyEvent | any[],
+			_e: any,
+			onItemSelect: (key: string, selected: boolean) => void,
+		) => {
+			// 父级分组节点已禁用，仅子级方法参与
+			const checkedKeys = normalizeCheckedKeys(checked).filter(
+				(key) => !key.startsWith("class::"),
+			);
+
+			for (const key of checkedKeys) {
+				if (!detailData.apiRightCheckedKeys.includes(key)) {
+					onItemSelect(key, true);
+				}
+			}
+			for (const key of detailData.apiRightCheckedKeys) {
+				if (!checkedKeys.includes(key)) {
+					onItemSelect(key, false);
+				}
+			}
+
+			detailData.apiRightCheckedKeys = checkedKeys;
+		};
+
+		// API树展开/折叠回调（左右共用，记录手动折叠的节点）
+		const onApiExpand = (
+			_keys: any,
+			info: any,
+			direction: "left" | "right",
+		) => {
+			const eventKey =
+				(info?.node?.eventKey ?? info?.node?.key)?.toString() ?? "";
+			if (eventKey === "") {
+				return;
+			}
+			if (direction === "left") {
+				if (info?.expanded) {
+					detailData.apiLeftCollapsedKeys =
+						detailData.apiLeftCollapsedKeys.filter((key) => key !== eventKey);
+				} else if (!detailData.apiLeftCollapsedKeys.includes(eventKey)) {
+					detailData.apiLeftCollapsedKeys = [
+						...detailData.apiLeftCollapsedKeys,
+						eventKey,
+					];
+				}
+			} else {
+				if (info?.expanded) {
+					detailData.apiRightCollapsedKeys =
+						detailData.apiRightCollapsedKeys.filter((key) => key !== eventKey);
+				} else if (!detailData.apiRightCollapsedKeys.includes(eventKey)) {
+					detailData.apiRightCollapsedKeys = [
+						...detailData.apiRightCollapsedKeys,
+						eventKey,
+					];
+				}
+			}
+		};
+
+		// API穿梭框搜索回调
+		const apiTransferHandleSearch = (direction: string, value: string) => {
+			if (direction === "left") {
+				detailData.apiLeftSearchValue = value;
+			} else {
+				detailData.apiRightSearchValue = value;
+			}
+		};
+
+		// API穿梭框变化处理（点击中间穿梭按钮后执行实际移动）
+		const apiTransferHandleChange = (
+			targetKeys: string[],
+			direction: string,
+			moveKeys: string[],
+		) => {
+			// 父级分组节点不参与穿梭和持久化，仅保留子级方法keys
+			const apiMoveKeys = moveKeys.filter((key) => !key.startsWith("class::"));
+			if (direction === "right") {
+				detailData.apiTransferHave = [
+					...new Set([...targetKeys, ...apiMoveKeys]),
+				].filter((key) => !key.startsWith("class::"));
+				detailData.apiLeftCheckedKeys = [];
+			} else {
+				detailData.apiTransferHave = targetKeys.filter(
+					(key) => !apiMoveKeys.includes(key),
+				);
+				detailData.apiRightCheckedKeys = [];
+			}
+			// 将复合keys转换为实际API ID用于后端持久化
+			detailData.form.apiIds = apiKeysToIds(detailData.apiTransferHave);
+		};
+
+		// 复合keys → API ID字符串（保存用）
+		const apiKeysToIds = (keys: string[]): string => {
+			const ids: string[] = [];
+			for (const key of keys) {
+				const api = detailData.apiDataSource.find(
+					(item) => apiItemKey(item) === key,
+				);
+				if (api) {
+					ids.push(api.id.toString());
+				}
+			}
+			return ids.join(",");
+		};
+
+		// API ID字符串 → 复合keys（回显用）
+		const apiIdsToKeys = (apiIds: string): string[] => {
+			const idSet = new Set(apiIds.split(","));
+			return detailData.apiDataSource
+				.filter((api) => idSet.has(api.id.toString()))
+				.map((api) => apiItemKey(api));
+		};
+
 		//------------------------------------------------------------------------------------------------------------------验证
 		// 校验规则
 		const rules = {
@@ -627,19 +1080,6 @@ export default defineComponent({
 					trigger: "change",
 				},
 			],
-			menuIds: [
-				{
-					required: true,
-					validator: async (_: RuleObject, value: string | undefined) => {
-						if (value === undefined || value === "") {
-							return Promise.reject("请选择菜单！");
-						} else {
-							return Promise.resolve();
-						}
-					},
-					trigger: "change",
-				},
-			],
 		};
 
 		//------------------------------------------------------------------------------------------------------------------返回
@@ -647,6 +1087,7 @@ export default defineComponent({
 			...toRefs(detailData),
 			detail,
 			menuTransferRef,
+			apiTransferRef,
 			rules,
 			getById,
 			handleCancel,
@@ -661,6 +1102,16 @@ export default defineComponent({
 			transferFilterOption,
 			menuTransferHandleSearch,
 			menuTransferHandleChange,
+      apiLeftTreeData,
+      apiRightTreeData,
+      apiLeftExpandedKeys,
+      apiLeftTreeCheckedKeys,
+			apiRightExpandedKeys,
+			onApiLeftTreeCheck,
+			onApiRightTreeCheck,
+			onApiExpand,
+			apiTransferHandleSearch,
+			apiTransferHandleChange,
 		};
 	},
 });
@@ -669,5 +1120,13 @@ export default defineComponent({
 <style scoped>
 @import "@src/assets/css/button.css";
 
+.tree-transfer :deep(.ant-transfer-list) {
+  height: 250px;
+}
+
+.tree-transfer :deep(.ant-transfer-list-body) {
+  flex: 1;
+  overflow-y: auto;
+}
 </style>
 

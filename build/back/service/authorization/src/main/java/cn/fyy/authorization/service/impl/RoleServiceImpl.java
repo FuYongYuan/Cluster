@@ -254,21 +254,25 @@ public class RoleServiceImpl implements RoleService {
                 List<Long> roleIdList = new ArrayList<>();
                 roleIdList.add(bo.getId());
                 List<Long> menuList = roleMenuServiceImpl.queryMenuIdsByRoleIds(roleIdList);
-                String menuEncryptString = String.valueOf(menuList.size());
-                String menuEncrypt = AesUtil.encryptString(menuEncryptString, aesProperties.getAesKey());
-                ResultMessage<List<MenuDTO>> menuResultMessage = menuFeignClient.feignQueryMenuByMenuIdList(menuList, menuEncrypt);
-                if (menuResultMessage.getCode() == HttpStatus.OK.value()) {
-                    List<String> menuIdList = menuResultMessage.getData().stream().map(r -> r.getId().toString()).toList();
-                    bo.setMenuIds(String.join(",", menuIdList));
+                if (menuList != null && !menuList.isEmpty()) {
+                    String menuEncryptString = String.valueOf(menuList.size());
+                    String menuEncrypt = AesUtil.encryptString(menuEncryptString, aesProperties.getAesKey());
+                    ResultMessage<List<MenuDTO>> menuResultMessage = menuFeignClient.feignQueryMenuByMenuIdList(menuList, menuEncrypt);
+                    if (menuResultMessage.getCode() == HttpStatus.OK.value()) {
+                        List<String> menuIdList = menuResultMessage.getData().stream().map(r -> r.getId().toString()).toList();
+                        bo.setMenuIds(String.join(",", menuIdList));
+                    }
                 }
 
                 List<Long> apiList = roleApiServiceImpl.queryApiIdsByRoleIds(roleIdList);
-                String apiEncryptString = String.valueOf(apiList.size());
-                String apiEncrypt = AesUtil.encryptString(apiEncryptString, aesProperties.getAesKey());
-                ResultMessage<List<ApiDTO>> apiResultMessage = apiFeignClient.feignQueryApiByApiIdList(apiList, apiEncrypt);
-                if (apiResultMessage.getCode() == HttpStatus.OK.value()) {
-                    List<String> apiIdList = apiResultMessage.getData().stream().map(r -> r.getId().toString()).toList();
-                    bo.setApiIds(String.join(",", apiIdList));
+                if (apiList != null && !apiList.isEmpty()) {
+                    String apiEncryptString = String.valueOf(apiList.size());
+                    String apiEncrypt = AesUtil.encryptString(apiEncryptString, aesProperties.getAesKey());
+                    ResultMessage<List<ApiDTO>> apiResultMessage = apiFeignClient.feignQueryApiByApiIdList(apiList, apiEncrypt);
+                    if (apiResultMessage.getCode() == HttpStatus.OK.value()) {
+                        List<String> apiIdList = apiResultMessage.getData().stream().map(r -> r.getId().toString()).toList();
+                        bo.setApiIds(String.join(",", apiIdList));
+                    }
                 }
 
             }

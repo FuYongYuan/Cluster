@@ -3,7 +3,6 @@ package cn.fyy.authorization.feign.client.capability;
 import cn.fyy.capability.bean.dto.ApiDTO;
 import cn.fyy.common.bean.bo.BusinessException;
 import cn.fyy.common.bean.dto.ResultMessage;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +30,6 @@ public interface ApiFeignClient {
      */
     @PostMapping(value = "/save")
     ResultMessage<String> save(
-            HttpServletRequest request,
             @RequestBody ApiDTO dto
     ) throws BusinessException;
 
