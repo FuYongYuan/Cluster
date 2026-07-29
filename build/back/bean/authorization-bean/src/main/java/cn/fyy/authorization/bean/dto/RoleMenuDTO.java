@@ -29,19 +29,19 @@ public class RoleMenuDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 角色 ID
      */
     @Schema(name = "roleId", description = "角色 ID", type = "Long")
-    private Long roleId;
+    private String roleId;
 
     /**
      * 菜单 ID
      */
     @Schema(name = "menuId", description = "菜单 ID", type = "Long")
-    private Long menuId;
+    private String menuId;
 
     /**
      * 创建时间
@@ -95,9 +95,9 @@ public class RoleMenuDTO implements Serializable {
     public static RoleMenuDTO toDTO(RoleMenuBO bo) {
         if (bo != null) {
             return RoleMenuDTO.builder()
-                    .id(bo.getId())
-                    .roleId(bo.getRoleId())
-                    .menuId(bo.getMenuId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
+                    .roleId(bo.getRoleId() != null ? String.valueOf(bo.getRoleId()) : null)
+                    .menuId(bo.getMenuId() != null ? String.valueOf(bo.getMenuId()) : null)
                     .createTime(bo.getCreateTime())
                     .creatorId(bo.getCreatorId())
                     .creatorName(bo.getCreatorName())
@@ -147,9 +147,9 @@ public class RoleMenuDTO implements Serializable {
     public static RoleMenuBO toBO(RoleMenuDTO dto) {
         if (dto != null) {
             return RoleMenuBO.builder()
-                    .id(dto.getId())
-                    .roleId(dto.getRoleId())
-                    .menuId(dto.getMenuId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
+                    .roleId(dto.getRoleId() != null && !dto.getRoleId().isBlank() ? Long.valueOf(dto.getRoleId()) : null)
+                    .menuId(dto.getMenuId() != null && !dto.getMenuId().isBlank() ? Long.valueOf(dto.getMenuId()) : null)
                     .createTime(dto.getCreateTime())
                     .creatorId(dto.getCreatorId())
                     .creatorName(dto.getCreatorName())
@@ -183,9 +183,9 @@ public class RoleMenuDTO implements Serializable {
      */
     public RoleMenuBO toBO() {
         return RoleMenuBO.builder()
-                .id(this.getId())
-                .roleId(this.getRoleId())
-                .menuId(this.getMenuId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
+                .roleId(this.getRoleId() != null && !this.getRoleId().isBlank() ? Long.valueOf(this.getRoleId()) : null)
+                .menuId(this.getMenuId() != null && !this.getMenuId().isBlank() ? Long.valueOf(this.getMenuId()) : null)
                 .createTime(this.getCreateTime())
                 .creatorId(this.getCreatorId())
                 .creatorName(this.getCreatorName())

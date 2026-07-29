@@ -186,7 +186,7 @@ export default defineComponent({
 		const detailData = reactive({
 			// 表单
 			form: ref<ManagerDTO>({
-				id: -1,
+				id: "",
 			}),
 			// 文件列表
 			fileList: ref<any>([]),
@@ -207,7 +207,7 @@ export default defineComponent({
 			context.emit("update:open", false);
 			// 清理表单
 			detailData.form = {
-				id: -1,
+				id: "",
 			};
 
 			detail.value?.resetFields();
@@ -225,7 +225,7 @@ export default defineComponent({
 					if (detailData.form.mail !== undefined) {
 						const validate = mailFormatValidate(detailData.form.mail);
 						if (validate !== undefined) {
-							message.error(validate);
+							await message.error(validate);
 							detailData.loadingState = false;
 							return;
 						}
@@ -233,7 +233,7 @@ export default defineComponent({
 					if (detailData.form.mobile !== undefined) {
 						const validate = phoneFormatValidate(detailData.form.mobile);
 						if (validate !== undefined) {
-							message.error(validate);
+							await message.error(validate);
 							detailData.loadingState = false;
 							return;
 						}
@@ -242,7 +242,7 @@ export default defineComponent({
 					// 保存
 					const result = await saveManager(detailData.form);
 					// 保存结果
-					message.success(result);
+					await message.success(result);
 
 					// 结束
 					detailData.loadingState = false;

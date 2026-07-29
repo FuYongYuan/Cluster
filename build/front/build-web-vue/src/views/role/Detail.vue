@@ -179,7 +179,10 @@ import type { RoleDTO } from "@src/apis/authorization/dto";
 import { getRole, saveRole } from "@src/apis/authorization/service";
 import type { ApiDTO, MenuDTO } from "@src/apis/capability/dto";
 import { queryApiAll, queryMenuAllTree } from "@src/apis/capability/service";
-import type { TransferData } from "@src/apis/commons/dto";
+import type {
+	TransferData,
+	TreeCheckStrictlyEvent,
+} from "@src/apis/commons/dto";
 import IconFont from "@src/assets/iconfont/icon";
 import { type FormInstance, message } from "ant-design-vue";
 import type { RuleObject } from "ant-design-vue/es/form";
@@ -191,14 +194,6 @@ import {
 	ref,
 	toRefs,
 } from "vue";
-
-/**
- * check-strictly模式下Tree勾选事件首个参数（兼容数组格式）
- */
-type TreeCheckStrictlyEvent = {
-	checked: (string | number)[];
-	halfChecked: (string | number)[];
-};
 
 /**
  * API树分组节点（按className去重构建的父级Controller节点）
@@ -250,7 +245,7 @@ export default defineComponent({
 		const detailData = reactive({
 			// 表单
 			form: ref<RoleDTO>({
-				id: -1,
+				id: "",
 			}),
 			// 菜单穿梭框拥有（右侧目标keys）
 			menuTransferHave: ref<string[]>([]),
@@ -300,7 +295,7 @@ export default defineComponent({
 			context.emit("update:open", false);
 			// 清理表单
 			detailData.form = {
-				id: -1,
+				id: "",
 			};
 			detailData.menuTransferHave = [];
 			detailData.apiTransferHave = [];
@@ -334,7 +329,7 @@ export default defineComponent({
 					// 保存
 					const result = await saveRole(detailData.form);
 					// 保存结果
-					message.success(result);
+					await message.success(result);
 					// 触发查询
 					context.emit("query");
 
@@ -351,8 +346,8 @@ export default defineComponent({
 		};
 
 		// 根据Id查询
-		const getById = async (searchId: number) => {
-			if (searchId > 0) {
+		const getById = async (searchId: string) => {
+			if (searchId !== "") {
 				// 开始
 				detailData.loadingState = true;
 

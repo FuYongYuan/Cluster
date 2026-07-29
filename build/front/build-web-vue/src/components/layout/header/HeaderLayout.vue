@@ -84,7 +84,7 @@ export default defineComponent({
 		// 登出
 		const logoutClick = async () => {
 			if (await logout()) {
-				message.success("登出成功");
+				await message.success("登出成功");
 			}
 			// 登出成功跳转登录页
 			await router.replace("/login");

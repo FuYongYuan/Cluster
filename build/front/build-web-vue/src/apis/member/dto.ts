@@ -3,7 +3,7 @@
  */
 export type ManagerDTO = {
 	// 主键ID
-	id: number;
+	id: string;
 	// 头像
 	avatar?: string;
 	// 姓名

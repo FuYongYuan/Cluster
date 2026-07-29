@@ -142,7 +142,7 @@ export default defineComponent({
 			// 表单
 			form: {
 				// Id
-				id: -1,
+				id: "",
 				// 账号
 				mail: "",
 				// 密码
@@ -233,7 +233,7 @@ export default defineComponent({
 			context.emit("update:open", false);
 			// 清理表单
 			detailData.form = {
-				id: -1,
+				id: "",
 				mail: "",
 				password: "",
 				confirmPassword: "",
@@ -293,7 +293,7 @@ export default defineComponent({
 			// 查询
 			const result = await getManagerByJwtToken();
 			if (result !== undefined) {
-				if (result.id > 0) {
+				if (result.id !== undefined && result.id !== null && result.id !== "") {
 					detailData.form.id = result.id;
 				}
 				if (result.mail !== undefined) {

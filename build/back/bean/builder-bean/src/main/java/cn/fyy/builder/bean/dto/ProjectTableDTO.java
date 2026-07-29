@@ -27,20 +27,20 @@ public class ProjectTableDTO implements Serializable {
     /**
      * 主键 ID
      */
-    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
-    private Long id;
+    @Schema(name = "id", description = "主键 ID", type = "Long")
+    private String id;
 
     /**
      * 项目群 ID
      */
     @Schema(name = "projectGroupId", description = "项目群 ID", type = "Long")
-    private Long projectGroupId;
+    private String projectGroupId;
 
     /**
      * 数据库设计文件 ID
      */
     @Schema(name = "dataBaseFileId", description = "数据库设计文件 ID", type = "Long")
-    private Long dataBaseFileId;
+    private String dataBaseFileId;
 
     /**
      * 所属的库
@@ -112,9 +112,9 @@ public class ProjectTableDTO implements Serializable {
     public static ProjectTableDTO toDTO(ProjectTableBO bo) {
         if (bo != null) {
             return ProjectTableDTO.builder()
-                    .id(bo.getId())
-                    .projectGroupId(bo.getProjectGroupId())
-                    .dataBaseFileId(bo.getDataBaseFileId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
+                    .projectGroupId(bo.getProjectGroupId() != null ? String.valueOf(bo.getProjectGroupId()) : null)
+                    .dataBaseFileId(bo.getDataBaseFileId() != null ? String.valueOf(bo.getDataBaseFileId()) : null)
                     .tableSchema(bo.getTableSchema())
                     .tableName(bo.getTableName())
                     .tableComment(bo.getTableComment())
@@ -167,9 +167,9 @@ public class ProjectTableDTO implements Serializable {
     public static ProjectTableBO toBO(ProjectTableDTO dto) {
         if (dto != null) {
             return ProjectTableBO.builder()
-                    .id(dto.getId())
-                    .projectGroupId(dto.getProjectGroupId())
-                    .dataBaseFileId(dto.getDataBaseFileId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
+                    .projectGroupId(dto.getProjectGroupId() != null && !dto.getProjectGroupId().isBlank() ? Long.valueOf(dto.getProjectGroupId()) : null)
+                    .dataBaseFileId(dto.getDataBaseFileId() != null && !dto.getDataBaseFileId().isBlank() ? Long.valueOf(dto.getDataBaseFileId()) : null)
                     .tableSchema(dto.getTableSchema())
                     .tableName(dto.getTableName())
                     .tableComment(dto.getTableComment())
@@ -206,9 +206,9 @@ public class ProjectTableDTO implements Serializable {
      */
     public ProjectTableBO toBO() {
         return ProjectTableBO.builder()
-                .id(this.getId())
-                .projectGroupId(this.getProjectGroupId())
-                .dataBaseFileId(this.getDataBaseFileId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
+                .projectGroupId(this.getProjectGroupId() != null && !this.getProjectGroupId().isBlank() ? Long.valueOf(this.getProjectGroupId()) : null)
+                .dataBaseFileId(this.getDataBaseFileId() != null && !this.getDataBaseFileId().isBlank() ? Long.valueOf(this.getDataBaseFileId()) : null)
                 .tableSchema(this.getTableSchema())
                 .tableName(this.getTableName())
                 .tableComment(this.getTableComment())

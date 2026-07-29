@@ -29,7 +29,7 @@ public class ManagerDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 头像
@@ -143,7 +143,7 @@ public class ManagerDTO implements Serializable {
     public static ManagerDTO toDTO(ManagerBO bo) {
         if (bo != null) {
             return ManagerDTO.builder()
-                    .id(bo.getId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
                     .avatar(bo.getAvatar())
                     .managerName(bo.getManagerName())
                     .age(bo.getAge())
@@ -203,7 +203,7 @@ public class ManagerDTO implements Serializable {
     public static ManagerBO toBO(ManagerDTO dto) {
         if (dto != null) {
             return ManagerBO.builder()
-                    .id(dto.getId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
                     .avatar(dto.getAvatar())
                     .managerName(dto.getManagerName())
                     .age(dto.getAge())
@@ -247,7 +247,7 @@ public class ManagerDTO implements Serializable {
      */
     public ManagerBO toBO() {
         return ManagerBO.builder()
-                .id(this.getId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
                 .avatar(this.getAvatar())
                 .managerName(this.getManagerName())
                 .age(this.getAge())

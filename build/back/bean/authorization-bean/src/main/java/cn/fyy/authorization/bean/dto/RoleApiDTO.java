@@ -29,19 +29,19 @@ public class RoleApiDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 角色ID
      */
     @Schema(name = "roleId", description = "角色ID", type = "Long")
-    private Long roleId;
+    private String roleId;
 
     /**
      * API_ID
      */
     @Schema(name = "apiId", description = "API_ID", type = "Long")
-    private Long apiId;
+    private String apiId;
 
     /**
      * 创建时间
@@ -95,9 +95,9 @@ public class RoleApiDTO implements Serializable {
     public static RoleApiDTO toDTO(RoleApiBO bo) {
         if (bo != null) {
             return RoleApiDTO.builder()
-                    .id(bo.getId())
-                    .roleId(bo.getRoleId())
-                    .apiId(bo.getApiId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
+                    .roleId(bo.getRoleId() != null ? String.valueOf(bo.getRoleId()) : null)
+                    .apiId(bo.getApiId() != null ? String.valueOf(bo.getApiId()) : null)
                     .createTime(bo.getCreateTime())
                     .creatorId(bo.getCreatorId())
                     .creatorName(bo.getCreatorName())
@@ -147,9 +147,9 @@ public class RoleApiDTO implements Serializable {
     public static RoleApiBO toBO(RoleApiDTO dto) {
         if (dto != null) {
             return RoleApiBO.builder()
-                    .id(dto.getId())
-                    .roleId(dto.getRoleId())
-                    .apiId(dto.getApiId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
+                    .roleId(dto.getRoleId() != null && !dto.getRoleId().isBlank() ? Long.valueOf(dto.getRoleId()) : null)
+                    .apiId(dto.getApiId() != null && !dto.getApiId().isBlank() ? Long.valueOf(dto.getApiId()) : null)
                     .createTime(dto.getCreateTime())
                     .creatorId(dto.getCreatorId())
                     .creatorName(dto.getCreatorName())
@@ -183,9 +183,9 @@ public class RoleApiDTO implements Serializable {
      */
     public RoleApiBO toBO() {
         return RoleApiBO.builder()
-                .id(this.getId())
-                .roleId(this.getRoleId())
-                .apiId(this.getApiId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
+                .roleId(this.getRoleId() != null && !this.getRoleId().isBlank() ? Long.valueOf(this.getRoleId()) : null)
+                .apiId(this.getApiId() != null && !this.getApiId().isBlank() ? Long.valueOf(this.getApiId()) : null)
                 .createTime(this.getCreateTime())
                 .creatorId(this.getCreatorId())
                 .creatorName(this.getCreatorName())

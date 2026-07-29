@@ -467,7 +467,7 @@ public class ManagerServiceImpl implements ManagerService {
             if (encrypt.equals(authentication)) {
                 ManagerBO bo = this.save(
                         ManagerInternalDTO.toBO(dto),
-                        dto.getId() != null ? dto.getId() : ConstantParameter.SYSTEM_ADMIN_MANAGER_ID,
+                        dto.getId() != null ? Long.valueOf(dto.getId()) : ConstantParameter.SYSTEM_ADMIN_MANAGER_ID,
                         Objects.requireNonNull(dto.getManagerName(), dto.getAccount()),
                         false
                 );

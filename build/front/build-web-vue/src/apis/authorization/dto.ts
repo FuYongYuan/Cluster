@@ -23,17 +23,17 @@ export type JwtDTO = {
  */
 export type RoleDTO = {
 	// 主键ID
-	id: number;
+	id: string;
 	// 名称
 	roleName?: string;
 	// 备注
 	remark?: string;
 	// 创建时间
-	createTime?: string;
+	createTime?: Date;
 	// 创建人名称
 	creatorName?: string;
 	// 修改时间
-	updateTime?: string;
+	updateTime?: Date;
 	// 修改人名称
 	updaterName?: string;
 	// 状态

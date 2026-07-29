@@ -522,7 +522,7 @@ export default defineComponent({
 		};
 
 		// 显示详情
-		const handleShowDetail = (id: number) => {
+		const handleShowDetail = (id: string) => {
 			manageData.managerDetailVisible = true;
 			managerDetail.value.getById(id);
 		};

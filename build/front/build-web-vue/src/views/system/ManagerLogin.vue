@@ -161,7 +161,7 @@ export default defineComponent({
 				imageCaptchaCacheName,
 			);
 			if (result !== undefined) {
-				message.success("登录成功");
+				await message.success("登录成功");
 				localStorage.setItem(LocalStorageAccount, result.account);
 				if (
 					result.managerName !== undefined &&

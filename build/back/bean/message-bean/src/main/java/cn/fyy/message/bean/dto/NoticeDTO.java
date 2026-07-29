@@ -29,7 +29,7 @@ public class NoticeDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 公告标题
@@ -107,7 +107,7 @@ public class NoticeDTO implements Serializable {
     public static NoticeDTO toDTO(NoticeBO bo) {
         if (bo != null) {
             return NoticeDTO.builder()
-                    .id(bo.getId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
                     .noticeTitle(bo.getNoticeTitle())
                     .noticeContent(bo.getNoticeContent())
                     .noticeAuthor(bo.getNoticeAuthor())
@@ -161,7 +161,7 @@ public class NoticeDTO implements Serializable {
     public static NoticeBO toBO(NoticeDTO dto) {
         if (dto != null) {
             return NoticeBO.builder()
-                    .id(dto.getId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
                     .noticeTitle(dto.getNoticeTitle())
                     .noticeContent(dto.getNoticeContent())
                     .noticeAuthor(dto.getNoticeAuthor())
@@ -199,7 +199,7 @@ public class NoticeDTO implements Serializable {
      */
     public NoticeBO toBO() {
         return NoticeBO.builder()
-                .id(this.getId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
                 .noticeTitle(this.getNoticeTitle())
                 .noticeContent(this.getNoticeContent())
                 .noticeAuthor(this.getNoticeAuthor())

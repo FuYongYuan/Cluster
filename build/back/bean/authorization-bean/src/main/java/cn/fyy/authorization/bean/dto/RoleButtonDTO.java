@@ -29,19 +29,19 @@ public class RoleButtonDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 角色 ID
      */
     @Schema(name = "roleId", description = "角色 ID", type = "Long")
-    private Long roleId;
+    private String roleId;
 
     /**
      * 按钮 ID
      */
     @Schema(name = "buttonId", description = "按钮 ID", type = "Long")
-    private Long buttonId;
+    private String buttonId;
 
     /**
      * 创建时间
@@ -95,9 +95,9 @@ public class RoleButtonDTO implements Serializable {
     public static RoleButtonDTO toDTO(RoleButtonBO bo) {
         if (bo != null) {
             return RoleButtonDTO.builder()
-                    .id(bo.getId())
-                    .roleId(bo.getRoleId())
-                    .buttonId(bo.getButtonId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
+                    .roleId(bo.getRoleId() != null ? String.valueOf(bo.getRoleId()) : null)
+                    .buttonId(bo.getButtonId() != null ? String.valueOf(bo.getButtonId()) : null)
                     .createTime(bo.getCreateTime())
                     .creatorId(bo.getCreatorId())
                     .creatorName(bo.getCreatorName())
@@ -147,9 +147,9 @@ public class RoleButtonDTO implements Serializable {
     public static RoleButtonBO toBO(RoleButtonDTO dto) {
         if (dto != null) {
             return RoleButtonBO.builder()
-                    .id(dto.getId())
-                    .roleId(dto.getRoleId())
-                    .buttonId(dto.getButtonId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
+                    .roleId(dto.getRoleId() != null && !dto.getRoleId().isBlank() ? Long.valueOf(dto.getRoleId()) : null)
+                    .buttonId(dto.getButtonId() != null && !dto.getButtonId().isBlank() ? Long.valueOf(dto.getButtonId()) : null)
                     .createTime(dto.getCreateTime())
                     .creatorId(dto.getCreatorId())
                     .creatorName(dto.getCreatorName())
@@ -183,9 +183,9 @@ public class RoleButtonDTO implements Serializable {
      */
     public RoleButtonBO toBO() {
         return RoleButtonBO.builder()
-                .id(this.getId())
-                .roleId(this.getRoleId())
-                .buttonId(this.getButtonId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
+                .roleId(this.getRoleId() != null && !this.getRoleId().isBlank() ? Long.valueOf(this.getRoleId()) : null)
+                .buttonId(this.getButtonId() != null && !this.getButtonId().isBlank() ? Long.valueOf(this.getButtonId()) : null)
                 .createTime(this.getCreateTime())
                 .creatorId(this.getCreatorId())
                 .creatorName(this.getCreatorName())

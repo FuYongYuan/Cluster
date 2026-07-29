@@ -108,7 +108,7 @@ export default defineComponent({
 		const detailData = reactive({
 			// 表单
 			form: ref<ParameterDTO>({
-				id: -1,
+				id: "",
 			}),
 			loadingState: false,
 		});
@@ -120,7 +120,7 @@ export default defineComponent({
 			context.emit("update:open", false);
 			// 清理表单
 			detailData.form = {
-				id: -1,
+				id: "",
 			};
 
 			detail.value?.resetFields();
@@ -137,7 +137,7 @@ export default defineComponent({
 					// 保存
 					const result = await saveParameter(detailData.form);
 					// 保存结果
-					message.success(result);
+					await message.success(result);
 					// 触发查询
 					context.emit("query");
 
@@ -154,8 +154,8 @@ export default defineComponent({
 		};
 
 		// 根据Id查询
-		const getById = async (searchId: number) => {
-			if (searchId > 0) {
+		const getById = async (searchId: string) => {
+			if (searchId !== "") {
 				// 开始
 				detailData.loadingState = true;
 

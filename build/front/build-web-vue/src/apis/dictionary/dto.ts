@@ -3,7 +3,7 @@
  */
 export type ParameterDTO = {
 	// 主键ID
-	id: number;
+	id: string;
 	// 参数代码
 	parameterCode?: string;
 	// 参数名称

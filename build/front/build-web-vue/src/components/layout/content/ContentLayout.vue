@@ -36,11 +36,11 @@ import { useRoute, useRouter } from "vue-router";
  */
 type ContentDataType = {
 	// tab页签选中
-	activeKey: number;
+	activeKey: string;
 	// 已开启页签路由集合
 	visitedRoutes: VisitedRouteType[];
 	// 首页的id
-	homeId: number;
+	homeId: string;
 	// 首页的Key
 	homeUrl: string;
 	// 首页Tab
@@ -56,7 +56,7 @@ type ContentDataType = {
  */
 type VisitedRouteType = {
 	// Id
-	id: number;
+	id: string;
 	// 标题
 	menuName: string;
 	// 页面名称
@@ -77,9 +77,9 @@ export default defineComponent({
 		const route = useRoute();
 		// 内容数据
 		const contentData = reactive<ContentDataType>({
-			activeKey: 0,
+			activeKey: "",
 			visitedRoutes: [],
-			homeId: 0,
+			homeId: "",
 			homeUrl: "",
 			homeMenuName: "",
 			homePageName: "",
@@ -115,7 +115,7 @@ export default defineComponent({
 		});
 
 		// 切换tab
-		const changeTab = (id: number) => {
+		const changeTab = (id: string) => {
 			contentData.activeKey = id;
 			if (contentData.activeKey === contentData.homeId) {
 				router.push(contentData.homeUrl);
@@ -159,7 +159,7 @@ export default defineComponent({
 		);
 
 		// 删除tab
-		const removeTab = (id: number) => {
+		const removeTab = (id: string) => {
 			const visitedRoute = contentData.visitedRoutes.find(
 				(routeItem) => id === routeItem.id,
 			);

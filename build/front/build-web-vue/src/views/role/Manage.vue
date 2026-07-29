@@ -28,7 +28,7 @@
         <a-col :span="12" class="div-right">
           <a-form-item>
             <a-space>
-              <a-button class="ant-btn-green" :loading="loadingState" @click="handleShowDetail(0)">
+              <a-button class="ant-btn-green" :loading="loadingState" @click="handleShowDetail('0')">
                 <icon-font type="icon-plus-circle" v-if="!loadingState"/>
                 新增
               </a-button>
@@ -354,13 +354,13 @@ export default defineComponent({
 				// 删除
 				const result = await deleteRole(manageData.selectedRowKeys.join(","));
 				if (result !== undefined && result > 0) {
-					message.success(`成功删除 ${result} 条数据！`);
+					await message.success(`成功删除 ${result} 条数据！`);
 					await query();
 				}
 				// 结束
 				manageData.loadingState = false;
 			} else {
-				message.warn("请选择要删除的数据！");
+				await message.warn("请选择要删除的数据！");
 			}
 		};
 
@@ -372,18 +372,18 @@ export default defineComponent({
 				// 删除
 				const result = await deleteRole(ids);
 				if (result !== undefined && result > 0) {
-					message.success(`成功删除 ${result} 条数据！`);
+					await message.success(`成功删除 ${result} 条数据！`);
 					await query();
 				}
 				// 结束
 				manageData.loadingState = false;
 			} else {
-				message.error("删除失败！");
+				await message.error("删除失败！");
 			}
 		};
 
 		// 显示详情
-		const handleShowDetail = (id: number) => {
+		const handleShowDetail = (id: string) => {
 			manageData.roleDetailVisible = true;
 			roleDetail.value.getById(id);
 		};

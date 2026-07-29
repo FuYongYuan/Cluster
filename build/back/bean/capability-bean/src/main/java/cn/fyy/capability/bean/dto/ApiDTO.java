@@ -29,7 +29,7 @@ public class ApiDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 类名
@@ -119,7 +119,7 @@ public class ApiDTO implements Serializable {
     public static ApiDTO toDTO(ApiBO bo) {
         if (bo != null) {
             return ApiDTO.builder()
-                    .id(bo.getId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
                     .className(bo.getClassName())
                     .classMapping(bo.getClassMapping())
                     .classExplain(bo.getClassExplain())
@@ -175,7 +175,7 @@ public class ApiDTO implements Serializable {
     public static ApiBO toBO(ApiDTO dto) {
         if (dto != null) {
             return ApiBO.builder()
-                    .id(dto.getId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
                     .className(dto.getClassName())
                     .classMapping(dto.getClassMapping())
                     .classExplain(dto.getClassExplain())
@@ -215,7 +215,7 @@ public class ApiDTO implements Serializable {
      */
     public ApiBO toBO() {
         return ApiBO.builder()
-                .id(this.getId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
                 .className(this.getClassName())
                 .classMapping(this.getClassMapping())
                 .classExplain(this.getClassExplain())

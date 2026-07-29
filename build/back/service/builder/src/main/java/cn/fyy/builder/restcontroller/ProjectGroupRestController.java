@@ -102,7 +102,7 @@ public class ProjectGroupRestController extends BaseRestController {
             @RequestBody ProjectGroupDTO dto
     ) throws BusinessException {
         ManagerMessage managerMessage = super.getLoginManagerMessage(request);
-        dto.setManagerId(managerMessage.getManagerId());
+        dto.setManagerId(String.valueOf(managerMessage.getManagerId()));
         return projectGroupServiceImpl.save(dto.toBO(), managerMessage.getManagerId(), managerMessage.getManagerName());
     }
 

@@ -77,7 +77,7 @@ export const deleteParameter = async (
  * @param id ID
  */
 export const getParameter = async (
-	id: number,
+	id: string,
 ): Promise<ParameterDTO | undefined> => {
 	// 初始化
 	const request = new Request<ParameterDTO>();

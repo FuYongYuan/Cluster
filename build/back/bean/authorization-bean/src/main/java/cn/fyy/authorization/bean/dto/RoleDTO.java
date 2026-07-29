@@ -29,7 +29,7 @@ public class RoleDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 名称
@@ -107,7 +107,7 @@ public class RoleDTO implements Serializable {
     public static RoleDTO toDTO(RoleBO bo) {
         if (bo != null) {
             return RoleDTO.builder()
-                    .id(bo.getId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
                     .roleName(bo.getRoleName())
                     .remark(bo.getRemark())
                     .createTime(bo.getCreateTime())
@@ -161,7 +161,7 @@ public class RoleDTO implements Serializable {
     public static RoleBO toBO(RoleDTO dto) {
         if (dto != null) {
             return RoleBO.builder()
-                    .id(dto.getId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
                     .roleName(dto.getRoleName())
                     .remark(dto.getRemark())
                     .createTime(dto.getCreateTime())
@@ -199,7 +199,7 @@ public class RoleDTO implements Serializable {
      */
     public RoleBO toBO() {
         return RoleBO.builder()
-                .id(this.getId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
                 .roleName(this.getRoleName())
                 .remark(this.getRemark())
                 .createTime(this.getCreateTime())

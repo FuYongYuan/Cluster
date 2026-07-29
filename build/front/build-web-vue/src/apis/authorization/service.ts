@@ -238,7 +238,7 @@ export const deleteRole = async (ids: string): Promise<number | undefined> => {
  *
  * @param id ID
  */
-export const getRole = async (id: number): Promise<RoleDTO | undefined> => {
+export const getRole = async (id: string): Promise<RoleDTO | undefined> => {
 	// 初始化
 	const request = new Request<RoleDTO>();
 	// 地址

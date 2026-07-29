@@ -27,14 +27,14 @@ public class ProjectColumnDTO implements Serializable {
     /**
      * 主键 ID
      */
-    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
-    private Long id;
+    @Schema(name = "id", description = "主键 ID", type = "Long")
+    private String id;
 
     /**
      * 项目表 ID
      */
     @Schema(name = "projectTableId", description = "项目表 ID", type = "Long")
-    private Long projectTableId;
+    private String projectTableId;
 
     /**
      * 所属的库
@@ -160,8 +160,8 @@ public class ProjectColumnDTO implements Serializable {
     public static ProjectColumnDTO toDTO(ProjectColumnBO bo) {
         if (bo != null) {
             return ProjectColumnDTO.builder()
-                    .id(bo.getId())
-                    .projectTableId(bo.getProjectTableId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
+                    .projectTableId(bo.getProjectTableId() != null ? String.valueOf(bo.getProjectTableId()) : null)
                     .tableSchema(bo.getTableSchema())
                     .tableName(bo.getTableName())
                     .columnName(bo.getColumnName())
@@ -223,8 +223,8 @@ public class ProjectColumnDTO implements Serializable {
     public static ProjectColumnBO toBO(ProjectColumnDTO dto) {
         if (dto != null) {
             return ProjectColumnBO.builder()
-                    .id(dto.getId())
-                    .projectTableId(dto.getProjectTableId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
+                    .projectTableId(dto.getProjectTableId() != null && !dto.getProjectTableId().isBlank() ? Long.valueOf(dto.getProjectTableId()) : null)
                     .tableSchema(dto.getTableSchema())
                     .tableName(dto.getTableName())
                     .columnName(dto.getColumnName())
@@ -270,8 +270,8 @@ public class ProjectColumnDTO implements Serializable {
      */
     public ProjectColumnBO toBO() {
         return ProjectColumnBO.builder()
-                .id(this.getId())
-                .projectTableId(this.getProjectTableId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
+                .projectTableId(this.getProjectTableId() != null && !this.getProjectTableId().isBlank() ? Long.valueOf(this.getProjectTableId()) : null)
                 .tableSchema(this.getTableSchema())
                 .tableName(this.getTableName())
                 .columnName(this.getColumnName())

@@ -29,7 +29,7 @@ public class MenuDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 名称
@@ -59,7 +59,7 @@ public class MenuDTO implements Serializable {
      * 父级 ID
      */
     @Schema(name = "parentId", description = "父级 ID", type = "Long", nullable = true)
-    private Long parentId;
+    private String parentId;
 
     /**
      * 是否跳转;（0.否、1.是）
@@ -149,12 +149,12 @@ public class MenuDTO implements Serializable {
     public static MenuDTO toDTO(MenuBO bo) {
         if (bo != null) {
             return MenuDTO.builder()
-                    .id(bo.getId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
                     .menuName(bo.getMenuName())
                     .menuUrl(bo.getMenuUrl())
                     .menuIcon(bo.getMenuIcon())
                     .pageName(bo.getPageName())
-                    .parentId(bo.getParentId())
+                    .parentId(bo.getParentId() != null ? String.valueOf(bo.getParentId()) : null)
                     .isTurn(bo.getIsTurn())
                     .isHome(bo.getIsHome())
                     .menuOrder(bo.getMenuOrder())
@@ -210,12 +210,12 @@ public class MenuDTO implements Serializable {
     public static MenuBO toBO(MenuDTO dto) {
         if (dto != null) {
             return MenuBO.builder()
-                    .id(dto.getId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
                     .menuName(dto.getMenuName())
                     .menuUrl(dto.getMenuUrl())
                     .menuIcon(dto.getMenuIcon())
                     .pageName(dto.getPageName())
-                    .parentId(dto.getParentId())
+                    .parentId(dto.getParentId() != null && !dto.getParentId().isBlank() ? Long.valueOf(dto.getParentId()) : null)
                     .isTurn(dto.getIsTurn())
                     .isHome(dto.getIsHome())
                     .menuOrder(dto.getMenuOrder())
@@ -253,12 +253,12 @@ public class MenuDTO implements Serializable {
      */
     public MenuBO toBO() {
         return MenuBO.builder()
-                .id(this.getId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
                 .menuName(this.getMenuName())
                 .menuUrl(this.getMenuUrl())
                 .menuIcon(this.getMenuIcon())
                 .pageName(this.getPageName())
-                .parentId(this.getParentId())
+                .parentId(this.getParentId() != null && !this.getParentId().isBlank() ? Long.valueOf(this.getParentId()) : null)
                 .isTurn(this.getIsTurn())
                 .isHome(this.getIsHome())
                 .menuOrder(this.getMenuOrder())

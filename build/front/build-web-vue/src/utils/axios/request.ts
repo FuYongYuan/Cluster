@@ -102,7 +102,7 @@ service.interceptors.response.use(
 						message: "请求失败",
 						description: "请求的资源不存在 (404)",
 					});
-					router.push("/error/404");
+					router.push("/error/404").then(() => {});
 					break;
 				case 500:
 					showErrorNotification({

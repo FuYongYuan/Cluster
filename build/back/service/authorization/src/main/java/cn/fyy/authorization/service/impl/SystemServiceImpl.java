@@ -361,14 +361,14 @@ public class SystemServiceImpl implements SystemService {
                     Integer saveState = saveResult.getCode();
                     if (saveState == HttpStatus.OK.value()) {
                         // 前置准备
-                        AuthorityPrepareCacheBO authorityPrepareCacheBO = this.getAuthorityPrepareCacheBO(dto.getId());
+                        AuthorityPrepareCacheBO authorityPrepareCacheBO = this.getAuthorityPrepareCacheBO(Long.valueOf(dto.getId()));
 
                         // 权限列表内含，角色、菜单、按钮、数据、接口
                         String[] authorities = this.getAuthorities(authorityPrepareCacheBO);
 
                         // 返回 token 的管理员
                         SecurityRedis securityRedis = SecurityRedis.builder()
-                                .managerId(dto.getId())
+                                .managerId(Long.valueOf(dto.getId()))
                                 .managerName(dto.getManagerName())
                                 .username(dto.getAccount())
                                 .password(dto.getLoginPassword())
@@ -402,7 +402,7 @@ public class SystemServiceImpl implements SystemService {
                         );
 
                         // 获取头像网络地址
-                        String avatar = this.getAvatar(dto.getId(), dto.getAvatar());
+                        String avatar = this.getAvatar(Long.valueOf(dto.getId()), dto.getAvatar());
 
                         // 创建 JwtDTO
                         JwtDTO jwtDTO = new JwtDTO().toBuilder()
@@ -493,7 +493,7 @@ public class SystemServiceImpl implements SystemService {
                 .map(i ->
                         SecurityAuthority.builder()
                                 .type("menu")
-                                .id(i.getId())
+                                .id(Long.valueOf(i.getId()))
                                 .value(i.getMenuUrl())
                                 .build()
                                 .toJson()

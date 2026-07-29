@@ -27,14 +27,14 @@ public class DataBaseFileDTO implements Serializable {
     /**
      * 主键 ID
      */
-    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
-    private Long id;
+    @Schema(name = "id", description = "主键 ID", type = "Long")
+    private String id;
 
     /**
      * 项目群 ID
      */
     @Schema(name = "projectGroupId", description = "项目群 ID", type = "Long")
-    private Long projectGroupId;
+    private String projectGroupId;
 
     /**
      * 文件地址
@@ -94,8 +94,8 @@ public class DataBaseFileDTO implements Serializable {
     public static DataBaseFileDTO toDTO(DataBaseFileBO bo) {
         if (bo != null) {
             return DataBaseFileDTO.builder()
-                    .id(bo.getId())
-                    .projectGroupId(bo.getProjectGroupId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
+                    .projectGroupId(bo.getProjectGroupId() != null ? String.valueOf(bo.getProjectGroupId()) : null)
                     .fileUrl(bo.getFileUrl())
                     .createTime(bo.getCreateTime())
                     .creatorId(bo.getCreatorId())
@@ -146,8 +146,8 @@ public class DataBaseFileDTO implements Serializable {
     public static DataBaseFileBO toBO(DataBaseFileDTO dto) {
         if (dto != null) {
             return DataBaseFileBO.builder()
-                    .id(dto.getId())
-                    .projectGroupId(dto.getProjectGroupId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
+                    .projectGroupId(dto.getProjectGroupId() != null && !dto.getProjectGroupId().isBlank() ? Long.valueOf(dto.getProjectGroupId()) : null)
                     .fileUrl(dto.getFileUrl())
                     .createTime(dto.getCreateTime())
                     .creatorId(dto.getCreatorId())
@@ -182,8 +182,8 @@ public class DataBaseFileDTO implements Serializable {
      */
     public DataBaseFileBO toBO() {
         return DataBaseFileBO.builder()
-                .id(this.getId())
-                .projectGroupId(this.getProjectGroupId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
+                .projectGroupId(this.getProjectGroupId() != null && !this.getProjectGroupId().isBlank() ? Long.valueOf(this.getProjectGroupId()) : null)
                 .fileUrl(this.getFileUrl())
                 .createTime(this.getCreateTime())
                 .creatorId(this.getCreatorId())

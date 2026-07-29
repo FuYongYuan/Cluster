@@ -3,7 +3,7 @@
  */
 export type MenuDTO = {
 	// 主键ID
-	id: number;
+	id: string;
 	// 名称
 	menuName?: string;
 	// 路径
@@ -13,7 +13,7 @@ export type MenuDTO = {
 	// 页面名称
 	pageName?: string;
 	// 父级ID
-	parentId?: number;
+	parentId?: string;
 	// 是否跳转  (0.否 1.是)
 	isTurn?: number;
 	// 是否首页  (0.否 1.是)
@@ -43,7 +43,7 @@ export type MenuDTO = {
  */
 export type ApiDTO = {
 	// 主键ID
-	id: number;
+	id: string;
 	// 类名
 	className?: string;
 	// 类Mapping值

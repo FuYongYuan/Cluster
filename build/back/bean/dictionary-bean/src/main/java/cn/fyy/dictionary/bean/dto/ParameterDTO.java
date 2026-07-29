@@ -29,7 +29,7 @@ public class ParameterDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 参数代码
@@ -107,7 +107,7 @@ public class ParameterDTO implements Serializable {
     public static ParameterDTO toDTO(ParameterBO bo) {
         if (bo != null) {
             return ParameterDTO.builder()
-                    .id(bo.getId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
                     .parameterCode(bo.getParameterCode())
                     .parameterName(bo.getParameterName())
                     .parameterValue(bo.getParameterValue())
@@ -161,7 +161,7 @@ public class ParameterDTO implements Serializable {
     public static ParameterBO toBO(ParameterDTO dto) {
         if (dto != null) {
             return ParameterBO.builder()
-                    .id(dto.getId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
                     .parameterCode(dto.getParameterCode())
                     .parameterName(dto.getParameterName())
                     .parameterValue(dto.getParameterValue())
@@ -199,7 +199,7 @@ public class ParameterDTO implements Serializable {
      */
     public ParameterBO toBO() {
         return ParameterBO.builder()
-                .id(this.getId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
                 .parameterCode(this.getParameterCode())
                 .parameterName(this.getParameterName())
                 .parameterValue(this.getParameterValue())

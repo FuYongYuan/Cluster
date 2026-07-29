@@ -125,7 +125,7 @@ export const deleteMenu = async (ids: string): Promise<number | undefined> => {
  *
  * @param id ID
  */
-export const getMenu = async (id: number): Promise<MenuDTO | undefined> => {
+export const getMenu = async (id: string): Promise<MenuDTO | undefined> => {
 	// 初始化
 	const request = new Request<MenuDTO>();
 	// 地址

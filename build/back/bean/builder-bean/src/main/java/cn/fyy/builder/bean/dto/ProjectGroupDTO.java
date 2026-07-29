@@ -27,14 +27,14 @@ public class ProjectGroupDTO implements Serializable {
     /**
      * 主键 ID
      */
-    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
-    private Long id;
+    @Schema(name = "id", description = "主键 ID", type = "Long")
+    private String id;
 
     /**
      * 管理员 ID
      */
     @Schema(name = "managerId", description = "管理员 ID", type = "Long")
-    private Long managerId;
+    private String managerId;
 
     /**
      * 项目群名称
@@ -166,8 +166,8 @@ public class ProjectGroupDTO implements Serializable {
     public static ProjectGroupDTO toDTO(ProjectGroupBO bo) {
         if (bo != null) {
             return ProjectGroupDTO.builder()
-                    .id(bo.getId())
-                    .managerId(bo.getManagerId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
+                    .managerId(bo.getManagerId() != null ? String.valueOf(bo.getManagerId()) : null)
                     .projectGroupName(bo.getProjectGroupName())
                     .groupId(bo.getGroupId())
                     .artifactId(bo.getArtifactId())
@@ -230,8 +230,8 @@ public class ProjectGroupDTO implements Serializable {
     public static ProjectGroupBO toBO(ProjectGroupDTO dto) {
         if (dto != null) {
             return ProjectGroupBO.builder()
-                    .id(dto.getId())
-                    .managerId(dto.getManagerId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
+                    .managerId(dto.getManagerId() != null && !dto.getManagerId().isBlank() ? Long.valueOf(dto.getManagerId()) : null)
                     .projectGroupName(dto.getProjectGroupName())
                     .groupId(dto.getGroupId())
                     .artifactId(dto.getArtifactId())
@@ -278,8 +278,8 @@ public class ProjectGroupDTO implements Serializable {
      */
     public ProjectGroupBO toBO() {
         return ProjectGroupBO.builder()
-                .id(this.getId())
-                .managerId(this.getManagerId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
+                .managerId(this.getManagerId() != null && !this.getManagerId().isBlank() ? Long.valueOf(this.getManagerId()) : null)
                 .projectGroupName(this.getProjectGroupName())
                 .groupId(this.getGroupId())
                 .artifactId(this.getArtifactId())

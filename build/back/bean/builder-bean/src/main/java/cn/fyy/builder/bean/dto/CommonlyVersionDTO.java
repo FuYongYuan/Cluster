@@ -27,14 +27,14 @@ public class CommonlyVersionDTO implements Serializable {
     /**
      * 主键 ID
      */
-    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
-    private Long id;
+    @Schema(name = "id", description = "主键 ID", type = "Long")
+    private String id;
 
     /**
      * 管理员 ID
      */
     @Schema(name = "managerId", description = "管理员 ID", type = "Long")
-    private Long managerId;
+    private String managerId;
 
     /**
      * JDK 版本
@@ -136,8 +136,8 @@ public class CommonlyVersionDTO implements Serializable {
     public static CommonlyVersionDTO toDTO(CommonlyVersionBO bo) {
         if (bo != null) {
             return CommonlyVersionDTO.builder()
-                    .id(bo.getId())
-                    .managerId(bo.getManagerId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
+                    .managerId(bo.getManagerId() != null ? String.valueOf(bo.getManagerId()) : null)
                     .jdkVersion(bo.getJdkVersion())
                     .springCloudVersion(bo.getSpringCloudVersion())
                     .springCloudAlibabaVersion(bo.getSpringCloudAlibabaVersion())
@@ -195,8 +195,8 @@ public class CommonlyVersionDTO implements Serializable {
     public static CommonlyVersionBO toBO(CommonlyVersionDTO dto) {
         if (dto != null) {
             return CommonlyVersionBO.builder()
-                    .id(dto.getId())
-                    .managerId(dto.getManagerId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
+                    .managerId(dto.getManagerId() != null && !dto.getManagerId().isBlank() ? Long.valueOf(dto.getManagerId()) : null)
                     .jdkVersion(dto.getJdkVersion())
                     .springCloudVersion(dto.getSpringCloudVersion())
                     .springCloudAlibabaVersion(dto.getSpringCloudAlibabaVersion())
@@ -238,8 +238,8 @@ public class CommonlyVersionDTO implements Serializable {
      */
     public CommonlyVersionBO toBO() {
         return CommonlyVersionBO.builder()
-                .id(this.getId())
-                .managerId(this.getManagerId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
+                .managerId(this.getManagerId() != null && !this.getManagerId().isBlank() ? Long.valueOf(this.getManagerId()) : null)
                 .jdkVersion(this.getJdkVersion())
                 .springCloudVersion(this.getSpringCloudVersion())
                 .springCloudAlibabaVersion(this.getSpringCloudAlibabaVersion())

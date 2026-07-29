@@ -29,7 +29,7 @@ public class ButtonDTO implements Serializable {
      * 主键 ID
      */
     @Schema(name = "id", description = "主键 ID", type = "Long")
-    private Long id;
+    private String id;
 
     /**
      * 名称
@@ -53,7 +53,7 @@ public class ButtonDTO implements Serializable {
      * 菜单 ID
      */
     @Schema(name = "menuId", description = "菜单 ID", type = "Long")
-    private Long menuId;
+    private String menuId;
 
     /**
      * 排序(按数字从小到大)
@@ -119,11 +119,11 @@ public class ButtonDTO implements Serializable {
     public static ButtonDTO toDTO(ButtonBO bo) {
         if (bo != null) {
             return ButtonDTO.builder()
-                    .id(bo.getId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
                     .buttonName(bo.getButtonName())
                     .buttonSign(bo.getButtonSign())
                     .onClick(bo.getOnClick())
-                    .menuId(bo.getMenuId())
+                    .menuId(bo.getMenuId() != null ? String.valueOf(bo.getMenuId()) : null)
                     .buttonOrder(bo.getButtonOrder())
                     .remark(bo.getRemark())
                     .createTime(bo.getCreateTime())
@@ -175,11 +175,11 @@ public class ButtonDTO implements Serializable {
     public static ButtonBO toBO(ButtonDTO dto) {
         if (dto != null) {
             return ButtonBO.builder()
-                    .id(dto.getId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
                     .buttonName(dto.getButtonName())
                     .buttonSign(dto.getButtonSign())
                     .onClick(dto.getOnClick())
-                    .menuId(dto.getMenuId())
+                    .menuId(dto.getMenuId() != null && !dto.getMenuId().isBlank() ? Long.valueOf(dto.getMenuId()) : null)
                     .buttonOrder(dto.getButtonOrder())
                     .remark(dto.getRemark())
                     .createTime(dto.getCreateTime())
@@ -215,11 +215,11 @@ public class ButtonDTO implements Serializable {
      */
     public ButtonBO toBO() {
         return ButtonBO.builder()
-                .id(this.getId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
                 .buttonName(this.getButtonName())
                 .buttonSign(this.getButtonSign())
                 .onClick(this.getOnClick())
-                .menuId(this.getMenuId())
+                .menuId(this.getMenuId() != null && !this.getMenuId().isBlank() ? Long.valueOf(this.getMenuId()) : null)
                 .buttonOrder(this.getButtonOrder())
                 .remark(this.getRemark())
                 .createTime(this.getCreateTime())

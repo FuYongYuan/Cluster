@@ -27,20 +27,20 @@ public class ProjectProjectTableDTO implements Serializable {
     /**
      * 主键 ID
      */
-    @Schema(name = "id", description = "主键 ID", type = "Long", nullable = false)
-    private Long id;
+    @Schema(name = "id", description = "主键 ID", type = "Long")
+    private String id;
 
     /**
      * 项目 ID
      */
     @Schema(name = "projectId", description = "项目 ID", type = "Long")
-    private Long projectId;
+    private String projectId;
 
     /**
      * 项目表 ID
      */
     @Schema(name = "projectTableId", description = "项目表 ID", type = "Long")
-    private Long projectTableId;
+    private String projectTableId;
 
     /**
      * 创建时间
@@ -94,9 +94,9 @@ public class ProjectProjectTableDTO implements Serializable {
     public static ProjectProjectTableDTO toDTO(ProjectProjectTableBO bo) {
         if (bo != null) {
             return ProjectProjectTableDTO.builder()
-                    .id(bo.getId())
-                    .projectId(bo.getProjectId())
-                    .projectTableId(bo.getProjectTableId())
+                    .id(bo.getId() != null ? String.valueOf(bo.getId()) : null)
+                    .projectId(bo.getProjectId() != null ? String.valueOf(bo.getProjectId()) : null)
+                    .projectTableId(bo.getProjectTableId() != null ? String.valueOf(bo.getProjectTableId()) : null)
                     .createTime(bo.getCreateTime())
                     .creatorId(bo.getCreatorId())
                     .creatorName(bo.getCreatorName())
@@ -146,9 +146,9 @@ public class ProjectProjectTableDTO implements Serializable {
     public static ProjectProjectTableBO toBO(ProjectProjectTableDTO dto) {
         if (dto != null) {
             return ProjectProjectTableBO.builder()
-                    .id(dto.getId())
-                    .projectId(dto.getProjectId())
-                    .projectTableId(dto.getProjectTableId())
+                    .id(dto.getId() != null && !dto.getId().isBlank() ? Long.valueOf(dto.getId()) : null)
+                    .projectId(dto.getProjectId() != null && !dto.getProjectId().isBlank() ? Long.valueOf(dto.getProjectId()) : null)
+                    .projectTableId(dto.getProjectTableId() != null && !dto.getProjectTableId().isBlank() ? Long.valueOf(dto.getProjectTableId()) : null)
                     .createTime(dto.getCreateTime())
                     .creatorId(dto.getCreatorId())
                     .creatorName(dto.getCreatorName())
@@ -182,9 +182,9 @@ public class ProjectProjectTableDTO implements Serializable {
      */
     public ProjectProjectTableBO toBO() {
         return ProjectProjectTableBO.builder()
-                .id(this.getId())
-                .projectId(this.getProjectId())
-                .projectTableId(this.getProjectTableId())
+                .id(this.getId() != null && !this.getId().isBlank() ? Long.valueOf(this.getId()) : null)
+                .projectId(this.getProjectId() != null && !this.getProjectId().isBlank() ? Long.valueOf(this.getProjectId()) : null)
+                .projectTableId(this.getProjectTableId() != null && !this.getProjectTableId().isBlank() ? Long.valueOf(this.getProjectTableId()) : null)
                 .createTime(this.getCreateTime())
                 .creatorId(this.getCreatorId())
                 .creatorName(this.getCreatorName())

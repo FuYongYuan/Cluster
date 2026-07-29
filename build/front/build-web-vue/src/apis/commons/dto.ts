@@ -22,6 +22,14 @@ export type TransferData = {
 };
 
 /**
+ * 穿梭框check-strictly模式下Tree勾选事件首个参数（兼容数组格式）
+ */
+export type TreeCheckStrictlyEvent = {
+	checked: (string | number)[];
+	halfChecked: (string | number)[];
+};
+
+/**
  * 排序DTO
  */
 export type PageSortDTO = {

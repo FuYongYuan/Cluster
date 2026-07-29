@@ -36,7 +36,7 @@ export const getManagerByJwtToken = async (): Promise<
  * @param id ID
  */
 export const getManager = async (
-	id: number,
+	id: string,
 ): Promise<ManagerDTO | undefined> => {
 	// 初始化
 	const request = new Request<ManagerDTO>();
